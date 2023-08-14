@@ -26,7 +26,7 @@ function QuestionAndAnswers() {
             expandedIndex={expandedIndex}
             setExpandedIndex={setExpandedIndex}
           >
-            <div className={'flex items-center justify-between pt-4'}>{item.a}</div>
+            <div className={'flex items-center justify-between pt-4 '}>{item.a}</div>
           </Accordion>
         ))}
       </div>
