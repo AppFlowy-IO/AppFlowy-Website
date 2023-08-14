@@ -1,0 +1,15 @@
+{
+  "download-for-your-os": "<0>Download</0> for your OS",
+  "appflowy-for-ios-and-android": "<0>AppFlowy</0> for iOS and Android",
+  "notes-tasks-projects": "notes-tasks-projects",
+  "work-across-all-your-devices": "Work across all your <0>devices</0>",
+  "download-intel": "Download Intel",
+  "download-for": "Download for {{os}}",
+  "for-version": "For {{os}} version {{version}}",
+  "download-for-mobile-description": "Native, Interactive, Intuitive",
+  "download-apple-silicon": "Download Apple Silicon",
+  "download-linux-x86": "Download Linux (x86)",
+  "download-linux-arm": "Download Linux (ARM)",
+  "download-windows": "Download Windows",
+  "desktop": "Desktop"
+}

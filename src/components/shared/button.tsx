@@ -1,38 +1,38 @@
-import React, { HTMLAttributes, useMemo } from 'react';
+import MuiButton, { ButtonProps } from '@mui/material/Button';
+import { Inter } from 'next/font/google';
 
-function Button({
-  children,
-  type,
-  danger,
-  ...buttonProps
-}: {
-  type: 'contained' | 'outlined' | 'text';
-  danger?: boolean;
-  children: React.ReactNode;
-} & HTMLAttributes<HTMLButtonElement>) {
-  const styleCls = useMemo(() => {
-    switch (type) {
-      case 'contained':
-        return `${
-          danger ? 'bg-danger border-danger-hover:text-danger' : 'bg-primary border-primary hover:text-primary'
-        } text-text-on-fill border hover:bg-transparent shadow-button`;
-      case 'outlined':
-        return `${
-          danger ? 'border-danger text-danger hover:bg-danger' : 'border-primary text-primary hover:bg-primary'
-        } bg-transparent border hover:text-text-on-fill shadow-button`;
-      case 'text':
-        return `${danger ? 'text-danger hover:bg-danger-100' : 'text-primary hover:bg-primary-100'} bg-transparent`;
-    }
-  }, [danger, type]);
+const inter = Inter({ subsets: ['latin'] });
+const fontSize = {
+  small: '0.875rem',
+  medium: '1rem',
+  large: '1.25rem',
+};
 
+export default function Button({ variant = 'text', color = 'primary', ...props }: ButtonProps) {
   return (
-    <button
-      {...buttonProps}
-      className={`rounded-2xl p-1.5 px-4 transition-all ${styleCls} ${buttonProps.className || ''}`}
+    <MuiButton
+      {...props}
+      variant={variant}
+      color={color}
+      className={`rounded-2xl shadow-none ${props.className} ${inter.className}`}
+      style={{
+        backgroundColor: `var(--button-${color}-${variant}-background)`,
+      }}
+      sx={{
+        fontWeight: 400,
+        textTransform: 'none',
+        padding: '0.9em 1.5em',
+        fontSize: fontSize[props.size || 'medium'],
+        color: `var(--button-${color}-${variant}-text)`,
+        border: `1px solid var(--button-${color}-${variant}-border)`,
+        '&:hover': {
+          backgroundColor: `var(--button-${color}-${variant}-hover-background) !important`,
+          color: `var(--button-${color}-${variant}-hover-text)`,
+        },
+        ...props.sx,
+      }}
     >
-      {children}
-    </button>
+      {props.children}
+    </MuiButton>
   );
 }
-
-export default Button;

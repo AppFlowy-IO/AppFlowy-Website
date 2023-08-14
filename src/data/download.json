@@ -1,0 +1,83 @@
+{
+  "links": {
+    "macos": {
+      "intel": "",
+      "apple-silicon": ""
+    },
+    "windows": "",
+    "linux": "",
+    "android": "",
+    "iOS": "",
+    "app-store": "",
+    "google-play": ""
+  },
+  "page": {
+    "title": {
+      "download-for-your-os": "download:download-for-your-os",
+      "download-for-mobile": "download:appflowy-for-ios-and-android",
+      "notes-tasks-projects": "download:notes-tasks-projects",
+      "across-devices": "download:work-across-all-your-devices"
+    },
+    "description": {
+      "download-for-mobile": "download:download-for-mobile-description"
+    },
+    "button": {
+      "app-store": "button.app-store",
+      "google-play": "button.google-play"
+    },
+    "images": {
+      "download-for-your-os": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": ""
+      },
+      "download-for-mobile": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": ""
+      },
+      "notes-tasks-projects": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": ""
+      }
+    },
+    "work-across-all-your-devices": [
+      {
+        "key": "macos",
+        "name": "MacOS",
+        "download-items": [
+          {
+            "name": "download:download-intel",
+            "link": ""
+          },
+          {
+            "name": "download:download-apple-silicon",
+            "link": ""
+          }
+        ]
+      },
+      {
+        "key": "windows",
+        "name": "Windows",
+        "download-items": [
+          {
+            "name": "download:download-intel",
+            "link": ""
+          }
+        ]
+      },
+      {
+        "key": "linux",
+        "name": "Linux",
+        "download-items": [
+          {
+            "name": "download:download-linux-x86",
+            "link": ""
+          },
+          {
+            "name": "download:download-linux-arm",
+            "link": ""
+          }
+        ]
+      }
+    ]
+  }
+}

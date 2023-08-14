@@ -1,0 +1,28 @@
+{
+  "title": "contact-us:title",
+  "description": "contact-us:description",
+  "form": [
+    {
+      "label": "contact-us:first-name",
+      "required": true
+    },
+    {
+      "label": "contact-us:last-name",
+      "required": true
+    },
+    {
+      "label": "contact-us:business-email",
+      "required": true
+    },
+    {
+      "label": "contact-us:company-name",
+      "required": true
+    },
+    {
+      "label": "contact-us:message-or-question",
+      "required": true,
+      "type": "textarea"
+    }
+  ],
+  "send": "button.send"
+}

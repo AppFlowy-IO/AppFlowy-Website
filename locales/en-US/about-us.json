@@ -1,0 +1,93 @@
+{
+  "mission": {
+    "title": "Our <0>mission</0> is to empower everyone to create apps that suit their needs",
+    "the-limitations": "The limitations",
+    "the-limitations-desc": "The limitations we encountered using these tools rooted in our past work experience with collaborative productivity tools lead to our firm belief that there is, and will be a glass ceiling on what's possible in the future for tools like Notion.",
+    "one-size-fits-all-solution": "One-size fits all solution",
+    "one-size-fits-all-solution-desc": "This emanates from these tools probable struggles to scale horizontally at some point. It implies that they will likely be forced to prioritize for a proportion of customers whose needs can be quite different from the rest. While decision-makers want a workplace OS, the truth is that it is not very possible to come up with a one-size fits all solution in such a fragmented market.",
+    "when-a-customer-evolving": "When a customer's evolving",
+    "when-a-customer-evolving-desc": "When a customer's evolving core needs are not satisfied, they either switch to another or build one from the ground up, in-house. Consequently, they either go under another ceiling or buy an expensive ticket to learn a hard lesson. This is a requirement for many resources and expertise, building a reliable and easy-to-use collaborative tool, not to mention the speed and native experience. The same may apply to individual users as well.",
+    "our-mission": "Our mission",
+    "our-mission-desc": "<0>All these restrictions necessitate our mission - to make it possible for anyone to create apps that suit their needs well.</0><1>We decided to achieve this mission by upholding the three most fundamental values:</1><2>Data privacy first</2><2>Reliable native experience</2><2>Community-driven extensibility</2>"
+  },
+  "join": {
+    "title": "Join one of the world's fastest growing open source communities",
+    "community-members": "Community members",
+    "github-stars": "GitHub stars",
+    "countries-represented": "Countries represented",
+    "contributors": "Contributors",
+    "developers-users-from": {
+      "title": "Trusted by developers and users from"
+    }
+  },
+  "our-values": {
+    "title": "Our values",
+    "mission-driven": {
+      "title": "Mission Driven",
+      "points": [
+        "Our mission is to make it possible for anyone to create apps that suit their needs well.",
+
+        "We are true believers in open source—a fundamentally superior approach to achieve the mission.",
+
+        "We actively lead and support the AppFlowy open-source community, where a diverse group of people is empowered to contribute to the common good.",
+
+        "We think strategically, make wise decisions, and act accordingly, with an eye toward what’s sustainable in the long run, not what’s convenient in the moment."
+      ]
+    },
+    "aim-high-and-iterate": {
+      "title": "Aim High and Iterate",
+      "points": [
+        "We strive for excellence with a growth mindset.",
+
+        "We dream big, start small, and move fast.",
+
+        "We take smaller steps and ship smaller, simpler features.",
+
+        "We don’t wait, but instead iterate and work as part of the community.",
+
+        "We focus on results over process and prioritize progress over perfection."
+      ]
+    },
+    "transparency": {
+      "title": "Transparency",
+      "points": [
+        "We make information about AppFlowy public by default unless there is a compelling reason not to.",
+
+        "We are straightforward and kind with ourselves and each other.",
+
+        "We surface issues constructively and proactively.",
+
+        "We say “why” and provide sufficient context for our actions rather than just disclosing the “what.,”"
+      ]
+    },
+    "collaboration": {
+      "title": "Collaboration",
+      "points": [
+        "We pride ourselves on being a great team.",
+
+        "We foster collaboration, value diversity and inclusion, and encourage sharing.",
+
+        "We thrive as individuals within the context of our team and succeed together.",
+
+        "We play very effectively with people of diverse backgrounds and cultures.",
+
+        "We make time to help each other in pursuit of our common goals."
+      ]
+    },
+    "honesty": {
+      "title": "Honesty",
+      "points": [
+        "We are honest with ourselves.",
+
+        "We admit mistakes freely and openly.",
+
+        "We provide candid, helpful, timely feedback to colleagues with respect, regardless of their status or whether they disagree with us.",
+
+        "We are vulnerable in search of truth and don’t defend our point to just win over others."
+      ]
+    }
+  },
+  "our-investors": {
+    "title": "Our investors"
+  }
+}

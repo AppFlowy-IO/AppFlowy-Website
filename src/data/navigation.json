@@ -1,0 +1,162 @@
+{
+  "pages": [
+    {
+      "key": "menu.product",
+      "link": "/"
+    },
+    {
+      "key": "menu.download",
+      "link": "/download"
+    },
+    {
+      "key": "menu.community",
+      "children": [
+        {
+          "key": "menu.community",
+          "children": [
+            {
+              "key": "menu.write-for-appflowy",
+              "link": "https://appflowy.gitbook.io/docs/essential-documentation/contribute-to-appflowy/write-for-appflowy",
+              "iconName": "write-for-appflowy",
+              "desc": "menu.write-for-appflowy-desc"
+            },
+            {
+              "key": "menu.top-contributors",
+              "link": "/contributors",
+              "iconName": "top-contributors",
+              "desc": "menu.top-contributors-desc"
+            },
+            {
+              "key": "menu.appflowy-mentorship",
+              "link": "https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy/appflowy-mentorship-program/mentorship-2022",
+              "iconName": "appflowy-mentorship",
+              "desc": "menu.appflowy-mentorship-desc"
+            }
+          ]
+        },
+        {
+          "key": "menu.connect-with-us",
+          "children": [
+            {
+              "key": "menu.discord",
+              "link": "https://discord.com/invite/9Q2xaN37tV",
+              "iconName": "discord",
+              "desc": "menu.discord-desc"
+            },
+            {
+              "key": "menu.twitter",
+              "link": "https://twitter.com/appflowy",
+              "iconName": "twitter",
+              "desc": "menu.twitter-desc"
+            },
+            {
+              "key": "menu.github",
+              "link": "https://github.com/AppFlowy-IO/AppFlowy",
+              "iconName": "github",
+              "desc": "menu.github-desc"
+            },
+            {
+              "key": "menu.community-forum",
+              "link": "https://forum.appflowy.io/",
+              "iconName": "community-forum",
+              "desc": "menu.community-forum-desc"
+            }
+          ]
+        },
+        {
+          "key": "menu.featured",
+          "children": [
+            {
+              "key": "menu.welcome-to-appflowy-docs",
+              "link": "https://docs.appflowy.io/docs/essential-documentation/readme",
+              "imageSrc": "/assets/images/welcome-to-appflowy-docs.png"
+            },
+            {
+              "key": "menu.rust-foundation",
+              "link": "https://blog.appflowy.io/",
+              "imageSrc": "/assets/images/rust-foundation.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "menu.resources",
+      "children": [
+        {
+          "key": "menu.docs",
+          "children": [
+            {
+              "key": "menu.developers-docs",
+              "desc": "menu.developers-docs-desc",
+              "iconName": "developers-docs",
+              "link": "https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy"
+            },
+            {
+              "key": "menu.appflowy-blocks",
+              "desc": "menu.appflowy-blocks-desc",
+              "iconName": "appflowy-blocks",
+              "link": "/blocks"
+            },
+            {
+              "key": "menu.roadmap",
+              "desc": "menu.roadmap-desc",
+              "iconName": "roadmap",
+              "link": "https://github.com/orgs/AppFlowy-IO/projects/5/views/12"
+            },
+            {
+              "key": "menu.what-is-new",
+              "desc": "menu.what-is-new-desc",
+              "iconName": "what-is-new",
+              "link": "/what-is-new"
+            }
+          ]
+        },
+        {
+          "key": "menu.learns",
+          "children": [
+            {
+              "key": "menu.guides-and-tutorials",
+              "desc": "menu.guides-and-tutorials-desc",
+              "iconName": "guides-and-tutorials",
+              "link": "https://blog.appflowy.io/tag/tutorials/"
+            },
+            {
+              "key": "menu.request-a-resource",
+              "desc": "menu.request-a-resource-desc",
+              "iconName": "request-a-resource",
+              "link": ""
+            },
+            {
+              "key": "menu.newsletter",
+              "desc": "menu.newsletter-desc",
+              "iconName": "newsletter",
+              "link": "https://blog.appflowy.io/"
+            },
+            {
+              "key": "menu.live-demo",
+              "desc": "menu.live-demo-desc",
+              "iconName": "live-demo",
+              "link": "/live-demo"
+            }
+          ]
+        },
+        {
+          "key": "menu.featured",
+          "children": [
+            {
+              "key": "menu.welcome-to-appflowy-docs",
+              "link": "https://docs.appflowy.io/docs/essential-documentation/readme",
+              "imageSrc": "/assets/images/welcome-to-appflowy-docs.png"
+            },
+            {
+              "key": "menu.rust-foundation",
+              "link": "https://blog.appflowy.io/",
+              "imageSrc": "/assets/images/rust-foundation.png"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

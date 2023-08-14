@@ -1,0 +1,116 @@
+{
+  "introduce": {
+    "title": {
+      "appflowy": "A <0>privacy-first</0> open source workspace for your notes, wikis, and projects",
+      "wikis-docs-notes": "wikis-docs-notes",
+      "centralized-place": "A <0>centralized</0> place for your tasks, notes, and projects. <1>Organize and visualize your data in table, board, calendar, and more.</1>",
+      "easy-to-use": "<0>Easy</0>-to-use and beautiful"
+    },
+    "description": {
+      "appflowy": "<0>AppFlowy</0> is the smart workspace where you have the full control and get more done, better and faster.",
+      "an-extensible-and-customizable": "<0>An extensible and customizable</0> knowledge base built on a community-driven open toolbox of plugins, templates, themes, and more.",
+      "table": "<0>Table.</0> You can build detailed lists projects while tracking the status of each one",
+      "board": "<0>Kanban Board</0> are the best way to manage projects and tasks.",
+      "calendar": "<0>Calendar.</0> You have a bird’s-eye view of important launch dates"
+    },
+    "image-alts": {
+      "readme": "",
+      "an-extensible-and-customizable": "",
+      "board": "",
+      "table": "",
+      "calendar": ""
+    },
+    "character": {
+      "free": "Free",
+      "open-source": "Open Source",
+      "offline-mode": "100% Offline Mode",
+      "cross-platform": "Cross Platform",
+      "cloud": "Cloud"
+    },
+    "easy-to-use": {
+      "customize": {
+        "name": "Customize themes, colours, fonts",
+        "image-alt": ""
+      },
+      "switch-dark-light": {
+        "name": "Switch between dark and light themes",
+        "image-alt": ""
+      },
+      "go-way-beyond": {
+        "name": "Go way beyond text & bullet points"
+      }
+    }
+  },
+  "discover-ai": {
+    "title": "<0>Discover <1>AI's </1></0>full power in a stunning rich-text editor",
+    "features": {
+      "without-switching": {
+        "title": "<0>Without </0>switching",
+        "description": "Right inside appflowy, you can enjoy the full power of AI without tool switching."
+      },
+      "data-control": {
+        "title": "<0>Data </0>control",
+        "description": "Your data is not sent to any AI service providers such as OpenAI, unless you choose to send. "
+      },
+      "choose-ai-service": {
+        "title": "<0>Choose </0>AI service",
+        "description": "OpenAI, Stability AI and Langchain. you can choose the service you like."
+      }
+    }
+  },
+  "data-security": {
+    "title": "Built for who care about <0>data security</0>",
+    "data-control": {
+      "title": "Data control",
+      "description": "You can host AppFlowy wherever you want; no vendor lock-in.",
+      "image-alt": ""
+    },
+    "always-available": {
+      "title": "Always available",
+      "description": "AppFlow works completely offline, internet or service issues will never be your problem.",
+      "image-alt": ""
+    },
+    "forever-own-data": {
+      "title": "You own your data, forever",
+      "description": "Your notes live on your device, period. You can encrypt them or back them up however you want; it's your decision, not ours.",
+      "image-alt": ""
+    }
+  },
+  "convenient-mobile-application": {
+    "title": "Convenient <0>mobile</0> application",
+    "image-alt": ""
+  },
+  "community": {
+    "title": "AppFlowy is built with a vibrant <0>community</0>",
+    "community-members": "Community members",
+    "countries-represented": "Countries represented",
+    "contributors": "Contributors",
+    "join-us": {
+      "title": "Build by the people for the people",
+      "description": "We collaboratively create apps that suit others’ needs by developing a versatile toolbox of plugins, templates, and more.\nJoin us to build a toolbox that empowers anyone to create their own system - play and tweak without a limit on what's possible.",
+      "image-alt": ""
+    },
+    "docs": {
+      "title": "Do it yourself",
+      "description": "There isn’t a one size fit all solution and there shouldn’t be. Look for something unique? There’s no need to wait. Make your AppFlowy plugin, and unlock endless possibilities.",
+      "image-alt": ""
+    }
+  },
+  "get-started-for-free": {
+    "title": "Get started for <0>free</0>",
+    "description": "Choose to own your data and a smarter way to wor",
+    "image-alt": ""
+  },
+  "button": {
+    "download-app": {
+      "title": "Download app",
+      "subtitle": "{{osName}} X {{osVersion}}"
+    },
+    "app-store": "App Store",
+    "google-play": "Google Play",
+    "join-us": "Join us",
+    "developer-docs": "Developer Docs",
+    "download": "Download",
+    "live-demo": "Live Demo"
+  }
+}

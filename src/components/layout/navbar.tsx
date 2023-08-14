@@ -1,52 +1,24 @@
 'use client';
 
-import Link from 'next/link';
-import Logo from '@/components/shared/icons/logo';
-import useTranslation from 'next-translate/useTranslation';
-import data from '@/data/navbar.json';
-import StartForFreeButton from '@/components/shared/start-for-free-button';
-import { usePathname } from 'next/navigation';
+import TopBar from '@/components/navbar/topbar';
+import ResponsiveAppBar from '@/components/navbar/nav';
+import { useClient } from '@/lib/hooks/use-client';
+import useScroll from '@/lib/hooks/use-scroll';
 
-export default function NavBar() {
-  const { t } = useTranslation();
-  const pathname = usePathname();
+export default function Navbar() {
+  const { isClient } = useClient();
 
-  const isActive = (url: string) => {
-    if (url === '/') {
-      return pathname === '/';
-    }
-
-    return pathname.includes(url);
-  };
+  const scrolled = useScroll(64);
 
   return (
-    <>
-      <div
-        style={{
-          backgroundColor: 'rgb(var(--color-body)/0.5)',
-        }}
-        className={`navbar fixed left-0 top-0 z-30 flex w-screen justify-center backdrop-blur-xl transition-all`}
-      >
-        <div className='flex h-[84px] w-full items-center justify-between px-5'>
-          <Link href='/' className='mx-5 flex scale-125 items-center'>
-            <Logo />
-          </Link>
-          <div className={'flex items-center justify-center'}>
-            {data.map((item) => (
-              <div key={item.name} className={`mx-4 hover:underline ${isActive(item.url) ? 'text-primary' : ''}`}>
-                <Link href={item.url}>{t(item.name)}</Link>
-              </div>
-            ))}
-          </div>
-          <div>
-            <StartForFreeButton
-              onClick={() => {
-                //
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </>
+    <div
+      style={{
+        boxShadow: scrolled ? '0px 6px 9px 0px #868D9F0D' : '',
+      }}
+      className={`navbar ${scrolled ? 'bg-bg' : ''} fixed left-0 top-0 z-30 flex w-screen flex-col justify-center`}
+    >
+      {isClient ? <TopBar /> : null}
+      <ResponsiveAppBar scrolled={scrolled} />
+    </div>
   );
 }

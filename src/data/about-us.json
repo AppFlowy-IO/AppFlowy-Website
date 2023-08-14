@@ -1,0 +1,251 @@
+{
+  "mission": {
+    "title": "about-us:mission.title",
+    "image": {
+      "src": "/assets/images/mission.png",
+      "alt": "Appflowy Mission"
+    },
+    "things": [
+      {
+        "title": "about-us:mission.the-limitations",
+        "description": "about-us:mission.the-limitations-desc",
+        "image": {
+          "src": "/assets/images/mission-1.png",
+          "alt": "Appflowy Mission"
+        }
+      },
+      {
+        "title": "about-us:mission.one-size-fits-all-solution",
+        "description": "about-us:mission.one-size-fits-all-solution-desc",
+        "image": {
+          "src": "/assets/images/mission-1.png",
+          "alt": "Appflowy Mission"
+        }
+      },
+      {
+        "title": "about-us:mission.when-a-customer-evolving",
+        "description": "about-us:mission.when-a-customer-evolving-desc",
+        "image": {
+          "src": "/assets/images/mission-1.png",
+          "alt": "Appflowy Mission"
+        }
+      },
+      {
+        "title": "about-us:mission.our-mission",
+        "description": "about-us:mission.our-mission-desc",
+        "image": {
+          "src": "/assets/images/mission-1.png",
+          "alt": "Appflowy Mission"
+        }
+      }
+    ]
+  },
+  "join": {
+    "title": "about-us:join.title",
+    "data": [
+      {
+        "name": "about-us:join.community-members",
+        "value": "2M"
+      },
+      {
+        "name": "about-us:join.github-stars",
+        "value": "37K"
+      },
+      {
+        "name": "about-us:join.countries-represented",
+        "value": "45"
+      },
+      {
+        "name": "about-us:join.contributors",
+        "value": "129"
+      }
+    ],
+    "developers-users-from": {
+      "title": "about-us:join.developers-users-from.title",
+      "users": [
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        },
+        {
+          "src": "/assets/images/developer.png",
+          "alt": "Tech nation"
+        }
+      ]
+    }
+  },
+  "our-values": {
+    "title": "about-us:our-values.title",
+    "values": [
+      {
+        "key": "M",
+        "title": "about-us:our-values.mission-driven.title",
+        "points": [
+          "about-us:our-values.mission-driven.points.0",
+          "about-us:our-values.mission-driven.points.1",
+          "about-us:our-values.mission-driven.points.2",
+          "about-us:our-values.mission-driven.points.3"
+        ]
+      },
+      {
+        "key": "A",
+        "title": "about-us:our-values.aim-high-and-iterate.title",
+        "points": [
+          "about-us:our-values.aim-high-and-iterate.points.0",
+          "about-us:our-values.aim-high-and-iterate.points.1",
+          "about-us:our-values.aim-high-and-iterate.points.2",
+          "about-us:our-values.aim-high-and-iterate.points.3",
+          "about-us:our-values.aim-high-and-iterate.points.4"
+        ]
+      },
+      {
+        "key": "T",
+        "title": "about-us:our-values.transparency.title",
+        "points": [
+          "about-us:our-values.transparency.points.0",
+          "about-us:our-values.transparency.points.1",
+          "about-us:our-values.transparency.points.2",
+          "about-us:our-values.transparency.points.3"
+        ]
+      },
+      {
+        "key": "C",
+        "title": "about-us:our-values.collaboration.title",
+        "points": [
+          "about-us:our-values.collaboration.points.0",
+          "about-us:our-values.collaboration.points.1",
+          "about-us:our-values.collaboration.points.2",
+          "about-us:our-values.collaboration.points.3",
+          "about-us:our-values.collaboration.points.4"
+        ]
+      },
+      {
+        "key": "H",
+        "title": "about-us:our-values.honesty.title",
+        "points": [
+          "about-us:our-values.honesty.points.0",
+          "about-us:our-values.honesty.points.1",
+          "about-us:our-values.honesty.points.2",
+          "about-us:our-values.honesty.points.3"
+        ]
+      }
+    ]
+  },
+  "our-investors": {
+    "title": "about-us:our-investors.title",
+    "investors": [
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      },
+      {
+        "name": "Phin Barnes",
+        "description": "Founder of Inkling"
+      }
+    ]
+  }
+}
