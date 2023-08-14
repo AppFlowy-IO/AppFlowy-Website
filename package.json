@@ -10,7 +10,7 @@
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "test": "cypress open",
-    "test:headless": "TS_NODE_PROJECT=0 cypress run"
+    "test:headless": "cypress run --browser chrome"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
