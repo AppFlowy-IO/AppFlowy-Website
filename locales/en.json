@@ -1,0 +1,265 @@
+{
+  "start-for-free": "Start for free",
+  "download-app": "Download App",
+  "download-app-desc": "For {{ device }} version {{ version }}",
+  "app-store": "App Store",
+  "google-play": "Google Play",
+  "download": "Download",
+  "live-demo": "Live Demo",
+  "product": "Product",
+  "community": "Community",
+  "resources": "Resources",
+  "company": "Company",
+  "about": "About Us",
+  "careers": "Careers",
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Service",
+  "contact": "Contact Us",
+  "newsletter": "Newsletter",
+  "roadmap": "Roadmap",
+  "demo": "Live Demo",
+  "phone": "IOS & Android",
+  "mac": "Mac",
+  "windows": "Windows",
+  "linux": "Linux",
+  "github": "Github",
+  "twitter": "Twitter",
+  "discord": "Discord",
+  "community-hub": "Community Hub",
+  "report-bugs": "Report Bugs",
+  "request-features": "Request Features",
+  "guides": "Guides & Tutorials",
+  "developer-docs": "Developer Docs",
+  "blocks": "Appflowy Blocks",
+  "request-resources": "Request Resources",
+  "get-started": "Get Started",
+  "everything-in": "Everything in {{type}}, and",
+  "what-is-new": {
+    "text": "What's New",
+    "title": {
+      "prefix": "What's ",
+      "main": "New?"
+    }
+  },
+  "pricing": {
+    "text": "Pricing",
+    "one-tool": {
+      "title": {
+        "main": "One tool ",
+        "suffix": "for your\nwhole company"
+      }
+    },
+    "compare": {
+      "title": {
+        "main": "Compare ",
+        "suffix": "plans & features"
+      }
+    },
+
+    "free": {
+      "name": "Free",
+      "desc": "For organizing every corner of your work & life",
+      "price-desc": "Unlimited blocks for individuals Limited block trial for teams",
+      "features": {
+        "item-1": "Collaborative workspace",
+        "item-2": "Basic page analytics",
+        "item-3": "7 day page history",
+        "item-4": "Invite 10 guests",
+        "item-5": "Integrate with Slack, GitHub & more"
+      },
+      "pages-and-blocks": {
+        "limit-text": "Unlimited for individuals, limited block trial for 2+ members"
+      }
+    },
+    "plus": {
+      "name": "Plus",
+      "desc": "A place for small groups to plan & get organized.",
+      "price-desc": "per user / monthbilled annually $10 billed monthly",
+
+      "features": {
+        "item-1": "Unlimited file uploads",
+        "item-2": "30 day page history",
+        "item-3": "Invite 100 guests",
+        "item-4": "Unlimited blocks for teams"
+      }
+    },
+    "business": {
+      "name": "Business",
+      "desc": "For companies using Notion to connect several teams & tools.",
+      "price-desc": "per user / monthbilled annually $18 billed monthly",
+      "features": {
+        "item-1": "SAML SSO",
+        "item-2": "Private teamspaces",
+        "item-3": "Bulk PDF export",
+        "item-4": "Advanced page analytics",
+        "item-5": "90 day page history",
+        "item-6": "Invite 250 guests",
+        "item-7": "Add collaborators external to your organization (like clients or contractors) to specific pages in your workspace."
+      }
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "desc": "Advanced controls & support to run your entire organization.",
+      "price-desc": "per user / monthbilled annually $25 billed monthly",
+      "features": {
+        "item-1": "Unlimited file uploads",
+        "item-2": "30 day page history",
+        "item-3": "Invite 100 guests",
+        "item-4": "Unlimited blocks for teams"
+      }
+    },
+    "pages-and-blocks": "Pages & Blocks",
+    "file-uploads": "File Uploads",
+    "page-history": "Page History",
+    "page-analytics": "Page Analytics",
+    "sharing-and-collaboration": "Sharing & Collaboration",
+    "collaborative-workspace": "Collaborative Workspace",
+    "guest-collaborators": "Guest Collaborators",
+    "custom-domain": "Custom appflowy.site domain",
+    "permission-groups": "Permission Groups",
+    "team-spaces-open": "Teamspaces (open & closed)",
+    "team-spaces-private": "Teamspaces (private)",
+    "advanced-team-space-permissions": "Advanced Teamspace Permissions",
+    "priority-support": "Priority Support",
+    "dedicated-success-manager": "Dedicated success manager (100+ seats)"
+  },
+  "q&a": {
+    "title": {
+      "prefix": "Questions & ",
+      "main": "answers"
+    }
+  },
+  "request-a-demo": "Request a Demo",
+  "days": "{{days}} days",
+  "up-to": "Up to {{size}}",
+  "unlimited": "Unlimited",
+  "content": "Content",
+  "support": "Support",
+  "basic": "Basic",
+  "advanced": "Advanced",
+  "home": {
+    "title": {
+      "prefix": "A",
+      "suffix": "open source workspace for your notes, wikis, and projects",
+      "main": "privacy-first"
+    },
+    "desc": "is the smart workspace where you have the full control and get more done, better and faster.",
+    "wiki-docs-note": "wikis-docs-notes",
+    "wiki-docs-note-desc": {
+      "prefix": "An extensible and customizable ",
+      "suffix": "knowledge base built on a community-driven open toolbox of plugins, templates, themes, and more."
+    },
+    "centralized": {
+      "title": {
+        "prefix": "A",
+        "suffix": {
+          "prefix": "place for your tasks, notes, and projects. ",
+          "suffix": "Organize and visualize your data in table, board, calendar, and more."
+        },
+        "main": " centralized "
+      }
+    },
+    "easy-to-use": {
+      "title": {
+        "prefix": "Easy",
+        "suffix": "-to-use and beautiful"
+      },
+      "card-1": {
+        "title": "Customize themes, colours, fonts"
+      },
+      "card-2": {
+        "title": "Switch between dark and light themes"
+      },
+      "card-3": {
+        "title": "Customize themes, colours, fonts"
+      }
+    },
+    "discover-ai": {
+      "title": {
+        "prefix": "Discover ",
+        "main": "AI's",
+        "suffix": " full power \n in a stunning rich-text editor"
+      },
+      "features": {
+        "without-switching": {
+          "title": "Without\nswitching",
+          "desc": "Right inside appflowy, you can enjoy the full power of AI without tool switching. "
+        },
+        "data-control": {
+          "title": "Data\ncontrol",
+          "desc": "Your data is not sent to any AI service providers such as OpenAI, unless you choose to send. "
+        },
+        "choose-ai-service": {
+          "title": "Choose\nAI service",
+          "desc": "OpenAI, Stability AI and Langchain. you can choose the service you like."
+        }
+      }
+    },
+    "data-security": {
+      "title": {
+        "prefix": "Built for who care about\n",
+        "main": "data security"
+      },
+      "card-1": {
+        "title": "Data control",
+        "desc": "You can host AppFlowy wherever you want; no vendor lock-in."
+      },
+      "card-2": {
+        "title": "Always available",
+        "desc": "AppFlow works completely offline, internet or service issues will never be your problem."
+      },
+      "card-3": {
+        "title": "You own your data, forever",
+        "desc": "Your notes live on your device, period. You can encrypt them or back them up however you want; it's your decision, not ours."
+      }
+    },
+    "mobile": {
+      "title": {
+        "prefix": "Convenient ",
+        "main": "mobile\n",
+        "suffix": "application"
+      }
+    },
+    "community": {
+      "title": {
+        "prefix": "AppFlowy is built with\na vibrant ",
+        "main": "community"
+      },
+      "data-1": {
+        "title": "Community members"
+      },
+      "data-2": {
+        "title": "Countries represented"
+      },
+      "data-3": {
+        "title": "Contributors"
+      },
+      "desc-1": {
+        "title": "Build by the people for the people",
+        "desc": "We collaboratively create apps that suit others’ needs by developing a versatile toolbox of plugins, templates, and more.\nJoin us to build a toolbox that empowers anyone to create their own system - play and tweak without a limit on what's possible.",
+        "link": {
+          "title": "Join Us",
+          "url": ""
+        }
+      },
+      "desc-2": {
+        "title": "Open source",
+        "desc": "AppFlowy is open source, which means anyone can freely access, modify, and contribute to the codebase. We believe that open source is the best way to build software, and we’re committed to sharing our work with the world.",
+        "link": {
+          "title": "Developer Docs",
+          "url": ""
+        }
+      }
+    },
+    "get-started": {
+      "title": {
+        "prefix": "Get started for ",
+        "main": "free"
+      },
+      "desc": "Choose to own your data and a smarter way to wor"
+    }
+  },
+  "subscribe": "Subscribe",
+  "subscribe-newsletter": "Subscribe to our Newsletter",
+  "subscribe-newsletter-desc": "Stay up date with the latest news, announcements, and articles"
+}

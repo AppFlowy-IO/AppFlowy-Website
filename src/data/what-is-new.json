@@ -1,0 +1,205 @@
+[
+  {
+    "month": "July",
+    "versions": [
+      {
+        "image": "",
+        "version": "v0.2.7",
+        "time": "July 18, 2023",
+        "desc": "Added support for opening the page in tabs",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": [
+              "Added support for opening the page in tabs",
+              "Toggle list",
+              "Alt/Option + click to add a text block above"
+            ]
+          },
+          {
+            "name": "Bug Fixes",
+            "icon": "fix",
+            "items": ["Pasting or inserting text on Grid will cause a crash on Windows", "Some UI issues"]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.6",
+        "time": "July 11, 2023",
+        "desc": "supports Google Fonts",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": ["Custom Font (Google Fonts)", "Insert inline math equations", "Upload custom themes"]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.5",
+        "time": "July 2, 2023",
+        "desc": "supports adding local images to your document",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": ["Insert local images", "Mention / Link a page", "Outlines (Table of contents)", "Align an image"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "June",
+    "versions": [
+      {
+        "image": "",
+        "version": "v0.2.4",
+        "time": "June 23, 2023",
+        "desc": "fixed bugs",
+        "update": [
+          {
+            "name": "Bug Fixes",
+            "icon": "fix",
+            "items": [
+              "Copy paste",
+              "Export as markdown didn't work when the file name contained special characters",
+              "\"/checkbox\" + Enter doesn't auto-enter the edit mode",
+              "The numbered list 29 . was auto converted to 1.",
+              "Rename a file improvement",
+              "The position of the side action menu in the document",
+              "Text color didn't show up in the format menu when selecting multiple lines",
+              "Allow only one instance of the AppFlowy Windows application at a time"
+            ]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.3",
+        "time": "June 21, 2023",
+        "desc": "supports multiple layouts of the same database",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": [
+              "Support multiple database views (Grid, Board, and Calendar) of the same database",
+              "Improve changing the data directory to save AppFlowy data"
+            ]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.2",
+        "time": "June 15, 2023",
+        "desc": "supports note-taking in opening a row as a page",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": [
+              "Added support for note-taking in a database's row detail page",
+              "Added support for inserting an emoji in a database's row detail page"
+            ]
+          },
+          {
+            "name": "Other Updates",
+            "icon": "update",
+            "items": [
+              "Added a language selector in the welcome page",
+              "Added support for importing multiple markdown files all at once"
+            ]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.1",
+        "time": "June 11, 2023",
+        "desc": "supports creating or referencing a calendar in the document",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": [
+              "Added support for creating or referencing a calendar in the document",
+              "Added + icon to assist in adding an option to a Select/Multi-select field"
+            ]
+          },
+          {
+            "name": "Other Updates",
+            "icon": "update",
+            "items": [
+              "Vertical paddings for the Checklist's progress bar",
+              "Hide the open URL icon when the URL field is empty"
+            ]
+          },
+          {
+            "name": "Bug Fixes",
+            "icon": "fix",
+            "items": [
+              "Fixed unable to export markdown",
+              "Fixed database views didn't update after the database layout is changed"
+            ]
+          }
+        ]
+      },
+      {
+        "image": "",
+        "version": "v0.2.0",
+        "time": "June 8, 2023",
+        "desc": "is the biggest update since v0.1.0",
+        "update": [
+          {
+            "name": "New features",
+            "icon": "add",
+            "items": [
+              "Improved checklists to support each cell having its own list",
+              "Drag and drop calendar events",
+              "Switch layouts (Calendar, Grid, Kanban) of a database",
+              "New database properties: 'Updated At' and 'Created At'",
+              "Enabled hiding properties on the row detail page",
+              "Added support for reordering and saving row order in different database views.",
+              "Enabled each database view to have its own settings, including filter and sort options",
+              "Added support to convert “ (double quote) into a block quote",
+              "Added support to convert *** (three stars) into a divider",
+              "Added support for an 'Add' button to insert a paragraph in a document and display the slash menu",
+              "Added support for an 'Option' button to delete, duplicate, and customize block actions"
+            ]
+          },
+          {
+            "name": "Other Updates",
+            "icon": "update",
+            "items": [
+              "Added support for importing v0.1.x documents and databases",
+              "Added support for database import and export to CSV",
+              "Optimized scroll behavior in documents.",
+              "Redesigned the launch page"
+            ]
+          },
+          {
+            "name": "Bug Fixes",
+            "icon": "fix",
+            "items": [
+              "Fixed bugs related to numbers",
+              "Fixed issues with referenced databases in documents",
+              "Fixed menu overflow issues in documents"
+            ]
+          },
+          {
+            "name": "Data migration",
+            "icon": "data",
+            "items": [
+              "The data format of this version is not compatible with previous versions. Therefore, to migrate your data to the new version, you need to use the export and import functions. Please follow the guide to learn about how to export and import your data."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

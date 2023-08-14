@@ -1,0 +1,123 @@
+[
+  {
+    "name": "company",
+    "children": [
+      {
+        "name": "about",
+        "url": "/about"
+      },
+      {
+        "name": "careers",
+        "url": "/careers"
+      },
+      {
+        "name": "privacy",
+        "url": "/privacy"
+      },
+      {
+        "name": "terms",
+        "url": "/terms"
+      },
+      {
+        "name": "contact",
+        "url": "/contact"
+      }
+    ]
+  },
+  {
+    "name": "product",
+    "children": [
+      {
+        "name": "what-is-new.text",
+        "url": "/what-is-new"
+      },
+      {
+        "name": "roadmap",
+        "url": "/product/roadmap"
+      },
+      {
+        "name": "newsletter",
+        "url": "/product/newsletter"
+      },
+      {
+        "name": "pricing.text",
+        "url": "/pricing"
+      },
+      {
+        "name": "demo",
+        "url": "/product/demo"
+      }
+    ]
+  },
+  {
+    "name": "download",
+    "children": [
+      {
+        "name": "phone",
+        "url": "/download/phone"
+      },
+      {
+        "name": "mac",
+        "url": "/download/mac"
+      },
+      {
+        "name": "windows",
+        "url": "/download/windows"
+      },
+      {
+        "name": "linux",
+        "url": "/download/linux"
+      }
+    ]
+  },
+  {
+    "name": "community",
+    "children": [
+      {
+        "name": "github",
+        "url": "/community/github"
+      },
+      {
+        "name": "twitter",
+        "url": "/community/twitter"
+      },
+      {
+        "name": "discord",
+        "url": "/community/discord"
+      },
+      {
+        "name": "community-hub",
+        "url": "/community/community-hub"
+      },
+      {
+        "name": "report-bugs",
+        "url": "/community/report-bugs"
+      },
+      {
+        "name": "request-features",
+        "url": "/community/request-features"
+      }
+    ]
+  },
+  {
+    "name": "resources",
+    "children": [
+      {
+        "name": "guides",
+        "url": "/resources/guide"
+      },
+      {
+        "name": "developer-docs",
+        "url": "/resources/developer-docs"
+      },
+      {
+        "name": "blocks",
+        "url": "/resources/blocks"
+      },
+      {
+        "name": "request-resources",
+        "url": "/resources/request-resources"
+      }
+    ]
+  }
+]

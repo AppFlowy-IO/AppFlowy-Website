@@ -3,25 +3,105 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --divider: 239, 241, 248;
+    --primary: 147, 39, 255;
+    --body: 255, 255, 255;
+    --gray: 213, 215, 222;
+    --blue: 0, 181, 255;
+    --red: 251, 0, 109;
+    --yellow: 255, 206, 0;
+    --color-body: rgba(var(--body), 1);
+    --color-gray-body: #EFF1F8;
+    --color-purple-body: #E1CDFF;
+    --color-footer-text: #fff;
+    --color-footer-input-bg: #1A1B1D;
+    --color-footer-input-border: #9C9C9C0D;
+    --gradient-discover-ai: linear-gradient(200.16deg, #DEE7FF -38.92%, rgba(232, 224, 255, 0) 86.57%);
+    --gradient-purple: linear-gradient(-205deg, rgba(147, 39, 255, 0.2) 0%, rgba(232, 224, 255, 0) 100%);
+    --gradient-gray: linear-gradient(-205deg, rgba(213, 215, 222, 0.4) 0%, rgba(232, 224, 255, 0) 100%);
+    --gradient-yellow: linear-gradient(-205deg, rgba(255, 206, 0, 0.2) 0%, rgba(232, 224, 255, 0) 100%);
+    --gradient-blue: linear-gradient(-205deg, rgba(0, 181, 255, 0.3), rgba(0, 181, 255, 0.3));
+    --gradient-red: linear-gradient(-205deg, rgba(251, 0, 109, 0.3), rgba(251, 0, 109, 0.3));
+    --gradient-what-is-new: linear-gradient(201.25deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFFFFF 91.89%);
+    --gradient-pick: linear-gradient(170.16deg, rgba(147, 39, 255, 0.2) -28.92%, rgba(232, 224, 255, 0) 28.57%);
+    --gradient-pricing: linear-gradient(200.27deg, #EDECFC -20.21%, #F3F7FE 21.08%, #F8F9FF 35.69%, #FAFAFF 64.02%, #F5F2FF 82.31%, #FFFFFF 92.05%);
+
+
+    --color-dividers: rgba(var(--divider), 0.1);
+    --color-text-title: #363f5f;
+    --color-primary: rgba(var(--primary), 1);
+    --color-text-on-fill: #fff;
+    --color-primary-100: #D9BAFF;
+    --color-danger: #E52E4D;
+    --color-danger-100: #FFB8C6;
+    --color-footer: #000;
+    --color-text-placeholder: #CCCFD9;
+    --color-text-gray: #696868;
+    --color-mobile-bg: #EFF1F8;
+    --color-purple-border: rgba(var(--primary),0.2);
+    --color-blue-border: rgba(var(--blue),0.3);
+    --color-red-border: rgba(var(--red),0.3);
+    --color-yellow-border: rgba(var(--yellow),0.3);
+    --color-gray-border: rgba(var(--gray),0.6);
+    --shadow-button: 0px 4px 8px 0px #8427E033;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+.data-security {
+    background: #fff;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.what-is-new {
+    background: var(--gradient-what-is-new);
+}
+
+.pricing {
+    background: var(--gradient-pricing);
+}
+
+section {
+    height: 100vh;
+    position: relative;
+}
+
+.discover-ai {
+    background: var(--gradient-discover-ai);
+}
+
+.gradient-card.card-red {
+    background: var(--gradient-red);
+    border-color: var(--color-red-border);
+}
+
+.gradient-card.card-blue {
+    background: var(--gradient-blue);
+    border-color: var(--color-blue-border);
+}
+
+.gradient-card.card-gray {
+    background: var(--gradient-gray);
+    border-color: var(--color-gray-border);
+}
+
+.gradient-card.card-purple {
+    background: var(--gradient-purple);
+    border-color: var(--color-purple-border);
+}
+
+.gradient-card.card-yellow {
+    background: var(--gradient-yellow);
+    border-color: var(--color-yellow-border);
+}
+
+.mobile {
+    background: var(--color-mobile-bg);
+}
+
+.panel-title {
+    @apply relative my-16 text-[80px] font-medium leading-[98px] tracking-tighter text-center whitespace-break-spaces inline-block;
 }
