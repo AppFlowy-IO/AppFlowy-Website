@@ -1,0 +1,56 @@
+{
+  "title": {
+    "join-our-team": "career:join-our-team",
+    "current-job-openings": "career:current-job-openings"
+  },
+  "description": "career:description",
+  "open-position": {
+    "button-text": "career:open-position",
+    "link": "/career#current-job-openings"
+  },
+  "good-points": {
+    "fast-growing": "career:fast-growing",
+    "community-focused": "career:community-focused",
+    "remote": "career:remote",
+    "backed-by-vc": "career:backed-by-vc"
+  },
+  "offer": [
+    {
+      "name": "career:full-stack-rust-developer.title",
+      "link": "",
+      "tags": [
+        "career:full-stack-rust-developer.tags.0",
+        "career:full-stack-rust-developer.tags.1",
+        "career:full-stack-rust-developer.tags.2"
+      ]
+    },
+    {
+      "link": "",
+      "name": "career:technical-community-manager.title",
+      "tags": [
+        "career:technical-community-manager.tags.0",
+        "career:technical-community-manager.tags.1",
+        "career:technical-community-manager.tags.2"
+      ]
+    },
+    {
+      "link": "",
+      "name": "career:data-analyst.title",
+      "tags": ["career:data-analyst.tags.0", "career:data-analyst.tags.1", "career:data-analyst.tags.2"]
+    },
+    {
+      "link": "",
+      "name": "career:devops-engineer.title",
+      "tags": ["career:devops-engineer.tags.0", "career:devops-engineer.tags.1", "career:devops-engineer.tags.2"]
+    },
+    {
+      "link": "",
+      "name": "career:business-development-manager.title",
+      "tags": [
+        "career:business-development-manager.tags.0",
+        "career:business-development-manager.tags.1",
+        "career:business-development-manager.tags.2"
+      ]
+    }
+  ]
+}

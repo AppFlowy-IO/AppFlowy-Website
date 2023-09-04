@@ -5,7 +5,7 @@ function MonthFlag({ title }: { title: string }) {
     <div className={'absolute -left-[13px] -top-6  flex items-center '}>
       <div
         className={
-          'flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-purple-border)] p-1.5'
+          'flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-primary-divider)] p-1.5'
         }
       >
         <div className={'bg-primary h-full w-full rounded-full rounded-full'} />

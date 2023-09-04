@@ -1,5 +1,5 @@
 export default function Logo({ dark }: { dark?: boolean }) {
-  const color = dark ? 'var(--color-text-on-fill)' : 'var(--color-text-title)';
+  const color = dark ? 'var(--color-text-on-fill)' : 'var(--color-text)';
 
   return (
     <svg width='103' height='24' viewBox='0 0 103 24' fill='none' xmlns='http://www.w3.org/2000/svg'>

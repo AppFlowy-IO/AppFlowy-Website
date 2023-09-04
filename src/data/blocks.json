@@ -1,0 +1,24 @@
+{
+  "title": "blocks:title",
+  "description": "blocks:description",
+  "products": [
+    {
+      "title": "blocks:editor.title",
+      "description": "blocks:editor.description",
+      "image": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": ""
+      },
+      "link": "https://pub.dev/packages/appflowy_editor"
+    },
+    {
+      "title": "blocks:board.title",
+      "description": "blocks:board.description",
+      "image": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": ""
+      },
+      "link": "https://pub.dev/packages/appflowy_board/example"
+    }
+  ]
+}

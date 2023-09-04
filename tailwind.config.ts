@@ -1,103 +1,49 @@
 import type { Config } from 'tailwindcss';
-import type { PluginAPI } from 'tailwindcss/types/config';
-import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  important: '#body',
   content: ['./src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       fontFamily: {
         default: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
-      animation: {
-        // Fade up and down
-        'fade-up': 'fade-up 0.5s',
-        'fade-down': 'fade-down 0.5s',
-        // Tooltip
-        'slide-up-fade': 'slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        'slide-down-fade': 'slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+
+      height: {
+        22: '5.5rem',
       },
-      keyframes: {
-        // Fade up and down
-        'fade-up': {
-          '0%': {
-            opacity: '0',
-            transform: 'translateY(10px)',
-          },
-          '80%': {
-            opacity: '0.6',
-          },
-          '100%': {
-            opacity: '1',
-            transform: 'translateY(0px)',
-          },
-        },
-        'fade-down': {
-          '0%': {
-            opacity: '0',
-            transform: 'translateY(-10px)',
-          },
-          '80%': {
-            opacity: '0.6',
-          },
-          '100%': {
-            opacity: '1',
-            transform: 'translateY(0px)',
-          },
-        },
-        // Tooltip
-        'slide-up-fade': {
-          '0%': { opacity: '0', transform: 'translateY(6px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'slide-down-fade': {
-          '0%': { opacity: '0', transform: 'translateY(-6px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
+      width: {
+        22: '5.5rem',
+        21: '5.25rem',
       },
       colors: {
-        primary: {
-          DEFAULT: 'var(--color-primary)',
-          100: 'var(--color-primary-100)',
-        },
-        danger: {
-          DEFAULT: 'var(--color-danger)',
-          100: 'var(--color-danger-100)',
-        },
         text: {
-          title: 'var(--color-text-title)',
+          DEFAULT: 'var(--color-text)',
           'on-fill': 'var(--color-text-on-fill)',
-          placeholder: 'var(--color-text-placeholder)',
+          icon: 'var(--color-text-icon)',
           gray: 'var(--color-text-gray)',
         },
-        body: 'var(--color-body)',
-        'gray-body': 'var(--color-gray-body)',
-        dividers: 'var(--color-dividers)',
-        footer: {
-          DEFAULT: 'var(--color-footer)',
-          text: 'var(--color-footer-text)',
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          divider: 'var(--color-primary-divider)',
+          hover: 'var(--color-primary-hover)',
         },
-        border: {
-          gray: 'var(--color-gray-border)',
-          purple: 'var(--color-purple-border)',
+        secondary: {
+          DEFAULT: 'var(--color-secondary)',
+        },
+        bg: {
+          DEFAULT: 'var(--color-bg)',
+          hover: 'var(--color-bg-hover)',
+          footer: 'var(--color-bg-footer)',
         },
       },
-      boxShadow: {
-        button: 'var(--shadow-button)',
-      },
+      boxShadow: {},
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    plugin(({ addVariant }: PluginAPI) => {
-      addVariant('radix-side-top', '&[data-side="top"]');
-      addVariant('radix-side-bottom', '&[data-side="bottom"]');
-    }),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;

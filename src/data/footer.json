@@ -1,123 +1,140 @@
-[
-  {
-    "name": "company",
-    "children": [
-      {
-        "name": "about",
-        "url": "/about"
-      },
-      {
-        "name": "careers",
-        "url": "/careers"
-      },
-      {
-        "name": "privacy",
-        "url": "/privacy"
-      },
-      {
-        "name": "terms",
-        "url": "/terms"
-      },
-      {
-        "name": "contact",
-        "url": "/contact"
-      }
-    ]
-  },
-  {
-    "name": "product",
-    "children": [
-      {
-        "name": "what-is-new.text",
-        "url": "/what-is-new"
-      },
-      {
-        "name": "roadmap",
-        "url": "/product/roadmap"
-      },
-      {
-        "name": "newsletter",
-        "url": "/product/newsletter"
-      },
-      {
-        "name": "pricing.text",
-        "url": "/pricing"
-      },
-      {
-        "name": "demo",
-        "url": "/product/demo"
-      }
-    ]
-  },
-  {
-    "name": "download",
-    "children": [
-      {
-        "name": "phone",
-        "url": "/download/phone"
-      },
-      {
-        "name": "mac",
-        "url": "/download/mac"
-      },
-      {
-        "name": "windows",
-        "url": "/download/windows"
-      },
-      {
-        "name": "linux",
-        "url": "/download/linux"
-      }
-    ]
-  },
-  {
-    "name": "community",
-    "children": [
-      {
-        "name": "github",
-        "url": "/community/github"
-      },
-      {
-        "name": "twitter",
-        "url": "/community/twitter"
-      },
-      {
-        "name": "discord",
-        "url": "/community/discord"
-      },
-      {
-        "name": "community-hub",
-        "url": "/community/community-hub"
-      },
-      {
-        "name": "report-bugs",
-        "url": "/community/report-bugs"
-      },
-      {
-        "name": "request-features",
-        "url": "/community/request-features"
-      }
-    ]
-  },
-  {
-    "name": "resources",
-    "children": [
-      {
-        "name": "guides",
-        "url": "/resources/guide"
-      },
-      {
-        "name": "developer-docs",
-        "url": "/resources/developer-docs"
-      },
-      {
-        "name": "blocks",
-        "url": "/resources/blocks"
-      },
-      {
-        "name": "request-resources",
-        "url": "/resources/request-resources"
-      }
-    ]
-  }
-]
+{
+  "menu": [
+    {
+      "key": "menu.product",
+      "children": [
+        {
+          "key": "menu.what-is-new",
+          "link": "/what-is-new"
+        },
+        {
+          "key": "menu.roadmap",
+          "link": "https://github.com/orgs/AppFlowy-IO/projects/5/views/12"
+        },
+        {
+          "key": "menu.newsletter",
+          "link": "https://blog.appflowy.io/"
+        }
+      ]
+    },
+    {
+      "key": "menu.download",
+      "link": "/download",
+      "children": [
+        {
+          "key": "menu.ios-and-android",
+          "link": "/download#ios-and-android"
+        },
+
+        {
+          "key": "menu.mac-os",
+          "link": "/download#mac-os"
+        },
+
+        {
+          "key": "menu.windows",
+          "link": "/download#windows"
+        },
+
+        {
+          "key": "menu.linux",
+          "link": "/download#linux"
+        }
+      ]
+    },
+    {
+      "key": "menu.community",
+      "children": [
+        {
+          "key": "menu.github",
+          "link": "https://github.com/AppFlowy-IO/AppFlowy"
+        },
+        {
+          "key": "menu.twitter",
+          "link": "https://twitter.com/appflowy"
+        },
+        {
+          "key": "menu.discord",
+          "link": "https://discord.com/invite/9Q2xaN37tV"
+        },
+        {
+          "key": "menu.community-forum",
+          "link": "https://forum.appflowy.io/"
+        },
+        {
+          "key": "menu.report-a-bug",
+          "link": "https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose"
+        },
+        {
+          "key": "menu.request-a-feature",
+          "link": "https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose"
+        }
+      ]
+    },
+    {
+      "key": "menu.resources",
+      "children": [
+        {
+          "key": "menu.guides-and-tutorials",
+          "link": "https://blog.appflowy.io/tag/tutorials/"
+        },
+        {
+          "key": "menu.developers-docs",
+          "link": "https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy"
+        },
+        {
+          "key": "menu.appflowy-blocks",
+          "link": "/blocks"
+        },
+        {
+          "key": "menu.request-a-resource",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "menu.company",
+      "children": [
+        {
+          "key": "menu.about-us",
+          "link": "/about-us"
+        },
+        {
+          "key": "menu.careers",
+          "link": "/career",
+          "badge": 0
+        },
+        {
+          "key": "menu.privacy",
+          "link": "/privacy"
+        },
+        {
+          "key": "menu.terms",
+          "link": "/terms"
+        },
+        {
+          "key": "menu.contacts",
+          "link": "/contact-us"
+        }
+      ]
+    }
+  ],
+  "external-links": [
+    {
+      "key": "twitter",
+      "link": "https://twitter.com/appflowy"
+    },
+    {
+      "key": "reddit",
+      "link": "https://www.reddit.com/r/AppFlowy"
+    },
+    {
+      "key": "github",
+      "link": "https://github.com/AppFlowy-IO/appflowy"
+    },
+    {
+      "key": "discord",
+      "link": "https://discord.com/invite/9Q2xaN37tV"
+    }
+  ]
+}

@@ -1,7 +1,11 @@
+'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 
 export default function useScroll(threshold: number) {
-  const [scrolled, setScrolled] = useState(true);
+  const [scrolled, setScrolled] = useState(() => {
+    return window.pageYOffset > threshold;
+  });
 
   const onScroll = useCallback(() => {
     const yOffset = window.pageYOffset;

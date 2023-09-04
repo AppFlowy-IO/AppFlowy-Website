@@ -1,87 +1,209 @@
 {
-  "easy-to-use": [
-    {
-      "icon-url": "",
-      "title": "home.easy-to-use.card-1.title"
+  "introduce": {
+    "title": {
+      "appflowy": "home:introduce.title.appflowy",
+      "wikis-docs-notes": "home:introduce.title.wikis-docs-notes",
+      "centralized-place": "home:introduce.title.centralized-place",
+      "easy-to-use": "home:introduce.title.easy-to-use"
     },
-    {
-      "icon-url": "",
-      "title": "home.easy-to-use.card-2.title"
+    "description": {
+      "appflowy": "home:introduce.description.appflowy",
+      "an-extensible-and-customizable": "home:introduce.description.an-extensible-and-customizable"
     },
-    {
-      "icon-url": "",
-      "title": "home.easy-to-use.card-3.title"
-    }
-  ],
-  "discover-ai": [
-    {
-      "icon-url": "",
-      "title": "home.discover-ai.features.without-switching.title",
-      "desc": "home.discover-ai.features.without-switching.desc"
-    },
-    {
-      "icon-url": "",
-      "title": "home.discover-ai.features.data-control.title",
-      "desc": "home.discover-ai.features.data-control.desc"
-    },
-    {
-      "icon-url": "",
-      "title": "home.discover-ai.features.choose-ai-service.title",
-      "desc": "home.discover-ai.features.choose-ai-service.desc"
-    }
-  ],
-  "data-security": [
-    {
-      "title": "home.data-security.card-1.title",
-      "color": "purple",
-      "desc": "home.data-security.card-1.desc",
-      "icon": ""
-    },
-    {
-      "title": "home.data-security.card-2.title",
-      "color": "gray",
-      "desc": "home.data-security.card-2.desc",
-      "icon": ""
-    },
-    {
-      "title": "home.data-security.card-3.title",
-      "color": "yellow",
-      "desc": "home.data-security.card-3.desc",
-      "icon": ""
-    }
-  ],
-  "community": {
-    "increase": [
-      {
-        "title": "home.community.data-1.title",
-        "number": "2M"
+    "images": {
+      "appflowy": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": "home:introduce.image-alts.readme"
       },
-      {
-        "title": "home.community.data-2.title",
-        "number": "45"
-      },
-      {
-        "title": "home.community.data-3.title",
-        "number": "129"
+      "an-extensible-and-customizable": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": "home:introduce.image-alts.an-extensible-and-customizable"
       }
-    ],
-    "introduce": [
+    },
+    "table-board-calendar": {
+      "board": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": "home:introduce.image-alts.board",
+        "description": "home:introduce.description.board"
+      },
+      "table": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": "home:introduce.image-alts.table",
+        "description": "home:introduce.description.table"
+      },
+      "calendar": {
+        "src": "/assets/images/welcome-to-appflowy-docs.png",
+        "alt": "home:introduce.image-alts.calendar",
+        "description": "home:introduce.description.calendar"
+      }
+    },
+    "easy-to-use": [
       {
-        "title": "home.community.desc-1.title",
-        "desc": "home.community.desc-1.desc",
-        "link": {
-          "title": "home.community.desc-1.link.title",
-          "url": "https://www.google.com"
+        "name": "home:introduce.easy-to-use.customize.name",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:introduce.easy-to-use.customize.image-alt"
         }
       },
       {
-        "title": "home.community.desc-2.title",
-        "desc": "home.community.desc-2.desc",
-        "link": {
-          "title": "home.community.desc-2.link.title",
-          "url": "https://www.google.com"
+        "name": "home:introduce.easy-to-use.switch-dark-light.name",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:introduce.easy-to-use.switch-dark-light.image-alt"
+        }
+      },
+      {
+        "name": "home:introduce.easy-to-use.go-way-beyond.name",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:introduce.easy-to-use.go-way-beyond.image-alt"
+        }
+      }
+    ],
+    "characters": [
+      "home:introduce.character.free",
+      "home:introduce.character.open-source",
+      "home:introduce.character.offline-mode",
+      "home:introduce.character.cross-platform",
+      "home:introduce.character.cloud"
+    ],
+    "button": {
+      "download-app": {
+        "title": "home:button.download-app.title",
+        "subtitle": "home:button.download-app.subtitle"
+      }
+    }
+  },
+  "discover-ai": {
+    "title": "home:discover-ai.title",
+    "image": {
+      "src": "/assets/images/welcome-to-appflowy-docs.png",
+      "alt": "home:discover-ai.image-alt"
+    },
+    "features": [
+      {
+        "type": "without-switching",
+        "title": "home:discover-ai.features.without-switching.title",
+        "description": "home:discover-ai.features.without-switching.description"
+      },
+      {
+        "type": "data-control",
+        "title": "home:discover-ai.features.data-control.title",
+        "description": "home:discover-ai.features.data-control.description"
+      },
+      {
+        "type": "choose-ai-service",
+        "title": "home:discover-ai.features.choose-ai-service.title",
+        "description": "home:discover-ai.features.choose-ai-service.description"
+      }
+    ]
+  },
+  "data-security": {
+    "title": "home:data-security.title",
+    "features": [
+      {
+        "type": "data-control",
+        "title": "home:data-security.data-control.title",
+        "description": "home:data-security.data-control.description",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:data-security.data-control.image-alt"
+        }
+      },
+      {
+        "type": "always-available",
+        "title": "home:data-security.always-available.title",
+        "description": "home:data-security.always-available.description",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:data-security.always-available.image-alt"
+        }
+      },
+      {
+        "type": "forever-own-data",
+        "title": "home:data-security.forever-own-data.title",
+        "description": "home:data-security.forever-own-data.description",
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:data-security.forever-own-data.image-alt"
         }
       }
     ]
+  },
+  "convenient-mobile-application": {
+    "title": "home:convenient-mobile-application.title",
+    "button": {
+      "app-store": {
+        "title": "button.app-store",
+        "link": ""
+      },
+      "google-play": {
+        "title": "button.google-play",
+        "link": ""
+      }
+    },
+    "image": {
+      "src": "/assets/images/welcome-to-appflowy-docs.png",
+      "alt": "home:convenient-mobile-application.image-alt"
+    }
+  },
+  "community": {
+    "title": "home:community.title",
+    "data": [
+      {
+        "count": 2000000,
+        "name": "home:community.community-members"
+      },
+      {
+        "count": 45,
+        "name": "home:community.countries-represented"
+      },
+      {
+        "count": 129,
+        "name": "home:community.contributors"
+      }
+    ],
+    "items": [
+      {
+        "title": "home:community.join-us.title",
+        "description": "home:community.join-us.description",
+        "button": {
+          "title": "home:button.join-us",
+          "link": ""
+        },
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:community.join-us.image-alt"
+        }
+      },
+      {
+        "title": "home:community.docs.title",
+        "description": "home:community.docs.description",
+        "button": {
+          "title": "home:button.developer-docs",
+          "link": ""
+        },
+        "image": {
+          "src": "/assets/images/welcome-to-appflowy-docs.png",
+          "alt": "home:community.docs.image-alt"
+        }
+      }
+    ]
+  },
+  "get-started-for-free": {
+    "title": "home:get-started-for-free.title",
+    "description": "home:get-started-for-free.description",
+    "image": {
+      "src": "/assets/images/welcome-to-appflowy-docs.png",
+      "alt": "home:get-started-for-free.image-alt"
+    },
+    "download": {
+      "button-name": "home:button.download",
+      "link": ""
+    },
+    "live-demo": {
+      "button-name": "button.live-demo",
+      "link": ""
+    }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "title": "<0>Appflowy</0> Blocks",
+  "description": "AppFlowy is not only an open-source alternative to Notion but an application infra provider as well. We publish reliable and customizable standalone building blocks such as AppFlowy Editor and Kanban Board for developers to build their own applications.",
+  "editor": {
+    "title": "AppFlowy Editor",
+    "description": "A highly customizable rich-text editor for Flutter"
+  },
+  "board": {
+    "title": "AppFlowy Board",
+    "description": "A customizable and draggable Kanban Board widget"
+  }
+}

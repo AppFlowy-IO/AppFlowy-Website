@@ -1,0 +1,30 @@
+{
+  "join-our-team": "<0>Join</0> our team",
+  "current-job-openings": "Current job openings",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "open-position": "Open position",
+  "fast-growing": "<0>Fast-growing open-source.</0>As a founding member, you will help shape both what and how we build a world-class open-source product.",
+  "community-focused": "<0>Community-focused.</0>We actively lead and support our passionate and engaged community, where a diverse group of people is empowered to contribute to the common good.",
+  "remote": "<0>100% remote.</0>Our fully remote team works asynchronously, so we can work wherever and whenever we’re happiest.",
+  "backed-by-vc": "<0>Backed by top VCs.</0>We’re well-funded by top VCs and great angel investors.",
+  "full-stack-rust-developer": {
+    "title": "Full stack rust developer",
+    "tags": ["Singapore", "Full time", "Remote"]
+  },
+  "technical-community-manager": {
+    "title": "Technical community manager",
+    "tags": ["United Kingdom", "Full time", "Remote"]
+  },
+  "data-analyst": {
+    "title": "Data analyst",
+    "tags": ["United Kingdom", "Full time", "Remote"]
+  },
+  "devops-engineer": {
+    "title": "DevOps engineer",
+    "tags": ["United Kingdom", "Full time", "Remote"]
+  },
+  "business-development-manager": {
+    "title": "Business development manager",
+    "tags": ["United Kingdom", "Full time", "Remote"]
+  }
+}
