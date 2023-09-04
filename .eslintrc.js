@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     'no-duplicate-case': 'error',
     'no-duplicate-imports': 'error',
+    '@next/next/no-img-element': 'off',
     '@typescript-eslint/no-empty-function': 'error',
     'padding-line-between-statements': [
       'warn',

@@ -27,6 +27,7 @@ export default function ContributorList() {
                     loading={'lazy'}
                     className={'border-bg h-[194px] w-[194px] rounded-full border-4 max-sm:h-[84px] max-sm:w-[84px]'}
                     src={contributor.avatar_url}
+                    alt={contributor.name}
                   />
                 </div>
                 <div
