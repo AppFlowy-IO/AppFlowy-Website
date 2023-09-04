@@ -1,5 +1,4 @@
-import { cookieName } from '@/middleware';
-
+export const cookieName = 'i18next';
 export function setLocaleCookie(lang: string) {
   const oneYearInSeconds = 365 * 24 * 60 * 60;
 

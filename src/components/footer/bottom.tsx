@@ -1,6 +1,5 @@
 'use client';
 
-import SwitchLang from '@/components/footer/switch-lang';
 import SwitchMode from '@/components/footer/switch-mode';
 import Box from '@mui/material/Box';
 
@@ -52,7 +51,6 @@ export default function FooterBottom() {
         }}
         className={'flex'}
       >
-        <SwitchLang />
         <SwitchMode />
       </Box>
     </Box>

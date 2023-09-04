@@ -1,12 +1,12 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import versions from '@/data/versions.json';
 import { Storage } from '@/lib/storage';
-import { newVersionActions, useSelectorNewVersionState } from '@/lib/store/new-version';
-import { useDispatch } from '@/lib/store';
 
 export function useNewVersion() {
-  const { version, show } = useSelectorNewVersionState();
-  const dispatch = useDispatch();
+  const [newVersionState, setNewVersionState] = useState({
+    version: '',
+    show: false,
+  });
 
   const loadNewVersion = useCallback(() => {
     const lastVersion = versions[0];
@@ -23,30 +23,41 @@ export function useNewVersion() {
     }
 
     if (show) {
-      dispatch(newVersionActions.open(version));
+      setNewVersionState({
+        version,
+        show: true,
+      });
     } else {
-      dispatch(newVersionActions.close());
-    }
-  }, [dispatch]);
-
-  const closeNewVersionTip = useCallback(() => {
-    dispatch(newVersionActions.close());
-    Storage.set(
-      'newVersionState',
-      JSON.stringify({
+      setNewVersionState({
         version,
         show: false,
-      })
-    );
-  }, [dispatch, version]);
+      });
+    }
+  }, []);
+
+  const closeNewVersionTip = useCallback(() => {
+    setNewVersionState((prev) => {
+      Storage.set(
+        'newVersionState',
+        JSON.stringify({
+          version: prev.version,
+          show: false,
+        })
+      );
+      return {
+        ...prev,
+        show: false,
+      };
+    });
+  }, []);
 
   useEffect(() => {
     loadNewVersion();
   }, [loadNewVersion]);
 
   return {
-    version,
-    show,
+    version: newVersionState.version,
+    show: newVersionState.show,
     closeNewVersionTip,
   };
 }

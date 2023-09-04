@@ -1,4 +1,3 @@
-import Button from '@/components/shared/button';
 import * as React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Page } from '@/lib/interface';
