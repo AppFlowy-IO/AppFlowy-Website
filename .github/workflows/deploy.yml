@@ -9,7 +9,7 @@ jobs:
     env:
       SSH_TARGET: admin@54.206.53.213  # main branch deploy target
       SSH_DEV_TARGET: admin@54.206.53.213  # develop branch deploy target
-      SSH_KEY: ${{ secrets.SSH_KEY }} # main branch SSH key
+      SSH_KEY: ${{ secrets.SSH_KEY_DEV }} # main branch SSH key
       SSH_KEY_DEV: ${{ secrets.SSH_KEY_DEV }} # develop branch SSH key
       NODE_ENV: production
 
