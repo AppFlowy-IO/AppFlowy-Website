@@ -1,0 +1,56 @@
+name: Build and Deploy
+
+on:
+  workflow_run:
+    workflows: [ "CI/CD Workflow" ]  # Name of the workflow that triggers this workflow
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_TARGET: admin@54.206.53.213  # main branch deploy target
+      SSH_DEV_TARGET: admin@54.206.53.213  # develop branch deploy target
+      SSH_KEY: ${{ secrets.SSH_KEY }} # main branch SSH key
+      SSH_KEY_DEV: ${{ secrets.SSH_KEY_DEV }} # develop branch SSH key
+      NODE_ENV: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get current branch
+        id: branch
+        run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN{FS="/"} {print $3}')"
+
+      - name: Set SSH target based on branch
+        run: |
+          if [ "${{ steps.branch.outputs.branch }}" == "main" ]; then
+            echo "Using main branch SSH target"
+            echo "SSH_TARGET=$SSH_TARGET" >> $GITHUB_ENV
+          elif [ "${{ steps.branch.outputs.branch }}" == "develop" ]; then
+            echo "Using develop branch SSH target"
+            echo "SSH_TARGET=$SSH_DEV_TARGET" >> $GITHUB_ENV
+          fi
+      - name: Set SSH key based on branch
+        run: |
+          if [ "${{ steps.branch.outputs.branch }}" == "main" ]; then
+            echo "Using main branch SSH key"
+            echo "SSH_KEY=SSH_KEY" >> $GITHUB_ENV
+          elif [ "${{ steps.branch.outputs.branch }}" == "develop" ]; then
+            echo "Using develop branch SSH key"
+            echo "SSH_KEY=SSH_KEY_DEV" >> $GITHUB_ENV
+          fi
+
+      - name: SSH to EC2
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: $SSH_KEY
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && git pull origin ${{ steps.branch.outputs.branch }}"
+          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && pnpm install && pnpm run build"
+          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && pm2 restart 0"
