@@ -5,6 +5,7 @@ module.exports = {
       script: 'npm',
       args: 'start',
       interpreter: 'pnpm',
+      log_file: 'app.log',
     },
   ],
 };
