@@ -25,6 +25,9 @@ jobs:
           npm install -g pnpm@${{ env.PNPM_VERSION }}
           pnpm install
           pnpm run build
+      - name: run lint
+        run: |
+          pnpm run lint
       - name: run tests
         run: |
           pnpm run start & sleep 10 && pnpm run test:headless
