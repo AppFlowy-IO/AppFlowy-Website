@@ -40,13 +40,16 @@ jobs:
             echo "SSH_KEY=SSH_KEY_DEV" >> $GITHUB_ENV
           fi
 
-      - name: SSH to EC2
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: $SSH_KEY
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa  # set the SSH key into the ~/.ssh/id_rsa file
+          chmod 600 ~/.ssh/id_rsa  # set the permissions
+          ssh-keyscan github.com >> ~/.ssh/known_hosts  # add github to known_hosts
+          chmod 644 ~/.ssh/known_hosts  # set the permissions
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && git pull origin ${{ steps.branch.outputs.branch }}"
-          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && pnpm install && pnpm run build"
-          ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_TARGET "cd AppFlowy-Website && pm2 restart 0"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && git pull origin ${{ steps.branch.outputs.branch }}"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && pnpm install && pnpm run build"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && pm2 restart 0"
