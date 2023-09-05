@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SSH_TARGET: admin@54.206.53.213  # main branch deploy target
-      SSH_DEV_TARGET: admin@54.206.53.213  # develop branch deploy target
+      SSH_TARGET: 54.206.53.213  # main branch deploy target
+      SSH_DEV_TARGET: 54.206.53.213  # develop branch deploy target
       SSH_KEY: ${{ secrets.SSH_KEY_DEV }} # main branch SSH key
       SSH_KEY_DEV: ${{ secrets.SSH_KEY_DEV }} # develop branch SSH key
       NODE_ENV: production
@@ -45,11 +45,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa  # set the SSH key into the ~/.ssh/id_rsa file
           chmod 600 ~/.ssh/id_rsa  # set the permissions
-          ssh-keyscan github.com >> ~/.ssh/known_hosts  # add github to known_hosts
+          ssh-keyscan $SSH_TARGET >> ~/.ssh/known_hosts  # add the host to the known_hosts file
           chmod 644 ~/.ssh/known_hosts  # set the permissions
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && git pull origin ${{ steps.branch.outputs.branch }}"
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && pnpm install && pnpm run build"
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SSH_TARGET "cd AppFlowy-Website && pm2 restart 0"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@$SSH_TARGET "cd AppFlowy-Website && git pull origin ${{ steps.branch.outputs.branch }}"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@$SSH_TARGET "cd AppFlowy-Website && pnpm install && pnpm run build"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@$SSH_TARGET "cd AppFlowy-Website && pm2 restart 0"
