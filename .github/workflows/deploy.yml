@@ -1,10 +1,6 @@
 name: Build and Deploy
 
-on:
-  workflow_run:
-    workflows: [ "CI/CD Workflow" ]  # Name of the workflow that triggers this workflow
-    types:
-      - completed
+on: [push]
 
 jobs:
   deploy:
