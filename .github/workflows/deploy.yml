@@ -43,7 +43,7 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_rsa.pem  # set the SSH key into the ~/.ssh/id_rsa file
+          echo "$SSH_KEY" | openssl rsa -out ~/.ssh/id_rsa.pem  # set the SSH key into the ~/.ssh/id_rsa file
           chmod 600 ~/.ssh/id_rsa.pem  # set the permissions
           ssh-keyscan $SSH_TARGET >> ~/.ssh/known_hosts  # add the host to the known_hosts file
           chmod 644 ~/.ssh/known_hosts  # set the permissions
