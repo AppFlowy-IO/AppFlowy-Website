@@ -27,9 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense>
           <Navbar />
         </Suspense>
-
         <main className='flex w-full flex-col items-center justify-center overflow-hidden text-base'>{children}</main>
-
         <Suspense>
           <Footer />
         </Suspense>
