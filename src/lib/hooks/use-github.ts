@@ -3,12 +3,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { api } from '@/lib/api';
 import { Storage } from '@/lib/storage';
+import dayjs from 'dayjs';
 
 export function useGithub() {
-  const [stars, setStars] = useState(() => {
-    if (typeof window === 'undefined') return 0;
-    return Number(Storage.get('stars'));
-  });
+  const [stars, setStars] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const fetchGithub = useCallback(async () => {
@@ -19,6 +17,7 @@ export function useGithub() {
 
       setStars(stargazers_count);
       Storage.set('stars', stargazers_count);
+      Storage.set('get-stars-time', dayjs().toString());
     } catch (e) {
       // do nothing
     }
@@ -27,7 +26,14 @@ export function useGithub() {
   }, []);
 
   useEffect(() => {
-    void fetchGithub();
+    const lastTime = Storage.get('get-stars-time');
+    const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
+
+    if (diffHours > 24 || !lastTime) {
+      void fetchGithub();
+    } else {
+      setStars(Number(Storage.get('stars')));
+    }
   }, [fetchGithub]);
 
   return {

@@ -1,8 +1,13 @@
-# Project README
+## Getting Started
 
-## Introduction
+First, run the development server:
 
-This README provides an overview of our frontend project, covering its development, deployment, and testing processes.
+```bash
+pnpm install
+pnpm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Development
 
@@ -33,5 +38,14 @@ To deploy changes to the production environment, follow these steps:
 ## Testing
 
 Our testing framework of choice is Cypress. Comprehensive testing information will be provided in this section as the project progresses.
+
+```bash
+pnpm run build
+pnpm run start
+
+pnpm run test
+# or
+pnpm run test:headless
+```
 
 Feel free to update this README with more details as the project evolves. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!

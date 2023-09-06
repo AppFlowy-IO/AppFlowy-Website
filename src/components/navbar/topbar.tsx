@@ -14,6 +14,7 @@ export default function TopBar() {
       className={`bg-primary text-text-on-fill flex h-9 w-screen items-center justify-center overflow-hidden text-sm`}
       initial={false}
       animate={{ height: show ? '36px' : 0 }}
+      aria-label={'topbar'}
     >
       <Trans
         i18nKey={'new-version-tip'}
@@ -23,7 +24,7 @@ export default function TopBar() {
             href={'/what-is-new'}
             key={1}
             onClick={onClickLearnMore}
-            className={'mx-2 flex cursor-pointer items-center justify-center font-semibold'}
+            className={'learn-more-link mx-2 flex cursor-pointer items-center justify-center font-semibold'}
           />,
           <div key={2} className={'mx-1'}>
             <ArrowOutward />
