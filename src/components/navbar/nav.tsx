@@ -16,10 +16,11 @@ import Logo from '@/components/shared/icons/logo';
 import DrawerNavbar from '@/components/navbar/drawer-nav';
 import NavMenuItem from '@/components/navbar/nav-menu-item';
 import Link from 'next/link';
+import { formatNumber } from '@/lib/format-number';
 
 function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
   const { t } = useTranslation();
-  const { stars, pages, activePageKey } = useNavigator();
+  const { stars, pages, activePageKey, onNavigateToGithub } = useNavigator();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -41,6 +42,7 @@ function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
         padding: '12px 0',
       }}
       position='static'
+      aria-label={'navbar'}
     >
       <Container maxWidth={false}>
         <Toolbar
@@ -64,7 +66,10 @@ function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
             </Link>
           </Box>
 
-          <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+          <Box
+            aria-label={'navbar-menu'}
+            sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}
+          >
             {pages.map((page) => (
               <NavMenuItem activePageKey={activePageKey} page={page} key={page.key} />
             ))}
@@ -83,6 +88,8 @@ function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
                 },
                 borderColor: scrolled ? 'var(--color-github-star-border-scrolled)' : 'var(--color-github-star-border)',
               }}
+              aria-label={'star-button'}
+              onClick={onNavigateToGithub}
               className={'mx-2'}
               color={'secondary'}
               variant={'contained'}
@@ -95,7 +102,7 @@ function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
                   }}
                 />
                 <div className={'ml-2 mr-3 whitespace-nowrap'}>{t('button.github-star')}</div>
-                <div className={'arrow-badge'}>{stars > 1000 ? `${Math.ceil(stars / 1000)}k` : stars}</div>
+                <div className={'arrow-badge'}>{formatNumber(stars)}</div>
               </div>
             </Button>
             <Box
@@ -103,7 +110,7 @@ function ResponsiveAppBar({ scrolled }: { scrolled: boolean }) {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              <StartForFreeButton />
+              <StartForFreeButton className={'nav-download-free'} />
             </Box>
 
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
