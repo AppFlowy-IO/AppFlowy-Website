@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project README
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This README provides an overview of our frontend project, covering its development, deployment, and testing processes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Development
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configuration Flexibility
+Our frontend project offers extensive configurability. You can customize various aspects, including images, links, and text content. All these configurations are managed through JSON files located in the `src/data` directory. Each webpage has its dedicated JSON file, organized by page routes, for instance, `/about-us` page configuration is stored in `src/data/about-us.json`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Internationalization (i18n) Support
+We are planning to introduce i18n support in the future. When configuring content in the JSON files, please use i18n keys to facilitate seamless translation.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Language Support
+As of now, our project primarily supports the English language due to some compatibility issues with the latest version of Next.js. Full support for languages other than English is currently under development. Translation files can be found in the `locale` folder.
 
-## Learn More
+### Day and Night Mode
+Our website features a day and night mode toggle, achieved through CSS variables for switching token colors.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Automatic Testing Environment Deployment
+We have set up an automated deployment process for the testing environment. When code is merged into either the `main` or `develop` branch, the system automatically deploys the changes to the testing environment. You can find the deployment workflow configuration in `.github/workflows/deploy_dev.yml`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Manual Production Environment Deployment
+To deploy changes to the production environment, follow these steps:
+1. Visit the project's GitHub page.
+2. Navigate to the "Actions" tab.
+3. Click on "Manual Deploy to Production."
+4. Select "Run workflow" to initiate a manual deployment to the production environment.
 
-## Deploy on Vercel
+## Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Our testing framework of choice is Cypress. Comprehensive testing information will be provided in this section as the project progresses.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to update this README with more details as the project evolves. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!
