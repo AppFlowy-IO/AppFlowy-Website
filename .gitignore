@@ -36,4 +36,4 @@ next-env.d.ts
 
 cypress/videos
 
-*.log
+**/*.log
