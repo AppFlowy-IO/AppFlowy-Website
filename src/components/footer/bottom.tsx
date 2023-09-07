@@ -15,8 +15,9 @@ export default function FooterBottom() {
           xs: 'flex-start',
           md: 'flex-end',
         },
+
         minHeight: {
-          xs: '200px',
+          xs: '160px',
           md: '87px',
         },
         paddingTop: {
@@ -42,7 +43,7 @@ export default function FooterBottom() {
       <Box
         sx={{
           justifyContent: {
-            xs: 'space-between',
+            xs: 'flex-end',
           },
           width: {
             xs: '100%',

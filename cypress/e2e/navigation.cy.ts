@@ -19,25 +19,30 @@ describe('Navigation', () => {
     cy.url().should('eq', baseIndexUrl);
   });
 
-  it('clicking the community and resources should open the popover', () => {
+  it('hover the community and resources should open the popover', () => {
     const menus = ['Community', 'Resources'];
     menus.forEach((menu) => {
       cy.wait(1000);
       // Find the menu and click it
-      cy.get('[aria-label=navbar-menu]').contains(menu).click();
+      cy.get('[aria-label=navbar-menu]').contains(menu).as('menu');
+
+      cy.get('@menu').trigger('mouseover');
       // Ensure that the popover element is visible
-      cy.get('.MuiModal-root').should('be.visible');
+      cy.get('.menu-popover').should('be.visible');
+
+      cy.get('@menu').click();
       // Ensure that the current page's URL remains the same
       cy.url().should('eq', baseIndexUrl);
 
-      // Find the Product and click it
-      cy.get('[aria-label=navbar-menu]').contains('Download').click();
+      cy.get('.menu-popover').trigger('mouseover');
+      // Ensure that the popover element is still visible
+      cy.wait(300);
+      cy.get('.menu-popover').should('be.visible');
+
+      cy.get('@menu').trigger('mouseout');
       // Ensure that the popover element is no longer visible
-      cy.get('.MuiModal-root').should('not.be.visible');
-      // Ensure that the current page's URL remains the same
-      cy.url().should('include', '/download');
-      // Go back to the index page
-      cy.get('[aria-label=navbar-menu] a[href="/"]').click();
+      cy.wait(300);
+      cy.get('.menu-popover').should('not.exist');
     });
   });
 

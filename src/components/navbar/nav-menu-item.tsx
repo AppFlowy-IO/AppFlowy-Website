@@ -2,8 +2,7 @@ import * as React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Page } from '@/lib/interface';
 import { Popover } from '@mui/material';
-
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import debounce from 'lodash-es/debounce';
 import Image from 'next/image';
 import {
@@ -22,6 +21,8 @@ import {
   LiveTv,
 } from '@mui/icons-material';
 import Link from 'next/link';
+
+const closeDuration = 200;
 
 interface NavMenuItemProps {
   page: Page;
@@ -51,13 +52,6 @@ export default function NavMenuItem({ page, activePageKey }: NavMenuItemProps) {
   const [anchorEl, setAnchorEl] = useState<undefined | HTMLElement>();
   const open = Boolean(anchorEl);
 
-  const debounceClose = useMemo(
-    () =>
-      debounce(() => {
-        setAnchorEl(undefined);
-      }, 200),
-    []
-  );
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
     if (!page.children || page.children.length === 0) return;
     setAnchorEl(undefined);
@@ -70,6 +64,14 @@ export default function NavMenuItem({ page, activePageKey }: NavMenuItemProps) {
   const handlePopoverClose = () => {
     setAnchorEl(undefined);
   };
+
+  const debounceClose = useMemo(
+    () =>
+      debounce(() => {
+        setAnchorEl(undefined);
+      }, closeDuration),
+    []
+  );
 
   const renderChildren = (children: Page[]) => {
     return children.map((child) => (
@@ -109,26 +111,16 @@ export default function NavMenuItem({ page, activePageKey }: NavMenuItemProps) {
     ));
   };
 
-  useEffect(() => {
-    const handleWindowClick = () => {
-      setAnchorEl(undefined);
-    };
-
-    window.addEventListener('click', handleWindowClick, true);
-    return () => {
-      window.removeEventListener('click', handleWindowClick, true);
-    };
-  }, []);
-
   return (
     <>
       <Link
-        onClick={(event) => {
+        onMouseEnter={(event) => {
           if (!page.link) {
-            event.preventDefault();
-            event.stopPropagation();
             handlePopoverOpen(event);
           }
+        }}
+        onMouseLeave={() => {
+          debounceClose();
         }}
         href={page.link || ''}
       >
@@ -155,6 +147,7 @@ export default function NavMenuItem({ page, activePageKey }: NavMenuItemProps) {
         }}
         slotProps={{
           paper: {
+            className: 'menu-popover',
             sx: {
               pointerEvents: 'auto',
               boxShadow: 'none',
@@ -163,6 +156,10 @@ export default function NavMenuItem({ page, activePageKey }: NavMenuItemProps) {
               border: '1px solid var(--color-primary-divider)',
               minWidth: 200,
             },
+            onMouseEnter: () => {
+              debounceClose.cancel();
+            },
+            onMouseLeave: debounceClose,
           },
         }}
         anchorEl={anchorEl}

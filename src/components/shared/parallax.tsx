@@ -16,7 +16,7 @@ export function Parallax({ title, children }: { title: string; children: React.R
 
   const { scrollYProgress } = useScroll();
   const distance = useMemo(() => {
-    return typeof window === 'undefined' ? 0 : window.innerHeight;
+    return typeof window === 'undefined' ? 0 : window.innerWidth;
   }, []);
   const x = useParallax(scrollYProgress, distance);
 
