@@ -6,20 +6,47 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --quiet",
+    "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "test": "cypress open",
+    "test:headless": "cypress run --browser chrome"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.8",
+    "@types/ua-parser-js": "^0.7.36",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "cypress": "^12.17.3",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "prettier": "^2.8.2",
+    "prettier-plugin-tailwindcss": "^0.2.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.15",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.4.19",
-    "next": "13.4.19",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "dayjs": "^1.11.9",
+    "dexie": "^3.2.4",
+    "dexie-react-hooks": "^1.1.6",
+    "framer-motion": "^8.4.2",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
+    "next": "13.4.20-canary.23",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.66.1",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "ua-parser-js": "^1.0.35"
   }
 }

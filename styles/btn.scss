@@ -1,0 +1,107 @@
+.github-btn {
+  @apply flex p-4 rounded-[18px] items-center justify-between;
+  @apply max-sm:text-[12px] max-sm:rounded-[12px] max-sm:p-[10px];
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #F2F2F2;
+
+  &:hover {
+    background: rgba(242, 241, 241, 0.40);
+  }
+
+  &:active {
+    background: rgba(229, 229, 229, 0.40);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    background: rgba(255, 255, 255, 0.40);
+  }
+}
+
+
+[data-mode="dark"] .github-btn {
+  border-color: rgba(247, 248, 248, 0.15);
+  background: rgba(247, 248, 248, 0.10);
+
+  &:hover {
+    background: rgba(247, 248, 248, 0.03);
+  }
+
+  &:active {
+    background: rgba(247, 248, 248, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    background: rgba(247, 248, 248, 0.10);
+  }
+}
+
+.download-btn {
+  gap: 10px;
+  border-radius: 20px;
+  padding: 19px 40px 21px 40px;
+  @apply flex items-center justify-center rounded-[18px] text-white border;
+  @apply max-sm:text-base max-sm:px-[26px] max-sm:py-[22px] max-sm:leading-[100%];
+  background: var(--color-primary);
+  border-color: rgba(255, 255, 255, 0.20);
+
+  &.download-free-btn {
+    border-radius: 18px;
+    padding: 15px 24px;
+  }
+
+  &:hover {
+    background: #A952FF;
+  }
+
+  &:active {
+    background: #7D26DE;
+  }
+
+  &:disabled {
+    background: #7D26DE;
+    opacity: 0.3;
+  }
+}
+
+[data-mode="dark"] .download-btn {
+  border-color: rgba(0, 0, 0, 0.20);
+
+  &:hover {
+    background: #7033B2;
+  }
+
+  &:active {
+    background: #571A99;
+  }
+
+  &:disabled {
+    background: #571A99;
+    opacity: 0.3;
+  }
+}
+
+.live-demo-btn {
+  padding: 19px 40px 21px 40px;
+  @apply text-primary flex justify-center items-center rounded-[20px] gap-[10px] border border-primary;
+  &:hover {
+    border-color: #A952FF;
+    color: #A952FF;
+  }
+
+  &:active {
+    border-color: #7D26DE;
+    color: #7D26DE;
+  }
+
+  &:disabled {
+    border-color: #7D26DE;
+    color: #7D26DE;
+    opacity: 0.3;
+  }
+}
+
+.trigger-btn {
+  @apply text-black text-[18px] md:hidden ml-[20px];
+}

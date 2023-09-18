@@ -1,0 +1,33 @@
+.contact-page {
+  background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
+  @apply flex w-full flex-col items-center pt-[220px] pb-[184px] relative;
+  @apply max-sm:pt-[169px];
+  .title {
+    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-text text-center relative mb-[30px];
+    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
+    .line {
+      @apply absolute top-[79px] left-0 w-[185px] h-[19px];
+      @apply max-sm:top-[32px] max-sm:left-[20px] max-sm:w-[140px] max-sm:h-[20px];
+    }
+
+  }
+
+  .desc {
+    @apply w-[552px] text-center mb-[100px];
+    @apply max-sm:w-full max-sm:mb-[30px] max-sm:px-[50px];
+
+  }
+
+  .icon {
+    @apply absolute;
+    &.icon-1 {
+      @apply bottom-[170px] left-[290px] w-[110px] h-[156px];
+      @apply max-sm:w-[41px] max-sm:h-[59px];
+    }
+
+    &.icon-2 {
+      @apply top-[470px] right-[290px] w-[38px] h-[54px];
+      @apply max-sm:w-[21px] max-sm:h-[30px];
+    }
+  }
+}

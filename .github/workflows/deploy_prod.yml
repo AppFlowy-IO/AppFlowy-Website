@@ -1,0 +1,36 @@
+name: Manual Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'main'
+        options:
+          main:
+            description: 'Deploy the main branch'
+
+jobs:
+  deploy-main:
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_TARGET: 54.206.53.213
+      NODE_ENV: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" | openssl rsa -out ~/.ssh/id_rsa.pem  # set the SSH key into the ~/.ssh/id_rsa file
+          chmod 600 ~/.ssh/id_rsa.pem  # set the permissions
+          ssh-keyscan "$SSH_TARGET" >> ~/.ssh/known_hosts  # add the host to the known_hosts file
+          chmod 644 ~/.ssh/known_hosts  # set the permissions
+
+      - name: Deploy to EC2 (Main)
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pem admin@$SSH_TARGET "cd space/AppFlowy-Website && git fetch && git reset --hard origin/${{ inputs.branch }} && pnpm install && pnpm run build && node run-script.js" || { echo "Failed to execute the command"; exit 1; }

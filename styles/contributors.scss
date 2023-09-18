@@ -1,0 +1,66 @@
+.contributors-page {
+  @apply flex w-full flex-col items-center pt-[220px] pb-[184px];
+  @apply max-sm:pt-[169px] max-sm:pb-[80px];
+  background: #F0EFFD;
+
+  .title {
+    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] font-medium text-text text-center relative mb-[30px] px-[200px];
+    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
+    .line {
+      @apply absolute top-[79px] left-[320px] w-[446px] h-[18px];
+      @apply max-sm:top-[32px] max-sm:left-[100px] max-sm:w-[175px] max-sm:h-[16px];
+    }
+
+    &.learn-more {
+      @apply mb-[50px];
+      @apply max-sm:mb-[30px];
+      .line {
+        @apply left-[320px] w-[360px] h-[12px] top-[158px];
+        @apply max-sm:left-[160px] max-sm:w-[140px] max-sm:h-[10px] max-sm:top-[68px];
+      }
+    }
+  }
+
+  .desc {
+    @apply w-[552px] text-center mb-[100px];
+    @apply max-sm:w-full max-sm:mb-[40px] max-sm:px-[50px];
+  }
+
+  .contributors-list {
+    @apply flex flex-wrap px-[8%] mb-[240px];
+    @apply max-sm:px-[10px] max-sm:mb-[140px];
+
+    .contributor-wrapper {
+      @apply mb-[30px] md:w-1/4 max-sm:w-1/2 px-[15px];
+      @apply max-sm:px-[5px] max-sm:mb-[10px];
+      .contributor {
+        @apply flex flex-col items-center overflow-hidden p-[20px] rounded-[30px] bg-white;
+        @apply max-sm:rounded-[16px];
+        border: 1px solid rgba(147, 39, 255, 0.10);
+      }
+
+
+      .contributor-avatar {
+        @apply rounded-full w-[190px] h-[190px] border-4 overflow-hidden flex items-center justify-center mt-[40px];
+        border-color: rgba(0, 0, 0, 0.10);
+        @apply max-sm:w-[90px] max-sm:h-[90px] max-sm:mt-[20px] max-sm:border-2;
+
+        img {
+          @apply rounded-full border-4 overflow-hidden border-white;
+          @apply max-sm:border-2;
+        }
+      }
+
+      .contributor-name {
+        @apply mt-[30px] text-[24px] leading-[115%] font-medium text-text mb-[6px];
+        @apply max-sm:text-base max-sm:mt-[20px];
+      }
+
+      .contributor-login {
+        @apply mb-[10px] text-sm;
+        @apply max-sm:text-[12px];
+      }
+    }
+
+  }
+}
