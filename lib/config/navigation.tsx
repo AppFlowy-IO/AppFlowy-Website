@@ -66,28 +66,44 @@ export const navigation: Item[] = [
             key: '1',
             name: 'Discord',
             href: 'https://discord.com/invite/9Q2xaN37tV',
-            icon: <Discord />,
+            icon: (
+              <i className={'text-primary'}>
+                <Discord />
+              </i>
+            ),
             desc: 'Lorem ipsum dolor sit amet',
           },
           {
             key: '2',
             name: 'Twitter',
             href: 'https://twitter.com/appflowy',
-            icon: <Twitter />,
+            icon: (
+              <i className={'text-primary'}>
+                <Twitter />
+              </i>
+            ),
             desc: 'Lorem ipsum dolor sit amet',
           },
           {
             key: '3',
             name: 'Github',
             href: 'https://github.com/AppFlowy-IO/AppFlowy',
-            icon: <Github />,
+            icon: (
+              <i className={'text-primary'}>
+                <Github />
+              </i>
+            ),
             desc: 'Lorem ipsum dolor sit amet',
           },
           {
             key: '4',
             name: 'Community forum',
             href: 'https://forum.appflowy.io/',
-            icon: <Forum />,
+            icon: (
+              <i className={'text-primary'}>
+                <Forum />
+              </i>
+            ),
             desc: 'Lorem ipsum dolor sit amet',
           },
         ],

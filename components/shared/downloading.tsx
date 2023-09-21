@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
 import Apple from '@/components/icons/apple';
@@ -8,10 +8,14 @@ import GooglePlay from '@/components/icons/google-play';
 import { useSearchParams } from 'next/navigation';
 import img1 from '@/assets/images/download/downloading-img-1.svg';
 import img2 from '@/assets/images/download/downloading-img-2.svg';
+import darkImg1 from '@/assets/images/download/dark/downloading-img-1.svg';
+import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { downloadLinux86Deb, downloadMacUniversal, downloadWindows } from '@/lib/hooks/use-download';
+import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 function Downloading() {
+  const dark = useContext(DarkContext);
   const search = useSearchParams();
   const downloadUrl = search.get('downloadUrl');
 
@@ -56,13 +60,23 @@ function Downloading() {
             <div className={'step step-3'}>Follow the instructions to install Appflowy to your computer</div>
           </div>
         </div>
-        <div className={'image'}>
-          <Image src={img1.src} alt={''} width={901} height={481} />
+        <div className={'image relative'}>
+          <div
+            className={
+              'pointer-events-none absolute left-0 top-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transform rounded-full bg-[#EAE6FF66] blur-[100px] dark:bg-[#8A5EB733]'
+            }
+          />
+          <Image className={'relative'} src={dark ? darkImg1.src : img1.src} alt={''} width={901} height={481} />
         </div>
       </div>
       <div className={'panel panel-2'}>
-        <div className={'image'}>
-          <Image src={img2.src} alt={''} width={670} height={612} />
+        <div className={'image relative'}>
+          <div
+            className={
+              'pointer-events-none absolute left-0 top-0 h-full w-full transform rounded-full bg-[#EAE6FF66] blur-[100px] dark:bg-[#8A5EB733]'
+            }
+          />
+          <Image className={'relative'} src={dark ? darkImg2.src : img2.src} alt={''} width={670} height={612} />
         </div>
         <div className={'download-mobile'}>
           <div className={'download-mobile_title'}>

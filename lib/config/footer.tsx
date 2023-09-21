@@ -6,22 +6,38 @@ import Discord from '@/components/icons/discord';
 export const externalLinks = [
   {
     key: 'twitter',
-    icon: <Twitter color={'white'} />,
+    icon: (
+      <i className={'text-white'}>
+        <Twitter />
+      </i>
+    ),
     link: 'https://twitter.com/appflowy',
   },
   {
     key: 'reddit',
-    icon: <Reddit color={'white'} />,
+    icon: (
+      <i className={'text-white'}>
+        <Reddit />
+      </i>
+    ),
     link: 'https://www.reddit.com/r/AppFlowy',
   },
   {
     key: 'github',
-    icon: <Github color={'white'} />,
+    icon: (
+      <i className={'text-white'}>
+        <Github />
+      </i>
+    ),
     link: 'https://github.com/AppFlowy-IO/appflowy',
   },
   {
     key: 'discord',
-    icon: <Discord color={'white'} />,
+    icon: (
+      <i className={'text-white'}>
+        <Discord />
+      </i>
+    ),
     link: 'https://discord.com/invite/9Q2xaN37tV',
   },
 ];

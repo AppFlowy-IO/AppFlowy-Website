@@ -2,11 +2,13 @@
 
 import React from 'react';
 import image from '@/assets/images/community/start-for-free.svg';
+import darkImage from '@/assets/images/community/dark/start-for-free.svg';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { startForFree } from '@/lib/config/home';
 
-function StartForFree() {
+function StartForFree({ dark }: { dark?: boolean }) {
   return (
     <div className={'start-for-free'}>
       <div className={'title'}>
@@ -35,7 +37,7 @@ function StartForFree() {
         </button>
       </div>
       <div className={'image'}>
-        <Image src={image.src} width={963} height={547} alt={startForFree.imageAlt} />
+        <Image src={dark ? darkImage.src : image.src} width={963} height={547} alt={startForFree.imageAlt} />
       </div>
     </div>
   );

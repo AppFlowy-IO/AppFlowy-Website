@@ -21,12 +21,11 @@ function Data() {
       <div className={'cards'}>
         {dataSecurityConfig.cards.map((item) => (
           <div className={'card'} key={item.title}>
-            <div className={'bg'} />
             <div className={'text'}>
               <div className={'title'}>{item.title}</div>
               <div className={'desc'}>{item.desc}</div>
             </div>
-            <div className={'image'}></div>
+            <div className={'icon'} />
           </div>
         ))}
       </div>

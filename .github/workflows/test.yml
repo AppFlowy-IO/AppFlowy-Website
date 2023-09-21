@@ -1,5 +1,5 @@
 name: Test
-on: [pull_request]
+on: [ pull_request ]
 
 env:
   NODE_VERSION: "18.16.0"
@@ -16,19 +16,23 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: install dependencies
+
+      - name: Install dependencies
         run: |
           npm install -g pnpm@${{ env.PNPM_VERSION }}
           pnpm install
+      - name: Build
+        run: |
           pnpm run build
-      - name: run lint
+      - name: Run lint
         run: |
           pnpm run lint
-      - name: run tests
+      - name: Run tests
         run: |
-          pnpm run start & sleep 10 && pnpm run test:headless
+          pnpm run start &
+          pnpm run test:headless
 

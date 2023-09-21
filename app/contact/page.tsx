@@ -5,6 +5,7 @@ import '@/styles/contact.scss';
 function Page() {
   return (
     <div className={'contact-page'}>
+      <div className={'ellipse'} />
       <div className={'title'}>
         {contactPageConfig.title}
         <div className={'line'}>

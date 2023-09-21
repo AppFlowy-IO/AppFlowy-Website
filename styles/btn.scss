@@ -1,41 +1,10 @@
 .github-btn {
-  @apply flex p-4 rounded-[18px] items-center justify-between;
+  @apply flex p-4 rounded-[18px] items-center justify-between border border-light-gray;
   @apply max-sm:text-[12px] max-sm:rounded-[12px] max-sm:p-[10px];
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid #F2F2F2;
-
-  &:hover {
-    background: rgba(242, 241, 241, 0.40);
-  }
-
-  &:active {
-    background: rgba(229, 229, 229, 0.40);
-  }
-
-  &:disabled {
-    opacity: 0.3;
-    background: rgba(255, 255, 255, 0.40);
-  }
+  @apply bg-white/40 hover:bg-gray-40 active:bg-light-gray-40 disabled:bg-white/40 disabled:opacity-[30%];
+  @apply dark:border-gray-15 dark:bg-gray-10 dark:hover:bg-gray-03 dark:active:bg-gray-15;
 }
 
-
-[data-mode="dark"] .github-btn {
-  border-color: rgba(247, 248, 248, 0.15);
-  background: rgba(247, 248, 248, 0.10);
-
-  &:hover {
-    background: rgba(247, 248, 248, 0.03);
-  }
-
-  &:active {
-    background: rgba(247, 248, 248, 0.15);
-  }
-
-  &:disabled {
-    opacity: 0.3;
-    background: rgba(247, 248, 248, 0.10);
-  }
-}
 
 .download-btn {
   gap: 10px;
@@ -104,4 +73,5 @@
 
 .trigger-btn {
   @apply text-black text-[18px] md:hidden ml-[20px];
+  @apply dark:text-white;
 }

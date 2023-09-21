@@ -7,6 +7,7 @@ import AppflowyBlocks from '@/components/blocks/appflowy-blocks';
 function Page() {
   return (
     <div className={'blocks-page'}>
+      <div className={'ellipse'} />
       <div className={'title'}>
         {blocksPageConfig.title}
         <div className={'line'}>

@@ -1,10 +1,17 @@
+[data-mode='dark'] {
+  .join-page {
+    background: var(--color-night-blue);
+  }
+
+}
+
 .join-page {
   @apply flex w-full flex-col items-center pt-[220px] pb-[184px];
   @apply max-sm:pt-[169px];
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
 
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-text text-center relative mb-[30px];
+    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] left-0 w-[185px] h-[19px];
@@ -20,11 +27,13 @@
   .desc {
     @apply w-[552px] text-center mb-[50px];
     @apply max-sm:w-full max-sm:mb-[30px] max-sm:px-[50px];
+    @apply dark:text-gray-400;
   }
 
   .good-points {
     @apply mt-[200px] relative w-full mb-[260px];
     @apply max-sm:flex max-sm:flex-col max-sm:items-center max-sm:mt-0 max-sm:mb-[120px];
+    @apply dark:text-[#F7F8F8];
     .logo {
       @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
       @apply max-sm:static max-sm:transform-none max-sm:translate-x-0 max-sm:translate-y-0 py-[80px] px-[50px];

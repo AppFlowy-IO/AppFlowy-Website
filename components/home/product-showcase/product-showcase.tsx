@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import title from '@/assets/images/product-showcase/title.png';
+import darkTitle from '@/assets/images/product-showcase/dark/title.svg';
 import Edit from '@/components/icons/edit';
 import Focus from '@/components/icons/focus';
 import SwitchProduct from '@/components/home/product-showcase/switch-product';
@@ -9,19 +10,30 @@ import { productShowCaseConfig } from '@/lib/config/home';
 import Lottie from 'lottie-react';
 import tasksAnimation from '@/assets/lottie/tasks/data';
 
-function ProductShowcase() {
+function ProductShowcase({ dark }: { dark: boolean }) {
+  const titleSrc = dark ? darkTitle.src : title.src;
   const renderCard = (card: {
     image: {
       src: string;
+      darkSrc: string;
       alt: string;
     };
     title: string;
+    size: {
+      width: number;
+      height: number;
+    };
   }) => {
     return (
       <div className={'card'}>
         <div className={'bg'} />
         <div className={'image'}>
-          <Image src={card.image.src} alt={card.image.alt} width={367} height={294} />
+          <Image
+            src={dark ? card.image.darkSrc : card.image.src}
+            alt={card.image.alt}
+            width={card.size.width}
+            height={card.size.height}
+          />
         </div>
         <div className={'title'}>{card.title}</div>
       </div>
@@ -32,24 +44,25 @@ function ProductShowcase() {
     <div className={'product-showcase'}>
       {/* Wikis - Docs - Notes */}
       <div className={'title'}>
-        <Image src={title.src} alt={''} width={2276} height={412} />
+        <Image src={titleSrc} alt={'Wikis - Docs - Notes'} width={2276} height={412} />
       </div>
       {/* An extensible and customizable knowledge base built on a community-driven open toolbox of plugins, templates, themes, and more. */}
       <section>
         <div className={'desc'}>
-          <div>
+          <div className={'text-primary'}>
             <Edit />
           </div>
           <div className={'mt-[20px]'}>{productShowCaseConfig.desc}</div>
         </div>
         <div className={'image desktop'}>
+          <div className={'bg'} />
           <Lottie animationData={tasksAnimation} />
         </div>
       </section>
       {/* A centralized place for your tasks, notes, and projects. Organize and visualize your data in tasks, board, table, and more. */}
       <section>
         <div className={'title'}>{productShowCaseConfig.title}</div>
-        <div className={'icon'}>
+        <div className={'icon text-primary'}>
           <Focus />
         </div>
         <SwitchProduct />

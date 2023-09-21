@@ -16,6 +16,7 @@ function ValueItem({
 
   return (
     <div key={item.title} className={'value-item'}>
+      <div className='ellipse' />
       <motion.header className={'header'} initial={false} onClick={() => setCollapsed((prev) => !prev)}>
         <div className={'header-key'}>{item.title.slice(0, 1).toUpperCase()}</div>
         <div className={'header-title'}>{item.title}</div>

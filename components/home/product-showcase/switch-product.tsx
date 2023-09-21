@@ -67,7 +67,6 @@ function SwitchProduct() {
 
   return (
     <div className={'switch-product'}>
-      <div className={'bg'} />
       <div className={`${active}-bg`} />
       <div className={'switch-image'}>
         {products.map((item) => (

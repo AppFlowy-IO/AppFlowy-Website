@@ -3,19 +3,18 @@ import StarFill from '@/components/icons/star-fill';
 import HeroDownloadBtn from '@/components/home/hero-section/download-btn';
 import Checkbox from '@/components/icons/checkbox';
 import Image from 'next/image';
-import bg from '../../../assets/images/hero-section/bg.png';
-import desktop from '../../../assets/images/hero-section/desktop.svg';
-import mobile from '../../../assets/images/hero-section/mobile.svg';
+import desktop from '@/assets/images/hero-section/desktop.svg';
+import mobile from '@/assets/images/hero-section/mobile.svg';
+import darkDesktop from '@/assets/images/hero-section/dark/desktop.svg';
+import darkMobile from '@/assets/images/hero-section/dark/mobile.svg';
 import { heroSectionConfig } from '@/lib/config/home';
 
-const HeroSection = () => {
+const HeroSection = ({ dark }: { dark: boolean }) => {
+  const desktopSrc = dark ? darkDesktop.src : desktop.src;
+  const mobileSrc = dark ? darkMobile.src : mobile.src;
+
   return (
     <div className={'hero-section'}>
-      {/* Background */}
-      <div className={'bg'}>
-        <Image width={1600} height={1214} alt={heroSectionConfig.imageAlt} src={bg.src} />
-      </div>
-      <div className={'bg mobile-bg'} />
       {/* Free, Open Source, 100% Offline Mode, Cross Platform, Cloud */}
       <div className={'feature'}>
         {heroSectionConfig.feature.map((item) => (
@@ -49,10 +48,10 @@ const HeroSection = () => {
         <div className={'image-bg'} />
 
         <div className={'desktop-img'}>
-          <Image width={1042} height={586} alt={heroSectionConfig.imageAlt} src={desktop.src} />
+          <Image width={1042} height={586} alt={heroSectionConfig.imageAlt} src={desktopSrc} />
         </div>
         <div className={'mobile-img'}>
-          <Image width={255} height={539} alt={heroSectionConfig.imageAlt} src={mobile.src} />
+          <Image width={255} height={539} alt={heroSectionConfig.imageAlt} src={mobileSrc} />
         </div>
       </div>
       {/* AppFlowy is the smart workspace where you have the full control and get more done, better and faster. */}

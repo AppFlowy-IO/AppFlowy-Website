@@ -3,10 +3,11 @@ import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 import ContactEmail from '@/components/shared/contact-email';
+import SwitchMode from '@/components/shared/switch-mode';
 
 // import SwitchMode from '@/components/shared/switch-mode';
 
-function Footer() {
+function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark?: boolean) => void }) {
   const ExternalLinks = () => (
     <>
       {externalLinks.map((item) => (
@@ -21,8 +22,8 @@ function Footer() {
     <div className={'appflowy-footer'}>
       <div className={'top'}>
         <div className={'logo'}>
-          <div className={'image'}>
-            <Logo dark />
+          <div className={'image text-white'}>
+            <Logo />
           </div>
           <div className={'links'}>
             <ExternalLinks />
@@ -57,7 +58,7 @@ function Footer() {
             Need Help? <ContactEmail />
           </div>
         </div>
-        {/*<SwitchMode />*/}
+        <SwitchMode onChangeMode={onChangeMode} isDark={isDark} />
       </div>
     </div>
   );

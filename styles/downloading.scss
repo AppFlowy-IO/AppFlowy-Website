@@ -1,9 +1,14 @@
+[data-mode='dark'] {
+  .download-progress-page {
+    background: var(--color-night-blue);
+    color: #F7F8F8;
+  }
+}
+
 .download-progress-page {
   @apply flex flex-col items-center w-full;
-  background-image: url("../assets/images/download/downloading-bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(180deg, #F8FAFF 0%, #F8FAFF 59.16%, #E4DDFF 100%);
+  color: #1F2329;
 
   .highlight {
     @apply text-primary cursor-pointer;
@@ -114,6 +119,7 @@
       .title {
         @apply text-[20px] font-medium leading-normal tracking-[-0.6px] text-[#1F2329] text-center relative;
         @apply max-sm:text-base;
+        @apply dark:text-[#F7F8F8];
       }
 
       .circle {
