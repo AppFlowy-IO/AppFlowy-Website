@@ -23,7 +23,7 @@ function Navbar() {
   return (
     <nav className={`appflowy-navbar ${scorlled ? 'sticky' : ''}`}>
       {/* Logo */}
-      <Link href={'/'} className={'logo'}>
+      <Link href={'/'} className={'logo text-black dark:text-white'}>
         <Logo />
       </Link>
       {/* Navigation */}

@@ -5,7 +5,7 @@ import DownloadBtns from '@/components/home/mobile/download-btns';
 import { mobileConfig } from '@/lib/config/home';
 import MobileAnimation from '@/components/shared/mobile-animation';
 
-function Mobile() {
+function Mobile({ dark }: { dark: boolean }) {
   return (
     <div className={'mobile'}>
       <div className={'bg'} />
@@ -23,7 +23,7 @@ function Mobile() {
         </div>
       </div>
       <DownloadBtns />
-      <MobileAnimation />
+      <MobileAnimation dark={dark} />
     </div>
   );
 }

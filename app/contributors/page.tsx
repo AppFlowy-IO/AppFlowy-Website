@@ -7,6 +7,7 @@ import ContributorsList from '@/components/contributors/contributors-list';
 function Page() {
   return (
     <div className={'contributors-page'}>
+      <div className={'ellipse'} />
       <div className={'title'}>
         {contributorsPageConfig.title1}
         <div className={'line'}>

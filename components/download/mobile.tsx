@@ -1,16 +1,23 @@
-import React from 'react';
+'use client';
+
+import React, { useContext } from 'react';
 import { downloadPageConfig } from '@/lib/config/pages';
 import DownloadBtns from '@/components/home/mobile/download-btns';
 import Image from 'next/image';
 import image1 from '@/assets/images/download/img-1.svg';
-import image1Bg from '@/assets/images/download/img-1-bg.svg';
+import darkImage1 from '@/assets/images/download/dark/img-1.svg';
 import image2 from '@/assets/images/download/notes-tasks-projects.svg';
+import darkImage2 from '@/assets/images/download/dark/notes-tasks-projects.svg';
+
 import icon1 from '@/assets/images/download/icon-1.svg';
 import icon2 from '@/assets/images/download/icon-2.svg';
 import icon3 from '@/assets/images/download/icon-3.svg';
 import MobileAnimation from '@/components/shared/mobile-animation';
+import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 function DownloadMobile() {
+  const isDark = useContext(DarkContext);
+
   return (
     <div id={'ios-and-android'} className={'download-mobile'}>
       <div className={'title mobile-title'}>
@@ -28,23 +35,32 @@ function DownloadMobile() {
       </div>
       <div className={'desc'}>{downloadPageConfig.mobileSubtitle}</div>
       <DownloadBtns />
-      <div className={'image mobile-image'}>
-        <Image
-          className={'absolute bottom-0 right-0 max-sm:hidden'}
-          src={image1Bg.src}
-          alt={downloadPageConfig.imageAlt}
-          width={799}
-          height={985}
+      <div className={'image mobile-image relative'}>
+        <div
+          className={
+            'bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform opacity-[10%] blur-[150px] dark:opacity-[20%] max-sm:h-[300px]'
+          }
         />
-        <Image className={'relative'} src={image1.src} alt={downloadPageConfig.imageAlt} width={1069} height={957} />
+        <Image
+          className={'relative'}
+          src={isDark ? darkImage1.src : image1.src}
+          alt={downloadPageConfig.imageAlt}
+          width={820}
+          height={838}
+        />
       </div>
-      <div className={'image notes-tasks-projects'}>
-        <Image src={image2.src} alt={downloadPageConfig.imageAlt} width={2672} height={299} />
+      <div className={'image notes-tasks-projects relative'}>
+        <div
+          className={
+            'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-sm:h-[1200px] max-sm:blur-[150px]'
+          }
+        />
+        <Image src={isDark ? darkImage2.src : image2.src} alt={downloadPageConfig.imageAlt} width={2672} height={299} />
         <Image className={'icon'} src={icon1.src} alt={downloadPageConfig.imageAlt} width={183} height={196} />
         <Image className={'icon'} src={icon2.src} alt={downloadPageConfig.imageAlt} width={171} height={188} />
         <Image className={'icon'} src={icon3.src} alt={downloadPageConfig.imageAlt} width={204} height={174} />
       </div>
-      <MobileAnimation />
+      <MobileAnimation dark={isDark} />
     </div>
   );
 }

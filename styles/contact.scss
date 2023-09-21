@@ -1,9 +1,22 @@
+[data-mode='dark'] {
+  .contact-page {
+    background: var(--color-night-blue);
+    @apply relative;
+    .ellipse {
+      @apply pointer-events-none absolute top-0 left-0 w-full h-full;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0.12%, #190E28 99.88%);
+
+    }
+  }
+
+}
+
 .contact-page {
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
   @apply flex w-full flex-col items-center pt-[220px] pb-[184px] relative;
   @apply max-sm:pt-[169px];
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-text text-center relative mb-[30px];
+    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] left-0 w-[185px] h-[19px];

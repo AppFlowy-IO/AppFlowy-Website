@@ -1,5 +1,7 @@
 import editor from '@/assets/images/blocks/editor.svg';
 import board from '@/assets/images/blocks/board.svg';
+import darkEditor from '@/assets/images/blocks/dark/editor.svg';
+import darkBoard from '@/assets/images/blocks/dark/board.svg';
 
 export const whatIsNewConfig = {
   title: 'What’s New?',
@@ -297,6 +299,7 @@ export const blocksPageConfig = {
       title: 'AppFlowy Editor',
       desc: 'A highly customizable rich-text editor for Flutter',
       imageSrc: editor.src,
+      imageDarkSrc: darkEditor.src,
       imageAlt: 'AppFlowy Editor',
       link: 'https://pub.dev/packages/appflowy_editor',
       imageWidth: 538,
@@ -306,6 +309,7 @@ export const blocksPageConfig = {
       title: 'AppFlowy Board',
       desc: 'A customizable and draggable Kanban Board widget',
       imageSrc: board.src,
+      imageDarkSrc: darkBoard.src,
       imageAlt: 'AppFlowy Board',
       link: 'https://pub.dev/packages/appflowy_board',
       imageWidth: 562,

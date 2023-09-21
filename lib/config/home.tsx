@@ -1,11 +1,18 @@
 import card1 from '@/assets/images/product-showcase/card-1.svg';
 import card2 from '@/assets/images/product-showcase/card-2.svg';
 import card3 from '@/assets/images/product-showcase/card-3.svg';
+import darkCard1 from '@/assets/images/product-showcase/dark/card-1.svg';
+import darkCard2 from '@/assets/images/product-showcase/dark/card-2.svg';
+import darkCard3 from '@/assets/images/product-showcase/dark/card-3.svg';
+
 import Checkbox from '@/components/icons/checkbox';
 import Folder from '@/components/icons/folder';
 import Send from '@/components/icons/send';
-import image1 from '@/assets/images/community/img-1.png';
-import image2 from '@/assets/images/community/img-2.png';
+
+import communityImage1 from '@/assets/images/community/img-1.svg';
+import communityImage2 from '@/assets/images/community/img-2.svg';
+import comminityDarkImage1 from '@/assets/images/community/dark/img-1.svg';
+import comminityDarkImage2 from '@/assets/images/community/dark/img-2.svg';
 
 export const heroSectionConfig = {
   title: 'A privacy-first open source workspace for your notes, wikis, and projects',
@@ -40,14 +47,24 @@ export const productShowCaseConfig = {
     {
       image: {
         src: card1.src,
+        darkSrc: darkCard1.src,
         alt: '',
+      },
+      size: {
+        width: 368,
+        height: 353,
       },
       title: 'Customize themes, colours, fonts',
     },
     {
       image: {
         src: card2.src,
+        darkSrc: darkCard2.src,
         alt: '',
+      },
+      size: {
+        width: 238,
+        height: 132,
       },
       title: 'Switch between dark and light themes',
     },
@@ -55,6 +72,11 @@ export const productShowCaseConfig = {
       image: {
         src: card3.src,
         alt: '',
+        darkSrc: darkCard3.src,
+      },
+      size: {
+        width: 367,
+        height: 294,
       },
       title: 'Go way beyond text & bullet points',
     },
@@ -126,7 +148,8 @@ export const communityConfig = {
       btnText: 'Join Us',
       btnLink: '/join',
       image: {
-        src: image1.src,
+        src: communityImage1.src,
+        darkSrc: comminityDarkImage1.src,
         alt: '',
       },
     },
@@ -137,7 +160,8 @@ export const communityConfig = {
       btnText: 'Developer Docs',
       btnLink: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
       image: {
-        src: image2.src,
+        src: communityImage2.src,
+        darkSrc: comminityDarkImage2.src,
         alt: '',
       },
     },

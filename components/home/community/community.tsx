@@ -7,7 +7,7 @@ import Icons from '@/components/home/community/icons';
 import StartForFree from '@/components/home/community/start-for-free';
 import { communityConfig } from '@/lib/config/home';
 
-function Community() {
+function Community({ dark }: { dark: boolean }) {
   return (
     <div className={'community'}>
       <div className={'title'}>
@@ -42,7 +42,7 @@ function Community() {
         {communityConfig.intros.map((item) => (
           <div key={item.title} className={'intro'}>
             <div className={'image'}>
-              <Image src={item.image.src} alt={item.image.alt} width={700} height={500} />
+              <Image src={dark ? item.image.darkSrc : item.image.src} alt={item.image.alt} width={700} height={500} />
             </div>
             <div className={'right'}>
               <div className={'title'}>{item.title}</div>
@@ -65,8 +65,8 @@ function Community() {
           </div>
         ))}
       </div>
-      <Icons />
-      <StartForFree />
+      <Icons dark={dark} />
+      <StartForFree dark={dark} />
     </div>
   );
 }

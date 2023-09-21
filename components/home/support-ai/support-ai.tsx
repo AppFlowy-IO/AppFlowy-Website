@@ -1,13 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
 import mainImage from '@/assets/images/support-ai/img.svg';
+import darkMainImage from '@/assets/images/support-ai/dark/img.svg';
+
 import Background from '@/components/home/support-ai/background';
 import { supportAIConfig } from '@/lib/config/home';
 
-const SupportAI = () => {
+const SupportAI = ({ dark }: { dark: boolean }) => {
   return (
     <div className={'support-ai'}>
-      <Background />
+      <Background dark={dark} />
       <div className={'title'}>
         {supportAIConfig.title}
         <div className={'line'}>
@@ -32,7 +34,7 @@ const SupportAI = () => {
       </div>
       <div className={'image'}>
         <div className={'bg'} />
-        <Image src={mainImage.src} width={953} height={536} alt={supportAIConfig.imageAlt} />
+        <Image src={dark ? darkMainImage.src : mainImage.src} width={953} height={536} alt={supportAIConfig.imageAlt} />
       </div>
       <div className={'features'}>
         {supportAIConfig.features.map((item) => (

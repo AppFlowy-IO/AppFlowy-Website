@@ -9,6 +9,12 @@ import Grid from '@/assets/images/mobile/img-3.svg';
 import Tag from '@/assets/images/mobile/img-4.svg';
 import Toolbar from '@/assets/images/mobile/img-5.svg';
 import Board from '@/assets/images/mobile/img-6.svg';
+import darkMainImage from '@/assets/images/mobile/dark/img-1.svg';
+import darkReadme from '@/assets/images/mobile/dark/img-2.svg';
+import darkGrid from '@/assets/images/mobile/dark/img-3.svg';
+import darkTag from '@/assets/images/mobile/dark/img-4.svg';
+import darkToolbar from '@/assets/images/mobile/dark/img-5.svg';
+import darkBoard from '@/assets/images/mobile/dark/img-6.svg';
 
 const container = {
   hidden: { opacity: 0 },
@@ -25,7 +31,7 @@ const item = {
   show: { opacity: 1 },
 };
 
-function MobileAnimation() {
+function MobileAnimation({ dark }: { dark?: boolean }) {
   return (
     <motion.div
       variants={container}
@@ -37,22 +43,22 @@ function MobileAnimation() {
       className={'mobile-images'}
     >
       <motion.div variants={item} className={'image main'}>
-        <Image src={MainImage.src} alt={''} width={341} height={683} />
+        <Image src={dark ? darkMainImage.src : MainImage.src} alt={''} width={341} height={683} />
       </motion.div>
       <motion.div variants={item} className={'image'}>
-        <Image src={Readme.src} alt={''} width={291} height={431} />
+        <Image src={dark ? darkReadme.src : Readme.src} alt={''} width={291} height={431} />
       </motion.div>
       <motion.div variants={item} className={'image'}>
-        <Image src={Grid.src} alt={''} width={291} height={431} />
+        <Image src={dark ? darkGrid.src : Grid.src} alt={''} width={291} height={431} />
       </motion.div>
       <motion.div variants={item} className={'image '}>
-        <Image src={Tag.src} alt={''} width={290} height={97} />
+        <Image src={dark ? darkTag.src : Tag.src} alt={''} width={290} height={97} />
       </motion.div>
       <motion.div variants={item} className={'image'}>
-        <Image src={Toolbar.src} alt={''} width={299} height={231} />
+        <Image src={dark ? darkToolbar.src : Toolbar.src} alt={''} width={299} height={231} />
       </motion.div>
       <motion.div variants={item} className={'image'}>
-        <Image src={Board.src} alt={''} width={234} height={338} />
+        <Image src={dark ? darkBoard.src : Board.src} alt={''} width={234} height={338} />
       </motion.div>
     </motion.div>
   );

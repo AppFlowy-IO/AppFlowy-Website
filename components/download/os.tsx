@@ -1,11 +1,15 @@
-import React from 'react';
+'use client';
+import React, { useContext } from 'react';
 import { downloadPageConfig } from '@/lib/config/pages';
 import DownloadOsBtn from '@/components/download/os-btn';
 import Image from 'next/image';
 import image0 from '@/assets/images/download/img-0.svg';
-import image0Bg from '@/assets/images/download/img-0-bg.svg';
+import darkImage0 from '@/assets/images/download/dark/img-0.svg';
+import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 function DownloadOS() {
+  const isDark = useContext(DarkContext);
+
   return (
     <>
       <div className={'title'}>
@@ -22,15 +26,19 @@ function DownloadOS() {
         </div>
       </div>
       <DownloadOsBtn />
-      <div className={'image'}>
+      <div className={'image relative'}>
+        <div
+          className={
+            'bg-primary pointer-events-none absolute left-0 top-[-20%] h-screen w-full rotate-[-51deg] transform opacity-[10%] blur-[150px] dark:opacity-[40%] max-sm:h-[300px]'
+          }
+        />
         <Image
-          className={'absolute -bottom-[80px] right-0 hidden max-sm:block'}
-          src={image0Bg.src}
+          className={'relative'}
+          src={isDark ? darkImage0.src : image0.src}
           alt={downloadPageConfig.imageAlt}
           width={1162}
           height={613.8}
         />
-        <Image className={'relative'} src={image0.src} alt={downloadPageConfig.imageAlt} width={1162} height={613.8} />
       </div>
     </>
   );

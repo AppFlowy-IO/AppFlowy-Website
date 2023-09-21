@@ -47,10 +47,12 @@ describe('Navigation', () => {
   });
 
   it('should show a new version notification bar', () => {
+    cy.wait(1000);
     // Check if the new version notification bar exists
     cy.get('.banner').should('exist');
     // Click the "Learn More" link
     cy.get('.learn-more-link').click();
+    cy.wait(300);
     // Wait for the page to navigate to /what-is-new
     cy.url().should('include', '/what-is-new');
     // Ensure that the notification bar is no longer visible

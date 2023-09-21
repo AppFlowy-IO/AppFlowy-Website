@@ -50,7 +50,9 @@ function Index({ versions }: { versions: IVersion[] }) {
           {Object.keys(groupByMonth).map((month) => (
             <div className={'month-panel'} key={month}>
               <div className={'month'}>
-                <VersionGroup />
+                <i className={'text-primary'}>
+                  <VersionGroup />
+                </i>
                 {month}
               </div>
               {groupByMonth[month].map((item) => (

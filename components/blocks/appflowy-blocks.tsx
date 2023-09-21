@@ -1,11 +1,13 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { blocksPageConfig } from '@/lib/config/pages';
 import Link from 'next/link';
 import Image from 'next/image';
+import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 function AppflowyBlocks() {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const dark = useContext(DarkContext);
 
   return (
     <div className={'appflowy-blocks'}>
@@ -21,7 +23,12 @@ function AppflowyBlocks() {
           <div className={`block-title`}>{block.title}</div>
           <div className={'block-desc'}>{block.desc}</div>
           <div className={'block-image'}>
-            <Image src={block.imageSrc} alt={block.imageAlt} width={block.imageWidth} height={block.imageHeight} />
+            <Image
+              src={dark ? block.imageDarkSrc : block.imageSrc}
+              alt={block.imageAlt}
+              width={block.imageWidth}
+              height={block.imageHeight}
+            />
           </div>
         </Link>
       ))}

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Favicon from '../public/favicon.ico';
 import App from '@/components/layout/app';
+import { isDarkForServer } from '@/lib/get-theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,10 +20,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const isDark = isDarkForServer();
+
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      {...(isDark
+        ? {
+            'data-mode': isDark ? 'dark' : '',
+          }
+        : {})}
+    >
       <body id={'body'} className={inter.className}>
-        <App>{children}</App>
+        <App isDark={isDark}>{children}</App>
       </body>
     </html>
   );
