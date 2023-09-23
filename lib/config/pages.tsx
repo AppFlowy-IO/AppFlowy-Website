@@ -1,22 +1,37 @@
+/**
+ * @desc This file contains all the configurations for the pages
+ */
+
 import editor from '@/assets/images/blocks/editor.svg';
 import board from '@/assets/images/blocks/board.svg';
 import darkEditor from '@/assets/images/blocks/dark/editor.svg';
 import darkBoard from '@/assets/images/blocks/dark/board.svg';
 
+/**
+ * What's new page
+ * @desc This variable is used to configure the what's new page.
+ */
 export const whatIsNewConfig = {
   title: 'What’s New?',
 };
 
+/**
+ * Download page
+ */
 export const downloadPageConfig = {
-  title: 'Download for your OS',
-  mobileTitle: 'Appflowy for iOS and Android',
+  downloadOSTitle: 'Download for your OS',
+  downloadOSImageAlt: 'Download for your OS',
+  downloadMobileApplicationTitle: 'Appflowy for iOS and Android',
   mobileSubtitle: 'Native, Interactive, Intuitive.',
-  acrossTitle: 'Work across all your devices',
-  imageAlt: '',
+  downloadMobileImgAlt: 'Appflowy for iOS and Android',
+  downloadOtherPlatformTitle: 'Work across all your devices',
 };
 
+/**
+ * About Us page
+ */
 export const aboutPageConfig = {
-  title1: 'Our mission is to empower everyone to create apps that suit their needs',
+  ourMissionTitle: 'Our mission is to empower everyone to create apps that suit their needs',
   missions: [
     {
       title: 'The limitations',
@@ -50,7 +65,7 @@ export const aboutPageConfig = {
       ),
     },
   ],
-  title2: "Join one of the world's fastest growing open source communities",
+  communityTitle: "Join one of the world's fastest growing open source communities",
   communityData: [
     {
       value: 2000000,
@@ -79,7 +94,7 @@ export const aboutPageConfig = {
       '/images/developer-logo-5.svg',
     ],
   },
-  title3: 'Our Values',
+  ourValuesTitle: 'Our Values',
   values: [
     {
       title: 'Mission Driven',
@@ -138,7 +153,7 @@ export const aboutPageConfig = {
       ],
     },
   ],
-  title4: 'Our investors',
+  ourInvestorsTitle: 'Our investors',
   investors: [
     {
       name: 'Phin Barnes',
@@ -179,10 +194,14 @@ export const aboutPageConfig = {
   ],
 };
 
+/**
+ * Join Us Page
+ */
 export const joinPageConfig = {
   title: 'Join our team',
-  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  title1: 'Current Job Openings',
+  subtitle:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  currentJobTitle: 'Current Job Openings',
   goodPoints: [
     {
       icon: (
@@ -291,9 +310,13 @@ export const contactPageConfig = {
   desc: "Thanks for stopping by! Whether you have a question, comment, or just want to say hi, don't be a stranger. We're here to help, and we love connecting with our community.",
 };
 
+/**
+ * Appflowy Blocks Page
+ */
 export const blocksPageConfig = {
   title: 'AppFlowy Blocks',
-  desc: 'AppFlowy is not only an open-source alternative to Notion but an application infra provider as well. We publish reliable and customizable standalone building appflowy-blocks such as AppFlowy Editor and Kanban Board for developers to build their own applications.',
+  subtitle:
+    'AppFlowy is not only an open-source alternative to Notion but an application infra provider as well. We publish reliable and customizable standalone building appflowy-blocks such as AppFlowy Editor and Kanban Board for developers to build their own applications.',
   blocks: [
     {
       title: 'AppFlowy Editor',
@@ -318,9 +341,12 @@ export const blocksPageConfig = {
   ],
 };
 
+/**
+ * Contributors Page
+ */
 export const contributorsPageConfig = {
-  title1: 'Our contributors',
-  desc: 'Here’s the list of our top contributors!',
-  title2: 'Learn more about how to contribute to AppFlowy',
+  mainTitle: 'Our contributors',
+  subtitle: 'Here’s the list of our top contributors!',
+  learnMoreTitle: 'Learn more about how to contribute to AppFlowy',
   learnMoreLink: 'https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy',
 };

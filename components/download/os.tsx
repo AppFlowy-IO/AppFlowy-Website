@@ -13,7 +13,7 @@ function DownloadOS() {
   return (
     <>
       <div className={'title'}>
-        {downloadPageConfig.title}
+        {downloadPageConfig.downloadOSTitle}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 362 12' fill='none'>
             <path
@@ -26,16 +26,16 @@ function DownloadOS() {
         </div>
       </div>
       <DownloadOsBtn />
-      <div className={'image relative'}>
+      <div className={'image relative z-[1]'}>
         <div
           className={
-            'bg-primary pointer-events-none absolute left-0 top-[-20%] h-screen w-full rotate-[-51deg] transform opacity-[10%] blur-[150px] dark:opacity-[40%] max-sm:h-[300px]'
+            'bg-primary pointer-events-none absolute left-1/3 top-[-20%] h-screen w-[500px] rotate-[51deg] transform opacity-[10%] blur-[150px] dark:opacity-[40%] max-sm:h-[300px]'
           }
         />
         <Image
           className={'relative'}
           src={isDark ? darkImage0.src : image0.src}
-          alt={downloadPageConfig.imageAlt}
+          alt={downloadPageConfig.downloadOSImageAlt}
           width={1162}
           height={613.8}
         />

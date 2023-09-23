@@ -17,7 +17,7 @@ const HeroSection = ({ dark }: { dark: boolean }) => {
     <div className={'hero-section'}>
       {/* Free, Open Source, 100% Offline Mode, Cross Platform, Cloud */}
       <div className={'feature'}>
-        {heroSectionConfig.feature.map((item) => (
+        {heroSectionConfig.tags.map((item) => (
           <span className={'item'} key={item}>
             <StarFill />
             <span className={'ml-1'}>{item}</span>
@@ -26,7 +26,7 @@ const HeroSection = ({ dark }: { dark: boolean }) => {
       </div>
       {/* A privacy-first open source workspace for your notes, wikis, and projects */}
       <div className={'title'}>
-        {heroSectionConfig.title}
+        {heroSectionConfig.mainTitle}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 187 8' fill='none'>
             <path
@@ -48,10 +48,10 @@ const HeroSection = ({ dark }: { dark: boolean }) => {
         <div className={'image-bg'} />
 
         <div className={'desktop-img'}>
-          <Image width={1042} height={586} alt={heroSectionConfig.imageAlt} src={desktopSrc} />
+          <Image width={1042} height={586} alt={heroSectionConfig.firstImgAlt} src={desktopSrc} />
         </div>
         <div className={'mobile-img'}>
-          <Image width={255} height={539} alt={heroSectionConfig.imageAlt} src={mobileSrc} />
+          <Image width={255} height={539} alt={heroSectionConfig.firstImgAlt} src={mobileSrc} />
         </div>
       </div>
       {/* AppFlowy is the smart workspace where you have the full control and get more done, better and faster. */}
@@ -59,7 +59,7 @@ const HeroSection = ({ dark }: { dark: boolean }) => {
         <div className={'icon'}>
           <Checkbox />
         </div>
-        <div className={'mt-[20px]'}>{heroSectionConfig.desc}</div>
+        <div className={'mt-[20px]'}>{heroSectionConfig.subtitle}</div>
       </div>
     </div>
   );

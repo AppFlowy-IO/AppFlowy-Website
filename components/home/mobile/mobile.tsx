@@ -2,7 +2,7 @@
 
 import React from 'react';
 import DownloadBtns from '@/components/home/mobile/download-btns';
-import { mobileConfig } from '@/lib/config/home';
+import { mobileApplictionConfig } from '@/lib/config/home';
 import MobileAnimation from '@/components/shared/mobile-animation';
 
 function Mobile({ dark }: { dark: boolean }) {
@@ -10,7 +10,7 @@ function Mobile({ dark }: { dark: boolean }) {
     <div className={'mobile'}>
       <div className={'bg'} />
       <div className={'title'}>
-        {mobileConfig.title}
+        {mobileApplictionConfig.title}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 101 6' fill='none'>
             <path

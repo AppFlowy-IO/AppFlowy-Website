@@ -21,7 +21,7 @@ function DownloadMobile() {
   return (
     <div id={'ios-and-android'} className={'download-mobile'}>
       <div className={'title mobile-title'}>
-        {downloadPageConfig.mobileTitle}
+        {downloadPageConfig.downloadMobileApplicationTitle}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 346 19' fill='none'>
             <path
@@ -44,7 +44,7 @@ function DownloadMobile() {
         <Image
           className={'relative'}
           src={isDark ? darkImage1.src : image1.src}
-          alt={downloadPageConfig.imageAlt}
+          alt={downloadPageConfig.downloadMobileImgAlt}
           width={820}
           height={838}
         />
@@ -55,10 +55,33 @@ function DownloadMobile() {
             'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-sm:h-[1200px] max-sm:blur-[150px]'
           }
         />
-        <Image src={isDark ? darkImage2.src : image2.src} alt={downloadPageConfig.imageAlt} width={2672} height={299} />
-        <Image className={'icon'} src={icon1.src} alt={downloadPageConfig.imageAlt} width={183} height={196} />
-        <Image className={'icon'} src={icon2.src} alt={downloadPageConfig.imageAlt} width={171} height={188} />
-        <Image className={'icon'} src={icon3.src} alt={downloadPageConfig.imageAlt} width={204} height={174} />
+        <Image
+          src={isDark ? darkImage2.src : image2.src}
+          alt={downloadPageConfig.downloadMobileImgAlt}
+          width={2672}
+          height={299}
+        />
+        <Image
+          className={'icon'}
+          src={icon1.src}
+          alt={downloadPageConfig.downloadMobileImgAlt}
+          width={183}
+          height={196}
+        />
+        <Image
+          className={'icon'}
+          src={icon2.src}
+          alt={downloadPageConfig.downloadMobileImgAlt}
+          width={171}
+          height={188}
+        />
+        <Image
+          className={'icon'}
+          src={icon3.src}
+          alt={downloadPageConfig.downloadMobileImgAlt}
+          width={204}
+          height={174}
+        />
       </div>
       <MobileAnimation dark={isDark} />
     </div>

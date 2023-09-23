@@ -25,7 +25,7 @@ function DownloadOsBtn() {
   }, [isClient]);
 
   return (
-    <div className={'download'}>
+    <div className={'download z-[2]'}>
       {isLinux ? (
         <div className={'btn-group'}>
           <button onClick={() => downloadLinux86Deb(true)} className={'download-btn'}>
