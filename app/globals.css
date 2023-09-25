@@ -20,7 +20,8 @@ body {
     @apply text-black dark:text-white;
     font-family: "Inter", sans-serif;
     font-size: 16px;
-    background: #EAE6FF;
+    @apply bg-light-blue-gray;
+    @apply dark:bg-night-blue;
 }
 
 @media screen and (max-width: 768px) {

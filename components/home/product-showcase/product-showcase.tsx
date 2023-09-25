@@ -9,6 +9,7 @@ import SwitchProduct from '@/components/home/product-showcase/switch-product';
 import { productShowCaseConfig } from '@/lib/config/home';
 import Lottie from 'lottie-react';
 import tasksAnimation from '@/assets/lottie/tasks/data';
+import darkTasksAnimation from '@/assets/lottie/dark/tasks/data';
 
 function ProductShowcase({ dark }: { dark: boolean }) {
   const titleSrc = dark ? darkTitle.src : title.src;
@@ -56,7 +57,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
         </div>
         <div className={'image desktop'}>
           <div className={'bg'} />
-          <Lottie animationData={tasksAnimation} />
+          <Lottie animationData={dark ? darkTasksAnimation : tasksAnimation} />
         </div>
       </section>
       {/* A centralized place for your tasks, notes, and projects. Organize and visualize your data in tasks, board, table, and more. */}
