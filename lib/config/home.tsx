@@ -1,3 +1,8 @@
+/**
+ * @description
+ * This file is used to configure the home page.
+ */
+
 import card1 from '@/assets/images/product-showcase/card-1.svg';
 import card2 from '@/assets/images/product-showcase/card-2.svg';
 import card3 from '@/assets/images/product-showcase/card-3.svg';
@@ -14,27 +19,35 @@ import communityImage2 from '@/assets/images/community/img-2.svg';
 import comminityDarkImage1 from '@/assets/images/community/dark/img-1.svg';
 import comminityDarkImage2 from '@/assets/images/community/dark/img-2.svg';
 
+/**
+ * @description
+ * This variable is used to configure the hero section.
+ */
 export const heroSectionConfig = {
-  title: 'A privacy-first open source workspace for your notes, wikis, and projects',
-  desc: (
+  mainTitle: 'A privacy-first open source workspace for your notes, wikis, and projects',
+  subtitle: (
     <span>
       <span className={'bold'}>Appflowy </span>
       is the smart workspace where you have the full control and get more done, better and faster.
     </span>
   ),
-  imageAlt: 'Appflowy',
-  feature: ['Free', 'Open Source', '100% Offline Mode', 'Cross Platform', 'Cloud'],
+  firstImgAlt: 'Appflowy',
+  tags: ['Free', 'Open Source', '100% Offline Mode', 'Cross Platform', 'Cloud'],
 };
 
+/**
+ * @description
+ * This variable is used to configure the features section.
+ */
 export const productShowCaseConfig = {
-  desc: (
+  subtitle: (
     <span>
       <span className={'bold'}>An extensible and customizable</span> knowledge base built on a community-driven open
       toolbox of plugins, templates, themes, and more.
     </span>
   ),
-  imageAlt: "AppFlowy's product showcase",
-  title: (
+  secondImgAlt: "AppFlowy's product showcase",
+  secondTitle: (
     <span>
       <span className={'black bold'}>
         A <span className={'highlight'}>centralized</span> place for your tasks, notes, and projects.
@@ -42,7 +55,7 @@ export const productShowCaseConfig = {
       Organize and visualize your data in table, board, calendar, and more.
     </span>
   ),
-  subTitle: 'Easy-to-use and beautiful',
+  thirdTitle: 'Easy-to-use and beautiful',
   cards: [
     {
       image: {
@@ -103,9 +116,7 @@ export const supportAIConfig = {
     },
   ],
 };
-export const mobileConfig = {
-  title: 'Convenient mobile\napplication',
-};
+
 export const dataSecurityConfig = {
   title: 'Built for who care about\ndata security',
   cards: [
@@ -123,6 +134,11 @@ export const dataSecurityConfig = {
     },
   ],
 };
+
+export const mobileApplictionConfig = {
+  title: 'Convenient mobile\napplication',
+};
+
 export const communityConfig = {
   title: 'AppFlowy is built with a vibrant community',
   numbers: [
@@ -169,6 +185,6 @@ export const communityConfig = {
 };
 export const startForFree = {
   title: 'Get started for free',
-  desc: 'Choose to own your data and a smarter way to wor',
+  subtitle: 'Choose to own your data and a smarter way to wor',
   imageAlt: '',
 };

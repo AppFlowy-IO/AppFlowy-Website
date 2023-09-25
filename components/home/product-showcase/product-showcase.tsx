@@ -9,6 +9,7 @@ import SwitchProduct from '@/components/home/product-showcase/switch-product';
 import { productShowCaseConfig } from '@/lib/config/home';
 import Lottie from 'lottie-react';
 import tasksAnimation from '@/assets/lottie/tasks/data';
+import darkTasksAnimation from '@/assets/lottie/dark/tasks/data';
 
 function ProductShowcase({ dark }: { dark: boolean }) {
   const titleSrc = dark ? darkTitle.src : title.src;
@@ -25,7 +26,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
     };
   }) => {
     return (
-      <div className={'card'}>
+      <div key={card.title} className={'card'}>
         <div className={'bg'} />
         <div className={'image'}>
           <Image
@@ -52,16 +53,16 @@ function ProductShowcase({ dark }: { dark: boolean }) {
           <div className={'text-primary'}>
             <Edit />
           </div>
-          <div className={'mt-[20px]'}>{productShowCaseConfig.desc}</div>
+          <div className={'mt-[20px]'}>{productShowCaseConfig.subtitle}</div>
         </div>
         <div className={'image desktop'}>
           <div className={'bg'} />
-          <Lottie animationData={tasksAnimation} />
+          <Lottie animationData={dark ? darkTasksAnimation : tasksAnimation} />
         </div>
       </section>
       {/* A centralized place for your tasks, notes, and projects. Organize and visualize your data in tasks, board, table, and more. */}
       <section>
-        <div className={'title'}>{productShowCaseConfig.title}</div>
+        <div className={'title'}>{productShowCaseConfig.secondTitle}</div>
         <div className={'icon text-primary'}>
           <Focus />
         </div>
@@ -71,7 +72,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
       <section>
         <div className={'title'}>
           <span className={'relative'}>
-            {productShowCaseConfig.subTitle}
+            {productShowCaseConfig.thirdTitle}
             <div className={'line'}>
               <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 179 19' fill='none'>
                 <path

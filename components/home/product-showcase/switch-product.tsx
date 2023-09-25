@@ -1,13 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import Board from '@/components/icons/board';
 import Table from '@/components/icons/table';
 import Calendar from '@/components/icons/calendar';
 import BoardAnimation from '@/assets/lottie/board/data';
 import TableAnimation from '@/assets/lottie/table/data';
 import CalendarAnimation from '@/assets/lottie/calendar/data';
+import darkBoardAnimation from '@/assets/lottie/dark/board/data';
+import darkTableAnimation from '@/assets/lottie/dark/table/data';
+import darkCalendarAnimation from '@/assets/lottie/dark/calendar/data';
 import Lottie from 'lottie-react';
+import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 enum Product {
   Board = 'board',
@@ -46,13 +50,8 @@ const products = [
   },
 ];
 
-const lottieJsonMap = {
-  [Product.Board]: BoardAnimation,
-  [Product.Table]: TableAnimation,
-  [Product.Calendar]: CalendarAnimation,
-};
-
 function SwitchProduct() {
+  const dark = useContext(DarkContext);
   const [active, setActive] = useState<Product>(Product.Board);
   const options = products.map((item) => (
     <button
@@ -64,6 +63,22 @@ function SwitchProduct() {
     </button>
   ));
   const selectedItem = products.find((item) => item.key === active);
+
+  const lottieJsonMap = useMemo(
+    () =>
+      dark
+        ? {
+            [Product.Board]: darkBoardAnimation,
+            [Product.Table]: darkTableAnimation,
+            [Product.Calendar]: darkCalendarAnimation,
+          }
+        : {
+            [Product.Board]: BoardAnimation,
+            [Product.Table]: TableAnimation,
+            [Product.Calendar]: CalendarAnimation,
+          },
+    [dark]
+  );
 
   return (
     <div className={'switch-product'}>

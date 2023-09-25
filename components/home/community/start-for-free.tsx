@@ -23,7 +23,7 @@ function StartForFree({ dark }: { dark?: boolean }) {
           </svg>
         </div>
       </div>
-      <div className={'desc'}>{startForFree.desc}</div>
+      <div className={'desc'}>{startForFree.subtitle}</div>
       <div className={'btn-group'}>
         <Link href={'/download'}>
           <button className={'download-btn'}>Download</button>

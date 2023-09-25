@@ -280,13 +280,14 @@
 
   .board-bg {
     @apply absolute max-sm:top-[-100px] max-sm:left-[150px] max-sm:w-[125px] max-sm:h-[226px] max-sm:opacity-10 bg-primary blur-[80px];
-
+    @apply dark:bg-lavender-purple dark:opacity-[15%] dark:blur-[150px] dark:top-1/2 dark:left-1/2 dark:-translate-x-1/2 dark:-translate-y-1/2 dark:w-full dark:h-full dark:rotate-[-45deg];
   }
 
   .table-bg {
     @apply absolute bottom-0 -left-[20%] w-[807px] h-[807px] rounded-full opacity-20 bg-[#BFE5F9];
     filter: blur(150px);
     @apply max-sm:top-[-100px] max-sm:left-[150px] max-sm:w-[125px] max-sm:h-[226px] max-sm:opacity-30  blur-[80px];
+    @apply dark:bg-ice-blue dark:opacity-10 dark:blur-[150px] dark:top-1/2 dark:left-1/2 dark:-translate-x-1/2 dark:-translate-y-1/2 dark:w-full dark:h-full dark:rotate-[-45deg];
 
   }
 
@@ -294,6 +295,7 @@
     @apply absolute bottom-0 -left-[20%] w-[807px] h-[807px] rounded-full opacity-20 bg-[#F1C1DC];
     filter: blur(150px);
     @apply max-sm:top-[-100px] max-sm:left-[150px] max-sm:w-[125px] max-sm:h-[226px] max-sm:opacity-30  blur-[80px];
+    @apply dark:bg-fresh-red dark:opacity-10 dark:blur-[150px] dark:top-1/2 dark:left-1/2 dark:-translate-x-1/2 dark:-translate-y-1/2 dark:w-full dark:h-full dark:rotate-[-45deg];
 
   }
 

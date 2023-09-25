@@ -9,7 +9,7 @@ function Page() {
     <div className={'contributors-page'}>
       <div className={'ellipse'} />
       <div className={'title'}>
-        {contributorsPageConfig.title1}
+        {contributorsPageConfig.mainTitle}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 174 6' fill='none'>
             <path
@@ -21,10 +21,10 @@ function Page() {
           </svg>
         </div>
       </div>
-      <div className={'desc'}>{contributorsPageConfig.desc}</div>
+      <div className={'desc'}>{contributorsPageConfig.subtitle}</div>
       <ContributorsList />
       <div className={'title learn-more'}>
-        {contributorsPageConfig.title2}
+        {contributorsPageConfig.learnMoreTitle}
         <div className={'line'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 155 6' fill='none'>
             <path

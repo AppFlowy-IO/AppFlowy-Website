@@ -21,7 +21,7 @@ function Page() {
           </svg>
         </div>
       </div>
-      <div className={'desc'}>{blocksPageConfig.desc}</div>
+      <div className={'desc'}>{blocksPageConfig.subtitle}</div>
       <AppflowyBlocks />
     </div>
   );
