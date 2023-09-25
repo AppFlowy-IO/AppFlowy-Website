@@ -1,16 +1,9 @@
 const fs = require('fs');
+require('./env.js');
 const path = require('path');
 const chalk = require('chalk');
 const AWS = require('aws-sdk');
 const mime = require('mime-types');
-
-if (process.env.NODE_ENV === 'development') {
-  const dotenv = require('dotenv');
-  const config = dotenv.config({ path: './.env.local' });
-  process.env.AWS_ACCESS_KEY_ID = config.parsed.AWS_ACCESS_KEY_ID;
-  process.env.AWS_SECRET_ACCESS_KEY = config.parsed.AWS_SECRET_ACCESS_KEY;
-  process.env.ENVIRONMENT = config.parsed.ENVIRONMENT;
-}
 
 // 'production' | 'test' | 'development'
 const environment = process.env.ENVIRONMENT || 'test';
@@ -19,6 +12,7 @@ const credentials = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
 };
+
 (async () => {
   // Create S3 service object
   const s3 = new AWS.S3({ region: 'us-east-1', credentials });
