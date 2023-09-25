@@ -19,8 +19,6 @@ jobs:
       SSH_TARGET: 54.206.53.213
       NODE_ENV: production
       ENVIRONMENT: production
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 
     steps:
       - name: Checkout code
