@@ -13,6 +13,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      NODE_ENV: test
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -27,12 +30,12 @@ jobs:
           pnpm install
       - name: Build
         run: |
-          pnpm run build
+          NODE_ENV=test pnpm run build
       - name: Run lint
         run: |
           pnpm run lint
       - name: Run tests
         run: |
-          pnpm run start &
+          NODE_ENV=test pnpm run start &
           pnpm run test:headless
 

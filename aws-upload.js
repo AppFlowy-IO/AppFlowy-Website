@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const AWS = require('aws-sdk');
 const mime = require('mime-types');
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   const dotenv = require('dotenv');
   const config = dotenv.config({ path: './.env.local' });
   process.env.AWS_ACCESS_KEY_ID = config.parsed.AWS_ACCESS_KEY_ID;

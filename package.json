@@ -9,8 +9,8 @@
     "lint": "next lint --quiet",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "test": "cypress open",
-    "test:headless": "cypress run --browser chrome",
+    "test": "NODE_ENV=test cypress open",
+    "test:headless": "NODE_ENV=test cypress run --browser chrome",
     "upload:s3": "node aws-upload.js"
   },
   "devDependencies": {
