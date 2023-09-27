@@ -5,7 +5,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
 import { Storage } from '@/lib/storage';
 import dayjs from 'dayjs';
-import { loadContributors } from '@/lib/api';
+import { loadContributors } from '@/lib/githubAPI';
 
 function ContributorsList() {
   const dbContributors = useLiveQuery(() => {

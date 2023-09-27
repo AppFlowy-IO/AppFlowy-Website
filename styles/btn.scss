@@ -6,7 +6,7 @@
 }
 
 
-.download-btn {
+.download-btn, .download-btn[type='button'], .download-btn[type='reset'], .download-btn[type='submit'] {
   gap: 10px;
   border-radius: 20px;
   padding: 19px 40px 21px 40px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { contactPageConfig } from '@/lib/config/pages';
 import '@/styles/contact.scss';
+import Form from '@/components/contact/form';
 
 function Page() {
   return (
@@ -20,6 +21,7 @@ function Page() {
         </div>
       </div>
       <div className={'desc'}>{contactPageConfig.desc}</div>
+      <Form />
       <div className={'icon icon-1'}>
         <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 112 158' fill='none'>
           <path

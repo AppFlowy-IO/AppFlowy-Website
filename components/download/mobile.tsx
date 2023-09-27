@@ -6,14 +6,9 @@ import DownloadBtns from '@/components/home/mobile/download-btns';
 import Image from 'next/image';
 import image1 from '@/assets/images/download/img-1.svg';
 import darkImage1 from '@/assets/images/download/dark/img-1.svg';
-import image2 from '@/assets/images/download/notes-tasks-projects.svg';
-import darkImage2 from '@/assets/images/download/dark/notes-tasks-projects.svg';
-
-import icon1 from '@/assets/images/download/icon-1.svg';
-import icon2 from '@/assets/images/download/icon-2.svg';
-import icon3 from '@/assets/images/download/icon-3.svg';
 import MobileAnimation from '@/components/shared/mobile-animation';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
+import OverTitle from '@/components/shared/over-title';
 
 function DownloadMobile() {
   const isDark = useContext(DarkContext);
@@ -49,39 +44,13 @@ function DownloadMobile() {
           height={838}
         />
       </div>
-      <div className={'image notes-tasks-projects relative'}>
+      <div className={'image notes-tasks-projects relative w-full'}>
         <div
           className={
             'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-sm:h-[1200px] max-sm:blur-[150px]'
           }
         />
-        <Image
-          src={isDark ? darkImage2.src : image2.src}
-          alt={downloadPageConfig.downloadMobileImgAlt}
-          width={2672}
-          height={299}
-        />
-        <Image
-          className={'icon'}
-          src={icon1.src}
-          alt={downloadPageConfig.downloadMobileImgAlt}
-          width={183}
-          height={196}
-        />
-        <Image
-          className={'icon'}
-          src={icon2.src}
-          alt={downloadPageConfig.downloadMobileImgAlt}
-          width={171}
-          height={188}
-        />
-        <Image
-          className={'icon'}
-          src={icon3.src}
-          alt={downloadPageConfig.downloadMobileImgAlt}
-          width={204}
-          height={174}
-        />
+        <OverTitle title='notes-tasks-projects' />
       </div>
       <MobileAnimation dark={isDark} />
     </div>

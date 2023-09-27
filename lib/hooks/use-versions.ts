@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { parseChangelog } from '@/lib/parseChangelog';
 import { Storage } from '@/lib/storage';
 import dayjs from 'dayjs';
-import { loadVersions } from '@/lib/api';
+import { loadVersions } from '@/lib/githubAPI';
 
 export function useVersions() {
   const dbVersions = useLiveQuery(() => {

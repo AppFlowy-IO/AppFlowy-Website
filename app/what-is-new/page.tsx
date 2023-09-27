@@ -1,6 +1,6 @@
 import '@/styles/what-is-new.scss';
 import Index from '@/components/what-is-new';
-import { loadVersions } from '@/lib/api';
+import { loadVersions } from '@/lib/githubAPI';
 
 async function Page() {
   const versions = await getData();

@@ -42,6 +42,7 @@
       .group-item {
         @apply flex flex-col mb-4 leading-[21px] last:mb-0 hover:underline;
         @apply max-sm:text-[#BBB];
+
       }
     }
   }
@@ -193,9 +194,17 @@
       @apply dark:hover:bg-primary-20;
 
       .item-content {
-        @apply flex flex-col ml-[10px];
+        @apply flex flex-col ml-[10px] max-w-[200px];
         .item-desc {
           @apply text-sm text-gray-400;
+        }
+      }
+
+      .group-item-image {
+        @apply rounded-[16px] border border-primary-10 w-[98px] h-[68px] overflow-hidden aspect-auto;
+        @apply dark:bg-[#26203B];
+        > img {
+          @apply w-full h-full;
         }
       }
     }
@@ -261,3 +270,82 @@
     }
   }
 }
+
+.over-title {
+  @apply relative w-full flex items-center justify-center;
+
+  .title-text {
+    @apply leading-[99.5%] dark:text-white tracking-[-15px] whitespace-nowrap lowercase text-black;
+    @apply md:text-[18vw] 2xl:text-[300px];
+    @apply max-sm:text-[90px] max-sm:tracking-[-9px];
+  }
+
+  .icons {
+    @apply absolute left-0 top-0 h-full w-full;
+    .icon {
+      @apply absolute;
+      &.icon-1 {
+        @apply left-[122px] top-[106px];
+        @apply max-sm:w-[78px] max-sm:h-[83px] max-sm:left-[-20px] max-sm:top-[0px];
+      }
+
+      &.icon-2 {
+        @apply left-1/2 -top-1/2;
+        @apply max-sm:w-[75px] max-sm:h-[83px] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-[-50px];
+      }
+
+      &.icon-3 {
+        @apply right-[129px] bottom-[-60px];
+        @apply max-sm:w-[96px] max-sm:h-[83px] max-sm:right-[30px] bottom-[-30px];
+      }
+    }
+  }
+
+
+}
+
+.privacy-policy, .terms {
+  @apply w-full my-[100px] min-h-screen flex justify-center max-sm:mt-[80px] max-sm:mb-[60px] overflow-hidden h-full max-sm:px-[20px] max-xl:px-[200px] px-[400px];
+  overflow: hidden;
+  word-wrap: break-word;
+
+  > div {
+    @apply w-full;
+  }
+
+  h1 {
+    font-feature-settings: 'ss02' on;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 115%;
+    letter-spacing: -0.96px;
+    margin: 60px 0;
+  }
+
+  p {
+    font-size: 16px;
+    @apply dark:text-gray-400;
+    margin-bottom: 14px;
+  }
+
+  a {
+    @apply text-primary underline;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 40px;
+  }
+
+  li {
+    margin-bottom: 14px;
+  }
+
+}
+

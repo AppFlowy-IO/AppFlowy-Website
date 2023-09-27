@@ -16,10 +16,8 @@ for (const envFileName of envFilePriority) {
 
 if (!envFilePath) {
   console.log(chalk.red('No .env file found'));
-  process.exit(1);
 }
 const config = dotenv.config({ path: envFilePath });
 if (config.error) {
   console.log(chalk.red('Error loading .env file'));
-  process.exit(1);
 }

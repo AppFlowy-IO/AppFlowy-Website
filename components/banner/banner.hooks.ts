@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Storage } from '@/lib/storage';
-import { getLatestVersion } from '@/lib/api';
+import { getLatestVersion } from '@/lib/githubAPI';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { storageDownloadLinks } from '@/lib/hooks/use-download';

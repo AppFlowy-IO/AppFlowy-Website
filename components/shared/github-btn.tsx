@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import GithubStar from '@/components/icons/github-star';
 import { formatNumber } from '@/lib/format-number';
-import { getGithubStar } from '@/lib/api';
+import { getGithubStar } from '@/lib/githubAPI';
 import { githubRepo } from '@/lib/config/git-repo';
 import { Storage } from '@/lib/storage';
 import dayjs from 'dayjs';

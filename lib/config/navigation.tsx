@@ -10,7 +10,6 @@ import Blocks from '@/components/icons/blocks';
 import Roadmap from '@/components/icons/roadmap';
 import Ring from '@/components/icons/ring';
 import Book from '@/components/icons/book';
-import Viewport from '@/components/icons/viewport';
 import Email from '@/components/icons/email';
 
 /**
@@ -108,6 +107,30 @@ export const navigation: Item[] = [
           },
         ],
       },
+      {
+        key: 'featured',
+        name: 'Featured',
+        children: [
+          {
+            key: '1',
+            name: 'Self-hosting AppFlowy Free Using Supabase',
+            href: 'https://blog.appflowy.io/self-hosting-appflowy-free-using-supabase/',
+            image: {
+              src: '/images/appflowy_self_hosted_free_supabase.png',
+              alt: 'Self-hosting AppFlowy Free Using Supabase',
+            },
+          },
+          {
+            key: '2',
+            name: 'How to Contribute to AppFlowy',
+            href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
+            image: {
+              src: '/images/how-to-contribute-to-appflowy.png',
+              alt: 'How to Contribute to AppFlowy',
+            },
+          },
+        ],
+      },
     ],
   },
   {
@@ -173,12 +196,29 @@ export const navigation: Item[] = [
             icon: <Email />,
             href: 'https://blog.appflowy.io/',
           },
+        ],
+      },
+      {
+        key: 'featured',
+        name: 'Featured',
+        children: [
           {
-            key: 'menu.live-demo',
-            name: 'Live demo',
-            desc: 'Lorem ipsum dolor sit amet',
-            icon: <Viewport />,
-            href: '/live-demo',
+            key: '1',
+            name: 'Self-hosting AppFlowy Free Using Supabase',
+            href: 'https://blog.appflowy.io/self-hosting-appflowy-free-using-supabase/',
+            image: {
+              src: '/images/appflowy_self_hosted_free_supabase.png',
+              alt: 'Self-hosting AppFlowy Free Using Supabase',
+            },
+          },
+          {
+            key: '2',
+            name: 'How to Contribute to AppFlowy',
+            href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
+            image: {
+              src: '/images/how-to-contribute-to-appflowy.png',
+              alt: 'How to Contribute to AppFlowy',
+            },
           },
         ],
       },
@@ -193,4 +233,8 @@ export interface Item {
   name: string;
   desc?: string;
   icon?: React.ReactNode;
+  image?: {
+    src: string;
+    alt: string;
+  };
 }

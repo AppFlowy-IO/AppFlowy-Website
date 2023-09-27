@@ -63,23 +63,6 @@
     > .notes-tasks-projects {
       @apply relative mb-[200px] mx-0;
       @apply max-sm:mb-[60px] max-sm:mx-0;
-      .icon {
-        @apply absolute;
-        &:nth-of-type(2) {
-          @apply left-[122px] top-[106px];
-          @apply max-sm:w-[78px] max-sm:h-[83px] max-sm:left-[-20px] max-sm:top-[0px];
-        }
-
-        &:nth-of-type(3) {
-          @apply left-1/2 -top-1/2;
-          @apply max-sm:w-[75px] max-sm:h-[83px] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-[-50px];
-        }
-
-        &:last-of-type {
-          @apply right-[129px] bottom-[-60px];
-          @apply max-sm:w-[96px] max-sm:h-[83px] max-sm:right-[30px] bottom-[-30px];
-        }
-      }
     }
   }
 
