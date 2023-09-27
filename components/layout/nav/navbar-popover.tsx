@@ -29,9 +29,14 @@ function NavbarPopover({
                 target={item.href?.startsWith('https') ? '_blank' : ''}
                 href={item.href || ''}
                 key={item.name}
-                className={'group-item'}
+                className={`group-item ${item.image ? 'items-center' : ''}`}
               >
-                <div className={'h-[24px] w-[24px]'}>{item.icon}</div>
+                {item.icon && <div className={'h-[24px] w-[24px]'}>{item.icon}</div>}
+                {item.image && (
+                  <div className={'group-item-image'}>
+                    <img src={item.image.src} alt={item.image.alt} />
+                  </div>
+                )}
                 <div className={'item-content'}>
                   <div className={'item-name'}>{item.name}</div>
                   <div className={'item-desc'}>{item.desc}</div>

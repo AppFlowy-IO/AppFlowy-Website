@@ -1,8 +1,6 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import title from '@/assets/images/product-showcase/title.png';
-import darkTitle from '@/assets/images/product-showcase/dark/title.svg';
 import Edit from '@/components/icons/edit';
 import Focus from '@/components/icons/focus';
 import SwitchProduct from '@/components/home/product-showcase/switch-product';
@@ -10,9 +8,9 @@ import { productShowCaseConfig } from '@/lib/config/home';
 import Lottie from 'lottie-react';
 import tasksAnimation from '@/assets/lottie/tasks/data';
 import darkTasksAnimation from '@/assets/lottie/dark/tasks/data';
+import OverTitle from '@/components/shared/over-title';
 
 function ProductShowcase({ dark }: { dark: boolean }) {
-  const titleSrc = dark ? darkTitle.src : title.src;
   const renderCard = (card: {
     image: {
       src: string;
@@ -45,7 +43,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
     <div className={'product-showcase'}>
       {/* Wikis - Docs - Notes */}
       <div className={'title'}>
-        <Image src={titleSrc} alt={'Wikis - Docs - Notes'} width={2276} height={412} />
+        <OverTitle title='Wikis-Docs-Notes' />
       </div>
       {/* An extensible and customizable knowledge base built on a community-driven open toolbox of plugins, templates, themes, and more. */}
       <section>

@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 export const GIT_HUB_REPO = 'https://api.github.com/repos/AppFlowy-IO/AppFlowy';
 
-export const api = axios.create({
+export const githubAPI = axios.create({
   baseURL: GIT_HUB_REPO,
   headers: {
     'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const api = axios.create({
 
 export async function getGithubStar() {
   try {
-    const res = await api.get('');
+    const res = await githubAPI.get('');
 
     return res.data.stargazers_count;
   } catch {
@@ -33,7 +33,7 @@ export async function loadContributors() {
   }
 
   try {
-    const res = await api.get('/contributors');
+    const res = await githubAPI.get('/contributors');
 
     for (const contributor of res.data) {
       await addContributor({
@@ -53,13 +53,13 @@ export async function loadContributors() {
 
 export async function loadVersions() {
   try {
-    const res = await api.get('/releases');
+    const res = await githubAPI.get('/releases');
 
     const versions = [];
 
     for (const item of res.data) {
       if (item.tag_name.split('.').length === 3) {
-        const log = await api.get(`/releases/tags/${item.tag_name}`);
+        const log = await githubAPI.get(`/releases/tags/${item.tag_name}`);
 
         if (typeof window !== 'undefined') {
           await addVersion(item.tag_name, item.html_url, log.data.body, log.data.published_at);
@@ -85,7 +85,7 @@ export async function loadVersions() {
 
 export async function getLatestVersion() {
   try {
-    const res = await api.get('/releases/latest');
+    const res = await githubAPI.get('/releases/latest');
 
     return res.data as {
       tag_name: string;

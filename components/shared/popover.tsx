@@ -1,5 +1,6 @@
 import React from 'react';
 import MuiPopover, { PopoverProps } from '@mui/material/Popover';
+import { Fade } from '@mui/material';
 
 function Popover({
   onMouseEnterPaper,
@@ -30,6 +31,7 @@ function Popover({
           onMouseLeave: onMouseLeavePaper,
         },
       }}
+      TransitionComponent={Fade}
       {...props}
     >
       {props.children}
