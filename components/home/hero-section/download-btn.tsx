@@ -1,33 +1,27 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useClient } from '@/lib/hooks/use-client';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { useDownload } from '@/lib/hooks/use-download';
 
 function HeroDownloadBtn() {
-  const { isClient, os } = useClient();
+  const { os, isMobile } = useClient();
+  const { downloadOS } = useDownload();
+  const name = useMemo(() => {
+    const name = os?.name?.toLowerCase() || '';
+
+    if (name.includes('mac')) return 'Mac';
+    if (name.includes('windows')) return 'Windows';
+    if (name.includes('linux')) return 'Linux';
+    if (name.includes('android')) return 'Android';
+    if (name.includes('ios')) return 'iOS';
+    return name;
+  }, [os?.name]);
 
   return (
-    <Link href={'/download'}>
-      <motion.button
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
-        className={'download-btn col gap-0'}
-      >
-        <div className={'title'}>{`Download app`}</div>
-        <div className={`desc text-[12px] leading-[15px] opacity-60 ${!isClient || !os ? 'hidden' : ''}`}>
-          {os?.name + ' X ' + os?.version}
-        </div>
-      </motion.button>
-    </Link>
+    <button disabled={isMobile} onClick={downloadOS} className={'download-btn col gap-0'}>
+      <div className={'title'}>{`Download for ${name}`}</div>
+    </button>
   );
 }
 

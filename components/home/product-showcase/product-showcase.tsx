@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Image from 'next/image';
 import Edit from '@/components/icons/edit';
@@ -71,16 +70,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
         <div className={'title'}>
           <span className={'relative'}>
             {productShowCaseConfig.thirdTitle}
-            <div className={'line'}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 179 19' fill='none'>
-                <path
-                  d='M177.263 14.9724C129.071 7.4489 95.3553 -2.62395 16.3532 4.93072C14.0431 5.15164 13.9245 8.38732 16.2144 8.76384L67.2846 17.1611C36.1376 10.0862 19.1314 9.94373 2.19824 13.4691'
-                  stroke='#9327FF'
-                  strokeWidth='3'
-                  strokeLinecap='square'
-                />
-              </svg>
-            </div>
+
             <div className={'icon'}>
               <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 40 56' fill='none'>
                 <path

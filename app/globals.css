@@ -19,14 +19,8 @@
 body {
     @apply text-black dark:text-white;
     font-family: "Inter", sans-serif;
-    font-size: 16px;
-    @apply bg-light-blue-gray;
+    font-size: 14px;
+    @apply bg-white;
     @apply dark:bg-night-blue;
     margin: 0;
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
 }

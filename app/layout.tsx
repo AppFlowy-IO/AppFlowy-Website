@@ -4,11 +4,16 @@ import { Inter } from 'next/font/google';
 import Favicon from '../public/favicon.ico';
 import App from '@/components/layout/app';
 import { isDarkForServer } from '@/lib/get-theme';
+import NextTopLoader from 'nextjs-toploader';
+import { getGitData } from '@/lib/get-git';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export const metadata: Metadata = {
-  title: 'Appflowy.IO',
+  title: 'AppFlowy.IO',
   description: 'A privacy-first open source workspace for your notes, wikis, and projects',
   icons: [
     {
@@ -19,8 +24,9 @@ export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const isDark = isDarkForServer();
+  const gitData = await getGitData();
 
   return (
     <html
@@ -32,7 +38,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         : {})}
     >
       <body id={'body'} className={inter.className}>
-        <App isDark={isDark}>{children}</App>
+        <NextTopLoader color={isDark ? '#601DAA' : '#9327FF'} />
+        <App gitData={gitData} isDark={isDark}>
+          {children}
+        </App>
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+            <Script id='google-analytics'>
+              {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

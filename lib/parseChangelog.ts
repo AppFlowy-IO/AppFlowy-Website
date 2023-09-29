@@ -31,7 +31,7 @@ export function parseChangelog({
     type: string;
     items: string[];
   } | null = null;
-
+  
   for (const sectionMatch of sectionsMatch) {
     const sectionText = sectionMatch[0];
     const sectionName = sectionMatch[1].slice(3);
@@ -51,11 +51,18 @@ export function parseChangelog({
     };
 
     const imgRegex = /<img.*?src=["'](https:\/\/[^"']+)["']/;
+    const linkRegex = /\[([^\]]+)\]\((https:\/\/[^)]+)\)/;
     const imgMatch = changeLog.match(imgRegex);
+    const linkMatch = changeLog.match(linkRegex);
 
     if (imgMatch) {
       changelogJSON.image.src = imgMatch[1];
       changelogJSON.image.alt = changelogJSON.version;
+    }
+
+    if (linkMatch) {
+      changelogJSON.image.src = linkMatch[2];
+      changelogJSON.image.alt = linkMatch[1];
     }
 
     for (let i = 1; i < lines.length; i++) {

@@ -45,6 +45,12 @@ class AppflowyDB extends Dexie {
 
 export const db = new AppflowyDB();
 
+export async function hasVersion(version: string) {
+  const v = await db.versions.get({ version });
+
+  return !!v;
+}
+
 export async function addVersion(version: string, url: string, changeLog: string, publishedAt: string) {
   const v = await db.versions.get({ version });
 
@@ -66,10 +72,14 @@ export async function addVersion(version: string, url: string, changeLog: string
   });
 }
 
+export async function getContributor(contributorId: string) {
+  const v = await db.contributors.get({ contributorId });
+
+  return v;
+}
+
 export async function addContributor(contributor: Contributor) {
-  const v = await db.contributors.get({
-    contributorId: contributor.contributorId,
-  });
+  const v = await getContributor(contributor.contributorId);
 
   if (v) {
     db.contributors.update(v, contributor);

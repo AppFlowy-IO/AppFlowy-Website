@@ -41,7 +41,7 @@
           }
 
           .step {
-            @apply ml-[26px] pl-[47px];
+            @apply ml-[26px] pl-[47px] max-w-[410px];
             @apply max-sm:ml-[16px] max-sm:pl-[24px];
             &:before {
               @apply z-[2] absolute left-[-22px] transform w-[42px] h-[42px] rounded-full bg-primary text-white font-bold flex items-center justify-center;

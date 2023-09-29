@@ -3,8 +3,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
-import { Storage } from '@/lib/storage';
-import dayjs from 'dayjs';
 import { loadContributors } from '@/lib/githubAPI';
 
 function ContributorsList() {
@@ -21,22 +19,13 @@ function ContributorsList() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const lastTime = Storage.get('get-contributors-time');
-    const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
-
-    // load versions at most once per hour
-    if (diffHours > 1 || !lastTime) {
-      void (async () => {
-        try {
-          await loadContributors();
-          Storage.set('get-contributors-time', dayjs().toString());
-        } catch {
-          // do thing
-        }
-      })();
-    } else {
-      // do nothing
-    }
+    void (async () => {
+      try {
+        await loadContributors();
+      } catch {
+        // do thing
+      }
+    })();
   }, []);
 
   return (

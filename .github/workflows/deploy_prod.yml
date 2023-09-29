@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SSH_TARGET: 54.206.53.213
+      SSH_TARGET: 54.174.40.159
       NODE_ENV: production
       ENVIRONMENT: production
 
@@ -34,4 +34,4 @@ jobs:
 
       - name: Deploy to EC2 (Main)
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pem admin@$SSH_TARGET "cd space/AppFlowy-Website && git fetch && git reset --hard origin/${{ inputs.branch }} && pnpm install && pnpm run build && pnpm run upload:s3 && node run-script.js" || { echo "Failed to execute the command"; exit 1; }
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pem admin@$SSH_TARGET "cd space/AppFlowy-Website && git fetch && git reset --hard origin/${{ inputs.branch }} && pnpm run deploy:prod" || { echo "Failed to execute the command"; exit 1; }

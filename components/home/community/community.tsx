@@ -10,19 +10,7 @@ import { communityConfig } from '@/lib/config/home';
 function Community({ dark }: { dark: boolean }) {
   return (
     <div className={'community'}>
-      <div className={'title'}>
-        {communityConfig.title}
-        <div className={'line'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 381 15' fill='none'>
-            <path
-              d='M1.99979 9.37731C25.1033 6.25015 78.2435 0.462636 105.976 2.32985C133.708 4.19706 105.637 10.2621 88.1342 13.0612C156.662 7.47763 310.656 -2.02839 378.412 4.61575'
-              stroke='#9327FF'
-              strokeWidth='3'
-              strokeLinecap='square'
-            />
-          </svg>
-        </div>
-      </div>
+      <div className={'title'}>{communityConfig.title}</div>
       <div className={'numbers'}>
         {communityConfig.numbers.map((item) => (
           <div key={item.text} className={'number'}>

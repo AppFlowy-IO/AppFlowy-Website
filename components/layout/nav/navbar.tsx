@@ -14,14 +14,14 @@ import DrawerNavbar from '@/components/layout/nav/drawer-nav';
 const closeDuration = 200;
 
 function Navbar() {
-  const scorlled = useScroll();
+  const scrolled = useScroll();
   const [popoverType, setPopoverType] = useState<string | undefined>();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | undefined>();
   const debounceClose = useMemo(() => debounce(() => setAnchorEl(undefined), closeDuration), []);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
-    <nav className={`appflowy-navbar ${scorlled ? 'sticky' : ''}`}>
+    <nav className={`appflowy-navbar ${scrolled ? 'sticky' : ''}`}>
       {/* Logo */}
       <Link href={'/'} className={'logo text-black dark:text-white'}>
         <Logo />

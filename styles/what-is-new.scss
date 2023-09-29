@@ -8,7 +8,7 @@
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
 
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white mb-[80px] text-center relative;
+    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium text-black dark:text-white mb-[80px] text-center relative;
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px];
     .line {
       @apply absolute right-[20px] bottom-[-20px] w-[198px] h-[19px];
@@ -33,7 +33,7 @@
 
 
         .version-panel {
-          @apply md:flex-1 border-primary-10 border bg-white p-[30px] gap-[60px] pr-[40px] flex items-start rounded-[30px] relative;
+          @apply xl:flex-1 border-primary-10 border bg-white p-[30px] gap-[60px] pr-[40px] flex items-start rounded-[18px] relative;
 
           @apply max-sm:p-[20px] max-sm:pr-[20px] max-sm:flex-col max-sm:gap-[30px];
           @apply dark:bg-midnight;
@@ -50,16 +50,16 @@
           }
 
           .image {
-            @apply w-[510px] h-[464px] rounded-[20px] p-[20px] bg-[#EFF1F8] flex items-center justify-center;
+            @apply max-w-[510px] w-[40%] h-[464px] rounded-[20px] p-[20px] bg-[#EFF1F8] flex items-center justify-center;
             @apply max-sm:w-[250px] max-sm:h-[240px];
             @apply dark:bg-midnight;
             img {
-              @apply w-full object-contain;
+              @apply w-full object-center;
             }
           }
 
           .release-wrap {
-            @apply md:flex-1 md:h-[464px] overflow-hidden relative;
+            @apply xl:flex-1 xl:h-[464px] overflow-hidden relative;
             @apply max-sm:w-full;
           }
 

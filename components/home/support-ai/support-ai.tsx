@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import mainImage from '@/assets/images/support-ai/img.svg';
+import mainImage from '@/assets/images/support-ai/main.png';
 import darkMainImage from '@/assets/images/support-ai/dark/img.svg';
 
 import Background from '@/components/home/support-ai/background';
@@ -12,16 +12,7 @@ const SupportAI = ({ dark }: { dark: boolean }) => {
       <Background dark={dark} />
       <div className={'title'}>
         {supportAIConfig.title}
-        <div className={'line'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 187 8' fill='none'>
-            <path
-              d='M1.99845 5.17918C13.2328 3.5076 39.0706 0.39757 52.5468 1.33013C66.0231 2.26269 52.3694 5.47825 43.8581 6.96946C77.1745 3.94181 152.038 -1.2717 184.96 2.09545'
-              stroke='#9327FF'
-              strokeWidth='2'
-              strokeLinecap='square'
-            ></path>
-          </svg>
-        </div>
+
         <div className={'icon'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 28 39' fill='none'>
             <path
@@ -34,7 +25,7 @@ const SupportAI = ({ dark }: { dark: boolean }) => {
       </div>
       <div className={'image'}>
         <div className={'bg'} />
-        <Image src={dark ? darkMainImage.src : mainImage.src} width={953} height={536} alt={supportAIConfig.imageAlt} />
+        <Image src={dark ? darkMainImage.src : mainImage.src} width={868} height={492} alt={supportAIConfig.imageAlt} />
       </div>
       <div className={'features'}>
         {supportAIConfig.features.map((item) => (

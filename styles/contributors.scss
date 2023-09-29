@@ -21,7 +21,7 @@
   }
 
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] font-medium text-black dark:text-white text-center relative mb-[30px] px-[200px];
+    @apply z-10 max-w-[764px] tracking-[-4px] text-[74px] leading-[105%] font-medium text-black dark:text-white text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] left-[320px] w-[446px] h-[18px];
@@ -48,10 +48,10 @@
     @apply max-sm:px-[10px] max-sm:mb-[140px];
 
     .contributor-wrapper {
-      @apply mb-[30px] md:w-1/4 max-sm:w-1/2 px-[15px];
+      @apply mb-[30px] xl:w-1/4 max-sm:w-1/2 px-[15px];
       @apply max-sm:px-[5px] max-sm:mb-[10px];
       .contributor {
-        @apply flex flex-col items-center overflow-hidden p-[20px] rounded-[30px] border bg-white border-primary-20;
+        @apply flex flex-col items-center overflow-hidden p-[20px] rounded-[18px] border bg-white border-primary-20;
         @apply max-sm:rounded-[16px];
         @apply dark:bg-[#12101E];
       }

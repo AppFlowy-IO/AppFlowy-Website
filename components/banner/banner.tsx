@@ -19,7 +19,7 @@ function Banner() {
     >
       <span>
         {`What's New: `}
-        <span className='max-sm:hidden'>Appflowy launches</span> v{version}
+        <span className='max-lg:hidden'>AppFlowy launches</span> v{version}
       </span>
       <span className={'mx-2'}>
         <svg xmlns='http://www.w3.org/2000/svg' width='2' height='13' viewBox='0 0 2 13' fill='none'>

@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { downloadPageConfig } from '@/lib/config/pages';
 import DownloadBtns from '@/components/home/mobile/download-btns';
 import Image from 'next/image';
-import image1 from '@/assets/images/download/img-1.svg';
+import image1 from '@/assets/images/download/img-1.png';
 import darkImage1 from '@/assets/images/download/dark/img-1.svg';
 import MobileAnimation from '@/components/shared/mobile-animation';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
@@ -16,24 +16,28 @@ function DownloadMobile() {
   return (
     <div id={'ios-and-android'} className={'download-mobile'}>
       <div className={'title mobile-title'}>
-        {downloadPageConfig.downloadMobileApplicationTitle}
-        <div className={'line'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 346 19' fill='none'>
-            <path
-              d='M1.92521 14.1304C22.9559 10.1921 71.3122 2.78488 96.4922 4.66252C121.672 6.54016 96.0934 13.9873 80.1565 17.4762C142.493 10.1331 282.541 -2.79452 344.038 4.23962'
-              stroke='#9327FF'
-              strokeWidth='3'
-              strokeLinecap='square'
-            />
-          </svg>
-        </div>
+        <span className={'primary-word'}>
+          {`Stay in sync`}
+          <span className={'primary-line'}>
+            <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 437 17' fill='none'>
+              <path
+                d='M2.00041 11.1304C28.5773 7.42928 89.7051 0.5683 121.6 2.73315C153.496 4.898 121.202 12.058 101.068 15.3673C179.893 8.72945 357.026 -2.61212 434.952 5.12465'
+                stroke='currentColor'
+                strokeWidth='3'
+                strokeLinecap='square'
+              />
+            </svg>
+          </span>
+        </span>
+        <br />
+        on the go
       </div>
-      <div className={'desc'}>{downloadPageConfig.mobileSubtitle}</div>
+      <div className={'desc'}>Perform and look great</div>
       <DownloadBtns />
       <div className={'image mobile-image relative'}>
         <div
           className={
-            'bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform opacity-[10%] blur-[150px] dark:opacity-[20%] max-sm:h-[300px]'
+            'bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform opacity-[10%] blur-[150px] dark:opacity-[20%] max-lg:h-[300px]'
           }
         />
         <Image
@@ -47,7 +51,7 @@ function DownloadMobile() {
       <div className={'image notes-tasks-projects relative w-full'}>
         <div
           className={
-            'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-sm:h-[1200px] max-sm:blur-[150px]'
+            'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-lg:h-[1200px] max-lg:blur-[150px]'
           }
         />
         <OverTitle title='notes-tasks-projects' />

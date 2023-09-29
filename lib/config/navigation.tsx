@@ -36,24 +36,24 @@ export const navigation: Item[] = [
         children: [
           {
             key: '1',
-            name: 'Wirte for AppFlowy',
+            name: 'Write for AppFlowy',
             href: 'https://appflowy.gitbook.io/docs/essential-documentation/contribute-to-appflowy/write-for-appflowy',
             icon: <Send />,
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Help AppFlowy developers and end users — and get paid',
           },
           {
             key: '2',
             name: 'Top Contributors',
             href: '/contributors',
             icon: <Star />,
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: '200+ are helping build secure workplace solutions',
           },
           {
             key: '3',
-            name: 'Appflowy Mentorship',
+            name: 'AppFlowy Mentorship',
             href: 'https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy/appflowy-mentorship-program/mentorship-2022',
             icon: <Eye />,
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Hands-on learning for new developers',
           },
         ],
       },
@@ -64,13 +64,13 @@ export const navigation: Item[] = [
           {
             key: '1',
             name: 'Discord',
-            href: 'https://discord.com/invite/9Q2xaN37tV',
+            href: 'https://discord.gg/9Q2xaN37tV',
             icon: (
               <i className={'text-primary'}>
                 <Discord />
               </i>
             ),
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: '3,000+ get tips and support',
           },
           {
             key: '2',
@@ -81,7 +81,7 @@ export const navigation: Item[] = [
                 <Twitter />
               </i>
             ),
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Follow the latest news',
           },
           {
             key: '3',
@@ -92,7 +92,7 @@ export const navigation: Item[] = [
                 <Github />
               </i>
             ),
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Access 100% of the AppFlowy source code',
           },
           {
             key: '4',
@@ -103,7 +103,7 @@ export const navigation: Item[] = [
                 <Forum />
               </i>
             ),
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Discussions for questions and ideas',
           },
         ],
       },
@@ -144,28 +144,28 @@ export const navigation: Item[] = [
           {
             key: '1',
             name: 'Developers Docs',
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Everything technical',
             icon: <Docs />,
             href: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
           },
           {
             key: '2',
-            name: 'Appflowy Blocks',
-            desc: 'Lorem ipsum dolor sit amet',
+            name: 'AppFlowy Blocks',
+            desc: 'Stand-alone packages to build your own productivity tools',
             icon: <Blocks />,
             href: '/appflowy-blocks',
           },
           {
             key: '3',
             name: 'Roadmap',
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Shipped, in progress, and next up',
             icon: <Roadmap />,
             href: 'https://github.com/orgs/AppFlowy-IO/projects/5/views/12',
           },
           {
             key: '4',
             name: "What's new",
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'The latest and greatest from AppFlowy',
             icon: <Ring />,
             href: '/what-is-new',
           },
@@ -178,21 +178,21 @@ export const navigation: Item[] = [
           {
             key: '1',
             name: 'Guides & Tutorials',
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'How to achieve more with AppFlowy',
             icon: <Book />,
             href: 'https://blog.appflowy.io/tag/tutorials/',
           },
           {
             key: '2',
             name: 'Request a resource',
-            desc: 'Lorem ipsum dolor sit amet',
+            desc: 'Suggest a topic for a new guide or tutorial',
             icon: <Send />,
-            href: '',
+            href: 'https://tally.so/r/npoyeb',
           },
           {
             key: 'menu.newsletter',
-            name: 'Newsletter',
-            desc: 'Lorem ipsum dolor sit amet',
+            name: 'Technical Blog',
+            desc: 'Learn about how we tackle technical challenges',
             icon: <Email />,
             href: 'https://blog.appflowy.io/',
           },

@@ -49,15 +49,15 @@ function Downloading() {
             <div className={'step step-1'}>
               Your download will begin automatically,
               <br />
-              If it didn‘t start,
+              If it did‘t start, please
               <span onClick={() => downloadUrl && download(downloadUrl, false)} className={'highlight ml-1 underline'}>
-                download Appflowy manually.
+                download AppFlowy manually.
               </span>
             </div>
             <div className={'step step-2'}>
               Once downloaded,open the file by doubled-clicking it in your downloads folder
             </div>
-            <div className={'step step-3'}>Follow the instructions to install Appflowy to your computer</div>
+            <div className={'step step-3'}>Follow the instructions to install AppFlowy on your computer</div>
           </div>
         </div>
         <div className={'image relative'}>
@@ -80,12 +80,12 @@ function Downloading() {
         </div>
         <div className={'download-mobile'}>
           <div className={'download-mobile_title'}>
-            <span>Appflowy for </span>
+            <span>AppFlowy for </span>
             <span>iOS and Android</span>
           </div>
           <div className={'download-mobile_desc'}>
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
-            <div>Coming in December</div>
+            <div className={'text-primary'}>Coming in December</div>
           </div>
           <div className={'btn-group'}>
             <button disabled className={'download-btn'}>
@@ -101,16 +101,20 @@ function Downloading() {
       </div>
       <div className={'panel panel-3'}>
         <div className={'title'}>
-          <div className={'circle'}>
-            <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 120 50' fill='none'>
-              <path
-                d='M1 14.908C89.5233 -9.28207 115.958 5.78783 118.323 17.637C121.227 32.1915 87.9728 46.4447 55.184 48.4502C22.3953 50.4556 5.53125 44.5355 4.86451 36.0085C2.47924 26.0962 14.4958 16.3863 48.7547 11.7745'
-                stroke='#9327FF'
-                strokeWidth='2.16'
-              />
-            </svg>
-          </div>
-          We also offer other download options for{' '}
+          We also offer other{' '}
+          <span className={'primary-word'}>
+            download
+            <span className={'primary-circle'}>
+              <svg xmlns='http://www.w3.org/2000/svg' width='120' height='50' viewBox='0 0 120 50' fill='none'>
+                <path
+                  d='M1 14.908C89.5233 -9.28207 115.958 5.78783 118.323 17.637C121.227 32.1915 87.9728 46.4447 55.184 48.4502C22.3953 50.4556 5.53125 44.5355 4.86451 36.0085C2.47924 26.0962 14.4958 16.3863 48.7547 11.7745'
+                  stroke='currentColor'
+                  strokeWidth='2.16'
+                />
+              </svg>
+            </span>
+          </span>{' '}
+          options for{' '}
           <span
             onClick={() => {
               downloadWindows(false);

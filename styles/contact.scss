@@ -16,7 +16,7 @@
   @apply flex w-full flex-col items-center pt-[220px] pb-[184px] relative;
   @apply max-sm:pt-[169px] max-sm:pb-[60px];
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
+    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] left-0 w-[315px] h-[40px];
@@ -26,21 +26,23 @@
   }
 
   .desc {
-    @apply w-[552px] text-center mb-[100px];
+    @apply w-[535px] text-center mb-[100px];
     @apply max-sm:w-full max-sm:mb-[80px] max-sm:px-[50px];
-
+    .link {
+      @apply underline;
+    }
   }
 
   .icon {
     @apply absolute;
     &.icon-1 {
       @apply md:bottom-[100px] md:left-[14%] w-[110px] h-[156px];
-      @apply max-sm:w-[50px] max-sm:h-[60px] max-sm:left-[30px] max-sm:top-[320px];
+      @apply max-md:w-[50px] max-md:h-[60px] max-md:left-[30px] max-md:top-[320px];
     }
 
     &.icon-2 {
       @apply md:top-[470px] md:right-[290px] w-[38px] h-[54px];
-      @apply max-sm:w-[21px] max-sm:h-[30px] max-sm:right-[30px] max-sm:top-[320px];
+      @apply max-md:w-[21px] max-md:h-[30px] max-md:right-[30px] max-md:top-[320px];
     }
   }
 
@@ -59,7 +61,6 @@
         @apply w-full outline-none text-[18px] leading-normal;
         @apply max-sm:text-base;
         background: transparent !important;
-        background-color: transparent !important;
         outline: none;
       }
 
@@ -81,8 +82,8 @@
 }
 
 .contact-message-content {
-  @apply flex rounded-[30px] border border-primary-20 bg-white p-10 gap-[15px] w-[486px];
-  @apply max-sm:w-full max-sm:flex-col items-center max-sm:rounded-[16px] max-sm:gap-[20px] max-sm:mx-[40px] max-sm:mb-[60px];
+  @apply flex rounded-[18px] border border-primary-20 bg-white p-10 gap-[15px] w-[486px];
+  @apply max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:rounded-[16px] max-sm:gap-[20px] max-sm:mx-[40px] max-sm:mb-[60px];
   @apply dark:bg-[#26203B];
   > .contact-message-icon {
     @apply w-10 h-10;

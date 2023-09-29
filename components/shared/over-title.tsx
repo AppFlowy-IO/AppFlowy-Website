@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import icon1 from '@/assets/images/download/icon-1.svg';
+import icon1 from '@/assets/images/download/icon-1.png';
 import { downloadPageConfig } from '@/lib/config/pages';
-import icon2 from '@/assets/images/download/icon-2.svg';
-import icon3 from '@/assets/images/download/icon-3.svg';
+import icon2 from '@/assets/images/download/icon-2.png';
+import icon3 from '@/assets/images/download/icon-3.png';
 import { Manrope } from 'next/font/google';
 
 const manrope = Manrope({ subsets: ['latin'] });

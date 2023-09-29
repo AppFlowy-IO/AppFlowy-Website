@@ -9,6 +9,7 @@ import Checkbox from '@/components/icons/checkbox';
 function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -84,6 +85,7 @@ function Form() {
             open: true,
             type: 'success',
           });
+          reset();
         } catch (error) {
           setMessage({
             open: true,
@@ -156,7 +158,7 @@ function Form() {
         className={'contact-message'}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         open={message.open}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={closeMessage}
       >
         <div className={'contact-message-content'}>

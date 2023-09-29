@@ -3,10 +3,10 @@ import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 import ContactEmail from '@/components/shared/contact-email';
-import SwitchMode from '@/components/shared/switch-mode';
 
 // import SwitchMode from '@/components/shared/switch-mode';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark?: boolean) => void }) {
   const ExternalLinks = () => (
     <>
@@ -53,12 +53,12 @@ function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark
       </div>
       <div className={'bottom'}>
         <div className={'col'}>
-          <div>Copyright © 2023, Appflowy Inc.</div>
+          <div>Copyright © 2023, AppFlowy Inc.</div>
           <div className={'need-help'}>
             Need Help? <ContactEmail />
           </div>
         </div>
-        <SwitchMode onChangeMode={onChangeMode} isDark={isDark} />
+        {/*<SwitchMode onChangeMode={onChangeMode} isDark={isDark} />*/}
       </div>
     </div>
   );

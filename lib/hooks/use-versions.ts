@@ -1,11 +1,10 @@
 'use client';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
-import { useEffect, useMemo } from 'react';
+import { addVersion, db, Version } from '@/lib/db';
+import { useCallback, useEffect, useMemo } from 'react';
 import { parseChangelog } from '@/lib/parseChangelog';
-import { Storage } from '@/lib/storage';
-import dayjs from 'dayjs';
 import { loadVersions } from '@/lib/githubAPI';
+import { useClient } from '@/lib/hooks/use-client';
 
 export function useVersions() {
   const dbVersions = useLiveQuery(() => {
@@ -26,20 +25,39 @@ export function useVersions() {
   };
 }
 
-export function useLoadVersion() {
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const lastTime = Storage.get('get-versions-time');
-    const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
+export function useLoadVersions({ serverVersions }: { serverVersions: Version[] }) {
+  const { isClient } = useClient();
 
-    // load versions at most once per hour
-    if (diffHours > 1 || !lastTime) {
-      void (async () => {
-        await loadVersions();
-        Storage.set('get-versions-time', dayjs().toString());
-      })();
-    } else {
+  const storageServerVersions = useCallback(async (versions: Version[]) => {
+    try {
+      for (let i = 0; i < versions.length; i++) {
+        const v = versions[i];
+
+        await addVersion(v.version, v.url, v.changeLog, v.publishedAt);
+      }
+    } catch (e) {
       // do nothing
     }
   }, []);
+
+  const loadGitVersions = useCallback(async () => {
+    void (async () => {
+      try {
+        await loadVersions();
+      } catch (e) {
+        // do nothing
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
+    void (async () => {
+      // storage server versions to indexedDB
+      await storageServerVersions(serverVersions);
+      // load new versions from GitHub
+      await loadGitVersions();
+    })();
+  }, [isClient, loadGitVersions, serverVersions, storageServerVersions]);
 }

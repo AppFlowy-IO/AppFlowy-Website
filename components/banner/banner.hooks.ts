@@ -1,12 +1,14 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import { Storage } from '@/lib/storage';
-import { getLatestVersion } from '@/lib/githubAPI';
-import dayjs from 'dayjs';
+import { fetchLastVersion } from '@/lib/githubAPI';
 import { useRouter } from 'next/navigation';
 import { storageDownloadLinks } from '@/lib/hooks/use-download';
+import { GitContext } from '@/lib/hooks/use-git-context';
 
 export function useBanner() {
   const router = useRouter();
+  const gitData = useContext(GitContext);
+
   const [newVersionState, setNewVersionState] = useState({
     version: '',
     show: false,
@@ -58,22 +60,16 @@ export function useBanner() {
     }
   }, []);
 
-  const fetchLastestVersion = useCallback(async () => {
-    const lastTime = Storage.get('get-version-time');
-    const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
+  const fetchLatestVersion = useCallback(async () => {
+    try {
+      const version = await fetchLastVersion();
 
-    if (diffHours > 24 || !lastTime) {
-      try {
-        const latestVersion = await getLatestVersion();
+      if (version === undefined) return;
 
-        if (!latestVersion) return;
-        const version = latestVersion.tag_name;
-
-        Storage.set('last-version', version);
-        setBannerState(version);
-      } catch {
-        //
-      }
+      Storage.set('last-version', version);
+      setBannerState(version);
+    } catch {
+      // nothing
     }
 
     const version = Storage.get('last-version');
@@ -84,8 +80,15 @@ export function useBanner() {
   }, [setBannerState]);
 
   useEffect(() => {
-    void fetchLastestVersion();
-  }, [fetchLastestVersion]);
+    void fetchLatestVersion();
+  }, [fetchLatestVersion]);
+
+  useEffect(() => {
+    if (gitData?.lastVersion) {
+      Storage.set('last-version', gitData?.lastVersion);
+      setBannerState(gitData?.lastVersion);
+    }
+  }, [gitData?.lastVersion, setBannerState]);
 
   return {
     version: newVersionState.version,

@@ -2,15 +2,15 @@
 
 import { aboutPageConfig } from '@/lib/config/pages';
 import React, { useContext, useMemo } from 'react';
-import img0 from '@/assets/images/about/the-start-of-thing.svg';
+import img0 from '@/assets/images/about/the-start-of-thing.png';
 import darkImg0 from '@/assets/images/about/dark/the-start-of-thing.svg';
 import Image from 'next/image';
-import icon0 from '@/assets/images/download/icon-1.svg';
-import icon1 from '@/assets/images/download/icon-3.svg';
-import mission1 from '@/assets/images/about/mission-1.svg';
-import mission2 from '@/assets/images/about/mission-2.svg';
-import mission3 from '@/assets/images/about/mission-3.svg';
-import mission4 from '@/assets/images/about/mission-4.svg';
+import icon0 from '@/assets/images/download/icon-1.png';
+import icon1 from '@/assets/images/download/icon-3.png';
+import mission1 from '@/assets/images/about/mission-1.png';
+import mission2 from '@/assets/images/about/mission-2.png';
+import mission3 from '@/assets/images/about/mission-3.png';
+import mission4 from '@/assets/images/about/mission-4.png';
 import darkMission1 from '@/assets/images/about/dark/mission-1.svg';
 import darkMission2 from '@/assets/images/about/dark/mission-2.svg';
 import darkMission3 from '@/assets/images/about/dark/mission-3.svg';
@@ -47,19 +47,7 @@ export default function Missions() {
 
   return (
     <div className={'mission-panel'}>
-      <div className={'title'}>
-        {aboutPageConfig.ourMissionTitle}
-        <div className={'line'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 318 19' fill='none'>
-            <path
-              d='M315.402 12.9724C229.301 6.2039 169.137 -3.34175 27.6868 5.45314C25.2248 5.60622 25.1498 9.10811 27.608 9.31281L118.594 16.8891C62.9766 10.3012 32.5512 10.4258 2.19871 14.2183'
-              stroke='#9327FF'
-              strokeWidth='3'
-              strokeLinecap='square'
-            />
-          </svg>
-        </div>
-      </div>
+      <div className={'title'}>{aboutPageConfig.ourMissionTitle}</div>
       <div className={'image relative'}>
         <div
           className={

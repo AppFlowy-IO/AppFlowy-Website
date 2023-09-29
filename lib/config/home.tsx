@@ -14,8 +14,8 @@ import Checkbox from '@/components/icons/checkbox';
 import Folder from '@/components/icons/folder';
 import Send from '@/components/icons/send';
 
-import communityImage1 from '@/assets/images/community/img-1.svg';
-import communityImage2 from '@/assets/images/community/img-2.svg';
+import communityImage1 from '@/assets/images/community/img-1.png';
+import communityImage2 from '@/assets/images/community/img-2.png';
 import comminityDarkImage1 from '@/assets/images/community/dark/img-1.svg';
 import comminityDarkImage2 from '@/assets/images/community/dark/img-2.svg';
 
@@ -24,15 +24,33 @@ import comminityDarkImage2 from '@/assets/images/community/dark/img-2.svg';
  * This variable is used to configure the hero section.
  */
 export const heroSectionConfig = {
-  mainTitle: 'A privacy-first open source workspace for your notes, wikis, and projects',
+  mainTitle: (
+    <span>
+      {`A `}
+      <span className={'primary-word'}>
+        secure
+        <div className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 238 22' fill='none'>
+            <path
+              d='M1.99943 18.1304C16.4236 13.9095 49.5671 5.8517 66.7478 7.38723C83.9285 8.92275 66.349 16.712 55.4117 20.4147C98.1076 12.2316 193.981 -2.58527 235.908 3.6119'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </div>
+      </span>
+      {` workspace\nfor your wikis and projects`}
+    </span>
+  ),
   subtitle: (
     <span>
-      <span className={'bold'}>Appflowy </span>
-      is the smart workspace where you have the full control and get more done, better and faster.
+      <span className={'bold'}>AppFlowy </span>
+      is an AI-powered secure workspace where you achieve more without losing control of your data
     </span>
   ),
   firstImgAlt: 'Appflowy',
-  tags: ['Free', 'Open Source', '100% Offline Mode', 'Cross Platform', 'Cloud'],
+  tags: ['Free', 'Open source', 'Cross platform', 'Offline mode', 'Cloud'],
 };
 
 /**
@@ -55,7 +73,24 @@ export const productShowCaseConfig = {
       Organize and visualize your data in table, board, calendar, and more.
     </span>
   ),
-  thirdTitle: 'Easy-to-use and beautiful',
+  thirdTitle: (
+    <span>
+      <span className={'primary-word'}>
+        Easy
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 179 19' fill='none'>
+            <path
+              d='M177.263 14.9724C129.071 7.4489 95.3553 -2.62395 16.3532 4.93072C14.0431 5.15164 13.9245 8.38732 16.2144 8.76384L67.2846 17.1611C36.1376 10.0862 19.1314 9.94373 2.19824 13.4691'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>
+      {`-to-use and beautiful`}
+    </span>
+  ),
   cards: [
     {
       image: {
@@ -96,54 +131,124 @@ export const productShowCaseConfig = {
   ],
 };
 export const supportAIConfig = {
-  title: "Discover AI's\nfull power in a stunning\nrich-text editor",
+  title: (
+    <span>
+      Discover{' '}
+      <span className={'primary-word'}>
+        {`AI's`}
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 160 19' fill='none'>
+            <path
+              d='M158.243 15.3474C115.271 7.71981 85.197 -2.42584 14.7927 4.95872C12.523 5.19678 12.3918 8.36289 14.6352 8.78198L60.2211 17.2981C32.4436 10.1562 17.2851 9.97696 2.19965 13.4656'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>
+      {`\nfull power in a stunning\nrich-text editor`}
+    </span>
+  ),
   imageAlt: 'AI-powered rich-text editor',
   features: [
     {
-      title: 'Without\nswitching',
+      title: 'No tool\nswitching',
       icon: <Checkbox />,
-      desc: 'Right inside appflowy, you can enjoy the full power of AI without tool switching. ',
+      desc: 'You can enjoy the full power of AI right inside of AppFlowy.',
     },
     {
       title: 'Data\ncontrol',
       icon: <Folder />,
-      desc: 'Your data is not sent to any AI service providers such as OpenAI, unless you choose to send. ',
+      desc: 'Unless you choose to, your data won’t be sent to any AI service providers such as OpenAI. ',
     },
     {
-      title: 'Сhoose \n' + 'AI service',
-      desc: 'OpenAI, Stability AI and Langchain. you can choose the service you like.',
+      title: 'Сhoose your\nAI service',
+      desc: 'Whether it’s OpenAI, Stability AI or Llama 2, you can choose the service you like.',
       icon: <Send />,
     },
   ],
 };
 
 export const dataSecurityConfig = {
-  title: 'Built for who care about\ndata security',
+  title: (
+    <span>
+      {`Built for people who\n`}
+      <span className={'primary-word'}>
+        value privacy
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 447 17' fill='none'>
+            <path
+              d='M2.00334 11.1304C29.163 7.4542 91.6327 0.650614 124.234 2.84564C156.835 5.04067 123.835 12.1705 103.26 15.461C183.818 8.89718 364.848 -2.27774 444.499 5.53286'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>
+    </span>
+  ),
   cards: [
     {
-      title: 'Data control',
-      desc: 'You can host AppFlowy wherever you want; no vendor lock-in.',
+      title: 'End-to-end encryption',
+      desc: 'Ensure the utmost privacy and security of your data by opting to use end-to-end encryption.',
     },
     {
       title: 'Always available',
-      desc: 'AppFlow works completely offline, internet or service issues will never be your problem.',
+      desc: 'Enjoy AppFlowy 100% offline. Remain local and sync as required. One account, any device.',
     },
     {
-      title: 'You own your \n' + 'data, forever',
-      desc: "Your notes live on your device, period. You can encrypt them or back them up however you want; it's your decision, not ours.",
+      title: 'You own your data, forever',
+      desc: 'Host AppFlowy wherever you want. No vendor lock-in.',
     },
   ],
 };
 
-export const mobileApplictionConfig = {
-  title: 'Convenient mobile\napplication',
+export const mobileApplicationConfig = {
+  title: (
+    <span>
+      AppFlowy for{' '}
+      <span className={'primary-word'}>
+        Mobile
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 247 17' fill='none'>
+            <path
+              d='M244.739 14.8474C229.745 10.6509 114.843 0.27214 96.9721 1.83718C79.1013 3.40221 97.3709 11.162 108.74 14.8462C64.3492 6.73561 44.7391 -0.658847 2.02227 3.85501'
+              stroke='#9327FF'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      Work on the go
+    </span>
+  ),
 };
 
 export const communityConfig = {
-  title: 'AppFlowy is built with a vibrant community',
+  title: (
+    <span>
+      {`AppFlowy is built with a vibrant `}
+      <span className={'primary-word'}>
+        community
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 381 15' fill='none'>
+            <path
+              d='M1.99979 9.37731C25.1033 6.25015 78.2435 0.462636 105.976 2.32985C133.708 4.19706 105.637 10.2621 88.1342 13.0612C156.662 7.47763 310.656 -2.02839 378.412 4.61575'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>
+    </span>
+  ),
   numbers: [
     {
-      value: 2000000,
+      value: 4000,
       text: 'Community members',
     },
     {
@@ -151,16 +256,25 @@ export const communityConfig = {
       text: 'Countries represented',
     },
     {
-      value: 129,
+      value: 200,
       text: 'Contributors',
     },
   ],
   intros: [
     {
-      title: 'Build by the people for the people',
-      content:
-        'We collaboratively create apps that suit others’ needs by developing a versatile toolbox of plugins, templates, and more.\n' +
-        "Join us to build a toolbox that empowers anyone to create their own system - play and tweak without a limit on what's possible.",
+      title: 'Built by the\ncommunity\nfor the community',
+      content: (
+        <>
+          <div>
+            We work together to make secure workplace tools fit for everyone by developing a versatile toolbox of
+            plugins, templates, and more.
+          </div>
+          <br />
+          <div>
+            Join us to build a toolbox that empowers anyone to create their own system — play and tweak without limits.
+          </div>
+        </>
+      ),
       btnText: 'Join Us',
       btnLink: '/join',
       image: {
@@ -172,7 +286,7 @@ export const communityConfig = {
     {
       title: 'Do it yourself',
       content:
-        'There isn’t a one size fit all solution and there shouldn’t be. Look for something unique? There’s no need to wait. Make your AppFlowy plugin, and unlock endless possibilities.',
+        'There isn’t a one size fit all solution and there shouldn’t be. Look for something unique? There’s no need to wait. Design and modify AppFlowy your way, and unlock endless possibilities.',
       btnText: 'Developer Docs',
       btnLink: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
       image: {
@@ -184,7 +298,23 @@ export const communityConfig = {
   ],
 };
 export const startForFree = {
-  title: 'Get started for free',
-  subtitle: 'Choose to own your data and a smarter way to wor',
+  title: (
+    <span>
+      Get started for {` `}
+      <span className={'primary-word'}>
+        free
+        <span className={'primary-circle'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 193 80' fill='none'>
+            <path
+              d='M0.503462 14.4901C151.501 -15.9788 189.001 14.0126 191.001 34.5102C193.342 58.5039 154 77.5099 85.4809 77.5101C16.9614 77.5103 7.0495 57.997 8.50098 42.5039C10.1873 24.5039 31.135 14.9456 85.4809 12.5039'
+              stroke='currentColor'
+              strokeWidth='3'
+            />
+          </svg>
+        </span>
+      </span>
+    </span>
+  ),
+  subtitle: 'Choose to own your data and a smarter way to work',
   imageAlt: '',
 };

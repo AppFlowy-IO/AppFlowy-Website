@@ -10,7 +10,7 @@
   .mission-panel {
     @apply flex flex-col items-center w-full overflow-hidden;
     .title {
-      @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white mb-[240px] text-center relative w-[989px];
+      @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium text-black dark:text-white mb-[240px] text-center relative w-[989px];
       @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:w-full max-sm:mb-[140px];
       .line {
         @apply absolute top-[79px] left-[140px] w-[313px] h-[19px];
@@ -39,8 +39,8 @@
       @apply flex flex-col gap-[30px] px-[100px] w-full mb-[200px];
       @apply max-sm:px-[20px] max-sm:mb-[80px];
       .mission-item {
-        @apply border w-full overflow-hidden border-primary-20 bg-white rounded-[30px] flex flex-row items-center justify-between bg-no-repeat bg-left-bottom bg-cover bg-origin-padding relative;
-        @apply max-sm:px-[30px] max-sm:flex-col max-sm:rounded-[16px];
+        @apply border w-full overflow-hidden border-primary-20 bg-white rounded-[18px] flex flex-row items-end justify-between bg-no-repeat bg-left-bottom bg-cover bg-origin-padding relative;
+        @apply max-lg:px-[30px] max-lg:flex-col max-lg:rounded-[16px];
         @apply dark:bg-[#0F1015];
 
         .ellipse {
@@ -78,17 +78,17 @@
         }
 
         .icon {
-          @apply w-[550px] mr-[100px];
-          @apply max-sm:order-2 max-sm:mr-0 max-sm:flex max-sm:justify-end;
+          @apply max-w-[550px] mr-[100px] h-full;
+          @apply max-lg:order-2 max-lg:mr-0 max-lg:flex max-lg:justify-end;
           img {
-            @apply max-sm:object-right max-sm:w-[90%];
+            @apply max-lg:object-right max-lg:w-[90%];
           }
 
         }
 
         .right {
-          @apply flex-1 flex flex-col items-start pr-[120px];
-          @apply max-sm:pr-0 max-sm:pb-[20px];
+          @apply py-[20px] xl:min-w-[50%] lg:min-w-[60%] flex-1 flex flex-col items-start pr-[120px];
+          @apply max-lg:pr-0 max-lg:pb-[20px];
           .mission-title {
             @apply text-left text-[40px] leading-[110%] tracking-[-1px] font-medium mb-[30px];
             @apply max-sm:text-[24px] max-sm:pt-[40px] max-sm:mb-[12px];
@@ -101,15 +101,15 @@
           .our-mission-desc {
             > div {
               &:first-of-type {
-                @apply mb-[30px];
+                @apply mb-[10px];
               }
 
               &.bold {
-                @apply font-bold mb-[14px];
+                @apply font-bold mb-[4px];
               }
 
               &.list {
-                @apply flex flex-col gap-[10px];
+                @apply flex flex-col gap-[4px];
                 > div {
                   @apply flex items-center gap-[10px];
                   &:before {
@@ -127,12 +127,17 @@
   }
 
   .community-panel {
-    @apply w-full flex flex-col items-center overflow-hidden;
+    @apply w-full flex flex-col items-center overflow-hidden relative;
     background: linear-gradient(203deg, #DEE7FF -37.77%, rgba(232, 224, 255, 0.00) 60%, #DEE7FF 194.76%);
 
+    .ellipse {
+      @apply absolute right-0 bg-[#E9E5FF] opacity-40 top-0 w-[50%] h-[100%] rounded-[100%] blur-[250px] pointer-events-none;
+
+    }
+
     .title {
-      @apply mt-[240px] z-10 tracking-[-4px] text-[80px] leading-[105%] font-medium text-black dark:text-white mb-[160px] text-center relative w-[1024px];
-      @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:w-full max-sm:px-[40px] max-sm:mt-[80px] max-sm:mb-[60px];
+      @apply pt-[240px] z-10 tracking-[-4px] text-[74px] leading-[105%] font-medium text-black dark:text-white pb-[160px] text-center relative w-[1024px];
+      @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:w-full max-sm:px-[40px] max-sm:pt-[80px] max-sm:pb-[60px];
       .circle {
         @apply absolute top-[0px] left-[100px] w-[190px] h-[86px];
         @apply max-sm:w-[80px] max-sm:h-[50px] max-sm:left-[70px];
@@ -186,7 +191,7 @@
     @apply max-sm:pb-[40px];
     @apply dark:bg-night-blue;
     .title {
-      @apply z-10 tracking-[-4px] text-[80px] leading-[105%] font-medium text-black dark:text-white mt-[260px] text-center relative mb-[100px];
+      @apply z-10 tracking-[-4px] text-[74px] leading-[105%] font-medium text-black dark:text-white mt-[260px] text-center relative mb-[100px];
       @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:mt-[80px] max-sm:mb-[40px];
       .line {
         @apply absolute w-[250px] h-[16px] left-1/2 -translate-x-[50px] top-[79px];
@@ -198,7 +203,7 @@
       @apply flex flex-col gap-[20px] w-full px-[100px];
       @apply max-sm:px-[20px];
       .value-item {
-        @apply rounded-[30px] border bg-white p-[40px] flex flex-col relative overflow-hidden;
+        @apply rounded-[18px] border bg-white p-[40px] flex flex-col relative overflow-hidden;
         @apply max-sm:p-[30px] max-sm:rounded-[16px];
         @apply dark:bg-[#26203B66];
         .ellipse {
@@ -251,7 +256,7 @@
         }
 
         .header-key {
-          @apply w-[200px] text-[80px] font-medium leading-[96px];
+          @apply w-[200px] text-[74px] font-medium leading-[96px];
         }
 
         .header-title {
@@ -282,7 +287,7 @@
     @apply max-sm:pt-[40px] max-sm:pb-[120px];
 
     .title {
-      @apply z-10 tracking-[-4px] text-[80px] leading-[105%] font-medium text-black dark:text-white text-center relative mb-[50px];
+      @apply z-10 tracking-[-4px] text-[74px] leading-[105%] font-medium text-black dark:text-white text-center relative mb-[50px];
       @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:mb-[20px];
       .line {
         @apply absolute w-[380px] h-[20px] left-1/2 -translate-x-[100px] top-[79px];
