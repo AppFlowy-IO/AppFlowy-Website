@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { downloadPageConfig } from '@/lib/config/pages';
 import {
   downloadLinux86Deb,
   downloadLinux86Rpm,
@@ -94,23 +93,28 @@ function DownloadAcross() {
   return (
     <div id={'across'} className={'across'}>
       <div className={'title across-title'}>
-        {downloadPageConfig.downloadOtherPlatformTitle}
+        Privacy-first,
+        <br />
+        every{' '}
+        <span className={'primary-word'}>
+          device
+          <span className={'primary-line'}>
+            <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 281 19' fill='none'>
+              <path
+                d='M278.409 13.9724C202.46 7.00179 149.379 -2.68492 24.6525 5.77747C22.2168 5.94272 22.1355 9.39782 24.5653 9.63366L104.853 17.4263C55.789 10.708 28.9571 10.7611 2.19828 14.4821'
+                stroke='currentColor'
+                strokeWidth='3'
+                strokeLinecap='square'
+              />
+            </svg>
+          </span>
+        </span>
         <div className={'icon text-primary'}>
           <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 40 56' fill='none'>
             <path
               d='M30.3419 1C24.0887 24.9999 8.69623 21 1 21C13.9874 25.9999 16.828 37.4999 12.0632 55C14.4683 46.1667 25.1468 30.6001 39 33.0001C25.0507 26.9999 26.9748 16.5 30.3419 1Z'
               stroke='currentColor'
               strokeWidth='3'
-            />
-          </svg>
-        </div>
-        <div className={'line text-primary'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 281 19' fill='none'>
-            <path
-              d='M278.409 13.9724C202.46 7.00179 149.379 -2.68492 24.6525 5.77747C22.2168 5.94272 22.1355 9.39782 24.5653 9.63366L104.853 17.4263C55.789 10.708 28.9571 10.7611 2.19828 14.4821'
-              stroke='currentColor'
-              strokeWidth='3'
-              strokeLinecap='square'
             />
           </svg>
         </div>

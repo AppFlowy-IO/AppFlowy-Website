@@ -38,7 +38,7 @@ export const externalLinks = [
         <Discord />
       </i>
     ),
-    link: 'https://discord.com/invite/9Q2xaN37tV',
+    link: 'https://discord.gg/9Q2xaN37tV',
   },
 ];
 
@@ -98,7 +98,7 @@ export const links = [
       },
       {
         name: 'Discord',
-        link: 'https://discord.com/invite/9Q2xaN37tV',
+        link: 'https://discord.gg/9Q2xaN37tV',
       },
       {
         name: 'Community Hub',

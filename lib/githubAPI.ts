@@ -1,41 +1,120 @@
-import axios from 'axios';
-import { parseChangelog } from '@/lib/parseChangelog';
-import { addVersion, addContributor } from '@/lib/db';
-import { Storage } from '@/lib/storage';
-import dayjs from 'dayjs';
+/**
+ * This code file is used to send requests to the GitHub API and implement a caching strategy.
+ *
+ * The purpose of caching is to reduce frequent requests to the GitHub API, improving performance and reducing the risk of access limitations.
+ *
+ * Caching Strategy:
+ * - Use the Node.js caching library (NodeCache) to store retrieved API response data.
+ * - Set the Time To Live (TTL) for the cache to 1 hour to ensure data is not stored for an extended period.
+ *
+ * TTL (Time To Live): The lifespan of cached data; it expires automatically after this time.
+ * checkperiod: The interval for checking if data in the cache has expired.
+ *
+ * GitHub Repository API URL: GIT_HUB_REPO
+ *
+ * @param {number} ttl - Time to Live (TTL) for cached data in seconds (1 hour).
+ * @param {number} checkperiod - Cache check period in seconds (12 minutes).
+ * @param {object} cache - Node.js cache library instance.
+ * @returns {object} - An object containing various API methods.
+ */
+
+import { addVersion, addContributor, hasVersion, Version } from '@/lib/db';
+import NodeCache from 'node-cache';
+
+const ttl = 60 * 60; // 1 hour
+const checkperiod = 60 * 60 * 0.2; // 12 minutes
+const cache = new NodeCache({
+  stdTTL: ttl, // 1 hour
+  checkperiod,
+});
 
 export const GIT_HUB_REPO = 'https://api.github.com/repos/AppFlowy-IO/AppFlowy';
 
-export const githubAPI = axios.create({
-  baseURL: GIT_HUB_REPO,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+async function fetchAPI(url: string) {
+  // Check cache, if exist return cache data
+  const data = cache.get(url);
 
-export async function getGithubStar() {
+  if (data) {
+    return data;
+  }
+
   try {
-    const res = await githubAPI.get('');
+    const res = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next: {
+        revalidate: ttl,
+      },
+    });
 
-    return res.data.stargazers_count;
-  } catch {
-    return Promise.reject();
+    if (!res.ok) {
+      throw new Error(`Failed to fetch API: ${url}, status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    // Set cache
+    const success = cache.set(url, data);
+
+    if (!success) {
+      console.error('Failed to cache data', url, data);
+    }
+
+    return data;
+  } catch (e) {
+    console.error(e);
   }
 }
 
-export async function loadContributors() {
-  const lastTime = Storage.get('get-contributors-time');
-  const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
+/**
+ * Fetch git star count
+ * @returns {Promise<number>}
+ */
+export const fetchGitStar = async (): Promise<number> => {
+  const data = await fetchAPI(`${GIT_HUB_REPO}`);
 
-  // load versions at most once per hour
-  if (diffHours <= 1 && lastTime) {
-    return;
+  return data?.stargazers_count;
+};
+
+/**
+ * Fetch last version
+ * @returns {Promise<string>}
+ */
+export const fetchLastVersion = async (): Promise<string> => {
+  const data = await fetchAPI(`${GIT_HUB_REPO}/releases/latest`);
+
+  return data?.tag_name;
+};
+
+/**
+ * Fetch versions
+ * @returns {Promise<Version[]>}
+ */
+export const fetchVersions = async (): Promise<Version[]> => {
+  const data = await fetchAPI(`${GIT_HUB_REPO}/releases`);
+
+  const versions: Version[] = [];
+
+  for (const item of data) {
+    if (item.tag_name.split('.').length === 3) {
+      versions.push({
+        version: item.tag_name,
+        changeLog: item.body,
+        publishedAt: item.published_at,
+        url: item.html_url,
+      });
+    }
   }
 
-  try {
-    const res = await githubAPI.get('/contributors');
+  return versions;
+};
 
-    for (const contributor of res.data) {
+export async function loadContributors() {
+  try {
+    const data = await fetchAPI(`${GIT_HUB_REPO}/contributors`);
+
+    for (const contributor of data) {
       await addContributor({
         contributorId: contributor.id,
         login: contributor.login,
@@ -45,52 +124,31 @@ export async function loadContributors() {
       });
     }
 
-    return res.data;
+    return data;
   } catch {
     return Promise.reject();
   }
 }
 
 export async function loadVersions() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   try {
-    const res = await githubAPI.get('/releases');
+    const data = await fetchAPI(`${GIT_HUB_REPO}/releases`);
 
-    const versions = [];
-
-    for (const item of res.data) {
+    for (const item of data) {
       if (item.tag_name.split('.').length === 3) {
-        const log = await githubAPI.get(`/releases/tags/${item.tag_name}`);
+        const existingVersion = await hasVersion(item.tag_name);
 
-        if (typeof window !== 'undefined') {
-          await addVersion(item.tag_name, item.html_url, log.data.body, log.data.published_at);
+        if (!existingVersion) {
+          await addVersion(item.tag_name, item.html_url, item.body, item.published_at);
         }
-
-        versions.push(
-          parseChangelog({
-            version: item.tag_name,
-            changeLog: log.data.body,
-            publishedAt: log.data.published_at,
-            url: item.html_url,
-          })
-        );
       }
     }
-
-    return versions;
   } catch (e) {
-    console.log('Failed to load versions', e);
-    return Promise.reject();
-  }
-}
-
-export async function getLatestVersion() {
-  try {
-    const res = await githubAPI.get('/releases/latest');
-
-    return res.data as {
-      tag_name: string;
-    };
-  } catch (e) {
+    console.error('Failed to load versions', e);
     return Promise.reject();
   }
 }

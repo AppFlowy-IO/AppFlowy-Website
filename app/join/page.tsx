@@ -23,7 +23,7 @@ function Page() {
       </div>
       <div className={'desc'}>{joinPageConfig.subtitle}</div>
       <Link href={'/join#opening'}>
-        <div className={'download-btn'}>Open Position</div>
+        <div className={'download-btn'}>Open roles</div>
       </Link>
 
       <div className={'good-points'}>
@@ -41,15 +41,22 @@ function Page() {
       </div>
       <div className={'title opening'} id={'opening'}>
         {joinPageConfig.currentJobTitle}
-        <div className={'circle'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 163 90' fill='none'>
-            <path
-              d='M1.49956 30.119C126.5 -24.9989 156.955 14.4573 160.5 34.0007C164.044 53.5441 147.499 78.5011 85.9994 86.5014C24.4994 94.5017 7.90746 75.1104 7.58697 57.7431C7.21462 37.5656 25.7239 24.4176 76.1601 15.1131'
-              stroke='#9327FF'
-              strokeWidth='3'
-            />
-          </svg>
-        </div>
+      </div>
+      <div className={'jobs'}>
+        {joinPageConfig.jobs.map((item) => (
+          <Link target={'_blank'} href={item.link} key={item.title} className={'job'}>
+            <div className={'job-title'}>{item.title}</div>
+            <div className={'job-link-icon'}>
+              <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 32 33' fill='none'>
+                <path
+                  d='M3.83984 4.33984H28.1598M28.1598 4.33984V28.6598M28.1598 4.33984L3.83984 28.6598'
+                  stroke='currentColor'
+                  strokeWidth='3'
+                />
+              </svg>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

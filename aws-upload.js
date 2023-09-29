@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const AWS = require('aws-sdk');
 const mime = require('mime-types');
 
-// 'production' | 'test' | 'development'
+// 'production' | 'test'
 const environment = process.env.ENVIRONMENT || 'test';
 
 const credentials = {

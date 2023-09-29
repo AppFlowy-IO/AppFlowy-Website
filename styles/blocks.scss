@@ -17,7 +17,7 @@
   background: #F0EFFD;
 
   .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
+    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] right-0 w-[305px] h-[25px];
@@ -32,10 +32,10 @@
   }
 
   .appflowy-blocks {
-    @apply flex justify-center gap-[30px] w-full z-10;
+    @apply flex justify-center gap-[30px] w-full z-10 px-[100px];
     @apply max-sm:flex-col max-sm:gap-[20px] max-sm:px-[20px];
     > .block {
-      @apply bg-white p-[30px] rounded-[30px] border border-primary-10;
+      @apply bg-white p-[30px] rounded-[18px] border border-primary-10;
       @apply max-sm:rounded-[16px];
       @apply dark:bg-[#26203CCC] dark:text-white;
 
@@ -51,7 +51,7 @@
       }
 
       .block-image {
-        @apply bg-[#EFF1F8] rounded-[20px] p-[44px]  w-[625px] h-[421px];
+        @apply bg-[#EFF1F8] rounded-[20px] p-[44px] max-w-[625px] aspect-video;
         @apply max-sm:w-full max-sm:h-[auto] max-sm:p-[10px] max-sm:rounded-[12px];
         @apply dark:bg-transparent;
         img {

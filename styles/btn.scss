@@ -1,6 +1,6 @@
 .github-btn {
-  @apply flex p-4 rounded-[18px] items-center justify-between border border-light-gray;
-  @apply max-sm:text-[12px] max-sm:rounded-[12px] max-sm:p-[10px];
+  @apply flex py-3 px-4 rounded-[14px] items-center justify-between border border-light-gray;
+  @apply max-lg:text-[12px] max-lg:rounded-[12px] max-lg:px-[10px] max-lg:py-[10px];
   @apply bg-white/40 hover:bg-gray-40 active:bg-light-gray-40 disabled:bg-white/40 disabled:opacity-[30%];
   @apply dark:border-gray-15 dark:bg-gray-10 dark:hover:bg-gray-03 dark:active:bg-gray-15;
 }
@@ -9,15 +9,15 @@
 .download-btn, .download-btn[type='button'], .download-btn[type='reset'], .download-btn[type='submit'] {
   gap: 10px;
   border-radius: 20px;
-  padding: 19px 40px 21px 40px;
+  padding: 17px 40px;
   @apply flex items-center justify-center rounded-[18px] text-white border;
-  @apply max-sm:text-base max-sm:px-[26px] max-sm:py-[22px] max-sm:leading-[100%];
+  @apply max-lg:text-base max-lg:px-[26px] max-lg:py-[22px] max-lg:leading-[100%];
   background: var(--color-primary);
   border-color: rgba(255, 255, 255, 0.20);
 
   &.download-free-btn {
-    border-radius: 18px;
-    padding: 15px 24px;
+    border-radius: 14px;
+    padding: 12px 20px;
   }
 
   &:hover {
@@ -72,6 +72,6 @@
 }
 
 .trigger-btn {
-  @apply text-black text-[18px] md:hidden ml-[20px];
+  @apply text-black text-[18px] lg:hidden max-lg:flex ml-[20px];
   @apply dark:text-white;
 }

@@ -34,5 +34,5 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pem admin@$SSH_TARGET "cd space/AppFlowy-Website && git fetch && git reset --hard origin/${{ steps.branch.outputs.branch }} && pnpm install && pnpm run build && pnpm run upload:s3 && node run-script.js" || { echo "Failed to execute the command"; exit 1; }
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pem admin@$SSH_TARGET "cd space/AppFlowy-Website && git fetch && git reset --hard origin/${{ steps.branch.outputs.branch }} && pnpm run deploy:prod" || { echo "Failed to execute the command"; exit 1; }
         

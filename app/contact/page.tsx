@@ -7,19 +7,7 @@ function Page() {
   return (
     <div className={'contact-page'}>
       <div className={'ellipse'} />
-      <div className={'title'}>
-        {contactPageConfig.title}
-        <div className={'line'}>
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 128 6' fill='none'>
-            <path
-              fillRule='evenodd'
-              clipRule='evenodd'
-              d='M126.659 2.27988C103.928 1.39724 52.5293 4.17093 29.6499 5.67038L29.5348 4.37025C31.6256 4.13692 34.1435 3.8159 36.0835 3.4934C35.8766 3.48717 35.6581 3.48161 35.4276 3.47676C26.1625 3.28155 8.48281 4.72318 0.784077 5.47104L0.134357 5.53415L0.00812904 4.23471L0.657849 4.1716C8.34836 3.42454 26.1017 1.97442 35.4551 2.17149C36.6252 2.19614 37.5149 2.23909 38.1615 2.29801C38.4844 2.32743 38.7557 2.36162 38.9755 2.40155C39.1829 2.43923 39.39 2.48962 39.5569 2.56919C39.6376 2.60767 39.7644 2.67837 39.8693 2.80457C39.9937 2.95415 40.0822 3.18141 40.0216 3.43882C39.9935 3.55818 39.94 3.65285 39.8853 3.72442C65.4115 2.20432 106.884 0.205466 126.71 0.975304L127.362 1.00063L127.311 2.30521L126.659 2.27988Z'
-              fill='#9327FF'
-            />
-          </svg>
-        </div>
-      </div>
+      <div className={'title'}>{contactPageConfig.title}</div>
       <div className={'desc'}>{contactPageConfig.desc}</div>
       <Form />
       <div className={'icon icon-1'}>

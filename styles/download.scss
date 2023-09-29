@@ -8,12 +8,8 @@
   background: linear-gradient(192deg, #EDECFC -21.69%, #F3F7FE 16.86%, #F8F9FF 30.5%, #FAFAFF 56.96%, #F5F2FF 74.04%, #FFF 83.14%);
 
   > .title, > .download-mobile .title, > .across .title {
-    @apply z-10 tracking-[-4px] text-[80px] leading-[115%] px-[30px] font-medium text-black dark:text-white mb-[80px] text-center relative;
-    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:w-[308px] max-sm:text-center max-sm:mb-[30px];
-    .line {
-      @apply absolute left-0 bottom-[-20px] w-[357px] h-[15px];
-      @apply max-sm:left-[60px] max-sm:w-[150px] max-sm:h-[15px] max-sm:bottom-[25px] max-sm:rotate-[-2deg];
-    }
+    @apply z-10 tracking-[-4px] text-[74px] leading-[115%] px-[30px] font-medium text-black dark:text-white mb-[40px] text-center relative;
+    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:text-center max-sm:mb-[30px];
 
     &.mobile-title {
       @apply w-[640px] mb-[10px];
@@ -30,7 +26,7 @@
     @apply dark:text-gray-400;
   }
 
-  @media not all and (min-width: 640px) {
+  @media not all and (min-width: 1024px) {
     > .download-mobile {
       background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
 
@@ -41,7 +37,7 @@
     @apply flex flex-col w-full items-center;
     @apply max-sm:pt-[60px] max-sm:pb-[60px];
     .desc {
-      @apply text-base;
+      @apply text-[12px];
       @apply mb-[50px];
       @apply max-sm:mb-[40px];
     }
@@ -50,7 +46,7 @@
       @apply flex gap-[20px] items-center justify-center w-full mb-[110px];
       @apply max-sm:mb-[65px];
       > .download-btn {
-        @apply max-sm:h-[56px];
+        @apply max-sm:h-[56px] text-[14px];
       }
     }
 
@@ -68,11 +64,19 @@
 
 
   .download {
-    @apply mt-[20px] mb-[126px];
+    @apply mt-[20px] mb-[126px] flex flex-col items-center;
     @apply max-sm:mt-0 max-sm:mb-[60px];
     > .desc {
       @apply mt-[20px] text-center text-sm;
       @apply max-sm:mt-[15px];
+    }
+
+    button {
+      @apply w-[240px] text-[14px];
+    }
+
+    .desc {
+      @apply text-[12px];
     }
 
     .btn-group {
@@ -106,7 +110,7 @@
       @apply flex gap-[30px] w-full justify-center mb-[220px];
       @apply max-sm:flex-col max-sm:gap-[20px] max-sm:px-[20px] max-sm:mb-[48px];
       .across-download-item {
-        @apply flex flex-col rounded-[30px] border border-primary-10 bg-white overflow-hidden relative p-[60px];
+        @apply flex flex-col rounded-[18px] border border-primary-10 bg-white overflow-hidden relative p-[60px];
         @apply max-sm:px-[30px] max-sm:pt-[40px] max-sm:pb-[20px];
         @apply dark:bg-dark-card;
 

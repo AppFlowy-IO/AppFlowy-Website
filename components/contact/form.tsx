@@ -156,7 +156,7 @@ function Form() {
         className={'contact-message'}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         open={message.open}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={closeMessage}
       >
         <div className={'contact-message-content'}>

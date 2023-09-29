@@ -1,35 +1,36 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import GithubStar from '@/components/icons/github-star';
 import { formatNumber } from '@/lib/format-number';
-import { getGithubStar } from '@/lib/githubAPI';
+import { fetchGitStar } from '@/lib/githubAPI';
 import { githubRepo } from '@/lib/config/git-repo';
 import { Storage } from '@/lib/storage';
-import dayjs from 'dayjs';
+import { GitContext } from '@/lib/hooks/use-git-context';
 
 function GithubBtn() {
-  const [star, setStar] = useState(0);
+  const gitData = useContext(GitContext);
+
+  const [star, setStar] = useState(gitData?.stars || 0);
+
+  useEffect(() => {
+    if (gitData?.stars) {
+      Storage.set('stars', gitData.stars);
+      setStar(gitData.stars);
+    }
+  }, [gitData?.stars]);
 
   const fetchGithub = useCallback(async () => {
     try {
-      const stargazers_count = await getGithubStar();
+      const stargazers_count = await fetchGitStar();
 
       setStar(stargazers_count);
       Storage.set('stars', stargazers_count);
-      Storage.set('get-stars-time', dayjs().toString());
     } catch (e) {
       // do nothing
     }
   }, []);
 
   useEffect(() => {
-    const lastTime = Storage.get('get-stars-time');
-    const diffHours = dayjs().diff(dayjs(lastTime), 'hours');
-
-    if (diffHours > 24 || !lastTime) {
-      void fetchGithub();
-    } else {
-      setStar(Number(Storage.get('stars')));
-    }
+    void fetchGithub();
   }, [fetchGithub]);
   return (
     <button

@@ -6,6 +6,8 @@ import editor from '@/assets/images/blocks/editor.svg';
 import board from '@/assets/images/blocks/board.svg';
 import darkEditor from '@/assets/images/blocks/dark/editor.svg';
 import darkBoard from '@/assets/images/blocks/dark/board.svg';
+import React from 'react';
+import Link from 'next/link';
 
 /**
  * What's new page
@@ -19,9 +21,7 @@ export const whatIsNewConfig = {
  * Download page
  */
 export const downloadPageConfig = {
-  downloadOSTitle: 'Download for your OS',
   downloadOSImageAlt: 'Download for your OS',
-  downloadMobileApplicationTitle: 'Appflowy for iOS and Android',
   mobileSubtitle: 'Native, Interactive, Intuitive.',
   downloadMobileImgAlt: 'Appflowy for iOS and Android',
   downloadOtherPlatformTitle: 'Work across all your devices',
@@ -31,61 +31,134 @@ export const downloadPageConfig = {
  * About Us page
  */
 export const aboutPageConfig = {
-  ourMissionTitle: 'Our mission is to empower everyone to create apps that suit their needs',
+  ourMissionTitle: (
+    <span>
+      Our{' '}
+      <span className={'primary-word'}>
+        mission
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 318 19' fill='none'>
+            <path
+              d='M315.402 12.9724C229.301 6.2039 169.137 -3.34175 27.6868 5.45314C25.2248 5.60622 25.1498 9.10811 27.608 9.31281L118.594 16.8891C62.9766 10.3012 32.5512 10.4258 2.19871 14.2183'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      is to enable everyone to achieve more with secure workplace tools
+    </span>
+  ),
   missions: [
     {
-      title: 'The limitations',
-      desc: "The limitations we encountered using these tools rooted in our past work experience with collaborative productivity tools lead to our firm belief that there is, and will be a glass ceiling on what's possible in the future for tools like Notion.",
+      title: 'One-size doesn’t fit all',
+      desc: (
+        <div>
+          <div>
+            {`While working on an enterprise proprietary collaboration platform in my previous company, I came to realize
+            that there isn't a one-size-fits-all workplace solution or an all-in-one superapp that covers every
+            enterprise need.`}
+          </div>
+          <br />
+          <div>
+            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for
+            particular customers at the expense of everything else. The end result is a poor cross-platform experience
+            and bulky, slow products that struggle to scale.
+          </div>
+        </div>
+      ),
     },
     {
-      title: 'One-size fits all solution',
-      desc: 'This emanates from these tools probable struggles to scale horizontally at some point. It implies that they will likely be forced to prioritize for a proportion of customers whose needs can be quite different from the rest. While decision-makers want a workplace OS, the truth is that it is not very possible to come up with a one-size fits all solution in such a fragmented market.',
+      title: 'The limitation',
+      desc: (
+        <div>
+          <div>
+            Most proprietary collaboration workplace tools share one major limitation: Customers find it hard or
+            expensive to have 100% control of their data.
+          </div>
+          <br />
+          <div>
+            Users worry about entrusting sensitive data to these tools and are naturally concerned about their longevity.
+            Furthermore overcoming vendor lock-in poses a significant challenge.
+          </div>
+        </div>
+      ),
     },
+
     {
-      title: "When a customer's evolving",
-      desc: "When a customer's evolving core needs are not satisfied, they either switch to another or build one from the ground up, in-house. Consequently, they either go under another ceiling or buy an expensive ticket to learn a hard lesson. This is a requirement for many resources and expertise, building a reliable and easy-to-use collaborative tool, not to mention the speed and native experience. The same may apply to individual users as well.",
+      title: 'Our solution',
+      desc: (
+        <div className={'our-mission-desc'}>
+          <div>AppFlowy - a privacy-first, open source workspace for projects and knowledge, made to suit everyone.</div>
+          <div className={'list'}>
+            <div>Put control of your data in your hands</div>
+            <div>Ensure the user interface is fast and intuitive.</div>
+            <div>
+              Make integration and customization easy with no vendor lock in. Add AppFlowy into your existing workflows
+              or build a customized workspace with our open source building blocks such as AppFlowy Editor and Kanban
+              Board.
+            </div>
+            <div>
+              Build an open source codebase with a community-driven open toolbox of plugins, templates, and themes so you
+              can design and modify AppFlowy your way without limits.
+            </div>
+          </div>
+        </div>
+      ),
     },
     {
       title: 'Our mission',
       desc: (
         <div className={'our-mission-desc'}>
           <div>
-            All these restrictions necessitate our mission - to make it possible for anyone to create apps that suit
-            their needs well.
-          </div>
-          <div className={'bold'}>
-            We decided to achieve this mission by upholding the three most fundamental values:
+            We aim to enable everyone to unleash their potential and achieve more with secure workplace tools by
+            upholding these core values from the very beginning:
           </div>
           <div className={'list'}>
             <div>Data privacy first</div>
-            <div>Reliable native experience</div>
             <div>Community-driven extensibility</div>
+            <div>Reliable and fast native app experience</div>
+            <div>Continuous and fast paced innovation</div>
+            <div>Open source</div>
           </div>
         </div>
       ),
     },
   ],
-  communityTitle: "Join one of the world's fastest growing open source communities",
+  communityTitle: (
+    <span>
+      <span className={'primary-word'}>
+        Join
+        <span className={'primary-circle'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 194 92' fill='none'>
+            <path
+              d='M0.491297 30.7697C147.062 -19.929 187.724 7.76295 192.036 29.5091C197.083 54.9642 160.15 80.0439 92.0711 88.221C23.9919 96.398 11.9303 76.6518 11.615 59.8615C11.2488 40.3544 30.9777 27.6029 84.6975 18.4985'
+              stroke='currentColor'
+              strokeWidth='3'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      {`one of the world's fastest growing open source communities`}
+    </span>
+  ),
   communityData: [
     {
-      value: 2000000,
+      value: 200,
+      label: 'Community contributors',
+    },
+    {
+      value: 4000,
       label: 'Community members',
     },
     {
-      value: 100,
-      label: 'Github Stars',
-    },
-    {
-      value: 45,
-      label: 'Countries represented',
-    },
-    {
-      value: 129,
-      label: 'Contributors',
+      value: 4000,
+      label: 'Newsletter subscribers',
     },
   ],
   developers: {
-    title: 'Trusted by developers and users from',
+    title: 'Contributed and used by makers from',
     logos: [
       '/images/developer-logo-1.svg',
       '/images/developer-logo-2.svg',
@@ -200,8 +273,25 @@ export const aboutPageConfig = {
 export const joinPageConfig = {
   title: 'Join our team',
   subtitle:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  currentJobTitle: 'Current Job Openings',
+    'Explore remote-friendly opportunities, contribute to open source, and join the mission to make secure workplace tools fit for everyone',
+  currentJobTitle: (
+    <span>
+      Current{' '}
+      <span className={'primary-word'}>
+        Job
+        <span className={'primary-circle'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 163 90' fill='none'>
+            <path
+              d='M1.49956 30.119C126.5 -24.9989 156.955 14.4573 160.5 34.0007C164.044 53.5441 147.499 78.5011 85.9994 86.5014C24.4994 94.5017 7.90746 75.1104 7.58697 57.7431C7.21462 37.5656 25.7239 24.4176 76.1601 15.1131'
+              stroke='currentColor'
+              strokeWidth='3'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      Openings
+    </span>
+  ),
   goodPoints: [
     {
       icon: (
@@ -224,7 +314,7 @@ export const joinPageConfig = {
         <div className={'point'}>
           <div className={'bold'}>Fast-growing open-source.</div>
           <div>
-            As a founding member, you will help shape both what and how we build a world-class open-source product.
+            As a founding member, you will help shape both what and how we build a world-class open source product.
           </div>
         </div>
       ),
@@ -275,8 +365,11 @@ export const joinPageConfig = {
       ),
       content: (
         <div className={'point'}>
-          <div className={'bold'}>100% remote.</div>
-          <div>Our fully remote team works asynchronously, so we can work wherever and whenever we’re happiest.</div>
+          <div className={'bold'}>Remote-friendly.</div>
+          <div>
+            We’re a remote-friendly team and work async, so we can work wherever we’re happiest and contribute from
+            anywhere at any time
+          </div>
         </div>
       ),
     },
@@ -298,16 +391,49 @@ export const joinPageConfig = {
       content: (
         <div className={'point'}>
           <div className={'bold'}>Backed by top VCs.</div>
-          <div>We’re well-funded by top VCs and great angel investors.</div>
+          <div> We’re well-funded by top VCs and great angel investors.</div>
         </div>
       ),
+    },
+  ],
+  jobs: [
+    {
+      title: 'Senior Backend Developer Rust',
+      link: 'https://apply.workable.com/appflowy/j/3DEE4EA0C0/',
     },
   ],
 };
 
 export const contactPageConfig = {
-  title: 'Contact Us',
-  desc: "Thanks for stopping by! Whether you have a question, comment, or just want to say hi, don't be a stranger. We're here to help, and we love connecting with our community.",
+  title: (
+    <span>
+      <span className={'primary-word'}>
+        Contact
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 294 12' fill='none'>
+            <path
+              d='M1.998 9.763C19.6792 8.04544 60.3895 4.723 81.7808 5.1737C103.172 5.62441 81.7565 8.72387 68.3748 10.2173C120.929 6.77299 239.12 0.392411 291.446 2.42423'
+              stroke='currentColor'
+              strokeWidth='3'
+              strokeLinecap='square'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      Us
+    </span>
+  ),
+  desc: (
+    <span>
+      We’re happy to answer your specific questions.
+      <br />
+      For technical issues and general inquiries, ask in our{' '}
+      <Link target={'_blank'} className={'link'} href={'https://discord.gg/9Q2xaN37tV'}>
+        Discord community
+      </Link>{' '}
+      to get quicker response.
+    </span>
+  ),
 };
 
 /**
@@ -316,7 +442,7 @@ export const contactPageConfig = {
 export const blocksPageConfig = {
   title: 'AppFlowy Blocks',
   subtitle:
-    'AppFlowy is not only an open-source alternative to Notion but an application infra provider as well. We publish reliable and customizable standalone building appflowy-blocks such as AppFlowy Editor and Kanban Board for developers to build their own applications.',
+    'AppFlowy is not only an open-source alternative to Notion but an application infra provider as well. We publish reliable and customizable standalone building blocks such as AppFlowy Editor and Kanban Board for developers to build their own applications.',
   blocks: [
     {
       title: 'AppFlowy Editor',
@@ -345,8 +471,43 @@ export const blocksPageConfig = {
  * Contributors Page
  */
 export const contributorsPageConfig = {
-  mainTitle: 'Our contributors',
+  mainTitle: (
+    <span>
+      Our{' '}
+      <span className={'primary-word'}>
+        contributors
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 174 6' fill='none'>
+            <path
+              fillRule='evenodd'
+              clipRule='evenodd'
+              d='M106.807 3.9591C81.7425 4.09808 56.6418 4.63763 41.1919 5.09271L40.4968 3.89976C44.4561 3.60192 49.4056 3.12313 51.7877 2.65633C51.805 2.65294 51.822 2.64957 51.8388 2.64623C51.1372 2.56719 50.1551 2.48702 48.8298 2.41146C42.7384 2.0642 33.7504 2.15212 24.8882 2.41425C16.0624 2.67531 7.49844 3.10457 2.31994 3.4198L0.810975 3.51165L0.0492773 2.32051L1.55824 2.22865C6.80467 1.90928 15.448 1.47614 24.363 1.21244C33.2416 0.949818 42.528 0.850615 48.9957 1.21933C50.6068 1.31117 51.8868 1.4172 52.8566 1.54069C53.7273 1.65156 54.7074 1.81858 55.2917 2.12296C55.6402 2.30451 55.8266 2.52468 55.7642 2.75258C55.7073 2.96001 55.4598 3.11864 55.2263 3.22852C54.986 3.34159 54.6767 3.44185 54.3367 3.53115C69.0739 3.18325 87.7795 2.85763 106.47 2.754C131.562 2.61487 156.782 2.87427 172.315 4.03618L173.864 4.15203L173.555 5.33478L172.007 5.21893C156.837 4.08419 131.917 3.81987 106.807 3.9591ZM52.7558 2.40838C52.7559 2.4084 52.7548 2.40903 52.7522 2.41029C52.7545 2.409 52.7557 2.40837 52.7558 2.40838Z'
+              fill='currentColor'
+            />
+          </svg>
+        </span>
+      </span>
+    </span>
+  ),
   subtitle: 'Here’s the list of our top contributors!',
-  learnMoreTitle: 'Learn more about how to contribute to AppFlowy',
+  learnMoreTitle: (
+    <span>
+      Learn more about how to{' '}
+      <span className={'primary-word'}>
+        contribute
+        <span className={'primary-line'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 155 6' fill='none'>
+            <path
+              fillRule='evenodd'
+              clipRule='evenodd'
+              d='M154.286 0.127551C154.335 0.15582 154.461 0.235943 154.543 0.400098C154.706 0.725891 154.785 1.1502 154.536 1.54006C154.322 1.87568 153.958 2.02293 153.68 2.09776C153.102 2.25291 152.28 2.2509 151.452 2.20425C150.682 2.16079 149.825 2.07209 149.017 1.98842C148.934 1.97975 148.85 1.97113 148.768 1.96261C147.875 1.87054 147.071 1.79265 146.479 1.78519C146.036 1.77961 145.593 1.77377 145.151 1.7677C145.026 1.77597 144.901 1.78432 144.774 1.79276C139.273 2.16032 131.951 2.68982 124.617 3.2323C117.382 3.76741 110.137 4.31503 104.619 4.73212L104.393 4.74925C101.62 4.95882 99.2972 5.13438 97.6503 5.25725C96.827 5.31868 96.172 5.36698 95.7141 5.3998C95.4854 5.4162 95.3048 5.4288 95.1768 5.43726C95.0706 5.44426 94.9586 5.45164 94.9071 5.45076L94.2676 5.43982L94.2895 4.16084L94.929 4.17179C94.9194 4.17163 94.9255 4.17127 94.9568 4.1694C94.9828 4.16785 95.0262 4.16526 95.0925 4.16088C95.2169 4.15266 95.3946 4.14027 95.6227 4.12392C96.0786 4.09124 96.732 4.04305 97.5552 3.98163C99.2013 3.85882 101.524 3.68332 104.296 3.47373L104.528 3.45626C110.045 3.03921 117.288 2.49167 124.522 1.95663C126.431 1.81545 128.339 1.67513 130.215 1.5383C126.335 1.48807 122.456 1.45747 118.575 1.47524C102.514 1.54874 86.4822 1.93994 70.4492 2.33117C47.2189 2.89803 23.9861 3.46495 0.659717 3.06565L0.0202313 3.05471L0.0421244 1.77574L0.68161 1.78668C23.9987 2.18582 47.1673 1.61998 70.3643 1.05344C86.3994 0.661822 102.448 0.269871 118.569 0.196091C125.107 0.166165 131.646 0.27331 138.178 0.380345C140.492 0.418262 142.805 0.456164 145.117 0.487954C147.68 0.317698 149.827 0.1845 151.362 0.104405C152.172 0.0621993 152.816 0.0344518 153.265 0.023987C153.487 0.0187957 153.671 0.0175936 153.805 0.0218971C153.87 0.0239617 153.941 0.027747 154.004 0.0362844C154.033 0.0401685 154.086 0.0481812 154.145 0.0663387C154.174 0.0752166 154.226 0.0933106 154.286 0.127551Z'
+              fill='currentColor'
+            />
+          </svg>
+        </span>
+      </span>{' '}
+      to AppFlowy
+    </span>
+  ),
   learnMoreLink: 'https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy',
 };

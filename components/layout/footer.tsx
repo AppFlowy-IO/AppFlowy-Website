@@ -3,11 +3,11 @@ import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 import ContactEmail from '@/components/shared/contact-email';
-import SwitchMode from '@/components/shared/switch-mode';
 
 // import SwitchMode from '@/components/shared/switch-mode';
 
-function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark?: boolean) => void }) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function Footer(_props: { isDark: boolean; onChangeMode: (dark?: boolean) => void }) {
   const ExternalLinks = () => (
     <>
       {externalLinks.map((item) => (
@@ -58,7 +58,7 @@ function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark
             Need Help? <ContactEmail />
           </div>
         </div>
-        <SwitchMode onChangeMode={onChangeMode} isDark={isDark} />
+        {/*<SwitchMode onChangeMode={onChangeMode} isDark={isDark} />*/}
       </div>
     </div>
   );
