@@ -27,6 +27,9 @@ const cache = new NodeCache({
   stdTTL: ttl, // 1 hour
   checkperiod,
 });
+const baseCache = new NodeCache({
+  stdTTL: 0, // standard time to live in seconds. 0 = infinity
+});
 
 export const GIT_HUB_REPO = 'https://api.github.com/repos/AppFlowy-IO/AppFlowy';
 
@@ -39,32 +42,43 @@ async function fetchAPI(url: string) {
   }
 
   try {
-    const res = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      next: {
-        revalidate: ttl,
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch API: ${url}, status: ${res.status}`);
+    // Check base cache, if exist return base cache data and update cache in background
+    if (baseCache.get(url)) {
+      void asyncUpdateCache(url);
+      return baseCache.get(url);
     }
 
-    const data = await res.json();
-
-    // Set cache
-    const success = cache.set(url, data);
-
-    if (!success) {
-      console.error('Failed to cache data', url, data);
-    }
-
-    return data;
+    // If not exist in base cache, fetch data and update cache
+    return asyncUpdateCache(url);
   } catch (e) {
     console.error(e);
   }
+}
+
+async function asyncUpdateCache(url: string) {
+  const res = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    next: {
+      revalidate: ttl,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch API: ${url}, status: ${res.status}`);
+  }
+
+  const data = await res.json();
+
+  // Set cache
+  const success = cache.set(url, data) && baseCache.set(url, data);
+
+  if (!success) {
+    console.error('Failed to cache data', url, data);
+  }
+
+  return data;
 }
 
 /**

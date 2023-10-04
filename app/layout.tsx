@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import Favicon from '../public/favicon.ico';
 import App from '@/components/layout/app';
 import { isDarkForServer } from '@/lib/get-theme';
-import NextTopLoader from 'nextjs-toploader';
 import { getGitData } from '@/lib/get-git';
 import Script from 'next/script';
 
@@ -38,7 +37,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         : {})}
     >
       <body id={'body'} className={inter.className}>
-        <NextTopLoader color={isDark ? '#601DAA' : '#9327FF'} />
         <App gitData={gitData} isDark={isDark}>
           {children}
         </App>

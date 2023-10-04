@@ -29,6 +29,7 @@ function NavbarPopover({
                 target={item.href?.startsWith('https') ? '_blank' : ''}
                 href={item.href || ''}
                 key={item.name}
+                onClick={debounceClose}
                 className={`group-item ${item.image ? 'items-center' : ''}`}
               >
                 {item.icon && <div className={'h-[24px] w-[24px]'}>{item.icon}</div>}
@@ -47,7 +48,7 @@ function NavbarPopover({
         ))}
       </div>
     );
-  }, [type]);
+  }, [type, debounceClose]);
 
   return (
     <Popover

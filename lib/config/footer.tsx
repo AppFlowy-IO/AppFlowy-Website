@@ -70,8 +70,8 @@ export const links = [
       },
 
       {
-        name: 'MacOS',
-        link: '/download#MacOS',
+        name: 'macOS',
+        link: '/download#macOS',
       },
 
       {
@@ -119,7 +119,7 @@ export const links = [
     children: [
       {
         name: 'Guides & Tutorials',
-        link: 'https://blog.appflowy.io/tag/tutorials/',
+        link: 'https://docs.appflowy.io/docs/guides/appflowy',
       },
       {
         name: 'Developer Docs',

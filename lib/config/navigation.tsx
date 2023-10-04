@@ -70,7 +70,7 @@ export const navigation: Item[] = [
                 <Discord />
               </i>
             ),
-            desc: '3,000+ get tips and support',
+            desc: 'Get tips and support from 3,000+  users',
           },
           {
             key: '2',
@@ -103,7 +103,7 @@ export const navigation: Item[] = [
                 <Forum />
               </i>
             ),
-            desc: 'Discussions for questions and ideas',
+            desc: 'Discuss questions and ideas',
           },
         ],
       },
@@ -151,7 +151,7 @@ export const navigation: Item[] = [
           {
             key: '2',
             name: 'AppFlowy Blocks',
-            desc: 'Stand-alone packages to build your own productivity tools',
+            desc: 'Standalone packages to build your own productivity tools',
             icon: <Blocks />,
             href: '/appflowy-blocks',
           },
@@ -173,14 +173,14 @@ export const navigation: Item[] = [
       },
       {
         key: 'resources-group-2',
-        name: 'Learns',
+        name: 'Learn',
         children: [
           {
             key: '1',
             name: 'Guides & Tutorials',
-            desc: 'How to achieve more with AppFlowy',
+            desc: 'Achieve more with AppFlowy',
             icon: <Book />,
-            href: 'https://blog.appflowy.io/tag/tutorials/',
+            href: 'https://docs.appflowy.io/docs/guides/appflowy',
           },
           {
             key: '2',
@@ -192,7 +192,7 @@ export const navigation: Item[] = [
           {
             key: 'menu.newsletter',
             name: 'Technical Blog',
-            desc: 'Learn about how we tackle technical challenges',
+            desc: 'Learn how we tackle technical challenges',
             icon: <Email />,
             href: 'https://blog.appflowy.io/',
           },

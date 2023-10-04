@@ -1,7 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
-import mainImage from '@/assets/images/support-ai/main.png';
-import darkMainImage from '@/assets/images/support-ai/dark/img.svg';
+import Lottie from 'lottie-react';
+import AIAnimation from '@/assets/lottie/ai/data';
 
 import Background from '@/components/home/support-ai/background';
 import { supportAIConfig } from '@/lib/config/home';
@@ -24,8 +23,7 @@ const SupportAI = ({ dark }: { dark: boolean }) => {
         </div>
       </div>
       <div className={'image'}>
-        <div className={'bg'} />
-        <Image src={dark ? darkMainImage.src : mainImage.src} width={868} height={492} alt={supportAIConfig.imageAlt} />
+        <Lottie animationData={AIAnimation} />
       </div>
       <div className={'features'}>
         {supportAIConfig.features.map((item) => (

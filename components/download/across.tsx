@@ -14,7 +14,7 @@ function DownloadAcross() {
   const { isMobile } = useClient();
   const downloadBtns = [
     {
-      title: 'MacOS',
+      title: 'macOS',
       icon: (
         <svg
           className={'text-black dark:text-white'}

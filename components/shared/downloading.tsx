@@ -5,13 +5,12 @@ import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
 import Apple from '@/components/icons/apple';
 import GooglePlay from '@/components/icons/google-play';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import img1 from '@/assets/images/download/downloading-img-1.svg';
 import img2 from '@/assets/images/download/downloading-img-2.svg';
 import darkImg1 from '@/assets/images/download/dark/downloading-img-1.svg';
 import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
-import { downloadLinux86Deb, downloadMacUniversal, downloadWindows } from '@/lib/hooks/use-download';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
 
 function Downloading() {
@@ -29,6 +28,13 @@ function Downloading() {
   useEffect(() => {
     debounceDownload();
   }, [debounceDownload]);
+
+  const router = useRouter();
+
+  const gotoDownload = (tag: string) => {
+    router.push(`/download#${tag}`);
+  };
+
   return (
     <>
       <div className={'panel panel-1'}>
@@ -117,7 +123,7 @@ function Downloading() {
           options for{' '}
           <span
             onClick={() => {
-              downloadWindows(false);
+              gotoDownload('Windows');
             }}
             className={'highlight ml-1 underline'}
           >
@@ -126,16 +132,16 @@ function Downloading() {
           ,
           <span
             onClick={() => {
-              downloadMacUniversal(false);
+              gotoDownload('macOS');
             }}
             className={'highlight ml-1 underline'}
           >
-            MacOS
+            macOS
           </span>
-          , or
+          , and
           <span
             onClick={() => {
-              downloadLinux86Deb(false);
+              gotoDownload('Linux');
             }}
             className={'highlight ml-1 underline'}
           >

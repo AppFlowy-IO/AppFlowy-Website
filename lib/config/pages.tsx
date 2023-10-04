@@ -146,15 +146,27 @@ export const aboutPageConfig = {
   communityData: [
     {
       value: 200,
-      label: 'Community contributors',
+      label: 'GitHub Contributors',
+      link: {
+        text: 'Get started',
+        href: 'https://github.com/AppFlowy-IO/AppFlowy/graphs/contributors',
+      },
     },
     {
       value: 4000,
       label: 'Community members',
+      link: {
+        text: 'Join Discord',
+        href: 'https://discord.gg/9Q2xaN37tV',
+      },
     },
     {
       value: 4000,
       label: 'Newsletter subscribers',
+      link: {
+        text: 'See our blog',
+        href: 'https://blog.appflowy.io/',
+      },
     },
   ],
   developers: {
@@ -172,10 +184,10 @@ export const aboutPageConfig = {
     {
       title: 'Mission Driven',
       list: [
-        'Our mission is to make it possible for anyone to create apps that suit their needs well.',
+        'Our mission is to enable everyone to unleash the potential and achieve more with secure workplace tools.',
         'We are true believers in open source—a fundamentally superior approach to achieve the mission.',
         'We actively lead and support the AppFlowy open-source community, where a diverse group of people is empowered to contribute to the common good.',
-        'We think strategically, make wise decisions, and act accordingly, with an eye toward what’s sustainable in the long run, not what’s convenient in the moment.',
+        'We think strategically, make wise decisions, and act accordingly, with an eye toward what’s sustainable in the long run and not what’s convenient in the moment.',
       ],
     },
     {
@@ -431,7 +443,7 @@ export const contactPageConfig = {
       <Link target={'_blank'} className={'link'} href={'https://discord.gg/9Q2xaN37tV'}>
         Discord community
       </Link>{' '}
-      to get quicker response.
+      to get a quicker response.
     </span>
   ),
 };

@@ -70,7 +70,7 @@ export const productShowCaseConfig = {
       <span className={'black bold'}>
         A <span className={'highlight'}>centralized</span> place for your tasks, notes, and projects.
       </span>{' '}
-      Organize and visualize your data in table, board, calendar, and more.
+      Organize and visualize your data in tables, boards, calendars, and more.
     </span>
   ),
   thirdTitle: (
@@ -160,11 +160,16 @@ export const supportAIConfig = {
     {
       title: 'Data\ncontrol',
       icon: <Folder />,
-      desc: 'Unless you choose to, your data won’t be sent to any AI service providers such as OpenAI. ',
+      desc: 'Unless you choose otherwise, your data won’t be sent to any AI service providers such as OpenAI. ',
     },
     {
-      title: 'Сhoose your\nAI service',
-      desc: 'Whether it’s OpenAI, Stability AI or Llama 2, you can choose the service you like.',
+      title: 'Choose your\nAI service',
+      desc: (
+        <span>
+          Whether it’s OpenAI, Stability AI or <span className={'no-wrap'}>Llama 2,</span> you can choose the AI service
+          that works best for you.
+        </span>
+      ),
       icon: <Send />,
     },
   ],
@@ -286,7 +291,7 @@ export const communityConfig = {
     {
       title: 'Do it yourself',
       content:
-        'There isn’t a one size fit all solution and there shouldn’t be. Look for something unique? There’s no need to wait. Design and modify AppFlowy your way, and unlock endless possibilities.',
+        'There isn’t a one-size-fits-all solution, and there shouldn’t be. Looking for something unique? There’s no need to wait. Design and modify AppFlowy your way and unlock endless possibilities.',
       btnText: 'Developer Docs',
       btnLink: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
       image: {
@@ -315,6 +320,6 @@ export const startForFree = {
       </span>
     </span>
   ),
-  subtitle: 'Choose to own your data and a smarter way to work',
+  subtitle: 'Choose to work smarter and own your data',
   imageAlt: '',
 };
