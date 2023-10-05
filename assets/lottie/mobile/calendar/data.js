@@ -1,9 +1,9 @@
-import img_0 from './images/img_0.png';
-import img_1 from './images/img_1.png';
-import img_2 from './images/img_2.png';
-import img_3 from './images/img_3.png';
-import img_4 from './images/img_4.png';
-import img_5 from './images/img_5.png';
+import img_0 from './images/img_0.webp';
+import img_1 from './images/img_1.webp';
+import img_2 from './images/img_2.webp';
+import img_3 from './images/img_3.webp';
+import img_4 from './images/img_4.webp';
+import img_5 from './images/img_5.webp';
 
 export default {
   v: '5.7.1',
@@ -9724,7 +9724,7 @@ export default {
           ddd: 0,
           ind: 2,
           ty: 2,
-          nm: 'Frame 1948755906.png',
+          nm: 'Frame 1948755906.webp',
           cl: 'png',
           refId: 'image_1',
           sr: 1,
@@ -9750,7 +9750,7 @@ export default {
           ddd: 0,
           ind: 1,
           ty: 2,
-          nm: 'Frame 1948755686-1.png',
+          nm: 'Frame 1948755686-1.webp',
           cl: 'png',
           refId: 'image_2',
           sr: 1,
@@ -9786,7 +9786,7 @@ export default {
           ddd: 0,
           ind: 2,
           ty: 2,
-          nm: 'Frame 19487559122.png',
+          nm: 'Frame 19487559122.webp',
           cl: 'png',
           refId: 'image_3',
           sr: 1,
@@ -9835,7 +9835,7 @@ export default {
           ddd: 0,
           ind: 3,
           ty: 2,
-          nm: 'Frame 1948755686.png',
+          nm: 'Frame 1948755686.webp',
           cl: 'png',
           refId: 'image_4',
           sr: 1,

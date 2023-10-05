@@ -23,9 +23,12 @@ function Navbar() {
   return (
     <nav className={`appflowy-navbar ${scrolled ? 'sticky' : ''}`}>
       {/* Logo */}
-      <Link href={'/'} className={'logo text-black dark:text-white'}>
-        <Logo />
-      </Link>
+      <div className={'logo-wrapper'}>
+        <Link href={'/'} className={'logo text-black dark:text-white'}>
+          <Logo />
+        </Link>
+      </div>
+
       {/* Navigation */}
       <div className={'navigation'}>
         {navigation.map((item) => (

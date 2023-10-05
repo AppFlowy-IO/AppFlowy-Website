@@ -4,14 +4,11 @@ import HeroDownloadBtn from '@/components/home/hero-section/download-btn';
 import Image from 'next/image';
 import desktop from '@/assets/images/hero-section/desktop.png';
 import mobile from '@/assets/images/hero-section/mobile.png';
-import darkDesktop from '@/assets/images/hero-section/dark/desktop.svg';
-import darkMobile from '@/assets/images/hero-section/dark/mobile.svg';
+import darkDesktop from '@/assets/images/hero-section/dark/desktop.png';
+import darkMobile from '@/assets/images/hero-section/dark/mobile.png';
 import { heroSectionConfig } from '@/lib/config/home';
 
-const HeroSection = ({ dark }: { dark: boolean }) => {
-  const desktopSrc = dark ? darkDesktop.src : desktop.src;
-  const mobileSrc = dark ? darkMobile.src : mobile.src;
-
+const HeroSection = () => {
   return (
     <div className={'hero-section'}>
       <div className={'linear-circle-1'} />
@@ -39,12 +36,22 @@ const HeroSection = ({ dark }: { dark: boolean }) => {
       <div className={'hero-section-image'}>
         <div className={'image-bg'} />
 
-        <div className={'relative max-sm:mt-[60px]'}>
-          <div className={'desktop-img'}>
-            <Image width={1054} height={598} alt={heroSectionConfig.firstImgAlt} src={desktopSrc} />
+        <div className={'relative aspect-video w-full max-sm:mt-[60px]'}>
+          <div className={'absolute-image'}>
+            <div className={'desktop-img'}>
+              <Image width={1054} height={598} alt={heroSectionConfig.firstImgAlt} src={desktop.src} />
+            </div>
+            <div className={'mobile-img'}>
+              <Image width={267} height={551} alt={heroSectionConfig.firstImgAlt} src={mobile.src} />
+            </div>
           </div>
-          <div className={'mobile-img'}>
-            <Image width={267} height={551} alt={heroSectionConfig.firstImgAlt} src={mobileSrc} />
+          <div className={'absolute-image dark-image'}>
+            <div className={'desktop-img'}>
+              <Image width={1054} height={598} alt={heroSectionConfig.firstImgAlt} src={darkDesktop.src} />
+            </div>
+            <div className={'mobile-img'}>
+              <Image width={267} height={551} alt={heroSectionConfig.firstImgAlt} src={darkMobile.src} />
+            </div>
           </div>
         </div>
       </div>

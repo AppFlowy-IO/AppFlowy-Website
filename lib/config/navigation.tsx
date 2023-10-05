@@ -51,7 +51,7 @@ export const navigation: Item[] = [
           {
             key: '3',
             name: 'AppFlowy Mentorship',
-            href: 'https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy/appflowy-mentorship-program/mentorship-2022',
+            href: 'https://docs.appflowy.io/docs/appflowy/community/appflowy-mentorship-program/contributor-guidance',
             icon: <Eye />,
             desc: 'Hands-on learning for new developers',
           },

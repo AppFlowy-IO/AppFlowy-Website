@@ -3,12 +3,12 @@
  * This file is used to configure the home page.
  */
 
-import card1 from '@/assets/images/product-showcase/card-1.svg';
-import card2 from '@/assets/images/product-showcase/card-2.svg';
-import card3 from '@/assets/images/product-showcase/card-3.svg';
-import darkCard1 from '@/assets/images/product-showcase/dark/card-1.svg';
-import darkCard2 from '@/assets/images/product-showcase/dark/card-2.svg';
-import darkCard3 from '@/assets/images/product-showcase/dark/card-3.svg';
+import card1 from '@/assets/images/product-showcase/card-1.png';
+import card2 from '@/assets/images/product-showcase/card-2.png';
+import card3 from '@/assets/images/product-showcase/card-3.png';
+import darkCard1 from '@/assets/images/product-showcase/dark/card-1.png';
+import darkCard2 from '@/assets/images/product-showcase/dark/card-2.png';
+import darkCard3 from '@/assets/images/product-showcase/dark/card-3.png';
 
 import Checkbox from '@/components/icons/checkbox';
 import Folder from '@/components/icons/folder';
@@ -16,8 +16,15 @@ import Send from '@/components/icons/send';
 
 import communityImage1 from '@/assets/images/community/img-1.png';
 import communityImage2 from '@/assets/images/community/img-2.png';
-import comminityDarkImage1 from '@/assets/images/community/dark/img-1.svg';
-import comminityDarkImage2 from '@/assets/images/community/dark/img-2.svg';
+import communityDarkImage1 from '@/assets/images/community/dark/img-1.png';
+import communityDarkImage2 from '@/assets/images/community/dark/img-2.png';
+
+import dataIcon1 from '@/assets/images/data/icon-1.png';
+import dataIcon2 from '@/assets/images/data/icon-2.png';
+import dataIcon3 from '@/assets/images/data/icon-3.png';
+import darkIcon1 from '@/assets/images/data/dark/icon-1.png';
+import darkIcon2 from '@/assets/images/data/dark/icon-2.png';
+import darkIcon3 from '@/assets/images/data/dark/icon-3.png';
 
 /**
  * @description
@@ -102,7 +109,7 @@ export const productShowCaseConfig = {
         width: 368,
         height: 353,
       },
-      title: 'Customize themes, colours, fonts',
+      title: 'Customize themes, colors, fonts',
     },
     {
       image: {
@@ -143,6 +150,15 @@ export const supportAIConfig = {
               stroke='currentColor'
               strokeWidth='3'
               strokeLinecap='square'
+            />
+          </svg>
+        </span>
+        <span className={'primary-star'}>
+          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 28 39' fill='none'>
+            <path
+              d='M21.078 1C16.7995 17.4444 6.2678 14.7037 1.00195 14.7037C9.88807 18.1296 11.8316 26.0092 8.5715 38C10.2171 31.9475 17.5234 21.2815 27.002 22.926C17.4577 18.8148 18.7742 11.6203 21.078 1Z'
+              stroke='currentColor'
+              strokeWidth='3'
             />
           </svg>
         </span>
@@ -198,14 +214,35 @@ export const dataSecurityConfig = {
     {
       title: 'End-to-end encryption',
       desc: 'Ensure the utmost privacy and security of your data by opting to use end-to-end encryption.',
+      icon: {
+        src: dataIcon1.src,
+        darkSrc: darkIcon1.src,
+        alt: '',
+        width: 435,
+        height: 435,
+      },
     },
     {
       title: 'Always available',
-      desc: 'Enjoy AppFlowy 100% offline. Remain local and sync as required. One account, any device.',
+      desc: 'Enjoy AppFlowy 100% offline. \nRemain local and sync as required. \nOne account, any device.',
+      icon: {
+        src: dataIcon2.src,
+        darkSrc: darkIcon2.src,
+        alt: '',
+        width: 409,
+        height: 409,
+      },
     },
     {
       title: 'You own your data, forever',
-      desc: 'Host AppFlowy wherever you want. No vendor lock-in.',
+      desc: 'Host AppFlowy wherever you want. \nNo vendor lock-in.',
+      icon: {
+        src: dataIcon3.src,
+        darkSrc: darkIcon3.src,
+        alt: '',
+        width: 444,
+        height: 444,
+      },
     },
   ],
 };
@@ -257,7 +294,7 @@ export const communityConfig = {
       text: 'Community members',
     },
     {
-      value: 45,
+      value: 50,
       text: 'Countries represented',
     },
     {
@@ -284,7 +321,7 @@ export const communityConfig = {
       btnLink: '/join',
       image: {
         src: communityImage1.src,
-        darkSrc: comminityDarkImage1.src,
+        darkSrc: communityDarkImage1.src,
         alt: '',
       },
     },
@@ -296,7 +333,7 @@ export const communityConfig = {
       btnLink: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
       image: {
         src: communityImage2.src,
-        darkSrc: comminityDarkImage2.src,
+        darkSrc: communityDarkImage2.src,
         alt: '',
       },
     },

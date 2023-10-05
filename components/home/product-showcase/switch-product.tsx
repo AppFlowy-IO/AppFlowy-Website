@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import Board from '@/components/icons/board';
 import Table from '@/components/icons/table';
 import Calendar from '@/components/icons/calendar';
@@ -10,8 +10,18 @@ import CalendarAnimation from '@/assets/lottie/calendar/data';
 import darkBoardAnimation from '@/assets/lottie/dark/board/data';
 import darkTableAnimation from '@/assets/lottie/dark/table/data';
 import darkCalendarAnimation from '@/assets/lottie/dark/calendar/data';
-import Lottie from 'lottie-react';
-import { DarkContext } from '@/lib/hooks/use-dark-context';
+import mobileBoardAnimation from '@/assets/lottie/mobile/board/data';
+import mobileTableAnimation from '@/assets/lottie/mobile/table/data';
+import mobileCalendarAnimation from '@/assets/lottie/mobile/calendar/data';
+import darkMobileBoardAnimation from '@/assets/lottie/mobile/dark/board/data';
+import darkMobileTableAnimation from '@/assets/lottie/mobile/dark/table/data';
+import darkMobileCalendarAnimation from '@/assets/lottie/mobile/dark/calendar/data';
+
+import Lottie from 'react-lottie';
+import { useDarkContext } from '@/lib/hooks/use-dark-context';
+import { useClient } from '@/lib/hooks/use-client';
+
+import { motion, useInView } from 'framer-motion';
 
 enum Product {
   Board = 'board',
@@ -25,7 +35,7 @@ const products = [
     icon: <Board />,
     desc: (
       <span>
-        <span className={'bold'}>Kanban Board</span> are the best way to manage projects and tasks
+        <span className={'bold'}>Kanban Board</span> — The best way to manage projects and tasks
       </span>
     ),
   },
@@ -34,8 +44,8 @@ const products = [
     icon: <Table />,
     desc: (
       <span>
-        <span className={'bold'}>Table.</span> You can build detailed lists projects while tracking the status of each
-        one
+        <span className={'bold'}>Grid</span> — You can build detailed lists for projects while tracking the status of
+        each one one
       </span>
     ),
   },
@@ -44,20 +54,23 @@ const products = [
     icon: <Calendar />,
     desc: (
       <span>
-        <span className={'bold'}>Calendar.</span> You have a bird’s-eye view of important launch dates
+        <span className={'bold'}>Calendar</span> — You have a bird’s-eye view of important events
       </span>
     ),
   },
 ];
 
 function SwitchProduct() {
-  const dark = useContext(DarkContext);
+  const ref = useRef(null);
+  const inView = useInView(ref);
+  const dark = useDarkContext();
+  const { isMobile } = useClient();
   const [active, setActive] = useState<Product>(Product.Board);
   const options = products.map((item) => (
     <button
       key={item.key}
       onClick={() => setActive(item.key)}
-      className={`btn ${active === item.key ? 'selected' : ''} ${item.key}`}
+      className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
     >
       {item.icon}
     </button>
@@ -68,31 +81,67 @@ function SwitchProduct() {
     () =>
       dark
         ? {
-            [Product.Board]: darkBoardAnimation,
-            [Product.Table]: darkTableAnimation,
-            [Product.Calendar]: darkCalendarAnimation,
+            [Product.Board]: isMobile ? darkMobileBoardAnimation : darkBoardAnimation,
+            [Product.Table]: isMobile ? darkMobileTableAnimation : darkTableAnimation,
+            [Product.Calendar]: isMobile ? darkMobileCalendarAnimation : darkCalendarAnimation,
           }
         : {
-            [Product.Board]: BoardAnimation,
-            [Product.Table]: TableAnimation,
-            [Product.Calendar]: CalendarAnimation,
+            [Product.Board]: isMobile ? mobileBoardAnimation : BoardAnimation,
+            [Product.Table]: isMobile ? mobileTableAnimation : TableAnimation,
+            [Product.Calendar]: isMobile ? mobileCalendarAnimation : CalendarAnimation,
           },
-    [dark]
+    [dark, isMobile]
   );
 
+  const sliderLeft = useMemo(() => {
+    switch (active) {
+      case Product.Board:
+        return 6;
+      case Product.Table:
+        return 62;
+      case Product.Calendar:
+        return 118;
+      default:
+        return 6;
+    }
+  }, [active]);
+
   return (
-    <div className={'switch-product'}>
+    <div ref={ref} className={'switch-product'}>
       <div className={`${active}-bg`} />
-      <div className={'switch-image'}>
+      <div className={'switch-image relative aspect-video w-full'}>
         {products.map((item) => (
-          <div key={item.key}>
-            {active === item.key ? <Lottie loop={false} animationData={lottieJsonMap[item.key]} /> : null}
+          <div
+            className={`absolute left-0 top-0 h-full w-full ${item.key !== active ? 'opacity-0' : ''}`}
+            key={item.key}
+          >
+            {inView && (
+              <Lottie
+                options={{
+                  animationData: lottieJsonMap[item.key],
+                  loop: true,
+                  autoplay: true,
+                }}
+              />
+            )}
           </div>
         ))}
       </div>
       {selectedItem && <div className={'desc'}>{selectedItem.desc}</div>}
 
-      <div className={'btn-group'}>{options}</div>
+      <div className={'btn-group'}>
+        {options}
+        {active !== undefined && (
+          <motion.div
+            className={`slider-active ${active}`}
+            animate={{
+              left: sliderLeft,
+              type: 'spring',
+            }}
+            initial={false}
+          ></motion.div>
+        )}
+      </div>
     </div>
   );
 }

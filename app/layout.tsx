@@ -1,15 +1,13 @@
-import './globals.css';
+import './globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Favicon from '../public/favicon.ico';
 import App from '@/components/layout/app';
-import { isDarkForServer } from '@/lib/get-theme';
+import { getModeForServer } from '@/lib/get-theme';
 import { getGitData } from '@/lib/get-git';
-import Script from 'next/script';
+import { getUAFromServer } from '@/lib/get-os';
 
 const inter = Inter({ subsets: ['latin'] });
-
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   title: 'AppFlowy.IO',
@@ -24,36 +22,16 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const isDark = isDarkForServer();
+  const mode = getModeForServer();
+  const ua = getUAFromServer();
   const gitData = await getGitData();
 
   return (
-    <html
-      lang='en'
-      {...(isDark
-        ? {
-            'data-mode': isDark ? 'dark' : '',
-          }
-        : {})}
-    >
+    <html lang='en' className={mode}>
       <body id={'body'} className={inter.className}>
-        <App gitData={gitData} isDark={isDark}>
+        <App ua={ua} gitData={gitData} mode={mode}>
           {children}
         </App>
-        {process.env.NODE_ENV === 'production' && (
-          <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-            <Script id='google-analytics'>
-              {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', '${GA_MEASUREMENT_ID}');
-        `}
-            </Script>
-          </>
-        )}
       </body>
     </html>
   );

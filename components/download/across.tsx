@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+  downloadLinux86,
   downloadLinux86Deb,
   downloadLinux86Rpm,
   downloadMacIntel,
@@ -58,7 +59,7 @@ function DownloadAcross() {
       ),
       btns: [
         <button disabled={isMobile} key={1} onClick={() => downloadWindows(true)} className={'download-btn'}>
-          Download Intel
+          Download
         </button>,
       ],
     },
@@ -85,6 +86,9 @@ function DownloadAcross() {
         </button>,
         <button disabled={isMobile} key={2} onClick={() => downloadLinux86Rpm(true)} className={'download-btn'}>
           Download Linux (.rpm)
+        </button>,
+        <button disabled={isMobile} key={3} onClick={() => downloadLinux86(true)} className={'download-btn px-2'}>
+          Download Linux (.tar.gz)
         </button>,
       ],
     },

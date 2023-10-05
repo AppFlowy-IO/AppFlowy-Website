@@ -1,7 +1,7 @@
 export default function GithubStar() {
   return (
     <svg
-      className={'dark:fill-white'}
+      className={'github-star'}
       aria-hidden='true'
       height='16'
       viewBox='0 0 16 16'

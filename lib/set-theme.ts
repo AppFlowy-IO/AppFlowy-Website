@@ -5,8 +5,9 @@ export function setTheme(dark: boolean) {
   setCookie('data-mode', dark ? 'dark' : 'light', 365);
   Storage.set('data-mode', dark ? 'dark' : 'light');
   if (dark) {
-    document.documentElement.setAttribute('data-mode', 'dark');
+    document.documentElement.setAttribute('class', 'dark');
   } else {
-    document.documentElement.removeAttribute('data-mode');
+    document.documentElement.removeAttribute('class');
+    document.documentElement.setAttribute('class', 'light');
   }
 }

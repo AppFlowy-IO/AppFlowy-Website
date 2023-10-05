@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { downloadPageConfig } from '@/lib/config/pages';
 import DownloadBtns from '@/components/home/mobile/download-btns';
 import Image from 'next/image';
 import image1 from '@/assets/images/download/img-1.png';
-import darkImage1 from '@/assets/images/download/dark/img-1.svg';
+import darkImage1 from '@/assets/images/download/dark/img-1.png';
 import MobileAnimation from '@/components/shared/mobile-animation';
-import { DarkContext } from '@/lib/hooks/use-dark-context';
+import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import OverTitle from '@/components/shared/over-title';
 
 function DownloadMobile() {
-  const isDark = useContext(DarkContext);
+  const isDark = useDarkContext();
 
   return (
     <div id={'ios-and-android'} className={'download-mobile'}>
@@ -35,11 +35,7 @@ function DownloadMobile() {
       <div className={'desc'}>Perform and look great</div>
       <DownloadBtns />
       <div className={'image mobile-image relative'}>
-        <div
-          className={
-            'bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform opacity-[10%] blur-[150px] dark:opacity-[20%] max-lg:h-[300px]'
-          }
-        />
+        <div className={'ellipse'} />
         <Image
           className={'relative'}
           src={isDark ? darkImage1.src : image1.src}
@@ -49,11 +45,7 @@ function DownloadMobile() {
         />
       </div>
       <div className={'image notes-tasks-projects relative w-full'}>
-        <div
-          className={
-            'bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] dark:opacity-[50%] max-lg:h-[1200px] max-lg:blur-[150px]'
-          }
-        />
+        <div className={'ellipse'} />
         <OverTitle title='notes-tasks-projects' />
       </div>
       <MobileAnimation dark={isDark} />

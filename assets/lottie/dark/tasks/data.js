@@ -1,5 +1,5 @@
-import img_0 from './images/img_0.png';
-import img_1 from './images/img_1.png';
+import img_0 from './images/img_0.webp';
+import img_1 from './images/img_1.webp';
 
 export default {
   v: '5.7.1',

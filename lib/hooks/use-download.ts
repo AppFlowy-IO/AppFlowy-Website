@@ -1,10 +1,11 @@
 'use client';
 
 import { useClient } from '@/lib/hooks/use-client';
-import { useCallback } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { download } from '@/lib/download';
 import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
+import { GitContext } from '@/lib/hooks/use-git-context';
 
 interface DownloadLinks {
   windows: string;
@@ -15,6 +16,7 @@ interface DownloadLinks {
   linux: {
     deb: string;
     rpm: string;
+    gnu: string;
   };
 }
 
@@ -72,6 +74,12 @@ export function storageDownloadLinks(version: string) {
         arch: 'x86_64',
         fileExtension: 'rpm',
       }),
+      gnu: genLink({
+        platform: 'linux',
+        version,
+        arch: 'x86_64',
+        fileExtension: 'tar.gz',
+      }),
     },
   };
 
@@ -113,9 +121,23 @@ export const downloadLinux86Rpm = (transfer = true) => {
   download(links.linux.rpm, transfer);
 };
 
+export const downloadLinux86 = (transfer = true) => {
+  const links = getDownloadLinks();
+
+  if (!links) return;
+  download(links.linux.gnu, transfer);
+};
+
 export function useDownload() {
   const { os, isMobile } = useClient();
   const name = os?.name?.toLowerCase().replaceAll(' ', '');
+  const gitData = useContext(GitContext);
+
+  useEffect(() => {
+    if (gitData?.lastVersion !== undefined) {
+      storageDownloadLinks(gitData.lastVersion);
+    }
+  }, [gitData]);
 
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();
@@ -147,7 +169,9 @@ export function useDownload() {
   const downloadOS = useCallback(() => {
     const link = getOsDownloadLink();
 
-    if (!link) return;
+    if (!link) {
+      return;
+    }
 
     download(link, !isMobile);
   }, [getOsDownloadLink, isMobile]);

@@ -1,33 +1,8 @@
-'use client';
+import React from 'react';
 
-import React, { useEffect, useMemo } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
-import { loadContributors } from '@/lib/githubAPI';
+import { Contributor } from '@/lib/interface';
 
-function ContributorsList() {
-  const dbContributors = useLiveQuery(() => {
-    return db.contributors.toArray();
-  });
-
-  const contributors = useMemo(() => {
-    if (!dbContributors) return [];
-    return dbContributors.sort((a, b) => {
-      return b.contributionCount - a.contributionCount;
-    });
-  }, [dbContributors]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    void (async () => {
-      try {
-        await loadContributors();
-      } catch {
-        // do thing
-      }
-    })();
-  }, []);
-
+function ContributorsList({ contributors }: { contributors: Contributor[] }) {
   return (
     <div className={'contributors-list'}>
       {contributors?.map((item) => (

@@ -22,7 +22,7 @@ export async function getHubSpotContactWithEmail(email: string) {
     ],
   });
 
-  return res.data.results[0].id;
+  return res.data.results?.[0]?.id;
 }
 
 export async function createHubSpotContact(formData: {
@@ -46,7 +46,7 @@ export async function createHubSpotContact(formData: {
     ],
   });
 
-  return res.data.results[0].id;
+  return res.data.results?.[0]?.id;
 }
 
 export async function createHubSpotTicket(formData: {

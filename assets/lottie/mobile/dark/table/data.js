@@ -1,6 +1,6 @@
-import img_0 from './images/img_0.png';
-import img_1 from './images/img_1.png';
-import img_2 from './images/img_2.png';
+import img_0 from './images/img_0.webp';
+import img_1 from './images/img_1.webp';
+import img_2 from './images/img_2.webp';
 
 export default {
   v: '5.7.1',
@@ -924,7 +924,11 @@ export default {
                   nm: 'Shadow Color',
                   mn: 'ADBE Drop Shadow-0001',
                   ix: 1,
-                  v: { a: 0, k: [0.427743047476, 0.450281620026, 0.529166638851, 0.10000000149], ix: 1 },
+                  v: {
+                    a: 0,
+                    k: [0.427743047476, 0.450281620026, 0.529166638851, 0.10000000149],
+                    ix: 1,
+                  },
                 },
                 {
                   ty: 0,

@@ -18,8 +18,8 @@
  * @returns {object} - An object containing various API methods.
  */
 
-import { addVersion, addContributor, hasVersion, Version } from '@/lib/db';
 import NodeCache from 'node-cache';
+import { Contributor, Version } from '@/lib/interface';
 
 const ttl = 60 * 60; // 1 hour
 const checkperiod = 60 * 60 * 0.2; // 12 minutes
@@ -124,13 +124,14 @@ export const fetchVersions = async (): Promise<Version[]> => {
   return versions;
 };
 
-export async function loadContributors() {
+export async function fetchContributors(): Promise<Contributor[]> {
   try {
-    const data = await fetchAPI(`${GIT_HUB_REPO}/contributors`);
+    const data = await fetchAPI(`${GIT_HUB_REPO}/contributors?per_page=100`);
+    const contributors: Contributor[] = [];
 
     for (const contributor of data) {
-      await addContributor({
-        contributorId: contributor.id,
+      contributors.push({
+        id: contributor.id,
         login: contributor.login,
         name: contributor.login,
         avatarUrl: contributor.avatar_url,
@@ -138,31 +139,8 @@ export async function loadContributors() {
       });
     }
 
-    return data;
+    return contributors;
   } catch {
-    return Promise.reject();
-  }
-}
-
-export async function loadVersions() {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  try {
-    const data = await fetchAPI(`${GIT_HUB_REPO}/releases`);
-
-    for (const item of data) {
-      if (item.tag_name.split('.').length === 3) {
-        const existingVersion = await hasVersion(item.tag_name);
-
-        if (!existingVersion) {
-          await addVersion(item.tag_name, item.html_url, item.body, item.published_at);
-        }
-      }
-    }
-  } catch (e) {
-    console.error('Failed to load versions', e);
     return Promise.reject();
   }
 }

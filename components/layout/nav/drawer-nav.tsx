@@ -42,11 +42,11 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
       }}
     >
-      <div className={'appflowy-drawer-nav'}>
+      <div className={'appflowy-drawer-nav  text-black dark:text-white'}>
         <div className={'header'} onClick={onClose}>
-          <div className={'logo text-black dark:text-white'}>
+          <Link href={'/'} className={'logo'}>
             <Logo />
-          </div>
+          </Link>
 
           <Close />
         </div>

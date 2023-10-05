@@ -1,19 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { UAParser } from 'ua-parser-js';
+import { useContext, useEffect, useState } from 'react';
+import { UAContext } from '@/lib/hooks/use-ua';
 
 export function useClient() {
   const [isClient, setClient] = useState(false);
-
-  const [userAgentInfo, setUserAgentInfo] = useState<UAParser.IResult | undefined>(undefined);
+  const userAgentInfo = useContext(UAContext);
 
   useEffect(() => {
     setClient(true);
-    const parser = new UAParser(window.navigator.userAgent);
-    const userAgentInfo = parser.getResult();
-
-    setUserAgentInfo(userAgentInfo);
   }, []);
   const name = userAgentInfo?.os?.name?.toLowerCase().replaceAll(' ', '');
 

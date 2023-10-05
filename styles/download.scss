@@ -1,41 +1,44 @@
-[data-mode='dark'] .download-page {
-  background: var(--color-night-blue);
-}
 
 .download-page {
   @apply flex w-full flex-col items-center pt-[220px];
   @apply max-sm:pt-[169px];
   background: linear-gradient(192deg, #EDECFC -21.69%, #F3F7FE 16.86%, #F8F9FF 30.5%, #FAFAFF 56.96%, #F5F2FF 74.04%, #FFF 83.14%);
 
+  transform: translate3d(0, 0, 0);
+
   > .title, > .download-mobile .title, > .across .title {
-    @apply z-10 tracking-[-4px] text-[74px] leading-[115%] px-[30px] font-medium text-black dark:text-white mb-[40px] text-center relative;
+    @apply z-10 tracking-[-4px] text-[74px] leading-[115%] px-[30px] font-medium mb-[40px] text-center relative;
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:text-center max-sm:mb-[30px];
 
     &.mobile-title {
       @apply w-[640px] mb-[10px];
       @apply max-sm:w-[295px];
-      .line {
-        @apply absolute left-[80px] top-[79px] w-[341px] h-[25px];
-        @apply max-sm:w-[136px] max-sm:h-[10px] max-sm:left-[60px] max-sm:top-[30px];
-      }
-
     }
   }
 
-  .desc {
-    @apply dark:text-gray-400;
-  }
 
   @media not all and (min-width: 1024px) {
     > .download-mobile {
       background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
+    }
+  }
 
+  .download-os {
+    .ellipse {
+      @apply bg-primary pointer-events-none absolute left-1/3 top-[-20%] h-screen w-[500px] rotate-[51deg] transform opacity-[10%] blur-[150px] max-lg:h-[300px] translate-z-0;
+    }
+
+    &.image {
+      @apply mb-[60px];
+      > .dark-image {
+        @apply pl-[20px];
+      }
     }
   }
 
   .download-mobile {
-    @apply flex flex-col w-full items-center;
-    @apply max-sm:pt-[60px] max-sm:pb-[60px];
+    @apply flex flex-col w-full items-center pt-[60px];
+    @apply max-sm:pb-[60px];
     .desc {
       @apply text-[12px];
       @apply mb-[50px];
@@ -46,6 +49,7 @@
       @apply flex gap-[20px] items-center justify-center w-full mb-[110px];
       @apply max-sm:mb-[65px];
       > .download-btn {
+        @apply w-[188px] h-[66px] p-0 flex items-center justify-center;
         @apply max-sm:h-[56px] text-[14px];
       }
     }
@@ -53,12 +57,19 @@
     > .image {
       @apply mb-[316px] relative;
       @apply max-sm:mb-[140px] max-sm:mx-[30px];
+      .ellipse {
+        @apply bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform translate-z-0 opacity-[10%] blur-[150px] max-lg:h-[300px];
+      }
     }
 
 
     > .notes-tasks-projects {
-      @apply relative mb-[200px] mx-0;
+      @apply relative mb-[100px] mx-0;
       @apply max-sm:mb-[60px] max-sm:mx-0;
+
+      .ellipse {
+        @apply bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] max-lg:h-[1200px] max-lg:blur-[150px] translate-z-0;
+      }
     }
   }
 
@@ -85,13 +96,13 @@
   }
 
   > .image {
-    @apply mb-[300px] relative;
+    @apply mb-[150px] relative;
     @apply max-sm:mb-[80px];
   }
 
   .across {
     @apply flex flex-col items-center w-full;
-    @apply max-sm:bg-white dark:max-sm:bg-night-blue;
+    @apply max-sm:bg-white;
     .across-title {
       @apply w-[700px] mb-[100px];
       @apply max-sm:w-[300px] max-sm:mb-[40px];
@@ -112,12 +123,10 @@
       .across-download-item {
         @apply flex flex-col rounded-[18px] border border-primary-10 bg-white overflow-hidden relative p-[60px];
         @apply max-sm:px-[30px] max-sm:pt-[40px] max-sm:pb-[20px];
-        @apply dark:bg-dark-card;
 
 
         .bg {
-          @apply absolute -top-1/2 -left-1/2 w-[500px] h-[400px] bg-[#4A1DFF] opacity-20 blur-[250px] rounded-[554px] pointer-events-none;
-          @apply dark:bg-[#8A5EB7];
+          @apply absolute -top-1/2 -left-1/2 w-[500px] h-[400px] bg-[#4A1DFF] opacity-20 transform translate-z-0  blur-[250px] rounded-[554px] pointer-events-none;
         }
 
         .across-download-item-icon {
@@ -133,7 +142,8 @@
           @apply flex flex-col w-full flex-1 items-center justify-end gap-[20px];
           @apply max-sm:gap-[10px];
           > button {
-            @apply w-full;
+            @apply w-[240px];
+            @apply max-sm:w-full;
           }
         }
       }
@@ -143,6 +153,5 @@
 
 }
 
-[data-mode='dark'] .download-mobile {
-  background: var(--color-night-blue);
-}
+
+

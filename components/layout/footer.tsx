@@ -3,11 +3,9 @@ import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 import ContactEmail from '@/components/shared/contact-email';
+import SwitchMode from '@/components/shared/switch-mode';
 
-// import SwitchMode from '@/components/shared/switch-mode';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark?: boolean) => void }) {
+function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
   const ExternalLinks = () => (
     <>
       {externalLinks.map((item) => (
@@ -22,7 +20,7 @@ function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark
     <div className={'appflowy-footer'}>
       <div className={'top'}>
         <div className={'logo'}>
-          <div className={'image text-white'}>
+          <div className={'image h-[42px]  w-[189px] text-white'}>
             <Logo />
           </div>
           <div className={'links'}>
@@ -58,7 +56,7 @@ function Footer({ isDark, onChangeMode }: { isDark: boolean; onChangeMode: (dark
             Need Help? <ContactEmail />
           </div>
         </div>
-        {/*<SwitchMode onChangeMode={onChangeMode} isDark={isDark} />*/}
+        <SwitchMode onChangeMode={onChangeMode} />
       </div>
     </div>
   );

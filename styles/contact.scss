@@ -1,22 +1,11 @@
-[data-mode='dark'] {
-  .contact-page {
-    background: var(--color-night-blue);
-    @apply relative;
-    .ellipse {
-      @apply pointer-events-none absolute top-0 left-0 w-full h-full;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0.12%, #190E28 99.88%);
-
-    }
-  }
-
-}
 
 .contact-page {
+  transform: translateZ(0);
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
   @apply flex w-full flex-col items-center pt-[220px] pb-[184px] relative;
   @apply max-sm:pt-[169px] max-sm:pb-[60px];
   .title {
-    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium text-black dark:text-white text-center relative mb-[30px];
+    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium  text-center relative mb-[30px];
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:px-[34px] max-sm:mb-[14px];
     .line {
       @apply absolute top-[79px] left-0 w-[315px] h-[40px];
@@ -26,10 +15,10 @@
   }
 
   .desc {
-    @apply w-[535px] text-center mb-[100px];
+    @apply max-w-[420px] text-center mb-[100px] whitespace-pre-line;
     @apply max-sm:w-full max-sm:mb-[80px] max-sm:px-[50px];
     .link {
-      @apply underline;
+      @apply underline whitespace-nowrap text-primary cursor-pointer;
     }
   }
 
@@ -56,7 +45,7 @@
     .form-input {
       @apply flex relative w-full p-[30px] rounded-[20px] border border-primary-10 bg-white items-center;
       @apply max-sm:p-[20px] max-sm:rounded-[12px];
-      @apply dark:bg-[#26203B];
+
       input, textarea {
         @apply w-full outline-none text-[18px] leading-normal;
         @apply max-sm:text-base;
@@ -84,7 +73,7 @@
 .contact-message-content {
   @apply flex rounded-[18px] border border-primary-20 bg-white p-10 gap-[15px] w-[486px];
   @apply max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:rounded-[16px] max-sm:gap-[20px] max-sm:mx-[40px] max-sm:mb-[60px];
-  @apply dark:bg-[#26203B];
+
   > .contact-message-icon {
     @apply w-10 h-10;
   }
@@ -99,7 +88,6 @@
 
     > .contact-message-desc {
       @apply text-base whitespace-break-spaces;
-      @apply dark:text-gray-400;
       @apply max-sm:text-center;
     }
 

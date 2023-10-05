@@ -1,20 +1,25 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { lazy } from 'react';
 import HeroSection from '@/components/home/hero-section/hero-section';
-import ProductShowcase from '@/components/home/product-showcase/product-showcase';
-import SupportAI from '@/components/home/support-ai/support-ai';
-import Data from '@/components/home/data/data';
-import Mobile from '@/components/home/mobile/mobile';
-import Community from '@/components/home/community/community';
-import { DarkContext } from '@/lib/hooks/use-dark-context';
+import { useDarkContext } from '@/lib/hooks/use-dark-context';
+
+const ProductShowcase = lazy(() => import('@/components/home/product-showcase/product-showcase'));
+
+const SupportAI = lazy(() => import('@/components/home/support-ai/support-ai'));
+
+const Data = lazy(() => import('@/components/home/data/data'));
+
+const Mobile = lazy(() => import('@/components/home/mobile/mobile'));
+
+const Community = lazy(() => import('@/components/home/community/community'));
 
 function Index() {
-  const dark = useContext(DarkContext) || false;
+  const dark = useDarkContext();
 
   return (
     <>
-      <HeroSection dark={dark} />
+      <HeroSection />
       <ProductShowcase dark={dark} />
       <SupportAI dark={dark} />
       <Data />

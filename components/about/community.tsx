@@ -1,8 +1,8 @@
 import React from 'react';
 import { aboutPageConfig } from '@/lib/config/pages';
-import AnimateNumber from '@/components/shared/animate-number';
 import Plus from '@/components/icons/plus';
 import Link from 'next/link';
+import { formatNumber } from '@/lib/format-number';
 
 function Community() {
   return (
@@ -13,7 +13,7 @@ function Community() {
         {aboutPageConfig.communityData.map((item) => (
           <div className={'number-item'} key={item.label}>
             <div className={'value'}>
-              <AnimateNumber value={item.value} />
+              {formatNumber(item.value)}
               <div className={'plus-icon'}>
                 <Plus />
               </div>

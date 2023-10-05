@@ -31,9 +31,7 @@ async function Page() {
 
 const getData = async () => {
   try {
-    const versions = await fetchVersions();
-
-    return versions;
+    return await fetchVersions();
   } catch {
     return [];
   }

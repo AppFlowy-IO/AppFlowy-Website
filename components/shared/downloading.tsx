@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
 import Apple from '@/components/icons/apple';
 import GooglePlay from '@/components/icons/google-play';
 import { useRouter, useSearchParams } from 'next/navigation';
-import img1 from '@/assets/images/download/downloading-img-1.svg';
+import img1 from '@/assets/images/download/downloading-img-1.png';
 import img2 from '@/assets/images/download/downloading-img-2.svg';
-import darkImg1 from '@/assets/images/download/dark/downloading-img-1.svg';
+import darkImg1 from '@/assets/images/download/dark/downloading-img-1.png';
 import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
-import { DarkContext } from '@/lib/hooks/use-dark-context';
+import { useDarkContext } from '@/lib/hooks/use-dark-context';
 
 function Downloading() {
-  const dark = useContext(DarkContext);
+  const dark = useDarkContext();
   const search = useSearchParams();
   const downloadUrl = search.get('downloadUrl');
 
@@ -53,45 +53,37 @@ function Downloading() {
           <div className={'thanks-download_step'}>
             <div className={'line'} />
             <div className={'step step-1'}>
-              Your download will begin automatically,
+              Your download will begin automatically
               <br />
-              If it did‘t start, please
+              {`If it doesn’t, you can`}
               <span onClick={() => downloadUrl && download(downloadUrl, false)} className={'highlight ml-1 underline'}>
                 download AppFlowy manually.
               </span>
             </div>
             <div className={'step step-2'}>
-              Once downloaded,open the file by doubled-clicking it in your downloads folder
+              Once its downloaded, open the file by double-clicking it in your downloads folder
             </div>
-            <div className={'step step-3'}>Follow the instructions to install AppFlowy on your computer</div>
+            <div className={'step step-3'}>Follow the instructions to install AppFlowy to your computer</div>
           </div>
         </div>
         <div className={'image relative'}>
-          <div
-            className={
-              'pointer-events-none absolute left-0 top-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transform rounded-full bg-[#EAE6FF66] blur-[100px] dark:bg-[#8A5EB733]'
-            }
-          />
+          <div className={'ellipse'} />
           <Image className={'relative'} src={dark ? darkImg1.src : img1.src} alt={''} width={901} height={481} />
         </div>
       </div>
       <div className={'panel panel-2'}>
         <div className={'image relative'}>
-          <div
-            className={
-              'pointer-events-none absolute left-0 top-0 h-full w-full transform rounded-full bg-[#EAE6FF66] blur-[100px] dark:bg-[#8A5EB733]'
-            }
-          />
-          <Image className={'relative'} src={dark ? darkImg2.src : img2.src} alt={''} width={670} height={612} />
+          <div className={'ellipse'} />
+          <Image className={'relative'} src={dark ? darkImg2.src : img2.src} alt={''} width={500} height={510} />
         </div>
-        <div className={'download-mobile'}>
-          <div className={'download-mobile_title'}>
-            <span>AppFlowy for </span>
+        <div className={'download-mobile-container'}>
+          <div className={'download-mobile-container_title'}>
+            <span className={'max-sm:mr-1'}>AppFlowy for </span>
             <span>iOS and Android</span>
           </div>
-          <div className={'download-mobile_desc'}>
+          <div className={'download-mobile-container_desc max-sm:px-[60px]'}>
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
-            <div className={'text-primary'}>Coming in December</div>
+            <div className={'text-primary mt-[20px]'}>Coming in December</div>
           </div>
           <div className={'btn-group'}>
             <button disabled className={'download-btn'}>
@@ -111,7 +103,7 @@ function Downloading() {
           <span className={'primary-word'}>
             download
             <span className={'primary-circle'}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='120' height='50' viewBox='0 0 120 50' fill='none'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 120 50' fill='none'>
                 <path
                   d='M1 14.908C89.5233 -9.28207 115.958 5.78783 118.323 17.637C121.227 32.1915 87.9728 46.4447 55.184 48.4502C22.3953 50.4556 5.53125 44.5355 4.86451 36.0085C2.47924 26.0962 14.4958 16.3863 48.7547 11.7745'
                   stroke='currentColor'

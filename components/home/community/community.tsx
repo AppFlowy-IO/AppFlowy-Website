@@ -1,11 +1,11 @@
 import React from 'react';
 import Plus from '@/components/icons/plus';
-import AnimateNumber from '@/components/shared/animate-number';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '@/components/home/community/icons';
 import StartForFree from '@/components/home/community/start-for-free';
 import { communityConfig } from '@/lib/config/home';
+import { formatNumber } from '@/lib/format-number';
 
 function Community({ dark }: { dark: boolean }) {
   return (
@@ -16,7 +16,7 @@ function Community({ dark }: { dark: boolean }) {
           <div key={item.text} className={'number'}>
             <div className={'value'}>
               <span className={'relative'}>
-                <AnimateNumber value={item.value} />
+                {formatNumber(item.value)}
                 <div className={'plus-icon'}>
                   <Plus />
                 </div>
@@ -54,7 +54,7 @@ function Community({ dark }: { dark: boolean }) {
         ))}
       </div>
       <Icons dark={dark} />
-      <StartForFree dark={dark} />
+      <StartForFree />
     </div>
   );
 }

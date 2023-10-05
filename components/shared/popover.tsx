@@ -1,6 +1,8 @@
+'use client';
 import React from 'react';
 import MuiPopover, { PopoverProps } from '@mui/material/Popover';
 import { Fade } from '@mui/material';
+import { useClient } from '@/lib/hooks/use-client';
 
 function Popover({
   onMouseEnterPaper,
@@ -10,8 +12,15 @@ function Popover({
   onMouseEnterPaper?: () => void;
   onMouseLeavePaper?: () => void;
 }) {
+  const { isClient } = useClient();
+
+  if (!isClient) {
+    return null;
+  }
+  
   return (
     <MuiPopover
+      container={document.querySelector('.appflowy-app') as HTMLDivElement}
       transformOrigin={{
         vertical: -10,
         horizontal: 'center',

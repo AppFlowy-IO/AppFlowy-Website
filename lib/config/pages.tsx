@@ -2,8 +2,8 @@
  * @desc This file contains all the configurations for the pages
  */
 
-import editor from '@/assets/images/blocks/editor.svg';
-import board from '@/assets/images/blocks/board.svg';
+import editor from '@/assets/images/blocks/editor.png';
+import board from '@/assets/images/blocks/board.png';
 import darkEditor from '@/assets/images/blocks/dark/editor.svg';
 import darkBoard from '@/assets/images/blocks/dark/board.svg';
 import React from 'react';
@@ -56,15 +56,11 @@ export const aboutPageConfig = {
       desc: (
         <div>
           <div>
-            {`While working on an enterprise proprietary collaboration platform in my previous company, I came to realize
-            that there isn't a one-size-fits-all workplace solution or an all-in-one superapp that covers every
-            enterprise need.`}
+            {`While co-founder Annie Wang was working on an enterprise proprietary collaboration platform in her previous company, she came to realize that there isn't a one-size-fits-all workplace solution or an all-in-one superapp that covers every enterprise need.`}
           </div>
           <br />
           <div>
-            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for
-            particular customers at the expense of everything else. The end result is a poor cross-platform experience
-            and bulky, slow products that struggle to scale.
+            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for particular customers at the expense of everything else. The end result is a poor cross-platform experience and bulky, slow products that struggle to scale.
           </div>
         </div>
       ),
@@ -439,10 +435,13 @@ export const contactPageConfig = {
     <span>
       We’re happy to answer your specific questions.
       <br />
-      For technical issues and general inquiries, ask in our{' '}
+      For technical issues and general inquiries,
+      <br />
+      ask in our{' '}
       <Link target={'_blank'} className={'link'} href={'https://discord.gg/9Q2xaN37tV'}>
         Discord community
-      </Link>{' '}
+      </Link>
+      <br />
       to get a quicker response.
     </span>
   ),

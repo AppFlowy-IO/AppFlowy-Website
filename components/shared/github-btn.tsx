@@ -1,9 +1,7 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GithubStar from '@/components/icons/github-star';
 import { formatNumber } from '@/lib/format-number';
-import { fetchGitStar } from '@/lib/githubAPI';
 import { githubRepo } from '@/lib/config/git-repo';
-import { Storage } from '@/lib/storage';
 import { GitContext } from '@/lib/hooks/use-git-context';
 
 function GithubBtn() {
@@ -12,26 +10,11 @@ function GithubBtn() {
   const [star, setStar] = useState(gitData?.stars || 0);
 
   useEffect(() => {
-    if (gitData?.stars) {
-      Storage.set('stars', gitData.stars);
+    if (gitData?.stars !== undefined) {
       setStar(gitData.stars);
     }
-  }, [gitData?.stars]);
+  }, [gitData]);
 
-  const fetchGithub = useCallback(async () => {
-    try {
-      const stargazers_count = await fetchGitStar();
-
-      setStar(stargazers_count);
-      Storage.set('stars', stargazers_count);
-    } catch (e) {
-      // do nothing
-    }
-  }, []);
-
-  useEffect(() => {
-    void fetchGithub();
-  }, [fetchGithub]);
   return (
     <button
       onClick={() => {

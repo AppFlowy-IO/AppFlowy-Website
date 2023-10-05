@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import Edit from '@/components/icons/edit';
 import Focus from '@/components/icons/focus';
 import SwitchProduct from '@/components/home/product-showcase/switch-product';
 import { productShowCaseConfig } from '@/lib/config/home';
-import Lottie from 'lottie-react';
-import tasksAnimation from '@/assets/lottie/tasks/data';
-import darkTasksAnimation from '@/assets/lottie/dark/tasks/data';
+import animationData from '@/assets/lottie/tasks/data';
+import darkAnimationData from '@/assets/lottie/dark/tasks/data';
+
 import OverTitle from '@/components/shared/over-title';
+import Lottie from 'react-lottie';
+import { useInView } from 'framer-motion';
 
 function ProductShowcase({ dark }: { dark: boolean }) {
+  const ref = useRef(null);
+  const inView = useInView(ref);
   const renderCard = (card: {
     image: {
       src: string;
@@ -24,7 +28,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
   }) => {
     return (
       <div key={card.title} className={'card'}>
-        <div className={'bg'} />
+        <div className={'ellipse'} />
         <div className={'image'}>
           <Image
             src={dark ? card.image.darkSrc : card.image.src}
@@ -39,22 +43,34 @@ function ProductShowcase({ dark }: { dark: boolean }) {
   };
 
   return (
-    <div className={'product-showcase'}>
+    <div ref={ref} className={'product-showcase'}>
       {/* Wikis - Docs - Notes */}
       <div className={'title'}>
         <OverTitle title='Wikis-Docs-Notes' />
       </div>
       {/* An extensible and customizable knowledge base built on a community-driven open toolbox of plugins, templates, themes, and more. */}
       <section>
-        <div className={'desc'}>
-          <div className={'text-primary'}>
-            <Edit />
-          </div>
-          <div className={'mt-[20px]'}>{productShowCaseConfig.subtitle}</div>
-        </div>
         <div className={'image desktop'}>
+          <div className={'desc'}>
+            <div className={'text-primary'}>
+              <Edit />
+            </div>
+            <div className={'mt-[20px]'}>{productShowCaseConfig.subtitle}</div>
+          </div>
           <div className={'bg'} />
-          <Lottie animationData={dark ? darkTasksAnimation : tasksAnimation} />
+          <div className={'relative aspect-video w-full'}>
+            <div className={`absolute left-0 top-0 h-full w-full`}>
+              {inView && (
+                <Lottie
+                  options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: dark ? darkAnimationData : animationData,
+                  }}
+                />
+              )}
+            </div>
+          </div>
         </div>
       </section>
       {/* A centralized place for your tasks, notes, and projects. Organize and visualize your data in tasks, board, table, and more. */}
