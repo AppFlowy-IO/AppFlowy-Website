@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
 import Apple from '@/components/icons/apple';
@@ -18,12 +18,15 @@ function Downloading() {
   const search = useSearchParams();
   const downloadUrl = search.get('downloadUrl');
 
-  const debounceDownload = useMemo(() => {
-    return debounce(() => {
-      if (!downloadUrl) return;
-      download(downloadUrl, false);
-    }, 1000);
+  const downloadPackage = useCallback(() => {
+    if (!downloadUrl) return;
+
+    download(downloadUrl, false);
   }, [downloadUrl]);
+
+  const debounceDownload = useMemo(() => {
+    return debounce(downloadPackage, 1000);
+  }, [downloadPackage]);
 
   useEffect(() => {
     debounceDownload();
@@ -56,7 +59,7 @@ function Downloading() {
               Your download will begin automatically
               <br />
               {`If it doesn’t, you can`}
-              <span onClick={() => downloadUrl && download(downloadUrl, false)} className={'highlight ml-1 underline'}>
+              <span onClick={downloadPackage} className={'highlight ml-1 underline'}>
                 download AppFlowy manually.
               </span>
             </div>

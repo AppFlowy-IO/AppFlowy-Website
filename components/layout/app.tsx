@@ -69,7 +69,7 @@ export default function App({
 
             <main>{children}</main>
             <Footer onChangeMode={setDark} />
-            {process.env.NODE_ENV === 'production' && (
+            {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
               <>
                 <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
                 <Script id='google-analytics'>

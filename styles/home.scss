@@ -463,11 +463,11 @@
       @apply max-sm:max-w-full max-sm:w-full max-sm:pt-[40px] max-sm:pb-0 max-sm:h-[400px] max-sm:flex-[auto] max-sm:rounded-[22px];
       @apply max-lg:pt-[20px];
       > .text {
-        @apply px-[50px] max-lg:px-[20px] text-center;
+        @apply px-[50px] max-lg:px-[20px];
         @apply max-sm:px-[30px];
         > .title {
-          @apply h-[80px] text-[32px] leading-[110%] mb-[14px] font-medium max-lg:text-[24px];
-          @apply max-sm:h-auto max-sm:text-[24px] max-sm:leading-[107%] max-sm:tracking-[-0.96px];
+          @apply text-[32px] leading-[110%] mb-[14px] font-medium max-lg:text-[24px];
+          @apply max-sm:text-[24px] max-sm:leading-[107%] max-sm:tracking-[-0.96px];
         }
       }
 

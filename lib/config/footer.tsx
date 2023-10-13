@@ -55,8 +55,12 @@ export const links = [
         link: 'https://github.com/orgs/AppFlowy-IO/projects/5/views/12',
       },
       {
-        name: 'Newsletter',
+        name: 'Technical Blog',
         link: 'https://blog.appflowy.io/',
+      },
+      {
+        name: 'Email Newsletter',
+        link: '/subscribe-newsletter',
       },
     ],
   },

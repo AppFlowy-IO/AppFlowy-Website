@@ -97,6 +97,7 @@ export const downloadMacUniversal = (transfer = true) => {
   const links = getDownloadLinks();
 
   if (!links) return;
+
   download(links.macos.universal, transfer);
 };
 
@@ -161,6 +162,8 @@ export function useDownload() {
       case 'windows':
         return links?.windows;
 
+      case 'linux':
+        return links?.linux?.gnu;
       default:
         return;
     }
@@ -178,6 +181,7 @@ export function useDownload() {
 
   return {
     downloadOS,
+    getOsDownloadLink,
   };
 }
 

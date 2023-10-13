@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+enum Stage {
+  SUBSCRIBER = 'subscriber',
+  UNSUBSCRIBED = 'lead',
+}
+
+interface ContactFormData {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  company?: string;
+  stage?: Stage;
+}
+
 export const hubspotAPI = axios.create({
   // baseURL: 'https://api.hubapi.com',
   // rewrite in next.config.js, because of CORS
@@ -10,27 +23,60 @@ export const hubspotAPI = axios.create({
   },
 });
 
-export async function getHubSpotContactWithEmail(email: string) {
+export async function getOrCreateHubSpotContactWithEmail(data: ContactFormData) {
   const res = await hubspotAPI.post('/crm/v3/objects/contacts/batch/read?archived=false', {
     properties: ['email'],
-    propertiesWithHistory: ['string'],
     idProperty: 'email',
     inputs: [
       {
-        id: email,
+        id: data.email,
       },
     ],
   });
+  const result = res.data.results?.[0];
 
-  return res.data.results?.[0]?.id;
+  const id = result?.id;
+
+  if (result && id) {
+    await updateHubSpotContact(id, {
+      company: data.company,
+      lastname: data.lastName,
+      firstname: data.firstName,
+      lifecyclestage: data.stage,
+    });
+    return id;
+  }
+
+  return await createHubSpotContact(data);
+}
+
+export async function updateHubSpotContact(
+  id: string,
+  data: Partial<{
+    company: string;
+    lastname: string;
+    firstname: string;
+    lifecyclestage: Stage;
+  }>
+) {
+  return await hubspotAPI.post(`/crm/v3/objects/contacts/batch/update`, {
+    inputs: [
+      {
+        id: id,
+        properties: data,
+      },
+    ],
+  });
 }
 
 export async function createHubSpotContact(formData: {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   company?: string;
+  stage?: Stage;
 }) {
+  const { stage } = formData;
   const res = await hubspotAPI.post('/crm/v3/objects/contacts/batch/create', {
     inputs: [
       {
@@ -38,8 +84,9 @@ export async function createHubSpotContact(formData: {
           email: formData.email,
           company: formData.company || '',
           website: window.location.hostname,
-          lastname: formData.lastName,
-          firstname: formData.firstName,
+          lastname: formData.lastName || '',
+          firstname: formData.firstName || '',
+          lifecyclestage: stage,
         },
         associations: [],
       },
@@ -49,6 +96,13 @@ export async function createHubSpotContact(formData: {
   return res.data.results?.[0]?.id;
 }
 
+export async function createHubSpotSubscriber(email: string) {
+  return await getOrCreateHubSpotContactWithEmail({
+    email,
+    stage: Stage.SUBSCRIBER,
+  });
+}
+
 export async function createHubSpotTicket(formData: {
   firstName: string;
   lastName: string;
@@ -56,12 +110,7 @@ export async function createHubSpotTicket(formData: {
   company?: string;
   message: string;
 }) {
-  const email = formData.email;
-  let contactId = await getHubSpotContactWithEmail(email);
-
-  if (!contactId) {
-    contactId = await createHubSpotContact(formData);
-  }
+  const contactId = await getOrCreateHubSpotContactWithEmail(formData);
 
   if (!contactId) return Promise.reject('Failed to create contact');
 
@@ -69,7 +118,8 @@ export async function createHubSpotTicket(formData: {
     inputs: [
       {
         properties: {
-          subject: formData.message,
+          subject: 'feedback',
+          content: formData.message,
           hs_pipeline: '0',
           hs_pipeline_stage: '1',
           hs_ticket_priority: 'HIGH',

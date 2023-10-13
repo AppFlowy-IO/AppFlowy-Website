@@ -1,5 +1,5 @@
 
-.contact-page {
+.contact-page, .subscribe-newsletter-page {
   transform: translateZ(0);
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
   @apply flex w-full flex-col items-center pt-[220px] pb-[184px] relative;
@@ -37,7 +37,27 @@
 
 }
 
-#contact-form {
+.subscribe-newsletter-page {
+  .icon.icon-1 {
+    @apply top-[15%] max-sm:top-[18%];
+  }
+
+  .icon.icon-2 {
+    @apply max-sm:top-[38%];
+  }
+
+  .desc {
+    @apply mb-[60px] max-sm:mb-[20px];
+  }
+
+  .download-btn {
+    @apply rounded-md;
+  }
+
+
+}
+
+#contact-form, #subscribe-newsletter-form {
   @apply flex flex-col gap-[20px] items-center max-w-screen-md w-full px-[30px] relative;
   @apply max-sm:gap-[10px] max-sm:px-[20px];
   .form-group {
@@ -67,6 +87,22 @@
 
   .download-btn {
     @apply w-full max-sm:mt-[10px];
+  }
+}
+
+#subscribe-newsletter-form {
+  @apply min-h-[80px];
+  .form-group {
+    @apply flex-1;
+    @apply max-sm:w-full;
+    .form-input {
+      @apply h-[57px] rounded-md;
+    }
+  }
+
+  .download-btn {
+    @apply w-[160px];
+    @apply max-sm:w-full max-sm:mt-0;
   }
 }
 

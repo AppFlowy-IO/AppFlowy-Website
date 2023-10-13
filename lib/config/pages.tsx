@@ -60,7 +60,9 @@ export const aboutPageConfig = {
           </div>
           <br />
           <div>
-            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for particular customers at the expense of everything else. The end result is a poor cross-platform experience and bulky, slow products that struggle to scale.
+            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for
+            particular customers at the expense of everything else. The end result is a poor cross-platform experience
+            and bulky, slow products that struggle to scale.
           </div>
         </div>
       ),
@@ -145,7 +147,7 @@ export const aboutPageConfig = {
       label: 'GitHub Contributors',
       link: {
         text: 'Get started',
-        href: 'https://github.com/AppFlowy-IO/AppFlowy/graphs/contributors',
+        href: 'https://docs.appflowy.io/docs/documentation/software-contributions/contributing-to-appflowy\n',
       },
     },
     {
@@ -160,8 +162,8 @@ export const aboutPageConfig = {
       value: 4000,
       label: 'Newsletter subscribers',
       link: {
-        text: 'See our blog',
-        href: 'https://blog.appflowy.io/',
+        text: 'Subscribe',
+        href: '/subscribe-newsletter',
       },
     },
   ],
