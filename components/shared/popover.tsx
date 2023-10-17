@@ -17,10 +17,10 @@ function Popover({
   if (!isClient) {
     return null;
   }
-  
+
   return (
     <MuiPopover
-      container={document.querySelector('.appflowy-app') as HTMLDivElement}
+      container={document.querySelector('.appflowy-overlay') as HTMLDivElement}
       transformOrigin={{
         vertical: -10,
         horizontal: 'center',

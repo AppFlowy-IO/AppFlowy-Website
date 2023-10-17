@@ -66,15 +66,17 @@ function SwitchProduct() {
   const dark = useDarkContext();
   const { isMobile } = useClient();
   const [active, setActive] = useState<Product>(Product.Board);
-  const options = products.map((item) => (
-    <button
-      key={item.key}
-      onClick={() => setActive(item.key)}
-      className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
-    >
-      {item.icon}
-    </button>
-  ));
+  const options = useMemo(() => {
+    return products.map((item) => (
+      <div
+        key={item.key}
+        onClick={() => setActive(item.key)}
+        className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
+      >
+        {item.icon}
+      </div>
+    ));
+  }, [active]);
   const selectedItem = products.find((item) => item.key === active);
 
   const lottieJsonMap = useMemo(
@@ -146,4 +148,4 @@ function SwitchProduct() {
   );
 }
 
-export default SwitchProduct;
+export default React.memo(SwitchProduct);

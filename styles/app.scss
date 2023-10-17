@@ -4,6 +4,11 @@
 
 }
 
+.appflowy-overlay {
+  @apply fixed top-0 left-0 w-full h-full z-[1000];
+  @apply pointer-events-none;
+}
+
 .absolute-image {
   @apply absolute left-0 top-0 flex h-full w-full justify-center;
   &.dark-image {

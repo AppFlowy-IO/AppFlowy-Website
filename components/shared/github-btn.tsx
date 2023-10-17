@@ -24,7 +24,7 @@ function GithubBtn() {
     >
       <GithubStar />
       <span className={'ml-1 mr-4'}>Star</span>
-      <span className={'arrow-badge'}>{formatNumber(star)}</span>
+      <span className={'arrow-badge'}>{formatNumber(star, 1)}</span>
     </button>
   );
 }

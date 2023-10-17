@@ -100,9 +100,9 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
                 </AccordionSummary>
                 <AccordionDetails className={'flex flex-col items-start p-0'}>
                   {page.children?.map((child) => (
-                    <div className={'py-2 text-base last:mb-[14px] dark:text-white'} key={child.name}>
+                    <div className={'flex w-full py-2 text-base last:mb-[14px] dark:text-white'} key={child.name}>
                       {child.link ? (
-                        <Link onClick={() => onClose()} href={child.link}>
+                        <Link className={'w-full'} onClick={() => onClose()} href={child.link}>
                           {child.name}
                         </Link>
                       ) : (

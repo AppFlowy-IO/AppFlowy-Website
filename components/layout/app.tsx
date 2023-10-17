@@ -84,6 +84,7 @@ export default function App({
               </>
             )}
           </div>
+          <div className={'appflowy-overlay'} />
         </DarkContext.Provider>
       </GitContext.Provider>
     </UAContext.Provider>

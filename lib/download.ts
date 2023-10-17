@@ -1,4 +1,5 @@
 import { collectEvent, DownloadParams, EventName } from '@/lib/collect';
+import { Storage } from '@/lib/storage';
 
 export function parseDownloadUrl(url: string): DownloadParams {
   const infos = url.split('/Appflowy-')[1].split('-');
@@ -17,7 +18,8 @@ export function download(url: string, transfer = true) {
   const a = document.createElement('a');
 
   if (transfer) {
-    a.href = `/downloading?downloadUrl=${url}`;
+    Storage.set('download_url', url);
+    a.href = `/downloading`;
   } else {
     a.href = url;
     const params = parseDownloadUrl(url);

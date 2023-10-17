@@ -41,8 +41,7 @@
     @apply max-sm:pb-[60px];
     .desc {
       @apply text-[12px];
-      @apply mb-[50px];
-      @apply max-sm:mb-[40px];
+      @apply mb-[50px] max-sm:mb-[30px];
     }
 
     > .btn-group {

@@ -1,4 +1,4 @@
-export function formatNumber(value: number): string {
+export function formatNumber(value: number, digits = 0): string {
   const units = ['K', 'M', 'G', 'T', 'P', 'E'];
   let index = 0;
 
@@ -7,5 +7,5 @@ export function formatNumber(value: number): string {
     index++;
   }
 
-  return `${value.toFixed(0)}${units[index - 1] || ''}`;
+  return `${value.toFixed(digits)}${units[index - 1] || ''}`;
 }

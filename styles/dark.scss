@@ -123,13 +123,18 @@
     }
   }
 
-  .contact-page {
+  .contact-page, .subscribe-newsletter-page {
     background: var(--color-night-blue);
     @apply relative;
     .ellipse {
       @apply pointer-events-none absolute top-0 left-0 w-full h-full;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0.12%, #190E28 99.88%);
       transform: translateZ(0);
+    }
+  }
+  .subscribe-newsletter-page {
+    input {
+      @apply text-black;
     }
   }
 

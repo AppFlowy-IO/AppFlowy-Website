@@ -91,14 +91,40 @@ export const fetchGitStar = async (): Promise<number> => {
   return data?.stargazers_count;
 };
 
+interface ReleaseVersion {
+  tag_name: string;
+  assets: {
+    name: string;
+    state: string;
+  }[];
+}
+
 /**
  * Fetch last version
  * @returns {Promise<string>}
  */
 export const fetchLastVersion = async (): Promise<string> => {
-  const data = await fetchAPI(`${GIT_HUB_REPO}/releases/latest`);
+  const data = await fetchAPI(`${GIT_HUB_REPO}/releases`);
 
-  return data?.tag_name;
+  const lastVersion = data[0] as ReleaseVersion;
+  const previousVersion = data[1] as ReleaseVersion;
+
+  const windows = `AppFlowy-${lastVersion.tag_name}-windows-x86_64.exe`;
+  const gnu = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.tar.gz`;
+  const deb = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.deb`;
+  const rpm = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.rpm`;
+  const universal = `AppFlowy-${lastVersion.tag_name}-macos-universal.dmg`;
+  const intel = `AppFlowy-${lastVersion.tag_name}-macos-x86_64.dmg`;
+
+  const released = [windows, deb, rpm, gnu, universal, intel].every((name) =>
+    lastVersion.assets.find((asset) => asset.name === name && asset.state === 'uploaded')
+  );
+
+  if (!released) {
+    return previousVersion.tag_name;
+  }
+
+  return lastVersion.tag_name;
 };
 
 /**

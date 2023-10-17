@@ -318,7 +318,7 @@ export const communityConfig = {
         </>
       ),
       btnText: 'Join Us',
-      btnLink: '/join',
+      btnLink: 'https://discord.gg/9Q2xaN37tV',
       image: {
         src: communityImage1.src,
         darkSrc: communityDarkImage1.src,

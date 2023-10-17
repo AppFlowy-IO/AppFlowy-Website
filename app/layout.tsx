@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'AppFlowy.IO',
-  description: 'A privacy-first open source workspace for your notes, wikis, and projects',
+  description: 'AppFlowy is an AI-powered secure workspace where you achieve more without losing control of your data',
   icons: [
     {
       rel: 'icon',

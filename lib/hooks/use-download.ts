@@ -7,7 +7,7 @@ import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
 
-interface DownloadLinks {
+export interface DownloadLinks {
   windows: string;
   macos: {
     intel: string;
@@ -40,7 +40,7 @@ export function genLink({
 }
 
 export function storageDownloadLinks(version: string) {
-  const links: DownloadLinks = {
+  const links = {
     windows: genLink({
       platform: 'windows',
       version,

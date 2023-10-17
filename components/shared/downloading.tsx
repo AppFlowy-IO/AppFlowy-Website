@@ -5,31 +5,34 @@ import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
 import Apple from '@/components/icons/apple';
 import GooglePlay from '@/components/icons/google-play';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import img1 from '@/assets/images/download/downloading-img-1.png';
 import img2 from '@/assets/images/download/downloading-img-2.svg';
 import darkImg1 from '@/assets/images/download/dark/downloading-img-1.png';
 import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
+import { Storage } from '@/lib/storage';
 
 function Downloading() {
   const dark = useDarkContext();
-  const search = useSearchParams();
-  const downloadUrl = search.get('downloadUrl');
 
-  const downloadPackage = useCallback(() => {
+  const downloadPackage = useCallback((downloadUrl: string) => {
+    Storage.set('download_url', '');
     if (!downloadUrl) return;
+    Storage.set('manually_download_url', downloadUrl);
 
     download(downloadUrl, false);
-  }, [downloadUrl]);
+  }, []);
 
   const debounceDownload = useMemo(() => {
     return debounce(downloadPackage, 1000);
   }, [downloadPackage]);
 
   useEffect(() => {
-    debounceDownload();
+    const downloadUrl = Storage.get('download_url');
+
+    debounceDownload(downloadUrl);
   }, [debounceDownload]);
 
   const router = useRouter();
@@ -59,7 +62,14 @@ function Downloading() {
               Your download will begin automatically
               <br />
               {`If it doesn’t, you can`}
-              <span onClick={downloadPackage} className={'highlight ml-1 underline'}>
+              <span
+                onClick={() => {
+                  const downloadUrl = Storage.get('manually_download_url');
+
+                  downloadPackage(downloadUrl);
+                }}
+                className={'highlight ml-1 underline'}
+              >
                 download AppFlowy manually.
               </span>
             </div>

@@ -7,6 +7,7 @@ export const getGitData = async () => {
     const cookieStore = cookies();
     const stars = await fetchGitStar();
     const lastVersion = await fetchLastVersion();
+
     const visitedLatestVersion = cookieStore.get(VISITED_NEW_VERSION_COOKIE_NAME)?.value;
 
     return {

@@ -32,7 +32,7 @@ function DownloadMobile() {
         <br />
         on the go
       </div>
-      <div className={'desc'}>Perform and look great</div>
+      <div className={'desc text-center'}>Perform and look great</div>
       <DownloadBtns />
       <div className={'image mobile-image relative'}>
         <div className={'ellipse'} />
