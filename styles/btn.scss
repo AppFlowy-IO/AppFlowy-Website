@@ -24,12 +24,13 @@
     background: #A952FF;
   }
 
-  &:active {
+  &:active, &.active {
     background: #7D26DE;
   }
 
-  &:disabled {
+  &:disabled, &.disabled {
     background: #7D26DE;
+    pointer-events: none;
     opacity: 0.3;
   }
 }
@@ -57,4 +58,54 @@
 
 .trigger-btn {
   @apply text-black text-[18px] lg:hidden max-lg:flex ml-[20px];
+}
+
+#body .dropdown-btn {
+  @apply flex rounded-[16px] overflow-hidden items-center;
+  background: var(--color-primary);
+
+  &__title {
+    @apply rounded-none pl-6 pr-3 border-0 cursor-pointer;
+  }
+
+  &__file-extension {
+    @apply rounded-none pr-3 pl-3 border-0 cursor-pointer h-full;
+    @apply flex;
+  }
+
+  &__divider {
+    @apply w-[1px] bg-[#A952FF] h-[16px];
+  }
+
+  &__expand-icon {
+    @apply w-[16px] h-[16px] flex items-center transform translate-z-0 transition-all;
+  }
+
+  &__popover-paper {
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    border: 1px solid var(--color-primary-20) !important;
+    padding: 10px;
+  }
+
+  &__extension-options {
+    @apply py-0 gap-[4px] flex flex-col;
+  }
+
+  &__extension-option {
+    @apply p-3 rounded-[14px];
+    &:hover {
+      @apply bg-light-blue-gray;
+    }
+
+    &.Mui-selected, &.Mui-selected:hover {
+      @apply bg-light-blue-gray;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    background: #7D26DE;
+    opacity: 0.3;
+  }
 }

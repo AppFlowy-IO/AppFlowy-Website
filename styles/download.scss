@@ -17,7 +17,7 @@
   }
 
 
-  @media not all and (min-width: 1024px) {
+  @media not all and (min-width: 768px) {
     > .download-mobile {
       background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
     }
@@ -76,9 +76,10 @@
   .download {
     @apply mt-[20px] mb-[126px] flex flex-col items-center;
     @apply max-sm:mt-0 max-sm:mb-[60px];
-    > .desc {
+    > .hero-desc {
       @apply mt-[20px] text-center text-sm;
       @apply max-sm:mt-[15px];
+      @apply text-[12px];
     }
 
     button {
@@ -99,9 +100,12 @@
     @apply max-sm:mb-[80px];
   }
 
+
   .across {
     @apply flex flex-col items-center w-full;
-    @apply max-sm:bg-white;
+    @apply max-md:bg-white;
+
+
     .across-title {
       @apply w-[700px] mb-[100px];
       @apply max-sm:w-[300px] max-sm:mb-[40px];
@@ -116,13 +120,35 @@
       }
     }
 
-    .across-download {
-      @apply flex gap-[30px] w-full justify-center mb-[220px];
-      @apply max-sm:flex-col max-sm:gap-[20px] max-sm:px-[20px] max-sm:mb-[48px];
-      .across-download-item {
-        @apply flex flex-col rounded-[18px] border border-primary-10 bg-white overflow-hidden relative p-[60px];
-        @apply max-sm:px-[30px] max-sm:pt-[40px] max-sm:pb-[20px];
+    @media not all and (min-width: 1040px) {
+      .across-download {
+        @apply flex-wrap px-[100px];
+      }
+    }
 
+    .across-download {
+      @apply flex gap-[30px] w-full justify-center mb-[220px] px-[20px];
+      @apply max-md:flex-col max-md:gap-[20px] max-md:px-[20px] max-md:mb-[48px];
+      .across-download-item {
+        @apply flex flex-col flex-1 rounded-[18px] border border-primary-10 bg-white overflow-hidden relative p-[40px] max-w-[360px];
+        @apply max-sm:px-[30px] max-sm:pt-[40px] max-sm:pb-[20px] max-sm:flex-auto max-md:max-w-full;
+        @apply min-w-[330px];
+        .across-download-item-desc {
+          @apply mb-6 text-[12px];
+          .linux-desc {
+            @apply flex flex-col gap-[10px];
+
+          }
+
+          .linux-download-extensions {
+            @apply inline-flex gap-[4px] mx-1;
+
+          }
+
+          .download-extension-link {
+            @apply italic text-primary cursor-pointer underline;
+          }
+        }
 
         .bg {
           @apply absolute -top-1/2 -left-1/2 w-[500px] h-[400px] bg-[#4A1DFF] opacity-20 transform translate-z-0  blur-[250px] rounded-[554px] pointer-events-none;
@@ -133,20 +159,30 @@
         }
 
         .across-download-item-title {
-          @apply text-[40px] font-medium leading-[110%] mt-[10px] tracking-[-1.6px] mb-[120px];
-          @apply max-sm:text-[24px] max-sm:mb-[50px];
+          @apply text-[40px] font-medium leading-[110%] mt-[10px] tracking-[-1.6px] mb-[40px];
+          @apply max-sm:text-[24px];
+        }
+
+        .linux-btn-group {
+          @apply w-full;
+          > .dropdown-btn {
+            @apply w-full justify-between;
+            .dropdown-btn__title {
+              @apply flex-1;
+            }
+          }
         }
 
         .across-download-item-btns {
-          @apply flex flex-col w-full flex-1 items-center justify-end gap-[20px];
+          @apply flex flex-col w-full flex-1 items-center overflow-hidden justify-end gap-[20px];
           @apply max-sm:gap-[10px];
           > button {
-            @apply w-[240px];
-            @apply max-sm:w-full;
+            @apply w-full;
           }
         }
       }
     }
+
 
   }
 

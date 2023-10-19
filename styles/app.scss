@@ -391,3 +391,17 @@
     }
   }
 }
+
+.linux-btn-group {
+  @apply flex gap-[20px];
+  @apply max-md:flex-col;
+  > button {
+    @apply w-[220px] px-0;
+  }
+}
+
+.hero-desc {
+  > a {
+    @apply underline text-primary;
+  }
+}

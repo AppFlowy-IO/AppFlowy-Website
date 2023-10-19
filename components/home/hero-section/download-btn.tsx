@@ -4,13 +4,14 @@ import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import { useClient } from '@/lib/hooks/use-client';
 import { downloadMacUniversal, useDownload } from '@/lib/hooks/use-download';
 import { GitContext } from '@/lib/hooks/use-git-context';
-import Link from 'next/link';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
 import { parseDownloadUrl } from '@/lib/download';
+import LinuxBtnGroup from '@/components/shared/linux-btn-group';
+import HeroDesc from '@/components/shared/hero-desc';
 
 function HeroDownloadBtn() {
-  const { os, isMobile, isClient } = useClient();
+  const { os, isMobile, isClient, isLinux } = useClient();
   const { downloadOS, getOsDownloadLink } = useDownload();
 
   const ref = useRef(null);
@@ -23,7 +24,6 @@ function HeroDownloadBtn() {
 
     if (name.includes('mac')) return 'macOS';
     if (name.includes('windows')) return 'Windows';
-    if (name.includes('linux')) return 'Linux';
     // if (name.includes('android')) return 'Android';
     // if (name.includes('ios')) return 'iOS';
 
@@ -46,36 +46,35 @@ function HeroDownloadBtn() {
 
   return (
     <div ref={ref} className={'flex flex-col items-center justify-center gap-[20px]'}>
-      <button
-        onClick={() => {
-          const link = getOsDownloadLink();
+      {isLinux ? (
+        <LinuxBtnGroup title={'Download for Linux'} />
+      ) : (
+        <button
+          onClick={() => {
+            const link = getOsDownloadLink();
 
-          if (!link) return;
-          const params = parseDownloadUrl(link);
+            if (!link) return;
+            const params = parseDownloadUrl(link);
 
-          collectEvent(EventName.btnClick, {
-            btn_type: 'home_download',
-            ...params,
-          });
-          // if current os is mobile, download mac universal
-          if (isMobile) {
-            downloadMacUniversal();
-            return;
-          }
+            collectEvent(EventName.btnClick, {
+              btn_type: 'home_download',
+              ...params,
+            });
+            // if current os is mobile, download mac universal
+            if (isMobile) {
+              downloadMacUniversal();
+              return;
+            }
 
-          downloadOS();
-        }}
-        className={'col download-btn gap-0 '}
-      >
-        <div className={'title'}>{`Download for ${name}`}</div>
-      </button>
-      <div className={'desc text-[12px]'}>
-        <Link href={'/what-is-new'}>{`What's new in ${gitData?.lastVersion}`}</Link>
-        {` / `}
-        <Link target={'_blank'} href={'https://survey.appflowy.io/private-beta'}>
-          {`Get the Cloud beta`}
-        </Link>
-      </div>
+            downloadOS();
+          }}
+          className={'col download-btn gap-0 '}
+        >
+          <div className={'title'}>{`Download for ${name}`}</div>
+        </button>
+      )}
+
+      <HeroDesc />
     </div>
   );
 }

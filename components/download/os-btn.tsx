@@ -1,21 +1,14 @@
 'use client';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { downloadLinux86Deb, downloadLinux86Rpm, useDownload } from '@/lib/hooks/use-download';
+import React, { useMemo } from 'react';
+import { useDownload } from '@/lib/hooks/use-download';
 import { useClient } from '@/lib/hooks/use-client';
-import { GitContext } from '@/lib/hooks/use-git-context';
-import Link from 'next/link';
+
+import LinuxBtnGroup from '@/components/shared/linux-btn-group';
+import HeroDesc from '@/components/shared/hero-desc';
 
 function DownloadOsBtn() {
   const { downloadOS } = useDownload();
-  const { os, isClient, isLinux, isMobile } = useClient();
-  const gitData = useContext(GitContext);
-  const [lastVersion, setLastVersion] = useState<string | undefined>(gitData?.lastVersion);
-
-  useEffect(() => {
-    if (isClient) {
-      setLastVersion(gitData?.lastVersion);
-    }
-  }, [isClient, gitData]);
+  const { os, isLinux, isMobile } = useClient();
 
   const name = useMemo(() => {
     if (!os) return '';
@@ -45,23 +38,14 @@ function DownloadOsBtn() {
       {isMobile && <div className={'text-primary mb-[20px] text-[12px]'}>Coming in December</div>}
       <div className={'download z-[2]'}>
         {isLinux ? (
-          <div className={'btn-group'}>
-            <button onClick={() => downloadLinux86Deb(true)} className={'download-btn'}>
-              Download for Linux (.deb)
-            </button>
-            <button onClick={() => downloadLinux86Rpm(true)} className={'download-btn'}>
-              Download for Linux (.rpm)
-            </button>
-          </div>
+          <LinuxBtnGroup title={'DOWNLOAD'} />
         ) : (
           <button disabled={isMobile} onClick={downloadOS} className={'download-btn'}>
             {'DOWNLOAD'}
           </button>
         )}
 
-        <div className={'desc'}>
-          Version {lastVersion} - <Link className={'underline'} href={'/what-is-new'}>{`What's New`}</Link>
-        </div>
+        <HeroDesc />
       </div>
     </>
   );

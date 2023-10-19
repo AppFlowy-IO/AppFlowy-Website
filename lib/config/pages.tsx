@@ -522,5 +522,5 @@ export const contributorsPageConfig = {
       to AppFlowy
     </span>
   ),
-  learnMoreLink: 'https://docs.appflowy.io/docs/essential-documentation/contribute-to-appflowy',
+  learnMoreLink: 'https://docs.appflowy.io/docs/documentation/software-contributions/contributing-to-appflowy',
 };

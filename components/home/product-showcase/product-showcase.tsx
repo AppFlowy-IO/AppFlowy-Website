@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import Edit from '@/components/icons/edit';
-import Focus from '@/components/icons/focus';
 import SwitchProduct from '@/components/home/product-showcase/switch-product';
 import { productShowCaseConfig } from '@/lib/config/home';
 import animationData from '@/assets/lottie/tasks/data';
@@ -10,6 +9,7 @@ import darkAnimationData from '@/assets/lottie/dark/tasks/data';
 import OverTitle from '@/components/shared/over-title';
 import Lottie from 'react-lottie';
 import { useInView } from 'framer-motion';
+import Title from '@/components/home/product-showcase/title';
 
 function ProductShowcase({ dark }: { dark: boolean }) {
   const ref = useRef(null);
@@ -75,10 +75,7 @@ function ProductShowcase({ dark }: { dark: boolean }) {
       </section>
       {/* A centralized place for your tasks, notes, and projects. Organize and visualize your data in tasks, board, table, and more. */}
       <section>
-        <div className={'title'}>{productShowCaseConfig.secondTitle}</div>
-        <div className={'icon text-primary'}>
-          <Focus />
-        </div>
+        <Title />
         <SwitchProduct />
       </section>
       {/* Easy-to-use and beautiful */}

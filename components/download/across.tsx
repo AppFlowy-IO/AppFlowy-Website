@@ -1,15 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  downloadLinux86,
-  downloadLinux86Deb,
-  downloadLinux86Rpm,
-  downloadMacIntel,
-  downloadMacUniversal,
-  downloadWindows,
-} from '@/lib/hooks/use-download';
+import { downloadMacIntel, downloadMacUniversal, downloadWindows } from '@/lib/hooks/use-download';
 import { useClient } from '@/lib/hooks/use-client';
+import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 
 function DownloadAcross() {
   const { isMobile } = useClient();
@@ -80,17 +74,7 @@ function DownloadAcross() {
           />
         </svg>
       ),
-      btns: [
-        <button disabled={isMobile} key={1} onClick={() => downloadLinux86Deb(true)} className={'download-btn'}>
-          Download Linux (.deb)
-        </button>,
-        <button disabled={isMobile} key={2} onClick={() => downloadLinux86Rpm(true)} className={'download-btn'}>
-          Download Linux (.rpm)
-        </button>,
-        <button disabled={isMobile} key={3} onClick={() => downloadLinux86(true)} className={'download-btn px-2'}>
-          Download Linux (.tar.gz)
-        </button>,
-      ],
+      btns: [<LinuxBtnGroup key={1} title={'Download'} />],
     },
   ];
 
@@ -129,6 +113,7 @@ function DownloadAcross() {
             <div className={'bg'} />
             <div className={'across-download-item-icon'}>{item.icon}</div>
             <div className={'dark:text-gray-400'}>Desktop</div>
+
             <div className={'across-download-item-title'}>{item.title}</div>
             <div className={'across-download-item-btns'}>{item.btns}</div>
           </div>
