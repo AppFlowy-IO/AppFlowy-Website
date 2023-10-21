@@ -113,10 +113,11 @@ export const fetchLastVersion = async (): Promise<string> => {
   const gnu = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.tar.gz`;
   const deb = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.deb`;
   const rpm = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.rpm`;
+  const appImage = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.AppImage`;
   const universal = `AppFlowy-${lastVersion.tag_name}-macos-universal.dmg`;
   const intel = `AppFlowy-${lastVersion.tag_name}-macos-x86_64.dmg`;
 
-  const released = [windows, deb, rpm, gnu, universal, intel].every((name) =>
+  const released = [windows, deb, rpm, gnu, universal, intel, appImage].every((name) =>
     lastVersion.assets.find((asset) => asset.name === name && asset.state === 'uploaded')
   );
 

@@ -17,6 +17,7 @@ export interface DownloadLinks {
     deb: string;
     rpm: string;
     gnu: string;
+    appImage: string;
   };
 }
 
@@ -62,6 +63,12 @@ export function storageDownloadLinks(version: string) {
       }),
     },
     linux: {
+      appImage: genLink({
+        platform: 'linux',
+        version,
+        arch: 'x86_64',
+        fileExtension: 'AppImage',
+      }),
       deb: genLink({
         platform: 'linux',
         version,
@@ -120,6 +127,13 @@ export const downloadLinux86Rpm = (transfer = true) => {
 
   if (!links) return;
   download(links.linux.rpm, transfer);
+};
+
+export const downloadLinux86AppImage = (transfer = true) => {
+  const links = getDownloadLinks();
+
+  if (!links) return;
+  download(links.linux.appImage, transfer);
 };
 
 export const downloadLinux86 = (transfer = true) => {

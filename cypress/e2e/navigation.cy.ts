@@ -56,7 +56,7 @@ describe('Navigation', () => {
     // Wait for the page to navigate to /what-is-new
     cy.url().should('include', '/what-is-new');
     // Ensure that the notification bar is no longer visible
-    cy.get('.banner').should('not.exist');
+    cy.get('.banner').not('exist');
   });
 
   it('clicking the download for free button should navigate to the download page', () => {

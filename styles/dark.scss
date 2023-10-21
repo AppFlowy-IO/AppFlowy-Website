@@ -225,6 +225,13 @@
           .bg {
             @apply bg-[#8A5EB7];
           }
+
+          .across-download-item-desc {
+
+            .download-extension-link {
+              @apply text-lavender-purple;
+            }
+          }
         }
       }
     }
@@ -506,8 +513,18 @@
       @apply border-white;
     }
   }
-  .popover-paper {
+  .popover-paper, #body .dropdown-btn__popover-paper {
     @apply bg-[#0D101F] text-white;
+    .dropdown-btn__extension-option {
+      &:hover, &.Mui-selected, &.Mui-selected:hover {
+        @apply bg-primary-20;
+      }
+    }
+  }
+  .hero-desc {
+    > a {
+      @apply text-gray-400;
+    }
   }
   .menu-popover-content {
     .group {

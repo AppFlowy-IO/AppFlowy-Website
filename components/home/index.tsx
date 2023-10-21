@@ -2,9 +2,8 @@
 
 import React, { lazy } from 'react';
 import HeroSection from '@/components/home/hero-section/hero-section';
+import ProductShowcase from '@/components/home/product-showcase/product-showcase';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
-
-const ProductShowcase = lazy(() => import('@/components/home/product-showcase/product-showcase'));
 
 const SupportAI = lazy(() => import('@/components/home/support-ai/support-ai'));
 

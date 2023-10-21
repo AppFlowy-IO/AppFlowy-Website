@@ -19,6 +19,7 @@
   @apply flex flex-col items-center w-full py-[85px] relative overflow-visible;
   @apply max-sm:px-[10px];
 
+
   > .linear-circle-1 {
     @apply absolute top-[-50%] left-[-50%] w-[80vw] h-[80vw] rounded-full bg-[#E2E0FA] transform translate-z-0 blur-[150px];
   }
@@ -72,12 +73,8 @@
     }
   }
 
-  > .btn {
-    .desc {
-      > a {
-        @apply underline text-primary;
-      }
-    }
+  .dropdown-btn > .download-btn {
+    @apply w-[auto];
   }
 
 }
@@ -166,8 +163,8 @@
     @apply relative pb-[100px] xl:px-[60px] flex flex-col items-center justify-center;
     @apply max-sm:pb-[127px];
     > .title {
-      @apply mt-[330px] max-w-[1140px] mb-[60px] text-[#CCCFD9] text-[74px] font-medium text-center leading-[105%] tracking-[-4px];
-      @apply max-sm:mt-[100px] max-sm:text-[30px] max-sm:leading-[115%] max-sm:tracking-[-0.9px] max-sm:mx-[20px];
+      @apply mt-[280px] max-w-[1140px] mb-[60px] text-[#CCCFD9] text-[74px] font-medium text-center leading-[105%] tracking-[-4px];
+      @apply max-sm:mt-[80px] max-sm:text-[30px] max-sm:leading-[115%] max-sm:tracking-[-0.9px] max-sm:mx-[20px];
 
       .highlight {
         @apply text-primary;
@@ -181,8 +178,8 @@
     }
 
     .icon {
-      @apply absolute top-[300px] left-1/2 w-[54px] h-[54px];
-      @apply max-sm:w-[19px] max-sm:h-[19px] max-sm:top-[86px] max-sm:left-[220px];
+      @apply absolute top-[-30px] right-[-54px] w-[54px] h-[54px];
+      @apply max-sm:w-[19px] max-sm:h-[19px] max-sm:top-[-10px] max-sm:right-[-19px];
     }
   }
 

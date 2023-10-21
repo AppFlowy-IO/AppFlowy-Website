@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import icon1 from '@/assets/images/download/icon-1.png';
 import icon2 from '@/assets/images/download/icon-2.png';
@@ -9,15 +9,85 @@ import darkIcon3 from '@/assets/images/download/dark/icon-3.png';
 import { downloadPageConfig } from '@/lib/config/pages';
 import { Manrope } from 'next/font/google';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
 function OverTitle({ title }: { title: string }) {
   const dark = useDarkContext();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const value = useMotionValue(0);
+  // const x = useTransform(value, [0, 1], [0, 1]);
+  const x = useSpring(value, {
+    stiffness: 300,
+    damping: 200,
+  });
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+    let timeoutId: NodeJS.Timeout | null = null;
+    const textEl = el.querySelector('.title-text');
+    const headerHeight = document.querySelector('.appflowy-header')?.clientHeight || 0;
+    const rect = el.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const textWidth = textEl?.clientWidth || 0;
+    const scrollWidth = textWidth - rect.width;
+    const scrollHeight = window.innerHeight - rect.height - headerHeight;
+
+    const delta = (scrollWidth / scrollHeight) * 0.3;
+
+    const diff = top - scrollHeight / 2 - headerHeight;
+
+    const scrollHandler = () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+
+      const currentScrollTop = document.documentElement.scrollTop;
+
+      const scrollDistance = -(currentScrollTop - diff) * delta;
+
+      x.set(scrollDistance);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          x.set(0);
+          timeoutId = setTimeout(() => {
+            scrollHandler();
+          }, 0);
+          document.addEventListener('scroll', scrollHandler);
+        } else {
+          document.removeEventListener('scroll', scrollHandler);
+        }
+      });
+    });
+
+    observer.observe(el);
+
+    document.addEventListener('resize', scrollHandler);
+    return () => {
+      x.set(0);
+      timeoutId && clearTimeout(timeoutId);
+      document.removeEventListener('scroll', scrollHandler);
+      observer.disconnect();
+      document.removeEventListener('resize', scrollHandler);
+    };
+  }, [x]);
 
   return (
-    <div className={`over-title ${manrope.className}`}>
-      <div className={'title-text'}>{title}</div>
+    <motion.div
+      style={{
+        x,
+      }}
+      ref={ref}
+      className={`translate-z-0 over-title transform ${manrope.className}`}
+    >
+      <div className={`title-text`}>{title}</div>
       <div className={'icons'}>
         <Image
           className={'icon icon-1'}
@@ -41,7 +111,7 @@ function OverTitle({ title }: { title: string }) {
           height={174}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

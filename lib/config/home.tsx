@@ -72,14 +72,7 @@ export const productShowCaseConfig = {
     </span>
   ),
   secondImgAlt: "AppFlowy's product showcase",
-  secondTitle: (
-    <span>
-      <span className={'black bold'}>
-        A <span className={'highlight'}>centralized</span> place for your tasks, notes, and projects.
-      </span>{' '}
-      Organize and visualize your data in tables, boards, calendars, and more.
-    </span>
-  ),
+
   thirdTitle: (
     <span>
       <span className={'primary-word'}>
