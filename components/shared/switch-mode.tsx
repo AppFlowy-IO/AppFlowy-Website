@@ -5,6 +5,7 @@ import DarkIcon from '@/components/icons/dark';
 import { motion } from 'framer-motion';
 import { setTheme } from '@/lib/set-theme';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
+import { collectEvent, EventName } from '@/lib/collect';
 
 export default function SwitchMode({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
   const isDark = useDarkContext();
@@ -18,6 +19,9 @@ export default function SwitchMode({ onChangeMode }: { onChangeMode: (dark?: boo
       onClick={() => {
         const dark = !isDark;
 
+        collectEvent(EventName.switchMode, {
+          mode: dark ? 'dark' : 'light',
+        });
         setTheme(dark);
         onChangeMode(dark);
       }}

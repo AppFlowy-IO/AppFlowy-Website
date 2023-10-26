@@ -19,7 +19,7 @@ export function download(url: string, transfer = true) {
 
   if (transfer) {
     Storage.set('download_url', url);
-    a.href = `/downloading`;
+    a.href = `/downloaded`;
   } else {
     a.href = url;
     const params = parseDownloadUrl(url);

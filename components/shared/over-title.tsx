@@ -28,17 +28,24 @@ function OverTitle({ title }: { title: string }) {
     if (!ref.current) return;
     const el = ref.current;
     let timeoutId: NodeJS.Timeout | null = null;
-    const textEl = el.querySelector('.title-text');
-    const headerHeight = document.querySelector('.appflowy-header')?.clientHeight || 0;
-    const rect = el.getBoundingClientRect();
-    const top = rect.top + window.scrollY;
-    const textWidth = textEl?.clientWidth || 0;
-    const scrollWidth = textWidth - rect.width;
-    const scrollHeight = window.innerHeight - rect.height - headerHeight;
+    let delta: number, diff: number, scrollWidth: number;
 
-    const delta = (scrollWidth / scrollHeight) * 0.3;
+    const initialize = () => {
+      const textEl = el.querySelector('.title-text');
+      const headerHeight = document.querySelector('.appflowy-header')?.clientHeight || 0;
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + window.scrollY;
+      const textWidth = textEl?.clientWidth || 0;
 
-    const diff = top - scrollHeight / 2 - headerHeight;
+      scrollWidth = textWidth - rect.width;
+      const scrollHeight = window.innerHeight - rect.height;
+
+      delta = scrollWidth / scrollHeight;
+
+      diff = top - scrollHeight / 2 - headerHeight;
+    };
+
+    initialize();
 
     const scrollHandler = () => {
       if (timeoutId) {
@@ -49,6 +56,10 @@ function OverTitle({ title }: { title: string }) {
       const currentScrollTop = document.documentElement.scrollTop;
 
       const scrollDistance = -(currentScrollTop - diff) * delta;
+      
+      if (Math.abs(scrollDistance) > scrollWidth / 2) {
+        return;
+      }
 
       x.set(scrollDistance);
     };
@@ -69,13 +80,18 @@ function OverTitle({ title }: { title: string }) {
 
     observer.observe(el);
 
-    document.addEventListener('resize', scrollHandler);
+    const resize = () => {
+      initialize();
+      scrollHandler();
+    };
+
+    window.addEventListener('resize', resize);
     return () => {
       x.set(0);
       timeoutId && clearTimeout(timeoutId);
       document.removeEventListener('scroll', scrollHandler);
       observer.disconnect();
-      document.removeEventListener('resize', scrollHandler);
+      window.removeEventListener('resize', resize);
     };
   }, [x]);
 
