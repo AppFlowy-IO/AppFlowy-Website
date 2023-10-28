@@ -9,6 +9,7 @@ import { GitContext } from '@/lib/hooks/use-git-context';
 import { UAContext } from '@/lib/hooks/use-ua';
 import { setTheme } from '@/lib/set-theme';
 import Script from 'next/script';
+import * as process from 'process';
 
 const Header = lazy(() => import('@/components/layout/header'));
 
@@ -78,7 +79,9 @@ export default function App({
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
        
-                gtag('config', '${GA_MEASUREMENT_ID}');
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                   page_theme: '${dark ? 'dark' : 'light'}'
+                });
               `}
                 </Script>
               </>

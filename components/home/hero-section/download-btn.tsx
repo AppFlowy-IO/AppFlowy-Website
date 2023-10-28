@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useClient } from '@/lib/hooks/use-client';
 import { downloadMacUniversal, useDownload } from '@/lib/hooks/use-download';
-import { GitContext } from '@/lib/hooks/use-git-context';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
-import { parseDownloadUrl } from '@/lib/download';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 import HeroDesc from '@/components/shared/hero-desc';
 
@@ -18,7 +16,6 @@ function HeroDownloadBtn() {
   const inView = useInView(ref, {
     once: true,
   });
-  const gitData = useContext(GitContext);
   const name = useMemo(() => {
     const name = os?.name?.toLowerCase() || '';
 
@@ -32,17 +29,11 @@ function HeroDownloadBtn() {
 
   useEffect(() => {
     if (inView && isClient) {
-      const link = getOsDownloadLink();
-
-      if (!link) return;
-      const params = parseDownloadUrl(link);
-
-      collectEvent(EventName.btnDisplay, {
-        btn_type: 'home_download',
-        ...params,
+      collectEvent(EventName.homePageDownloadBtn, {
+        type: 'view',
       });
     }
-  }, [isClient, inView, name, gitData?.lastVersion, getOsDownloadLink]);
+  }, [isClient, inView]);
 
   return (
     <div ref={ref} className={'flex flex-col items-center justify-center gap-[20px]'}>
@@ -54,11 +45,9 @@ function HeroDownloadBtn() {
             const link = getOsDownloadLink();
 
             if (!link) return;
-            const params = parseDownloadUrl(link);
 
-            collectEvent(EventName.btnClick, {
-              btn_type: 'home_download',
-              ...params,
+            collectEvent(EventName.homePageDownloadBtn, {
+              type: 'click',
             });
             // if current os is mobile, download mac universal
             if (isMobile) {
@@ -74,7 +63,7 @@ function HeroDownloadBtn() {
         </button>
       )}
 
-      <HeroDesc />
+      <HeroDesc inView={inView} />
     </div>
   );
 }

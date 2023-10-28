@@ -9,6 +9,22 @@ const rewrites = () => {
       source: '/crm/v3/:path*',
       destination: 'https://api.hubapi.com/crm/v3/:path*',
     },
+    {
+      source: '/downloading',
+      destination: '/downloaded',
+    },
+    {
+      source: '/whatsnew',
+      destination: '/what-is-new',
+    },
+    {
+      source: '/blocks',
+      destination: '/appflowy-blocks',
+    },
+    {
+      source: '/careers',
+      destination: '/join',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */

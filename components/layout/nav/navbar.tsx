@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Logo from '@/components/icons/logo';
 import { navigation } from '@/lib/config/navigation';
 import Link from 'next/link';
@@ -10,16 +10,28 @@ import NavbarItem from '@/components/layout/nav/navbar-item';
 import NavbarPopover from '@/components/layout/nav/navbar-popover';
 import Menu from '@/components/icons/menu';
 import DrawerNavbar from '@/components/layout/nav/drawer-nav';
+import { collectEvent, EventName } from '@/lib/collect';
+import { useInView } from 'framer-motion';
 
 const closeDuration = 200;
 
 function Navbar() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, {
+    once: true,
+  });
   const scrolled = useScroll();
   const [popoverType, setPopoverType] = useState<string | undefined>();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | undefined>();
   const debounceClose = useMemo(() => debounce(() => setAnchorEl(undefined), closeDuration), []);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  useEffect(() => {
+    if (!inView) return;
+    collectEvent(EventName.navigatorStartForFreeBtn, {
+      type: 'view',
+    });
+  }, [inView]);
   return (
     <nav className={`appflowy-navbar ${scrolled ? 'sticky' : ''}`}>
       {/* Logo */}
@@ -51,8 +63,15 @@ function Navbar() {
         </div>
 
         {/* Star for free Button */}
-        <div className={'navbar-btn-download'}>
-          <Link href={'/download'}>
+        <div ref={ref} className={'navbar-btn-download'}>
+          <Link
+            onClick={() => {
+              collectEvent(EventName.navigatorStartForFreeBtn, {
+                type: 'click',
+              });
+            }}
+            href={'/download'}
+          >
             <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
           </Link>
         </div>
