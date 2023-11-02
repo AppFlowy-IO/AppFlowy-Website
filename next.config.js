@@ -25,6 +25,10 @@ const rewrites = () => {
       source: '/careers',
       destination: '/join',
     },
+    {
+      source: '/blog',
+      destination: '/subscribe-newsletter',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */
