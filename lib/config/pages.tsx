@@ -407,10 +407,10 @@ export const joinPageConfig = {
     },
   ],
   jobs: [
-    {
-      title: 'Senior Backend Developer Rust',
-      link: 'https://apply.workable.com/appflowy/j/3DEE4EA0C0/',
-    },
+    // {
+    //   title: 'Senior Backend Developer Rust',
+    //   link: 'https://apply.workable.com/appflowy/j/3DEE4EA0C0/',
+    // },
   ],
 };
 
