@@ -300,14 +300,16 @@
     }
 
     .investors {
-      @apply flex flex-wrap mx-[10%] items-center;
+      @apply flex flex-wrap mx-[10%] lg:items-center;
+      @apply max-xl:mx-[5%] md:items-start;
       .investor-item {
-        @apply max-sm:w-1/2 w-1/3 mt-[50px] pr-[120px];
+        @apply max-sm:w-1/2 w-1/3 mt-[50px] pr-[30px];
         @apply max-sm:pr-0 max-sm:mt-[30px];
       }
 
       .investor-item-name {
-        @apply mb-2 text-left text-[30px] font-medium leading-[33px] max-sm:text-base;
+        @apply mb-2 text-left 2xl:text-[30px] font-medium leading-[33px] max-sm:text-base;
+        @apply xl:text-[26px] md:text-[18px];
       }
 
       .investor-item-desc {

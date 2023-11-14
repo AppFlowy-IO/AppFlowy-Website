@@ -239,40 +239,72 @@ export const aboutPageConfig = {
   ourInvestorsTitle: 'Our investors',
   investors: [
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'OSS Capital',
+      desc: 'For an open future',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'HongShan',
+      desc: 'The entrepreneurs behind the entrepreneurs',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Bob Young',
+      desc: 'Co-Founder of Red Hat',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Steve Chen',
+      desc: 'Co-Founder of YouTube',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Tom Preston-Werner',
+      desc: 'Co-Founder of GitHub',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Sijie Guo',
+      desc: 'Founder of StreamNative',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Justin Hoffman',
+      desc: 'SVP at Elastic',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Preetha Parthasarathy',
+      desc: 'Corp Dev at SAP',
     },
     {
-      name: 'Phin Barnes',
-      desc: 'Partner at First Round Capital',
+      name: 'Amr Awadallah',
+      desc: 'Co-Founder of Cloudera',
+    },
+    {
+      name: 'Clint Smith',
+      desc: 'Chief Legal at Discord',
+    },
+    {
+      name: 'David Mytton',
+      desc: 'Co-Founder of Server Density',
+    },
+    {
+      name: 'Matt Mullenweg',
+      desc: 'Founder of Automattic',
+    },
+    {
+      name: 'Kevin Xu',
+      desc: 'Senior Director at GitHub',
+    },
+    {
+      name: 'Peer Richelsen',
+      desc: 'Co-Founder of Cal.com',
+    },
+    {
+      name: 'Paul Copplestone',
+      desc: 'Co-Founder of Supabase',
+    },
+    {
+      name: 'Arkadiusz Zarowski',
+      desc: 'Obvious Ventures',
+    },
+    {
+      name: 'Maneesh Sharma',
+      desc: 'COO at LambdaTest',
     },
   ],
 };

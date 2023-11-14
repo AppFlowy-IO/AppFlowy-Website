@@ -3,8 +3,7 @@ import '@/styles/about.scss';
 import Missions from '@/components/about/missions';
 import Community from '@/components/about/community';
 import OurValues from '@/components/about/our-values';
-
-// import OurInvestors from '@/components/about/our-investors';
+import OurInvestors from '@/components/about/our-investors';
 
 function Page() {
   return (
@@ -12,7 +11,7 @@ function Page() {
       <Missions />
       <Community />
       <OurValues />
-      {/*<OurInvestors />*/}
+      <OurInvestors />
     </div>
   );
 }

@@ -173,12 +173,7 @@ export const supportAIConfig = {
     },
     {
       title: 'Choose your\nAI service',
-      desc: (
-        <span>
-          Whether it’s OpenAI, Stability AI or <span className={'no-wrap'}>Llama 2,</span> you can choose the AI service
-          that works best for you.
-        </span>
-      ),
+      desc: <span>Whether it’s OpenAI or Stability AI, you can choose the AI service that works best for you.</span>,
       icon: <Send />,
     },
   ],
