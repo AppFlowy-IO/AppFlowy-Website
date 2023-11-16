@@ -20,8 +20,10 @@ function OurInvestors() {
       <div className={'investors'}>
         {aboutPageConfig.investors.map((item, index) => (
           <div key={index} className={'investor-item'}>
-            <div className={'investor-item-name'}>{item.name}</div>
-            <div className={'investor-item-desc'}>{item.desc}</div>
+            <div className={'investor-item-child'}>
+              <div className={'investor-item-name'}>{item.name}</div>
+              <div className={'investor-item-desc'}>{item.desc}</div>
+            </div>
           </div>
         ))}
       </div>

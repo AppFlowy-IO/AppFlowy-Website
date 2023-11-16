@@ -56,13 +56,13 @@ export const aboutPageConfig = {
       desc: (
         <div>
           <div>
-            {`While co-founder Annie Wang was working on an enterprise proprietary collaboration platform in her previous company, she came to realize that there isn't a one-size-fits-all workplace solution or an all-in-one superapp that covers every enterprise need.`}
+            {`While co-founder Annie Wang was working on an enterprise proprietary collaboration platform in her previous company, she came to realize that there isn't a one-size-fits-all workplace solution that suits every enterprise's needs well.`}
           </div>
           <br />
           <div>
-            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize certain features for
-            particular customers at the expense of everything else. The end result is a poor cross-platform experience
-            and bulky, slow products that struggle to scale.
+            Likewise, workplace apps, such as Notion and Airtable, are often forced to prioritize features for some
+            customers at the expense of the rest. This usually leads to a poor cross-platform experience and products
+            that struggle to scale without becoming bulky and slow.
           </div>
         </div>
       ),
@@ -88,7 +88,7 @@ export const aboutPageConfig = {
       title: 'Our solution',
       desc: (
         <div className={'our-mission-desc'}>
-          <div>AppFlowy - a privacy-first, open source workspace for projects and knowledge, made to suit everyone.</div>
+          <div>AppFlowy - a secure, open source workspace for wikis and projects, made to suit everyone.</div>
           <div className={'list'}>
             <div>Put control of your data in your hands</div>
             <div>Ensure the user interface is fast and intuitive.</div>
@@ -117,8 +117,8 @@ export const aboutPageConfig = {
             <div>Data privacy first</div>
             <div>Community-driven extensibility</div>
             <div>Reliable and fast native app experience</div>
-            <div>Continuous and fast paced innovation</div>
-            <div>Open source</div>
+            <div>Continuous, fast-paced innovation</div>
+            <div>Commitment to an open source philosophy</div>
           </div>
         </div>
       ),
@@ -259,10 +259,6 @@ export const aboutPageConfig = {
       desc: 'Co-Founder of GitHub',
     },
     {
-      name: 'Sijie Guo',
-      desc: 'Founder of StreamNative',
-    },
-    {
       name: 'Justin Hoffman',
       desc: 'SVP at Elastic',
     },
@@ -300,7 +296,7 @@ export const aboutPageConfig = {
     },
     {
       name: 'Arkadiusz Zarowski',
-      desc: 'Obvious Ventures',
+      desc: 'Investor',
     },
     {
       name: 'Maneesh Sharma',
