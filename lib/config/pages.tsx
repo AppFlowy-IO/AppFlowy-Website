@@ -264,7 +264,7 @@ export const aboutPageConfig = {
     },
     {
       name: 'Preetha Parthasarathy',
-      desc: 'Corp Dev at SAP',
+      desc: 'Angel Investor',
     },
     {
       name: 'Amr Awadallah',
