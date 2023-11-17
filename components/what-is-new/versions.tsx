@@ -4,26 +4,26 @@ import VersionComponent from '@/components/what-is-new/version';
 import { IVersion } from '@/lib/config/versions';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { getMonth, getVersions } from '@/lib/versions';
+import { getVersions } from '@/lib/versions';
 
 dayjs.extend(LocalizedFormat);
 
 function Versions({ versions }: { versions: IVersion[] }) {
-  const monthVersions = useMemo(() => getVersions(versions), [versions]);
+  const monthVersions: (IVersion & {
+    month?: string;
+  })[] = useMemo(() => getVersions(versions), [versions]);
 
   return (
     <div className={'versions'}>
       {monthVersions.map((version) => {
-        const month = getMonth(version.time);
-
         return (
           <div className={'month-panel'} key={version.version}>
-            {month ? (
+            {version.month ? (
               <div className={'month'}>
                 <i className={'text-primary'}>
                   <VersionGroup />
                 </i>
-                {month}
+                {version.month}
               </div>
             ) : null}
 
