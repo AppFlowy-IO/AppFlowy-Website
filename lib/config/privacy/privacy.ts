@@ -160,5 +160,5 @@ export const privacyHTML = `<h1>Privacy Policy</h1>
 <p>For more information about these rights, please contact us.</p>
 <h1>Contact Us</h1>
 <p>Don't hesitate to contact us if you have any questions.</p>
-<ul><li>Via Email:  <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b5b3b6b6a9b4b286a7b6b6a0aaa9b1bfe8afa9">[email&#160;protected]</a></li>
+<ul><li>Via Email: <a href="mailto:support@appflowy.io">support@appflowy.io</a></li>
 </ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>`;

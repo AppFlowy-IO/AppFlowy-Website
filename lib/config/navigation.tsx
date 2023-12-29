@@ -113,15 +113,24 @@ export const navigation: Item[] = [
         children: [
           {
             key: '1',
-            name: 'Self-hosting AppFlowy Free Using Supabase',
-            href: 'https://blog.appflowy.io/self-hosting-appflowy-free-using-supabase/',
+            name: 'Self-hosting AppFlowy with AppFlowy Cloud',
+            href: 'https://docs.appflowy.io/docs/guides/appflowy/self-hosting-appflowy',
             image: {
-              src: '/images/appflowy_self_hosted_free_supabase.png',
-              alt: 'Self-hosting AppFlowy Free Using Supabase',
+              src: '/images/self-hosting-appflowy.webp',
+              alt: 'Self-hosting AppFlowy with AppFlowy Cloud',
             },
           },
           {
             key: '2',
+            name: 'AppFlowy 2nd Anniversary and 2023 Roundup',
+            href: 'https://blog.appflowy.io/appflowy-2nd-anniversary-and-2023-roundup/',
+            image: {
+              src: '/images/appflowy-2nd-anniversary-and-2023-roundup.png',
+              alt: 'AppFlowy 2nd Anniversary and 2023 Roundup',
+            },
+          },
+          {
+            key: '3',
             name: 'How to Contribute to AppFlowy',
             href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
             image: {
@@ -204,15 +213,24 @@ export const navigation: Item[] = [
         children: [
           {
             key: '1',
-            name: 'Self-hosting AppFlowy Free Using Supabase',
-            href: 'https://blog.appflowy.io/self-hosting-appflowy-free-using-supabase/',
+            name: 'Self-hosting AppFlowy with AppFlowy Cloud',
+            href: 'https://docs.appflowy.io/docs/guides/appflowy/self-hosting-appflowy',
             image: {
-              src: '/images/appflowy_self_hosted_free_supabase.png',
-              alt: 'Self-hosting AppFlowy Free Using Supabase',
+              src: '/images/self-hosting-appflowy.webp',
+              alt: 'Self-hosting AppFlowy with AppFlowy Cloud',
             },
           },
           {
             key: '2',
+            name: 'AppFlowy 2nd Anniversary and 2023 Roundup',
+            href: 'https://blog.appflowy.io/appflowy-2nd-anniversary-and-2023-roundup/',
+            image: {
+              src: '/images/appflowy-2nd-anniversary-and-2023-roundup.png',
+              alt: 'AppFlowy 2nd Anniversary and 2023 Roundup',
+            },
+          },
+          {
+            key: '3',
             name: 'How to Contribute to AppFlowy',
             href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
             image: {

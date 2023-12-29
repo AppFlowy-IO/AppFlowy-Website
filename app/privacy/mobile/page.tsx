@@ -1,4 +1,4 @@
-import { privacyHTML } from '@/lib/config/privacy/privacy';
+import { privacyHTML } from '@/lib/config/privacy/mobile';
 
 function Page() {
   return (

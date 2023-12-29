@@ -35,7 +35,6 @@ function DownloadOsBtn() {
           </div>
         </span>
       </div>
-      {isMobile && <div className={'text-primary mb-[20px] text-[12px]'}>Coming in December</div>}
       <div className={'download z-[2]'}>
         {isLinux ? (
           <LinuxBtnGroup title={'DOWNLOAD'} />
