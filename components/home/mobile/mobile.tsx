@@ -8,7 +8,6 @@ function Mobile({ dark }: { dark: boolean }) {
     <div className={'mobile'}>
       <div className={'bg'} />
       <div className={'title'}>{mobileApplicationConfig.title}</div>
-      <div className={'desc'}>Coming in December</div>
       <DownloadBtns />
       <MobileAnimation dark={dark} />
     </div>

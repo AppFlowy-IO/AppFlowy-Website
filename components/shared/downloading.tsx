@@ -96,7 +96,6 @@ function Downloading() {
           </div>
           <div className={'download-mobile-container_desc max-sm:px-[60px]'}>
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
-            <div className={'text-primary mt-[20px]'}>Coming in December</div>
           </div>
           <div className={'btn-group'}>
             <button disabled className={'download-btn'}>
