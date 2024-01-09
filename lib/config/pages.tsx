@@ -159,7 +159,7 @@ export const aboutPageConfig = {
       },
     },
     {
-      value: 4000,
+      value: 5000,
       label: 'Newsletter subscribers',
       link: {
         text: 'Subscribe',
