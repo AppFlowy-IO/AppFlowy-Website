@@ -14,17 +14,22 @@ export function parseDownloadUrl(url: string): DownloadParams {
   };
 }
 
-export function download(url: string, transfer = true) {
+export function download(url: string, transfer = true, isMobile = false) {
   const a = document.createElement('a');
 
-  if (transfer) {
-    Storage.set('download_url', url);
-    a.href = `/downloaded`;
-  } else {
+  if (isMobile) {
     a.href = url;
-    const params = parseDownloadUrl(url);
+    a.target = '_blank';
+  } else {
+    if (transfer) {
+      Storage.set('download_url', url);
+      a.href = `/downloaded`;
+    } else {
+      a.href = url;
+      const params = parseDownloadUrl(url);
 
-    collectEvent(EventName.download, params);
+      collectEvent(EventName.download, params);
+    }
   }
 
   document.body.appendChild(a);

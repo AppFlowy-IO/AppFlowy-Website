@@ -6,6 +6,7 @@ import { download } from '@/lib/download';
 import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
+import { collectEvent, EventName } from '@/lib/collect';
 
 export interface DownloadLinks {
   windows: string;
@@ -19,6 +20,7 @@ export interface DownloadLinks {
     gnu: string;
     appImage: string;
   };
+  ios: string;
 }
 
 function getDownloadLinks(): DownloadLinks | undefined {
@@ -88,6 +90,7 @@ export function storageDownloadLinks(version: string) {
         fileExtension: 'tar.gz',
       }),
     },
+    ios: 'https://testflight.apple.com/join/6CexvkDz',
   };
 
   Storage.set('download-links', links);
@@ -154,13 +157,27 @@ export function useDownload() {
     }
   }, [gitData]);
 
+  const downloadIOS = useCallback(() => {
+    const links = getDownloadLinks();
+
+    if (!links) return;
+    download(links.ios, false, true);
+
+    collectEvent(EventName.download, {
+      version: gitData?.lastVersion || '',
+      platform: 'ios',
+      arch: '',
+      file_extension: '',
+    });
+  }, [gitData?.lastVersion]);
+
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();
 
     if (!links) return;
     switch (name) {
       case 'ios':
-        return '';
+        return links?.ios;
       case 'android':
         return '';
       case 'macos': {
@@ -184,6 +201,10 @@ export function useDownload() {
   }, [name]);
 
   const downloadOS = useCallback(() => {
+    if (name === 'ios') {
+      return downloadIOS();
+    }
+
     const link = getOsDownloadLink();
 
     if (!link) {
@@ -191,11 +212,12 @@ export function useDownload() {
     }
 
     download(link, !isMobile);
-  }, [getOsDownloadLink, isMobile]);
+  }, [downloadIOS, getOsDownloadLink, isMobile, name]);
 
   return {
     downloadOS,
     getOsDownloadLink,
+    downloadIOS,
   };
 }
 
