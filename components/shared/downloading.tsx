@@ -3,7 +3,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
-import Apple from '@/components/icons/apple';
+// import Apple from '@/components/icons/apple';
+import TestFlight from '@/components/icons/test-flight';
 import GooglePlay from '@/components/icons/google-play';
 import { useRouter } from 'next/navigation';
 import img1 from '@/assets/images/download/downloading-img-1.png';
@@ -13,6 +14,7 @@ import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { Storage } from '@/lib/storage';
+import { useDownload } from '@/lib/hooks/use-download';
 
 function Downloading() {
   const dark = useDarkContext();
@@ -40,6 +42,8 @@ function Downloading() {
   const gotoDownload = (tag: string) => {
     router.push(`/download#${tag}`);
   };
+
+  const { downloadIOS } = useDownload();
 
   return (
     <>
@@ -98,9 +102,9 @@ function Downloading() {
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
           </div>
           <div className={'btn-group'}>
-            <button disabled className={'download-btn'}>
-              <Apple />
-              App Store
+            <button onClick={downloadIOS} className={'download-btn'}>
+              <TestFlight />
+              Test Flight
             </button>
             <button disabled className={'download-btn'}>
               <GooglePlay />

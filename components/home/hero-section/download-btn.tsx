@@ -9,7 +9,7 @@ import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 import HeroDesc from '@/components/shared/hero-desc';
 
 function HeroDownloadBtn() {
-  const { os, isMobile, isClient, isLinux } = useClient();
+  const { os, isAndroid, isClient, isLinux } = useClient();
   const { downloadOS, getOsDownloadLink } = useDownload();
 
   const ref = useRef(null);
@@ -22,7 +22,7 @@ function HeroDownloadBtn() {
     if (name.includes('mac')) return 'macOS';
     if (name.includes('windows')) return 'Windows';
     // if (name.includes('android')) return 'Android';
-    // if (name.includes('ios')) return 'iOS';
+    if (name.includes('ios')) return 'iOS';
 
     return 'macOS';
   }, [os?.name]);
@@ -49,8 +49,8 @@ function HeroDownloadBtn() {
             collectEvent(EventName.homePageDownloadBtn, {
               type: 'click',
             });
-            // if current os is mobile, download mac universal
-            if (isMobile) {
+            // if current os is android, download mac universal
+            if (isAndroid) {
               downloadMacUniversal();
               return;
             }
