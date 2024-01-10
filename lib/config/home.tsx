@@ -278,7 +278,7 @@ export const communityConfig = {
   ),
   numbers: [
     {
-      value: 4000,
+      value: 5000,
       text: 'Community members',
     },
     {
@@ -286,7 +286,7 @@ export const communityConfig = {
       text: 'Countries represented',
     },
     {
-      value: 200,
+      value: 240,
       text: 'Contributors',
     },
   ],

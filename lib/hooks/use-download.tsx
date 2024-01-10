@@ -7,6 +7,7 @@ import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
 import { collectEvent, EventName } from '@/lib/collect';
+import { ModalContext } from '@/lib/hooks/use-modal';
 
 export interface DownloadLinks {
   windows: string;
@@ -150,6 +151,7 @@ export function useDownload() {
   const { os, isMobile } = useClient();
   const name = os?.name?.toLowerCase().replaceAll(' ', '');
   const gitData = useContext(GitContext);
+  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     if (gitData?.lastVersion !== undefined) {
@@ -158,18 +160,53 @@ export function useDownload() {
   }, [gitData]);
 
   const downloadIOS = useCallback(() => {
+    collectEvent(EventName.downloadIOSTestFlightBtn, {
+      type: 'click',
+    });
     const links = getDownloadLinks();
 
     if (!links) return;
-    download(links.ios, false, true);
 
-    collectEvent(EventName.download, {
-      version: gitData?.lastVersion || '',
-      platform: 'ios',
-      arch: '',
-      file_extension: '',
+    openModal({
+      title: 'Thanks for testing AppFlowy Mobile!',
+      content: (
+        <div>
+          If you’ve been using our desktop app, it’s important to read{' '}
+          <a
+            className={'text-primary underline dark:text-white'}
+            href={
+              'https://appflowy.us20.list-manage.com/track/click?u=b4294d99430126e6773ddd0aa&id=4625da7908&e=a58582b0e6'
+            }
+          >
+            this guide
+          </a>{' '}
+          before logging into the mobile app.
+        </div>
+      ),
+      okText: 'Download',
+      cancelText: 'Cancel',
+      onOk: () => {
+        download(links.ios, false, true);
+
+        collectEvent(EventName.downloadIOSModalOkBtn, {
+          type: 'click',
+        });
+      },
+      onCancel: () => {
+        collectEvent(EventName.downloadIOSModalCancelBtn, {
+          type: 'click',
+        });
+      },
+      onMounted: () => {
+        collectEvent(EventName.downloadIOSModalOkBtn, {
+          type: 'view',
+        });
+        collectEvent(EventName.downloadIOSModalCancelBtn, {
+          type: 'view',
+        });
+      },
     });
-  }, [gitData?.lastVersion]);
+  }, [openModal]);
 
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();

@@ -520,6 +520,14 @@
         @apply bg-primary-20;
       }
     }
+
+    .desc {
+      @apply text-gray-400;
+      a {
+        @apply text-white;
+      }
+    }
+    
   }
   .hero-desc {
     > a {
