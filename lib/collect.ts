@@ -10,6 +10,7 @@ export enum EventName {
   switchMode = 'switch_mode',
   themeView = 'theme_view',
   downloadIOSTestFlightBtn = 'download_ios_testflight_btn',
+  downloadAndroidBtn = 'download_android_btn',
   downloadIOSModalOkBtn = 'download_ios_modal_ok_btn',
   downloadIOSModalCancelBtn = 'download_ios_modal_cancel_btn',
   downloadAndroidModalOkBtn = 'download_android_modal_ok_btn',
@@ -36,7 +37,8 @@ export function collectEvent(
     | EventName.downloadIOSModalCancelBtn
     | EventName.downloadAndroidModalOkBtn
     | EventName.downloadAndroidModalCancelBtn
-    | EventName.downloadIOSTestFlightBtn,
+    | EventName.downloadIOSTestFlightBtn
+    | EventName.downloadAndroidBtn,
   params: {
     type: 'view' | 'click';
   }

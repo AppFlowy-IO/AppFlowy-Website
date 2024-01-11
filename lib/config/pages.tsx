@@ -552,3 +552,8 @@ export const contributorsPageConfig = {
   ),
   learnMoreLink: 'https://docs.appflowy.io/docs/documentation/software-contributions/contributing-to-appflowy',
 };
+
+export const downloadVersion = {
+  ios: <span>Requires iOS 12.0 or above.</span>,
+  android: <span>Requires Android OS 10 or above.</span>,
+};

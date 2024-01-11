@@ -18,22 +18,24 @@ function Modal() {
   return (
     <Dialog
       PaperProps={{
-        className: `popover-paper`,
+        className: `modal-paper max-w-[530px]`,
       }}
       open={open}
       onClose={closeModal}
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
     >
-      <DialogTitle id='alert-dialog-title'>{modalProps?.title}</DialogTitle>
-      <DialogContent>
+      <DialogTitle id='alert-dialog-title' className={'modal-title'}>
+        <div>{modalProps?.title}</div>
+      </DialogTitle>
+      <DialogContent className={'pb-2'}>
         <DialogContentText className={'desc'} id='alert-dialog-description'>
           {modalProps?.content}
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      <DialogActions className={'modal-actions'}>
         <Button
-          className={'cancel-btn dark:hover:bg-primary-20 hover:bg-light-blue-gray text-[var(--color-primary)]'}
+          className={'cancel-btn'}
           onClick={() => {
             modalProps?.onCancel?.();
             closeModal();
@@ -42,7 +44,7 @@ function Modal() {
           {modalProps?.cancelText || 'Cancel'}
         </Button>
         <Button
-          className={'ok-btn dark:hover:bg-primary-20 hover:bg-light-blue-gray text-[var(--color-primary)]'}
+          className={'ok-btn'}
           onClick={() => {
             modalProps?.onOk?.();
             closeModal();

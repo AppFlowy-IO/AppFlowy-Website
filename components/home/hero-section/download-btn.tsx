@@ -2,14 +2,14 @@
 
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useClient } from '@/lib/hooks/use-client';
-import { downloadMacUniversal, useDownload } from '@/lib/hooks/use-download';
+import { useDownload } from '@/lib/hooks/use-download';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 import HeroDesc from '@/components/shared/hero-desc';
 
 function HeroDownloadBtn() {
-  const { os, isAndroid, isClient, isLinux } = useClient();
+  const { os, isClient, isLinux } = useClient();
   const { downloadOS, getOsDownloadLink } = useDownload();
 
   const ref = useRef(null);
@@ -21,7 +21,7 @@ function HeroDownloadBtn() {
 
     if (name.includes('mac')) return 'macOS';
     if (name.includes('windows')) return 'Windows';
-    // if (name.includes('android')) return 'Android';
+    if (name.includes('android')) return 'Android';
     if (name.includes('ios')) return 'iOS';
 
     return 'macOS';
@@ -49,11 +49,6 @@ function HeroDownloadBtn() {
             collectEvent(EventName.homePageDownloadBtn, {
               type: 'click',
             });
-            // if current os is android, download mac universal
-            if (isAndroid) {
-              downloadMacUniversal();
-              return;
-            }
 
             downloadOS();
           }}

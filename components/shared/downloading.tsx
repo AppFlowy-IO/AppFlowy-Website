@@ -3,9 +3,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
-// import Apple from '@/components/icons/apple';
-import TestFlight from '@/components/icons/test-flight';
-import GooglePlay from '@/components/icons/google-play';
 import { useRouter } from 'next/navigation';
 import img1 from '@/assets/images/download/downloading-img-1.png';
 import img2 from '@/assets/images/download/downloading-img-2.svg';
@@ -14,7 +11,7 @@ import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { Storage } from '@/lib/storage';
-import { useDownload } from '@/lib/hooks/use-download';
+import DownloadBtns from '@/components/home/mobile/download-btns';
 
 function Downloading() {
   const dark = useDarkContext();
@@ -42,8 +39,6 @@ function Downloading() {
   const gotoDownload = (tag: string) => {
     router.push(`/download#${tag}`);
   };
-
-  const { downloadIOS } = useDownload();
 
   return (
     <>
@@ -101,16 +96,8 @@ function Downloading() {
           <div className={'download-mobile-container_desc max-sm:px-[60px]'}>
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
           </div>
-          <div className={'btn-group'}>
-            <button onClick={downloadIOS} className={'download-btn'}>
-              <TestFlight />
-              Test Flight
-            </button>
-            <button disabled className={'download-btn'}>
-              <GooglePlay />
-              Google Play
-            </button>
-          </div>
+
+          <DownloadBtns />
         </div>
       </div>
       <div className={'panel panel-3'}>

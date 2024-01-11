@@ -34,7 +34,7 @@ function DownloadMobile() {
       </div>
       <div className={'desc text-center'}>Perform and look great</div>
       <DownloadBtns />
-      <div className={'image mobile-image relative'}>
+      <div className={'image max-sm:[40px] mobile-image relative mt-[60px]'}>
         <div className={'ellipse'} />
         <Image
           className={'relative'}

@@ -9,32 +9,28 @@ import { collectEvent, EventName } from '@/lib/collect';
 
 function DownloadBtns() {
   const { isIOS, isAndroid } = useClient();
-  const { downloadOS, downloadIOS } = useDownload();
+  const { downloadIOS, downloadAndroid } = useDownload();
 
   useEffect(() => {
     collectEvent(EventName.downloadIOSTestFlightBtn, {
+      type: 'view',
+    });
+    collectEvent(EventName.downloadAndroidBtn, {
       type: 'view',
     });
   }, []);
 
   return (
     <>
-      <a
-        target={'_blank'}
-        href={'https://docs.appflowy.io/docs/guides/sync-desktop-and-mobile'}
-        className={'desc z-10 text-center text-base underline'}
-      >
-        Learn how to sync desktop
-      </a>
-      <div className={'btn-group'}>
+      <div className={'btn-group mb-1'}>
         {isAndroid ? null : (
-          <button onClick={downloadIOS} className={'download-btn'}>
+          <button onClick={downloadIOS} className={'download-btn whitespace-nowrap'}>
             <TestFlight />
             Test Flight
           </button>
         )}
         {isIOS ? null : (
-          <button disabled onClick={downloadOS} className={'download-btn'}>
+          <button onClick={downloadAndroid} className={'download-btn whitespace-nowrap'}>
             <GooglePlay />
             Google Play
           </button>

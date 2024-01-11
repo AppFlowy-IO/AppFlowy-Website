@@ -11,6 +11,10 @@ import Roadmap from '@/components/icons/roadmap';
 import Ring from '@/components/icons/ring';
 import Book from '@/components/icons/book';
 import Email from '@/components/icons/email';
+import Mobile from '@/components/icons/mobile';
+import MacOs from '@/components/icons/macOS';
+import Windows from '@/components/icons/windows';
+import Linux from '@/components/icons/linux';
 
 /**
  * Config for the navigation bar
@@ -25,6 +29,44 @@ export const navigation: Item[] = [
     name: 'Download',
     href: '/download',
     key: 'download',
+    placement: 'left',
+    children: [
+      {
+        name: 'Download',
+        key: 'download-group-1',
+
+        children: [
+          {
+            key: '1',
+            name: 'iOS & Android',
+            href: '/download#ios-and-android',
+            icon: <Mobile />,
+            desc: 'Join TestFlight for iOS and access on Google Play for Android',
+          },
+          {
+            key: '2',
+            name: 'macOS',
+            href: '/download#macOS',
+            icon: <MacOs />,
+            desc: 'Available for macOS - Universal and Intel versions',
+          },
+          {
+            key: '3',
+            name: 'Windows',
+            href: '/download#Windows',
+            icon: <Windows />,
+            desc: 'Download AppFlowy for Windows systems',
+          },
+          {
+            key: '4',
+            name: 'Linux',
+            href: '/download#Linux',
+            icon: <Linux />,
+            desc: 'Supports Debian (Ubuntu), Red Hat (Fedora, CentOS), and more',
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'Community',
@@ -250,6 +292,7 @@ export interface Item {
   key: string;
   name: string;
   desc?: string;
+  placement?: 'left' | 'right' | 'center';
   icon?: React.ReactNode;
   image?: {
     src: string;

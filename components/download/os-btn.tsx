@@ -8,7 +8,7 @@ import HeroDesc from '@/components/shared/hero-desc';
 
 function DownloadOsBtn() {
   const { downloadOS } = useDownload();
-  const { os, isLinux, isMobile, isAndroid } = useClient();
+  const { os, isLinux } = useClient();
 
   const name = useMemo(() => {
     if (!os) return '';
@@ -39,7 +39,7 @@ function DownloadOsBtn() {
         {isLinux ? (
           <LinuxBtnGroup title={'DOWNLOAD'} />
         ) : (
-          <button disabled={isMobile && isAndroid} onClick={downloadOS} className={'download-btn'}>
+          <button onClick={downloadOS} className={'download-btn'}>
             {'DOWNLOAD'}
           </button>
         )}
