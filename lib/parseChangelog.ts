@@ -23,6 +23,15 @@ export function parseChangelog({
     url,
   };
 
+  // parse image
+  const image = parseImage(changeLog);
+
+  if (image) {
+    changelogJSON.image.src = image.src;
+    changelogJSON.image.alt = image.alt || version;
+  }
+
+  // parse description
   const sectionsRegex = /(### [A-Za-z\s]+)([\s\S]*?)(?=\n###|$)/g;
   const sectionsMatch = changeLog.matchAll(sectionsRegex);
 
@@ -31,12 +40,14 @@ export function parseChangelog({
     type: string;
     items: string[];
   } | null = null;
-  
+
+  // parser sections
   for (const sectionMatch of sectionsMatch) {
     const sectionText = sectionMatch[0];
     const sectionName = sectionMatch[1].slice(3);
     const sectionType = sectionName.trim().toLowerCase().replace(/\s/g, '-');
 
+    // split lines
     const lines = sectionText.split('\n');
 
     if (currentSection) {
@@ -50,35 +61,13 @@ export function parseChangelog({
       items: [],
     };
 
-    const imgRegex = /<img.*?src=["'](https:\/\/[^"']+)["']/;
-    const linkRegex = /\[([^\]]+)\]\((https:\/\/[^)]+)\)/;
-    const imgMatch = changeLog.match(imgRegex);
-    const linkMatch = changeLog.match(linkRegex);
-
-    if (imgMatch) {
-      changelogJSON.image.src = imgMatch[1];
-      changelogJSON.image.alt = changelogJSON.version;
-    }
-
-    if (linkMatch) {
-      changelogJSON.image.src = linkMatch[2];
-      changelogJSON.image.alt = linkMatch[1];
-    }
-
+    // parse lines
     for (let i = 1; i < lines.length; i++) {
       const item = lines[i].trim();
 
       if (item) {
-        if (item.startsWith('<img')) {
+        if (item.startsWith('<img') || item.startsWith('![')) {
           // Skip
-        } else if (item.startsWith('![')) {
-          const linkRegex = /\[([^\]]+)\]\((https:\/\/[^)]+)\)/;
-          const imgMatch = item.match(linkRegex);
-
-          if (imgMatch) {
-            changelogJSON.image.src = imgMatch[2];
-            changelogJSON.image.alt = imgMatch[1];
-          }
         } else {
           currentSection.items.push(item.slice(2));
         }
@@ -92,4 +81,30 @@ export function parseChangelog({
   }
 
   return changelogJSON;
+}
+
+function parseImage(text: string) {
+  // <img src="https://xxx.png" alt="1.0.0">
+  const imgRegex = /<img.*?src=["'](https:\/\/[^"']+)["']/;
+  // ![](https://xxx)
+  const linkRegex = /!\[([^\]]+)\]\((https:\/\/[^)]+)\)/;
+  const imgMatch = text.match(imgRegex);
+  const linkMatch = text.match(linkRegex);
+
+  // match img tag first
+  if (imgMatch) {
+    return {
+      src: imgMatch[1],
+    };
+  }
+
+  // match markdown image tag
+  if (linkMatch) {
+    return {
+      src: linkMatch[2],
+      alt: linkMatch[1],
+    };
+  }
+
+  return null;
 }
