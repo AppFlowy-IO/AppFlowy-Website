@@ -99,6 +99,20 @@ interface ReleaseVersion {
   }[];
 }
 
+function shouldBeReleased(version: ReleaseVersion) {
+  const windows = `AppFlowy-${version.tag_name}-windows-x86_64.exe`;
+  const gnu = `AppFlowy-${version.tag_name}-linux-x86_64.tar.gz`;
+  const deb = `AppFlowy-${version.tag_name}-linux-x86_64.deb`;
+  const rpm = `AppFlowy-${version.tag_name}-linux-x86_64.rpm`;
+  const appImage = `AppFlowy-${version.tag_name}-linux-x86_64.AppImage`;
+  const universal = `AppFlowy-${version.tag_name}-macos-universal.dmg`;
+  const intel = `AppFlowy-${version.tag_name}-macos-x86_64.dmg`;
+
+  return [windows, deb, rpm, gnu, universal, intel, appImage].every((name) =>
+    version.assets.find((asset) => asset.name === name && asset.state === 'uploaded')
+  );
+}
+
 /**
  * Fetch last version
  * @returns {Promise<string>}
@@ -109,17 +123,7 @@ export const fetchLastVersion = async (): Promise<string> => {
   const lastVersion = data[0] as ReleaseVersion;
   const previousVersion = data[1] as ReleaseVersion;
 
-  const windows = `AppFlowy-${lastVersion.tag_name}-windows-x86_64.exe`;
-  const gnu = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.tar.gz`;
-  const deb = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.deb`;
-  const rpm = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.rpm`;
-  const appImage = `AppFlowy-${lastVersion.tag_name}-linux-x86_64.AppImage`;
-  const universal = `AppFlowy-${lastVersion.tag_name}-macos-universal.dmg`;
-  const intel = `AppFlowy-${lastVersion.tag_name}-macos-x86_64.dmg`;
-
-  const released = [windows, deb, rpm, gnu, universal, intel, appImage].every((name) =>
-    lastVersion.assets.find((asset) => asset.name === name && asset.state === 'uploaded')
-  );
+  const released = shouldBeReleased(lastVersion);
 
   if (!released) {
     return previousVersion.tag_name;
@@ -138,14 +142,20 @@ export const fetchVersions = async (): Promise<Version[]> => {
   const versions: Version[] = [];
 
   for (const item of data) {
-    if (item.tag_name.split('.').length === 3) {
-      versions.push({
-        version: item.tag_name,
-        changeLog: item.body,
-        publishedAt: item.published_at,
-        url: item.html_url,
-      });
-    }
+    versions.push({
+      version: item.tag_name,
+      changeLog: item.body,
+      publishedAt: item.published_at,
+      url: item.html_url,
+    });
+  }
+
+  // if last version is not released, remove it
+  const lastVersion = data[0] as ReleaseVersion;
+  const lastVersionReleased = shouldBeReleased(lastVersion);
+
+  if (!lastVersionReleased) {
+    versions.shift();
   }
 
   return versions;
