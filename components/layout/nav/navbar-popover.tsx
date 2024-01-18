@@ -33,7 +33,7 @@ function NavbarPopover({
                 onClick={debounceClose}
                 className={`group-item ${item.image ? 'items-center' : ''}`}
               >
-                {item.icon && <div className={'h-[24px] w-[24px]'}>{item.icon}</div>}
+                {item.icon && <div className={'flex h-[24px] w-[24px] items-center justify-center'}>{item.icon}</div>}
                 {item.image && (
                   <div className={'group-item-image'}>
                     <img src={item.image.src} alt={item.image.alt} />
