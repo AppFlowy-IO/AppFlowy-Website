@@ -11,6 +11,8 @@ import Roadmap from '@/components/icons/roadmap';
 import Ring from '@/components/icons/ring';
 import Book from '@/components/icons/book';
 import Email from '@/components/icons/email';
+import Mobile from '@/components/icons/mobile';
+import Desktop from '@/components/icons/desktop';
 
 /**
  * Config for the navigation bar
@@ -25,6 +27,30 @@ export const navigation: Item[] = [
     name: 'Download',
     href: '/download',
     key: 'download',
+    placement: 'left',
+    children: [
+      {
+        name: 'Download',
+        key: 'download-group-1',
+
+        children: [
+          {
+            key: '1',
+            name: 'iOS & Android',
+            href: '/download#ios-and-android',
+            icon: <Mobile />,
+            desc: '',
+          },
+          {
+            key: '2',
+            name: 'macOS & Windows & Linux',
+            href: '/download#macOS',
+            icon: <Desktop />,
+            desc: '',
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'Community',
@@ -250,6 +276,7 @@ export interface Item {
   key: string;
   name: string;
   desc?: string;
+  placement?: 'left' | 'right' | 'center';
   icon?: React.ReactNode;
   image?: {
     src: string;

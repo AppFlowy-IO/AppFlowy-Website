@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Popover from '@/components/shared/popover';
 import { navigation } from '@/lib/config/navigation';
 import { DebouncedFunc } from 'lodash-es';
@@ -16,8 +16,9 @@ function NavbarPopover({
   type?: string;
 }) {
   const open = Boolean(anchorEl);
+  const item = useMemo(() => navigation.find((item) => item.key === type), [type]);
   const renderPopoverContent = useCallback(() => {
-    const children = navigation.find((item) => item.key === type)?.children;
+    const children = item?.children;
 
     return (
       <div className={'menu-popover-content'}>
@@ -32,7 +33,7 @@ function NavbarPopover({
                 onClick={debounceClose}
                 className={`group-item ${item.image ? 'items-center' : ''}`}
               >
-                {item.icon && <div className={'h-[24px] w-[24px]'}>{item.icon}</div>}
+                {item.icon && <div className={'flex h-[24px] w-[24px] items-center justify-center'}>{item.icon}</div>}
                 {item.image && (
                   <div className={'group-item-image'}>
                     <img src={item.image.src} alt={item.image.alt} />
@@ -48,11 +49,19 @@ function NavbarPopover({
         ))}
       </div>
     );
-  }, [type, debounceClose]);
+  }, [item, debounceClose]);
 
   return (
     <Popover
       open={open}
+      transformOrigin={{
+        vertical: -10,
+        horizontal: item?.placement || 'center',
+      }}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: item?.placement || 'center',
+      }}
       anchorEl={anchorEl}
       onClose={() => setAnchorEl(undefined)}
       onMouseEnterPaper={() => debounceClose.cancel()}

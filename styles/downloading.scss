@@ -4,6 +4,10 @@
   background: linear-gradient(180deg, #F8FAFF 0%, #F8FAFF 59.16%, #E4DDFF 100%);
   color: #1F2329;
 
+  .version-requires {
+    @apply text-left pt-[10px];
+  }
+
   .highlight {
     @apply text-primary cursor-pointer;
   }

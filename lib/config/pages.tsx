@@ -143,7 +143,7 @@ export const aboutPageConfig = {
   ),
   communityData: [
     {
-      value: 200,
+      value: 240,
       label: 'GitHub Contributors',
       link: {
         text: 'Get started',
@@ -151,7 +151,7 @@ export const aboutPageConfig = {
       },
     },
     {
-      value: 4000,
+      value: 5000,
       label: 'Community members',
       link: {
         text: 'Join Discord',
@@ -159,7 +159,7 @@ export const aboutPageConfig = {
       },
     },
     {
-      value: 4000,
+      value: 5000,
       label: 'Newsletter subscribers',
       link: {
         text: 'Subscribe',
@@ -551,4 +551,9 @@ export const contributorsPageConfig = {
     </span>
   ),
   learnMoreLink: 'https://docs.appflowy.io/docs/documentation/software-contributions/contributing-to-appflowy',
+};
+
+export const downloadVersion = {
+  ios: <span>Requires iOS 12.0 or above.</span>,
+  android: <span>Requires Android OS 10 or above.</span>,
 };

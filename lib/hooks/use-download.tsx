@@ -1,11 +1,15 @@
 'use client';
 
 import { useClient } from '@/lib/hooks/use-client';
-import { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { download } from '@/lib/download';
 import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
+import { collectEvent, EventName } from '@/lib/collect';
+import { ModalContext } from '@/lib/hooks/use-modal';
+import { downloadVersion } from '@/lib/config/pages';
+import Info from '@/components/icons/info';
 
 export interface DownloadLinks {
   windows: string;
@@ -19,6 +23,8 @@ export interface DownloadLinks {
     gnu: string;
     appImage: string;
   };
+  ios: string;
+  android: string;
 }
 
 function getDownloadLinks(): DownloadLinks | undefined {
@@ -88,6 +94,8 @@ export function storageDownloadLinks(version: string) {
         fileExtension: 'tar.gz',
       }),
     },
+    ios: 'https://testflight.apple.com/join/6CexvkDz',
+    android: 'https://play.google.com/store/apps/details?id=io.appflowy.appflowy',
   };
 
   Storage.set('download-links', links);
@@ -147,6 +155,7 @@ export function useDownload() {
   const { os, isMobile } = useClient();
   const name = os?.name?.toLowerCase().replaceAll(' ', '');
   const gitData = useContext(GitContext);
+  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     if (gitData?.lastVersion !== undefined) {
@@ -154,15 +163,120 @@ export function useDownload() {
     }
   }, [gitData]);
 
+  const modalTitle = useMemo(() => {
+    return '🥳️ Thanks for giving AppFlowy Mobile a try!';
+  }, []);
+
+  const getModalContent = useCallback((isAndroid: boolean) => {
+    return (
+      <div className={'download-mobile-modal-content'}>
+        If you’ve been using our desktop app, it’s important to read{' '}
+        <a target={'_blank'} className={'link'} href={'https://docs.appflowy.io/docs/guides/sync-desktop-and-mobile'}>
+          Sync Desktop and Mobile
+        </a>{' '}
+        before logging into the mobile app.
+        <div className={'version-requires'}>
+          <div className={'icon'}>
+            <Info />
+          </div>
+          {isAndroid ? downloadVersion.android : downloadVersion.ios}
+        </div>
+      </div>
+    );
+  }, []);
+
+  const downloadAndroid = useCallback(() => {
+    collectEvent(EventName.downloadAndroidBtn, {
+      type: 'click',
+    });
+    const links = getDownloadLinks();
+
+    if (!links) return;
+    openModal({
+      title: modalTitle,
+      content: getModalContent(true),
+      okText: 'Got it, Download',
+      cancelText: 'Cancel',
+      onOk: () => {
+        download(links.android, false, true);
+        collectEvent(EventName.download, {
+          platform: 'android',
+          version: gitData?.lastVersion || '',
+          arch: '',
+          file_extension: 'google-play',
+        });
+
+        collectEvent(EventName.downloadAndroidModalOkBtn, {
+          type: 'click',
+        });
+      },
+      onCancel: () => {
+        collectEvent(EventName.downloadAndroidModalCancelBtn, {
+          type: 'click',
+        });
+      },
+      onMounted: () => {
+        collectEvent(EventName.downloadAndroidModalOkBtn, {
+          type: 'view',
+        });
+        collectEvent(EventName.downloadAndroidModalCancelBtn, {
+          type: 'view',
+        });
+      },
+    });
+  }, [getModalContent, gitData?.lastVersion, modalTitle, openModal]);
+
+  const downloadIOS = useCallback(() => {
+    collectEvent(EventName.downloadIOSTestFlightBtn, {
+      type: 'click',
+    });
+    const links = getDownloadLinks();
+
+    if (!links) return;
+
+    openModal({
+      title: modalTitle,
+      content: getModalContent(false),
+      okText: 'Got it, Download',
+      cancelText: 'Cancel',
+      onOk: () => {
+        download(links.ios, false, true);
+        collectEvent(EventName.download, {
+          platform: 'ios',
+          version: gitData?.lastVersion || '',
+          arch: '',
+          file_extension: 'testflight',
+        });
+
+        collectEvent(EventName.downloadIOSModalOkBtn, {
+          type: 'click',
+        });
+      },
+      onCancel: () => {
+        collectEvent(EventName.downloadIOSModalCancelBtn, {
+          type: 'click',
+        });
+      },
+      onMounted: () => {
+        collectEvent(EventName.downloadIOSModalOkBtn, {
+          type: 'view',
+        });
+        collectEvent(EventName.downloadIOSModalCancelBtn, {
+          type: 'view',
+        });
+      },
+    });
+  }, [gitData?.lastVersion, getModalContent, modalTitle, openModal]);
+
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();
 
     if (!links) return;
     switch (name) {
       case 'ios':
-        return '';
+        return links?.ios;
       case 'android':
-        return '';
+        return links?.android;
       case 'macos': {
         const type = matchMacIntel();
 
@@ -184,6 +298,14 @@ export function useDownload() {
   }, [name]);
 
   const downloadOS = useCallback(() => {
+    if (name === 'ios') {
+      return downloadIOS();
+    }
+
+    if (name === 'android') {
+      return downloadAndroid();
+    }
+
     const link = getOsDownloadLink();
 
     if (!link) {
@@ -191,11 +313,13 @@ export function useDownload() {
     }
 
     download(link, !isMobile);
-  }, [getOsDownloadLink, isMobile]);
+  }, [downloadAndroid, downloadIOS, getOsDownloadLink, isMobile, name]);
 
   return {
     downloadOS,
     getOsDownloadLink,
+    downloadIOS,
+    downloadAndroid,
   };
 }
 

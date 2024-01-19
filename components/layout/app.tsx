@@ -3,13 +3,15 @@ import '@/styles/app.scss';
 import '@/styles/btn.scss';
 import '@/styles/dark.scss';
 
-import React, { useState, useLayoutEffect, lazy } from 'react';
+import React, { useState, useLayoutEffect, lazy, useMemo } from 'react';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
 import { GitContext } from '@/lib/hooks/use-git-context';
 import { UAContext } from '@/lib/hooks/use-ua';
 import { setTheme } from '@/lib/set-theme';
 import Script from 'next/script';
 import * as process from 'process';
+import Modal from '@/components/shared/modal';
+import { ModalProps, ModalProvider } from '@/lib/hooks/use-modal';
 
 const Header = lazy(() => import('@/components/layout/header'));
 
@@ -61,20 +63,39 @@ export default function App({
     };
   }, [mode]);
 
+  const [openModal, setOpenModal] = useState(false);
+  const [modalProps, setModalProps] = useState<ModalProps | undefined>(undefined);
+
+  const modalContext = useMemo(
+    () => ({
+      open: openModal,
+      openModal: (props: ModalProps) => {
+        setModalProps(props);
+        setOpenModal(true);
+      },
+      closeModal: () => {
+        setOpenModal(false);
+      },
+      modalProps,
+    }),
+    [openModal, modalProps]
+  );
+
   return (
     <UAContext.Provider value={ua}>
       <GitContext.Provider value={gitData}>
         <DarkContext.Provider value={dark}>
-          <div className={'appflowy-app'}>
-            <Header />
+          <ModalProvider value={modalContext}>
+            <div className={'appflowy-app'}>
+              <Header />
 
-            <main>{children}</main>
-            <Footer onChangeMode={setDark} />
-            {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
-              <>
-                <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                <Script id='google-analytics'>
-                  {`
+              <main>{children}</main>
+              <Footer onChangeMode={setDark} />
+              {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+                <>
+                  <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+                  <Script id='google-analytics'>
+                    {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -83,11 +104,13 @@ export default function App({
                    page_theme: '${dark ? 'dark' : 'light'}'
                 });
               `}
-                </Script>
-              </>
-            )}
-          </div>
-          <div className={'appflowy-overlay'} />
+                  </Script>
+                </>
+              )}
+            </div>
+            <div className={'appflowy-overlay'} />
+            <Modal />
+          </ModalProvider>
         </DarkContext.Provider>
       </GitContext.Provider>
     </UAContext.Provider>

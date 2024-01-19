@@ -27,6 +27,14 @@ function LinuxBtnGroup({ title }: { title: string }) {
         label: `.tar.gz`,
         value: 'tar.gz',
       },
+      {
+        label: 'Flatpak',
+        value: 'Flatpak',
+      },
+      {
+        label: 'Snap',
+        value: 'Snap',
+      },
     ];
   }, []);
   const { isMobile } = useClient();
@@ -43,6 +51,8 @@ function LinuxBtnGroup({ title }: { title: string }) {
           if (extension === 'deb') downloadLinux86Deb();
           if (extension === 'rpm') downloadLinux86Rpm();
           if (extension === 'tar.gz') downloadLinux86();
+          if (extension === 'Flatpak') window.open('https://flathub.org/apps/io.appflowy.AppFlowy', '_blank');
+          if (extension === 'Snap') window.open('https://snapcraft.io/appflowy', '_blank');
         }}
       />
     </div>

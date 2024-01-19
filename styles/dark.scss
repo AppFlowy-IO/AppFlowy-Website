@@ -513,6 +513,15 @@
       @apply border-white;
     }
   }
+
+  .modal-paper {
+    background: #27203F !important;
+    border: 1px solid rgba(143, 84, 202, 0.40) !important;
+
+    .desc {
+      @apply text-[#F7F8F8];
+    }
+  }
   .popover-paper, #body .dropdown-btn__popover-paper {
     @apply bg-[#0D101F] text-white;
     .dropdown-btn__extension-option {
@@ -520,6 +529,14 @@
         @apply bg-primary-20;
       }
     }
+
+    .desc {
+      @apply text-gray-400;
+      a {
+        @apply text-white;
+      }
+    }
+
   }
   .hero-desc {
     > a {

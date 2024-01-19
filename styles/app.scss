@@ -154,6 +154,7 @@
   }
 }
 
+
 .navbar-right {
   @apply flex flex-row items-center justify-end;
 }
@@ -180,13 +181,14 @@
   }
 }
 
-.popover-paper {
+.popover-paper, .modal-paper {
   @apply pointer-events-auto bg-white overflow-hidden;
 
   border-radius: 26px !important;
   box-shadow: none !important;
   border: 1px solid var(--color-primary-20) !important;
 }
+
 
 .menu-popover-content {
   @apply p-[28px] flex flex-row;
@@ -403,5 +405,49 @@
 .hero-desc {
   > a {
     @apply underline text-primary;
+  }
+}
+
+.modal-paper .modal-actions {
+  @apply p-7;
+  @apply max-sm:px-6 max-sm:pt-4 max-sm:pb-1 max-sm:flex max-sm:w-full max-sm:flex-col max-sm:gap-1;
+  button {
+    @apply max-sm:w-full;
+  }
+
+  .cancel-btn {
+    @apply max-sm:order-2;
+  }
+
+  .ok-btn {
+    @apply max-sm:order-1;
+  }
+}
+
+.modal-paper .modal-title {
+  @apply mt-2 font-semibold text-[20px];
+  @apply max-sm:text-[18px] dark:text-white max-sm:flex max-sm:items-center max-sm:justify-center max-sm:text-center;
+  > div {
+    @apply max-sm:w-[200px]
+  }
+
+}
+
+.modal-paper .download-mobile-modal-content {
+  @apply pl-7 text-[#1F2329] text-[16px] dark:text-gray-500 leading-8;
+  @apply max-sm:px-2 max-sm:text-[14px] max-sm:leading-[26px] dark:text-[#F7F8F8];
+  .link {
+    @apply font-medium text-primary dark:text-[#AE65FF] underline;
+  }
+}
+
+.modal-paper .version-requires {
+  .icon {
+    @apply absolute left-0 top-[5px] max-sm:top-[2px];
+  }
+
+  @apply relative pl-5 text-[12px] max-sm:leading-[18px] flex mt-[16px] leading-[24px] text-[#1F232999] dark:text-[#BBB] dark:text-opacity-70;
+  .highlight {
+    @apply text-primary dark:text-[#AE65FF];
   }
 }

@@ -1,4 +1,4 @@
-.github-btn {
+.github-btn, .github-btn[type='button'] {
   @apply flex w-[124px] rounded-[14px] h-[48px] items-center justify-center border border-light-gray;
   @apply text-[14px] max-lg:rounded-[12px];
   @apply max-sm:text-[12px];
@@ -36,7 +36,7 @@
 }
 
 
-.live-demo-btn {
+.live-demo-btn, .live-demo-btn[type='button'] {
   padding: 19px 40px 21px 40px;
   @apply text-primary flex justify-center items-center rounded-[20px] gap-[10px] border border-primary;
   &:hover {
@@ -108,4 +108,18 @@
     background: #7D26DE;
     opacity: 0.3;
   }
+}
+
+.cancel-btn, .cancel-btn[type='button'] {
+  border: 1px solid;
+  text-transform: none;
+  @apply border-[var(--color-primary)] max-sm:border-none px-6 py-[11px] dark:hover:bg-primary-20 hover:bg-light-blue-gray rounded-xl text-[var(--color-primary)];
+  @apply dark:border-[#773BB9] dark:text-[#AE65FF];
+}
+
+.ok-btn, .ok-btn[type='button'] {
+  border: 1px solid;
+  text-transform: none;
+  white-space: nowrap;
+  @apply border-[var(--color-primary)] px-6 bg-primary py-[11px] hover:bg-[#A952FF] rounded-xl text-white;
 }

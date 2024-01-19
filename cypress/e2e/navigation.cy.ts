@@ -11,16 +11,8 @@ describe('Navigation', () => {
     cy.visit(baseIndexUrl);
   });
 
-  it('should navigate to the download page', () => {
-    cy.get('.navigation a[href="/download"]').click();
-    cy.url().should('include', '/download');
-
-    cy.get('.navigation a[href="/"]').click();
-    cy.url().should('eq', baseIndexUrl);
-  });
-
   it('hover the community and resources should open the popover', () => {
-    const menus = ['Community', 'Resources'];
+    const menus = ['Community', 'Resources', 'Download'];
     menus.forEach((menu) => {
       cy.wait(1000);
       // Find the menu and click it
@@ -29,11 +21,7 @@ describe('Navigation', () => {
       cy.get('@menu').trigger('mouseover');
       // Ensure that the popover element is visible
       cy.get('.popover-paper').should('be.visible');
-
-      cy.get('@menu').click();
-      // Ensure that the current page's URL remains the same
-      cy.url().should('eq', baseIndexUrl);
-
+      
       cy.get('.popover-paper').trigger('mouseover');
       // Ensure that the popover element is still visible
       cy.wait(300);

@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import { Item } from '@/lib/config/navigation';
+import { useRouter } from 'next/navigation';
 
 function NavbarItem({
   item,
@@ -11,17 +11,21 @@ function NavbarItem({
   onMouseEnter: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseLeave: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
-  const { href, name } = item;
+  const { href, children } = item;
+  const router = useRouter();
 
-  return href ? (
-    <Link className={'navigation-item'} href={href}>
-      {name}
-    </Link>
-  ) : (
+  return (
     <button
+      onClick={
+        href
+          ? () => {
+              router.push(href);
+            }
+          : undefined
+      }
       className={`navigation-item navigation-item-${item.key}`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={children ? onMouseEnter : undefined}
+      onMouseLeave={children ? onMouseLeave : undefined}
     >
       {item.name}
     </button>

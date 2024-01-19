@@ -9,6 +9,12 @@ export enum EventName {
   download = 'download',
   switchMode = 'switch_mode',
   themeView = 'theme_view',
+  downloadIOSTestFlightBtn = 'download_ios_testflight_btn',
+  downloadAndroidBtn = 'download_android_btn',
+  downloadIOSModalOkBtn = 'download_ios_modal_ok_btn',
+  downloadIOSModalCancelBtn = 'download_ios_modal_cancel_btn',
+  downloadAndroidModalOkBtn = 'download_android_modal_ok_btn',
+  downloadAndroidModalCancelBtn = 'download_android_modal_cancel_btn',
 }
 
 export interface DownloadParams extends BaseParams {
@@ -26,7 +32,13 @@ export function collectEvent(
     | EventName.homePageGetStartedBtn
     | EventName.homePageGetTheCloudBetaLink
     | EventName.homePageMorePlatformsLink
-    | EventName.homePageWhatIsNewLink,
+    | EventName.homePageWhatIsNewLink
+    | EventName.downloadIOSModalOkBtn
+    | EventName.downloadIOSModalCancelBtn
+    | EventName.downloadAndroidModalOkBtn
+    | EventName.downloadAndroidModalCancelBtn
+    | EventName.downloadIOSTestFlightBtn
+    | EventName.downloadAndroidBtn,
   params: {
     type: 'view' | 'click';
   }

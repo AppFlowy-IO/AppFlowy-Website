@@ -357,7 +357,6 @@ export const termsHTML = `<h1>Terms & Conditions</h1>
 <h1>Contact Us</h1>
 <p>Don't hesitate to contact us if you have any questions.</p>
 <ul>
-    <li>Via Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                      data-cfemail="4e3d3b3e3e213c3a0e2f3e3e2822213937602721">[email&#160;protected]</a></li>
+    <li>Via Email: <a href="mailto:support@appflowy.io">support@appflowy.io</a></li>
 </ul>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>`;
