@@ -75,9 +75,9 @@ function Navbar() {
             <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
           </Link>
         </div>
-        <button onClick={() => setOpenDrawer(true)} className={'trigger-btn'}>
+        <span onClick={() => setOpenDrawer(true)} className={'trigger-btn'}>
           <Menu />
-        </button>
+        </span>
       </div>
       <NavbarPopover type={popoverType} anchorEl={anchorEl} setAnchorEl={setAnchorEl} debounceClose={debounceClose} />
       <DrawerNavbar onClose={() => setOpenDrawer(false)} open={openDrawer} />

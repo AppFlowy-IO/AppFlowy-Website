@@ -9,6 +9,7 @@ import Drawer from '@mui/material/Drawer';
 import Logo from '@/components/icons/logo';
 import { links } from '@/lib/config/footer';
 import Close from '@/components/icons/close';
+import { useDownload } from '@/lib/hooks/use-download';
 
 const drawerWidth = '100vw';
 
@@ -19,6 +20,7 @@ interface DrawerNavbarProps {
 }
 
 export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNavbarProps) {
+  const { downloadOS } = useDownload();
   const [expanded, setExpanded] = useState<string>();
   const container = typeof window !== 'undefined' ? () => window.document.body : undefined;
 
@@ -61,8 +63,10 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
                 }}
                 className={'mt-0 w-full bg-transparent pt-0 shadow-none before:opacity-0'}
                 sx={{
-                  '& .MuiAccordionSummary-content': { marginTop: '14px', marginBottom: '14px' },
-                  '& .Mui-expanded': { minHeight: 'unset' },
+                  '& .MuiAccordionSummary-content': { marginTop: '14px !important', marginBottom: '14px !important' },
+                  '& .Mui-expanded': {
+                    minHeight: 'unset !important',
+                  },
                 }}
               >
                 <AccordionSummary
@@ -117,9 +121,14 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
           <div className={'divider'} />
         </div>
         <div className={'mb-[68px] w-full px-[20px] pt-[40px]'}>
-          <Link onClick={() => onClose()} href={'/download'}>
-            <button className={'download-btn w-full'}>Start for free</button>
-          </Link>
+          <button
+            onClick={() => {
+              downloadOS();
+            }}
+            className={'download-btn w-full'}
+          >
+            Start for free
+          </button>
         </div>
       </div>
     </Drawer>

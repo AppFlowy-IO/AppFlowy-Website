@@ -2,6 +2,7 @@ import './globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Favicon from '../public/favicon.ico';
+import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getModeForServer } from '@/lib/get-theme';
 import { getGitData } from '@/lib/get-git';
@@ -19,6 +20,21 @@ export const metadata: Metadata = {
     },
   ],
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://appflowy.io',
+    title: 'AppFlowy.IO',
+    description: 'AppFlowy is an AI-powered secure workspace where you achieve more without losing control of your data',
+    images: [
+      {
+        url: OpenGraph.src,
+        width: 1200,
+        height: 630,
+        alt: 'AppFlowy.IO',
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

@@ -22,6 +22,7 @@ import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { useClient } from '@/lib/hooks/use-client';
 
 import { motion, useInView } from 'framer-motion';
+import Button from '@mui/material/Button';
 
 enum Product {
   Board = 'board',
@@ -68,13 +69,16 @@ function SwitchProduct() {
   const [active, setActive] = useState<Product>(Product.Board);
   const options = useMemo(() => {
     return products.map((item) => (
-      <div
+      <Button
         key={item.key}
-        onClick={() => setActive(item.key)}
+        onClick={() => {
+          console.log(item.key);
+          setActive(item.key);
+        }}
         className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
       >
         {item.icon}
-      </div>
+      </Button>
     ));
   }, [active]);
   const selectedItem = products.find((item) => item.key === active);
@@ -98,13 +102,13 @@ function SwitchProduct() {
   const sliderLeft = useMemo(() => {
     switch (active) {
       case Product.Board:
-        return 6;
+        return 10;
       case Product.Table:
-        return 62;
+        return 76;
       case Product.Calendar:
-        return 118;
+        return 138;
       default:
-        return 6;
+        return 10;
     }
   }, [active]);
 
@@ -141,7 +145,7 @@ function SwitchProduct() {
               type: 'spring',
             }}
             initial={false}
-          ></motion.div>
+          />
         )}
       </div>
     </div>

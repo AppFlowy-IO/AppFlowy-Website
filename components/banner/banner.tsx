@@ -12,7 +12,7 @@ function Banner() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const progress = pathname.includes('downloading') ? null : (
+  const progress = ['downloading', 'downloaded'].some((path) => pathname.includes(path)) ? null : (
     <NextTopLoader showSpinner={false} color={isDark ? '#601DAA' : '#9327FF'} />
   );
 

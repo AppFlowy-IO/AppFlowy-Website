@@ -195,7 +195,7 @@ export function useDownload() {
     openModal({
       title: modalTitle,
       content: getModalContent(true),
-      okText: 'Got it, Download',
+      okText: 'Download',
       cancelText: 'Cancel',
       onOk: () => {
         download(links.android, false, true);
@@ -237,7 +237,7 @@ export function useDownload() {
     openModal({
       title: modalTitle,
       content: getModalContent(false),
-      okText: 'Got it, Download',
+      okText: 'Download',
       cancelText: 'Cancel',
       onOk: () => {
         download(links.ios, false, true);
