@@ -34,8 +34,9 @@
 body {
   font-family: "Inter", sans-serif;
   font-size: 14px;
-  background: var(--color-bg);
   margin: 0;
   color: var(--color-text);
+  background: linear-gradient(to right, #deddf8 0%, rgb(223, 223, 252) 13%, rgb(238, 238, 253) 40%, #edecfc 60%, #EEECFD 100%) fixed;
+  overscroll-behavior: none;
 }
 

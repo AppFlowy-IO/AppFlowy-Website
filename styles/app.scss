@@ -410,7 +410,7 @@
 
 .modal-paper .modal-actions {
   @apply p-7;
-  @apply max-sm:px-6 max-sm:pt-4 max-sm:pb-1 max-sm:flex max-sm:w-full max-sm:flex-col max-sm:gap-1;
+  @apply max-sm:px-6 max-sm:pt-4 max-sm:items-center max-sm:justify-center max-sm:pb-1 max-sm:flex max-sm:w-full max-sm:flex-col max-sm:gap-1;
   button {
     @apply max-sm:w-full;
   }

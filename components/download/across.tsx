@@ -2,11 +2,9 @@
 
 import React from 'react';
 import { downloadMacIntel, downloadMacUniversal, downloadWindows } from '@/lib/hooks/use-download';
-import { useClient } from '@/lib/hooks/use-client';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 
 function DownloadAcross() {
-  const { isMobile } = useClient();
   const downloadBtns = [
     {
       title: 'macOS',
@@ -26,10 +24,10 @@ function DownloadAcross() {
         </svg>
       ),
       btns: [
-        <button disabled={isMobile} key={1} onClick={() => downloadMacIntel(true)} className={'download-btn'}>
+        <button key={1} onClick={() => downloadMacIntel(true)} className={'download-btn'}>
           Download Intel
         </button>,
-        <button disabled={isMobile} key={2} onClick={() => downloadMacUniversal(true)} className={'download-btn'}>
+        <button key={2} onClick={() => downloadMacUniversal(true)} className={'download-btn'}>
           Download Universal
         </button>,
       ],
@@ -52,7 +50,7 @@ function DownloadAcross() {
         </svg>
       ),
       btns: [
-        <button disabled={isMobile} key={1} onClick={() => downloadWindows(true)} className={'download-btn'}>
+        <button key={1} onClick={() => downloadWindows(true)} className={'download-btn'}>
           Download
         </button>,
       ],

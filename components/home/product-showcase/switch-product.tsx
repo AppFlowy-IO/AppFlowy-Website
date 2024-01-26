@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Board from '@/components/icons/board';
 import Table from '@/components/icons/table';
 import Calendar from '@/components/icons/calendar';
@@ -22,8 +22,10 @@ import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { useClient } from '@/lib/hooks/use-client';
 
 import { motion, useInView } from 'framer-motion';
+import Button from '@mui/material/Button';
+import { collectEvent, EventName } from '@/lib/collect';
 
-enum Product {
+export enum Product {
   Board = 'board',
   Table = 'table',
   Calendar = 'calendar',
@@ -67,16 +69,33 @@ function SwitchProduct() {
   const { isMobile } = useClient();
   const [active, setActive] = useState<Product>(Product.Board);
   const options = useMemo(() => {
-    return products.map((item) => (
-      <div
-        key={item.key}
-        onClick={() => setActive(item.key)}
-        className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
-      >
-        {item.icon}
-      </div>
-    ));
+    return products.map((item) => {
+      return (
+        <Button
+          key={item.key}
+          onClick={() => {
+            setActive(item.key);
+            collectEvent(EventName.homePageSwitchProductBtn, {
+              type: 'click',
+              product: item.key,
+            });
+          }}
+          className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
+        >
+          {item.icon}
+        </Button>
+      );
+    });
   }, [active]);
+
+  useEffect(() => {
+    products.forEach((item) => {
+      collectEvent(EventName.homePageSwitchProductBtn, {
+        type: 'view',
+        product: item.key,
+      });
+    });
+  }, []);
   const selectedItem = products.find((item) => item.key === active);
 
   const lottieJsonMap = useMemo(
@@ -98,13 +117,13 @@ function SwitchProduct() {
   const sliderLeft = useMemo(() => {
     switch (active) {
       case Product.Board:
-        return 6;
+        return 10;
       case Product.Table:
-        return 62;
+        return 76;
       case Product.Calendar:
-        return 118;
+        return 138;
       default:
-        return 6;
+        return 10;
     }
   }, [active]);
 
@@ -141,7 +160,7 @@ function SwitchProduct() {
               type: 'spring',
             }}
             initial={false}
-          ></motion.div>
+          />
         )}
       </div>
     </div>

@@ -115,11 +115,13 @@
   text-transform: none;
   @apply border-[var(--color-primary)] max-sm:border-none px-6 py-[11px] dark:hover:bg-primary-20 hover:bg-light-blue-gray rounded-xl text-[var(--color-primary)];
   @apply dark:border-[#773BB9] dark:text-[#AE65FF];
+  @apply max-sm:px-0 max-sm:bg-transparent max-sm:hover:bg-transparent max-sm:dark:hover:bg-transparent;
 }
 
 .ok-btn, .ok-btn[type='button'] {
   border: 1px solid;
   text-transform: none;
   white-space: nowrap;
+  @apply max-sm:ml-0;
   @apply border-[var(--color-primary)] px-6 bg-primary py-[11px] hover:bg-[#A952FF] rounded-xl text-white;
 }

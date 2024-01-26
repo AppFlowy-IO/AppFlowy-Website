@@ -6,7 +6,6 @@ import {
   downloadLinux86Rpm,
 } from '@/lib/hooks/use-download';
 import DropdownBtn from '@/components/shared/dropdown-btn';
-import { useClient } from '@/lib/hooks/use-client';
 
 function LinuxBtnGroup({ title }: { title: string }) {
   const linuxOptions = useMemo(() => {
@@ -37,12 +36,10 @@ function LinuxBtnGroup({ title }: { title: string }) {
       },
     ];
   }, []);
-  const { isMobile } = useClient();
 
   return (
     <div className={'linux-btn-group'}>
       <DropdownBtn
-        disabled={isMobile}
         title={title}
         extension={'AppImage'}
         extensionOptions={linuxOptions}
