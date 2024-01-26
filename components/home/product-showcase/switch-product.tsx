@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Board from '@/components/icons/board';
 import Table from '@/components/icons/table';
 import Calendar from '@/components/icons/calendar';
@@ -23,8 +23,9 @@ import { useClient } from '@/lib/hooks/use-client';
 
 import { motion, useInView } from 'framer-motion';
 import Button from '@mui/material/Button';
+import { collectEvent, EventName } from '@/lib/collect';
 
-enum Product {
+export enum Product {
   Board = 'board',
   Table = 'table',
   Calendar = 'calendar',
@@ -68,19 +69,33 @@ function SwitchProduct() {
   const { isMobile } = useClient();
   const [active, setActive] = useState<Product>(Product.Board);
   const options = useMemo(() => {
-    return products.map((item) => (
-      <Button
-        key={item.key}
-        onClick={() => {
-          console.log(item.key);
-          setActive(item.key);
-        }}
-        className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
-      >
-        {item.icon}
-      </Button>
-    ));
+    return products.map((item) => {
+      return (
+        <Button
+          key={item.key}
+          onClick={() => {
+            setActive(item.key);
+            collectEvent(EventName.homePageSwitchProductBtn, {
+              type: 'click',
+              product: item.key,
+            });
+          }}
+          className={`btn select-none ${item.key} ${active === item.key ? 'selected' : ''}`}
+        >
+          {item.icon}
+        </Button>
+      );
+    });
   }, [active]);
+
+  useEffect(() => {
+    products.forEach((item) => {
+      collectEvent(EventName.homePageSwitchProductBtn, {
+        type: 'view',
+        product: item.key,
+      });
+    });
+  }, []);
   const selectedItem = products.find((item) => item.key === active);
 
   const lottieJsonMap = useMemo(

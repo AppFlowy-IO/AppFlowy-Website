@@ -4,6 +4,7 @@ export enum EventName {
   homePageGetTheCloudBetaLink = 'home_page_get_the_cloud_beta_link',
   homePageMorePlatformsLink = 'home_page_more_platforms_link',
   homePageGetStartedBtn = 'home_page_get_started_btn',
+  homePageSwitchProductBtn = 'home_page_switch_product_btn',
   navigatorGithubBtn = 'navigator_github_btn',
   navigatorStartForFreeBtn = 'navigator_start_for_free_btn',
   download = 'download',
@@ -24,6 +25,13 @@ export interface DownloadParams extends BaseParams {
   file_extension: string;
 }
 
+export function collectEvent(
+  eventName: EventName.homePageSwitchProductBtn,
+  params: {
+    product: string;
+    type: 'view' | 'click';
+  }
+): void;
 export function collectEvent(
   eventName:
     | EventName.homePageDownloadBtn
