@@ -2,7 +2,12 @@ const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
 const environment = process.env.ENVIRONMENT || 'development';
 require('./env');
-
+const securityHeaders = [
+  {
+    key: 'X-Frame-Options',
+    value: 'SAMEORIGIN',
+  },
+];
 const rewrites = () => {
   return [
     {
@@ -41,6 +46,23 @@ const nextConfig = {
   // Use the CDN in production and localhost for development.
   assetPrefix: isProd ? `https://d3uafhn8yrvdfn.cloudfront.net/website/${environment}` : undefined,
   rewrites,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
