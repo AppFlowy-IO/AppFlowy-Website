@@ -165,4 +165,4 @@ export const privacyHTML = `
 <h1>Contact Us</h1>
 <p>Don't hesitate to contact us if you have any questions.</p>
 <ul><li>Via Email: <a href="mailto:support@appflowy.io">support@appflowy.io</a></li>
-</ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>`;
+</ul>`;

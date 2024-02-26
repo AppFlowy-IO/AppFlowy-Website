@@ -270,9 +270,7 @@ export const termsHTML = `<h1>Terms & Conditions</h1>
 <h1>Notice of Dispute</h1>
 <p>In the event of a dispute, you or https://www.appflowy.io/ must give the other a Notice of Dispute, which is a
     written statement that sets forth the name, address, and contact information of the party giving it, the facts
-    giving rise to the dispute, and the relief requested. You must send any Notice of Dispute via email to: <a
-            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-            data-cfemail="0a797f7a7a65787e4a6b7a7a6c66657d73246365">[email&#160;protected]</a>. https://www.appflowy.io/
+    giving rise to the dispute, and the relief requested. You must send any Notice of Dispute via email to: <a href="mailto:support@appflowy.io">support@appflowy.io</a>. https://www.appflowy.io/
     will send any Notice of Dispute to you by mail to your address if we have it, or otherwise to your email address.
     You and https://www.appflowy.io/ will attempt to resolve any dispute through informal negotiation within sixty (60)
     days from the date the Notice of Dispute is sent. After sixty (60) days, you or https://www.appflowy.io/ may
@@ -359,4 +357,4 @@ export const termsHTML = `<h1>Terms & Conditions</h1>
 <ul>
     <li>Via Email: <a href="mailto:support@appflowy.io">support@appflowy.io</a></li>
 </ul>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>`;
+`;
