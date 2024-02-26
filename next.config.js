@@ -34,6 +34,10 @@ const rewrites = () => {
       source: '/blog',
       destination: '/subscribe-newsletter',
     },
+    {
+      source: '/privacy/mobile',
+      destination: '/privacy/app',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */
