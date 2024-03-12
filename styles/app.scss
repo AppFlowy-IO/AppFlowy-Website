@@ -55,7 +55,10 @@
       .group-item {
         @apply flex flex-col mb-4 leading-[21px] last:mb-0 hover:underline;
         @apply max-lg:text-[#BBB];
-
+        .badge {
+          @apply absolute -top-1.5 -right-6;
+          @apply bg-primary text-white w-5 h-5 inline-flex items-center justify-center text-center rounded-full px-[6px] py-[2px] text-[12px];
+        }
       }
     }
   }
