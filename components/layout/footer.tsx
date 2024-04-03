@@ -41,7 +41,8 @@ function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
                     <Link href={child.link || ''}>
                       <span className={'relative'}>
                         {child.name}
-                        {'badge' in child && child.badge && <span className={'badge'}>{child.badge}</span>}
+
+                        {'badge' in child && Number(child.badge) > 0 && <span className={'badge'}>{child.badge}</span>}
                       </span>
                     </Link>
                   )}
@@ -56,7 +57,7 @@ function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
       </div>
       <div className={'bottom'}>
         <div className={'col'}>
-          <div>Copyright © 2023, AppFlowy Inc.</div>
+          <div>Copyright © 2024, AppFlowy Inc.</div>
           <div className={'need-help'}>
             Need Help? <ContactEmail />
           </div>

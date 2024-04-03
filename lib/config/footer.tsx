@@ -149,7 +149,7 @@ export const links = [
       {
         name: 'Careers',
         link: '/join',
-        badge: 1,
+        badge: 0,
       },
       {
         name: 'Privacy',
