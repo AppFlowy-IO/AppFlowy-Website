@@ -8,7 +8,7 @@ import { collectEvent, EventName } from '@/lib/collect';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 import HeroDesc from '@/components/shared/hero-desc';
 
-function HeroDownloadBtn() {
+function HeroDownloadBtn({ showDesc = true }: { showDesc?: boolean }) {
   const { os, isClient, isLinux } = useClient();
   const { downloadOS, getOsDownloadLink } = useDownload();
 
@@ -58,7 +58,7 @@ function HeroDownloadBtn() {
         </button>
       )}
 
-      <HeroDesc inView={inView} />
+      {showDesc && <HeroDesc inView={inView} />}
     </div>
   );
 }

@@ -435,10 +435,10 @@ export const joinPageConfig = {
     },
   ],
   jobs: [
-    // {
-    //   title: 'Senior Rust Backend Developer',
-    //   link: 'https://apply.workable.com/appflowy/j/F5A613E1C5/',
-    // },
+    {
+      title: 'Founding Product Designer',
+      link: 'https://apply.workable.com/appflowy/j/D0616AC272/',
+    },
   ],
 };
 
