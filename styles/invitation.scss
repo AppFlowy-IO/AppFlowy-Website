@@ -1,0 +1,28 @@
+.expired-page {
+  font-family: "Poppins";
+  @apply w-full flex flex-col h-screen;
+  .header {
+    @apply p-5 h-[64px] flex items-center;
+    @apply max-sm:h-[100px];
+    .logo-wrapper {
+      @apply w-[258px] flex;
+      @apply max-sm:w-full max-sm:items-center max-sm:justify-center max-sm:mt-10;
+    }
+
+    .logo {
+      @apply w-[141px] h-[28px];
+    }
+  }
+
+  .content {
+    @apply flex flex-1 w-full items-center justify-center max-sm:justify-start py-10 flex-col;
+    .content-wrapper {
+      @apply flex flex-col items-center w-[558px] max-w-[90%];
+    }
+
+    .visited-btn {
+      box-shadow: 0px 0px 20px 0px #0000001A;
+      @apply hover:opacity-90;
+    }
+  }
+}

@@ -12,6 +12,7 @@ import Script from 'next/script';
 import * as process from 'process';
 import Modal from '@/components/shared/modal';
 import { ModalProps, ModalProvider } from '@/lib/hooks/use-modal';
+import { usePathname } from 'next/navigation';
 
 const Header = lazy(() => import('@/components/layout/header'));
 
@@ -81,21 +82,30 @@ export default function App({
     [openModal, modalProps]
   );
 
+  const pathname = usePathname();
+
+  const isSinglePage = pathname.includes('invitation');
+
   return (
     <UAContext.Provider value={ua}>
       <GitContext.Provider value={gitData}>
         <DarkContext.Provider value={dark}>
           <ModalProvider value={modalContext}>
-            <div className={'appflowy-app'}>
-              <Header />
+            {isSinglePage ? (
+              <div className={'appflowy-app'}>
+                <main>{children}</main>
+              </div>
+            ) : (
+              <div className={'appflowy-app'}>
+                <Header />
 
-              <main>{children}</main>
-              <Footer onChangeMode={setDark} />
-              {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
-                <>
-                  <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                  <Script id='google-analytics'>
-                    {`
+                <main>{children}</main>
+                <Footer onChangeMode={setDark} />
+                {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+                  <>
+                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+                    <Script id='google-analytics'>
+                      {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -104,10 +114,12 @@ export default function App({
                    page_theme: '${dark ? 'dark' : 'light'}'
                 });
               `}
-                  </Script>
-                </>
-              )}
-            </div>
+                    </Script>
+                  </>
+                )}
+              </div>
+            )}
+
             <div className={'appflowy-overlay'} />
             <Modal />
           </ModalProvider>

@@ -4,6 +4,7 @@ import '@/styles/download.scss';
 import DownloadOS from '@/components/download/os';
 import DownloadMobile from '@/components/download/mobile';
 import DownloadAcross from '@/components/download/across';
+import ModalDownload from '@/components/download/modal-download';
 
 function Page() {
   return (
@@ -11,6 +12,7 @@ function Page() {
       <DownloadOS />
       <DownloadMobile />
       <DownloadAcross />
+      <ModalDownload />
     </div>
   );
 }
