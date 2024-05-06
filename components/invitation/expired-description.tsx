@@ -11,7 +11,7 @@ function ExpireDescription() {
     <div className={'w-[400px] max-w-full whitespace-break-spaces break-words text-center text-[20px] font-medium leading-[30px]'}>
       Your invitation link has expired.
       <br />
-      Contact <span className={'max-w-[200px] overflow-hidden truncate font-semibold max-sm:max-w-full'}>{first_name}</span> to request a new link.
+      Contact {first_name} to request a new link.
     </div>
   );
 }
