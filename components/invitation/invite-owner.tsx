@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
-import { useSearchParams } from 'next/navigation';
 import { Avatar } from '@mui/material';
+import { useSearchParams } from 'next/navigation';
 
 function InviteOwner() {
   const params = useSearchParams();
@@ -14,7 +13,7 @@ function InviteOwner() {
       <Avatar className={'h-[57px] w-[57px]'} src={user_icon} alt={user_name} variant={'circular'} />
       <div className={'flex flex-col gap-1 text-base'}>
         <div>Invited by</div>
-        <div className={'max-w-[200px] overflow-hidden truncate font-bold max-sm:max-w-full'}>{user_name}</div>
+        <div className={'max-w-[200px] overflow-hidden truncate font-semibold max-sm:max-w-full'}>{user_name}</div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Avatar } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
 
@@ -20,7 +19,7 @@ function InviteWorkspace() {
         variant={'rounded'}
       />
       <div className={'flex flex-col gap-1 text-base'}>
-        <div className={'max-w-[200px] overflow-hidden truncate font-bold max-sm:max-w-full'}>
+        <div className={'max-w-[200px] overflow-hidden truncate font-semibold max-sm:max-w-full'}>
           {workspace_name || 'Workspace'}
         </div>
         <div className={'text-slate-500'}>{workspace_member_count || 0} members</div>

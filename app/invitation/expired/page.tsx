@@ -1,15 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import Logo from '@/components/icons/logo';
-import '@/styles/invitation.scss';
 import LinkIcon from '@/assets/images/invitation/link_off.svg';
-import Image from 'next/image';
+import Logo from '@/components/icons/logo';
+import ExpireDescription from '@/components/invitation/expired-description';
 import InviteOwner from '@/components/invitation/invite-owner';
-import { Poppins } from 'next/font/google';
 import InviteWorkspace from '@/components/invitation/invite-workspace';
+import '@/styles/invitation.scss';
+import { Poppins } from 'next/font/google';
+import Image from 'next/image';
+import Link from 'next/link';
 import NextTopLoader from 'nextjs-toploader';
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600'] });
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 
 function Page() {
   return (
@@ -29,24 +29,16 @@ function Page() {
             Link expired.
           </div>
           <InviteOwner />
-          <div
-            className={
-              'w-[400px] max-w-full whitespace-break-spaces break-words text-center text-[20px] font-medium leading-[30px]'
-            }
-          >
-            Your invitation link has expired.
-            <br />
-            Contact your administrator to request a new link.
-          </div>
+          <ExpireDescription />
           <InviteWorkspace />
           <div className={'mb-4 h-[1px] w-[400px] max-w-full bg-[#BDBDBD] dark:bg-white '} />
           <button className={'visited-btn mb-6 w-[400px] max-w-full rounded-2xl bg-[#00A1CE] py-4 text-white'}>
-            <Link href={'/'}>Visit AppFlowy homepage</Link>
+            <Link href={'/download#pop'}>Download AppFlowy</Link>
           </button>
           <div className={'w-[400px] max-w-full whitespace-break-spaces break-words text-center text-[18px]'}>
-            If you are having issues with your account you can{' '}
+            Need help?{' '}
             <a className={'font-semibold text-[#00A1CE] underline'} href={'https://discord.gg/9Q2xaN37tV'}>
-              Contact support
+              Contact us on Discord
             </a>
           </div>
         </div>
