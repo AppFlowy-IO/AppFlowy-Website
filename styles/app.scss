@@ -361,7 +361,7 @@
 
 
 .primary-word {
-  @apply relative;
+  @apply relative whitespace-nowrap;
   .primary-line {
     @apply absolute bottom-[-4px] left-0 w-full text-primary;
   }
