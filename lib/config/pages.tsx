@@ -143,7 +143,7 @@ export const aboutPageConfig = {
   ),
   communityData: [
     {
-      value: 260,
+      value: 300,
       label: 'GitHub Contributors',
       link: {
         text: 'Get started',

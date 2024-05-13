@@ -85,8 +85,8 @@
 }
 
 .appflowy-navbar {
-  @apply h-[68px] w-full;
-  @apply max-lg:h-[80px];
+  @apply h-[76px] w-full;
+  @apply max-lg:h-[76px];
   @apply flex items-center;
   @apply px-[28px];
   @apply max-lg:justify-between;
@@ -106,12 +106,11 @@
 
 .appflowy-navbar, .appflowy-drawer-nav {
   .logo-wrapper {
-    @apply w-[258px] flex;
+    @apply flex flex-1;
   }
 
   .logo {
-    @apply w-[141px] h-[28px];
-    @apply max-lg:w-[116px] max-lg:h-[26px];
+    @apply h-[30px];
   }
 }
 
@@ -142,6 +141,7 @@
 .navigation {
   @apply max-lg:hidden lg:flex;
   @apply flex-row flex-nowrap overflow-hidden items-center justify-center flex-1;
+  flex-grow: 2;
   @apply px-5;
 }
 

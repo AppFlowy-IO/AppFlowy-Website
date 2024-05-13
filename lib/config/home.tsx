@@ -32,27 +32,8 @@ import darkIcon3 from '@/assets/images/data/dark/icon-3.png';
  */
 export const heroSectionConfig = {
   mainTitle: (
-    <span>
-      Bring projects, knowledge,{' '}
-      <span className={'primary-word'}>
-        and teams
-        <div
-          style={{
-            bottom: -6,
-          }}
-          className={'primary-line'}
-        >
-          <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 238 22' fill='none'>
-            <path
-              d='M1.99943 18.1304C16.4236 13.9095 49.5671 5.8517 66.7478 7.38723C83.9285 8.92275 66.349 16.712 55.4117 20.4147C98.1076 12.2316 193.981 -2.58527 235.908 3.6119'
-              stroke='currentColor'
-              strokeWidth='3'
-              strokeLinecap='square'
-            />
-          </svg>
-        </div>
-      </span>
-      {` together with AI`}
+    <span className={'primary-title'}>
+      Bring projects, wiki, <span className={'text-primary'}>teams</span> together with AI
     </span>
   ),
   subtitle: (
@@ -287,11 +268,11 @@ export const communityConfig = {
       text: 'Community members',
     },
     {
-      value: 50,
+      value: 110,
       text: 'Countries represented',
     },
     {
-      value: 260,
+      value: 300,
       text: 'Contributors',
     },
   ],

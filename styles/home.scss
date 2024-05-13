@@ -45,9 +45,13 @@
   }
 
   > .title {
-    @apply flex flex-col items-center z-10 tracking-[-2px] text-[72px] leading-[114%] px-[30px] font-medium mb-[46px] text-center relative xl:max-w-[966px] whitespace-pre-line;
-
+    @apply flex flex-col items-center z-10 tracking-[-2px] text-[72px] leading-[114%] px-[60px] font-medium mb-[46px] text-center relative xl:max-w-[1068px] whitespace-pre-line;
+    @apply max-lg:px-[100px] max-md:px-[40px];
     @apply max-md:text-[64px] max-sm:mt-[66px] max-sm:px-[20px] max-sm:text-[32px] max-sm:tracking-[-0.96px] max-sm:leading-[115%] max-sm:mb-0;
+    .primary-title {
+      @apply max-sm:w-[285px] max-md:w-[639px];
+    }
+
     > .desc {
       @apply text-[17px] w-[80%] mt-[40px] md:px-[80px] font-normal text-base leading-normal tracking-normal text-center z-10 flex flex-col;
       @apply max-sm:w-full max-sm:px-[20px] max-sm:text-base max-sm:mt-[20px];
