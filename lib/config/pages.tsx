@@ -168,13 +168,129 @@ export const aboutPageConfig = {
     },
   ],
   developers: {
-    title: 'Contributed and used by makers from',
+    title: 'Trusted by teams and individuals from',
     logos: [
-      '/images/developer-logo-1.svg',
-      '/images/developer-logo-2.svg',
-      '/images/developer-logo-3.svg',
-      '/images/developer-logo-4.svg',
-      '/images/developer-logo-5.svg',
+      {
+        name: 'mercadona',
+        logo: '/images/mercadona.svg',
+        darkLogo: '/images/mercadona-w.svg',
+      },
+      {
+        name: 'telefónica',
+        logo: '/images/telefónica.svg',
+        darkLogo: '/images/telefónica-w.svg',
+      },
+      {
+        name: 'grupoboticario',
+        logo: '/images/grupoboticario.svg',
+        darkLogo: '/images/grupoboticario-w.svg',
+      },
+      {
+        name: 'essec',
+        logo: '/images/essec.png',
+        darkLogo: '/images/essec-w.png',
+      },
+      {
+        name: 'pulsara',
+        logo: '/images/pulsara.svg',
+        darkLogo: '/images/pulsara-w.svg',
+      },
+      {
+        name: 'helpngo',
+        logo: '/images/help-ngo.png',
+        darkLogo: '/images/help-ngo-w.png',
+      },
+      {
+        name: 'jhu',
+        logo: '/images/jhu.svg',
+        darkLogo: '/images/jhu-w.svg',
+      },
+      {
+        name: 'build-ai',
+        logo: '/images/build-ai.svg',
+        darkLogo: '/images/build-ai-w.svg',
+      },
+      {
+        name: 'delivery-hero',
+        logo: '/images/delivery-hero.svg',
+        darkLogo: '/images/delivery-hero-w.svg',
+      },
+      {
+        name: 'ucla',
+        logo: '/images/ucla.svg',
+        darkLogo: '/images/ucla-w.svg',
+      },
+      {
+        name: 'oracle',
+        logo: '/images/oracle.svg',
+        darkLogo: '/images/oracle-w.svg',
+      },
+      {
+        name: 'readhat',
+        logo: '/images/redhat.svg',
+        darkLogo: '/images/redhat-w.svg',
+      },
+      {
+        name: 'innovaccer',
+        logo: '/images/innovaccer.svg',
+        darkLogo: '/images/innovaccer-w.svg',
+      },
+      {
+        name: 'mit',
+        logo: '/images/mit.svg',
+        darkLogo: '/images/mit-w.svg',
+      },
+
+      {
+        name: 'zscaler',
+        logo: '/images/zscaler.svg',
+        darkLogo: '/images/zscaler-w.svg',
+      },
+      {
+        name: 'Nutanix',
+        logo: '/images/nutanix.svg',
+        darkLogo: '/images/nutanix-w.svg',
+      },
+      {
+        name: 'broadcom',
+        logo: '/images/broadcom.svg',
+        darkLogo: '/images/broadcom-w.svg',
+      },
+      {
+        name: 'nyu',
+        logo: '/images/nyu.svg',
+        darkLogo: '/images/nyu-w.svg',
+      },
+      {
+        name: 'ringcentral',
+        logo: '/images/ringcentral.svg',
+        darkLogo: '/images/ringcentral-w.svg',
+      },
+      {
+        name: 'globant',
+        logo: '/images/globant.svg',
+        darkLogo: '/images/globant-w.svg',
+      },
+      {
+        name: 'broadinstitute',
+        logo: '/images/broadinstitute.svg',
+        darkLogo: '/images/broadinstitute-w.svg',
+      },
+      {
+        name: 'cmu',
+        logo: '/images/cmu.svg',
+        darkLogo: '/images/cmu-w.svg',
+      },
+      {
+        name: 'cars24',
+        logo: '/images/cars24.webp',
+        darkLogo: '/images/cars24-w.webp',
+      },
+      {
+        name: 'nus',
+        logo: '/images/nus.svg',
+        darkLogo: '/images/nus-w.svg',
+      },
     ],
   },
   ourValuesTitle: 'Our Values',

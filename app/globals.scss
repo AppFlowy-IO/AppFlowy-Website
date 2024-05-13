@@ -11,6 +11,7 @@
   -webkit-font-smoothing: antialiased;
   --color-bg: #EFF1FF;
   --color-text: #000;
+  --color-fill-text: #fff;
 }
 
 @mixin darkVars {
@@ -19,6 +20,7 @@
   --color-primary-10: rgba(96, 29, 170, 0.10);
   --color-bg: #000212;
   --color-text: white;
+  --color-fill-text: #000;
 }
 
 @media (prefers-color-scheme: dark) {

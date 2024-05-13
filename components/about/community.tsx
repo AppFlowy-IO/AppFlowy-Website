@@ -3,6 +3,7 @@ import { aboutPageConfig } from '@/lib/config/pages';
 import Plus from '@/components/icons/plus';
 import Link from 'next/link';
 import { formatNumber } from '@/lib/format-number';
+import ScrollLogos from '@/components/about/scroll-logos';
 
 function Community() {
   return (
@@ -29,18 +30,7 @@ function Community() {
           </div>
         ))}
       </div>
-      {/*<div className={'developers'}>*/}
-      {/*  <div className={'developers-title'}>{aboutPageConfig.developers.title}</div>*/}
-      {/*  <div className={'developers-logos'}>*/}
-      {/*    <div className={'logo-wrapper'}>*/}
-      {/*      {aboutPageConfig.developers.logos.map((logo, index) => (*/}
-      {/*        <div key={index} className={'logo'}>*/}
-      {/*          <img src={logo} alt={''} />*/}
-      {/*        </div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      <ScrollLogos />
     </div>
   );
 }
