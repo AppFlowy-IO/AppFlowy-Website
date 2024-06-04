@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'AppFlowy.IO',
-  description: 'AppFlowy is an AI-powered secure workspace where you achieve more without losing control of your data',
+  description: 'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
   icons: [
     {
       rel: 'icon',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://appflowy.io',
     title: 'AppFlowy.IO',
-    description: 'AppFlowy is an AI-powered secure workspace where you achieve more without losing control of your data',
+    description: 'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
     images: [
       {
         url: OpenGraph.src,

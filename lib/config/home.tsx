@@ -39,7 +39,7 @@ export const heroSectionConfig = {
   subtitle: (
     <span>
       <span className={'bold'}>AppFlowy </span>
-      is an AI-powered secure workspace where you achieve more without losing control of your data
+      is an AI collaborative workspace where you achieve more without losing control of your data
     </span>
   ),
   firstImgAlt: 'Appflowy',
