@@ -72,7 +72,7 @@ export const navigation: Item[] = [
             name: 'Top Contributors',
             href: '/contributors',
             icon: <Star />,
-            desc: '200+ are helping build secure workplace solutions',
+            desc: '300+ are helping build secure workplace solutions',
           },
           {
             key: '3',
@@ -96,7 +96,7 @@ export const navigation: Item[] = [
                 <Discord />
               </i>
             ),
-            desc: 'Get tips and support from 3,000+  users',
+            desc: 'Get tips and support from 5,000+  users',
           },
           {
             key: '2',
@@ -118,7 +118,7 @@ export const navigation: Item[] = [
                 <Github />
               </i>
             ),
-            desc: 'Access 100% of the AppFlowy source code',
+            desc: 'Access the AppFlowy source code',
           },
           {
             key: '4',
