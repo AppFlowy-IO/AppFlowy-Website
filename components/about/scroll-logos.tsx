@@ -17,7 +17,7 @@ function ScrollLogos() {
     const startScrolling = () => {
       const move = () => {
         currentScrollPosition += 1; // move 1px per interval
-        if (currentScrollPosition >= totalWidth) {
+        if (currentScrollPosition >= totalWidth / 2) {
           currentScrollPosition = 0; // reset to 0 when it reaches the end
         }
 
