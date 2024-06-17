@@ -11,11 +11,12 @@ function ScrollLogos() {
     const scrollContainer = scrollRef.current;
 
     if (!scrollContainer) return;
-    const totalWidth = scrollContainer.scrollWidth;
     let currentScrollPosition = 0;
 
     const startScrolling = () => {
       const move = () => {
+        const totalWidth = scrollContainer.scrollWidth;
+
         currentScrollPosition += 1; // move 1px per interval
         if (currentScrollPosition >= totalWidth / 2) {
           currentScrollPosition = 0; // reset to 0 when it reaches the end
