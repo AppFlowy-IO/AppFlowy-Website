@@ -33,7 +33,7 @@ import darkIcon3 from '@/assets/images/data/dark/icon-3.png';
 export const heroSectionConfig = {
   mainTitle: (
     <span className={'primary-title'}>
-      Bring projects, wiki, <span className={'text-primary'}>teams</span> together with AI
+      Bring projects, wikis, and <span className={'text-primary'}>teams</span> together with AI
     </span>
   ),
   subtitle: (
