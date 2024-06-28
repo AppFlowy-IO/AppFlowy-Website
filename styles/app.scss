@@ -1,3 +1,8 @@
+@import "font.scss";
+
+body {
+  font-family: "Inter", sans-serif;
+}
 
 .appflowy-app {
   @apply flex flex-col w-full overflow-x-hidden;
