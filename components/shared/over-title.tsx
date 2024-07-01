@@ -7,11 +7,8 @@ import darkIcon1 from '@/assets/images/download/dark/icon-1.png';
 import darkIcon2 from '@/assets/images/download/dark/icon-2.png';
 import darkIcon3 from '@/assets/images/download/dark/icon-3.png';
 import { downloadPageConfig } from '@/lib/config/pages';
-import { Manrope } from 'next/font/google';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-
-const manrope = Manrope({ subsets: ['latin'] });
 
 function OverTitle({ title }: { title: string }) {
   const dark = useDarkContext();
@@ -56,7 +53,7 @@ function OverTitle({ title }: { title: string }) {
       const currentScrollTop = document.documentElement.scrollTop;
 
       const scrollDistance = -(currentScrollTop - diff) * delta;
-      
+
       if (Math.abs(scrollDistance) > scrollWidth / 2) {
         return;
       }
@@ -99,9 +96,10 @@ function OverTitle({ title }: { title: string }) {
     <motion.div
       style={{
         x,
+        fontFamily: 'Manrope',
       }}
       ref={ref}
-      className={`translate-z-0 over-title transform ${manrope.className}`}
+      className={`translate-z-0 over-title transform`}
     >
       <div className={`title-text`}>{title}</div>
       <div className={'icons'}>

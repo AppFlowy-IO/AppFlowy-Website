@@ -4,16 +4,13 @@ import ExpireDescription from '@/components/invitation/expired-description';
 import InviteOwner from '@/components/invitation/invite-owner';
 import InviteWorkspace from '@/components/invitation/invite-workspace';
 import '@/styles/invitation.scss';
-import { Poppins } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import NextTopLoader from 'nextjs-toploader';
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
-
 function Page() {
   return (
-    <div className={`expired-page ${poppins.className}`}>
+    <div className={`expired-page`}>
       <NextTopLoader showSpinner={false} color={'#9327FF'} />
       <div className={'header'}>
         <div className={'logo-wrapper'}>

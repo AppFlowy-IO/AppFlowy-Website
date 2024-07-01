@@ -1,7 +1,22 @@
 const path = require('path');
+
+try {
+  require('./env.js');
+} catch (e) {
+  console.log('Error loading .env file');
+}
+
 const isProd = process.env.NODE_ENV === 'production';
 const environment = process.env.ENVIRONMENT || 'development';
-require('./env');
+
+let assetPrefix = undefined;
+if (isProd) {
+  if (environment === 'production') {
+    assetPrefix = 'https://appflowy.io';
+  } else if (environment === 'test') {
+    assetPrefix = 'https://test.appflowy.io';
+  }
+}
 const securityHeaders = [
   {
     key: 'X-Frame-Options',
@@ -43,12 +58,13 @@ const rewrites = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
 
   // Use the CDN in production and localhost for development.
-  assetPrefix: isProd ? `https://d3uafhn8yrvdfn.cloudfront.net/website/${environment}` : undefined,
+  assetPrefix,
   rewrites,
   images: {
     remotePatterns: [
