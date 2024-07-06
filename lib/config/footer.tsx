@@ -149,7 +149,7 @@ export const links = [
       {
         name: 'Careers',
         link: '/join',
-        badge: 1,
+        badge: 0,
       },
       {
         name: 'Privacy',
@@ -169,5 +169,6 @@ export const links = [
     name: 'Pricing',
     link: '/pricing',
     children: [],
+    hideInFooter: true,
   },
 ];

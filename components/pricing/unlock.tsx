@@ -7,10 +7,18 @@ const plans = [{
   title: 'AppFlowy AI MAX',
   desc: 'Unlimited AI models and access to advanced models.',
   price: 'US$8',
+  buttonProps: {
+    disabled: false,
+    label: 'Unlock',
+  },
   priceDesc: 'per user per month billed annually\n10 billed monthly',
   content: ['Unlimited AI responses powered by GPT-4o, Claude 3.5 Sonnet, and more', 'Select your preferred, most advanced models'],
 }, {
   title: 'AppFlowy AI On-device',
+  buttonProps: {
+    disabled: true,
+    label: 'Coming soon',
+  },
   desc: 'Local AI on your own hardware for ultimate privacy',
   price: 'US$8',
   priceDesc: 'per user per month billed annually\n10 billed monthly',
@@ -42,11 +50,17 @@ function Unlock() {
                 {plan.priceDesc}
               </div>
             </div>
-            <Link href={'/download'} className={`download-btn ${hoverPlan === plan.title ? 'selected' : ''}`}
+            {
+              plan.buttonProps.disabled ? <div
+                  className={'coming-soon download-btn disabled'}>{plan.buttonProps.label}</div> :
+                <Link
+                  href={'/download'} className={`download-btn ${hoverPlan === plan.title ? 'selected' : ''}`}
                   onMouseEnter={() => setHoverPlan(plan.title)} onMouseLeave={() => setHoverPlan(null)}
-            >
-              Unlock
-            </Link>
+                >
+                  {plan.buttonProps.label}
+                </Link>
+            }
+
             <div className={'ai-power-card-content'}>
               {plan.content.map((item, index) => (
                 <div key={index} className={'ai-power-card-content-item'}>

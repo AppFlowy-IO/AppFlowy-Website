@@ -19,7 +19,7 @@ const proPlan = {
   priceDesc: 'per user per month\n' +
     'billed annually',
   contentTitle: 'Everything in Free +',
-  content: ['Unlimited storage', 'Up to 10 workspace members', 'Unlimited AI responses', 'Choose your preferred most advanced AI models', 'Custom domains (coming soon)'],
+  content: ['Unlimited storage', 'Up to 10 workspace members', 'Unlimited AI responses', 'Choose your preferred, most advanced AI models', 'Custom domains (coming soon)'],
 };
 
 function PricingList() {
