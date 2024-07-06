@@ -47,7 +47,7 @@ export const links = [
     name: 'Product',
     children: [
       {
-        name: "What's New",
+        name: 'What\'s New',
         link: '/what-is-new',
       },
       {
@@ -61,6 +61,10 @@ export const links = [
       {
         name: 'Email Newsletter',
         link: '/subscribe-newsletter',
+      },
+      {
+        name: 'Pricing',
+        link: '/pricing',
       },
     ],
   },
@@ -149,7 +153,7 @@ export const links = [
       {
         name: 'Careers',
         link: '/join',
-        badge: 1,
+        badge: 0,
       },
       {
         name: 'Privacy',
@@ -165,4 +169,5 @@ export const links = [
       },
     ],
   },
+
 ];

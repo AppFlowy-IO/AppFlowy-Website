@@ -4,6 +4,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+
 .appflowy-app {
   @apply flex flex-col w-full overflow-x-hidden;
 
@@ -457,5 +458,30 @@ body {
   @apply relative pl-5 text-[12px] max-sm:leading-[18px] flex mt-[16px] leading-[24px] text-[#1F232999] dark:text-[#BBB] dark:text-opacity-70;
   .highlight {
     @apply text-primary dark:text-[#AE65FF];
+  }
+}
+
+.developers {
+  @apply flex flex-col items-center w-full mb-[150px];
+  @apply max-sm:mb-[50px];
+  .developers-title {
+    @apply text-[40px] leading-[110%] tracking-[-1px] font-medium mb-[100px];
+    @apply max-sm:text-[24px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:mb-[20px] max-sm:text-center max-sm:px-[56px];
+  }
+
+  .developers-logos {
+    @apply w-full overflow-hidden;
+    .logo-wrapper {
+      @apply w-fit flex justify-between items-center gap-[100px] mr-4 min-w-full;
+      @apply max-md:gap-[40px];
+
+      .logo {
+        @apply max-h-[225px] w-[200px] flex-shrink-0;
+        @apply max-sm:w-[100px] max-sm:h-[100px];
+        img {
+          @apply w-full h-full object-contain;
+        }
+      }
+    }
   }
 }
