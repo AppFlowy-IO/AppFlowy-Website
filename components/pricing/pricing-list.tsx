@@ -9,22 +9,20 @@ const freePlan = {
   price: 'Free',
   priceDesc: 'forever',
   contentTitle: '',
-  content: ['1 collaborative workspace up to 3 members', 'Unlimited pages & blocks', '5 GB storage', '30 days revision history', 'Intelligent search', '1,000 AI responses',
-    'Up to 20 pages for AI Chat with uploaded files'],
+  content: ['Unlimited pages & blocks', '5 GB storage', 'Up to 3 workspace members', 'Intelligent search', '100 AI responses powered by GPT-4o'],
 };
 
 const proPlan = {
   plan: 'Pro',
   planDesc: 'For small teams to manage projects and team knowledge',
-  price: '$10',
+  price: 'US$10',
   priceDesc: 'per user per month\n' +
     'billed annually',
-  contentTitle: 'Everything in Free, and',
-  content: ['Unlimited storage', 'Up to 10 workspace members', '6 months revision history', '10,000 AI responses per user per month', 'Up to 100 pages for AI Chat with uploaded files',
-  ],
+  contentTitle: 'Everything in Free +',
+  content: ['Unlimited storage', 'Up to 10 workspace members', 'Unlimited AI responses', 'Choose your preferred most advanced AI models', 'Custom domains (coming soon)'],
 };
 
-function PricingList () {
+function PricingList() {
   const [selectedTab, setSelectedTab] = useState('yearly');
   const [hoverPlan, setHoverPlan] = useState<string | null>(null);
 
@@ -34,7 +32,7 @@ function PricingList () {
 
   const options = useMemo(() => [
     {
-      label: <div>Yearly <span className={'primary'}>*</span>SAVE 25%</div>,
+      label: <div>Yearly <span className={'primary'}>*</span>SAVE 20%</div>,
       value: 'yearly',
       plans: [freePlan, proPlan],
     },
@@ -45,9 +43,9 @@ function PricingList () {
         freePlan,
         {
           ...proPlan,
-          price: '$12.5',
+          price: 'US$12.5',
           priceDesc: 'per user per month\n' +
-            '$10 billed annually',
+            'US$10 billed annually',
         },
       ],
     },

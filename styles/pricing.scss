@@ -4,7 +4,7 @@
   background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
 
   .title {
-    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium mb-[100px] text-center relative;
+    @apply z-10 tracking-[-4px] text-[74px] leading-[125%] px-[30px] font-medium mb-[100px] text-center relative;
     @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:mb-[60px];
   }
 
@@ -40,6 +40,7 @@
 
         .pricing-card-price {
           @apply text-[40px] font-medium text-left;
+
           .pricing-card-price-desc {
             @apply text-[16px] py-4 text-left h-[48px] font-normal text-gray-400 break-words whitespace-pre-wrap;
           }

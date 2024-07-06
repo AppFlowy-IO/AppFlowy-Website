@@ -5,19 +5,19 @@ import React, { useState } from 'react';
 
 const plans = [{
   title: 'AppFlowy AI MAX',
-  desc: 'Easily plug customized AI into existing workflow to gain smarter and faster results',
-  price: '$8',
+  desc: 'Unlimited AI models and access to advanced models.',
+  price: 'US$8',
   priceDesc: 'per user per month billed annually\n10 billed monthly',
-  content: ['Unlimited AI responses', 'Unlimited pages up to 30 MB per file for AI Chat with uploaded files'],
+  content: ['Unlimited AI responses powered by GPT-4o, Claude 3.5 Sonnet, and more', 'Select your preferred, most advanced models'],
 }, {
-  title: 'AppFlowy AI Local',
-  desc: 'Easily plug customized AI into existing workflow to gain smarter and faster results',
-  price: '$8',
+  title: 'AppFlowy AI On-device',
+  desc: 'Local AI on your own hardware for ultimate privacy',
+  price: 'US$8',
   priceDesc: 'per user per month billed annually\n10 billed monthly',
-  content: ['Local AI on your own hardware for ultimate privacy', 'Unlimited AI responses & file size for AI Chat'],
+  content: ['Run large language models locally - No internet required', 'Chat with your local files (coming soon)'],
 }];
 
-function Unlock () {
+function Unlock() {
   const [hoverPlan, setHoverPlan] = useState<string | null>(null);
 
   return (

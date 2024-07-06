@@ -4,11 +4,11 @@ import PricingList from '@/components/pricing/pricing-list';
 import Unlock from '@/components/pricing/unlock';
 import React from 'react';
 
-function Page () {
+function Page() {
   return (
     <div className={'pricing-page'}>
       <div className={'title'}>
-        Your work solution.
+        Organize your work with AI.
         <div className={'primary'}>
           Start free.
         </div>

@@ -47,7 +47,7 @@ export const links = [
     name: 'Product',
     children: [
       {
-        name: "What's New",
+        name: 'What\'s New',
         link: '/what-is-new',
       },
       {
@@ -164,5 +164,10 @@ export const links = [
         link: '/contact',
       },
     ],
+  },
+  {
+    name: 'Pricing',
+    link: '/pricing',
+    children: [],
   },
 ];
