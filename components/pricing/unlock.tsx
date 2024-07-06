@@ -11,7 +11,7 @@ const plans = [{
     disabled: false,
     label: 'Unlock',
   },
-  priceDesc: 'per user per month billed annually\n10 billed monthly',
+  priceDesc: 'per user per month billed annually\nUS$10 billed monthly',
   content: ['Unlimited AI responses powered by GPT-4o, Claude 3.5 Sonnet, and more', 'Select your preferred, most advanced models'],
 }, {
   title: 'AppFlowy AI On-device',
@@ -21,7 +21,7 @@ const plans = [{
   },
   desc: 'Local AI on your own hardware for ultimate privacy',
   price: 'US$8',
-  priceDesc: 'per user per month billed annually\n10 billed monthly',
+  priceDesc: 'per user per month billed annually\nUS$10 billed monthly',
   content: ['Run large language models locally - No internet required', 'Chat with your local files (coming soon)'],
 }];
 

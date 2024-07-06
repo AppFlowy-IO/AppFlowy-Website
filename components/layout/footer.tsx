@@ -28,7 +28,7 @@ function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
           </div>
         </div>
         <div className={'menu'}>
-          {links.filter(item => !item.hideInFooter).map((item) => (
+          {links.map((item) => (
             <div className={'item'} key={item.name}>
               <span className={'group-name'}>{item.name}</span>
               {item.children.map((child) => (

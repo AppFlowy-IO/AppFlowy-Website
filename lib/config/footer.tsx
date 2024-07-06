@@ -62,6 +62,10 @@ export const links = [
         name: 'Email Newsletter',
         link: '/subscribe-newsletter',
       },
+      {
+        name: 'Pricing',
+        link: '/pricing',
+      },
     ],
   },
   {
@@ -165,10 +169,5 @@ export const links = [
       },
     ],
   },
-  {
-    name: 'Pricing',
-    link: '/pricing',
-    children: [],
-    hideInFooter: true,
-  },
+
 ];

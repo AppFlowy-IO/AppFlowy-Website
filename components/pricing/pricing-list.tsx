@@ -2,6 +2,7 @@
 import { Divider } from '@mui/material';
 import Link from 'next/link';
 import React, { useMemo, useState } from 'react';
+import StarFill from '@/components/icons/star-fill';
 
 const freePlan = {
   plan: 'Free',
@@ -32,7 +33,7 @@ function PricingList() {
 
   const options = useMemo(() => [
     {
-      label: <div>Yearly <span className={'primary'}>*</span>SAVE 20%</div>,
+      label: <div className={'flex items-center gap-2'}>Yearly <StarFill />SAVE 20%</div>,
       value: 'yearly',
       plans: [freePlan, proPlan],
     },
