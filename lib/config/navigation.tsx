@@ -268,6 +268,11 @@ export const navigation: Item[] = [
       },
     ],
   },
+  {
+    name: 'Pricing',
+    href: '/pricing',
+    key: 'pricing',
+  }
 ];
 
 export interface Item {

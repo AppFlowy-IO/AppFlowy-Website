@@ -1,0 +1,146 @@
+.pricing-page {
+  @apply flex w-full flex-col items-center pt-[220px];
+  @apply max-sm:pt-[169px];
+  background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
+
+  .title {
+    @apply z-10 tracking-[-4px] text-[74px] leading-[105%] px-[30px] font-medium mb-[100px] text-center relative;
+    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:mb-[60px];
+  }
+
+  .primary {
+    @apply text-primary;
+  }
+
+  .content {
+    @apply w-full flex items-center flex-col px-[100px];
+    @apply max-sm:px-[32px];
+    .pricing-list {
+      @apply flex gap-10 justify-center w-full mb-[185px];
+      @apply max-sm:flex-col max-sm:gap-6 max-sm:mb-[100px];
+      .pricing-card {
+        border-radius: 30px;
+        border: 1px solid rgba(147, 39, 255, 0.10);
+        background: white;
+        @apply h-fit;
+
+        &.selected {
+          background: linear-gradient(175deg, rgba(183, 172, 255, 0.00) -38.76%, #FFF 30.99%);
+        }
+
+        @apply w-[453px] h-auto p-10 flex-col flex gap-10;
+        @apply max-sm:w-full max-sm:h-auto max-sm:p-6;
+        .pricing-card-title {
+          @apply text-[30px] font-medium text-left;
+        }
+
+        .pricing-card-desc {
+          @apply text-[16px] text-left;
+        }
+
+        .pricing-card-price {
+          @apply text-[40px] font-medium text-left;
+          .pricing-card-price-desc {
+            @apply text-[16px] py-4 text-left h-[48px] font-normal text-gray-400 break-words whitespace-pre-wrap;
+          }
+
+        }
+
+        .download-btn {
+          @apply text-primary bg-transparent border-primary cursor-pointer;
+          &.selected, &:hover {
+            @apply bg-primary text-white;
+          }
+        }
+
+        .pricing-card-content {
+          @apply flex flex-col gap-4;
+          .pricing-card-content-title {
+            @apply text-[20px] font-medium text-left;
+          }
+
+          .pricing-card-content-item {
+            @apply text-[16px] flex gap-2 text-left break-words whitespace-pre-wrap overflow-hidden w-full;
+            svg {
+              @apply top-1 relative w-[16px] h-[16px];
+            }
+          }
+        }
+
+      }
+    }
+
+    .ai-power {
+      @apply flex gap-10 justify-center w-full mb-[180px];
+      @apply max-sm:flex-col max-sm:gap-6 max-sm:mb-[100px];
+      @apply h-fit;
+      .ai-power-card {
+        border-radius: 30px;
+        border: 1px solid rgba(147, 39, 255, 0.10);
+        background: white;
+        @apply w-[538px] h-auto p-10 flex-col flex gap-10;
+        @apply max-sm:w-full max-sm:h-auto max-sm:p-6;
+        &.selected {
+          background: linear-gradient(175deg, rgba(183, 172, 255, 0.00) -38.76%, #FFF 30.99%);
+        }
+
+        .ai-power-card-title {
+          @apply text-[30px] font-medium text-left;
+        }
+
+        .ai-power-card-desc {
+          @apply text-[16px] text-left;
+        }
+
+        .ai-power-card-price {
+          @apply text-[40px] font-medium text-left;
+          .ai-power-card-price-desc {
+            @apply text-[16px] py-4 text-left h-[48px] font-normal text-gray-400 break-words whitespace-pre-wrap;
+          }
+
+        }
+
+        .download-btn {
+          @apply text-primary bg-transparent border-primary cursor-pointer;
+          &.selected, &:hover {
+            @apply bg-primary text-white;
+          }
+
+        }
+
+        .ai-power-card-content {
+          @apply flex flex-col gap-4;
+          .ai-power-card-content-title {
+            @apply text-[20px] font-medium text-left;
+          }
+
+          .ai-power-card-content-item {
+            @apply text-[16px] flex gap-2 text-left break-words whitespace-pre-wrap overflow-hidden w-full;
+            svg {
+              @apply top-1 relative;
+            }
+          }
+
+        }
+      }
+    }
+
+    .pricing-tabs {
+      @apply flex items-center gap-2 justify-center w-full mb-20;
+      @apply max-sm:mb-4;
+
+      .pricing-tab {
+        @apply text-[30px] cursor-pointer font-medium flex items-center justify-center px-10 gap-4 border-b-4 text-gray-400 border-gray-200;
+        @apply transform transition-colors duration-300;
+        @apply max-sm:text-center max-sm:mb-4 max-sm:text-[16px] max-sm:font-normal max-sm:px-4;
+        &.selected {
+          @apply text-black border-primary font-semibold;
+        }
+
+        &:hover {
+          @apply text-black border-primary;
+        }
+      }
+    }
+  }
+}

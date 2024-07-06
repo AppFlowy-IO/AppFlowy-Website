@@ -556,6 +556,41 @@
   body {
     background: var(--color-bg);
   }
+  .pricing-page {
+    background: var(--color-night-blue);
+
+    .content {
+      .divider {
+        @apply border-white opacity-10;
+      }
+
+      .pricing-tabs {
+        .pricing-tab {
+          @apply text-gray-400 border-gray-600;
+          &.selected {
+            @apply text-white border-primary;
+          }
+
+        }
+      }
+
+      .pricing-list, .ai-power {
+        .pricing-card, .ai-power-card {
+          border-radius: 30px;
+          border: 1px solid rgba(147, 39, 255, 0.20);
+          background: rgba(38, 32, 59, 0.80);
+
+          &.selected {
+            border-radius: 30px;
+            border: 1px solid rgba(96, 29, 170, 0.20);
+            background: linear-gradient(174deg, rgba(96, 29, 170, 0.80) -31.43%, rgba(38, 32, 59, 0.80) 50.95%);
+          }
+        }
+      }
+    }
+
+
+  }
 }
 
 
