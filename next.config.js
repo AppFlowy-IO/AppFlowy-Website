@@ -26,6 +26,14 @@ const securityHeaders = [
 const rewrites = () => {
   return [
     {
+      source: '/privacy/app',
+      destination: '/privacy',
+    },
+    {
+      source: '/terms/app',
+      destination: '/terms',
+    },
+    {
       source: '/crm/v3/:path*',
       destination: 'https://api.hubapi.com/crm/v3/:path*',
     },
@@ -74,12 +82,29 @@ const nextConfig = {
       },
     ],
   },
-  async headers() {
+  async headers () {
     return [
       {
         // Apply these headers to all routes in your application.
         source: '/(.*)',
         headers: securityHeaders,
+      },
+      {
+        source: '/:all*(docx)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
       },
     ];
   },

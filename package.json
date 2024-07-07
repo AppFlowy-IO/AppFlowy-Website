@@ -40,6 +40,8 @@
     "dayjs": "^1.11.9",
     "dexie": "^3.2.4",
     "dexie-react-hooks": "^1.1.6",
+    "docx-preview": "^0.3.2",
+    "docx-templates": "^4.13.0",
     "framer-motion": "^8.4.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
