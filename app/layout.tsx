@@ -1,6 +1,6 @@
 import './globals.scss';
 import type { Metadata } from 'next';
-import Favicon from '../public/favicon.ico';
+import Favicon from '../public/appflowy.svg';
 import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getModeForServer } from '@/lib/get-theme';
@@ -40,12 +40,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gitData = await getGitData();
 
   return (
-    <html lang='en' className={mode}>
-      <body id={'body'}>
-        <App ua={ua} gitData={gitData} mode={mode}>
-          {children}
-        </App>
-      </body>
+    <html lang="en" className={mode}>
+    <body id={'body'}>
+    <App ua={ua} gitData={gitData} mode={mode}>
+      {children}
+    </App>
+    </body>
     </html>
   );
 }

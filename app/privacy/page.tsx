@@ -1,13 +1,9 @@
-import { privacyHTML } from '@/lib/config/privacy/privacy';
+import DocxPreview from '@/components/privacy/docx-preview';
 
 function Page() {
   return (
     <div className={'privacy-policy'}>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: privacyHTML,
-        }}
-      ></div>
+      <DocxPreview docxUrl={'/privacy.docx'} />
     </div>
   );
 }
