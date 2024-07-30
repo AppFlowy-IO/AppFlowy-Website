@@ -9,7 +9,6 @@ function HeroDesc({ inView }: { inView?: boolean }) {
   useEffect(() => {
     if (inView) {
       [
-        EventName.homePageGetTheCloudBetaLink,
         EventName.homePageMorePlatformsLink,
         EventName.homePageWhatIsNewLink,
       ].forEach((eventName) => {
@@ -36,14 +35,7 @@ function HeroDesc({ inView }: { inView?: boolean }) {
         onClick={() => onClick(EventName.homePageWhatIsNewLink)}
         href={'/what-is-new'}
       >{`What's new in ${gitData?.lastVersion}`}</Link>
-      {` / `}
-      <Link
-        onClick={() => onClick(EventName.homePageGetTheCloudBetaLink)}
-        target={'_blank'}
-        href={'https://survey.appflowy.io/private-beta'}
-      >
-        {`Get the Cloud beta`}
-      </Link>
+
       {` / `}
       <Link
         onClick={() => onClick(EventName.homePageMorePlatformsLink)}

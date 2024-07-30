@@ -6,6 +6,7 @@ import App from '@/components/layout/app';
 import { getModeForServer } from '@/lib/get-theme';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
+import process from 'process';
 
 export const metadata: Metadata = {
   title: 'AppFlowy.IO',
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     },
   ],
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
-  openGraph: {
+  openGraph: process.env.NODE_ENV === 'development' ? undefined : {
     type: 'website',
     locale: 'en_US',
     url: 'https://appflowy.io',
