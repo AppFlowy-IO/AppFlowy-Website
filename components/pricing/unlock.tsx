@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 const plans = [{
   title: 'AppFlowy AI MAX',
-  desc: 'Unlimited AI models and access to advanced models',
+  desc: 'Unlimited AI and access to advanced models',
   price: 'US$8',
   buttonProps: {
     disabled: false,
