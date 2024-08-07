@@ -44,10 +44,10 @@ function ModalDownload() {
       }}
       open={open}
       onClose={handleClose}
-      aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id='alert-dialog-title' className={'modal-title relative'}>
+      <DialogTitle id="alert-dialog-title" className={'modal-title relative'}>
         <div onClick={handleClose} className={'absolute right-4 top-4 h-10 w-10 cursor-pointer'}>
           <Close />
         </div>
@@ -77,7 +77,7 @@ function ModalDownload() {
             <span>Download the app for your device.</span>
           </div>
           <div className={'w-[65%] whitespace-break-spaces py-6 text-center '}>
-            <span className={'text-primary font-bold'}>AppFlowy</span> is an AI-powered secure workspace where you
+            <span className={'text-primary font-bold'}>AppFlowy</span> is an AI collaborative workspace where you
             achieve more without losing control of your data
           </div>
           <HeroDownloadBtn showDesc={false} />
