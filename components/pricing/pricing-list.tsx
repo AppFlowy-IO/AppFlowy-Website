@@ -10,7 +10,7 @@ const freePlan = {
   price: 'Free',
   priceDesc: 'forever',
   contentTitle: '',
-  content: ['Unlimited pages & blocks', '5 GB storage', 'Up to 3 workspace members', 'Intelligent search', '100 AI responses powered by GPT-4o'],
+  content: ['Unlimited pages & blocks', '5 GB storage', 'Up to 2 workspace members', 'Intelligent search', '100 AI responses powered by GPT-4o'],
 };
 
 const proPlan = {
