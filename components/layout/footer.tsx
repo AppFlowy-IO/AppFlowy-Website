@@ -3,9 +3,8 @@ import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 import ContactEmail from '@/components/shared/contact-email';
-import SwitchMode from '@/components/shared/switch-mode';
 
-function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
+function Footer() {
   const ExternalLinks = () => (
     <>
       {externalLinks.map((item) => (
@@ -62,7 +61,6 @@ function Footer({ onChangeMode }: { onChangeMode: (dark?: boolean) => void }) {
             Need Help? <ContactEmail />
           </div>
         </div>
-        <SwitchMode onChangeMode={onChangeMode} />
       </div>
     </div>
   );

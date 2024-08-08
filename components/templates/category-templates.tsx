@@ -1,0 +1,26 @@
+import Templates from '@/components/templates/templates';
+import { useTemplatesContext } from '@/components/templates/templates-context';
+import React, { useMemo } from 'react';
+
+function CategoryTemplates() {
+  const { categoryTemplates = [], selectedCategoryId, categories } = useTemplatesContext();
+
+  const category = useMemo(() => {
+    return categories.find((item) => item.id === selectedCategoryId);
+  }, [categories, selectedCategoryId]);
+
+  if (!category) return null;
+  return (
+    <div className={'category-template-list'}>
+      <div className={'template-category'}>
+        <div className={'category-item'}>
+          <div className={'category-icon-name'}>{category.name}</div>
+          <div className={'category-desc'}>{category.desc}</div>
+        </div>
+        <Templates templateList={categoryTemplates} category={category} />
+      </div>
+    </div>
+  );
+}
+
+export default CategoryTemplates;
