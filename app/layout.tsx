@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import Favicon from '../public/appflowy.svg';
 import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
-import { getModeForServer } from '@/lib/get-theme';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
 import process from 'process';
@@ -18,35 +17,38 @@ export const metadata: Metadata = {
     },
   ],
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
-  openGraph: process.env.NODE_ENV === 'development' ? undefined : {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://appflowy.io',
-    title: 'AppFlowy.IO',
-    description: 'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
-    images: [
-      {
-        url: OpenGraph.src,
-        width: 1200,
-        height: 630,
-        alt: 'AppFlowy.IO',
-      },
-    ],
-  },
+  openGraph:
+    process.env.NODE_ENV === 'development'
+      ? undefined
+      : {
+          type: 'website',
+          locale: 'en_US',
+          url: 'https://appflowy.io',
+          title: 'AppFlowy.IO',
+          description:
+            'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
+          images: [
+            {
+              url: OpenGraph.src,
+              width: 1200,
+              height: 630,
+              alt: 'AppFlowy.IO',
+            },
+          ],
+        },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const mode = getModeForServer();
   const ua = getUAFromServer();
   const gitData = await getGitData();
 
   return (
-    <html lang="en" className={mode}>
-    <body id={'body'}>
-    <App ua={ua} gitData={gitData} mode={mode}>
-      {children}
-    </App>
-    </body>
+    <html lang='en'>
+      <body id={'body'}>
+        <App ua={ua} gitData={gitData}>
+          {children}
+        </App>
+      </body>
     </html>
   );
 }

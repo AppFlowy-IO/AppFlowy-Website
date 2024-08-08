@@ -3,11 +3,10 @@ import '@/styles/app.scss';
 import '@/styles/btn.scss';
 import '@/styles/dark.scss';
 
-import React, { useState, useLayoutEffect, lazy, useMemo } from 'react';
+import React, { useState, lazy, useMemo } from 'react';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
 import { GitContext } from '@/lib/hooks/use-git-context';
 import { UAContext } from '@/lib/hooks/use-ua';
-import { setTheme } from '@/lib/set-theme';
 import Script from 'next/script';
 import * as process from 'process';
 import Modal from '@/components/shared/modal';
@@ -22,48 +21,17 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export default function App({
   children,
-  mode,
   gitData,
   ua,
 }: {
   children: React.ReactNode;
   ua?: UAParser.IResult;
-  mode?: 'dark' | 'light';
   gitData?: {
     stars?: number;
     lastVersion?: string;
     visitedLatestVersion?: string;
   };
 }) {
-  const [dark, setDark] = useState<boolean | undefined>(() => {
-    if (typeof window === 'undefined') return mode === 'dark';
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-    if (!mode) {
-      const dark = media.matches;
-
-      setTheme(dark);
-    }
-
-    return mode === 'dark';
-  });
-
-  useLayoutEffect(() => {
-    setDark(document.documentElement.className.includes('dark'));
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const changeTheme = (e: MediaQueryListEvent) => {
-      setTheme(e.matches);
-      setDark(e.matches);
-    };
-
-    media.addEventListener('change', changeTheme);
-
-    return () => {
-      media.removeEventListener('change', changeTheme);
-    };
-  }, [mode]);
-
   const [openModal, setOpenModal] = useState(false);
   const [modalProps, setModalProps] = useState<ModalProps | undefined>(undefined);
 
@@ -89,7 +57,7 @@ export default function App({
   return (
     <UAContext.Provider value={ua}>
       <GitContext.Provider value={gitData}>
-        <DarkContext.Provider value={dark}>
+        <DarkContext.Provider value={false}>
           <ModalProvider value={modalContext}>
             {isSinglePage ? (
               <div className={'appflowy-app'}>
@@ -100,7 +68,7 @@ export default function App({
                 <Header />
 
                 <main>{children}</main>
-                <Footer onChangeMode={setDark} />
+                <Footer />
                 {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
                   <>
                     <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
@@ -111,7 +79,7 @@ export default function App({
                 gtag('js', new Date());
        
                 gtag('config', '${GA_MEASUREMENT_ID}', {
-                   page_theme: '${dark ? 'dark' : 'light'}'
+                   page_theme: 'light'
                 });
               `}
                     </Script>

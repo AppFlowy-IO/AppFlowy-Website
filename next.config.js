@@ -61,6 +61,10 @@ const rewrites = () => {
       source: '/privacy/mobile',
       destination: '/privacy/app',
     },
+    {
+      source: '/api/:path*',
+      destination: `${process.env.NEXT_PUBLIC_AF_BASE_URL}/api/:path*`,
+    },
   ];
 };
 /** @type {import('next').NextConfig} */
@@ -82,7 +86,7 @@ const nextConfig = {
       },
     ],
   },
-  async headers () {
+  async headers() {
     return [
       {
         // Apply these headers to all routes in your application.
