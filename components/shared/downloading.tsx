@@ -11,7 +11,7 @@ import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { Storage } from '@/lib/storage';
-import DownloadBtns from '@/components/home/mobile/download-btns';
+import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
 
 function Downloading() {
   const dark = useDarkContext();
@@ -97,7 +97,7 @@ function Downloading() {
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
           </div>
 
-          <DownloadBtns />
+          <MobileDownloadBtns />
         </div>
       </div>
       <div className={'panel panel-3'}>

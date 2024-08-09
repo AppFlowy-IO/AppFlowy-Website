@@ -8,10 +8,7 @@ function HeroDesc({ inView }: { inView?: boolean }) {
 
   useEffect(() => {
     if (inView) {
-      [
-        EventName.homePageMorePlatformsLink,
-        EventName.homePageWhatIsNewLink,
-      ].forEach((eventName) => {
+      [EventName.homePageMorePlatformsLink, EventName.homePageWhatIsNewLink].forEach((eventName) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         collectEvent(eventName, {
@@ -30,7 +27,7 @@ function HeroDesc({ inView }: { inView?: boolean }) {
   };
 
   return (
-    <div className={'hero-desc text-[12px]'}>
+    <div className={'hero-desc text-primary text-[12px]'}>
       <Link
         onClick={() => onClick(EventName.homePageWhatIsNewLink)}
         href={'/what-is-new'}

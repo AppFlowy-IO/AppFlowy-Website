@@ -275,6 +275,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getSearchResults(searchText: string): Promise<Template[]> {
   // const res = await templateAPI.get(`/api/templates?search=${searchText}`);
   //
@@ -405,6 +406,7 @@ export async function getSearchResults(searchText: string): Promise<Template[]> 
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getCategoryTemplateList(categoryId: string): Promise<Template[]> {
   // const res = await templateAPI.get(`/api/templates?category=${categoryId}`);
   //
@@ -450,6 +452,7 @@ export async function getCategoryTemplateList(categoryId: string): Promise<Templ
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getTemplateById(id: string): Promise<Template> {
   // const res = await templateAPI.get(`/api/templates/${id}`);
   //

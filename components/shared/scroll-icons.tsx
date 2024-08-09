@@ -1,10 +1,10 @@
 'use client';
-import React, { useEffect, useMemo, useRef } from 'react';
-import { aboutPageConfig } from '@/lib/config/pages';
-import { useDarkContext } from '@/lib/hooks/use-dark-context';
 
-function ScrollLogos() {
-  const isDark = useDarkContext();
+import { aboutPageConfig } from '@/lib/config/pages';
+import React, { useEffect, useMemo, useRef } from 'react';
+import '@/styles/scroll-icons.scss';
+
+function ScrollIcons() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,7 +33,6 @@ function ScrollLogos() {
     // clear interval on unmount
     return () => clearInterval(intervalId);
   }, []);
-
   const logos = useMemo(
     () => [
       ...aboutPageConfig.developers.logos,
@@ -41,22 +40,20 @@ function ScrollLogos() {
     ],
     []
   );
-
   return (
-    <div className={'developers'}>
-      <div className={'developers-title'}>{aboutPageConfig.developers.title}</div>
-
+    <div className={'scroll-icons'}>
+      <div className={'scroll-icons-title'}>Trusted by teams and individuals from</div>
       <div ref={scrollRef} className={'developers-logos'}>
         <div className={'logo-wrapper'}>
           {logos.map((item, index) => (
             <div
               key={index}
               style={{
-                color: '#1E0C32',
+                color: 'var(--color-text)',
               }}
               className={'logo'}
             >
-              <img src={isDark ? item.darkLogo : item.logo} alt={item.name} />
+              <img src={item.logo} alt={item.name} />
             </div>
           ))}
         </div>
@@ -65,4 +62,4 @@ function ScrollLogos() {
   );
 }
 
-export default ScrollLogos;
+export default ScrollIcons;

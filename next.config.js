@@ -10,11 +10,13 @@ const isProd = process.env.NODE_ENV === 'production';
 const environment = process.env.ENVIRONMENT || 'development';
 
 let assetPrefix = undefined;
+let AF_API_BASE_URL = 'https://beta.appflowy.cloud';
 if (isProd) {
   if (environment === 'production') {
     assetPrefix = 'https://appflowy.io';
   } else if (environment === 'test') {
     assetPrefix = 'https://test.appflowy.io';
+    AF_API_BASE_URL = 'https://test.appflowy.cloud';
   }
 }
 const securityHeaders = [
@@ -63,7 +65,11 @@ const rewrites = () => {
     },
     {
       source: '/api/:path*',
-      destination: `${process.env.NEXT_PUBLIC_AF_BASE_URL}/api/:path*`,
+      destination: `${AF_API_BASE_URL}/api/:path*`,
+    },
+    {
+      source: '/product',
+      destination: '/',
     },
   ];
 };
