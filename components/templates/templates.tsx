@@ -2,7 +2,6 @@ import TemplateItem from '@/components/templates/template-item';
 import { Template, TemplateCategory } from '@/lib/interface';
 import { Grid } from '@mui/material';
 import React, { useMemo } from 'react';
-import Link from 'next/link';
 
 function Templates({ templateList, category }: { templateList: Template[]; category?: TemplateCategory }) {
   const renderTemplates = useMemo(() => {
@@ -11,9 +10,9 @@ function Templates({ templateList, category }: { templateList: Template[]; categ
 
       return (
         <Grid key={template.id} item sm={12} md={6}>
-          <Link className={'template-item'} href={`/templates/${currentCategory?.id || 'categories'}/${template.id}`}>
+          <div className={'template-item'}>
             <TemplateItem template={template} category={currentCategory} />
-          </Link>
+          </div>
         </Grid>
       );
     });

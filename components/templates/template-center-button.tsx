@@ -6,7 +6,9 @@ function TemplateCenterButton() {
   return (
     <Link
       href={'/templates'}
-      className={'flex w-fit items-center gap-[10px] rounded-[5px] bg-[#F5F5FA] px-5 py-[10px] hover:bg-[#E5E5EA]'}
+      className={
+        'text-primary hover:border-primary flex w-fit items-center gap-[10px] rounded-[15px] border border-transparent bg-white px-[30px] py-[20px] text-base max-md:w-full max-md:bg-transparent max-md:px-0 max-md:py-0'
+      }
     >
       <BackIcon />
       <div className={'text-base font-medium'}>Template center</div>

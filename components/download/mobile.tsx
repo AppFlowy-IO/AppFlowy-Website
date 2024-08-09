@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { downloadPageConfig } from '@/lib/config/pages';
-import DownloadBtns from '@/components/home/mobile/download-btns';
+import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
 import Image from 'next/image';
 import image1 from '@/assets/images/download/img-1.png';
 import darkImage1 from '@/assets/images/download/dark/img-1.png';
@@ -33,7 +33,7 @@ function DownloadMobile() {
         on the go
       </div>
       <div className={'desc text-center'}>Perform and look great</div>
-      <DownloadBtns />
+      <MobileDownloadBtns />
       <div className={'image max-sm:[40px] mobile-image relative mt-[60px]'}>
         <div className={'ellipse'} />
         <Image

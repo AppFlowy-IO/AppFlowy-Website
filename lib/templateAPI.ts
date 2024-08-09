@@ -31,8 +31,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
           desc: 'A template for project kickoff meetings',
           about:
             'This template is designed to help you run a project kickoff meeting. It includes a detailed agenda and a list of questions to ask your team.',
-          view_url:
-            'https://appflowy.com/585ccd62-4188-409e-bd6b-138173f477c2/Getting-started-83869cb8-4c3e-47aa-b731-080edfb58920',
+          view_url: 'http://localhost:3001/93da7215/Getting-started-191e0a19-8aa3-4118-8e1b-7148858fbf3f#',
           categories: [
             {
               id: '1',
@@ -80,8 +79,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
           desc: 'A template for project planning',
           about:
             'This template is designed to help you plan your project. It includes a detailed timeline, budget, and resource allocation.',
-          view_url:
-            'https://appflowy.com/854ea6c6-84cc-4710-9779-e704d058f92a/Databases-4443c9c8-1488-45b8-b48a-9ebb459672a2',
+          view_url: 'http://localhost:3001/943b5c8c/INNER-DOCUMENT--copy--b292bbc5-ab90-48d8-87d2-57920a442162',
           categories: [
             {
               id: '1',
@@ -190,8 +188,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
           desc: 'A template for code reviews',
           about:
             'This template is designed to help you run a code review. It includes a detailed checklist of things to look for and questions to ask.',
-          view_url:
-            'https://appflowy.com/585ccd62-4188-409e-bd6b-138173f477c2/Getting-started-83869cb8-4c3e-47aa-b731-080edfb58920',
+          view_url: 'http://localhost:3001/93da7215/Getting-started-191e0a19-8aa3-4118-8e1b-7148858fbf3f#',
           categories: [
             {
               id: '2',
@@ -239,8 +236,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
           desc: 'A template for architecture diagrams',
           about:
             'This template is designed to help you create an architecture diagram. It includes a detailed overview of the system architecture and components.',
-          view_url:
-            'https://appflowy.com/854ea6c6-84cc-4710-9779-e704d058f92a/Databases-4443c9c8-1488-45b8-b48a-9ebb459672a2',
+          view_url: 'http://localhost:3001/943b5c8c/INNER-DOCUMENT--copy--b292bbc5-ab90-48d8-87d2-57920a442162',
           categories: [
             {
               id: '2',
@@ -275,6 +271,7 @@ export async function getTemplateHomeList(): Promise<GroupByCategoryTemplateList
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getSearchResults(searchText: string): Promise<Template[]> {
   // const res = await templateAPI.get(`/api/templates?search=${searchText}`);
   //
@@ -286,8 +283,7 @@ export async function getSearchResults(searchText: string): Promise<Template[]> 
       desc: 'A template for project kickoff meetings',
       about:
         'This template is designed to help you run a project kickoff meeting. It includes a detailed agenda and a list of questions to ask your team.',
-      view_url:
-        'https://appflowy.com/585ccd62-4188-409e-bd6b-138173f477c2/Getting-started-83869cb8-4c3e-47aa-b731-080edfb58920',
+      view_url: 'http://localhost:3001/93da7215/Getting-started-191e0a19-8aa3-4118-8e1b-7148858fbf3f#',
       categories: [
         {
           id: '1',
@@ -323,8 +319,7 @@ export async function getSearchResults(searchText: string): Promise<Template[]> 
       desc: 'A template for project planning',
       about:
         'This template is designed to help you plan your project. It includes a detailed timeline, budget, and resource allocation.',
-      view_url:
-        'https://appflowy.com/854ea6c6-84cc-4710-9779-e704d058f92a/Databases-4443c9c8-1488-45b8-b48a-9ebb459672a2',
+      view_url: 'http://localhost:3001/943b5c8c/INNER-DOCUMENT--copy--b292bbc5-ab90-48d8-87d2-57920a442162',
       categories: [
         {
           id: '1',
@@ -405,6 +400,7 @@ export async function getSearchResults(searchText: string): Promise<Template[]> 
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getCategoryTemplateList(categoryId: string): Promise<Template[]> {
   // const res = await templateAPI.get(`/api/templates?category=${categoryId}`);
   //
@@ -416,8 +412,7 @@ export async function getCategoryTemplateList(categoryId: string): Promise<Templ
       desc: 'A template for project kickoff meetings',
       about:
         'This template is designed to help you run a project kickoff meeting. It includes a detailed agenda and a list of questions to ask your team.',
-      view_url:
-        'https://appflowy.com/585ccd62-4188-409e-bd6b-138173f477c2/Getting-started-83869cb8-4c3e-47aa-b731-080edfb58920',
+      view_url: 'http://localhost:3001/93da7215/Getting-started-191e0a19-8aa3-4118-8e1b-7148858fbf3f#',
       categories: [
         {
           id: '1',
@@ -450,6 +445,7 @@ export async function getCategoryTemplateList(categoryId: string): Promise<Templ
   ];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getTemplateById(id: string): Promise<Template> {
   // const res = await templateAPI.get(`/api/templates/${id}`);
   //
@@ -460,8 +456,7 @@ export async function getTemplateById(id: string): Promise<Template> {
     desc: 'A template for project kickoff meetings',
     about:
       'This template is designed to help you run a project kickoff meeting. It includes a detailed agenda and a list of questions to ask your team.',
-    view_url:
-      'https://appflowy.com/585ccd62-4188-409e-bd6b-138173f477c2/Getting-started-83869cb8-4c3e-47aa-b731-080edfb58920',
+    view_url: 'http://localhost:3001/93da7215/Getting-started-191e0a19-8aa3-4118-8e1b-7148858fbf3f#',
     categories: [
       {
         id: '1',
@@ -517,8 +512,7 @@ export async function getTemplateById(id: string): Promise<Template> {
         desc: 'A template for project planning',
         about:
           'This template is designed to help you plan your project. It includes a detailed timeline, budget, and resource allocation.',
-        view_url:
-          'https://appflowy.com/854ea6c6-84cc-4710-9779-e704d058f92a/Databases-4443c9c8-1488-45b8-b48a-9ebb459672a2',
+        view_url: 'http://localhost:3001/943b5c8c/INNER-DOCUMENT--copy--b292bbc5-ab90-48d8-87d2-57920a442162',
         categories: [
           {
             id: '1',

@@ -91,8 +91,8 @@ body {
 }
 
 .appflowy-navbar {
-  @apply h-[76px] w-full bg-white;
-  @apply max-lg:h-[76px];
+  @apply h-[68px] w-full bg-white border-b border-[#F5F5FA] font-medium;
+  @apply max-lg:h-[68px];
   @apply flex items-center;
   @apply px-[28px];
   @apply max-lg:justify-between;
@@ -126,7 +126,6 @@ body {
 }
 
 .appflowy-navbar.sticky {
-  box-shadow: 0 6px 9px rgba(134, 141, 159, 0.05);
   @apply bg-white;
 
 }
@@ -236,10 +235,10 @@ body {
 }
 
 .banner {
-  @apply transform translate-z-0 bg-primary flex items-center justify-center text-sm text-white;
+  @apply transform translate-z-0 bg-[#EDDDFF] flex items-center justify-center text-sm text-black;
   @apply text-[12px];
   .learn-more-link {
-    @apply mr-1 flex cursor-pointer items-center font-medium;
+    @apply mr-1 flex cursor-pointer text-[#8427E0] items-center font-medium;
   }
 }
 

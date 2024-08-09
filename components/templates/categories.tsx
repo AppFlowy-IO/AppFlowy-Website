@@ -1,5 +1,6 @@
 'use client';
 
+import { CategoryIcon } from '@/components/templates/icons';
 import { useTemplatesContext } from '@/components/templates/templates-context';
 import { TemplateCategoryType } from '@/lib/interface';
 import { groupBy } from 'lodash-es';
@@ -7,7 +8,7 @@ import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function Categories() {
-  const { categories } = useTemplatesContext();
+  const { categories, selectedCategoryId } = useTemplatesContext();
   const groupedCategories = useMemo(() => {
     return groupBy(categories, 'type');
   }, [categories]);
@@ -23,9 +24,13 @@ function Categories() {
             <div className={'category-list'}>
               {groupedCategories[type].map((category) => {
                 return (
-                  <Link className={'category'} href={`/templates#category-${category.id}`} key={category.id}>
+                  <Link
+                    className={`category ${selectedCategoryId === category.id ? 'selected' : ''}`}
+                    href={`/templates/${category.id}`}
+                    key={category.id}
+                  >
                     <div className={'icon'}>
-                      <img src={category.icon} alt={category.name} />
+                      <CategoryIcon icon={category.icon} />
                     </div>
                     <div className={'name'}>{category.name}</div>
                   </Link>

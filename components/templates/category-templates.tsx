@@ -13,10 +13,6 @@ function CategoryTemplates() {
   return (
     <div className={'category-template-list'}>
       <div className={'template-category'}>
-        <div className={'category-item'}>
-          <div className={'category-icon-name'}>{category.name}</div>
-          <div className={'category-desc'}>{category.desc}</div>
-        </div>
         <Templates templateList={categoryTemplates} category={category} />
       </div>
     </div>

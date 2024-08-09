@@ -1,25 +1,28 @@
 import { Template, TemplateCategory } from '@/lib/interface';
+import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function TemplateItem({ template, category }: { template: Template; category?: TemplateCategory }) {
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
     url.searchParams.set('theme', 'light');
-    url.searchParams.set('embed', 'true');
-    url.searchParams.set('thumb', 'true');
+    url.searchParams.set('template', 'true');
+    url.searchParams.set('thumbnail', 'true');
     return url.toString();
   }, [template.view_url]);
 
   return (
     <>
-      <div
-        className={'template-preview'}
+      <Link
+        href={`/templates/${category?.id || 'categories'}/${template.id}`}
+        className={'template-preview relative overflow-hidden'}
         style={{
           backgroundColor: category?.bg_color,
         }}
       >
         <iframe loading={'lazy'} src={iframeUrl} />
-      </div>
+        <div className={'iframe-shadow'} />
+      </Link>
       <div className={'template-info'}>
         <div className={'template-creator'}>
           <div className={'avatar'}>

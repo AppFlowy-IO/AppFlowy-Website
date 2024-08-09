@@ -1,5 +1,4 @@
 import Sidebar from '@/components/templates/sidebar';
-import TemplateCenterButton from '@/components/templates/template-center-button';
 import TemplateList from '@/components/templates/template-list';
 import { TemplatesProvider } from '@/components/templates/templates-context';
 import { getCategories, getCategoryTemplateList } from '@/lib/templateAPI';
@@ -13,11 +12,15 @@ async function Page({ params }: { params: { category_id: string } }) {
 
   const data = await getData(id);
   const categories = await getCategories();
+  const category = categories.find((item) => item.id === id);
   return (
     <div className={'template-center'}>
       <div className={'main'}>
         <div className={'header'}>
-          <TemplateCenterButton />
+          <div className={'title'}>
+            <span className={'text-primary'}>{category?.name}</span> templates
+          </div>
+          <div className={'description'}>{category?.desc}</div>
         </div>
         <TemplatesProvider selectedCategoryId={id} categoryTemplates={data} categories={categories}>
           <div className={'content'}>

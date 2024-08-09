@@ -6,6 +6,7 @@ import Twitter from '@/components/icons/twitter';
 import Website from '@/components/icons/website';
 import Youtube from '@/components/icons/youtube';
 import Community from '@/components/templates/community';
+import { CategoryIcon } from '@/components/templates/icons';
 import Share from '@/components/templates/template/share';
 import TemplateSection from '@/components/templates/template/template-section';
 import Templates from '@/components/templates/templates';
@@ -36,7 +37,8 @@ async function Page({ params }: { params: { id: string; category_id: string } })
             <div className={'categories'}>
               <div className={'title'}>Category</div>
               {data.categories.map((category) => (
-                <button
+                <Link
+                  href={`/templates/${category.id}`}
                   style={{
                     backgroundColor: category.bg_color,
                   }}
@@ -44,10 +46,10 @@ async function Page({ params }: { params: { id: string; category_id: string } })
                   className={'category'}
                 >
                   <span>
-                    <img src={category.icon} alt={''} />
+                    <CategoryIcon icon={category.icon} />
                   </span>
                   {category.name}
-                </button>
+                </Link>
               ))}
             </div>
             <div className={'flex flex-col'}>
