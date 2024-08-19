@@ -91,7 +91,7 @@ body {
 }
 
 .appflowy-navbar {
-  @apply h-[68px] w-full bg-white border-b border-[#F5F5FA] font-medium;
+  @apply h-[68px] w-full font-medium;
   @apply max-lg:h-[68px];
   @apply flex items-center;
   @apply px-[28px];
@@ -112,7 +112,7 @@ body {
 
 .appflowy-navbar, .appflowy-drawer-nav {
   .logo-wrapper {
-    @apply flex flex-1;
+    @apply flex flex-1 max-xl:flex-none;
   }
 
   .logo {
@@ -126,7 +126,8 @@ body {
 }
 
 .appflowy-navbar.sticky {
-  @apply bg-white;
+  box-shadow: 0 6px 9px rgba(134, 141, 159, 0.05);
+  @apply bg-white border-b border-[#F5F5FA];
 
 }
 

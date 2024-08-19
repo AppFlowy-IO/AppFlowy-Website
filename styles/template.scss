@@ -156,9 +156,9 @@
     .template-item {
       @apply flex flex-col gap-5;
       .template-preview {
-        @apply rounded-[16px] pt-4 px-4 h-[230px] w-full;
+        @apply rounded-[16px] pt-4 px-4 w-full;
         iframe {
-          @apply w-full h-full bg-white;
+          @apply w-full h-full bg-white aspect-video;
           pointer-events: none;
         }
 
@@ -191,7 +191,7 @@
         }
 
         .template-desc {
-          @apply text-sm whitespace-pre-wrap break-words max-h-[60px] overflow-hidden pb-[30px];
+          @apply text-sm whitespace-pre-wrap break-words max-h-[60px] overflow-hidden;
         }
       }
     }
@@ -208,7 +208,8 @@
         @apply max-md:flex-col max-md:items-start;
         &-title {
           @apply text-[56px] font-medium leading-[58.8px] text-[#101012] whitespace-pre-wrap break-words;
-          @apply max-xl:text-[4vw] max-xl:leading-[5vw];
+          @apply max-xl:text-[30px] max-xl:leading-[36px];
+          @apply max-md:text-[8vw] max-md:leading-[9vw];
         }
 
         &-desc {
@@ -238,7 +239,7 @@
 
         &-actions {
           @apply flex flex-row items-center gap-3;
-          @apply max-xl:w-full max-xl:flex-col max-xl:max-w-[220px];
+          @apply max-xl:w-full max-xl:flex-col max-xl:max-w-[220px] max-md:w-full max-md:max-w-full;
           a {
             @apply max-xl:w-full;
           }
@@ -286,7 +287,7 @@
       }
 
       a {
-        @apply rounded-full flex items-center gap-2 justify-center cursor-pointer hover:text-primary px-4 py-5;
+        @apply rounded-full flex items-center gap-2 w-fit justify-center cursor-pointer hover:text-primary px-5 py-4;
         @apply max-md:px-3 max-md:py-2 max-md:text-xs max-md:w-fit;
 
         svg {

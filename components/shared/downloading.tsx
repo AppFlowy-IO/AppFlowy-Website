@@ -1,5 +1,6 @@
 'use client';
 
+import { useDownload } from '@/lib/hooks/use-download';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
@@ -15,6 +16,7 @@ import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
 
 function Downloading() {
   const dark = useDarkContext();
+  const { getOsDownloadLink } = useDownload();
 
   const downloadPackage = useCallback((downloadUrl: string) => {
     Storage.set('download_url', '');
@@ -29,10 +31,12 @@ function Downloading() {
   }, [downloadPackage]);
 
   useEffect(() => {
-    const downloadUrl = Storage.get('download_url');
-
+    let downloadUrl = Storage.get('download_url');
+    if (!downloadUrl) {
+      downloadUrl = getOsDownloadLink();
+    }
     debounceDownload(downloadUrl);
-  }, [debounceDownload]);
+  }, [debounceDownload, getOsDownloadLink]);
 
   const router = useRouter();
 

@@ -5,7 +5,7 @@ import image from '@/assets/images/product/local-ai.png';
 function AiLocalLightIcon() {
   return (
     <i>
-      <Image src={image} alt={''} width={106} height={92} />
+      <Image src={image} alt={''} width={170} height={121} />
     </i>
   );
 }

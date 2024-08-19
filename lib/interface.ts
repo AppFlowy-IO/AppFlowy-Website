@@ -19,8 +19,9 @@ export interface TemplateCategory {
   name: string;
   icon: TemplateIcon;
   bg_color: string;
-  desc: string;
-  type: TemplateCategoryType;
+  description: string;
+  category_type: TemplateCategoryType;
+  rank: number;
 }
 
 export enum TemplateCategoryType {
@@ -45,32 +46,38 @@ export enum TemplateIcon {
   kanban = 'kanban',
 }
 
-export type GroupByCategoryTemplateList = {
-  category: TemplateCategory;
-  templateList: Template[];
-}[];
-
-export interface Template {
-  id: string;
-  name: string;
-  desc: string;
-  about: string;
-  view_url: string;
-  categories: TemplateCategory[];
-  creator: TemplateCreator;
-  is_new_template: boolean;
-  featured: boolean;
-  related_template_ids: string[];
-  related_templates?: Template[];
+export interface GroupByCategoryTemplateList {
+  featured_templates: TemplateSummary[];
+  new_templates: TemplateSummary[];
+  template_groups: {
+    category: TemplateCategory;
+    templates: TemplateSummary[];
+  }[];
 }
 
 export interface TemplateCreator {
   id: string;
   name: string;
-  avatar: string;
-  account_links: {
-    type: string;
+  avatar_url: string;
+  upload_template_count?: number;
+  account_links?: {
+    link_type: string;
     url: string;
   }[];
-  upload_template_count?: number;
+}
+
+export interface TemplateSummary {
+  view_id: string;
+  name: string;
+  description: string;
+  view_url: string;
+  categories: TemplateCategory[];
+  creator: TemplateCreator;
+  is_new_template: boolean;
+  featured: boolean;
+}
+
+export interface Template extends TemplateSummary {
+  about: string;
+  related_templates: TemplateSummary[];
 }
