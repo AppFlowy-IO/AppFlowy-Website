@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import GetStartImage from '@/assets/images/product/get-start.png';
 
 function GetStart() {
   return (
@@ -18,9 +16,9 @@ function GetStart() {
           <Link className={'download-btn'} href={'/download'}>
             Download
           </Link>
-        </div>
-        <div className={'section-8-image'}>
-          <Image src={GetStartImage} alt={''} width={734} height={460} />
+          <Link className={'live-demo-btn'} href={'/template-center'}>
+            Template Center
+          </Link>
         </div>
       </div>
     </div>

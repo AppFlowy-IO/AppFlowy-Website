@@ -68,10 +68,14 @@ const rewrites = () => {
       source: '/api/template-center/:path*',
       destination: `${AF_API_BASE_URL}/api/template-center/:path*`,
     },
-    // {
-    //   source: '/product',
-    //   destination: '/',
-    // },
+    {
+      source: '/product',
+      destination: '/',
+    },
+    {
+      source: '/v2/pricing',
+      destination: '/',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */

@@ -1,7 +1,7 @@
 'use client';
 
+import Website from '@/components/icons/website';
 import AiIcon from '@/components/product/ai-icon';
-import BookIcon from '@/components/product/book-icon';
 import CalendarIcon from '@/components/product/calendar-icon';
 import KanbanIcon from '@/components/product/kanban-icon';
 import ProjectsIcon from '@/components/product/projects-icon';
@@ -10,6 +10,10 @@ import MuiTabs from '@mui/material/Tabs';
 import Image from 'next/image';
 import React, { useMemo } from 'react';
 import AIImage from '@/assets/images/product/ai.png';
+import Grid from '@/assets/images/product/Grid.png';
+import Tasks from '@/assets/images/product/tasks.png';
+import Templates from '@/assets/images/product/template.png';
+import Sites from '@/assets/images/product/sites.png';
 
 function MainProducts() {
   const [value, setValue] = React.useState('ai');
@@ -20,10 +24,10 @@ function MainProducts() {
   const tabOptions = useMemo(() => {
     return [
       { value: 'ai', label: 'AI', icon: <AiIcon /> },
-      { value: 'kanban', label: 'Kanban', icon: <KanbanIcon /> },
-      { value: 'wikis', label: 'Wikis', icon: <BookIcon /> },
       { value: 'projects', label: 'Projects', icon: <ProjectsIcon /> },
-      { value: 'calendar', label: 'Calendar', icon: <CalendarIcon /> },
+      { value: 'tasks', label: 'Tasks', icon: <KanbanIcon /> },
+      { value: 'templates', label: 'Templates', icon: <CalendarIcon /> },
+      { value: 'sites', label: 'Sites', icon: <Website /> },
     ];
   }, []);
   return (
@@ -40,11 +44,29 @@ function MainProducts() {
         ))}
       </MuiTabs>
       <TabPanel value={value} index={'ai'}>
-        <div className={'ai-title'}>
-          <span className={'text-primary'}>Supercharge your teams</span> with AI assistance
-        </div>
         <div className={'ai-image'}>
-          <Image src={AIImage.src} alt={''} width={734} height={496} />
+          <Image src={AIImage.src} className={'object-cover'} alt={''} width={1040} height={648} />
+        </div>
+      </TabPanel>
+
+      <TabPanel value={value} index={'projects'}>
+        <div className={'ai-image'}>
+          <Image src={Grid.src} className={'object-cover'} alt={''} width={1040} height={652} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={'tasks'}>
+        <div className={'ai-image'}>
+          <Image src={Tasks.src} className={'object-cover'} alt={''} width={1040} height={648} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={'templates'}>
+        <div className={'ai-image'}>
+          <Image src={Templates.src} className={'object-cover'} alt={''} width={1040} height={648} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={'sites'}>
+        <div className={'ai-image'}>
+          <Image src={Sites.src} className={'object-cover'} alt={''} width={1040} height={648} />
         </div>
       </TabPanel>
     </div>

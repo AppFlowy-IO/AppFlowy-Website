@@ -3,11 +3,6 @@ import Communities from '@/components/product/communities';
 import GetStart from '@/components/product/get-start';
 import MobileViews from '@/components/product/mobile-views';
 import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
-import AiIcon from '@/components/icons/ai-icon';
-import Cloud from '@/components/icons/cloud';
-import Collaboration from '@/components/icons/collaboration';
-import Gift from '@/components/icons/gift';
-import Unlock from '@/components/icons/unlock';
 import AiExamples from '@/components/product/ai-examples';
 import AiLocalIcon from '@/components/product/ai-local-icon';
 import AiLocalLightIcon from '@/components/product/ai-local-light-icon';
@@ -15,7 +10,6 @@ import AiModelIcon from '@/components/product/ai-model-icon';
 import CollaborativeIcon from '@/components/product/collaborative-icon';
 import FolderIcon from '@/components/product/folder-icon';
 import MainDownload from '@/components/product/main-download';
-import desktop from '@/assets/images/product/main.png';
 import MainProducts from '@/components/product/main-products';
 import UploadCloudIcon from '@/components/product/upload-cloud-icon';
 import UseCases from '@/components/product/use-cases';
@@ -41,45 +35,12 @@ export default function Page() {
           </div>
           <MainDownload />
           <div className={'flex flex-col items-center gap-4'}>
-            <div className={'main-tags'}>
-              <div className={'tag'}>
-                <span>Free</span>
-                <Gift />
-              </div>
-              <div className={'tag'}>
-                <span>Open Source</span>
-                <Unlock />
-              </div>
-              <div className={'tag'}>
-                <span>Cloud</span>
-                <Cloud />
-              </div>
-              <div className={'tag'}>
-                <span>Collaboration</span>
-                <Collaboration />
-              </div>
-              <div className={'tag'}>
-                <span>AI</span>
-                <AiIcon />
-              </div>
-            </div>
-            <Image width={787} height={493} alt={''} src={desktop.src} />
+            <MainProducts />
           </div>
         </div>
       </div>
       <div className={'w-full bg-[#EEEEFD] pb-[120px]'}>
         <ScrollIcons />
-      </div>
-      <div className={'af-container'}>
-        <div className={'af-box section-2'}>
-          <div className={'section-2-title'}>
-            A <span className={'text-primary'}>centralized</span> place for your tasks, notes, and projects.{' '}
-            <span className={'text-[#CCCFD9]'}>
-              Organize and visualize your data in tables, boards, calendars, and more.
-            </span>
-          </div>
-          <MainProducts />
-        </div>
       </div>
       <div className={'af-container'}>
         <div className={'af-box section-3'}>
