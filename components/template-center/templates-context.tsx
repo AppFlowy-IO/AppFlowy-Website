@@ -41,6 +41,7 @@ export const TemplatesProvider = ({
           name_contains: searchText,
           category_id: selectedCategoryId,
         });
+
         setSearchResults(data);
       } catch (e) {
         console.error(e);
@@ -84,8 +85,10 @@ export const TemplatesProvider = ({
 
 export function useTemplatesContext() {
   const context = useContext(TemplatesContext);
+
   if (!context) {
     throw new Error('useTemplateContext must be used within a TemplateProvider');
   }
+
   return context;
 }

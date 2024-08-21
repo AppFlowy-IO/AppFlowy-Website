@@ -17,10 +17,13 @@ async function Page({ params }: { params: { category_id: string } }) {
   try {
     data = await getData(id);
   } catch (error) {
+    console.error(error);
     notFound();
   }
+
   const categories = await getCategories();
   const category = categories.find((item) => item.id === id);
+
   return (
     <div className={'template-center'}>
       <div className={'main'}>
@@ -40,13 +43,11 @@ async function Page({ params }: { params: { category_id: string } }) {
 export default Page;
 
 async function getData(id: string) {
-  try {
-    const data = await getCategoryTemplateList(id);
-    if (!data) {
-      throw new Error(`Failed to fetch category data ${id}`);
-    }
-    return data;
-  } catch (error) {
+  const data = await getCategoryTemplateList(id);
+
+  if (!data) {
     throw new Error(`Failed to fetch category data ${id}`);
   }
+
+  return data;
 }

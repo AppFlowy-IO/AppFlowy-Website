@@ -13,6 +13,7 @@ import Book from '@/components/icons/book';
 import Email from '@/components/icons/email';
 import Mobile from '@/components/icons/mobile';
 import Desktop from '@/components/icons/desktop';
+import { ApplicationIcon } from '@/components/template-center/icons';
 
 /**
  * Config for the navigation bar
@@ -231,6 +232,17 @@ export const navigation: Item[] = [
             icon: <Email />,
             href: 'https://blog.appflowy.io/',
           },
+          {
+            key: 'menu.templates',
+            name: 'Templates',
+            desc: 'Ready-made pages from industry leaders and the community',
+            icon: (
+              <i className={'text-primary h-6 w-6'}>
+                <ApplicationIcon />
+              </i>
+            ),
+            href: '/template-center',
+          },
         ],
       },
       {
@@ -272,7 +284,7 @@ export const navigation: Item[] = [
     name: 'Pricing',
     href: '/pricing',
     key: 'pricing',
-  }
+  },
 ];
 
 export interface Item {

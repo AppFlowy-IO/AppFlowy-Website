@@ -13,12 +13,14 @@ function TemplateSection({ template, categoryId }: { template: Template; categor
 
   const useTemplateURL = useMemo(() => {
     const url = new URL(template.view_url);
+
     url.searchParams.append('action', 'duplicate');
     return url.toString();
   }, [template]);
 
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
+
     url.searchParams.set('theme', 'light');
     url.searchParams.set('template', 'true');
     return url.toString();

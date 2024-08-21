@@ -11,6 +11,7 @@ function TemplateList() {
   if (searchText) {
     return <SearchResult />;
   }
+
   if (selectedCategoryId) {
     return <CategoryTemplates />;
   }

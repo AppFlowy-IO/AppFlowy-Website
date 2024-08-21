@@ -45,6 +45,7 @@ async function getData() {
   if (!homepageTemplates || !categories) {
     throw new Error('Failed to fetch templates');
   }
+
   return {
     homepageTemplates,
     categories,

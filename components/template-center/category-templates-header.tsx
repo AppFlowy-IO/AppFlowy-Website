@@ -20,6 +20,7 @@ function CategoryTemplatesHeader({ category }: { category?: TemplateCategory }) 
     if (hasSearchResults) return `${searchResults.length} templates`;
     return category?.description;
   }, [category, hasSearchResults, searchResults]);
+
   return (
     <div className={'header'}>
       <div className={'title'}>{title}</div>

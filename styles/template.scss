@@ -21,9 +21,14 @@
       @apply flex gap-[100px];
       @apply max-md:flex-col max-md:gap-0 max-xl:gap-[6vw];
 
+      .sidebar-container {
+        @apply w-[24vw] max-w-[300px] mb-[80px] overflow-hidden;
+        @apply max-md:w-full max-md:max-w-full max-md:mb-[6vh];
+      }
+
       .sidebar {
-        @apply w-[24vw] max-w-[300px] flex flex-col gap-[30px] mb-[80px];
-        @apply max-md:w-full max-md:max-w-full max-md:gap-[20px] max-md:mb-[6vh];
+        @apply flex flex-col gap-[30px] w-[24vw] max-w-[300px];
+        @apply max-md:gap-[20px] max-md:w-full max-md:max-w-full;
       }
 
       .categories {
@@ -40,16 +45,17 @@
           .category {
             @apply text-base items-center overflow-hidden w-full font-medium leading-[24px] text-[#101012] cursor-pointer flex gap-2;
             @apply max-md:w-fit max-md:gap-1.5;
+
             .icon {
               @apply w-5 h-5;
             }
 
             .name {
               @apply whitespace-nowrap truncate flex-1;
-              &:hover {
-                @apply text-primary;
-              }
+            }
 
+            &:hover {
+              @apply text-primary;
             }
 
             &.selected {

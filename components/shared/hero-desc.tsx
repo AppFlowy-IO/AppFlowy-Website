@@ -8,13 +8,15 @@ function HeroDesc({ inView }: { inView?: boolean }) {
 
   useEffect(() => {
     if (inView) {
-      [EventName.homePageMorePlatformsLink, EventName.homePageWhatIsNewLink].forEach((eventName) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        collectEvent(eventName, {
-          type: 'view',
-        });
-      });
+      [EventName.homePageMorePlatformsLink, EventName.homePageWhatIsNewLink, EventName.homePageGetTemplatesLink].forEach(
+        (eventName) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          collectEvent(eventName, {
+            type: 'view',
+          });
+        }
+      );
     }
   }, [inView]);
 
@@ -32,7 +34,11 @@ function HeroDesc({ inView }: { inView?: boolean }) {
         onClick={() => onClick(EventName.homePageWhatIsNewLink)}
         href={'/what-is-new'}
       >{`What's new in ${gitData?.lastVersion}`}</Link>
-
+      {` / `}
+      <Link
+        onClick={() => onClick(EventName.homePageGetTemplatesLink)}
+        href={'/template-center'}
+      >{`Get templates`}</Link>
       {` / `}
       <Link
         onClick={() => onClick(EventName.homePageMorePlatformsLink)}

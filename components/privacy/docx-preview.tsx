@@ -8,9 +8,11 @@ const DocxPreview = ({ docxUrl }: { docxUrl: string }) => {
 
   useEffect(() => {
     const previewContainer = previewContainerRef.current;
+
     if (!previewContainer) {
       return;
     }
+
     const fetchAndRenderDocx = async () => {
       if (docxUrl) {
         const response = await fetch(docxUrl);

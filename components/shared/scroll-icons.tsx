@@ -40,6 +40,7 @@ function ScrollIcons() {
     ],
     []
   );
+
   return (
     <div className={'scroll-icons'}>
       <div className={'scroll-icons-title'}>Trusted by teams and individuals from</div>

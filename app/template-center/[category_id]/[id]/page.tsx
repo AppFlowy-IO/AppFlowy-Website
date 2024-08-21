@@ -24,6 +24,7 @@ async function Page({ params }: { params: { id: string; category_id: string } })
   try {
     data = await getData(id);
   } catch (error) {
+    console.error(error);
     notFound();
   }
 
@@ -85,13 +86,10 @@ async function Page({ params }: { params: { id: string; category_id: string } })
 export default Page;
 
 async function getData(id: string) {
-  try {
-    const data = await getTemplateById(id);
-    if (!data) throw new Error(`Template not found ${id}`);
-    return data;
-  } catch (error) {
-    throw new Error(`Template not found ${id}`);
-  }
+  const data = await getTemplateById(id);
+
+  if (!data) throw new Error(`Template not found ${id}`);
+  return data;
 }
 
 function accountLinkIcon(type: string) {

@@ -1,7 +1,7 @@
 export enum EventName {
   homePageDownloadBtn = 'home_page_download_btn',
   homePageWhatIsNewLink = 'home_page_what_is_new_link',
-  homePageGetTheCloudBetaLink = 'home_page_get_the_cloud_beta_link',
+  homePageGetTemplatesLink = 'home_page_get_templates_link',
   homePageMorePlatformsLink = 'home_page_more_platforms_link',
   homePageGetStartedBtn = 'home_page_get_started_btn',
   homePageSwitchProductBtn = 'home_page_switch_product_btn',
@@ -38,7 +38,7 @@ export function collectEvent(
     | EventName.navigatorGithubBtn
     | EventName.navigatorStartForFreeBtn
     | EventName.homePageGetStartedBtn
-    | EventName.homePageGetTheCloudBetaLink
+    | EventName.homePageGetTemplatesLink
     | EventName.homePageMorePlatformsLink
     | EventName.homePageWhatIsNewLink
     | EventName.downloadIOSModalOkBtn

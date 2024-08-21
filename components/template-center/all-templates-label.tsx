@@ -14,10 +14,10 @@ function AllTemplatesLabel() {
       }}
       className={`${
         selectedCategoryId ? '' : 'text-primary'
-      } flex cursor-pointer items-center gap-[10px] text-base font-medium`}
+      } hover:text-primary flex cursor-pointer items-center gap-[10px] text-base font-medium`}
     >
       <ApplicationIcon />
-      <span className={'hover:text-primary'}>All Templates</span>
+      <span>All Templates</span>
     </Link>
   );
 }

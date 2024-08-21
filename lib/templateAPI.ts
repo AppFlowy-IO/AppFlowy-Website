@@ -1,20 +1,9 @@
 import { GroupByCategoryTemplateList, Template, TemplateCategory, TemplateSummary } from '@/lib/interface';
 import axios from 'axios';
 
-const isProd = process.env.NODE_ENV === 'production';
-const environment = process.env.ENVIRONMENT || 'development';
-let AF_API_BASE_URL = 'https://test.appflowy.cloud';
-
-if (isProd) {
-  if (environment === 'production') {
-    AF_API_BASE_URL = 'https://beta.appflowy.cloud';
-  } else if (environment === 'test') {
-    AF_API_BASE_URL = 'https://test.appflowy.cloud';
-  }
-}
+const AF_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://beta.appflowy.cloud';
 
 export const templateAPI = axios.create({
-  // rewrite in next.config.js, because of CORS
   baseURL: `${AF_API_BASE_URL}/api/template-center`,
   headers: {
     'Content-Type': 'application/json',

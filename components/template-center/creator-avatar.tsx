@@ -44,13 +44,13 @@ function CreatorAvatar({ src, name }: { src: string; name: string }) {
     <>
       <div className={'relative h-10 w-10 cursor-pointer'}>
         <Avatar
-          src={src}
-          className={'border border-gray-50'}
+          className={'border border-gray-50 object-cover p-2'}
           {...avatarProps}
           sx={{
             ...avatarProps?.sx,
             bgcolor: src ? 'white' : avatarProps?.sx.bgcolor,
           }}
+          src={src}
         />
       </div>
     </>

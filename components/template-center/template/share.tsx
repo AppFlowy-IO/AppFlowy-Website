@@ -29,6 +29,7 @@ function Share() {
   }, []);
   const content = 'Check out this template!';
   const [copiedLink, setCopiedLink] = React.useState(false);
+
   return (
     <div className={'share'}>
       <button onClick={() => shareToTwitter(link, content)}>

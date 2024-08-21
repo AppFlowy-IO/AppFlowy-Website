@@ -132,6 +132,7 @@ function UseCases() {
       },
     ];
   }, []);
+
   return (
     <div className={'use-cases'}>
       <MuiTabs value={value} onChange={handleChange}>

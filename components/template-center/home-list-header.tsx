@@ -18,6 +18,7 @@ function HomeListHeader() {
     if (hasSearchResults) return `${searchResults.length} templates`;
     return 'Product specs, company handbooks, meeting notes, and more';
   }, [searchResults, hasSearchResults]);
+
   return (
     <div className={'header'}>
       <div className={'title'}>{title}</div>

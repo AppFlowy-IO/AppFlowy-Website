@@ -32,9 +32,11 @@ function Downloading() {
 
   useEffect(() => {
     let downloadUrl = Storage.get('download_url');
+
     if (!downloadUrl) {
       downloadUrl = getOsDownloadLink();
     }
+
     debounceDownload(downloadUrl);
   }, [debounceDownload, getOsDownloadLink]);
 

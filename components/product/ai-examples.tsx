@@ -22,6 +22,7 @@ function AiExamples() {
       { value: 'automate', label: 'Automate work', icon: <AutomateIcon /> },
     ];
   }, []);
+
   return (
     <div className={'ai-examples'}>
       <MuiTabs value={value} onChange={handleChange}>

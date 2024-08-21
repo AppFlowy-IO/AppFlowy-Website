@@ -30,6 +30,7 @@ function MainProducts() {
       { value: 'sites', label: 'Sites', icon: <Website /> },
     ];
   }, []);
+
   return (
     <div className={'main-product'}>
       <MuiTabs value={value} onChange={handleChange}>

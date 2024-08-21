@@ -6,6 +6,7 @@ import React, { useMemo } from 'react';
 function TemplateItem({ template, category }: { template: TemplateSummary; category?: TemplateCategory }) {
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
+
     url.searchParams.set('theme', 'light');
     url.searchParams.set('template', 'true');
     url.searchParams.set('thumbnail', 'true');
@@ -22,6 +23,7 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
         }}
       >
         <iframe loading={'lazy'} src={iframeUrl} />
+
         <div className={'iframe-shadow'} />
       </Link>
       <div className={'template-info'}>
