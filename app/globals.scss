@@ -23,11 +23,11 @@
   --color-fill-text: #000;
 }
 
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    @include darkVars;
-  }
-}
+//@media (prefers-color-scheme: dark) {
+//  html:not(.light) {
+//    @include darkVars;
+//  }
+//}
 
 :root.dark {
   @include darkVars;

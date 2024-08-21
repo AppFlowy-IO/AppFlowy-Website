@@ -59,7 +59,7 @@ export interface TemplateCreator {
   id: string;
   name: string;
   avatar_url: string;
-  upload_template_count?: number;
+  number_of_templates?: number;
   account_links?: {
     link_type: string;
     url: string;

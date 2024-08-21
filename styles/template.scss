@@ -1,5 +1,6 @@
 .template-center {
   @apply bg-white min-h-screen flex flex-col w-full items-center;
+  @apply text-black;
 
   .main {
     @apply px-[100px] pt-[210px] w-[1440px] min-w-0 max-w-full bg-white flex flex-col gap-[80px];

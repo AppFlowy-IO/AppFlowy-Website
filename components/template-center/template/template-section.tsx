@@ -43,7 +43,7 @@ function TemplateSection({ template, categoryId }: { template: Template; categor
               <CreatorAvatar src={template.creator.avatar_url} name={template.creator.name} />
               <div className={'right-info'}>
                 <div className={'creator-name'}>{template.creator.name}</div>
-                <div className={'template-count'}>{template.creator.upload_template_count || 0} templates</div>
+                <div className={'template-count'}>{template.creator.number_of_templates || 0} templates</div>
               </div>
             </div>
           </div>

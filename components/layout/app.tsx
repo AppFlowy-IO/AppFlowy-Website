@@ -1,7 +1,6 @@
 'use client';
 import '@/styles/app.scss';
 import '@/styles/btn.scss';
-import '@/styles/dark.scss';
 
 import React, { useState, lazy, useMemo } from 'react';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
