@@ -1,11 +1,9 @@
 import { GroupByCategoryTemplateList, Template, TemplateCategory, TemplateSummary } from '@/lib/interface';
 import axios from 'axios';
 
-const isProd = process.env.NODE_ENV === 'production';
-
 export const templateAPI = axios.create({
   // rewrite in next.config.js, because of CORS
-  baseURL: isProd ? '/api/template-center' : 'http://localhost:3000/api/template-center',
+  baseURL: `http://localhost:3000/api/template-center`,
   headers: {
     'Content-Type': 'application/json',
   },
