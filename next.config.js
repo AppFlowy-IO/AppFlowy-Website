@@ -10,7 +10,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const environment = process.env.ENVIRONMENT || 'development';
 
 let assetPrefix = undefined;
-let AF_API_BASE_URL = 'http://test.zealousmegalodon.com';
+let AF_API_BASE_URL = 'https://test.appflowy.cloud';
 if (isProd) {
   if (environment === 'production') {
     assetPrefix = 'https://appflowy.io';
