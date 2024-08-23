@@ -1,25 +1,25 @@
 'use client';
 
-import { TabPanel } from '@/components/product/main-products';
 import {
-  AppWindow,
   CardsThree,
   ChatTeardrop,
   DocIcon,
   HomeIcon,
   ListStart,
-  SearchIcon,
+  SpaceIcon,
 } from '@/components/product/mobile-views-icons';
+import { TabPanel } from '@/components/shared/tab-panel';
+import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import MuiTab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import React, { useMemo } from 'react';
 import HomeImage from '@/assets/images/product/home.png';
 import DocImage from '@/assets/images/product/doc.png';
-import SearchImage from '@/assets/images/product/search.png';
-import KanbanImage from '@/assets/images/product/kanban.png';
-import DatabaseFieldTypesImage from '@/assets/images/product/database_field_types.png';
-import DatabaseCardViewImage from '@/assets/images/product/database_card_view.png';
+import SpaceImage from '@/assets/images/product/space.png';
+import BlockImage from '@/assets/images/product/block.png';
+import CardViewImage from '@/assets/images/product/database_card_view.png';
 import AiChatImage from '@/assets/images/product/ai_chat.png';
 
 function MobileViews() {
@@ -37,9 +37,15 @@ function MobileViews() {
         desc: 'Customize the project for yourself and invite your colleagues to join in.',
       },
       {
-        value: 'search',
-        label: 'Search',
-        icon: <SearchIcon />,
+        value: 'ai_chat',
+        label: 'AI chat',
+        icon: <ChatTeardrop />,
+        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+      },
+      {
+        value: 'space',
+        label: 'Spaces',
+        icon: <SpaceIcon />,
         desc: 'Customize the project for yourself and invite your colleagues to join in.',
       },
       {
@@ -49,14 +55,8 @@ function MobileViews() {
         desc: 'Customize the project for yourself and invite your colleagues to join in.',
       },
       {
-        value: 'kanban',
-        label: 'Kanban card',
-        icon: <AppWindow />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
-      },
-      {
-        value: 'database_field_types',
-        label: 'Database field types',
+        value: 'block',
+        label: 'Block',
         icon: <ListStart />,
         desc: 'Customize the project for yourself and invite your colleagues to join in.',
       },
@@ -66,72 +66,62 @@ function MobileViews() {
         icon: <CardsThree />,
         desc: 'Customize the project for yourself and invite your colleagues to join in.',
       },
-      {
-        value: 'ai_chat',
-        label: 'AI chat',
-        icon: <ChatTeardrop />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
-      },
     ];
   }, []);
+
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
+
+  useAutoPlay({
+    options: tabOptions,
+    onChange: setValue,
+    play: inView,
+    defaultOption: 'home',
+  });
 
   const panels = useMemo(() => {
     return [
       {
         value: 'home',
         title: tabOptions[0].desc,
-        bgColor: '#E7F5FF',
         image: HomeImage,
       },
       {
-        value: 'search',
+        value: 'ai_chat',
         title: tabOptions[1].desc,
-        bgColor: '#FFF5F5',
-        image: SearchImage,
+        image: AiChatImage,
+      },
+      {
+        value: 'space',
+        title: tabOptions[2].desc,
+        image: SpaceImage,
       },
       {
         value: 'doc',
-        title: tabOptions[2].desc,
-        bgColor: '#FFF9DB',
+        title: tabOptions[3].desc,
         image: DocImage,
       },
       {
-        value: 'kanban',
-        title: tabOptions[3].desc,
-        bgColor: '#FFF0F6',
-        image: KanbanImage,
-      },
-      {
-        value: 'database_field_types',
+        value: 'block',
         title: tabOptions[4].desc,
-        bgColor: '#FFF4E6',
-        image: DatabaseFieldTypesImage,
+        image: BlockImage,
       },
       {
         value: 'database_card_view',
         title: tabOptions[5].desc,
-        bgColor: '#F3F0FF',
-        image: DatabaseCardViewImage,
-      },
-      {
-        value: 'ai_chat',
-        title: tabOptions[6].desc,
-        bgColor: '#EBFBEE',
-        image: AiChatImage,
+        image: CardViewImage,
       },
     ];
   }, [tabOptions]);
 
   return (
-    <div className={'mobile-views'}>
+    <div ref={ref} className={'mobile-views'}>
       <div className={'mobile-view-panels'}>
         {panels.map((panel) => (
           <TabPanel key={panel.value} index={panel.value} value={value}>
             <div className={'tab-panel-title'}>{panel.title}</div>
-            <div className={'tab-panel-content'} style={{ backgroundColor: panel.bgColor }}>
-              <div className={'tab-panel-image'}>
-                <Image width={228} height={494} src={panel.image.src} alt={''} />
-              </div>
+            <div className={'tab-panel-image'}>
+              <Image loading={'lazy'} width={532} height={660} src={panel.image.src} alt={''} />
             </div>
           </TabPanel>
         ))}

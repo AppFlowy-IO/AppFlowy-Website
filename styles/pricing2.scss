@@ -46,7 +46,7 @@
         @apply max-sm:flex-col;
         .price {
           border-color: rgba(213, 215, 222, 0.60);
-          @apply border rounded-[16px] bg-white p-10 gap-[30px] flex flex-col w-[350px] h-auto;
+          @apply border rounded-[16px] bg-white p-10 gap-[30px] flex flex-col min-w-[230px] flex-1 h-auto;
           @apply max-sm:w-full;
           &-label {
             @apply text-[#101012] text-[24px] font-medium leading-[120%];
@@ -126,7 +126,7 @@
     .ai-cards {
       @apply flex flex-wrap gap-6 w-full  items-center justify-center;
       .ai-card {
-        @apply flex flex-1 flex-col gap-[30px] p-10 max-w-[538px];
+        @apply flex flex-1 flex-col gap-[30px] p-10;
         @apply max-lg:max-w-full;
         border-radius: 15px;
         border: 1px solid rgba(213, 215, 222, 0.70);

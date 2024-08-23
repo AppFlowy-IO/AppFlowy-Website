@@ -1,6 +1,6 @@
 'use client';
 
-import { TabPanel } from '@/components/product/main-products';
+import { TabPanel } from '@/components/shared/tab-panel';
 import { Tick } from '@/components/v2/pricing/icons';
 import { monthlyPrice, yearlyPrice } from '@/components/v2/pricing/price-config';
 import MuiTab from '@mui/material/Tab';

@@ -84,6 +84,7 @@
     .tab-panel {
       @apply pt-[44px];
       .ai-image {
+        border-radius: 20px;
         box-shadow: 0px 28px 80px -27.492px rgba(40, 16, 80, 0.16);
       }
     }
@@ -125,12 +126,15 @@
 
       .tab-panel {
         @apply pt-10;
-        &.tab-panel-get {
-          @apply flex flex-col gap-[30px] items-center;
-          .get-answer-title {
-            @apply text-center max-w-[640px] text-white text-[24px] font-medium leading-[120%];
-          }
+        @apply flex flex-col gap-[30px] items-center;
+        .panel-title {
+          @apply text-center max-w-[640px] text-white text-[24px] font-medium leading-[120%];
+        }
 
+        .panel-image {
+          border-radius: 26px;
+          padding: 6px;
+          background: rgba(255, 255, 255, 0.20);
         }
       }
     }
@@ -208,10 +212,15 @@
         }
 
         .tab-panel-image {
-          border-radius: 14px;
-          background: #FFF;
           padding: 6px;
-          box-shadow: 0px 37px 77.7px -38px rgba(10, 0, 78, 0.09);
+          border-radius: 26px;
+          background: rgba(255, 255, 255, 0.80);
+          box-shadow: 0px 30px 50px -50.938px rgba(36, 15, 94, 0.06);
+
+          .shadow-img {
+            border-radius: 23px;
+            box-shadow: 0px 0px 40px -27.492px #4D1976;
+          }
         }
       }
     }
@@ -269,7 +278,7 @@
 
     .mobile-views {
       @apply flex gap-[38px] mt-[96px] items-center justify-center w-full h-[626px];
-      @apply max-lg:h-[500px] max-lg:mt-[40px] max-lg:gap-[20px];
+      @apply max-lg:h-[500px] max-lg:mt-[40px] max-lg:gap-[20px] max-sm:mt-0;
 
       .mobile-view-tabs, .mobile-view-panels {
         @apply flex-1 max-w-[530px];
@@ -362,25 +371,9 @@
           @apply max-md:block;
         }
 
-        .tab-panel-content {
-          @apply rounded-[16px] py-[60px] w-full h-full flex-1 px-[150px] flex items-center justify-center max-h-full;
-          @apply max-xl:px-[100px] max-lg:px-[6vw] max-lg:py-[6vw] max-md:px-[2vw];
-        }
 
         .tab-panel-image {
-          padding: 6px;
-          overflow: hidden;
-          border-radius: 28px;
-          background: rgba(255, 255, 255, 0.16);
-          box-shadow: 0px 29px 133.2px -23px rgba(10, 0, 78, 0.25);
-          @apply max-w-[240px] h-auto;
-          @apply max-lg:max-w-[200px];
-          @apply max-md:shadow-none max-md:min-w-[200px];
-          img {
-            border-radius: 28px;
-            width: 100%;
-            height: auto;
-          }
+
         }
       }
     }

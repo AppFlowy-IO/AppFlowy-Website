@@ -1,16 +1,20 @@
 'use client';
 import GetAnswer from '@/assets/images/product/get-answer.png';
+import WriteBetter from '@/assets/images/product/write-better.png';
+import AutofillTables from '@/assets/images/product/autofill-tables.png';
 import AutomateIcon from '@/components/product/automate-icon';
 import GetAnswersIcon from '@/components/product/get-answers-icon';
-import { TabPanel } from '@/components/product/main-products';
 import WriteBetterIcon from '@/components/product/write-better-icon';
+import { TabPanel } from '@/components/shared/tab-panel';
+import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import MuiTab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import React, { useMemo } from 'react';
 
 function AiExamples() {
-  const [value, setValue] = React.useState('get');
+  const [value, setValue] = React.useState('write');
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -19,12 +23,22 @@ function AiExamples() {
     return [
       { value: 'get', label: 'Get answers', icon: <GetAnswersIcon /> },
       { value: 'write', label: 'Write better', icon: <WriteBetterIcon /> },
-      { value: 'automate', label: 'Automate work', icon: <AutomateIcon /> },
+      { value: 'auto', label: 'Autofill tables', icon: <AutomateIcon /> },
     ];
   }, []);
 
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
+
+  useAutoPlay({
+    options: tabOptions,
+    onChange: setValue,
+    play: inView,
+    defaultOption: 'write',
+  });
+
   return (
-    <div className={'ai-examples'}>
+    <div ref={ref} className={'ai-examples'}>
       <MuiTabs value={value} onChange={handleChange}>
         {tabOptions.map((tab) => (
           <MuiTab
@@ -37,11 +51,31 @@ function AiExamples() {
         ))}
       </MuiTabs>
       <TabPanel value={value} index={'get'}>
-        <div className={'get-answer-title'}>
+        <div className={'panel-title'}>
           <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
           context-dependent replies.
         </div>
-        <Image src={GetAnswer.src} alt={''} width={734} height={496} />
+        <div className={'panel-image'}>
+          <Image loading={'lazy'} src={GetAnswer.src} alt={''} width={1040} height={648} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={'write'}>
+        <div className={'panel-title'}>
+          <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
+          context-dependent replies.
+        </div>
+        <div className={'panel-image'}>
+          <Image loading={'lazy'} src={WriteBetter} alt={''} width={1040} height={648} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={'auto'}>
+        <div className={'panel-title'}>
+          <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
+          context-dependent replies.
+        </div>
+        <div className={'panel-image'}>
+          <Image loading={'lazy'} src={AutofillTables} alt={''} width={1040} height={648} />
+        </div>
       </TabPanel>
     </div>
   );

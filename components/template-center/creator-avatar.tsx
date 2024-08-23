@@ -44,7 +44,7 @@ function CreatorAvatar({ src, name }: { src: string; name: string }) {
     <>
       <div className={'relative h-10 w-10 cursor-pointer'}>
         <Avatar
-          className={'border border-gray-50 object-cover p-2'}
+          className={'border border-gray-200 object-cover p-2'}
           {...avatarProps}
           sx={{
             ...avatarProps?.sx,
