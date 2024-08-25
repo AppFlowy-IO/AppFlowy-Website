@@ -1,7 +1,7 @@
 'use client';
 
-// import AI1 from '@/assets/images/pricing/ai-1.png';
-import { Tick } from '@/components/v2/pricing/icons';
+import AI1 from '@/assets/images/pricing/ai-1.png';
+import { Tick } from '@/components/pricing/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback } from 'react';
@@ -38,20 +38,20 @@ function UnlockCards() {
 
   return (
     <div className={'ai-cards'}>
-      {/*{renderCard({*/}
-      {/*  icon: <Image src={AI1} alt={''} width={65} height={90} />,*/}
-      {/*  title: 'AI MAX',*/}
-      {/*  desc: 'Access the most advanced AI models including GPT 4-o and Claude 3 Sonnet',*/}
-      {/*  num: '$8',*/}
-      {/*  duration: `per user per month billed annually\n$10 billed monthly`,*/}
-      {/*  content: ['Unlimited AI responses', 'Unlimited file uploads'],*/}
-      {/*})}*/}
       {renderCard({
-        icon: <Image src={AI2} alt={''} width={65} height={90} />,
+        icon: <Image src={AI1} alt={''} width={65} height={90} />,
+        title: 'AI MAX',
+        desc: 'Access the most advanced AI models including GPT 4-o and Claude 3 Sonnet',
+        num: '$8',
+        duration: `per user per month\nbilled annually`,
+        content: ['Unlimited AI responses', 'Unlimited file uploads'],
+      })}
+      {renderCard({
+        icon: <Image src={AI2} alt={''} width={74.5} height={90} />,
         title: 'AI On-device for Mac',
         desc: 'Run Mistral 7B, Llama 8B, and more local models on your machine',
         num: '$8',
-        duration: `per user per month\n$10 billed annually`,
+        duration: `per user per month\nbilled annually`,
         content: [
           'Local AI on your own hardware for ultimate privacy',
           'Unlimited AI responses',

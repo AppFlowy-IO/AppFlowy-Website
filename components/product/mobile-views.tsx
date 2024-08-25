@@ -121,7 +121,7 @@ function MobileViews() {
           <TabPanel key={panel.value} index={panel.value} value={value}>
             <div className={'tab-panel-title'}>{panel.title}</div>
             <div className={'tab-panel-image'}>
-              <Image loading={'lazy'} width={532} height={660} src={panel.image.src} alt={''} />
+              <Image loading={'eager'} width={532} height={660} src={panel.image.src} alt={''} />
             </div>
           </TabPanel>
         ))}

@@ -24,6 +24,35 @@
       .sidebar-container {
         @apply w-[24vw] max-w-[300px] mb-[80px] overflow-hidden;
         @apply max-md:w-full max-md:max-w-full max-md:mb-[6vh];
+
+        &.scroll-enabled {
+          ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 4px;
+          }
+
+          ::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &:not(:hover) {
+            ::-webkit-scrollbar {
+              width: 8px;
+              height: 8px;
+              background: transparent;
+            }
+
+            ::-webkit-scrollbar-thumb {
+              background: transparent;
+            }
+          }
+        }
+
       }
 
       .sidebar {
@@ -180,13 +209,13 @@
       .template-info {
         @apply flex flex-col gap-4;
         .template-creator {
-          @apply flex gap-3 items-center;
+          @apply flex gap-3 items-start;
           .avatar {
             @apply w-[40px] h-[40px] rounded-full border overflow-hidden;
           }
 
           .right-info {
-            @apply flex flex-col gap-1;
+            @apply flex flex-col gap-1 flex-1;
             .template-name {
               @apply text-[14px] font-medium;
             }
@@ -316,6 +345,9 @@
         svg {
           @apply w-[24px] h-[24px];
           @apply max-md:w-[16px] max-md:h-[16px];
+          g {
+            opacity: 1;
+          }
         }
       }
     }

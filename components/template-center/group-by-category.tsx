@@ -1,23 +1,27 @@
 import { CategoryIcon, FeaturedIcon, NewTemplatesIcon } from '@/components/template-center/icons';
 import Templates from '@/components/template-center/templates';
 import { useTemplatesContext } from '@/components/template-center/templates-context';
+import { TemplateSummary } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function GroupByCategory() {
-  const { homepageTemplates } = useTemplatesContext();
+  const { homepageTemplates, categories } = useTemplatesContext();
   const categoryTemplateList = useMemo(() => {
-    return (
-      homepageTemplates?.template_groups
-        .filter((item) => item.templates.length > 0)
-        .map((item) => {
-          return {
-            category: item.category,
-            templates: item.templates.slice(0, 2),
-          };
-        }) || []
-    );
-  }, [homepageTemplates]);
+    const categoryMap = homepageTemplates?.template_groups.reduce((acc: Record<string, TemplateSummary[]>, item) => {
+      acc[item.category.id] = item.templates.slice(0, 2);
+      return acc;
+    }, {});
+
+    return categories
+      .filter((category) => categoryMap?.[category.id] && categoryMap[category.id].length > 0)
+      .map((category) => {
+        return {
+          category,
+          templates: categoryMap?.[category.id] || [],
+        };
+      });
+  }, [categories, homepageTemplates?.template_groups]);
   const featuredTemplates = useMemo(() => {
     return homepageTemplates?.featured_templates.slice(0, 4) || [];
   }, [homepageTemplates]);
@@ -37,10 +41,6 @@ function GroupByCategory() {
               <div className={'name'}>
                 <div>Featured</div>
               </div>
-            </div>
-            <div className={'category-desc'}>
-              Try our most popular pre-built templates for getting work done on Airtable. You can always customize any of
-              these options for your team.
             </div>
           </div>
           <Templates templateList={featuredTemplates} />
@@ -70,7 +70,7 @@ function GroupByCategory() {
               </div>
               <div className={'name'}>
                 <div>{item.category.name}</div>
-                <Link href={`/template-center/${item.category.id}`}>
+                <Link href={`/templates/${item.category.id}`}>
                   <button className={'text-primary flex gap-2 text-base font-medium hover:underline max-md:text-xs'}>
                     View all
                     <div

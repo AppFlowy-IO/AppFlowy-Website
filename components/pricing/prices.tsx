@@ -1,8 +1,8 @@
 'use client';
 
 import { TabPanel } from '@/components/shared/tab-panel';
-import { Tick } from '@/components/v2/pricing/icons';
-import { monthlyPrice, yearlyPrice } from '@/components/v2/pricing/price-config';
+import { Tick } from '@/components/pricing/icons';
+import { monthlyPrice, yearlyPrice } from '@/components/pricing/price-config';
 import MuiTab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
 import Link from 'next/link';
@@ -27,7 +27,7 @@ function Prices() {
                 fill='#8427E0'
               />
             </svg>
-            <span>SAVE 25%</span>
+            <span>SAVE 20%</span>
           </div>
         ),
       },

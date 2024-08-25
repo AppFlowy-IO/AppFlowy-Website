@@ -46,7 +46,7 @@ async function Page({ params }: { params: { id: string; category_id: string } })
               <div className={'title'}>Category</div>
               {data.categories.map((category) => (
                 <Link
-                  href={`/template-center/${category.id}`}
+                  href={`/templates/${category.id}`}
                   style={{
                     backgroundColor: category.bg_color,
                   }}
@@ -82,6 +82,8 @@ async function Page({ params }: { params: { id: string; category_id: string } })
     </div>
   );
 }
+
+export const revalidate = 10;
 
 export default Page;
 

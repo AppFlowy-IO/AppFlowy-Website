@@ -7,6 +7,7 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
 
+    url.searchParams.delete('v');
     url.searchParams.set('theme', 'light');
     url.searchParams.set('template', 'true');
     url.searchParams.set('thumbnail', 'true');
@@ -16,7 +17,7 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
   return (
     <>
       <Link
-        href={`/template-center/${category?.id || 'categories'}/${template.view_id}`}
+        href={`/templates/${category?.id || 'categories'}/${template.view_id}`}
         className={'template-preview relative overflow-hidden'}
         style={{
           backgroundColor: category?.bg_color,

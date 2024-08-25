@@ -11,7 +11,7 @@ function Banner() {
   const router = useRouter();
 
   const progress = ['downloading', 'downloaded'].some((path) => pathname.includes(path)) ? null : (
-    <NextTopLoader showSpinner={false} color={'#EDDDFF'} />
+    <NextTopLoader showSpinner={false} color={'#8427E0'} />
   );
 
   useEffect(() => {

@@ -35,10 +35,7 @@ function HeroDesc({ inView }: { inView?: boolean }) {
         href={'/what-is-new'}
       >{`What's new in ${gitData?.lastVersion}`}</Link>
       {` / `}
-      <Link
-        onClick={() => onClick(EventName.homePageGetTemplatesLink)}
-        href={'/template-center'}
-      >{`Get templates`}</Link>
+      <Link onClick={() => onClick(EventName.homePageGetTemplatesLink)} href={'/templates'}>{`Get templates`}</Link>
       {` / `}
       <Link
         onClick={() => onClick(EventName.homePageMorePlatformsLink)}

@@ -26,7 +26,7 @@ function Categories() {
                 return (
                   <Link
                     className={`category ${selectedCategoryId === category.id ? 'selected' : ''}`}
-                    href={`/template-center/${category.id}`}
+                    href={`/templates/${category.id}`}
                     key={category.id}
                   >
                     <div className={'icon'}>

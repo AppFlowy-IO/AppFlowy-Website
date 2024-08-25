@@ -40,6 +40,8 @@ async function Page({ params }: { params: { category_id: string } }) {
   );
 }
 
+export const revalidate = 10;
+
 export default Page;
 
 async function getData(id: string) {

@@ -8,7 +8,7 @@ function AllTemplatesLabel() {
 
   return (
     <Link
-      href={'/template-center'}
+      href={'/templates'}
       onClick={() => {
         setSearchText('');
       }}

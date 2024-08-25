@@ -16,7 +16,7 @@ function HomeListHeader() {
 
   const desc = useMemo(() => {
     if (hasSearchResults) return `${searchResults.length} templates`;
-    return 'Product specs, company handbooks, meeting notes, and more';
+    return 'Project and task management, company handbooks, content calendars, and more.';
   }, [searchResults, hasSearchResults]);
 
   return (

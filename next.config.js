@@ -62,12 +62,12 @@ const rewrites = () => {
       destination: '/privacy/app',
     },
     {
-      source: '/product',
-      destination: '/',
+      source: '/template-center',
+      destination: '/templates',
     },
     {
-      source: '/v2/pricing',
-      destination: '/',
+      source: '/template-center/:path*',
+      destination: '/templates/:path*',
     },
   ];
 };

@@ -38,6 +38,8 @@ async function Page() {
 
 export default Page;
 
+export const revalidate = 10;
+
 async function getData() {
   const homepageTemplates = await getTemplateHomeList();
   const categories = await getCategories();

@@ -32,6 +32,7 @@ function Sidebar() {
       document.removeEventListener('scroll', handleScroll);
     };
   }, [isMobile]);
+
   return (
     <div
       ref={ref}
@@ -44,15 +45,17 @@ function Sidebar() {
         <Search />
         <AllTemplatesLabel />
         <Categories />
-        <Link className={'w-full'} href={'https://share-template.appflowy.io'}>
-          <button
-            className={
-              'live-demo-btn w-full whitespace-nowrap px-9 py-4 text-base font-medium max-xl:text-sm max-md:text-xs'
-            }
-          >
-            Share your template
-          </button>
-        </Link>
+        <div className={'sticky bottom-0 left-0 w-full bg-white py-2'}>
+          <Link className={'w-full'} href={'https://share-template.appflowy.io'}>
+            <button
+              className={
+                'live-demo-btn w-full whitespace-nowrap px-9 py-4 text-base font-medium max-xl:text-sm max-md:text-xs'
+              }
+            >
+              Share your template
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -94,5 +97,11 @@ function fixSidebarOnScroll({
   } else {
     sidebar.style.position = 'relative';
     sidebar.style.top = 'initial';
+
+    if (sidebarHeight + gap + headerHeight > window.innerHeight) {
+      container.classList.add('scroll-enabled');
+      sidebar.style.height = `${window.innerHeight - headerHeight - gap}px`;
+      sidebar.style.overflowY = 'auto';
+    }
   }
 }

@@ -42,7 +42,7 @@ function CreatorAvatar({ src, name }: { src: string; name: string }) {
 
   return (
     <>
-      <div className={'relative h-10 w-10 cursor-pointer'}>
+      <div className={'relative h-10 w-10'}>
         <Avatar
           className={'border border-gray-200 object-cover p-2'}
           {...avatarProps}

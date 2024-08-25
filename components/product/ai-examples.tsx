@@ -56,7 +56,7 @@ function AiExamples() {
           context-dependent replies.
         </div>
         <div className={'panel-image'}>
-          <Image loading={'lazy'} src={GetAnswer.src} alt={''} width={1040} height={648} />
+          <Image loading={'eager'} src={GetAnswer.src} alt={''} width={1040} height={648} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'write'}>
@@ -65,7 +65,7 @@ function AiExamples() {
           context-dependent replies.
         </div>
         <div className={'panel-image'}>
-          <Image loading={'lazy'} src={WriteBetter} alt={''} width={1040} height={648} />
+          <Image loading={'eager'} src={WriteBetter} alt={''} width={1040} height={648} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'auto'}>
@@ -74,7 +74,7 @@ function AiExamples() {
           context-dependent replies.
         </div>
         <div className={'panel-image'}>
-          <Image loading={'lazy'} src={AutofillTables} alt={''} width={1040} height={648} />
+          <Image loading={'eager'} src={AutofillTables} alt={''} width={1040} height={648} />
         </div>
       </TabPanel>
     </div>

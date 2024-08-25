@@ -48,7 +48,7 @@ export const links = [
     children: [
       {
         name: 'Templates',
-        link: '/template-center',
+        link: '/templates',
       },
       {
         name: "What's New",

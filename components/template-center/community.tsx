@@ -5,9 +5,10 @@ function Community() {
   return (
     <div className={'h-fit w-full bg-[#2B1A3F]'}>
       <div className={'community'}>
-        <div className={'community-title'}>All Community</div>
+        <div className={'community-title'}>Community Template</div>
         <div className={'community-description'}>
-          You can upload your templates, our moderators will check them and they will be available on our platform
+          Submit your template to the AppFlowy template marketplace, and after review by our moderators, they will be
+          made available or even featured.
         </div>
         <Link href={'https://share-template.appflowy.io'}>
           <button className={'download-btn'}>Share your template</button>

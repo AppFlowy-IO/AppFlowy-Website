@@ -34,6 +34,7 @@ export function useAutoPlay({
       if (defaultOption !== undefined) {
         onChange(defaultOption);
       }
+
       return;
     }
 

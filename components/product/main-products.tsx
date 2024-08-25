@@ -59,13 +59,13 @@ function MainProducts() {
       </MuiTabs>
       <TabPanel value={value} index={'ai'}>
         <div className={'ai-image'}>
-          <Image src={AIImage.src} loading={'lazy'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={AIImage.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
         </div>
       </TabPanel>
 
       <TabPanel value={value} index={'projects'}>
         <div className={'ai-image'}>
-          <Image src={Grid.src} loading={'lazy'} className={'object-cover'} alt={''} width={1024} height={652} />
+          <Image src={Grid.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={652} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'tasks'}>
@@ -75,12 +75,12 @@ function MainProducts() {
       </TabPanel>
       <TabPanel value={value} index={'templates'}>
         <div className={'ai-image'}>
-          <Image src={Templates.src} loading={'lazy'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={Templates.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'sites'}>
         <div className={'ai-image'}>
-          <Image src={Sites.src} loading={'lazy'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={Sites.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
         </div>
       </TabPanel>
     </div>

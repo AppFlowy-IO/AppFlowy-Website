@@ -16,8 +16,8 @@ function GetStart() {
           <Link className={'download-btn'} href={'/download'}>
             Download
           </Link>
-          <Link className={'live-demo-btn'} href={'/template-center'}>
-            Template Center
+          <Link className={'live-demo-btn'} href={'/templates'}>
+            Templates
           </Link>
         </div>
       </div>

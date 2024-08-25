@@ -37,6 +37,6 @@ export const monthlyPrice = [
   {
     ...yearlyPrice[1],
     price: '$12.5',
-    duration: 'per user per month\n' + '$10 billed annually',
+    duration: 'per user per month\n' + 'billed monthly',
   },
 ];
