@@ -1,47 +1,42 @@
-import { useEffect } from 'react';
+import { useCallback, useRef } from 'react';
 
-const duration = 5000;
+const duration = 2500;
 
 export function useAutoPlay({
   options,
   onChange,
-  play,
-  defaultOption,
 }: {
-  defaultOption?: string;
   options: {
     value: string;
     label: string;
     icon: React.ReactNode;
   }[];
   onChange: React.Dispatch<React.SetStateAction<string>>;
-  play?: boolean;
 }) {
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    const onChangeValue = () => {
-      onChange((prev) => {
-        const currentIndex = options.findIndex((option) => option.value === prev);
-        const nextIndex = (currentIndex + 1) % options.length;
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-        return options[nextIndex].value;
-      });
+  const onChangeValue = useCallback(() => {
+    onChange((prev) => {
+      const currentIndex = options.findIndex((option) => option.value === prev);
+      const nextIndex = (currentIndex + 1) % options.length;
 
-      timeout = setTimeout(onChangeValue, duration);
-    };
+      return options[nextIndex].value;
+    });
 
-    if (!play) {
-      if (defaultOption !== undefined) {
-        onChange(defaultOption);
-      }
+    timeoutRef.current = setTimeout(onChangeValue, duration);
+  }, [options, onChange]);
 
-      return;
-    }
+  const stop = useCallback(() => {
+    timeoutRef.current && clearTimeout(timeoutRef.current);
+  }, []);
 
-    timeout = setTimeout(onChangeValue, duration);
+  const start = useCallback(() => {
+    stop();
+    timeoutRef.current = setTimeout(onChangeValue, duration);
+  }, [stop, onChangeValue]);
 
-    return () => {
-      timeout && clearTimeout(timeout);
-    };
-  }, [options, onChange, play, defaultOption]);
+  return {
+    start,
+    stop,
+  };
 }

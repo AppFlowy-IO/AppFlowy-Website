@@ -11,7 +11,7 @@ import MuiTab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 function UseCases() {
   const [value, setValue] = React.useState('2');
@@ -42,18 +42,25 @@ function UseCases() {
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
 
-  useAutoPlay({
+  const { start, stop } = useAutoPlay({
     options: tabOptions,
     onChange: setValue,
-    play: inView,
-    defaultOption: '2',
   });
+
+  useEffect(() => {
+    if (!inView) {
+      stop();
+    } else {
+      start();
+    }
+  }, [inView, start, stop]);
 
   return (
     <div ref={ref} className={'use-cases'}>
       <MuiTabs value={value} onChange={handleChange}>
         {tabOptions.map((tab) => (
           <MuiTab
+            onClick={() => start()}
             className={`use-case-tab ${value === tab.value ? 'selected' : ''}`}
             key={tab.value}
             value={tab.value}
