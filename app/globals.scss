@@ -4,7 +4,7 @@
 
 
 :root {
-  --color-primary: #9327FF;
+  --color-primary: #8427E0;
   --color-primary-20: rgba(147, 39, 255, 0.20);
   --color-primary-10: rgba(147, 39, 255, 0.10);
   --color-night-blue: #000212;
@@ -23,18 +23,18 @@
   --color-fill-text: #000;
 }
 
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    @include darkVars;
-  }
-}
+//@media (prefers-color-scheme: dark) {
+//  html:not(.light) {
+//    @include darkVars;
+//  }
+//}
 
 :root.dark {
   @include darkVars;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Poppins", sans-serif;
   font-size: 14px;
   margin: 0;
   color: var(--color-text);

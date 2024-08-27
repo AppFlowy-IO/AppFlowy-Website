@@ -47,7 +47,11 @@ export const links = [
     name: 'Product',
     children: [
       {
-        name: 'What\'s New',
+        name: 'Templates',
+        link: '/templates',
+      },
+      {
+        name: "What's New",
         link: '/what-is-new',
       },
       {
@@ -169,5 +173,4 @@ export const links = [
       },
     ],
   },
-
 ];

@@ -52,7 +52,7 @@ function ScrollLogos() {
             <div
               key={index}
               style={{
-                color: 'var(--color-text)',
+                color: '#1E0C32',
               }}
               className={'logo'}
             >

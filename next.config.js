@@ -61,6 +61,14 @@ const rewrites = () => {
       source: '/privacy/mobile',
       destination: '/privacy/app',
     },
+    {
+      source: '/template-center',
+      destination: '/templates',
+    },
+    {
+      source: '/template-center/:path*',
+      destination: '/templates/:path*',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */
@@ -81,8 +89,10 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 7,
+    unoptimized: true,
   },
-  async headers () {
+  async headers() {
     return [
       {
         // Apply these headers to all routes in your application.

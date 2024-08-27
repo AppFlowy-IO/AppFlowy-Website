@@ -54,6 +54,8 @@ function NavbarPopover({
   return (
     <Popover
       open={open}
+      disableAutoFocus={true}
+      disableRestoreFocus={true}
       transformOrigin={{
         vertical: -10,
         horizontal: item?.placement || 'center',

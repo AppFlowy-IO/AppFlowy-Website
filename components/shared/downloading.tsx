@@ -1,5 +1,6 @@
 'use client';
 
+import { useDownload } from '@/lib/hooks/use-download';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
@@ -11,10 +12,11 @@ import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
 import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { Storage } from '@/lib/storage';
-import DownloadBtns from '@/components/home/mobile/download-btns';
+import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
 
 function Downloading() {
   const dark = useDarkContext();
+  const { getOsDownloadLink } = useDownload();
 
   const downloadPackage = useCallback((downloadUrl: string) => {
     Storage.set('download_url', '');
@@ -29,10 +31,14 @@ function Downloading() {
   }, [downloadPackage]);
 
   useEffect(() => {
-    const downloadUrl = Storage.get('download_url');
+    let downloadUrl = Storage.get('download_url');
+
+    if (!downloadUrl) {
+      downloadUrl = getOsDownloadLink();
+    }
 
     debounceDownload(downloadUrl);
-  }, [debounceDownload]);
+  }, [debounceDownload, getOsDownloadLink]);
 
   const router = useRouter();
 
@@ -97,7 +103,7 @@ function Downloading() {
             <div>Intuitive and seamlessly transition from laptop to phone.</div>
           </div>
 
-          <DownloadBtns />
+          <MobileDownloadBtns />
         </div>
       </div>
       <div className={'panel panel-3'}>

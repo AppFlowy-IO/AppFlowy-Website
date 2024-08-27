@@ -1,5 +1,6 @@
 'use client';
 
+import MainDownload from '@/components/product/main-download';
 import React, { useEffect, useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,7 +11,6 @@ import bg from '@/assets/images/download/pop_bg.png';
 import bgBottom from '@/assets/images/download/pop_bg_bottom.png';
 import freeBg from '@/assets/images/download/free_bg.svg';
 import Logo from '@/components/icons/logo';
-import HeroDownloadBtn from '@/components/home/hero-section/download-btn';
 import { useClient } from '@/lib/hooks/use-client';
 
 function ModalDownload() {
@@ -80,7 +80,7 @@ function ModalDownload() {
             <span className={'text-primary font-bold'}>AppFlowy</span> is an AI collaborative workspace where you
             achieve more without losing control of your data
           </div>
-          <HeroDownloadBtn showDesc={false} />
+          <MainDownload showDesc={false} />
           <div className={'text-primary my-6 w-full cursor-pointer text-center font-bold'} onClick={handleClose}>
             Skip for now
           </div>
