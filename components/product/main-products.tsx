@@ -6,10 +6,7 @@ import Sites from '@/assets/images/product/sites.png';
 import Tasks from '@/assets/images/product/tasks.png';
 import Templates from '@/assets/images/product/template.png';
 import Website from '@/components/icons/website';
-import AiIcon from '@/components/product/ai-icon';
-import CalendarIcon from '@/components/product/calendar-icon';
-import KanbanIcon from '@/components/product/kanban-icon';
-import ProjectsIcon from '@/components/product/projects-icon';
+import { TemplateIcon, KanbanIcon, ProjectsIcon, AiIcon } from '@/components/product/icons';
 import { TabPanel } from '@/components/shared/tab-panel';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import MuiTab from '@mui/material/Tab';
@@ -29,7 +26,7 @@ function MainProducts() {
       { value: 'ai', label: 'AI', icon: <AiIcon /> },
       { value: 'projects', label: 'Projects', icon: <ProjectsIcon /> },
       { value: 'tasks', label: 'Tasks', icon: <KanbanIcon /> },
-      { value: 'templates', label: 'Templates', icon: <CalendarIcon /> },
+      { value: 'templates', label: 'Templates', icon: <TemplateIcon /> },
       { value: 'sites', label: 'Sites', icon: <Website /> },
     ];
   }, []);
