@@ -2,14 +2,17 @@
 
 import CreatorAvatar from '@/components/template-center/creator-avatar';
 import TemplateCenterButton from '@/components/template-center/template-center-button';
+import { slugify } from '@/components/template-center/utils';
 import { Template } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
-function TemplateSection({ template, categoryId }: { template: Template; categoryId?: string }) {
+function TemplateSection({ template, categoryName }: { template: Template; categoryName?: string }) {
   const category = useMemo(() => {
-    return categoryId ? template.categories.find((category) => category.id === categoryId) : template.categories[0];
-  }, [template, categoryId]);
+    return categoryName
+      ? template.categories.find((category) => slugify(category.name) === categoryName)
+      : template.categories[0];
+  }, [template, categoryName]);
 
   // const useTemplateURL = useMemo(() => {
   //   const url = new URL(template.view_url);

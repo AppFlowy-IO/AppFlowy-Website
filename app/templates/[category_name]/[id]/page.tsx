@@ -10,13 +10,14 @@ import { CategoryIcon } from '@/components/template-center/icons';
 import RelatedTemplates from '@/components/template-center/template/related-templates';
 import Share from '@/components/template-center/template/share';
 import TemplateSection from '@/components/template-center/template/template-section';
+import { slugify } from '@/components/template-center/utils';
 import { getTemplateById } from '@/lib/templateAPI';
 import Link from 'next/link';
 import React from 'react';
 import '@/styles/template.scss';
 import { notFound } from 'next/navigation';
 
-async function Page({ params }: { params: { id: string; category_id: string } }) {
+async function Page({ params }: { params: { id: string; category_name: string } }) {
   const id = params.id;
 
   let data = null;
@@ -30,7 +31,7 @@ async function Page({ params }: { params: { id: string; category_id: string } })
 
   return (
     <div className={'template-center'}>
-      <TemplateSection template={data} categoryId={params.category_id} />
+      <TemplateSection template={data} categoryName={params.category_name} />
       <div
         className={
           'flex w-full flex-col items-center gap-[70px] bg-white  px-[170px] py-[110px] max-lg:gap-[10vh] max-lg:px-[8vw]  max-lg:py-[10vh]'
@@ -46,7 +47,7 @@ async function Page({ params }: { params: { id: string; category_id: string } })
               <div className={'title'}>Category</div>
               {data.categories.map((category) => (
                 <Link
-                  href={`/templates/${category.id}`}
+                  href={`/templates/${slugify(category.name)}`}
                   style={{
                     backgroundColor: category.bg_color,
                   }}

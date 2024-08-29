@@ -1,6 +1,7 @@
 import { CategoryIcon, FeaturedIcon, NewTemplatesIcon } from '@/components/template-center/icons';
 import Templates from '@/components/template-center/templates';
 import { useTemplatesContext } from '@/components/template-center/templates-context';
+import { slugify } from '@/components/template-center/utils';
 import { TemplateSummary } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
@@ -70,7 +71,7 @@ function GroupByCategory() {
               </div>
               <div className={'name'}>
                 <div>{item.category.name}</div>
-                <Link href={`/templates/${item.category.id}`}>
+                <Link href={`/templates/${slugify(item.category.name)}`}>
                   <button className={'text-primary flex gap-2 text-base font-medium hover:underline max-md:text-xs'}>
                     View all
                     <div

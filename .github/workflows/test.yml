@@ -2,7 +2,7 @@ name: Test
 on: [ pull_request ]
 
 env:
-  NODE_VERSION: "18.16.0"
+  NODE_VERSION: "20.12.0"
   PNPM_VERSION: "8.5.0"
 
 concurrency:
