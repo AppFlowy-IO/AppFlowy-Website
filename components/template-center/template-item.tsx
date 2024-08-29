@@ -1,9 +1,10 @@
 import CreatorAvatar from '@/components/template-center/creator-avatar';
+import { slugify } from '@/components/template-center/utils';
 import { TemplateSummary, TemplateCategory } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
-function TemplateItem({ template, category }: { template: TemplateSummary; category?: TemplateCategory }) {
+function TemplateItem({ template, category }: { template: TemplateSummary; category: TemplateCategory }) {
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
 
@@ -17,7 +18,7 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
   return (
     <>
       <Link
-        href={`/templates/${category?.id || 'categories'}/${template.view_id}`}
+        href={`/templates/${slugify(category.name)}/${template.view_id}`}
         className={'template-preview relative overflow-hidden'}
         style={{
           backgroundColor: category?.bg_color,

@@ -195,7 +195,7 @@
         text-transform: capitalize;
 
         &.selected {
-          @apply text-black opacity-100;
+          @apply text-primary opacity-100;
           border-color: #8427E0;
 
           svg {

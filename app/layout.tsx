@@ -1,11 +1,18 @@
 import './globals.scss';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Favicon from '../public/appflowy.svg';
 import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
 import process from 'process';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: 'AppFlowy.IO',
@@ -16,7 +23,6 @@ export const metadata: Metadata = {
       url: Favicon.src,
     },
   ],
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
   openGraph:
     process.env.NODE_ENV === 'development'
       ? undefined

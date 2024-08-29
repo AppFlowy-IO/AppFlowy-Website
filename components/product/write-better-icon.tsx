@@ -3,7 +3,7 @@ import React from 'react';
 function WriteBetterIcon() {
   return (
     <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'>
-      <g opacity='0.6'>
+      <g opacity='1'>
         <path
           fillRule='evenodd'
           clipRule='evenodd'
