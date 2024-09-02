@@ -14,10 +14,10 @@
 
   .section-1 {
     @apply bg-[#EEEEFD] min-h-screen w-full flex flex-col gap-[40px] items-center pb-[86px] pt-[196px];
-    @apply max-md:pt-[25vh] max-md:pb-[70px];
+    @apply max-md:pt-[25vh] max-md:pb-[70px] max-sm:pt-[20vh];
     .main-content {
-      @apply max-w-[984px] text-center flex flex-col items-center gap-4 break-words text-[74px] font-medium text-[#101012] leading-[108%];
-      @apply max-md:text-[8vw] max-md:px-[5vw] max-md:leading-[120%];
+      @apply max-w-[984px] text-center flex flex-col items-center gap-9 break-words text-[74px] font-medium text-[#101012] leading-[108%];
+      @apply max-md:text-[8vw] max-md:px-[5vw] max-md:leading-[120%] max-md:gap-4;
       .desc {
         @apply text-base max-w-[360px] font-normal leading-[160%];
         @apply max-md:text-[14px];
@@ -52,7 +52,6 @@
       @apply max-md:text-[8vw] max-md:px-[5vw] max-md:leading-[120%];
     }
 
-
   }
 
   .main-product {
@@ -73,13 +72,9 @@
       text-transform: unset;
 
       &.selected {
-        @apply text-[#8427E0] opacity-100;
+        @apply text-[#8427E0] opacity-100 font-medium;
         border-color: #8427E0;
 
-        svg {
-          fill: #8427E0;
-          stroke: #8427E0;
-        }
       }
 
     }
@@ -94,17 +89,34 @@
   }
 
   .section-3 {
-    background: url('../assets/images/dark-bg-1.svg') no-repeat center;
-    background-size: cover;
-    @apply min-h-screen w-full flex flex-col gap-[70px] items-center justify-center py-[158px];
+    @apply bg-[#200E34] overflow-hidden relative;
+    .glow {
+      position: absolute;
+      width: 200vw;
+      height: 100%;
+      left: 50%;
+      top: -10%;
+
+      transform: translate3d(-50%, -50%, 0px);
+      background: radial-gradient(
+                      ellipse 2060px 1030px at center,
+                      rgba(138, 44, 231, 0.4) 0%,
+                      rgba(138, 44, 231, 0) 70%
+      );
+      filter: blur(250px);
+    }
+
+    @apply min-h-screen w-full flex flex-col gap-[70px] items-center justify-center py-[158px] ;
     @apply max-md:min-h-fit max-md:py-[10vh] max-md:gap-[40px];
     &-title {
+      z-index: 1;
       @apply flex flex-col items-center justify-center text-center text-[58px] max-w-[622px] font-medium leading-[105%] text-white;
       @apply max-md:text-[8vw] max-md:px-[5vw] max-md:leading-[120%];
       letter-spacing: -1.68px;
     }
 
     .ai-examples {
+      z-index: 1;
       @apply flex flex-col items-center justify-center;
       .MuiTabs-indicator {
         background-color: #8427E0;
@@ -122,7 +134,7 @@
         text-transform: unset;
 
         &.selected {
-          @apply opacity-100;
+          @apply opacity-100  font-medium;
           border-color: #8427E0;
         }
       }
@@ -147,19 +159,38 @@
       }
     }
 
+
     &-subtitle {
-      @apply text-center text-[40px] w-full font-medium leading-[110%] text-white;
+      z-index: 1;
+      @apply text-center text-[40px] w-full font-medium leading-[110%];
       @apply max-md:text-[7vw];
     }
 
     .cards {
       @apply flex w-[1100px] min-w-0 max-w-full gap-6 justify-center items-center;
       @apply max-lg:flex-col max-lg:gap-10;
+      z-index: 1;
+
       .card {
         @apply w-[350px] h-[366px] flex-1 flex flex-col items-center gap-6 p-10 rounded-[16px];
-        @apply max-md:w-[80vw] max-md:flex-auto max-md:h-[auto];
-        background: url('../assets/images/dark-card-bg.svg') no-repeat center;
-        background-size: cover;
+        @apply max-md:w-[80vw] max-md:flex-auto max-md:h-[auto]  max-md:p-6;
+        @apply relative overflow-hidden bg-[#200E34];
+
+        .glow {
+          position: absolute;
+          width: 50%;
+          height: 100%;
+          left: 70%;
+
+          transform: translate3d(-50%, 50%, 0px);
+          background: radial-gradient(
+                          ellipse 1030px 515px at center,
+                          rgba(138, 44, 231, 0.4) 0%,
+                          rgba(138, 44, 231, 0) 70%
+          );
+          filter: blur(120px);
+        }
+
         border: 1px solid rgba(255, 255, 255, 0.2);
 
         svg {
@@ -203,13 +234,10 @@
         text-transform: unset;
 
         &.selected {
-          @apply text-primary opacity-100;
+          @apply text-primary opacity-100 font-medium;
           border-color: #8427E0;
 
-          svg {
-            fill: #8427E0;
-            stroke: #8427E0;
-          }
+
         }
       }
 
@@ -249,7 +277,7 @@
       @apply max-lg:flex-col max-lg:gap-10;
       .card {
         @apply w-[350px] h-[366px] flex-1 flex flex-col items-center gap-6 p-10 rounded-[16px];
-        @apply max-md:w-[80vw] max-md:flex-auto max-md:h-[auto];
+        @apply max-md:w-[80vw] max-md:flex-auto max-md:h-[auto] max-md:p-6;
         background: #F9F9FC;
 
         i {
@@ -264,7 +292,7 @@
           letter-spacing: -0.24px;
 
           .card-desc {
-            @apply text-base text-[#58585A] font-normal;
+            @apply text-base text-[#58585A] font-normal whitespace-pre-wrap break-words;
           }
         }
       }
@@ -350,7 +378,7 @@
 
         .tab-desc {
           text-transform: unset !important;
-          @apply text-[16px] text-left text-[#58585A] font-normal pl-[36px] w-full overflow-hidden break-words whitespace-pre-wrap;
+          @apply text-[16px] text-left text-[#58585A] font-normal pl-[36px] w-full overflow-hidden break-words whitespace-pre-wrap leading-[150%];
           @apply max-lg:text-[14px] max-lg:pl-[28px];
           @apply max-md:hidden;
         }
@@ -360,7 +388,6 @@
           @apply max-lg:py-[2vw];
           .tab-title-icon {
             color: #8427E0;
-
           }
 
           .tab-title-name {
@@ -377,14 +404,10 @@
         @apply flex flex-col w-full gap-[30px] items-center justify-center h-full;
         @apply max-md:gap-4;
         .tab-panel-title {
-          @apply hidden text-center text-[16px] font-medium;
-          @apply max-md:block;
+          @apply hidden text-left text-[16px] font-medium whitespace-pre-wrap break-words;
+          @apply max-md:block max-md:whitespace-normal;
         }
 
-
-        .tab-panel-image {
-
-        }
       }
     }
   }
@@ -466,11 +489,29 @@
   }
 
   .section-8 {
-    background: url('../assets/images/dark-bg.svg') no-repeat;
-    background-size: cover;
+    @apply relative overflow-hidden;
+    background-color: #200E34;
+
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 50%;
+      bottom: -100%;
+
+      transform: translate3d(-50%, -50%, 0px);
+      background: radial-gradient(
+                      ellipse 1030px 515px at center,
+                      rgba(138, 44, 231, 0.4) 0%,
+                      rgba(138, 44, 231, 0) 70%
+      );
+      filter: blur(200px);
+    }
+
     @apply w-full flex flex-col gap-[30px] items-center justify-center py-[158px];
     @apply max-md:min-h-fit max-md:gap-[40px] max-md:py-[10vh] max-md:px-4;
     &-title {
+      z-index: 1;
       @apply flex flex-col gap-[20px] items-center justify-center text-center text-[58px] max-w-[724px] font-medium leading-[105%] text-white;
       @apply max-md:text-[8vw];
       letter-spacing: -1.68px;
@@ -478,11 +519,13 @@
     }
 
     .section-8-desc {
+      z-index: 1;
       @apply opacity-70 text-center text-[16px] max-w-[429px] text-white font-normal leading-[150%];
       letter-spacing: -0.16px;
     }
 
     .section-8-btns {
+      z-index: 1;
       @apply flex gap-4 mb-[6px];
       @apply max-sm:flex-col max-sm:gap-4 max-sm:w-full;
       .download-btn {
@@ -507,6 +550,7 @@
     }
 
     &-image {
+      z-index: 1;
       @apply overflow-hidden p-[6px];
       img {
         @apply rounded-[14px];

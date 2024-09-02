@@ -12,7 +12,7 @@
 
   .section-1 {
     @apply bg-[#F5F5FA] w-full flex flex-col gap-[40px] items-center pb-[110px] pt-[196px];
-    @apply max-sm:pt-[25vh] max-sm:pb-[70px];
+    @apply max-sm:pt-[20vh] max-sm:pb-[70px];
     .main-title {
       @apply text-center flex flex-col items-center gap-4 break-words text-[56px] font-medium text-[#101012] leading-[105%];
       @apply max-sm:text-[8vw] max-sm:px-[5vw] max-sm:leading-[120%];
@@ -166,12 +166,26 @@
   }
 
   .section-3-container {
-    background: url('../assets/images/pricing/bg-1.svg') no-repeat;
-    background-size: cover;
+    @apply bg-[#200E34] overflow-hidden relative;
+    .glow {
+      position: absolute;
+      width: 200vw;
+      height: 100%;
+      left: 50%;
+      top: -10%;
+
+      transform: translate3d(-50%, -50%, 0px);
+      background: radial-gradient(
+                      ellipse 2060px 1030px at center,
+                      rgba(138, 44, 231, 0.4) 0%,
+                      rgba(138, 44, 231, 0) 70%
+      );
+      filter: blur(250px);
+    }
   }
 
   .section-3 {
-
+    z-index: 10;
     @apply flex flex-col gap-[100px] items-center justify-center py-[158px];
     @apply max-md:min-h-fit max-md:gap-[60px] max-md:py-[10vh];
 
@@ -187,16 +201,31 @@
       .card {
         @apply flex-1 px-10 py-[50px] flex flex-col items-center justify-center border rounded-[16px];
         border-color: rgba(255, 255, 255, 0.20);
-        background: url('../assets/images/pricing/card-bg.svg') no-repeat;
-        background-size: cover;
+        @apply relative overflow-hidden bg-[#200E34];
+
+        .glow {
+          position: absolute;
+          width: 50%;
+          height: 100%;
+          left: 70%;
+
+          transform: translate3d(-50%, 50%, 0px);
+          background: radial-gradient(
+                          ellipse 1030px 515px at center,
+                          rgba(138, 44, 231, 0.4) 0%,
+                          rgba(138, 44, 231, 0) 70%
+          );
+          filter: blur(120px);
+        }
 
         .card-title {
+          z-index: 1;
           @apply text-white text-[24px] font-medium leading-[120%] mt-[24px] mb-6 w-full text-center;
         }
 
         a {
           @apply text-[#E0C4FF] text-[16px] font-normal leading-[150%] text-center;
-
+          z-index: 1;
 
         }
       }
@@ -205,23 +234,43 @@
   }
 
   .section-4 {
-    background: url('../assets/images/dark-bg.svg') no-repeat;
-    background-size: cover;
+    @apply relative overflow-hidden;
+    background-color: #200E34;
+
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 50%;
+      bottom: -100%;
+
+      transform: translate3d(-50%, -50%, 0px);
+      background: radial-gradient(
+                      ellipse 1030px 515px at center,
+                      rgba(138, 44, 231, 0.4) 0%,
+                      rgba(138, 44, 231, 0) 70%
+      );
+      filter: blur(200px);
+    }
+
     @apply w-full flex flex-col gap-[100px] items-center justify-center py-[158px];
     @apply max-md:min-h-fit max-md:gap-[60px] max-md:py-[10vh];
 
     .title {
+      z-index: 1;
       @apply flex items-center justify-center text-center text-[56px] font-medium leading-[105%] text-white;
       @apply max-md:text-[8vw];
       letter-spacing: -1.68px;
     }
 
     .desc {
+      z-index: 1;
       @apply opacity-70 text-center text-[16px] max-w-[389px] text-white font-normal leading-[150%];
       letter-spacing: -0.16px;
     }
 
     .btns {
+      z-index: 1;
       @apply flex gap-4 mb-[6px];
       @apply max-sm:flex-col max-sm:w-full max-sm:px-4;
       .download-btn {

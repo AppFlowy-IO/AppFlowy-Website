@@ -71,7 +71,7 @@ function UseCases() {
       </MuiTabs>
       <TabPanel value={value} index={'1'}>
         <div className={'tab-panel-title'}>
-          <span className={'text-primary'}>Organize and visualize data</span> any way you want
+          <span className={'text-primary'}>Organize and visualize data</span> any way you want.
         </div>
         <div className={'tab-panel-image'}>
           <Image loading={'eager'} className={'shadow-img'} src={Visualize} alt={''} width={1040} height={652} />

@@ -18,20 +18,20 @@ export function TemplateIcon() {
 export function KanbanIcon() {
   return (
     <svg width='21' height='20' viewBox='0 0 21 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <g opacity='1'>
-        <path
-          fillRule='evenodd'
-          clipRule='evenodd'
-          d='M8.625 2.5C9.31536 2.5 9.875 3.05964 9.875 3.75V16.25C9.875 16.9404 9.31536 17.5 8.625 17.5H5.5C4.80964 17.5 4.25 16.9404 4.25 16.25V3.75C4.25 3.05964 4.80964 2.5 5.5 2.5H8.625ZM8.625 16.25V3.75H5.5V16.25H8.625Z'
-          fill='currentColor'
-        />
-        <path
-          fillRule='evenodd'
-          clipRule='evenodd'
-          d='M15.5 2.5C16.1904 2.5 16.75 3.05964 16.75 3.75V16.25C16.75 16.9404 16.1904 17.5 15.5 17.5H12.375C11.6846 17.5 11.125 16.9404 11.125 16.25V3.75C11.125 3.05964 11.6846 2.5 12.375 2.5H15.5ZM15.5 16.25V3.75H12.375V16.25H15.5Z'
-          fill='currentColor'
-        />
-      </g>
+      <path
+        d='M8.75098 16.1622V3.8382C8.75098 2.6682 8.26157 2.2002 7.04568 2.2002H3.95627C2.74039 2.2002 2.25098 2.6682 2.25098 3.8382V16.1622C2.25098 17.3322 2.74039 17.8002 3.95627 17.8002H7.04568C8.26157 17.8002 8.75098 17.3322 8.75098 16.1622Z'
+        stroke='currentColor'
+        strokeWidth='1.4'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M18.751 12.2617V4.13866C18.751 2.75404 18.2616 2.2002 17.0457 2.2002H13.9563C12.7404 2.2002 12.251 2.75404 12.251 4.13866V12.2617C12.251 13.6463 12.7404 14.2002 13.9563 14.2002H17.0457C18.2616 14.2002 18.751 13.6463 18.751 12.2617Z'
+        stroke='currentColor'
+        strokeWidth='1.4'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
     </svg>
   );
 }

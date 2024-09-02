@@ -41,6 +41,7 @@ export default function Page() {
       </div>
       <div className={'af-container'}>
         <div className={'af-box section-3'}>
+          <div className='glow'></div>
           <div className={'section-3-title'}>
             AppFlowy AI{' '}
             <span
@@ -53,31 +54,35 @@ export default function Page() {
           </div>
           <AiExamples />
           <div className={'flex w-full flex-col items-center justify-center gap-[80px] pt-[26px] max-md:gap-10'}>
-            <div className={'section-3-subtitle'}>
-              Accessible,
-              <span className={'text-[#C89AFA]'}> collaborative, and contextual</span>
+            <div className={'section-3-subtitle gradient-text'}>
+              Accessible, collaborative, and contextual
+              <span className={'text-[#C89AFA]'}></span>
             </div>
             <div className={'cards'}>
               <div className={'card'}>
+                <div className='glow'></div>
                 <AiLocalIcon />
                 <div className={'card-title'}>
                   AI model selection
                   <div className={'card-desc'}>
-                    Run Mistral 7B and Llama 3 on your machine. Choose from GPT 4-o and Claude 3 Sonnet.
+                    Run Mistral 7B and Llama 3 on your machine. Choose from{' '}
+                    <span className={'whitespace-nowrap'}>GPT 4-o</span> and Claude 3 Sonnet.
                   </div>
                 </div>
               </div>
               <div className={'card'}>
+                <div className='glow'></div>
                 <CollaborativeIcon />
                 <div className={'card-title'}>
                   Collaborative
                   <div className={'card-desc'}>
-                    AI is your go-to teammate who adapts to your changing needs and priorities.
+                    AppFlowy AI is your go-to teammate who adapts to your changing needs and priorities.
                   </div>
                 </div>
               </div>
 
               <div className={'card'}>
+                <div className='glow'></div>
                 <AiModelIcon />
                 <div className={'card-title'}>
                   Contextual
@@ -110,7 +115,7 @@ export default function Page() {
               <div className={'card-title'}>
                 AI On-device
                 <div className={'card-desc'}>
-                  Run Mistral 7B, Llama 3, and more local models on your machine for ultimate privacy.
+                  {`Run Mistral 7B, Llama 3, and\nmore local models on your\nmachine for ultimate privacy.`}
                 </div>
               </div>
             </div>
@@ -119,7 +124,7 @@ export default function Page() {
               <div className={'card-title'}>
                 Always available
                 <div className={'card-desc'}>
-                  100% offline mode. Remain local and sync as required. Once account, any device.
+                  {`100% offline mode. Remain local\nand sync as required.\nOne account, any device.`}
                 </div>
               </div>
             </div>
@@ -127,7 +132,7 @@ export default function Page() {
               <UploadCloudIcon />
               <div className={'card-title'}>
                 Own your data
-                <div className={'card-desc'}>Self-host AppFlowy wherever you want; no vendor lock-in.</div>
+                <div className={'card-desc'}>{`Self-host AppFlowy wherever\nyou want; no vendor lock-in.`}</div>
               </div>
             </div>
           </div>
@@ -178,6 +183,7 @@ export default function Page() {
       </div>
       <div className={'flex w-full items-center justify-center pb-[96px] max-md:pb-[10vh]'}>
         <Image
+          loading={'eager'}
           src={iconsBg}
           alt={''}
           style={{

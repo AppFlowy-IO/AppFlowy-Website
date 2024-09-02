@@ -112,7 +112,7 @@ body {
 
 .appflowy-navbar, .appflowy-drawer-nav {
   .logo-wrapper {
-    @apply flex flex-1 max-xl:flex-none;
+    @apply flex flex-1 max-xl:max-w-[120px];
   }
 
   .logo {
@@ -495,4 +495,37 @@ body {
 
 .MuiTab-root {
   font-family: "Inter", "Poppins", sans-serif !important;
+}
+
+.gradient-text {
+  @apply transform-gpu;
+  will-change: auto;
+  -wekit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: linear-gradient(
+                  to right,
+                  #6b1fbd,
+                  #8427E0,
+                  #a44dff,
+                  #ba7afc,
+                  #d8b7f9,
+                  #f4f5fd,
+                  #d8b7f9,
+                  #ba7afc,
+                  #a44dff,
+                  #8427E0,
+                  #6b1fbd
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: slide 5s linear infinite;
+}
+
+@keyframes slide {
+  to {
+    background-position: -200% center;
+  }
 }

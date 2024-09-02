@@ -1,5 +1,7 @@
 .scroll-icons {
-  @apply flex flex-col items-center gap-10 w-full;
+  @apply flex flex-col items-center gap-10 w-full  transform-gpu;
+  will-change: auto;
+
   &-title {
     @apply text-center text-[24px] font-medium leading-[120%]
   }
@@ -8,8 +10,9 @@
     @apply w-full overflow-hidden;
     .logo-wrapper {
       @apply w-fit flex justify-between items-center gap-[20px] mr-4 min-w-full;
-      @apply max-md:gap-[10px];
 
+
+      @apply max-md:gap-[10px];
       .logo {
         @apply h-[100px] w-[220px] flex-shrink-0 flex items-center justify-center rounded-full bg-white opacity-60 px-10 py-3;
         @apply max-md:h-[60px] max-md:w-[120px] max-md:px-4 max-md:py-2;

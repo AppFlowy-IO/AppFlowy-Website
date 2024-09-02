@@ -65,7 +65,8 @@ function Page() {
       <div className={'w-full bg-white pb-[110px]'}>
         <ScrollIcons />
       </div>
-      <div className={'af-container section-3-container bg-[#200E34]'}>
+      <div className={'af-container section-3-container'}>
+        <div className='glow'></div>
         <div className={'af-box section-3'}>
           <div className={'title'}>
             <span>
@@ -74,6 +75,7 @@ function Page() {
           </div>
           <div className={'cards'}>
             <div className={'card'}>
+              <div className='glow'></div>
               <Image src={Help} alt={''} width={151} height={121} />
               <div className={'card-title'}>Help articles</div>
               <Link href={'https://docs.appflowy.io/docs'} className={'flex items-center gap-2'}>
@@ -81,6 +83,7 @@ function Page() {
               </Link>
             </div>
             <div className={'card'}>
+              <div className='glow'></div>
               <Image src={Affiliate} alt={''} width={151} height={121} />
               <div className={'card-title'}>Affiliate programs</div>
 
@@ -90,6 +93,7 @@ function Page() {
               </Link>
             </div>
             <div className={'card'}>
+              <div className='glow'></div>
               <Image src={Contact} alt={''} width={151} height={121} />
               <div className={'card-title'}>Contact support</div>
               <Link href={'/contact'} className={'flex items-center gap-2'}>
@@ -99,8 +103,9 @@ function Page() {
           </div>
         </div>
       </div>
-      <div className={'af-container bg-[#200E34]'}>
+      <div className={'af-container'}>
         <div className={'af-box section-4 gap-[30px]'}>
+          <div className='glow'></div>
           <div className={'flex flex-col items-center gap-5'}>
             <div className={'title'}>
               <span>
