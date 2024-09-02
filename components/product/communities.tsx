@@ -31,7 +31,7 @@ function Communities() {
             <div className={'community-content-summary-title'}>Built by the community for the community</div>
             <div className={'community-content-summary-desc'}>
               We collaboratively create apps that suit others’ needs by developing a versatile toolbox of plugins,
-              templates, and more. Join us to build a toolbox that empowers anyone to create their own system - play and
+              templates, and more. Join us to build a toolbox that empowers anyone to create their own system—play and
               tweak without limits.
             </div>
           </div>

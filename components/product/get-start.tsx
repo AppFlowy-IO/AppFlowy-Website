@@ -5,6 +5,7 @@ function GetStart() {
   return (
     <div className={'af-container bg-[#2B1A3F]'}>
       <div className={'af-box section-8'}>
+        <div className='glow'></div>
         <div className={'section-8-title'}>
           <div>
             Get started for

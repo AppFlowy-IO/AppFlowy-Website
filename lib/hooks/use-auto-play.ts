@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-const duration = 2500;
+const duration = 8000;
 
 export function useAutoPlay({
   options,

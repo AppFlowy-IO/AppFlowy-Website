@@ -1,11 +1,14 @@
 'use client';
 
 import { aboutPageConfig } from '@/lib/config/pages';
+import { useClient } from '@/lib/hooks/use-client';
 import React, { useEffect, useMemo, useRef } from 'react';
 import '@/styles/scroll-icons.scss';
 
 function ScrollIcons() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const { isMobile } = useClient();
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -25,7 +28,7 @@ function ScrollIcons() {
         scrollContainer.scrollTo(currentScrollPosition, 0);
       };
 
-      return setInterval(move, 16); // move every 20ms
+      return setInterval(move, isMobile ? 48 : 20); // faster scrolling on desktop
     };
 
     const intervalId = startScrolling();

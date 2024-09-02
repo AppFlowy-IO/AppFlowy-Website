@@ -4,7 +4,7 @@ import Visualize from '@/assets/images/product/Visualize-filter.png';
 import Content from '@/assets/images/product/Content-blocks.png';
 import Custom from '@/assets/images/product/Customized-themes.png';
 
-import { ChatTexts, CircleThree, Sliders } from '@/components/product/use-cases-icons';
+import { CircleThree, CustomViewsIcon, Sliders } from '@/components/product/use-cases-icons';
 import { TabPanel } from '@/components/shared/tab-panel';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import MuiTab from '@mui/material/Tab';
@@ -23,18 +23,18 @@ function UseCases() {
     return [
       {
         value: '1',
-        label: 'Visualize & filter',
-        icon: <CircleThree />,
+        label: 'Custom views',
+        icon: <CustomViewsIcon />,
       },
       {
         value: '2',
-        label: 'Content blocks',
-        icon: <Sliders />,
+        label: 'Blocks & properties',
+        icon: <CircleThree />,
       },
       {
         value: '3',
-        label: 'Customized themes',
-        icon: <ChatTexts />,
+        label: 'Customization',
+        icon: <Sliders />,
       },
     ];
   }, []);
@@ -71,7 +71,7 @@ function UseCases() {
       </MuiTabs>
       <TabPanel value={value} index={'1'}>
         <div className={'tab-panel-title'}>
-          <span className={'text-primary'}>Organize and visualize data</span> any way you want
+          <span className={'text-primary'}>Organize and visualize data</span> any way you want.
         </div>
         <div className={'tab-panel-image'}>
           <Image loading={'eager'} className={'shadow-img'} src={Visualize} alt={''} width={1040} height={652} />
@@ -79,7 +79,7 @@ function UseCases() {
       </TabPanel>
       <TabPanel value={value} index={'2'}>
         <div className={'tab-panel-title'}>
-          <span className={'text-primary'}>Organize and visualize data</span> any way you want
+          <span className={'text-primary'}>Beautiful and intuitive</span> content types and data labels.
         </div>
         <div className={'tab-panel-image'}>
           <Image loading={'eager'} className={'shadow-img'} src={Content} alt={''} width={1040} height={652} />
@@ -87,7 +87,7 @@ function UseCases() {
       </TabPanel>
       <TabPanel value={value} index={'3'}>
         <div className={'tab-panel-title'}>
-          <span className={'text-primary'}>Organize and visualize data</span> any way you want
+          <span className={'text-primary'}>Customize themes</span>, fonts, and page styles.
         </div>
         <div className={'tab-panel-image'}>
           <Image loading={'eager'} src={Custom} alt={''} width={1040} height={652} />

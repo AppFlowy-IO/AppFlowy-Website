@@ -7,7 +7,6 @@ import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
 import { collectEvent, EventName } from '@/lib/collect';
-import { ModalContext } from '@/lib/hooks/use-modal';
 import { downloadVersion } from '@/lib/config/pages';
 import Info from '@/components/icons/info';
 
@@ -155,7 +154,6 @@ export function useDownload() {
   const { os, isMobile } = useClient();
   const name = os?.name?.toLowerCase().replaceAll(' ', '');
   const gitData = useContext(GitContext);
-  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     if (gitData?.lastVersion !== undefined) {
@@ -192,39 +190,18 @@ export function useDownload() {
     const links = getDownloadLinks();
 
     if (!links) return;
-    openModal({
-      title: modalTitle,
-      content: getModalContent(true),
-      okText: 'Download',
-      cancelText: 'Cancel',
-      onOk: () => {
-        download(links.android, false, true);
-        collectEvent(EventName.download, {
-          platform: 'android',
-          version: gitData?.lastVersion || '',
-          arch: '',
-          file_extension: 'google-play',
-        });
-
-        collectEvent(EventName.downloadAndroidModalOkBtn, {
-          type: 'click',
-        });
-      },
-      onCancel: () => {
-        collectEvent(EventName.downloadAndroidModalCancelBtn, {
-          type: 'click',
-        });
-      },
-      onMounted: () => {
-        collectEvent(EventName.downloadAndroidModalOkBtn, {
-          type: 'view',
-        });
-        collectEvent(EventName.downloadAndroidModalCancelBtn, {
-          type: 'view',
-        });
-      },
+    download(links.android, false, true);
+    collectEvent(EventName.download, {
+      platform: 'android',
+      version: gitData?.lastVersion || '',
+      arch: '',
+      file_extension: 'google-play',
     });
-  }, [getModalContent, gitData?.lastVersion, modalTitle, openModal]);
+
+    collectEvent(EventName.downloadAndroidModalOkBtn, {
+      type: 'click',
+    });
+  }, [getModalContent, gitData?.lastVersion, modalTitle]);
 
   const downloadIOS = useCallback(() => {
     collectEvent(EventName.downloadIOSTestFlightBtn, {
@@ -233,40 +210,18 @@ export function useDownload() {
     const links = getDownloadLinks();
 
     if (!links) return;
-
-    openModal({
-      title: modalTitle,
-      content: getModalContent(false),
-      okText: 'Download',
-      cancelText: 'Cancel',
-      onOk: () => {
-        download(links.ios, false, true);
-        collectEvent(EventName.download, {
-          platform: 'ios',
-          version: gitData?.lastVersion || '',
-          arch: '',
-          file_extension: 'testflight',
-        });
-
-        collectEvent(EventName.downloadIOSModalOkBtn, {
-          type: 'click',
-        });
-      },
-      onCancel: () => {
-        collectEvent(EventName.downloadIOSModalCancelBtn, {
-          type: 'click',
-        });
-      },
-      onMounted: () => {
-        collectEvent(EventName.downloadIOSModalOkBtn, {
-          type: 'view',
-        });
-        collectEvent(EventName.downloadIOSModalCancelBtn, {
-          type: 'view',
-        });
-      },
+    download(links.ios, false, true);
+    collectEvent(EventName.download, {
+      platform: 'ios',
+      version: gitData?.lastVersion || '',
+      arch: '',
+      file_extension: 'testflight',
     });
-  }, [gitData?.lastVersion, getModalContent, modalTitle, openModal]);
+
+    collectEvent(EventName.downloadIOSModalOkBtn, {
+      type: 'click',
+    });
+  }, [gitData?.lastVersion, getModalContent, modalTitle]);
 
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();
