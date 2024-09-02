@@ -59,8 +59,8 @@ function AiExamples() {
       </MuiTabs>
       <TabPanel value={value} index={'get'}>
         <div className={'panel-title'}>
-          <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
-          context-dependent replies.
+          Ask AI to
+          <span className={'text-[#C89AFA]'}> unblock your work</span>, {`\nfind answers, and get inspiration.`}
         </div>
         <div className={'panel-image'}>
           <Image loading={'eager'} src={GetAnswer.src} alt={''} width={1040} height={648} />
@@ -68,8 +68,8 @@ function AiExamples() {
       </TabPanel>
       <TabPanel value={value} index={'write'}>
         <div className={'panel-title'}>
-          <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
-          context-dependent replies.
+          Get rid of blank pages, improve writing, and brainstorm ideas—
+          <span className={'text-[#C89AFA]'}>all without switching tools.</span>
         </div>
         <div className={'panel-image'}>
           <Image loading={'eager'} src={WriteBetter} alt={''} width={1040} height={648} />
@@ -77,8 +77,8 @@ function AiExamples() {
       </TabPanel>
       <TabPanel value={value} index={'auto'}>
         <div className={'panel-title'}>
-          <span className={'text-[#C89AFA]'}>Just ask AI Assistant</span> to generate one of several possible
-          context-dependent replies.
+          <span className={'text-[#C89AFA]'}>Never write progress updates again.</span> Turn databases of any size into
+          actionable insights.
         </div>
         <div className={'panel-image'}>
           <Image loading={'eager'} src={AutofillTables} alt={''} width={1040} height={648} />

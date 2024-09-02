@@ -17,7 +17,7 @@ import Image from 'next/image';
 import React, { useEffect, useMemo } from 'react';
 import HomeImage from '@/assets/images/product/home.png';
 import DocImage from '@/assets/images/product/doc.png';
-import SpaceImage from '@/assets/images/product/space.png';
+import ToolbarImage from '@/assets/images/product/toolbar.png';
 import BlockImage from '@/assets/images/product/block.png';
 import CardViewImage from '@/assets/images/product/database_card_view.png';
 import AiChatImage from '@/assets/images/product/ai_chat.png';
@@ -32,39 +32,39 @@ function MobileViews() {
     return [
       {
         value: 'home',
-        label: 'Home',
+        label: 'Work across all your devices',
         icon: <HomeIcon />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Seamlessly transition from laptop to phone. Easily navigate your entire workspace.',
       },
       {
         value: 'ai_chat',
-        label: 'AI chat',
+        label: 'Chat with AI & GPT-4',
         icon: <ChatTeardrop />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Just ask AppFlowy AI.  Get the answers you need without interrupting a colleague.',
       },
       {
         value: 'space',
-        label: 'Spaces',
+        label: 'Collaborate from anywhere',
         icon: <SpaceIcon />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Stay in sync with your team while you’re away from your desk.',
       },
       {
         value: 'doc',
-        label: 'Doc',
+        label: 'Read and edit on the go',
         icon: <DocIcon />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Stay on top of daily tasks. Capture ideas anytime, anywhere.',
       },
       {
         value: 'block',
-        label: 'Block',
+        label: 'Beautiful content types',
         icon: <ListStart />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Simple. Fast. Beautiful.Communicate efficiently with rich content types.',
       },
       {
         value: 'database_card_view',
-        label: 'Database card view',
+        label: 'Designed and built for Mobile',
         icon: <CardsThree />,
-        desc: 'Customize the project for yourself and invite your colleagues to join in.',
+        desc: 'Deep dive into tasks details with the Card view. Easily manage database records on the go.',
       },
     ];
   }, []);
@@ -100,12 +100,12 @@ function MobileViews() {
       {
         value: 'space',
         title: tabOptions[2].desc,
-        image: SpaceImage,
+        image: DocImage,
       },
       {
         value: 'doc',
         title: tabOptions[3].desc,
-        image: DocImage,
+        image: ToolbarImage,
       },
       {
         value: 'block',
