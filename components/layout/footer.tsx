@@ -2,7 +2,6 @@ import React from 'react';
 import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
-import ContactEmail from '@/components/shared/contact-email';
 
 function Footer() {
   const ExternalLinks = () => (
@@ -56,10 +55,7 @@ function Footer() {
       </div>
       <div className={'bottom'}>
         <div className={'col'}>
-          <div>Copyright © 2024, AppFlowy Inc.</div>
-          <div className={'need-help'}>
-            Need Help? <ContactEmail />
-          </div>
+          <div>Copyright © 2024, AppFlowy</div>
         </div>
       </div>
     </div>
