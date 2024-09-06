@@ -289,10 +289,10 @@
       }
 
       .template-preview {
-        @apply rounded-[16px] overflow-hidden max-h-[620px] w-full aspect-video;
+        @apply max-h-[620px] w-full aspect-video;
         @apply max-md:aspect-[3/4];
         iframe {
-          @apply w-full h-full bg-white;
+          @apply w-full h-full bg-white rounded-[16px] overflow-hidden;
         }
       }
     }
