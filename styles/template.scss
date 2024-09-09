@@ -239,7 +239,7 @@
     @apply max-md:min-h-screen max-md:h-fit max-md:pb-[10vh] max-md:pt-[6vh];
     .template-section-main {
       @apply mx-[170px] pt-[170px] w-[1100px] min-w-0 max-w-full flex flex-col gap-[60px];
-      @apply max-lg:mx-[8vw] max-lg:pt-[10vh] max-lg:gap-[6vh];
+      @apply max-lg:mx-[8vw] max-md:pt-[10vh] max-lg:pt-[14vh] max-lg:gap-[6vh];
       &-header {
         @apply flex justify-between items-center gap-10;
         @apply max-md:flex-col max-md:items-start;
