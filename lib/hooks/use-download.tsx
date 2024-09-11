@@ -91,7 +91,7 @@ export function storageDownloadLinks(version: string) {
         fileExtension: 'tar.gz',
       }),
     },
-    ios: 'https://apps.apple.com/us/app/appflowy/id6457261352',
+    ios: 'https://apps.apple.com/app/appflowy/id6457261352',
     android: 'https://play.google.com/store/apps/details?id=io.appflowy.appflowy',
   };
 
