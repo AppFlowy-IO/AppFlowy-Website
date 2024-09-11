@@ -1,14 +1,12 @@
 'use client';
 
 import { useClient } from '@/lib/hooks/use-client';
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { download } from '@/lib/download';
 import { Storage } from '@/lib/storage';
 import { githubRepo } from '@/lib/config/git-repo';
 import { GitContext } from '@/lib/hooks/use-git-context';
 import { collectEvent, EventName } from '@/lib/collect';
-import { downloadVersion } from '@/lib/config/pages';
-import Info from '@/components/icons/info';
 
 export interface DownloadLinks {
   windows: string;
@@ -93,7 +91,7 @@ export function storageDownloadLinks(version: string) {
         fileExtension: 'tar.gz',
       }),
     },
-    ios: 'https://testflight.apple.com/join/6CexvkDz',
+    ios: 'https://apps.apple.com/us/app/appflowy/id6457261352',
     android: 'https://play.google.com/store/apps/details?id=io.appflowy.appflowy',
   };
 
@@ -161,28 +159,6 @@ export function useDownload() {
     }
   }, [gitData]);
 
-  const modalTitle = useMemo(() => {
-    return '🥳️ Thanks for giving AppFlowy Mobile a try!';
-  }, []);
-
-  const getModalContent = useCallback((isAndroid: boolean) => {
-    return (
-      <div className={'download-mobile-modal-content'}>
-        If you’ve been using our desktop app, it’s important to read{' '}
-        <a target={'_blank'} className={'link'} href={'https://docs.appflowy.io/docs/guides/sync-desktop-and-mobile'}>
-          Sync Desktop and Mobile
-        </a>{' '}
-        before logging into the mobile app.
-        <div className={'version-requires'}>
-          <div className={'icon'}>
-            <Info />
-          </div>
-          {isAndroid ? downloadVersion.android : downloadVersion.ios}
-        </div>
-      </div>
-    );
-  }, []);
-
   const downloadAndroid = useCallback(() => {
     collectEvent(EventName.downloadAndroidBtn, {
       type: 'click',
@@ -197,14 +173,10 @@ export function useDownload() {
       arch: '',
       file_extension: 'google-play',
     });
-
-    collectEvent(EventName.downloadAndroidModalOkBtn, {
-      type: 'click',
-    });
-  }, [getModalContent, gitData?.lastVersion, modalTitle]);
+  }, [gitData?.lastVersion]);
 
   const downloadIOS = useCallback(() => {
-    collectEvent(EventName.downloadIOSTestFlightBtn, {
+    collectEvent(EventName.downloadAppleBtn, {
       type: 'click',
     });
     const links = getDownloadLinks();
@@ -215,13 +187,9 @@ export function useDownload() {
       platform: 'ios',
       version: gitData?.lastVersion || '',
       arch: '',
-      file_extension: 'testflight',
+      file_extension: 'app-store',
     });
-
-    collectEvent(EventName.downloadIOSModalOkBtn, {
-      type: 'click',
-    });
-  }, [gitData?.lastVersion, getModalContent, modalTitle]);
+  }, [gitData?.lastVersion]);
 
   const getOsDownloadLink = useCallback(() => {
     const links = getDownloadLinks();
