@@ -9,7 +9,7 @@ function Templates({ templateList, category }: { templateList: TemplateSummary[]
       const currentCategory = category ? category : template.categories[0];
 
       return (
-        <Grid key={template.view_id} item sm={12} md={6}>
+        <Grid key={template.view_id} item sm={12} md={12} lg={6}>
           <div className={'template-item'}>
             <TemplateItem template={template} category={currentCategory} />
           </div>
@@ -26,8 +26,8 @@ function Templates({ templateList, category }: { templateList: TemplateSummary[]
         xs: 2,
         sm: 4,
       }}
-      columns={{ xs: 4, sm: 8, md: 12 }}
-      columnSpacing={{ sm: 2, md: 3 }}
+      columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}
+      columnSpacing={{ sm: 2, md: 3, lg: 3 }}
     >
       {renderTemplates}
     </Grid>
