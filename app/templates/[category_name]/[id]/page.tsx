@@ -5,10 +5,10 @@ import Tiktok from '@/components/icons/tiktok';
 import Twitter from '@/components/icons/twitter';
 import Website from '@/components/icons/website';
 import Youtube from '@/components/icons/youtube';
+import Share from '@/components/shared/share-group';
 import Community from '@/components/template-center/community';
 import { CategoryIcon } from '@/components/template-center/icons';
 import RelatedTemplates from '@/components/template-center/template/related-templates';
-import Share from '@/components/template-center/template/share';
 import TemplateSection from '@/components/template-center/template/template-section';
 import { slugify } from '@/components/template-center/utils';
 import { getTemplateById } from '@/lib/templateAPI';
@@ -19,6 +19,10 @@ import { notFound } from 'next/navigation';
 
 async function Page({ params }: { params: { id: string; category_name: string } }) {
   const id = params.id;
+
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return null;
+  }
 
   let data = null;
 

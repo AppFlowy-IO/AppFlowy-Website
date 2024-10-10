@@ -11,6 +11,8 @@ import * as process from 'process';
 import Modal from '@/components/shared/modal';
 import { ModalProps, ModalProvider } from '@/lib/hooks/use-modal';
 import { usePathname } from 'next/navigation';
+import { ToastProvider } from '@/components/ui/toast';
+import { Toaster } from '@/components/ui/toaster';
 
 const Header = lazy(() => import('@/components/layout/header'));
 
@@ -54,25 +56,26 @@ export default function App({
   const isSinglePage = pathname.includes('invitation');
 
   return (
-    <UAContext.Provider value={ua}>
-      <GitContext.Provider value={gitData}>
-        <DarkContext.Provider value={false}>
-          <ModalProvider value={modalContext}>
-            {isSinglePage ? (
-              <div className={'appflowy-app'}>
-                <main>{children}</main>
-              </div>
-            ) : (
-              <div className={'appflowy-app'}>
-                <Header />
+    <ToastProvider>
+      <UAContext.Provider value={ua}>
+        <GitContext.Provider value={gitData}>
+          <DarkContext.Provider value={false}>
+            <ModalProvider value={modalContext}>
+              {isSinglePage ? (
+                <div className={'appflowy-app'}>
+                  <main>{children}</main>
+                </div>
+              ) : (
+                <div className={'appflowy-app'}>
+                  <Header />
 
-                <main>{children}</main>
-                <Footer />
-                {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
-                  <>
-                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                    <Script id='google-analytics'>
-                      {`
+                  <main>{children}</main>
+                  <Footer />
+                  {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+                    <>
+                      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+                      <Script id='google-analytics'>
+                        {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -81,17 +84,19 @@ export default function App({
                    page_theme: 'light'
                 });
               `}
-                    </Script>
-                  </>
-                )}
-              </div>
-            )}
+                      </Script>
+                    </>
+                  )}
+                </div>
+              )}
 
-            <div className={'appflowy-overlay'} />
-            <Modal />
-          </ModalProvider>
-        </DarkContext.Provider>
-      </GitContext.Provider>
-    </UAContext.Provider>
+              <div className={'appflowy-overlay'} />
+              <Modal />
+            </ModalProvider>
+          </DarkContext.Provider>
+        </GitContext.Provider>
+      </UAContext.Provider>
+      <Toaster />
+    </ToastProvider>
   );
 }

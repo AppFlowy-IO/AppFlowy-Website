@@ -11,6 +11,10 @@ import { notFound } from 'next/navigation';
 async function Page() {
   let data = null;
 
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return null;
+  }
+
   try {
     data = await getData();
   } catch (error) {
