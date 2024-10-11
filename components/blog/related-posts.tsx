@@ -10,15 +10,14 @@ function RelatedPosts({ relatedPosts }: { relatedPosts: PostData[] }) {
       <Grid
         container
         rowSpacing={{
-          xs: 2,
           sm: 4,
         }}
-        columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}
-        columnSpacing={{ sm: 2, md: 3, lg: 3 }}
+        columns={{ xs: 12, sm: 12, md: 12, lg: 12 }}
+        columnSpacing={{ xs: 2, sm: 2, md: 3, lg: 3 }}
       >
         {relatedPosts.map((post, index) => {
           return (
-            <Grid key={index} item sm={12} md={6} lg={4}>
+            <Grid key={index} item xs={12} sm={12} md={6} lg={4}>
               <div className={' h-fit'}>
                 <PostItem post={post} showDescription showCategories />
               </div>

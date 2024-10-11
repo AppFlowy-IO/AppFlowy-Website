@@ -8,31 +8,20 @@ import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 function Outline({ post }: { post: PostData }) {
-  const [top, setTop] = React.useState(0);
-  useEffect(() => {
-    const header = document.querySelector('.blog-header');
-    const coverTop = header?.getBoundingClientRect().height || 0;
-    setTop(coverTop);
-  }, []);
-
   const hash = typeof window !== 'undefined' ? window.location.hash : '';
 
   useEffect(() => {
     if (hash) {
       const el = document.getElementById(hash.slice(1));
+
       if (el) {
         el.scrollIntoView();
       }
     }
   }, [hash]);
   return (
-    <div
-      style={{
-        top,
-      }}
-      className='relative col-span-12 flex flex-col gap-[30px] max-md:gap-4 lg:col-span-4 xl:col-start-9'
-    >
-      <div className={cn('prose-toc hidden w-full gap-2 rounded-[10px] bg-[#EEEEFD] p-10 lg:block')}>
+    <div className='relative col-span-12 flex flex-col gap-[30px] max-md:gap-4 lg:col-span-4 xl:col-start-9'>
+      <div className={cn('prose-toc hidden w-full gap-2 rounded-[10px] bg-[#EEEEFD] p-10 max-xl:p-4 lg:block')}>
         <h2 className='mb-4 text-[24px] font-semibold leading-[31px]'>Table of Contents</h2>
         <ReactMarkdown>{post.toc}</ReactMarkdown>
       </div>

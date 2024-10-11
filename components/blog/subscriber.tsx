@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 function Subscriber() {
   const [email, setEmail] = React.useState('');
   const { toast } = useToast();
+
   const handleSubscribe = async () => {
     try {
       await createHubSpotSubscriber(email);
@@ -30,16 +31,16 @@ function Subscriber() {
 
   return (
     <div className={'flex flex-col gap-10'}>
-      <div className={'flex items-center gap-[10px]'}>
-        <div className={'flex h-[60px] w-[300px] items-center rounded-[16px] bg-white px-6 py-3'}>
+      <div className={'flex items-center gap-[10px] max-md:flex-col max-md:gap-5'}>
+        <div className={'flex h-[60px] w-[300px] items-center rounded-[16px] bg-white px-6 py-3 max-md:w-full'}>
           <input
-            className={'text-base focus:outline-none'}
+            className={'text-base outline-none'}
             placeholder={'Enter your email'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div onClick={handleSubscribe} className={'download-btn cursor-pointer'}>
+        <div onClick={handleSubscribe} className={'download-btn cursor-pointer max-md:w-full'}>
           Subscribe
         </div>
       </div>

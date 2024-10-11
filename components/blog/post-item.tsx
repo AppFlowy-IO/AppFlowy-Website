@@ -21,10 +21,12 @@ function PostItem({
       <img
         src={post.og_image}
         alt={post.title}
-        className={'mb-[12px] min-h-[230px] flex-1 overflow-hidden rounded-[16px] object-cover object-left'}
+        className={
+          'max-xl:min-h-auto mb-[12px] min-h-[230px] w-full flex-1 overflow-hidden rounded-[16px] object-cover object-left'
+        }
       />
       {showCategories && (
-        <div className={'flex flex-wrap gap-2'}>
+        <div className={'flex w-full flex-wrap gap-2'}>
           {post.categories.map((category) => (
             <Badge
               style={{
@@ -41,11 +43,11 @@ function PostItem({
       )}
       <div className={'w-full truncate text-[24px] font-semibold hover:underline'}>{post.title}</div>
       {showDescription && (
-        <div className={'h-[48px] overflow-hidden whitespace-pre-wrap break-words text-base font-medium'}>
+        <div className={'h-[48px] w-full overflow-hidden whitespace-pre-wrap break-words text-base font-medium'}>
           {post.description}
         </div>
       )}
-      <div className={'text-sm opacity-50'}>
+      <div className={'w-full truncate text-sm opacity-50'}>
         {post.date} by {post.author}
       </div>
     </Link>

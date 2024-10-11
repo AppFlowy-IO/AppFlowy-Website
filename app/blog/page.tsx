@@ -76,26 +76,41 @@ function Blog() {
       <Script id='ld-json' type='application/ld+json'>
         {JSON.stringify(listSchema)}
       </Script>
-      <div className={cn('bg-[#EEEEFD]', 'flex flex-col items-center pb-[70px] pt-[191px]')}>
+      <div
+        className={cn(
+          'bg-[#EEEEFD]',
+          'flex flex-col items-center px-[100px] pb-[70px] pt-[191px]',
+          'max-xl:px-14',
+          'max-md:px-8',
+          'max-sm:px-6'
+        )}
+      >
         <div className={'flex w-full max-w-[1100px] flex-col items-center'}>
-          <h1 className={'whitespace-pre-wrap break-words text-[58px] font-medium leading-[105%] tracking-[-1.16px]'}>
+          <h1
+            className={cn(
+              'whitespace-pre-wrap break-words text-center text-[58px] font-medium leading-[105%] tracking-[-1.16px]',
+              'max-md:text-[8vw]'
+            )}
+          >
             BLOG | In the Flow
           </h1>
-          <p className={'whitespace-pre-wrap break-words py-5 text-[24px]'}>
+          <p className={cn('whitespace-pre-wrap break-words py-5 text-center text-[24px]', 'max-md:text-base')}>
             Receive the latest updates, stories, and tips from AppFlowy{' '}
           </p>
-          <div className={'py-10'}>
+          <div className={cn('py-10', 'max-md:py-4')}>
             <Subscriber />
           </div>
         </div>
       </div>
-      <div className={cn('bg-white', 'flex flex-col items-center py-[110px]')}>
-        <div className={'flex w-full max-w-[1100px] flex-col items-center gap-[100px]'}>
-          <div className={'flex w-full gap-10'}>
-            <div className={'h-auto w-[65%]'}>
+      <div
+        className={cn('bg-white', 'flex flex-col items-center py-[110px] max-xl:px-14', 'max-sm:px-6 max-sm:py-[60px]')}
+      >
+        <div className={cn('flex w-full max-w-[1100px] flex-col items-center gap-[100px]', 'max-md:gap-[60px]')}>
+          <div className={'flex w-full gap-10 max-xl:gap-6 max-lg:flex-col'}>
+            <div className={'h-auto w-[60%] max-lg:w-full'}>
               <PostItem post={pinnedPosts[0]} />
             </div>
-            <div className={'flex flex-1 flex-col gap-10'}>
+            <div className={'flex flex-1 flex-col justify-center gap-10 max-lg:flex-row max-sm:flex-col'}>
               <PostItem post={pinnedPosts[1]} />
               <PostItem post={pinnedPosts[2]} />
             </div>

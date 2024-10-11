@@ -109,9 +109,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     <>
       <div
         className={cn(
-          'relative flex flex-col items-center bg-white px-[100px]',
+          'relative flex flex-col items-center gap-[40px] overflow-hidden bg-white px-[100px] max-sm:gap-5',
           'py-[170px]',
-          'max-lg:px-14',
+          'max-xl:px-14',
           'max-md:px-8 max-md:py-[150px]',
           'max-sm:px-6'
         )}
@@ -119,19 +119,21 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <Link
           href={'/blog'}
           className={
-            'hover:text-primary absolute left-[10%] top-[170px] flex cursor-pointer items-center gap-2 text-base'
+            'hover:text-primary absolute left-[56px] top-[170px] flex cursor-pointer items-center gap-2 text-base max-xl:top-[120px] max-md:hidden'
           }
         >
           <ArrowLeftIcon />
           Back
         </Link>
-        <div className={'grid w-full max-w-[1100px] grid-cols-12 gap-[70px] overflow-hidden lg:gap-16 xl:gap-8'}>
+        <div
+          className={'grid w-full max-w-[1100px] grid-cols-12 gap-10 overflow-hidden max-xl:gap-3 lg:gap-16 xl:gap-8'}
+        >
           <div
             className={
-              'blog-container col-span-12 mb-[70px] flex-1 flex-grow overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
+              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
             }
           >
-            <CardHeader className='blog-header flex w-full flex-col gap-5 p-0 pb-10'>
+            <CardHeader className='blog-header flex w-full flex-col gap-5 p-0'>
               <div className='flex w-full flex-col justify-start gap-5'>
                 {post.categories && (
                   <div className='flex flex-wrap gap-2'>
@@ -154,19 +156,25 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               </div>
               <div className='flex flex-col gap-6 text-sm text-gray-600'>
                 <div className='flex flex-wrap items-center gap-x-4 gap-y-2'>
-                  <div className='flex items-center gap-3'>
+                  <div className='flex items-center gap-3 max-sm:mb-4 max-sm:w-full'>
                     <Avatar className='h-10 w-10 border'>
                       <AvatarImage src={post.author_image_url} alt={post.author} />
                       <AvatarFallback>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
                     <span className='font-medium'>{post.author}</span>
                   </div>
-                  <Circle />
+                  <div className={'max-sm:hidden'}>
+                    <Circle />
+                  </div>
+
                   <div className='flex items-center'>
                     <CalendarIcon className='mr-2 h-4 w-4' />
                     <time dateTime={post.date}>Created {formatDate(new Date(post.date))}</time>
                   </div>
-                  <Circle />
+                  <div className={'max-sm:hidden'}>
+                    <Circle />
+                  </div>
+
                   <div className='flex items-center'>
                     <TimerIcon className='text-primary mr-2 h-4 w-4' />
                     <span>{post.reading_time} minutes read</span>
@@ -174,12 +182,23 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 </div>
               </div>
             </CardHeader>
-            {post.og_image && (
+          </div>
+        </div>
+        <div
+          className={'grid w-full max-w-[1100px] grid-cols-12 gap-10 overflow-hidden max-xl:gap-3 lg:gap-16 xl:gap-8'}
+        >
+          <div
+            className={
+              'blog-container col-span-12 mb-[70px] flex max-w-full flex-1 flex-grow flex-col overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
+            }
+          >
+            {post.cover_image && (
               <Image
                 fill
+                loading={'eager'}
                 className={cn('blog-cover m-0 rounded-[10px] object-cover', 'rounded-md border', 'wide')}
                 zoomable={true}
-                src={post.og_image}
+                src={post.cover_image}
                 alt={post.title}
               />
             )}
@@ -192,14 +211,16 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
         <div
           className={
-            'flex w-full max-w-[1100px] items-center justify-center rounded-[8px] bg-[#EEEEFD] pb-[50px] pt-[80px]'
+            'flex w-full max-w-[1100px] items-center justify-center rounded-[8px] bg-[#EEEEFD] pb-[50px] pt-[110px]'
           }
         >
           <Subscriber />
         </div>
-        <div className={'w-full max-w-[1100px] py-[110px]'}>
-          <RelatedPosts relatedPosts={relatedPosts} />
-        </div>
+        {relatedPosts.length > 0 && (
+          <div className={'w-full max-w-[1100px] py-[110px] max-md:py-[50px]'}>
+            <RelatedPosts relatedPosts={relatedPosts} />
+          </div>
+        )}
       </div>
 
       <Script id='ld-json' type='application/ld+json'>

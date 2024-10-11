@@ -22,16 +22,20 @@ export const generateReadingTime = (text: string) => {
   const noOfWords = text.split(/\s/g).length;
   const minutes = noOfWords / wordsPerMinute;
   const readTime = Math.ceil(minutes);
+
   return readTime;
 };
+
 export const shareToTwitter = (url: string, text: string) => {
   if (typeof window === 'undefined') return;
   window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`);
 };
+
 export const shareToLinkedIn = (url: string, title: string) => {
   if (typeof window === 'undefined') return;
   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`);
 };
+
 export const copyToClipboard = (url: string) => {
   if (typeof window === 'undefined') return;
   navigator.clipboard.writeText(url);
