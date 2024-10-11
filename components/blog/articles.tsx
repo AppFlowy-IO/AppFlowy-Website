@@ -12,6 +12,7 @@ function Articles({ posts }: { posts: PostData[] }) {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('');
   const categories = useMemo(() => {
     const categories = new Set<string>();
+
     posts.forEach((post) => {
       post.categories.forEach((category) => {
         categories.add(category);
@@ -25,16 +26,18 @@ function Articles({ posts }: { posts: PostData[] }) {
       if (selectedCategory && !post.categories.includes(selectedCategory)) {
         return false;
       }
+
       if (searchValue && !post.title.toLowerCase().includes(searchValue.toLowerCase())) {
         return false;
       }
+
       return true;
     });
   }, [posts, searchValue, selectedCategory]);
 
   return (
-    <div className={'flex w-full flex-col justify-start gap-10'}>
-      <div className={cn('text-[58px] font-medium')}>Articles</div>
+    <div className={cn('flex w-full flex-col justify-start gap-10', 'max-md:gap-6')}>
+      <div className={cn('text-[58px] font-medium', 'max-md:text-[8vw]')}>Articles</div>
       <div className={cn('flex items-center justify-between')}>
         <div className={cn('flex items-center gap-2 rounded-full bg-[#F5F5FA] px-4 py-3')}>
           <SearchIcon />
@@ -70,15 +73,14 @@ function Articles({ posts }: { posts: PostData[] }) {
       <Grid
         container
         rowSpacing={{
-          xs: 2,
           sm: 4,
         }}
-        columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}
-        columnSpacing={{ sm: 2, md: 3, lg: 3 }}
+        columns={{ xs: 12, sm: 12, md: 12, lg: 12 }}
+        columnSpacing={{ xs: 2, sm: 2, md: 3, lg: 3 }}
       >
         {postResult.map((post, index) => {
           return (
-            <Grid key={index} item sm={12} md={6} lg={4}>
+            <Grid key={index} item xs={12} sm={12} md={6} lg={4}>
               <div className={'article-list-item h-[370px]'}>
                 <PostItem post={post} showDescription />
               </div>

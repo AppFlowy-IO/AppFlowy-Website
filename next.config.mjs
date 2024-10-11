@@ -85,6 +85,10 @@ const rewrites = () => {
       source: '/template-center/:path*',
       destination: '/templates/:path*',
     },
+    {
+      source: '/compare',
+      destination: '/compare/notion-vs-appflowy',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */

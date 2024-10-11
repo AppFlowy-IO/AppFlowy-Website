@@ -34,7 +34,7 @@ body {
   @apply bg-black text-white overflow-hidden;
   @apply w-full h-[500px] flex pt-[100px] px-[100px] pb-[30px] flex-col;
   @apply max-lg:h-[auto];
-  @apply max-lg:pt-[60px] max-lg:pb-[30px] max-lg:px-[20px];
+  @apply max-lg:pt-[60px] max-lg:pb-[30px] max-xl:px-[24px];
   .logo {
     @apply w-[264px] h-[250px] flex flex-col justify-between;
     @apply max-lg:w-full max-lg:h-[auto] max-lg:mb-[80px];
@@ -50,10 +50,10 @@ body {
 
   .menu {
     @apply flex flex-1 justify-end text-white xl:gap-[80px] xl:pl-[80px];
-    @apply max-lg:justify-between max-lg:flex-wrap max-lg:mb-[80px];
+    @apply max-lg:justify-between max-lg:flex-wrap max-lg:mb-[80px] max-xl:gap-3;
     > .item {
       @apply flex flex-col last:mr-0;
-      @apply max-lg:mr-0 max-lg:w-[50%] max-lg:mb-[60px] max-lg:last:mb-0;
+      @apply max-lg:mr-0 max-lg:flex-1 max-lg:min-w-[160px] max-lg:mb-[60px] max-lg:last:mb-0;
       .group-name {
         @apply mb-6 text-[17px] font-semibold leading-[21px];
       }
@@ -529,6 +529,8 @@ body {
     background-position: -200% center;
   }
 }
+
+
 
 .short-inline-codeblock {
   word-wrap: break-word;

@@ -53,6 +53,7 @@ export async function getPostData(slug: string): Promise<PostData> {
 
 export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
   const relatedPosts = post.related_posts || [];
+
   return Promise.all(relatedPosts.map((slug) => getPostData(slug)));
 }
 

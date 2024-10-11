@@ -2,7 +2,6 @@ import CodeBlock from '@/components/blog/code-block';
 import InlineCodeTag from '@/components/blog/inline-code';
 import Quote from '@/components/blog/quote';
 import { cn } from '@/lib/utils';
-import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image, { ImageProps } from './mdx-image';
 import { HTMLAttributes, PropsWithChildren } from 'react';
@@ -54,6 +53,7 @@ const components = {
   ),
   a: (props: PropsWithChildren<HTMLAttributes<HTMLAnchorElement>>) => {
     const { children, ...rest } = props;
+
     return (
       <a
         {...rest}
