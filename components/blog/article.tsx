@@ -1,11 +1,10 @@
 import MDXContent from '@/components/blog/mdx-render';
 
-import { PostData } from '@/lib/posts';
 import React from 'react';
 import { CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
-function Article({ post }: { post: PostData }) {
+function Article({ content }: { content: string }) {
   return (
     <CardContent className={'p-0'}>
       <article
@@ -22,7 +21,7 @@ function Article({ post }: { post: PostData }) {
           'prose-code:mt-4 prose-code:rounded-[4px] prose-code:border prose-code:px-2 prose-code:text-black prose-code:font-normal prose-code:bg-gray-100 prose-code:font-mono'
         )}
       >
-        {post.content && <MDXContent source={post.content} />}
+        {<MDXContent source={content} />}
       </article>
     </CardContent>
   );

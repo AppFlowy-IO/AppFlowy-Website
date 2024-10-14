@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { Highlight, type Language, PrismTheme } from 'prism-react-renderer';
+import React, { useEffect } from 'react';
+import { Highlight, type Language, PrismTheme, Prism } from 'prism-react-renderer';
 import { cn } from '@/lib/utils';
 import CopyButton from '@/components/blog/copy-button';
 
@@ -65,6 +65,36 @@ const lightTheme: PrismTheme = {
         color: '#22863a',
       },
     },
+    {
+      types: ['class-name'],
+      style: {
+        color: '#6f42c1',
+      },
+    },
+    {
+      types: ['builtin'],
+      style: {
+        color: '#005cc5',
+      },
+    },
+    {
+      types: ['decorator'],
+      style: {
+        color: '#22863a',
+      },
+    },
+    {
+      types: ['interpolation'],
+      style: {
+        color: '#24292e',
+      },
+    },
+    {
+      types: ['generic-function'],
+      style: {
+        color: '#6f42c1',
+      },
+    },
   ],
 };
 
@@ -77,10 +107,22 @@ interface CodeBlockProps {
 const CodeBlock: React.FC<CodeBlockProps> = ({ children, className, language }) => {
   const match = /language-(\w+)/.exec(className || '');
   const lang = language || (match && match[1]) || 'text';
+  const [, setMounted] = React.useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    window.Prism = Prism || {};
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    void import('prismjs/components/prism-dart').then(() => {
+      setMounted(true);
+    });
+  }, []);
 
   return (
     <div className='not-prose group relative my-4'>
-      <Highlight code={children.trim()} language={lang as Language} theme={lightTheme}>
+      <Highlight prism={Prism} code={children.trim()} language={lang as Language} theme={lightTheme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             key={lang}

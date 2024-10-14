@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   InfoCircledIcon,
   ExclamationTriangleIcon,
@@ -8,13 +8,13 @@ import {
   QuestionMarkCircledIcon,
 } from '@radix-ui/react-icons';
 import { cn } from '@/lib/utils';
+import ReactMarkdown from 'react-markdown';
 
 export type AdmonitionType = 'info' | 'warning' | 'success' | 'error' | 'default';
 
 export interface AdmonitionProps extends Omit<React.ComponentProps<typeof Alert>, 'variant'> {
-  children: React.ReactNode;
+  content: string;
   type?: AdmonitionType;
-  title?: string;
   icon?: React.ReactNode;
 }
 
@@ -26,22 +26,21 @@ const iconMap: Record<AdmonitionType, React.ReactNode> = {
   default: <QuestionMarkCircledIcon className='h-5 w-5' />,
 };
 
-const Admonition: React.FC<AdmonitionProps> = ({ children, type = 'default', title, icon, className, ...props }) => {
+const Admonition: React.FC<AdmonitionProps> = ({ content, type = 'default', icon, className, ...props }) => {
   const Icon = icon || iconMap[type];
 
   return (
     <Alert variant='default' className={cn('my-2 rounded-[8px]', className)} {...props}>
       <div className='flex items-start gap-2'>
-        <div className='bg-primary-light text-primary-dark my-2 flex h-8 w-8 items-center justify-center rounded-full'>
+        <div className='bg-primary-light text-primary-dark mt-[13px] flex h-8 w-8 items-center justify-center rounded-full'>
           {Icon}
         </div>
-        {title ? (
-          <AlertTitle className='m-0 flex-1 font-medium'>{title}</AlertTitle>
-        ) : (
-          <AlertDescription>{children}</AlertDescription>
-        )}
+        {
+          <AlertDescription>
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </AlertDescription>
+        }
       </div>
-      {title && <AlertDescription className='mt-2'>{children}</AlertDescription>}
     </Alert>
   );
 };

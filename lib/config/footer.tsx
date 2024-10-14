@@ -60,7 +60,7 @@ export const links = [
       },
       {
         name: 'Technical Blog',
-        link: 'https://blog.appflowy.io/',
+        link: '/blog',
       },
       {
         name: 'Email Newsletter',

@@ -229,7 +229,7 @@ export const navigation: Item[] = [
             name: 'Technical Blog',
             desc: 'Learn how we tackle technical challenges',
             icon: <Email />,
-            href: 'https://blog.appflowy.io/',
+            href: '/blog',
           },
           {
             key: 'menu.templates',
