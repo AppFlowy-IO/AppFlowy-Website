@@ -1,34 +1,14 @@
 'use client';
 
-import LinkedInIcon from '@/components/icons/linked-in-icon';
+import { useSubscriber } from '@/components/blog/use-subscriber';
+import Reddit from '@/components/icons/reddit';
 import Twitter from '@/components/icons/twitter';
-import { createHubSpotSubscriber } from '@/lib/hubspotAPI';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
-import { useToast } from '@/hooks/use-toast';
 
 function Subscriber() {
-  const [email, setEmail] = React.useState('');
-  const { toast } = useToast();
-
-  const handleSubscribe = async () => {
-    try {
-      await createHubSpotSubscriber(email);
-      toast({
-        title: 'Subscribed successfully',
-        description: 'Thank you for subscribing',
-      });
-      setEmail('');
-    } catch (e) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to subscribe, please try again',
-      });
-    }
-  };
-
+  const { email, setEmail, handleSubscribe } = useSubscriber();
   return (
     <div className={'flex flex-col gap-10'}>
       <div className={'flex items-center gap-[10px] max-md:flex-col max-md:gap-5'}>
@@ -37,6 +17,7 @@ function Subscriber() {
             className={'text-base outline-none'}
             placeholder={'Enter your email'}
             value={email}
+            type={'email'}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -47,11 +28,11 @@ function Subscriber() {
       <div className={'flex items-center justify-center gap-6'}>
         <div className={'text-sm opacity-50'}>Follow us on</div>
         <div className={'share flex items-center gap-3'}>
-          <Link className={cn('share-btn')} href={'https://twitter.com/appflowy'}>
+          <Link target={'_blank'} className={cn('share-btn')} href={'https://twitter.com/appflowy'}>
             <Twitter />
           </Link>
-          <Link className={cn('share-btn')} href={'https://www.linkedin.com/company/appflowy'}>
-            <LinkedInIcon />
+          <Link target={'_blank'} className={cn('share-btn')} href={'https://www.reddit.com/r/AppFlowy'}>
+            <Reddit />
           </Link>
         </div>
       </div>

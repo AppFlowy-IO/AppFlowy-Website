@@ -59,8 +59,8 @@ export const links = [
         link: 'https://github.com/orgs/AppFlowy-IO/projects/5/views/12',
       },
       {
-        name: 'Technical Blog',
-        link: 'https://blog.appflowy.io/',
+        name: 'Blog',
+        link: '/blog',
       },
       {
         name: 'Email Newsletter',
@@ -144,6 +144,10 @@ export const links = [
       {
         name: 'Request a resource',
         link: 'https://tally.so/r/npoyeb',
+      },
+      {
+        name: 'RSS',
+        link: '/blog/feed.xml',
       },
     ],
   },

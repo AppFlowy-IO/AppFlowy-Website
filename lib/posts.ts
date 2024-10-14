@@ -12,7 +12,7 @@ const processor = unified().use(remarkParse);
 
 export interface PostData {
   slug: string;
-  pinned: boolean;
+  pinned: number;
   title: string;
   description: string;
   author: string;
@@ -25,6 +25,7 @@ export interface PostData {
   content: string;
   video_url?: string;
   og_image?: string;
+  thumb_image?: string;
   reading_time?: number;
   last_modified: string;
   featured?: boolean;
@@ -34,6 +35,8 @@ export interface PostData {
   series?: string;
   cover_image?: string;
   related_posts?: string[];
+  word_count?: number;
+  unpublished?: boolean;
 }
 
 const postsDirectory = path.join(process.cwd(), '_blog');
@@ -41,26 +44,37 @@ const postsDirectory = path.join(process.cwd(), '_blog');
 export function getAllPosts(): PostData[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
-  return fileNames.map(getPostByFilename).sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
+  return fileNames
+
+    .map(getPostByFilename)
+    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+    .filter((item) => !item.unpublished);
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
   const fileNames = fs.readdirSync(postsDirectory);
   const fileName = fileNames.find((name) => name.includes(slug))!;
 
+  if (!fileName) {
+    throw new Error('Post not found');
+  }
   return getPostByFilename(fileName);
 }
 
 export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
   const relatedPosts = post.related_posts || [];
 
-  return Promise.all(relatedPosts.map((slug) => getPostData(slug)));
+  const posts = await Promise.all(relatedPosts.map((slug) => getPostData(slug)));
+
+  return posts.filter((item) => !item.unpublished);
 }
 
 export function getPostByFilename(fileName: string): PostData {
   const fullPath = path.join(postsDirectory, fileName);
   const [, , , ...rest] = fileName.replace(/\.mdx$/, '').split('-');
+
   const slug = rest.join('-');
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   const { data, content } = matter(fileContents);
@@ -72,7 +86,8 @@ export function getPostByFilename(fileName: string): PostData {
 
   return {
     slug,
-    pinned: data.pinned || false,
+    unpublished: data.unpublished || false,
+    pinned: data.pinned || 0,
     title: data.title,
     description: data.description,
     author: data.author,
@@ -83,10 +98,12 @@ export function getPostByFilename(fileName: string): PostData {
     tags: data.tags || [],
     date: data.date,
     content,
+    word_count: content.split(/\s+/gu).length,
 
     // New fields
     video_url: data.video_url,
     og_image: data.image,
+    thumb_image: data.thumb,
     reading_time: generateReadingTime(content),
     last_modified: data.last_modified || data.date,
     featured: data.featured || false,

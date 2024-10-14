@@ -1,0 +1,199 @@
+---
+title: "How we built Appflowy with Flutter and Rust"
+description: Thanks all for the support.
+author: AppFlowy
+author_image_url: /images/blog/authors/appflowy.png
+author_url: https://github.com/AppFlowy-IO
+image: /images/blog/tech-design-flutter-rust/cover.png
+thumb: /images/blog/tech-design-flutter-rust/cover.png
+
+categories:
+  - Developers
+  - Using AppFlowy
+tags:
+  - Tech Design
+  - How-tos
+date: '2021-12-10'
+toc_depth: 3
+related:
+  - 2023-11-01-demystifying-appflowy-editors-codebase
+  - 2023-08-27-creating-a-calendar-view-for-the-appflowy-database
+  - 2023-08-03-dont-try-to-load-code-dynamically-in-your-flutter-app-its-terrible
+  - 2022-12-12-how-we-built-a-highly-customizable-rich-text-editor-for-flutter
+---
+
+AppFlowy is an open-source alternative to [Notion](https://www.notion.so/?ref=blog.appflowy.io), built with Flutter and Rust. For more info about the product, please visit [www.appflowy.io](http://www.appflowy.io/?ref=blog.appflowy.io). Since our initial launch on [GitHub](https://github.com/AppFlowy-IO/appflowy?ref=blog.appflowy.io) on November 13th 2021, the project has accumulated 11.5k stars and 21 contributors  as of the writing of this article. The speed of building project awareness is fast. Thanks all for the support.
+
+This article is mainly for hackers and developers interested in AppFlowy’s tech design. It serves as a starting point for the community to exchange ideas and grow knowledge together. We welcome any feedback and suggestions regarding this article. If you are curious about any of the topics listed below, please proceed:
+
+1.  AppFlowy’s DDD design
+2.  Strategies of adopting Flutter to support multiple platforms
+3.  What roles does Rust play in the project
+4.  A step-by-step example guiding you through the codebase
+
+## **Layers Architecture**
+
+
+### **Domain-driven design**
+
+[AppFlowy’s](https://github.com/AppFlowy-IO/appflowy?ref=blog.appflowy.io) frontend follows the Domain-Driven Design paradigm. It consists of the presentation, application, domain, and infrastructure layers. To make the infrastructure layer more portable, we decided to use Rust to implement this layer, not to mention its high performance and memory safety. In addition, we chose to implement the other layers in Flutter, which will be explained in the cross-platform section. We split these layers into two components for developers to better understand the design: the UI Component and the data component. We’ll explain these components in detail later.
+
+<Img src="/images/blog/tech-design-flutter-rust/img.png" alt="UI and Data Components" />
+
+### **Layers definition**
+
+This section is about the basic [concept of DDD layers](https://en.wikipedia.org/wiki/Domain-driven_design?ref=blog.appflowy.io). Please feel free to skip it.
+
+**Presentation Layer**
+
+*   Responsible for presenting information to the user and interpreting user commands.
+*   Consists of Widgets and the state of the Widgets.
+
+**Application Layer**
+
+*   Defines the jobs that the software is supposed to do. (UI code or network code don’t go here.)
+*   Coordinates the application activity and delegates work to the Domain layer.
+*   Doesn't contain any complex business logic but the basic validation of the user input before it is passed to the Domain layer.
+
+**Domain Layer**
+
+*   Responsible for representing business concepts.
+*   Manages the business state or delegates to the Infrastructure layer
+*   Self-contained and doesn’t depend on any other layer. Domain should be well isolated from the other layers.
+
+**Infrastructure Layer**
+
+*   Provides generic technical capabilities that support the higher layers.
+*   Deals with APIs, persistence, network, etc.
+*   Implements the repository interface and hides the complexity of the Domain layer.
+
+**Considerations**
+
+The abstraction and complexity of each layer vary, as shown in the image below. The higher layers use the facilities provided by lower layers, and each layer provides a different abstraction from the layer above and below it. The presentation layer has high abstraction and low complexity, while the infrastructure layer has lower abstraction and higher complexity. We should always pull the complexity downwards because it will result in many simplifications elsewhere in the application. One more thing we should be aware of is the dependency direction. The higher layers depend on the lower layers, however the lower layers must not depend on the higher layers. For example, the Domain layer should not be dependent on the Presentation layer.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_1.png" alt="Level of Abstraction vs Complexity" />
+
+###
+**Flutter Values - Cross-platform**
+
+Our mission is to make it possible for anyone to create apps that suit their needs. We aim to offer Notion's functionality along with data security and cross-platform native experiences. We decided to achieve this mission by upholding the three most fundamental values:
+
+*   Data privacy first
+*   Reliable native experience
+*   Community-driven extensibility
+
+Flutter, an open-source framework programmed in Dart by Google, is a perfect choice for us to deliver a top-notch consistent native experience across devices, given that it supports multi-platform applications from a single codebase. To learn more you can check it out on [its official website](https://flutter.dev/?ref=blog.appflowy.io).
+
+Since Flutter is relatively new, you may wonder:
+
+**What would happen if Flutter couldn’t play well on one of these platforms?**
+
+We share the same concern. AppFlowy's strategy to hedge this risk would be rewriting the UI component at a minimum cost. Here is how we would handle it. We would make the UI component as pure as possible, focusing on UI rendering and leaving the complex business logic to the data component. Consequently, the data component would not have to change if the UI component switched from one platform to another, as shown in the image below. The Infrastructure layer would become a hybrid infrastructure layer implemented in Dart/JS/Swift with Rust.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_2.png" alt="Data and UI Components" />
+
+The most complicated layer would be the Infrastructure layer. However, we split the Infrastructure layer into two parts: interface and implementation. We coined a term, FlowySDK, which has interfaces defined in Dart and implemented in Rust. Thanks to the Dart [FFI](https://dart.dev/guides/libraries/c-interop?ref=blog.appflowy.io), it is easy to bind the interface with its implementation. For example, the interface in Dart calls HelloWorld(), the implementation in Rust calls hello\_world(), are mapped through the HelloWorldEvent. When triggered, the event is sent through the dart\_ffi and then passed into the FlowySDK. Inside the FlowySDK, a map connects the event to the corresponding component. Each component will declare what events it handles and registers when FlowySDk initializes.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_3.png" alt="Event Dispatch" />
+
+We name this pattern as Event-Dispatch.
+
+Pros:
+
+1\. Horizontal scale
+
+We can easily add a module or remove it. For example, the flowy User module registers itself to the Event-Dispatch system. The handler will get called when the corresponding event happens. Additionally, we can turn the module into a dynamic library and load it on demand, improving performance.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_4.png" alt="Code Example" />
+
+2\. Portable and Flexible
+
+It's easy to integrate FlowySDK to a different platform since its FFI interface is simple.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_5.png" alt="Code Example" />
+
+3\. Better control
+
+We can seamlessly categorize different events with different CPU/IO resources. For example, an audio processing event should have a higher priority than another event in allocating CPU resources.
+
+Cons:
+
+1\. Performance issue
+
+We use [protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers?ref=blog.appflowy.io) to enable Flutter and Rust communication, but it comes with costs. The time of serializing and deserializing will worsen along with the business growth.
+
+2\. Cognitive load
+
+The Event-Dispatch has its downsides. It seems too cumbersome to implement a function. Why not just use CodeGen to generate Dart's functions from the Rust's functions, as the [flutter rust bridge](https://github.com/fzyzcjy/flutter_rust_bridge?ref=blog.appflowy.io) does? The reason is that Flutter was not well-supported on the web and desktop when we started writing AppFlowy. If the performance of the Flutter Mac desktop didn't fit what we needed, we would have to implement the desktop on macOS native. As a result, we would need swift\_rust\_bridge, which requires extra work. Given that we are a team of two at the moment, we chose a middle-ground option, Event-Dispatch.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_6.png" alt="Interface" />
+
+## **AppFlowy's Frontend**
+
+### **Modules**
+
+AppFlowy is divided into many modules, each with independent features and functionalities.  With a modular architecture changing one module does not impact the other modules' functionality, and developers can customize the application according to individual customer needs or preferences. At the moment, AppFlowy consists of the Core and the User modules, and each module has two parts, as shown below. The left part implemented in Flutter follows the DDD design pattern and focuses on UI rendering. The right part composed of Rust crates focuses on data processing. We'll dive into more details in the Core module.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_7.png" alt="Modules" />
+
+### **The Core Module**
+
+The core module defines the base bounded context for the AppFlowy application and plays as a container that coordinates the other modules. The base entities are shown below.
+
+_\`Entities\`_ are referenceable because they carry an identity that allows us to reference them. You can use _\`entities\`_ to express your business.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_8.png" alt="Entities" />
+
+Users can have many workspaces, each of which contain many apps. Each app consists of multiple views. The view is a self-contained object and provides the abstraction for any displayable objects. We only have the Document object at the time of writing this article.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_9.png" alt="View" />
+
+We implemented each entity's business with [flutter\_bloc](https://pub.dev/packages/flutter_bloc?ref=blog.appflowy.io).
+
+* * *
+
+Let me guide you through how AppFlowy uses DDD to implement the business rules.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_10.png" alt="Core Module" />
+
+1\. Widget accepts user interaction and transfers the interactions into specific Bloc events. These events will be sent to that particular Bloc. The Bloc sends the changes caused by the events back to the widget, and finally, the widget updates the UI according to the new state. The Bloc here represents the application layer in DDD that uses the repositories or services provided by the Domain layer to process the Bloc events.
+
+2\. Just propagating the Data to the Domain layer.
+
+3\. The repository defines the interfaces and data models that achieve its business needs. We use the protobuf generated from the Rust side to describe the data models. For example, the proto file is generated from the rust struct, workspace.rs, which will create the workspace.dart and workspace.rs (protobuf generated file). They represent the same struct but are implemented in different languages. Using protobuf makes it easier to transform the data from the Flutter side to the Rust side or vice versa. However serialization and deserialization come with a cost.
+
+<Img src="/images/blog/tech-design-flutter-rust/img_11.png" alt="Protobuf" />
+
+The common cases are fine, but it causes dramatic performance issues for some conditions. For example, memory issues when dealing with images. There are many ways to optimize, but we chose not to dive into details. In this step, the dart object will be wrapped into a request and propagated to the infrastructure  layer.
+
+4\. Serialize the request into binary data and send it into FlowySDK via the Dart\_ffi.
+
+5\. The request will be scheduled by the dispatcher. The dispatcher finds the request's handler and then calls it with its data. Each module declares which events it can handle and registers itself to the dispatcher.
+
+6\. The handler extracts the binary data and deserializes it to a specific data struct according to the event and does some business logic.
+
+7\. Serialize the return value to binary data and send it to the Dispatcher.
+
+8\. The response contains a status code, and binary data is passed as the return value to the caller.
+
+9\. Deserialize the binary data to a specific dart object. We use CodeGen to map the binary data to the dart object automatically. You can check out the [code\_gen.dart](https://github.com/AppFlowy-IO/appflowy/blob/main/frontend/app_flowy/packages/flowy_sdk/lib/dispatch/code_gen.dart?ref=blog.appflowy.io) for more information.
+
+10\. Propagate the protobuf object to the upper layer.
+
+11\. The Bloc waits for the future’s completion and rebuilds the widget if the state changes.
+
+You can dive into the [codebase](https://github.com/AppFlowy-IO/appflowy?ref=blog.appflowy.io) following these steps. Kindly contact [annie@appflowy.io](annie@appflowy.io) if you have any questions.
+
+* * *
+
+Thanks for reading this article. Also, any suggestions would be helpful. Topics we will be covering in the following issues include:
+
+1.  How AppFlowy uses Flutter Bloc
+2.  AppFlowy's editor
+3.  AppFlowy's offline & sync
+4.  AppFlowy's backend
+5.  AppFlowy’s Flutter State Management
+
+So please stay tuned by subscribing to our newsletter.
+
+Lastly, please kindly take a [1-minute survey](https://tally.so/r/3yoAgn?ref=blog.appflowy.io). We would like to collect feedback and learn what interests you the most.

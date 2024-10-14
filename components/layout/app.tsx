@@ -1,7 +1,6 @@
 'use client';
 import '@/styles/app.scss';
 import '@/styles/btn.scss';
-import Head from 'next/head';
 
 import React, { useState, lazy, useMemo } from 'react';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
@@ -58,9 +57,6 @@ export default function App({
 
   return (
     <>
-      <Head>
-        <link rel={'canonical'} href={`https://appflowy.io${pathname}`} />
-      </Head>
       <ToastProvider>
         <UAContext.Provider value={ua}>
           <GitContext.Provider value={gitData}>

@@ -7,12 +7,11 @@ import { copyToClipboard, shareToLinkedIn, shareToTwitter } from '@/lib/utils';
 import { Tooltip } from '@mui/material';
 import React, { useMemo } from 'react';
 
-function Share() {
+function Share({ content }: { content: string }) {
   const link = useMemo(() => {
     if (typeof window === 'undefined') return '';
     return window.location.href;
   }, []);
-  const content = 'Check out this template!';
   const [copiedLink, setCopiedLink] = React.useState(false);
 
   return (

@@ -1,7 +1,7 @@
 @import "font.scss";
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", "Inter", sans-serif;
 }
 
 
@@ -531,7 +531,6 @@ body {
 }
 
 
-
 .short-inline-codeblock {
   word-wrap: break-word;
   @media screen and (min-width: 769px) {
@@ -675,4 +674,24 @@ next-image--dynamic-fill {
       @apply min-h-[230px];
     }
   }
+}
+
+.article-tabs {
+  .article-tab {
+    text-transform: none;
+
+    .MuiTouchRipple-root {
+      display: none !important;
+    }
+  }
+
+  .MuiTabs-flexContainer {
+    @apply border-b;
+  }
+
+  .MuiTabs-indicator {
+    background-color: var(--color-primary) !important;
+  }
+
+
 }

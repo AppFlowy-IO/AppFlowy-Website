@@ -16,7 +16,6 @@ const Heading: React.FC<HeadingProps> = ({ level = 1, children, className }) => 
 
   const slug = slugify(headingText, { lower: true, strict: true });
 
-  console.log('slug', slug);
   const styles = {
     1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
     2: 'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',

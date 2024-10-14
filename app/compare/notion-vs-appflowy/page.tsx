@@ -22,11 +22,15 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: {
+      canonical: `${site_url}/compare/notion-vs-appflowy`,
+    },
     openGraph: {
       title,
       description,
       url: `${site_url}/compare/notion-vs-appflowy`,
       type: 'website',
+      siteName: 'AppFlowy.IO',
       images: [
         {
           url: `${site_url}/blog-og-image.png`,

@@ -1,6 +1,6 @@
 import './globals.scss';
 import type { Metadata, Viewport } from 'next';
-import Favicon from '../public/appflowy.svg';
+import Favicon from '../public/appflowy.ico';
 import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
@@ -21,6 +21,9 @@ const metaDescription =
 export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
+  alternates: {
+    canonical: 'https://appflowy.io',
+  },
   icons: [
     {
       rel: 'icon',
@@ -33,6 +36,7 @@ export const metadata: Metadata = {
     url: 'https://appflowy.io',
     title: metaTitle,
     description: metaDescription,
+    siteName: 'AppFlowy.IO',
     images: [
       {
         url: OpenGraph.src,
@@ -64,9 +68,12 @@ function generateListSchema() {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const ua = getUAFromServer();
   const gitData = await getGitData();
+
   return (
     <html lang='en'>
       <head>
+        {process.env.ENVIRONMENT !== 'production' && <meta name='robots' content='noindex,nofollow' />}
+        <link rel='canonical' href={'https://appflowy.io'} />
         <Script id='schema-org' type='application/ld+json'>
           {JSON.stringify(generateListSchema())}
         </Script>

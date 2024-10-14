@@ -25,9 +25,9 @@ export default function Page() {
       <div className={'af-container'}>
         <div className={'af-box section-1'}>
           <div className={'main-content'}>
-            <div>
+            <h1>
               Bring projects, wikis, and teams together <span className={'text-primary'}>with AI</span>
-            </div>
+            </h1>
             <div className={'desc'}>The AI workspace where you achieve more without losing control of your data</div>
           </div>
           <MainDownload />
@@ -42,7 +42,7 @@ export default function Page() {
       <div className={'af-container'}>
         <div className={'af-box section-3'}>
           <div className='glow'></div>
-          <div className={'section-3-title'}>
+          <h2 className={'section-3-title'}>
             AppFlowy AI{' '}
             <span
               style={{
@@ -51,7 +51,7 @@ export default function Page() {
             >
               Your go-to teammate
             </span>
-          </div>
+          </h2>
           <AiExamples />
           <div className={'flex w-full flex-col items-center justify-center gap-[80px] pt-[26px] max-md:gap-10'}>
             <div className={'section-3-subtitle gradient-text'}>
@@ -185,7 +185,7 @@ export default function Page() {
         <Image
           loading={'eager'}
           src={iconsBg}
-          alt={''}
+          alt={'AppFlowy AI workspace'}
           style={{
             width: '100%',
             height: 'auto',

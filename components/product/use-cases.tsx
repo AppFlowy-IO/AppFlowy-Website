@@ -74,7 +74,14 @@ function UseCases() {
           <span className={'text-primary'}>Organize and visualize data</span> any way you want.
         </div>
         <div className={'tab-panel-image'}>
-          <Image loading={'eager'} className={'shadow-img'} src={Visualize} alt={''} width={1040} height={652} />
+          <Image
+            loading={'eager'}
+            className={'shadow-img'}
+            src={Visualize}
+            alt={'Organize and visualize data'}
+            width={1040}
+            height={652}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'2'}>
@@ -82,7 +89,14 @@ function UseCases() {
           <span className={'text-primary'}>Beautiful and intuitive</span> content types and data labels.
         </div>
         <div className={'tab-panel-image'}>
-          <Image loading={'eager'} className={'shadow-img'} src={Content} alt={''} width={1040} height={652} />
+          <Image
+            loading={'eager'}
+            className={'shadow-img'}
+            src={Content}
+            alt={'Beautiful and intuitive'}
+            width={1040}
+            height={652}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'3'}>
@@ -90,7 +104,7 @@ function UseCases() {
           <span className={'text-primary'}>Customize themes</span>, fonts, and page styles.
         </div>
         <div className={'tab-panel-image'}>
-          <Image loading={'eager'} src={Custom} alt={''} width={1040} height={652} />
+          <Image loading={'eager'} src={Custom} alt={'Customize themes'} width={1040} height={652} />
         </div>
       </TabPanel>
     </div>

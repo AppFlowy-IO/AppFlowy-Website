@@ -3,7 +3,7 @@
 import Share from '@/components/shared/share-group';
 import { Badge } from '@/components/ui/badge';
 import { PostData } from '@/lib/posts';
-import { cn, colorArrayTint, stringToColor } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
@@ -28,14 +28,7 @@ function Outline({ post }: { post: PostData }) {
       {post.tags && (
         <div className='flex w-full flex-wrap gap-2'>
           {post.tags.map((tag) => (
-            <Badge
-              style={{
-                borderColor: 'transparent',
-                background: stringToColor(tag, colorArrayTint),
-              }}
-              key={tag}
-              variant='outline'
-            >
+            <Badge key={tag} variant='outline'>
               {tag}
             </Badge>
           ))}
@@ -43,7 +36,7 @@ function Outline({ post }: { post: PostData }) {
       )}
       <div className={'flex w-full items-center gap-5'}>
         <span className={'text-black opacity-50'}>Share</span>
-        <Share />
+        <Share content={'Check out this article! '} />
       </div>
     </div>
   );
