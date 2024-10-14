@@ -1,7 +1,7 @@
 import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import GetStart from '@/components/product/get-start';
-import ImportLink from '@/components/vs-notion/import-link';
+// import ImportLink from '@/components/vs-notion/import-link';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
@@ -14,15 +14,17 @@ import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
-const site_url = process.env.ENVIRONMEN === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const title = 'Notion vs AppFlowy | The #1 Open Source Notion Alternative is AppFlowy';
+const description = 'Open source, fast, offline support, self-hosting';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `The Best Open Source Notion Alternative - AppFlowy`,
-    description: 'Open source, fast, offline support, self-hosting',
+    title,
+    description,
     openGraph: {
-      title: `The Best Open Source Notion Alternative - AppFlowy`,
-      description: 'Open source, fast, offline support, self-hosting',
+      title,
+      description,
       url: `${site_url}/compare/notion-vs-appflowy`,
       type: 'website',
       images: [
@@ -41,27 +43,68 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function generateListSchema() {
   return {
-    '@context': site_url,
-    '@type': 'notion-vs-appflowy',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        url: `${site_url}/compare/notion-vs-appflowy`,
-        name: 'The Best Open Source Notion Alternative - AppFlowy',
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description: description,
+    url: `${site_url}/compare/notion-vs-appflowy`,
+    mainEntity: {
+      '@type': 'ComparisonTable',
+      about: [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Notion',
+          applicationCategory: 'ProductivityApplication',
+          operatingSystem: 'All',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free and open-source',
+          },
+          featureList: [],
+        },
+        {
+          '@type': 'SoftwareApplication',
+          name: 'AppFlowy',
+          applicationCategory: 'ProductivityApplication',
+          operatingSystem: 'All',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free and open-source',
+          },
+          featureList: [
+            'Full offline mode',
+            'Self-hosting available',
+            'AI model selection',
+            'High customization',
+            'Native mobile and desktop apps',
+          ],
+        },
+      ],
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AppFlowy',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${site_url}/blog-og-image.png`,
       },
-    ],
+    },
+    dateModified: '2024-10-14',
   };
 }
 
 const points = ['Offline mode', 'Self-hosting', 'AI model selection', 'Customization', 'Native mobile and desktop apps'];
-const environment = process.env.ENVIRONMENT || 'development';
-
-let importBaseURL: string = 'https://appflowy.com';
-
-if (environment === 'test') {
-  importBaseURL = 'https://test.appflowy.com';
-}
+// const environment = process.env.ENVIRONMENT || 'development';
+//
+// let importBaseURL: string = 'https://appflowy.com';
+//
+// if (environment === 'test') {
+//   importBaseURL = 'https://test.appflowy.com';
+// }
 
 function Page() {
   return (
@@ -78,21 +121,21 @@ function Page() {
               <Image src={NotionImage} alt={'Notion'} width={56} height={56} />
             </div>
             <div className={'main-content'}>
-              <div>
+              <h1>
                 The #1 Open Source <span className={'text-primary'}>Notion Alternative</span>
-              </div>
+              </h1>
               <div className={'desc'}>Open source, fast, offline support, self-hosting</div>
             </div>
-            <ImportLink importBaseURL={importBaseURL} />
+            {/*<ImportLink importBaseURL={importBaseURL} />*/}
           </div>
         </div>
         <div className={'af-container'}>
           <div className={'af-box section-2'}>
-            <div className={'section-2-title'}>
+            <h2 className={'section-2-title'}>
               {`Enjoy the `}
               <span className={'text-primary'}>flexibility</span>
               {`\n`}without losing control of your data
-            </div>
+            </h2>
             <div className={'cards'}>
               <div className={'card'}>
                 <Image src={Object1} alt={'AI model selection'} width={151} height={121} />

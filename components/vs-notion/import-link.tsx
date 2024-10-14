@@ -3,25 +3,38 @@
 import Dialog from '@mui/material/Dialog';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ImportImage from '@/assets/images/vs-notion/import.png';
 
 function ImportLink({ importBaseURL }: { importBaseURL: string }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.location.href.includes('?importing=true');
+  });
+  const [redirectTo, setRedirectTo] = React.useState('');
+
+  const handleClose = () => {
+    setOpen(false);
+    window.location.search = '';
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setRedirectTo(encodeURIComponent(window.location.href + '?importing=true'));
+  }, []);
 
   return (
     <>
       <Link
-        onClick={() => setOpen(true)}
         target={'_blank'}
-        href={`${importBaseURL}/app?action=import&source=notion`}
+        href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
         className={'main-button download-btn'}
       >
         Import from Notion
       </Link>
       <Dialog
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={handleClose}
         PaperProps={{
           style: {
             borderRadius: '15px',
@@ -37,7 +50,7 @@ function ImportLink({ importBaseURL }: { importBaseURL: string }) {
             <div className={'text-center text-base font-normal text-[#58585a]'}>
               We’ll send you an email when it’s done.
             </div>
-            <div onClick={() => setOpen(false)} className={'download-btn cursor-pointer'}>
+            <div onClick={handleClose} className={'download-btn cursor-pointer'}>
               Close
             </div>
           </div>

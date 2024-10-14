@@ -16,8 +16,13 @@
     @apply bg-[#EEEEFD] w-full flex flex-col gap-6 items-center pb-[110px] pt-[196px];
     @apply max-md:pt-[25vh] max-md:pb-[70px] max-sm:pt-[20vh];
     .main-content {
-      @apply max-w-[1100px] text-center flex flex-col items-center gap-5 break-words whitespace-pre-wrap text-[74px] font-medium text-[#101012] leading-[108%];
-      @apply max-lg:text-[7vw] max-md:px-[5vw] max-md:leading-[120%] max-md:gap-4;
+      @apply max-w-[1100px] text-center flex flex-col items-center gap-5 ;
+      @apply max-md:gap-4 max-md:px-[5vw];
+      h1 {
+        @apply break-words whitespace-pre-wrap text-[74px] font-medium text-[#101012] leading-[108%];
+        @apply max-lg:text-[7vw] max-md:leading-[120%];
+      }
+
       .desc {
         @apply text-[24px] max-w-full font-medium leading-[160%];
         @apply max-md:text-base max-md:leading-[150%];
