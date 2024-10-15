@@ -1,6 +1,7 @@
 'use client';
 import '@/styles/app.scss';
 import '@/styles/btn.scss';
+import Head from 'next/head';
 
 import React, { useState, lazy, useMemo } from 'react';
 import { DarkContext } from '@/lib/hooks/use-dark-context';
@@ -56,26 +57,30 @@ export default function App({
   const isSinglePage = pathname.includes('invitation');
 
   return (
-    <ToastProvider>
-      <UAContext.Provider value={ua}>
-        <GitContext.Provider value={gitData}>
-          <DarkContext.Provider value={false}>
-            <ModalProvider value={modalContext}>
-              {isSinglePage ? (
-                <div className={'appflowy-app'}>
-                  <main>{children}</main>
-                </div>
-              ) : (
-                <div className={'appflowy-app'}>
-                  <Header />
+    <>
+      <Head>
+        <link rel={'canonical'} href={`https://appflowy.io${pathname}`} />
+      </Head>
+      <ToastProvider>
+        <UAContext.Provider value={ua}>
+          <GitContext.Provider value={gitData}>
+            <DarkContext.Provider value={false}>
+              <ModalProvider value={modalContext}>
+                {isSinglePage ? (
+                  <div className={'appflowy-app'}>
+                    <main>{children}</main>
+                  </div>
+                ) : (
+                  <div className={'appflowy-app'}>
+                    <Header />
 
-                  <main>{children}</main>
-                  <Footer />
-                  {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
-                    <>
-                      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                      <Script id='google-analytics'>
-                        {`
+                    <main>{children}</main>
+                    <Footer />
+                    {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+                      <>
+                        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+                        <Script id='google-analytics'>
+                          {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -84,19 +89,20 @@ export default function App({
                    page_theme: 'light'
                 });
               `}
-                      </Script>
-                    </>
-                  )}
-                </div>
-              )}
+                        </Script>
+                      </>
+                    )}
+                  </div>
+                )}
 
-              <div className={'appflowy-overlay'} />
-              <Modal />
-            </ModalProvider>
-          </DarkContext.Provider>
-        </GitContext.Provider>
-      </UAContext.Provider>
-      <Toaster />
-    </ToastProvider>
+                <div className={'appflowy-overlay'} />
+                <Modal />
+              </ModalProvider>
+            </DarkContext.Provider>
+          </GitContext.Provider>
+        </UAContext.Provider>
+        <Toaster />
+      </ToastProvider>
+    </>
   );
 }
