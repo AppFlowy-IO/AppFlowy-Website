@@ -64,7 +64,6 @@ function generateListSchema() {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const ua = getUAFromServer();
   const gitData = await getGitData();
-
   return (
     <html lang='en'>
       <head>
