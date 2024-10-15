@@ -5,7 +5,7 @@ import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
-import process from 'process';
+import Script from 'next/script';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -14,35 +14,52 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+const metaTitle = 'AppFlowy.IO';
+const metaDescription =
+  'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data';
+
 export const metadata: Metadata = {
-  title: 'AppFlowy.IO',
-  description: 'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
+  title: metaTitle,
+  description: metaDescription,
   icons: [
     {
       rel: 'icon',
       url: Favicon.src,
     },
   ],
-  openGraph:
-    process.env.NODE_ENV === 'development'
-      ? undefined
-      : {
-          type: 'website',
-          locale: 'en_US',
-          url: 'https://appflowy.io',
-          title: 'AppFlowy.IO',
-          description:
-            'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data',
-          images: [
-            {
-              url: OpenGraph.src,
-              width: 1200,
-              height: 630,
-              alt: 'AppFlowy.IO',
-            },
-          ],
-        },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://appflowy.io',
+    title: metaTitle,
+    description: metaDescription,
+    images: [
+      {
+        url: OpenGraph.src,
+        width: 1200,
+        height: 630,
+        alt: metaTitle,
+      },
+    ],
+  },
 };
+
+function generateListSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        url: 'https://appflowy.io',
+        name: metaTitle,
+        description: metaDescription,
+        image: Favicon.src,
+      },
+    ],
+  };
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const ua = getUAFromServer();
@@ -50,6 +67,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang='en'>
+      <head>
+        <Script id='schema-org' type='application/ld+json'>
+          {JSON.stringify(generateListSchema())}
+        </Script>
+      </head>
       <body id={'body'}>
         <App ua={ua} gitData={gitData}>
           {children}

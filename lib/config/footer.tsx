@@ -148,6 +148,15 @@ export const links = [
     ],
   },
   {
+    name: 'Compare',
+    children: [
+      {
+        name: 'vs Notion',
+        link: '/compare/notion-vs-appflowy',
+      },
+    ],
+  },
+  {
     name: 'Company',
     children: [
       {

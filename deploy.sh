@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf .next .env public Dockerfile supervisord.conf package.json next.config.js env.js node_modules
+rm -rf .next .env public Dockerfile supervisord.conf package.json next.config.mjs next.config.js env.js node_modules _blog
 
 tar -xzf build-output.tar.gz
 

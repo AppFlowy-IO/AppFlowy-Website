@@ -1,4 +1,20 @@
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 const path = require('path');
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import remarkGfm from 'remark-gfm';
+
+const withMDX = require('@next/mdx')({
+  transpilePackages: ['next-mdx-remote'],
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+    // This is required for `MDXProvider` component
+    providerImportSource: '@mdx-js/react',
+  },
+});
 
 try {
   require('./env.js');
@@ -69,12 +85,16 @@ const rewrites = () => {
       source: '/template-center/:path*',
       destination: '/templates/:path*',
     },
+    {
+      source: '/compare',
+      destination: '/compare/notion-vs-appflowy',
+    },
   ];
 };
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
@@ -120,4 +140,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withMDX(nextConfig);

@@ -13,6 +13,10 @@ import '@/styles/template.scss';
 async function Page({ params }: { params: { category_name: string } }) {
   const name = params.category_name;
 
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return null;
+  }
+
   let data = null;
 
   try {
