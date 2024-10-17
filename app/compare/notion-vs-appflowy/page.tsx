@@ -1,7 +1,7 @@
 import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import GetStart from '@/components/product/get-start';
-// import ImportLink from '@/components/vs-notion/import-link';
+import ImportLink from '@/components/vs-notion/import-link';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
@@ -98,13 +98,13 @@ function generateListSchema() {
 }
 
 const points = ['Offline mode', 'Self-hosting', 'AI model selection', 'Customization', 'Native mobile and desktop apps'];
-// const environment = process.env.ENVIRONMENT || 'development';
-//
-// let importBaseURL: string = 'https://appflowy.com';
-//
-// if (environment === 'test') {
-//   importBaseURL = 'https://test.appflowy.com';
-// }
+const environment = process.env.ENVIRONMENT || 'development';
+
+let importBaseURL: string = 'https://appflowy.com';
+
+if (environment === 'test') {
+  importBaseURL = 'https://test.appflowy.com';
+}
 
 function Page() {
   return (
@@ -126,7 +126,7 @@ function Page() {
               </h1>
               <div className={'desc'}>Open source, fast, offline support, self-hosting</div>
             </div>
-            {/*<ImportLink importBaseURL={importBaseURL} />*/}
+            <ImportLink importBaseURL={importBaseURL} />
           </div>
         </div>
         <div className={'af-container'}>
