@@ -1,6 +1,6 @@
 'use client';
 
-import LinkedInIcon from '@/components/icons/linked-in-icon';
+import Reddit from '@/components/icons/reddit';
 import Twitter from '@/components/icons/twitter';
 import { createHubSpotSubscriber } from '@/lib/hubspotAPI';
 import { cn } from '@/lib/utils';
@@ -50,8 +50,8 @@ function Subscriber() {
           <Link className={cn('share-btn')} href={'https://twitter.com/appflowy'}>
             <Twitter />
           </Link>
-          <Link className={cn('share-btn')} href={'https://www.linkedin.com/company/appflowy'}>
-            <LinkedInIcon />
+          <Link className={cn('share-btn')} href={'https://www.reddit.com/r/AppFlowy'}>
+            <Reddit />
           </Link>
         </div>
       </div>

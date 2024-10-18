@@ -22,6 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: {
+      canonical: `${site_url}/compare/notion-vs-appflowy`,
+    },
     openGraph: {
       title,
       description,
