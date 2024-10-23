@@ -66,6 +66,14 @@ export interface TemplateCreator {
   }[];
 }
 
+export interface PublishInfo {
+  namespace: string;
+  publish_name: string;
+  view_id: string;
+  publisher_email: string;
+  publish_timestamp: string;
+}
+
 export interface TemplateSummary {
   view_id: string;
   name: string;
@@ -75,6 +83,7 @@ export interface TemplateSummary {
   creator: TemplateCreator;
   is_new_template: boolean;
   featured: boolean;
+  publish_info: PublishInfo;
 }
 
 export interface Template extends TemplateSummary {

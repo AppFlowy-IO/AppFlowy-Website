@@ -14,21 +14,32 @@ function TemplateSection({ template, categoryName }: { template: Template; categ
       : template.categories[0];
   }, [template, categoryName]);
 
-  const useTemplateURL = useMemo(() => {
+  const viewURL = useMemo(() => {
     const url = new URL(template.view_url);
+    const origin = url.origin;
+
+    const newURL = new URL(origin);
+    const publishInfo = template.publish_info;
+
+    newURL.pathname = `/${publishInfo.namespace}/${publishInfo.publish_name}`;
+    return newURL.toString();
+  }, [template.publish_info, template.view_url]);
+
+  const useTemplateURL = useMemo(() => {
+    const url = new URL(viewURL);
 
     url.searchParams.append('action', 'duplicate');
     return url.toString();
-  }, [template]);
+  }, [viewURL]);
 
   const iframeUrl = useMemo(() => {
-    const url = new URL(template.view_url);
+    const url = new URL(viewURL);
 
     url.searchParams.delete('v');
     url.searchParams.set('theme', 'light');
     url.searchParams.set('template', 'true');
     return url.toString();
-  }, [template.view_url]);
+  }, [viewURL]);
 
   return (
     <div
