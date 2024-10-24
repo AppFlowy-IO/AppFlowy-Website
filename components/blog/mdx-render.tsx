@@ -1,5 +1,6 @@
 import CodeBlock from '@/components/blog/code-block';
 import InlineCodeTag from '@/components/blog/inline-code';
+import Link from '@/components/blog/link';
 import Quote from '@/components/blog/quote';
 import Caption from '@/components/blog/caption';
 import Video from '@/components/blog/video';
@@ -55,20 +56,7 @@ const components = {
     />
   ),
   Video,
-  a: (props: PropsWithChildren<HTMLAttributes<HTMLAnchorElement>>) => {
-    const { children, ...rest } = props;
-
-    return (
-      <a
-        {...rest}
-        className={cn('decoration-muted text-black opacity-70 hover:opacity-100')}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {children}
-      </a>
-    );
-  },
+  a: Link,
 };
 
 const MyMDXRender: React.FC<MyMDXComponentProps> = ({ source }) => {
