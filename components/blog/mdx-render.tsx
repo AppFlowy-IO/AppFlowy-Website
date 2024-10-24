@@ -7,7 +7,7 @@ import Video from '@/components/blog/video';
 import { cn } from '@/lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image, { ImageProps } from './mdx-image';
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { HTMLAttributes } from 'react';
 import Admonition from './admonition';
 import Heading, { HeadingProps } from './heading';
 import MDXTable from './mdx-table';
