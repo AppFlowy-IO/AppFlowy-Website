@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${post.title}`,
-    description: post.description,
+    description: post.description.slice(0, 160),
     openGraph: {
       title: `${post.title}`,
       description: post.description,
@@ -138,7 +138,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         >
           <div
             className={
-              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
+              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
             }
           >
             <CardHeader className='blog-header flex w-full flex-col gap-5 p-0'>
@@ -209,7 +209,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         >
           <div
             className={
-              'blog-container col-span-12 mb-[70px] flex max-w-full flex-1 flex-grow flex-col overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
+              'blog-container col-span-12 mb-[70px] flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
             }
           >
             {post.cover_image && (

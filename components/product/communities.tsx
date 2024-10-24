@@ -41,12 +41,12 @@ function Communities() {
           </Link>
         </div>
         <div className={'community-content-image'}>
-          <Image loading={'eager'} src={CommunityImage1} alt={''} width={500} height={600} />
+          <Image loading={'eager'} src={CommunityImage1} width={500} height={600} alt={'Community'} />
         </div>
       </div>
       <div className={'community-content'}>
         <div className={'community-content-image'}>
-          <Image loading={'eager'} src={CommunityImage2} alt={''} width={500} height={600} />
+          <Image loading={'eager'} src={CommunityImage2} alt={'Community'} width={500} height={600} />
         </div>
         <div className={'community-content-summary'}>
           <div className={'flex flex-col gap-4'}>

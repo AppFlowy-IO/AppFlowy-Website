@@ -43,7 +43,7 @@ function PostItem({
           ))}
         </div>
       )}
-      <div className={'w-full truncate text-[24px] font-semibold hover:underline'}>{post.title}</div>
+      <h2 className={'w-full truncate text-[24px] font-semibold hover:underline'}>{post.title}</h2>
       {showDescription && (
         <div
           className={
