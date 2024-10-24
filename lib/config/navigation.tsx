@@ -149,7 +149,7 @@ export const navigation: Item[] = [
           {
             key: '2',
             name: 'AppFlowy 2nd Anniversary and 2023 Roundup',
-            href: 'https://blog.appflowy.io/appflowy-2nd-anniversary-and-2023-roundup/',
+            href: '/blog/appflowy-2nd-anniversary-and-2023-roundup',
             image: {
               src: '/images/appflowy-2nd-anniversary-and-2023-roundup.png',
               alt: 'AppFlowy 2nd Anniversary and 2023 Roundup',
@@ -158,7 +158,7 @@ export const navigation: Item[] = [
           {
             key: '3',
             name: 'How to Contribute to AppFlowy',
-            href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
+            href: '/blog/how-to-contribute-to-appflowy/',
             image: {
               src: '/images/how-to-contribute-to-appflowy.png',
               alt: 'How to Contribute to AppFlowy',
@@ -226,10 +226,10 @@ export const navigation: Item[] = [
           },
           {
             key: 'menu.newsletter',
-            name: 'Technical Blog',
-            desc: 'Learn how we tackle technical challenges',
+            name: 'Blog',
+            desc: 'Receive the latest updates and stories from AppFlowy',
             icon: <Email />,
-            href: 'https://blog.appflowy.io/',
+            href: '/blog',
           },
           {
             key: 'menu.templates',
@@ -267,7 +267,7 @@ export const navigation: Item[] = [
           {
             key: '2',
             name: 'AppFlowy 2nd Anniversary and 2023 Roundup',
-            href: 'https://blog.appflowy.io/appflowy-2nd-anniversary-and-2023-roundup/',
+            href: '/blog/appflowy-2nd-anniversary-and-2023-roundup/',
             image: {
               src: '/images/appflowy-2nd-anniversary-and-2023-roundup.png',
               alt: 'AppFlowy 2nd Anniversary and 2023 Roundup',
@@ -276,7 +276,7 @@ export const navigation: Item[] = [
           {
             key: '3',
             name: 'How to Contribute to AppFlowy',
-            href: 'https://blog.appflowy.io/how-to-contribute-to-appflowy/',
+            href: '/blog/how-to-contribute-to-appflowy/',
             image: {
               src: '/images/how-to-contribute-to-appflowy.png',
               alt: 'How to Contribute to AppFlowy',

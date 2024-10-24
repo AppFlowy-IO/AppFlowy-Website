@@ -1,0 +1,544 @@
+---
+title: How we built a highly customizable rich-text editor for Flutter
+description: We have been looking for a rich-text editor that meets our needs. To date, we still haven't found a solution, so we decided to design and develop the new AppFlowy Editor component ourselves.
+author: Lucas
+author_image_url: /images/blog/authors/lucas.png
+author_url: https://github.com/LucasXu0
+image: /images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/cover.png
+thumb: /images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/cover_thumbnail.png
+tags:
+  - Tech Design
+  - How-tos
+categories:
+  - Developers
+  - Using AppFlowy
+date: '2022-12-12'
+pinned: 1
+toc_depth: 3
+related:
+  - 2023-11-01-demystifying-appflowy-editors-codebase
+  - 2023-08-27-creating-a-calendar-view-for-the-appflowy-database
+  - 2023-08-03-dont-try-to-load-code-dynamically-in-your-flutter-app-its-terrible
+  - 2021-12-10-tech-design-flutter-rust
+---
+<Caption content="A highly customizable rich-text editor for Flutter" />
+
+We have been looking for a rich-text editor that meets our needs. To date, we still haven't found a solution, so we decided to design and develop the new AppFlowy Editor component ourselves.
+
+By [Lucas@AppFlowy](https://github.com/LucasXu0?ref=blog.appflowy.io)
+
+<Admonition type='info' content="This article describes the technical design of the [AppFlowy Editor](https://pub.dev/packages/appflowy_editor?ref=blog.appflowy.io).
+" />
+
+[AppFlowy](https://github.com/AppFlowy-IO/AppFlowy?ref=blog.appflowy.io) is an open-source alternative to Notion built with [Rust](https://www.rust-lang.org/?ref=blog.appflowy.io) and [Flutter](https://flutter.dev/?ref=blog.appflowy.io).
+
+An _editor_ is a core component in AppFlowy. In many scenarios, such as Document, Grid, and Board, the editor component we used till [v0.0.5](https://github.com/AppFlowy-IO/AppFlowy/releases/tag/0.0.5?ref=blog.appflowy.io) is unable to support certain business requirements.
+
+We have therefore been seeking an editor that will support all of AppFlowy's use cases and we have concluded that we need to design and develop our own editor for AppFlowy which we will call the [**AppFlowy Editor**](https://pub.dev/packages/appflowy_editor?ref=blog.appflowy.io).
+
+Before diving into our own editor, we would like to give a special thanks to [flutter\_quill](https://github.com/singerdmx/flutter-quill?ref=blog.appflowy.io), its author, and the community. Without you, we wouldn't have made it this far.
+
+## Issues with the Editor Component
+
+
+As mentioned earlier, in the early versions (v0.0.1 to v0.0.5) of AppFlowy, we used [flutter\_quill](https://pub.dev/packages/flutter_quill?ref=blog.appflowy.io) as our editor component.
+
+In the process of using this library, we have encountered problems with extensibility, consistency, and code coverage.
+
+Although these problems may be addressed in future versions of flutter\_quill, we do not wish to rely on updates to this component in order to move forward with our development.
+
+### Issues with Extensibility
+
+We have encountered difficulty with quickly extending new _components_ (aka plug-ins) and _shortcuts_.
+
+When it comes to components, an example issue is our requirement to insert Grid and Board into existing documents. We have defined a data structure for our new AppFlowy Editor that simplifies this process. We only need to define a new node with a new type and define a corresponding `NodeWidgetBuilder` to render these components in the AppFlowy Editor.
+
+We also need additional _shortcuts_ extensibility, such as markdown syntax support and shortcuts for key combinations (`meta + shift + option + key`). The new AppFlowy Editor supports [customizing more shortcuts](https://github.com/AppFlowy-IO/AppFlowy/blob/main/frontend/app_flowy/packages/appflowy_editor/documentation/customizing.md?ref=blog.appflowy.io#customize-a-shortcut-event).
+
+### Issues with Self-Consistent Production Process
+
+We have been unable to support self-consistent context production processes, such as inserting new components via the slash command or a floating toolbar.
+
+The new AppFlowy Editor supports customizing toolbar items and slash menus.
+
+### Issues with Code Coverage and Stability
+
+The previous editor component lacked stability and sufficient code coverage.
+
+To date, the code coverage of the AppFlowy Editor is stable at 79 to 80%. Meanwhile, we try to make sure to fix known issues and add new test cases to cover them.
+
+## Replacement Approach
+
+
+We have been actively looking for alternatives in the open-source community, such as [super\_editor](https://pub.dev/packages/super_editor?ref=blog.appflowy.io).
+
+During our research, we found that super\_editor allows for extending new components in a way that can also support customized shortcuts.
+
+However, the underlying data structure of super\_editor is a list that does not support nesting. We feel this data structure is not appropriate for nodes with parent-child relationships. For example, in the case of multi-level lists, the form of each level is inconsistent.
+
+Another important consideration that has factored into our search is our need for an editor that is highly customizable and can keep up with the times such that it can continue to support the evolving functionality of AppFlowy.
+
+To date, we still haven't found a solution that suits our needs.
+
+For the above reasons, we have decided to design and develop the new AppFlowy Editor component ourselves.
+
+* * *
+
+## Solution Overview
+
+Before starting a new editor project, we'll examine some existing editor implementations. There are not many editor projects based on Flutter, so we'll refer to well-known front-end editor implementations, such as Quill.js and Slate.js.
+
+We believe that the foundation of the editor lies in _the design of the data structure_.
+
+**Quill.js** uses [Delta](https://quilljs.com/docs/delta/?ref=blog.appflowy.io) as the data structure, while **Slate.js** uses tree nodes as the data structure. Ultimately we have elected to use a tree node like Slate.js to assemble the documents while continuing to use Delta for the data storage of text nodes.
+
+### Why Use a Combination of Node Tree and Delta?
+
+Why do we use a node tree?
+
+*   The entirety of the document data is described using a single Delta data which does not allow us to easily describe complex nested scenarios.
+*   When there is an issue with a paragraph or document, restoring the document becomes relatively difficult.
+
+So our preference is to use a node tree like `Slate.js` to describe the document in chunks, where each chunk’s additions, deletions, and modifications only affect the changes to the current node.
+
+Why do we still use Delta for the text node?
+
+*   If text with different styles continues to be split into different nodes, it will increase the complexity of the tree node structure.
+*   The ability to export a text change delta is already supported in Flutter, so it is easy to substitute the Flutter text change delta to `Delta`.
+*   Considering that our previous version is using flutter-quill as the editor component, it is simpler to keep Delta for text nodes in doing a data migration.
+
+### Code Example
+
+The following JSON will be used to describe the above-combined data structure.
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img.png" alt="Combined Data Structure Example" />
+
+*   For the text node (with a type equal to `text`), the editor will use Delta to store the data.
+*   For the others (non-text nodes), the editor will use Attributes to store the data.
+
+* * *
+
+## Detailed Design for AppFlowy Editor
+
+
+We will state the design of AppFlowy Editor through the following three aspects.
+
+1.  What is the data made of? (keywords: Node, Delta, Document)
+2.  How to update the data? (keywords: Position, Path, Operation, Transaction, EditorState, Apply)
+3.  How to render widgets through the data? (keywords: Render Plugins)
+
+### Editor Data Structure
+
+AppFlowy Editor treats a document as a collection of nodes. For example, a paragraph is a `TextNode` and an image is an `ImageNode`.
+
+We use `LinkedList` to organize the relationship between nodes, which provides a relatively efficient way to insert and delete nodes.
+
+Each node uses a normalized description, so we can easily describe those nodes in JSON.
+
+#### Required Node Fields
+
+A node must contain the fields listed below.
+
+##### Type
+
+The `Type` field is used to find the renderer and control how to serialize and deserialize the current node
+
+##### Attributes
+
+The `Atttributes` field indicates what data should be presented and synced. An `ImageNode`, for example, uses the `image_src` in its attributes to describe the link where to load the image.
+
+##### Children
+
+The `Children` field indicates the children nodes, such as the embedded bulleted list or the block in the table component.
+
+##### Delta
+
+The [Delta](https://quilljs.com/docs/delta/?ref=blog.appflowy.io) field will only be used for instances of `TextNode`.
+
+As mentioned above, AppFlowy Editor will use Delta to describe the information of the text node, which is not repeated here.
+
+It should be noted that certain styles are described using `Attributes` instead of `Delta`. Rather than make them a part of the text, we treat these styles are descriptions of paragraphs. These styles include headings, references, lists of text nodes, as well as the overall paragraph style.
+
+### Example Node Definitions
+
+Below is the definition of a `Node` in Dart.
+```dart
+class Node extends ChangeNotifier with LinkedListEntry<Node> {
+  Node({
+    required this.type,
+    Attributes? attributes,
+    this.parent,
+    LinkedList<Node>? children,
+  })
+}
+
+```
+While this is an example definition of a `TextNode` in Dart.
+```dart
+class TextNode extends Node {
+  TextNode({
+    required Delta delta,
+    LinkedList<Node>? children,
+    Attributes? attributes,
+  })
+}
+```
+
+#### Image and Text Node Example
+
+In the following figure, there is an image node and a text node in the document.
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_1.png" alt="Image and Text Node Example" />
+
+The JSON representation of `ImageNode`'s data is
+```json
+{
+    "type": "image",
+    "attributes": {
+        "image_src": "https://i.ibb.co/WKQwVDn/Xnip2022-09-02-15-49-51.jpg",
+        "align": "left",
+        "width": 285
+    }
+}
+```
+
+And the JSON representation of `TextNode`'s data is
+
+```json
+{
+    "type": "text",
+    "attributes": { "subtype": "heading", "heading": "h1" },
+    "delta": [
+        { "insert": "🌟 Welcome to AppFlowy!" },
+    ]
+}
+
+```
+
+#### Unordered List Example
+
+In the following figure, you can see an example of an embedded unordered list in the document
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_2.png" alt="Unordered List Example" />
+
+And the JSON representation for the document is
+```json
+{
+  "document": {
+    "type": "editor",
+    "children": [
+      {
+        "type": "text",
+        "attributes": { "subtype": "heading", "heading": "h3" },
+        "delta": [{ "insert": "Bulleted List" }]
+      },
+      {
+        "type": "text",
+        "children": [
+          {
+            "type": "text",
+            "attributes": { "subtype": "bulleted-list" },
+            "delta": [{ "insert": "A1" }]
+          },
+          {
+            "type": "text",
+            "attributes": { "subtype": "bulleted-list" },
+            "delta": [{ "insert": "A2" }]
+          }
+        ],
+        "attributes": { "subtype": "bulleted-list" },
+        "delta": [{ "insert": "A" }]
+      }
+    ]
+  }
+}
+
+```
+### Updating Data in the Editor
+
+Before we update the data, we must know which part of the data needs to be updated. In other words, we need to locate the position of a node.
+
+#### Locating Nodes
+
+Nodes may be located in a variety of manners including:
+
+*   [Path](#path)
+*   [Position](#position)
+*   [Selection](#selection)
+
+##### Path
+
+AppFlowy Editor uses `Path` to locate the position of a node. Path is an integer array consisting of its position in its ancestor's node and the position of its ancestors. All data change operations are performed based on the Path.
+```dart
+typedef Path = List<int>;
+```
+
+There is an example below.
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_3.png" alt="Nexted List Path Example" />
+
+The path of the first node A is `[0]`, then the path of the next node A1 is `[0, 0]`, and so on ...
+
+##### Position
+
+AppFlowy Editor uses position to locate the offset of a node. It consists of a path and an offset.
+```dart
+class Position {
+  final Path path;
+  final int offset;
+}
+```
+
+Position is usually used for text editing and cursor locating. For example, if we need to locate a caret in the middle of A and 1 in node A1, then the Position is
+```dart
+Position(path: [0, 0], offset: 1)
+```
+
+##### Selection
+
+AppFlowy Editor uses `Selection` to represent the range of the selection.
+
+The cursor is also a special kind of selection, except that start and end coincide. It consists of two Positions.
+```dart
+class Selection {
+  final Position start;
+  final Position end;
+}
+```
+
+For example, We need to locate the selection range as shown below.
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_4.png" alt="Selecting a Range" />
+
+
+
+Then the selection is:
+```dart
+Selection(
+    start: Position(path: [1], offset: 0),
+    end: Position(path:[3], offset: 1),
+)
+```
+
+Note that selection is directional.
+
+For example, in the case of top-down selection, the selection is
+```dart
+Selection(
+    start: Position(path: [1], offset: 0),
+    end: Position(path:[3], offset: 1),
+)
+```
+
+And the down-top selection is
+```dart
+Selection(
+    start: Position(path:[3], offset: 1),
+    end: Position(path: [1], offset: 0),
+)
+```
+
+#### Operation Types
+
+AppFlowy Editor uses `Operation` objects to manipulate the document data instead of changing the node data directly. All changes to the document are triggered by an `Operation`.
+
+The operations defined in AppFlowy Editor include
+
+*   [Insert](#insert)
+*   [Delete](#delete)
+*   [Update](#update)
+*   [UpdateText](#updatetext)
+
+Each operation has a corresponding reverse operation that is applied to undo and redo.
+
+##### Insert
+
+`Insert` represents inserting a list of nodes into the document at a given path. Its reverse operation is `Delete`.
+```dart
+class InsertOperation extends Operation {
+  final Path path;
+  final Iterable<Node> nodes;
+}
+```
+
+Take node A1 in the above figure as an example. Inserting a node with the style Bulleted List under the node A1, then the operation is
+```json
+{
+   "op":"insert",
+   "path":[0, 1],
+   "nodes":[
+      {
+         "type":"text",
+         "attributes":{"subtype":"bulleted-list"},
+         "delta":[]
+      }
+   ]
+}
+```
+
+##### Delete
+
+`Delete` represents deleting a list of nodes into the document at a given path. Its reverse operation is `Insert`.
+```dart
+class DeleteOperation extends Operation {
+  final Path path;
+  final Iterable<Node> nodes;
+}
+```
+
+Take the node D in the above figure as an example. Deleting the node D, then the operation is
+```json
+{
+   "op":"delete",
+   "path":[3],
+   "nodes":[
+      {
+         "type":"text",
+         "delta":[]
+      }
+   ]
+}
+```
+
+In addition, the node data assigned in the delete operation is for the logic of recovery.
+
+##### Update
+
+`Update` represents updating a node’s attributes at the given path. Its reverse operation is itself.
+```dart
+class UpdateOperation extends Operation {
+  final Path path;
+  final Attributes attributes;
+  final Attributes oldAttributes;
+}
+```
+
+Take the node C in the above figure as an example. Converting the type of the node C from a numbered list to a bulleted list, then the operation is
+```json
+{
+   "op":"update",
+   "path":[2],
+   "attributes":{"subtype":"bulleted-list"},
+   "oldAttributes":{"subtype":"number-list", "number":1}
+}
+```
+
+##### UpdateText
+
+`UpdateText` represents updating text delta in the text node, which is consistent with the `Delta` logic.
+
+For more information, see: [https://github.com/quilljs/delta](https://github.com/quilljs/delta?ref=blog.appflowy.io)
+
+#### Transactions
+
+The AppFlowy Editor uses a `Transaction` to describe a set of changes to the document which must be treated as atomic. It consists of a collection of `Operation`s and changes to the selection before and after.
+```dart
+class Transaction {
+  final List<Operation> operations = [];
+  Selection? afterSelection;
+  Selection? beforeSelection;
+}
+```
+
+The purpose of using `transaction` is to apply a collection of sequential operations that cannot be split apart. For example, in the following case:
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_5.png" alt="Transaction Example 1" />
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_6.png" alt="Transaction Example 2" />
+
+Pressing the enter key in front of `AppFlowy!` will actually produce two consecutive operations.
+
+*   operation 1. Insert a new `TextNode` at path `[1]`, and set the delta to insert `AppFlowy!`
+*   operation 2. Delete `AppFlowy!` at path `[0]`.
+
+It can be described in JSON
+```json
+{
+   "operations":[
+      {
+         "op":"insert",
+         "path":[1],
+         "nodes":[{"type":"text","delta":[{"insert":"AppFlowy!"},]}]
+      },
+      {
+         "op":"update_text",
+         "path":[0],
+         "delta":[{"retain":11},{"delete":9}],
+         "inverted":[{"retain":11},{"insert":"AppFlowy!"}]
+      }
+   ],
+   "after_selection":{
+      "start":{"path":[1],"offset":0},
+      "end":{"path":[1],"offset":0}
+   },
+   "before_selection":{
+      "start":{"path":[0],"offset":11},
+      "end":{"path":[0],"offset":11}
+   }
+}
+```
+
+#### EditorState and Apply
+
+`EditorState` is responsible for managing the state of the document. It holds the `Document`, and updates the document data through the `apply` function given a `Transaction`.
+```dart
+    class EditorState {
+    	void apply(Transaction transaction);
+    }
+```
+
+#### Summary of How Data Changes
+
+1.  `EditorState` holds the `Document`, and `Document` is a collection of `Node` objects.
+2.  The end-user manipulates a `Node` to generate a `Selection` and `Operations`, which forms a `Transaction`.
+3.  Apply `Transaction` to `EditorState` to refresh the `Document`.
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_7.png" alt="Editor Comonponent Diagram" />
+### Rendering Widgets Using the Data
+
+`NodeWidgetBuilder` is an abstract protocol, responsible for converting a `Node` to a `Widget`.
+```dart
+typedef NodeWidgetBuilders = Map<String, NodeWidgetBuilder>;
+
+typedef NodeValidator<T extends Node> = bool Function(T node);
+
+abstract class NodeWidgetBuilder<T extends Node> {
+  NodeValidator get nodeValidator;
+
+  Widget build(NodeWidgetContext<T> context);
+}
+```
+
+Each node owns its corresponding `NodeWidgetBuilder`.
+
+Before initializing AppFlowy Editor, we need to inject the mapping relationship between `Node` and `NodeWidgetBuilder`.
+
+For now, AppFlowy Editor’s built-in `NodeWidgetBuilder` includes the following
+```dart
+NodeWidgetBuilders defaultBuilders = {
+  'editor': EditorEntryWidgetBuilder(),
+  'text': RichTextNodeWidgetBuilder(),
+  'text/checkbox': CheckboxNodeWidgetBuilder(),
+  'text/heading': HeadingTextNodeWidgetBuilder(),
+  'text/bulleted-list': BulletedListTextNodeWidgetBuilder(),
+  'text/number-list': NumberListTextNodeWidgetBuilder(),
+  'text/quote': QuotedTextNodeWidgetBuilder(),
+  'image': ImageNodeBuilder(),
+};
+```
+
+
+When AppFlowy Editor starts to render the `Node`s, it will first recursively traverse the `Document`.
+
+For each `Node` it encounters, the editor will find the corresponding `NodeWidgetBuilder` from the mapping relationship according to the nodes’ type and then call the `build` function to generate a `Widget`.
+
+
+<Img src="/images/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter/img_8.png" alt="Node Builder Widget Infrastructure" />
+
+Meanwhile, each `NodeWidgetBuilder` is bound to `Node` through `ChangeNotifierProvider`. Combined with the above-mentioned logic of `Document` data change, whenever the data of a certain node changes, AppFlowy Editor will notify `NodeWidgetBuilder` to refresh in real time.
+
+## Questionnaire
+
+Thanks for reading this article. Please kindly take [a 1-minute survey](https://tally.so/r/mVpo1j?ref=blog.appflowy.io). We would like to collect feedback and learn what interests you the most.
+
+Last but not least, a shoutout to [Eric](https://github.com/egp415?ref=blog.appflowy.io) who helps review the article.

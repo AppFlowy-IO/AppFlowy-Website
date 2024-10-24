@@ -63,28 +63,42 @@ function MainProducts() {
       </MuiTabs>
       <TabPanel value={value} index={'ai'}>
         <div className={'ai-image'}>
-          <Image src={AIImage.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={AIImage.src} loading={'eager'} className={'object-cover'} alt={'AI'} width={1024} height={648} />
         </div>
       </TabPanel>
 
       <TabPanel value={value} index={'projects'}>
         <div className={'ai-image'}>
-          <Image src={Grid.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={652} />
+          <Image
+            src={Grid.src}
+            loading={'eager'}
+            className={'object-cover'}
+            width={1024}
+            height={652}
+            alt={'Projects'}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'tasks'}>
         <div className={'ai-image'}>
-          <Image src={Tasks.src} priority={true} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={Tasks.src} priority={true} className={'object-cover'} width={1024} height={648} alt={'Tasks'} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'templates'}>
         <div className={'ai-image'}>
-          <Image src={Templates.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image
+            src={Templates.src}
+            loading={'eager'}
+            className={'object-cover'}
+            alt={'templates'}
+            width={1024}
+            height={648}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'sites'}>
         <div className={'ai-image'}>
-          <Image src={Sites.src} loading={'eager'} className={'object-cover'} alt={''} width={1024} height={648} />
+          <Image src={Sites.src} loading={'eager'} className={'object-cover'} alt={'sites'} width={1024} height={648} />
         </div>
       </TabPanel>
     </div>

@@ -1,3 +1,4 @@
+import Article from '@/components/blog/article';
 import Facebook from '@/components/icons/facebook';
 import Instagram from '@/components/icons/instagram';
 import LinkedInIcon from '@/components/icons/linked-in-icon';
@@ -11,6 +12,7 @@ import { CategoryIcon } from '@/components/template-center/icons';
 import RelatedTemplates from '@/components/template-center/template/related-templates';
 import TemplateSection from '@/components/template-center/template/template-section';
 import { slugify } from '@/components/template-center/utils';
+import { parseAbout } from '@/lib/template-about';
 import { getTemplateById } from '@/lib/templateAPI';
 import Link from 'next/link';
 import React from 'react';
@@ -33,6 +35,8 @@ async function Page({ params }: { params: { id: string; category_name: string } 
     notFound();
   }
 
+  const about = parseAbout(data.about);
+
   return (
     <div className={'template-center'}>
       <TemplateSection template={data} categoryName={params.category_name} />
@@ -44,7 +48,7 @@ async function Page({ params }: { params: { id: string; category_name: string } 
         <div className={'flex w-[1100px] min-w-0 max-w-full gap-[100px] max-md:flex-col max-md:gap-10 '}>
           <div className={'template-about'}>
             <div className={'title'}>About this template</div>
-            <div className={'w-full overflow-hidden whitespace-pre-wrap break-words leading-[26px]'}>{data.about}</div>
+            <Article content={about.content} />
           </div>
           <div className={'template-extra'}>
             <div className={'categories'}>
@@ -67,7 +71,7 @@ async function Page({ params }: { params: { id: string; category_name: string } 
             </div>
             <div className={'flex flex-col'}>
               <div className={'title'}>Share</div>
-              <Share />
+              <Share content={'Check out this template!'} />
             </div>
             <div className={'flex flex-col'}>
               <div className={'title'}>About the creator</div>

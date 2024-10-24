@@ -63,7 +63,13 @@ function AiExamples() {
           <span className={'text-[#C89AFA]'}> unblock your work</span>, {`\nfind answers, and get inspiration.`}
         </div>
         <div className={'panel-image'}>
-          <Image loading={'eager'} src={GetAnswer.src} alt={''} width={1040} height={648} />
+          <Image
+            loading={'eager'}
+            src={GetAnswer.src}
+            width={1040}
+            height={648}
+            alt={'Get answers, find inspiration, and unblock your work'}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'write'}>
@@ -72,7 +78,13 @@ function AiExamples() {
           <span className={'text-[#C89AFA]'}>all without switching tools.</span>
         </div>
         <div className={'panel-image'}>
-          <Image loading={'eager'} src={WriteBetter} alt={''} width={1040} height={648} />
+          <Image
+            loading={'eager'}
+            src={WriteBetter}
+            alt={'Write better, brainstorm ideas, and improve writing'}
+            width={1040}
+            height={648}
+          />
         </div>
       </TabPanel>
       <TabPanel value={value} index={'auto'}>
@@ -81,7 +93,13 @@ function AiExamples() {
           actionable insights.
         </div>
         <div className={'panel-image'}>
-          <Image loading={'eager'} src={AutofillTables} alt={''} width={1040} height={648} />
+          <Image
+            loading={'eager'}
+            src={AutofillTables}
+            alt={'Autofill tables and turn databases into actionable insights'}
+            width={1040}
+            height={648}
+          />
         </div>
       </TabPanel>
     </div>

@@ -1,6 +1,8 @@
 import CodeBlock from '@/components/blog/code-block';
 import InlineCodeTag from '@/components/blog/inline-code';
 import Quote from '@/components/blog/quote';
+import Caption from '@/components/blog/caption';
+import Video from '@/components/blog/video';
 import { cn } from '@/lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image, { ImageProps } from './mdx-image';
@@ -43,6 +45,7 @@ const components = {
     }
   },
   Quote: Quote,
+  Caption,
   Img: ({ zoomable = true, className, ...props }: ImageProps & { wide?: boolean }) => (
     <Image
       fill
@@ -51,6 +54,7 @@ const components = {
       {...props}
     />
   ),
+  Video,
   a: (props: PropsWithChildren<HTMLAttributes<HTMLAnchorElement>>) => {
     const { children, ...rest } = props;
 

@@ -5,7 +5,7 @@ import React from 'react';
 function UploadCloudIcon() {
   return (
     <i>
-      <Image src={image} alt={''} width={189} height={121} />
+      <Image src={image} alt={'Upload Cloud'} width={189} height={121} />
     </i>
   );
 }

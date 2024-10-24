@@ -13,7 +13,7 @@ export function formatDate(date: Date) {
   if (isAfter(date, oneWeekAgo)) {
     return formatDistanceToNow(date, { addSuffix: true });
   } else {
-    return format(date, 'MMMM dd, yyyy');
+    return format(date, 'MMM d, yyyy');
   }
 }
 
@@ -119,10 +119,10 @@ export const colorArray = [
 
 export const colorArrayTint = [
   '#EBFBEE',
-  '#F0F5FF',
-  '#FFF7E6',
-  '#FFF2F2',
-  '#F7FAFC',
+  '#E7F5FF',
+  '#FFF0F6',
+  '#FFF4E6',
+  '#EEEEFD',
   '#FAF5FF',
   '#F7FAF7',
   '#FFF5F5',
