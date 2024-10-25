@@ -12,7 +12,7 @@ const name = 'AppFlowy Blog | In the Flow';
 export async function generateMetadata(): Promise<Metadata> {
   const posts = getAllPosts();
 
-  const description = `Receive the latest updates from AppFlowy. Offline mode, self-hosting, iOS and Android apps, Markdown editing, GPT-4, Claude, Llama, and real-time team collaboration.`;
+  const description = `Receive the latest updates and tips from AppFlowy. Offline mode, self-hosting, iOS and Android, Markdown editing, GPT-4, Claude, Llama, and team collaboration.`;
 
   return {
     title: name,
