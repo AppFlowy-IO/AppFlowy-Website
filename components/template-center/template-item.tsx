@@ -12,6 +12,13 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
     const newURL = new URL(origin);
     const publishInfo = template.publish_info;
 
+    if (!publishInfo) {
+      url.searchParams.set('theme', 'light');
+      url.searchParams.set('template', 'true');
+      url.searchParams.set('thumbnail', 'true');
+      return url.toString();
+    }
+
     newURL.pathname = `/${publishInfo.namespace}/${publishInfo.publish_name}`;
 
     newURL.searchParams.set('theme', 'light');

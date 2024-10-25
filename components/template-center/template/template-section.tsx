@@ -21,6 +21,10 @@ function TemplateSection({ template, categoryName }: { template: Template; categ
     const newURL = new URL(origin);
     const publishInfo = template.publish_info;
 
+    if (!publishInfo) {
+      return url.toString();
+    }
+
     newURL.pathname = `/${publishInfo.namespace}/${publishInfo.publish_name}`;
     return newURL.toString();
   }, [template.publish_info, template.view_url]);
