@@ -9,7 +9,7 @@ export async function GET() {
   const feed = new RSS({
     title: 'AppFlowy Blog | In the Flow',
     description:
-      'Receive the latest updates, stories, and tips from AppFlowy. Offline mode, self-hosting, iOS and Android apps, Markdown editing, GPT-4, Claude, Llama, and real-time team collaboration.',
+      'Receive the latest updates and tips from AppFlowy. Offline mode, self-hosting, iOS and Android, Markdown editing, GPT-4, Claude, Llama, and team collaboration.',
     site_url: site_url,
     feed_url: `${site_url}/blog/feed.xml`,
     image_url: `${site_url}/appflowy-rss-logo.png`,
