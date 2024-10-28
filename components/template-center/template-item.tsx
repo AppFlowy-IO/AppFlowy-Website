@@ -7,13 +7,25 @@ import React, { useMemo } from 'react';
 function TemplateItem({ template, category }: { template: TemplateSummary; category: TemplateCategory }) {
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
+    const origin = url.origin;
 
-    url.searchParams.delete('v');
-    url.searchParams.set('theme', 'light');
-    url.searchParams.set('template', 'true');
-    url.searchParams.set('thumbnail', 'true');
-    return url.toString();
-  }, [template.view_url]);
+    const newURL = new URL(origin);
+    const publishInfo = template.publish_info;
+
+    if (!publishInfo) {
+      url.searchParams.set('theme', 'light');
+      url.searchParams.set('template', 'true');
+      url.searchParams.set('thumbnail', 'true');
+      return url.toString();
+    }
+
+    newURL.pathname = `/${publishInfo.namespace}/${publishInfo.publish_name}`;
+
+    newURL.searchParams.set('theme', 'light');
+    newURL.searchParams.set('template', 'true');
+    newURL.searchParams.set('thumbnail', 'true');
+    return newURL.toString();
+  }, [template.publish_info, template.view_url]);
 
   return (
     <>
