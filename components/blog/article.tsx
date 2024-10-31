@@ -9,11 +9,11 @@ function Article({ content }: { content: string }) {
     <CardContent className={'p-0'}>
       <article
         className={cn(
-          'prose max-w-none',
-          'prose-headings:scroll-mt-28 prose-headings:font-heading prose-headings:font-bold lg:prose-headings:scroll-mt-[8.5rem]',
+          'prose max-w-none text-[20px] leading-[32px]',
+          'prose-headings:scroll-mt-28 prose-headings:leading-[158%] prose-headings:border-none prose-headings:font-heading prose-headings:font-bold lg:prose-headings:scroll-mt-[8.5rem]',
           'prose-lead:text-muted-foreground',
           'prose-a:font-medium',
-          'prose-hr:my-4 prose-hr:border-muted',
+          'prose-hr:my-4 prose-hr:border-muted prose-hr:border-gray-200',
           'prose-ol:pl-8 prose-ol:ml-4 prose-ol:space-y-2 prose-ol:leading-snug',
           'prose-ul:pl-8 prose-ul:ml-4 prose-ul:space-y-2 prose-ul:leading-snug',
           'prose-table:overflow-auto prose-table:shadow-md prose-table:rounded-lg prose-table:mt-4',

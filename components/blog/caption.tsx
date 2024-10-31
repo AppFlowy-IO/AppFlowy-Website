@@ -6,7 +6,7 @@ interface Props {
 }
 
 function Caption(props: Props) {
-  return <div className={'w-full text-center text-gray-400'}>{props.content}</div>;
+  return <div className={'w-full text-center text-base text-gray-400'}>{props.content}</div>;
 }
 
 export default Caption;
