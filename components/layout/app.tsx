@@ -19,6 +19,7 @@ const Header = lazy(() => import('@/components/layout/header'));
 const Footer = lazy(() => import('@/components/layout/footer'));
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID;
 
 export default function App({
   children,
@@ -84,6 +85,7 @@ export default function App({
                 gtag('config', '${GA_MEASUREMENT_ID}', {
                    page_theme: 'light'
                 });
+                gtag('config', '${ADS_ID}');
               `}
                         </Script>
                       </>
