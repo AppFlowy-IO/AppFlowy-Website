@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
-import { format, formatDistanceToNow, isAfter, subWeeks } from 'date-fns';
+import { format } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -7,14 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDate(date: Date) {
-  const now = new Date();
-  const oneWeekAgo = subWeeks(now, 1);
-
-  if (isAfter(date, oneWeekAgo)) {
-    return formatDistanceToNow(date, { addSuffix: true });
-  } else {
-    return format(date, 'MMM d, yyyy');
-  }
+  return format(date, 'MMM d, yyyy');
 }
 
 export const generateReadingTime = (text: string) => {
