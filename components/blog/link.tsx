@@ -17,7 +17,6 @@ function Link({
         }
       }}
       className={cn('decoration-muted cursor-pointer text-black underline opacity-70 hover:opacity-100')}
-      rel='noopener noreferrer'
     >
       {children}
     </span>

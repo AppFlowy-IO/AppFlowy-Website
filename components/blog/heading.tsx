@@ -17,12 +17,12 @@ const Heading: React.FC<HeadingProps> = ({ level = 1, children, className }) => 
   const slug = slugify(headingText, { lower: true, strict: true });
 
   const styles = {
-    1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
-    2: 'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
-    3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
-    4: 'scroll-m-20 text-xl font-semibold tracking-tight',
-    5: 'scroll-m-20 text-lg font-semibold tracking-tight',
-    6: 'scroll-m-20 text-base font-semibold tracking-tight',
+    1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-14',
+    2: 'scroll-m-20 text-3xl font-semibold tracking-tight mt-12',
+    3: 'scroll-m-20 text-2xl font-semibold tracking-tight mt-10',
+    4: 'scroll-m-20 text-xl font-semibold tracking-tight mt-8',
+    5: 'scroll-m-20 text-lg font-semibold tracking-tight  mt-6',
+    6: 'scroll-m-20 text-base font-semibold tracking-tight mt-4',
   };
 
   return (
