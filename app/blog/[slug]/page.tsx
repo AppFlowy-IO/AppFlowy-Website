@@ -138,7 +138,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         >
           <div
             className={
-              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
+              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 '
             }
           >
             <CardHeader className='blog-header flex w-full flex-col gap-5 p-0'>
@@ -162,7 +162,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 <CardTitle
                   className={cn(
                     'whitespace-pre-wrap break-words text-left font-medium',
-                    'text-4xl sm:text-5xl md:text-6xl lg:text-[58px]',
+                    'text-4xl !leading-[120%] sm:text-5xl md:text-6xl lg:text-[58px]',
                     'leading-tight',
                     'max-sm:text-center'
                   )}
