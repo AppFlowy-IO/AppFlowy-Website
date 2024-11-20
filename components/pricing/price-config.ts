@@ -26,7 +26,7 @@ export const yearlyPrice = [
       'Up to 10 workspace members',
       'Unlimited AI responses',
       'Unlimited file uploads',
-      'Custom namespace (coming soon)',
+      'Custom namespace',
     ],
     isMostPopular: true,
   },
