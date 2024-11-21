@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   children?: React.ReactNode;
@@ -6,7 +7,11 @@ interface Props {
 }
 
 function Caption(props: Props) {
-  return <div className={'w-full text-center text-base text-gray-400'}>{props.content}</div>;
+  return <div className={'w-full text-center text-base text-gray-400'}>
+    <ReactMarkdown>
+      {props.content}
+    </ReactMarkdown>
+  </div>;
 }
 
 export default Caption;
