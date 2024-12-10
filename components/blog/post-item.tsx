@@ -25,6 +25,7 @@ function PostItem({
       <img
         src={useThumbnail ? post.thumb_image : post.og_image}
         alt={post.title}
+        loading={'lazy'}
         className={`max-xl:min-h-auto mb-[12px] aspect-[2/1] min-h-[176px] w-full flex-1 scale-100 overflow-hidden rounded-[16px] border object-cover ${imageClassName}`}
       />
       {showCategories && (
@@ -43,7 +44,7 @@ function PostItem({
           ))}
         </div>
       )}
-      <h2 className={'w-full truncate text-[24px] font-semibold hover:underline'}>{post.title}</h2>
+      <h2 className={'w-full overflow-hidden text-[24px] h-[74px] font-semibold hover:underline'}>{post.title}</h2>
       {showDescription && (
         <div
           className={
