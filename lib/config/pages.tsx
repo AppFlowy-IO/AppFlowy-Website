@@ -557,6 +557,10 @@ export const joinPageConfig = {
     //   title: 'Founding Product Designer',
     //   link: 'https://apply.workable.com/appflowy/j/D0616AC272/',
     // },
+    {
+      title: 'Marketing Content Manager',
+      link: 'https://apply.workable.com/appflowy/j/DB28756679/'
+    }
   ],
 };
 
