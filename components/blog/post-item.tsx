@@ -26,7 +26,7 @@ function PostItem({
         src={useThumbnail ? post.thumb_image : post.og_image}
         alt={post.title}
         loading={'lazy'}
-        className={`max-xl:min-h-auto mb-[12px] aspect-[2/1] min-h-[176px] w-full flex-1 scale-100 overflow-hidden rounded-[16px] border object-cover ${imageClassName}`}
+        className={`max-xl:min-h-auto max-sm:min-h-fit mb-[12px] aspect-[2/1] max-sm:aspect-auto min-h-[176px] w-full flex-1 scale-100 overflow-hidden rounded-[16px] border object-cover ${imageClassName}`}
       />
       {showCategories && (
         <div className={'flex w-full flex-wrap gap-2'}>
@@ -44,7 +44,7 @@ function PostItem({
           ))}
         </div>
       )}
-      <h2 className={'w-full overflow-hidden text-[24px] h-[74px] font-semibold hover:underline'}>{post.title}</h2>
+      <h2 className={'w-full overflow-hidden text-[24px] h-[74px] max-sm:text-[20px] max-sm:h-fit font-semibold hover:underline'}>{post.title}</h2>
       {showDescription && (
         <div
           className={

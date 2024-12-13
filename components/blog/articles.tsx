@@ -90,7 +90,7 @@ function Articles({ posts }: { posts: PostData[] }) {
         ))}
       </div>
       {pinnedPosts.length > 0 && (
-        <div className='container mx-auto mb-[50px]'>
+        <div className='container mx-auto mb-[50px] max-sm:hidden'>
           <div className='grid grid-cols-1 gap-6 md:grid-cols-5'>
             <div className='md:col-span-3 md:row-span-2'>
               <PostItem post={pinnedPosts[0]} useThumbnail={false} imageClassName='h-80 md:h-96' />
@@ -147,7 +147,7 @@ function Articles({ posts }: { posts: PostData[] }) {
                 </div>
               </div>
               <div className={'flex items-center gap-[10px] max-md:flex-col max-md:gap-5'}>
-                <div className={'flex h-[44px] min-w-[189px] items-center rounded-[12px] bg-white p-3 max-md:w-full'}>
+                <div className={'flex h-[44px] max-sm:min-w-[240px] max-w-full min-w-[189px] items-center rounded-[12px] bg-white p-3 max-md:w-full'}>
                   <input
                     type={'email'}
                     className={'w-full text-sm outline-none'}
@@ -168,7 +168,7 @@ function Articles({ posts }: { posts: PostData[] }) {
           {postResult.map((post, index) => {
             return (
               <Grid key={index} item xs={12} sm={12} md={6} lg={4}>
-                <div className={'article-list-item h-[370px]'}>
+                <div className={'article-list-item h-[370px] max-sm:h-auto'}>
                   <PostItem post={post} showDescription />
                 </div>
               </Grid>
