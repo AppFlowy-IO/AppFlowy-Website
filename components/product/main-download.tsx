@@ -61,7 +61,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
             size={'2xl'}
             variant={'accent'}
           >
-            Try it free
+            Start for free
           </Button>
         )}
       </div>
