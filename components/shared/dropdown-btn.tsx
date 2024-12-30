@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import React, { useEffect, useRef, useState } from 'react';
 import Popover from '@/components/shared/popover';
 import { List, MenuItem } from '@mui/material';
@@ -35,14 +36,15 @@ function DropdownBtn({
 
   return (
     <div ref={ref} className={`dropdown-btn ${disabled ? 'disabled' : ''}`}>
-      <div
+      <Button
+        size={'2xl'}
         onClick={() => {
           extension && onClick?.(extension);
         }}
         className={`download-btn dropdown-btn__title`}
       >
         {title} .{extension}
-      </div>
+      </Button>
 
       <div
         onClick={() => {

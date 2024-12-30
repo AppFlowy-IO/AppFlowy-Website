@@ -104,6 +104,7 @@ async function getData(slug: string) {
   try {
     const post = await getPostData(slug);
     const relatedPosts = await getRelatedPosts(post);
+
     return { post, relatedPosts };
   } catch (error) {
     notFound();

@@ -13,6 +13,7 @@ function Link({
       onClick={() => {
         if ('href' in props) {
           const href = props.href as string;
+
           window.open(href, '_blank');
         }
       }}

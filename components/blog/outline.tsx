@@ -33,6 +33,7 @@ function Outline({ post }: { post: PostData }) {
 
     if (!sidebar || !container) return;
     const contanerWidth = container.getBoundingClientRect().width;
+
     sidebar.style.width = `${contanerWidth}px`;
     const handleScroll = () => {
       fixSidebarOnScroll({

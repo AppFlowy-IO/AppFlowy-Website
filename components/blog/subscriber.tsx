@@ -9,6 +9,7 @@ import React from 'react';
 
 function Subscriber() {
   const { email, setEmail, handleSubscribe } = useSubscriber();
+
   return (
     <div className={'flex flex-col gap-10'}>
       <div className={'flex items-center gap-[10px] max-md:flex-col max-md:gap-5'}>

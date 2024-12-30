@@ -70,7 +70,7 @@ function Navbar() {
                 type: 'click',
               });
             }}
-            href={'/download'}
+            href={'https://appflowy.com'}
           >
             <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
           </Link>

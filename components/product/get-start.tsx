@@ -1,7 +1,10 @@
+'use client';
+import { useClient } from '@/lib/hooks/use-client';
 import Link from 'next/link';
 import React from 'react';
 
 function GetStart() {
+  const { isMobile } = useClient();
   return (
     <div className={'af-container bg-[#2B1A3F]'}>
       <div className={'af-box section-8'}>
@@ -17,9 +20,11 @@ function GetStart() {
           <Link className={'download-btn'} href={'/download'}>
             Download
           </Link>
-          <Link className={'live-demo-btn'} href={'/templates'}>
-            Templates
-          </Link>
+          {!isMobile && (
+            <Link className={'live-demo-btn'} href={'https://appflowy.com'}>
+              Try it free
+            </Link>
+          )}
         </div>
       </div>
     </div>

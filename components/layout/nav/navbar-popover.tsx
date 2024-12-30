@@ -41,10 +41,18 @@ function NavbarPopover({
                 )}
                 <div className={'item-content'}>
                   <div className={'item-name'}>{item.name}</div>
-                  <div className={'item-desc'}>{item.desc}</div>
+                  {item.desc && <div className={'item-desc'}>{item.desc}</div>}
                 </div>
               </Link>
             ))}
+            {group.name === 'Download' && (
+              <div className={'w-full overflow-hidden whitespace-pre-wrap px-4 text-sm text-gray-400'}>
+                AppFlowy is now in{' '}
+                <Link className={'hover:text-primary underline'} href={'https://appflowy.com'}>
+                  your browser
+                </Link>
+              </div>
+            )}
           </div>
         ))}
       </div>

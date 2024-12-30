@@ -95,6 +95,10 @@ export const links = [
         name: 'Linux',
         link: '/download#Linux',
       },
+      {
+        name: 'Browser',
+        link: 'https://appflowy.com',
+      },
     ],
   },
   {

@@ -1,5 +1,6 @@
 export enum EventName {
   homePageDownloadBtn = 'home_page_download_btn',
+  homePageTryForFreeBtn = 'home_page_try_for_free_btn',
   homePageWhatIsNewLink = 'home_page_what_is_new_link',
   homePageGetTemplatesLink = 'home_page_get_templates_link',
   homePageMorePlatformsLink = 'home_page_more_platforms_link',
@@ -36,6 +37,7 @@ export function collectEvent(
 export function collectEvent(
   eventName:
     | EventName.homePageDownloadBtn
+    | EventName.homePageTryForFreeBtn
     | EventName.navigatorGithubBtn
     | EventName.navigatorStartForFreeBtn
     | EventName.homePageGetStartedBtn
