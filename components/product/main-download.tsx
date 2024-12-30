@@ -1,9 +1,10 @@
 'use client';
 
 import HeroDesc from '@/components/shared/hero-desc';
+import { Button } from '@/components/ui/button';
 import { useClient } from '@/lib/hooks/use-client';
 import { useDownload } from '@/lib/hooks/use-download';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
@@ -11,20 +12,10 @@ import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
   const { downloadOS, getOsDownloadLink } = useDownload();
   const ref = useRef(null);
-  const { os, isClient, isLinux } = useClient();
+  const { isClient, isLinux, isMobile } = useClient();
   const inView = useInView(ref, {
     once: true,
   });
-  const name = useMemo(() => {
-    const name = os?.name?.toLowerCase() || '';
-
-    if (name.includes('mac')) return 'macOS';
-    if (name.includes('windows')) return 'Windows';
-    if (name.includes('android')) return 'Android';
-    if (name.includes('ios')) return 'iOS';
-
-    return 'macOS';
-  }, [os?.name]);
 
   useEffect(() => {
     if (inView && isClient) {
@@ -35,26 +26,46 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
   }, [isClient, inView]);
   return (
     <div className={'main-download'}>
-      {isLinux ? (
-        <LinuxBtnGroup title={'Download for Linux'} />
-      ) : (
-        <button
-          onClick={() => {
-            const link = getOsDownloadLink();
+      <div className={'flex w-full items-center justify-center gap-4 max-sm:flex-col'}>
+        {isLinux ? (
+          <LinuxBtnGroup title={'Download now'} />
+        ) : (
+          <Button
+            className={'flex-1'}
+            size={'2xl'}
+            onClick={() => {
+              const link = getOsDownloadLink();
 
-            if (!link) return;
+              if (!link) return;
 
-            collectEvent(EventName.homePageDownloadBtn, {
-              type: 'click',
-            });
+              collectEvent(EventName.homePageDownloadBtn, {
+                type: 'click',
+              });
 
-            downloadOS();
-          }}
-          className={'col download-btn gap-0 bg-[#8427E0] '}
-        >
-          <div className={'title'}>{`Download for ${name}`}</div>
-        </button>
-      )}
+              downloadOS();
+            }}
+          >
+            <div className={'title'}>{`Download now`}</div>
+          </Button>
+        )}
+        {!isMobile && (
+          <Button
+            onClick={() => {
+              collectEvent(EventName.homePageTryForFreeBtn, {
+                type: 'click',
+              });
+
+              window.open('https://appflowy.com', '_current');
+            }}
+            className={'flex-1'}
+            size={'2xl'}
+            variant={'accent'}
+          >
+            Try it free
+          </Button>
+        )}
+      </div>
+
       {showDesc && <HeroDesc inView={inView} />}
     </div>
   );

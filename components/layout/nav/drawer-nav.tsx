@@ -1,3 +1,4 @@
+import { useClient } from '@/lib/hooks/use-client';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
@@ -21,6 +22,7 @@ interface DrawerNavbarProps {
 
 export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNavbarProps) {
   const { downloadOS } = useDownload();
+  const { isMobile } = useClient();
   const [expanded, setExpanded] = useState<string>();
   const container = typeof window !== 'undefined' ? () => window.document.body : undefined;
 
@@ -123,7 +125,11 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
         <div className={'mb-[68px] w-full px-[20px] pt-[40px]'}>
           <button
             onClick={() => {
-              downloadOS();
+              if (!isMobile) {
+                window.open('https://appflowy.com', '_current');
+              } else {
+                downloadOS();
+              }
             }}
             className={'download-btn w-full'}
           >

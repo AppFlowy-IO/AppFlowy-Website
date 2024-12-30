@@ -22,6 +22,7 @@ function Articles({ posts }: { posts: PostData[] }) {
     if (selectedCategory || searchValue) {
       return [];
     }
+
     return posts.filter((post) => post.pinned).sort((a, b) => a.pinned - b.pinned);
   }, [posts, searchValue, selectedCategory]);
 

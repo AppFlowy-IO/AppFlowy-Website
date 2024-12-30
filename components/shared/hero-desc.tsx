@@ -29,7 +29,7 @@ function HeroDesc({ inView }: { inView?: boolean }) {
   };
 
   return (
-    <div className={'hero-desc text-primary text-[12px]'}>
+    <div className={'hero-desc text-primary text-center text-[12px]'}>
       <Link
         onClick={() => onClick(EventName.homePageWhatIsNewLink)}
         href={'/what-is-new'}

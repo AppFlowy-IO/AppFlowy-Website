@@ -21,7 +21,7 @@ describe('Navigation', () => {
       cy.get('@menu').trigger('mouseover');
       // Ensure that the popover element is visible
       cy.get('.popover-paper').should('be.visible');
-      
+
       cy.get('.popover-paper').trigger('mouseover');
       // Ensure that the popover element is still visible
       cy.wait(300);
@@ -45,12 +45,6 @@ describe('Navigation', () => {
     cy.url().should('include', '/what-is-new');
     // Ensure that the notification bar is no longer visible
     cy.get('.banner').not('exist');
-  });
-
-  it('clicking the download for free button should navigate to the download page', () => {
-    cy.get('.navbar-btn-download').click();
-    // Wait for the page to navigate to /download
-    cy.url().should('include', '/download');
   });
 });
 

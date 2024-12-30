@@ -58,6 +58,7 @@ export async function getPostData(slug: string): Promise<PostData> {
   if (!fileName) {
     throw new Error('Post not found');
   }
+
   return getPostByFilename(fileName);
 }
 
