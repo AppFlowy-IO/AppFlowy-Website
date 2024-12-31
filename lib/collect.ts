@@ -18,6 +18,7 @@ export enum EventName {
   downloadIOSModalCancelBtn = 'download_ios_modal_cancel_btn',
   downloadAndroidModalOkBtn = 'download_android_modal_ok_btn',
   downloadAndroidModalCancelBtn = 'download_android_modal_cancel_btn',
+  downloadBrowserBtn = 'download_browser_btn',
 }
 
 export interface DownloadParams extends BaseParams {
@@ -50,7 +51,8 @@ export function collectEvent(
     | EventName.downloadAndroidModalCancelBtn
     | EventName.downloadIOSTestFlightBtn
     | EventName.downloadAppleBtn
-    | EventName.downloadAndroidBtn,
+    | EventName.downloadAndroidBtn
+    | EventName.downloadBrowserBtn,
   params: {
     type: 'view' | 'click';
   }
