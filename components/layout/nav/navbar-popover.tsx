@@ -1,3 +1,4 @@
+import { collectEvent, EventName } from '@/lib/collect';
 import React, { useCallback, useMemo } from 'react';
 import Popover from '@/components/shared/popover';
 import { navigation } from '@/lib/config/navigation';
@@ -48,7 +49,15 @@ function NavbarPopover({
             {group.name === 'Download' && (
               <div className={'w-full overflow-hidden whitespace-pre-wrap px-4 text-sm text-gray-400'}>
                 AppFlowy is now in{' '}
-                <Link className={'hover:text-primary underline'} href={'https://appflowy.com'}>
+                <Link
+                  onClick={() => {
+                    collectEvent(EventName.downloadBrowserBtn, {
+                      type: 'click',
+                    });
+                  }}
+                  className={'hover:text-primary underline'}
+                  href={'https://appflowy.com'}
+                >
                   your browser
                 </Link>
               </div>
