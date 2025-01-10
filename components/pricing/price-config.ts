@@ -19,7 +19,7 @@ export const yearlyPrice = [
     label: 'Pro',
     desc: 'For small teams to manage projects and team knowledge',
     price: '$10',
-    duration: 'per user per month\n' + 'billed annually',
+    duration: 'per member per month\n' + 'billed annually',
     contentTitle: 'Everything in Free +',
     content: [
       'Unlimited storage',
@@ -37,6 +37,6 @@ export const monthlyPrice = [
   {
     ...yearlyPrice[1],
     price: '$12.5',
-    duration: 'per user per month\n' + 'billed monthly',
+    duration: 'per member per month\n' + 'billed monthly',
   },
 ];
