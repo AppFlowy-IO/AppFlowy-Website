@@ -10,7 +10,7 @@ export const yearlyPrice = [
       'Unlimited pages & blocks',
       '5 GB storage',
       'Intelligent search',
-      '20 AI responses',
+      '10 AI responses',
       'Mobile app',
       'Real-time collaboration',
     ],
