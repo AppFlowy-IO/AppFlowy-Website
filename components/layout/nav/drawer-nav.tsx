@@ -1,3 +1,4 @@
+import { WEB_URL } from '@/lib/config/web';
 import { useClient } from '@/lib/hooks/use-client';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -126,7 +127,7 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
           <button
             onClick={() => {
               if (!isMobile) {
-                window.open('https://appflowy.com', '_current');
+                window.open(WEB_URL, '_current');
               } else {
                 downloadOS();
               }

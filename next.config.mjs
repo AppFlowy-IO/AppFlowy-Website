@@ -28,9 +28,9 @@ const environment = process.env.ENVIRONMENT || 'development';
 let assetPrefix = undefined;
 if (isProd) {
   if (environment === 'production') {
-    assetPrefix = 'https://appflowy.io';
+    assetPrefix = 'https://appflowy.com';
   } else if (environment === 'test') {
-    assetPrefix = 'https://test.appflowy.io';
+    assetPrefix = 'https://test.appflowy.com';
   }
 }
 const securityHeaders = [

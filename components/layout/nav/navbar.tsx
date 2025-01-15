@@ -1,4 +1,5 @@
 'use client';
+import { WEB_URL } from '@/lib/config/web';
 import React, { useEffect, useMemo, useState } from 'react';
 import Logo from '@/components/icons/logo';
 import { navigation } from '@/lib/config/navigation';
@@ -70,7 +71,7 @@ function Navbar() {
                 type: 'click',
               });
             }}
-            href={'https://appflowy.com'}
+            href={WEB_URL}
           >
             <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
           </Link>

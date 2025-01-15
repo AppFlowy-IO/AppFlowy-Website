@@ -6,7 +6,7 @@ import React from 'react';
 import OpenGraphImage from '../../public/images/og-image.png';
 import { getAllPosts, PostData } from '@/lib/posts';
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.com' : 'https://appflowy.com';
 const name = 'AppFlowy Blog | In the Flow';
 
 export async function generateMetadata(): Promise<Metadata> {

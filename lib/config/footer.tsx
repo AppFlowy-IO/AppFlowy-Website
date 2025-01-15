@@ -2,6 +2,7 @@ import Twitter from '@/components/icons/twitter';
 import Reddit from '@/components/icons/reddit';
 import Github from '@/components/icons/github';
 import Discord from '@/components/icons/discord';
+import { WEB_URL } from '@/lib/config/web';
 
 export const externalLinks = [
   {
@@ -97,7 +98,7 @@ export const links = [
       },
       {
         name: 'Browser',
-        link: 'https://appflowy.com',
+        link: WEB_URL,
       },
     ],
   },

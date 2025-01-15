@@ -1,7 +1,7 @@
 import { getAllPosts } from '@/lib/posts';
 import RSS from 'rss';
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.com' : 'https://appflowy.com';
 
 export async function GET() {
   const posts = getAllPosts();

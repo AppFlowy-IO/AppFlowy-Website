@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
   alternates: {
-    canonical: 'https://appflowy.io',
+    canonical: 'https://appflowy.com',
   },
   icons: [
     {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://appflowy.io',
+    url: 'https://appflowy.com',
     title: metaTitle,
     description: metaDescription,
     siteName: 'AppFlowy.IO',
@@ -56,7 +56,7 @@ function generateListSchema() {
       {
         '@type': 'ListItem',
         position: 1,
-        url: 'https://appflowy.io',
+        url: 'https://appflowy.com',
         name: metaTitle,
         description: metaDescription,
         image: Favicon.src,

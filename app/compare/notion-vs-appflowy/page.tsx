@@ -7,6 +7,7 @@ import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
 import RightImage from '@/assets/images/vs-notion/right.svg';
+import { WEB_URL } from '@/lib/config/web';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
@@ -14,7 +15,7 @@ import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.com' : 'https://appflowy.com';
 const title = 'Notion vs AppFlowy | The #1 Open Source Notion Alternative is AppFlowy';
 const description = 'Open source, fast, offline support, self-hosting';
 
@@ -102,13 +103,6 @@ function generateListSchema() {
 }
 
 const points = ['Offline mode', 'Self-hosting', 'AI model selection', 'Customization', 'Native mobile and desktop apps'];
-const environment = process.env.ENVIRONMENT || 'development';
-
-let importBaseURL: string = 'https://appflowy.com';
-
-if (environment === 'test') {
-  importBaseURL = 'https://test.appflowy.com';
-}
 
 function Page() {
   return (
@@ -130,7 +124,7 @@ function Page() {
               </h1>
               <div className={'desc'}>Open source, fast, offline support, self-hosting</div>
             </div>
-            <ImportLink importBaseURL={importBaseURL} />
+            <ImportLink importBaseURL={WEB_URL} />
           </div>
         </div>
         <div className={'af-container'}>

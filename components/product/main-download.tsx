@@ -2,6 +2,7 @@
 
 import HeroDesc from '@/components/shared/hero-desc';
 import { Button } from '@/components/ui/button';
+import { WEB_URL } from '@/lib/config/web';
 import { useClient } from '@/lib/hooks/use-client';
 import { useDownload } from '@/lib/hooks/use-download';
 import React, { useEffect, useRef } from 'react';
@@ -55,7 +56,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
                 type: 'click',
               });
 
-              window.open('https://appflowy.com', '_current');
+              window.open(WEB_URL, '_current');
             }}
             className={'flex-1'}
             size={'2xl'}

@@ -1,4 +1,5 @@
 import { collectEvent, EventName } from '@/lib/collect';
+import { WEB_URL } from '@/lib/config/web';
 import React, { useCallback, useMemo } from 'react';
 import Popover from '@/components/shared/popover';
 import { navigation } from '@/lib/config/navigation';
@@ -56,7 +57,7 @@ function NavbarPopover({
                     });
                   }}
                   className={'hover:text-primary underline'}
-                  href={'https://appflowy.com'}
+                  href={WEB_URL}
                 >
                   your browser
                 </Link>

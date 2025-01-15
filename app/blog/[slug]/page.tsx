@@ -21,7 +21,7 @@ interface Props {
   params: { slug: string };
 }
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.com' : 'https://appflowy.com';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostData(params.slug);

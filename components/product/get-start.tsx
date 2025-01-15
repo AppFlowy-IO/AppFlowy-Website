@@ -1,4 +1,5 @@
 'use client';
+import { WEB_URL } from '@/lib/config/web';
 import { useClient } from '@/lib/hooks/use-client';
 import Link from 'next/link';
 import React from 'react';
@@ -21,7 +22,7 @@ function GetStart() {
             Download
           </Link>
           {!isMobile && (
-            <Link className={'live-demo-btn'} href={'https://appflowy.com'}>
+            <Link className={'live-demo-btn'} href={WEB_URL}>
               Try it free
             </Link>
           )}
