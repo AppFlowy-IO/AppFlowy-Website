@@ -21,7 +21,7 @@ interface Props {
   params: { slug: string };
 }
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostData(params.slug);
@@ -106,7 +106,7 @@ async function getData(slug: string) {
     const relatedPosts = await getRelatedPosts(post);
 
     return { post, relatedPosts };
-  } catch (error) {
+  } catch(error) {
     notFound();
   }
 }
@@ -122,7 +122,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           'pb-[170px] pt-[170px]',
           'max-xl:px-14',
           'max-md:px-8 max-md:pb-[150px]',
-          'max-sm:px-6 max-sm:pb-[100px]'
+          'max-sm:px-6 max-sm:pb-[100px]',
         )}
       >
         <Link
@@ -142,10 +142,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 '
             }
           >
-            <CardHeader className='blog-header flex w-full flex-col gap-5 p-0'>
-              <div className='flex w-full flex-col justify-start gap-5'>
+            <CardHeader className="blog-header flex w-full flex-col gap-5 p-0">
+              <div className="flex w-full flex-col justify-start gap-5">
                 {post.categories && (
-                  <div className='flex w-full flex-wrap gap-2  max-sm:justify-center'>
+                  <div className="flex w-full flex-wrap gap-2  max-sm:justify-center">
                     {post.categories.map((tag) => (
                       <Badge
                         style={{
@@ -153,7 +153,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                           background: stringToColor(tag, colorArrayTint),
                         }}
                         key={tag}
-                        variant='outline'
+                        variant="outline"
                       >
                         {tag}
                       </Badge>
@@ -165,30 +165,36 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                     'whitespace-pre-wrap break-words text-left font-medium',
                     'text-4xl !leading-[120%] sm:text-5xl md:text-6xl lg:text-[58px]',
                     'leading-tight',
-                    'max-sm:text-center'
+                    'max-sm:text-center',
                   )}
                 >
                   {post.title}
                 </CardTitle>
               </div>
-              <div className='flex flex-col gap-6 text-sm text-gray-600'>
-                <div className='flex flex-wrap items-center gap-x-4 gap-y-2 max-sm:justify-center'>
+              <div className="flex flex-col gap-6 text-sm text-gray-600">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 max-sm:justify-center">
                   <Link
                     href={post.author_url}
-                    className='flex max-w-[200px]  items-center gap-3 truncate max-sm:mb-4 max-sm:w-full max-sm:max-w-full max-sm:justify-center'
+                    className="flex max-w-[200px]  items-center gap-3 truncate max-sm:mb-4 max-sm:w-full max-sm:max-w-full max-sm:justify-center"
                   >
-                    <Avatar className='h-10 w-10 border'>
-                      <AvatarImage src={post.author_image_url} alt={post.author} />
+                    <Avatar className="h-10 w-10 border">
+                      <AvatarImage
+                        src={post.author_image_url}
+                        alt={post.author}
+                      />
                       <AvatarFallback>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
-                    <span className='font-medium'>{post.author}</span>
+                    <span className="font-medium">{post.author}</span>
                   </Link>
                   <div className={'max-sm:hidden'}>
                     <Circle />
                   </div>
 
-                  <div className='flex items-center'>
-                    <time className={''} dateTime={post.date}>
+                  <div className="flex items-center">
+                    <time
+                      className={''}
+                      dateTime={post.date}
+                    >
                       {formatDate(new Date(post.date))}
                     </time>
                   </div>
@@ -196,8 +202,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                     <Circle />
                   </div>
 
-                  <div className='flex items-center'>
-                    <TimerIcon className='text-primary mr-2 h-4 w-4' />
+                  <div className="flex items-center">
+                    <TimerIcon className="text-primary mr-2 h-4 w-4" />
                     <span>{post.reading_time} min read</span>
                   </div>
                 </div>
@@ -244,7 +250,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         )}
       </div>
 
-      <Script id='ld-json' type='application/ld+json'>
+      <Script
+        id="ld-json"
+        type="application/ld+json"
+      >
         {JSON.stringify(generateListSchema(params.slug, post, site_url))}
       </Script>
     </>

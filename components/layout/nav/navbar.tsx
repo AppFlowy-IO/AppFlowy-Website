@@ -1,4 +1,5 @@
 'use client';
+import { webApplicationUrl } from '@/lib/web-application';
 import React, { useEffect, useMemo, useState } from 'react';
 import Logo from '@/components/icons/logo';
 import { navigation } from '@/lib/config/navigation';
@@ -27,7 +28,7 @@ function Navbar() {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if(!inView) return;
     collectEvent(EventName.navigatorStartForFreeBtn, {
       type: 'view',
     });
@@ -36,7 +37,10 @@ function Navbar() {
     <nav className={`appflowy-navbar ${scrolled ? 'sticky' : ''}`}>
       {/* Logo */}
       <div className={'logo-wrapper'}>
-        <Link href={'/'} className={'logo text-black dark:text-white'}>
+        <Link
+          href={'/'}
+          className={'logo text-black dark:text-white'}
+        >
           <Logo />
         </Link>
       </div>
@@ -63,24 +67,38 @@ function Navbar() {
         </div>
 
         {/* Star for free Button */}
-        <div ref={ref} className={'navbar-btn-download'}>
+        <div
+          ref={ref}
+          className={'navbar-btn-download'}
+        >
           <Link
             onClick={() => {
               collectEvent(EventName.navigatorStartForFreeBtn, {
                 type: 'click',
               });
             }}
-            href={'https://appflowy.com'}
+            href={webApplicationUrl}
           >
             <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
           </Link>
         </div>
-        <span onClick={() => setOpenDrawer(true)} className={'trigger-btn'}>
+        <span
+          onClick={() => setOpenDrawer(true)}
+          className={'trigger-btn'}
+        >
           <Menu />
         </span>
       </div>
-      <NavbarPopover type={popoverType} anchorEl={anchorEl} setAnchorEl={setAnchorEl} debounceClose={debounceClose} />
-      <DrawerNavbar onClose={() => setOpenDrawer(false)} open={openDrawer} />
+      <NavbarPopover
+        type={popoverType}
+        anchorEl={anchorEl}
+        setAnchorEl={setAnchorEl}
+        debounceClose={debounceClose}
+      />
+      <DrawerNavbar
+        onClose={() => setOpenDrawer(false)}
+        open={openDrawer}
+      />
     </nav>
   );
 }

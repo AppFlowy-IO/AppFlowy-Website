@@ -6,7 +6,7 @@ import React from 'react';
 import OpenGraphImage from '../../public/images/og-image.png';
 import { getAllPosts, PostData } from '@/lib/posts';
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 const name = 'AppFlowy Blog | In the Flow';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -94,7 +94,10 @@ function Blog() {
 
   return (
     <>
-      <Script id='ld-json' type='application/ld+json'>
+      <Script
+        id="ld-json"
+        type="application/ld+json"
+      >
         {JSON.stringify(listSchema)}
       </Script>
       <div
@@ -103,7 +106,7 @@ function Blog() {
           'flex flex-col items-center px-[100px] pb-[32px] pt-[161px]',
           'max-xl:px-14',
           'max-md:px-8',
-          'max-sm:px-6 max-sm:pb-[16px] max-sm:pt-[120px]'
+          'max-sm:px-6 max-sm:pb-[16px] max-sm:pt-[120px]',
         )}
       >
         <div className={'flex w-full max-w-[1100px] flex-col'}>
@@ -112,7 +115,7 @@ function Blog() {
             <span
               className={cn(
                 'relative -right-5 top-[-25px] text-[28px] font-normal',
-                'max-md:-right-2 max-md:top-[-4vw] max-md:text-base'
+                'max-md:-right-2 max-md:top-[-4vw] max-md:text-base',
               )}
             >
               Blog

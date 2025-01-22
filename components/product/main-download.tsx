@@ -4,6 +4,7 @@ import HeroDesc from '@/components/shared/hero-desc';
 import { Button } from '@/components/ui/button';
 import { useClient } from '@/lib/hooks/use-client';
 import { useDownload } from '@/lib/hooks/use-download';
+import { webApplicationUrl } from '@/lib/web-application';
 import React, { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
@@ -18,7 +19,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
   });
 
   useEffect(() => {
-    if (inView && isClient) {
+    if(inView && isClient) {
       collectEvent(EventName.homePageDownloadBtn, {
         type: 'view',
       });
@@ -36,7 +37,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
             onClick={() => {
               const link = getOsDownloadLink();
 
-              if (!link) return;
+              if(!link) return;
 
               collectEvent(EventName.homePageDownloadBtn, {
                 type: 'click',
@@ -55,7 +56,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
                 type: 'click',
               });
 
-              window.open('https://appflowy.com', '_current');
+              window.open(webApplicationUrl, '_current');
             }}
             className={'flex-1'}
             size={'2xl'}

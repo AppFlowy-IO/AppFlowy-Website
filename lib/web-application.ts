@@ -1,0 +1,1 @@
+export const webApplicationUrl = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;

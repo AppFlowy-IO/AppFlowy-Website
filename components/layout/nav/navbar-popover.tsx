@@ -1,4 +1,5 @@
 import { collectEvent, EventName } from '@/lib/collect';
+import { webApplicationUrl } from '@/lib/web-application';
 import React, { useCallback, useMemo } from 'react';
 import Popover from '@/components/shared/popover';
 import { navigation } from '@/lib/config/navigation';
@@ -24,7 +25,10 @@ function NavbarPopover({
     return (
       <div className={'menu-popover-content'}>
         {children?.map((group) => (
-          <div key={group.name} className={'group'}>
+          <div
+            key={group.name}
+            className={'group'}
+          >
             <div className={'name'}>{group.name}</div>
             {group.children?.map((item) => (
               <Link
@@ -37,7 +41,10 @@ function NavbarPopover({
                 {item.icon && <div className={'flex h-[24px] w-[24px] items-center justify-center'}>{item.icon}</div>}
                 {item.image && (
                   <div className={'group-item-image'}>
-                    <img src={item.image.src} alt={item.image.alt} />
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt}
+                    />
                   </div>
                 )}
                 <div className={'item-content'}>
@@ -56,7 +63,7 @@ function NavbarPopover({
                     });
                   }}
                   className={'hover:text-primary underline'}
-                  href={'https://appflowy.com'}
+                  href={webApplicationUrl}
                 >
                   your browser
                 </Link>

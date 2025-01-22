@@ -14,7 +14,7 @@ import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
-const site_url = process.env.ENVIRONMENT === 'test' ? 'https://test.appflowy.io' : 'https://appflowy.io';
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'Notion vs AppFlowy | The #1 Open Source Notion Alternative is AppFlowy';
 const description = 'Open source, fast, offline support, self-hosting';
 
@@ -102,27 +102,35 @@ function generateListSchema() {
 }
 
 const points = ['Offline mode', 'Self-hosting', 'AI model selection', 'Customization', 'Native mobile and desktop apps'];
-const environment = process.env.ENVIRONMENT || 'development';
 
-let importBaseURL: string = 'https://appflowy.com';
-
-if (environment === 'test') {
-  importBaseURL = 'https://test.appflowy.com';
-}
+const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
 function Page() {
   return (
     <>
-      <Script id='ld-json' type='application/ld+json'>
+      <Script
+        id="ld-json"
+        type="application/ld+json"
+      >
         {JSON.stringify(generateListSchema())}
       </Script>
       <div className={'vs-notion-page'}>
         <div className={'af-container'}>
           <div className={'af-box section-1'}>
             <div className={'flex items-center justify-center gap-2'}>
-              <Image src={AppFlowyImage} alt={'AppFlowy'} width={56} height={56} />
+              <Image
+                src={AppFlowyImage}
+                alt={'AppFlowy'}
+                width={56}
+                height={56}
+              />
               <span className={'text-sm font-semibold'}>vs</span>
-              <Image src={NotionImage} alt={'Notion'} width={56} height={56} />
+              <Image
+                src={NotionImage}
+                alt={'Notion'}
+                width={56}
+                height={56}
+              />
             </div>
             <div className={'main-content'}>
               <h1>
@@ -142,7 +150,12 @@ function Page() {
             </h2>
             <div className={'cards'}>
               <div className={'card'}>
-                <Image src={Object1} alt={'AI model selection'} width={151} height={121} />
+                <Image
+                  src={Object1}
+                  alt={'AI model selection'}
+                  width={151}
+                  height={121}
+                />
                 <div className={'card-title'}>
                   AI model selection
                   <div className={'card-desc'}>
@@ -152,7 +165,12 @@ function Page() {
                 </div>
               </div>
               <div className={'card'}>
-                <Image src={Object2} alt={'Available everywhere'} width={151} height={121} />
+                <Image
+                  src={Object2}
+                  alt={'Available everywhere'}
+                  width={151}
+                  height={121}
+                />
 
                 <div className={'card-title'}>
                   Available everywhere
@@ -161,7 +179,12 @@ function Page() {
               </div>
 
               <div className={'card'}>
-                <Image src={Object3} alt={'100% offline mode'} width={189} height={121} />
+                <Image
+                  src={Object3}
+                  alt={'100% offline mode'}
+                  width={189}
+                  height={121}
+                />
 
                 <div className={'card-title'}>
                   100% offline mode
@@ -175,9 +198,9 @@ function Page() {
               }
             >
               <div className={'flex w-full items-center justify-between'}>
-                <div className='w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4'>Compare features</div>
-                <div className='w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4'>Notion</div>
-                <div className='w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4'>AppFlowy</div>
+                <div className="w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4">Compare features</div>
+                <div className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">Notion</div>
+                <div className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AppFlowy</div>
               </div>
               {points.map((point) => (
                 <div
@@ -186,12 +209,22 @@ function Page() {
                     'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
                   }
                 >
-                  <div className='w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5'>{point}</div>
-                  <div className='flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5'>
-                    <Image src={CloseImage} alt={'Close'} width={20} height={20} />
+                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
+                  <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
+                    <Image
+                      src={CloseImage}
+                      alt={'Close'}
+                      width={20}
+                      height={20}
+                    />
                   </div>
-                  <div className='flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5'>
-                    <Image src={RightImage} alt={'Right'} width={26} height={16} />
+                  <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
+                    <Image
+                      src={RightImage}
+                      alt={'Right'}
+                      width={26}
+                      height={16}
+                    />
                   </div>
                 </div>
               ))}

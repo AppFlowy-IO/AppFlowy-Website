@@ -3,6 +3,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const path = require('path');
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 import remarkGfm from 'remark-gfm';
 
 const withMDX = require('@next/mdx')({
@@ -23,16 +24,13 @@ try {
 }
 
 const isProd = process.env.NODE_ENV === 'production';
-const environment = process.env.ENVIRONMENT || 'development';
 
 let assetPrefix = undefined;
+
 if (isProd) {
-  if (environment === 'production') {
-    assetPrefix = 'https://appflowy.io';
-  } else if (environment === 'test') {
-    assetPrefix = 'https://test.appflowy.io';
-  }
+  assetPrefix = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 }
+
 const securityHeaders = [
   {
     key: 'X-Frame-Options',
@@ -91,6 +89,7 @@ const rewrites = () => {
     },
   ];
 };
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -112,7 +111,7 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7,
     unoptimized: true,
   },
-  async headers() {
+  async headers () {
     return [
       {
         // Apply these headers to all routes in your application.
