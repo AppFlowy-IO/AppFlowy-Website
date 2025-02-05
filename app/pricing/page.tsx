@@ -2,6 +2,7 @@ import ScrollIcons from '@/components/shared/scroll-icons';
 import { LearnMore } from '@/components/pricing/icons';
 import Prices from '@/components/pricing/prices';
 import UnlockCards from '@/components/pricing/unlock-cards';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -14,119 +15,181 @@ import Affiliate from '@/assets/images/pricing/affiliate.png';
 import Contact from '@/assets/images/pricing/contact.png';
 import '@/styles/pricing.scss';
 
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical: `${site_url}/pricing`,
+    },
+  };
+}
+
 function Page() {
   return (
-    <div className={'pricing-page'}>
-      <div className={'af-container'}>
-        <div className={'af-box section-1'}>
-          <div className={'main-title'}>
-            <div>Your work solution.</div>
-            <div className={'text-primary'}>Start free.</div>
-          </div>
-          <Prices />
-        </div>
-      </div>
-      <div className={'af-container'}>
-        <div className={'af-box section-2'}>
-          <div className={'flex max-w-[1100px]  flex-col gap-[60px]'}>
+    <>
+      <div className={'pricing-page'}>
+        <div className={'af-container'}>
+          <div className={'af-box section-1'}>
             <div className={'main-title'}>
+              <div>Your work solution.</div>
+              <div className={'text-primary'}>Start free.</div>
+            </div>
+            <Prices />
+          </div>
+        </div>
+        <div className={'af-container'}>
+          <div className={'af-box section-2'}>
+            <div className={'flex max-w-[1100px]  flex-col gap-[60px]'}>
+              <div className={'main-title'}>
               <span>
                 <span className={'text-primary'}>Unlock</span> unlimited AI power
               </span>
-              <div className={'subtitle'}>AppFlowy AI includes</div>
+                <div className={'subtitle'}>AppFlowy AI includes</div>
+              </div>
+              <div className={'cards'}>
+                <div className={'card'}>
+                  <Image
+                    src={Card1}
+                    alt={''}
+                    width={257}
+                    height={320}
+                  />
+                  <div className={'desc'}>Find inspiration</div>
+                </div>
+                <div className={'card'}>
+                  <Image
+                    src={Card2}
+                    alt={''}
+                    width={257}
+                    height={320}
+                  />
+                  <div className={'desc'}>Write better</div>
+                </div>
+                <div className={'card'}>
+                  <Image
+                    src={Card3}
+                    alt={''}
+                    width={257}
+                    height={320}
+                  />
+                  <div className={'desc'}>Autofill tables</div>
+                </div>
+                <div className={'card'}>
+                  <Image
+                    src={Card4}
+                    alt={''}
+                    width={257}
+                    height={320}
+                  />
+                  <div className={'desc'}>Get answers</div>
+                </div>
+              </div>
             </div>
-            <div className={'cards'}>
-              <div className={'card'}>
-                <Image src={Card1} alt={''} width={257} height={320} />
-                <div className={'desc'}>Find inspiration</div>
+            <div className={'flex w-full max-w-[1100px] flex-col gap-[35px]'}>
+              <div className={'w-full text-right text-base max-sm:text-xs'}>
+                Prices in <span className={'font-bold'}>$ USD</span>
               </div>
-              <div className={'card'}>
-                <Image src={Card2} alt={''} width={257} height={320} />
-                <div className={'desc'}>Write better</div>
-              </div>
-              <div className={'card'}>
-                <Image src={Card3} alt={''} width={257} height={320} />
-                <div className={'desc'}>Autofill tables</div>
-              </div>
-              <div className={'card'}>
-                <Image src={Card4} alt={''} width={257} height={320} />
-                <div className={'desc'}>Get answers</div>
-              </div>
+              <UnlockCards />
             </div>
-          </div>
-          <div className={'flex w-full max-w-[1100px] flex-col gap-[35px]'}>
-            <div className={'w-full text-right text-base max-sm:text-xs'}>
-              Prices in <span className={'font-bold'}>$ USD</span>
-            </div>
-            <UnlockCards />
           </div>
         </div>
-      </div>
-      <div className={'w-full bg-white pb-[110px]'}>
-        <ScrollIcons />
-      </div>
-      <div className={'af-container section-3-container'}>
-        <div className='glow'></div>
-        <div className={'af-box section-3'}>
-          <div className={'title'}>
+        <div className={'w-full bg-white pb-[110px]'}>
+          <ScrollIcons />
+        </div>
+        <div className={'af-container section-3-container'}>
+          <div className="glow"></div>
+          <div className={'af-box section-3'}>
+            <div className={'title'}>
             <span>
               Have additional <span className={'text-[#C89AFA]'}>questions?</span>
             </span>
-          </div>
-          <div className={'cards'}>
-            <div className={'card'}>
-              <div className='glow'></div>
-              <Image src={Help} alt={''} width={151} height={121} />
-              <div className={'card-title'}>Help articles</div>
-              <Link href={'https://docs.appflowy.io/docs'} className={'flex items-center gap-2'}>
-                Learn more <LearnMore />
-              </Link>
             </div>
-            <div className={'card'}>
-              <div className='glow'></div>
-              <Image src={Affiliate} alt={''} width={151} height={121} />
-              <div className={'card-title'}>Affiliate programs</div>
+            <div className={'cards'}>
+              <div className={'card'}>
+                <div className="glow"></div>
+                <Image
+                  src={Help}
+                  alt={''}
+                  width={151}
+                  height={121}
+                />
+                <div className={'card-title'}>Help articles</div>
+                <Link
+                  href={'https://docs.appflowy.io/docs'}
+                  className={'flex items-center gap-2'}
+                >
+                  Learn more <LearnMore />
+                </Link>
+              </div>
+              <div className={'card'}>
+                <div className="glow"></div>
+                <Image
+                  src={Affiliate}
+                  alt={''}
+                  width={151}
+                  height={121}
+                />
+                <div className={'card-title'}>Affiliate programs</div>
 
-              <Link href={'/pricing'} className={'flex items-center gap-2'}>
-                {/*Learn more <LearnMore />*/}
-                Coming soon
-              </Link>
-            </div>
-            <div className={'card'}>
-              <div className='glow'></div>
-              <Image src={Contact} alt={''} width={151} height={121} />
-              <div className={'card-title'}>Contact support</div>
-              <Link href={'/contact'} className={'flex items-center gap-2'}>
-                Contact Us <LearnMore />
-              </Link>
+                <Link
+                  href={'/pricing'}
+                  className={'flex items-center gap-2'}
+                >
+                  {/*Learn more <LearnMore />*/}
+                  Coming soon
+                </Link>
+              </div>
+              <div className={'card'}>
+                <div className="glow"></div>
+                <Image
+                  src={Contact}
+                  alt={''}
+                  width={151}
+                  height={121}
+                />
+                <div className={'card-title'}>Contact support</div>
+                <Link
+                  href={'/contact'}
+                  className={'flex items-center gap-2'}
+                >
+                  Contact Us <LearnMore />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={'af-container'}>
-        <div className={'af-box section-4 gap-[30px]'}>
-          <div className='glow'></div>
-          <div className={'flex flex-col items-center gap-5'}>
-            <div className={'title'}>
+        <div className={'af-container'}>
+          <div className={'af-box section-4 gap-[30px]'}>
+            <div className="glow"></div>
+            <div className={'flex flex-col items-center gap-5'}>
+              <div className={'title'}>
               <span>
                 Get started for
                 <span className={'text-[#C89AFA]'}> free</span>
               </span>
+              </div>
+              <div className={'desc'}>Choose to own your data and a smarter way to work</div>
             </div>
-            <div className={'desc'}>Choose to own your data and a smarter way to work</div>
-          </div>
 
-          <div className={'btns'}>
-            <Link className={'download-btn'} href={'/download'}>
-              Download
-            </Link>
-            <Link className={'live-demo-btn'} href={'/templates'}>
-              Templates
-            </Link>
+            <div className={'btns'}>
+              <Link
+                className={'download-btn'}
+                href={'/download'}
+              >
+                Download
+              </Link>
+              <Link
+                className={'live-demo-btn'}
+                href={'/templates'}
+              >
+                Templates
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

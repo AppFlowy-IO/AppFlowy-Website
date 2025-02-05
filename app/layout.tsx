@@ -17,12 +17,13 @@ export const viewport: Viewport = {
 const metaTitle = 'AppFlowy.IO';
 const metaDescription =
   'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data';
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
   alternates: {
-    canonical: 'https://appflowy.io',
+    canonical: site_url,
   },
   icons: [
     {
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://appflowy.io',
+    url: site_url,
     title: metaTitle,
     description: metaDescription,
     siteName: 'AppFlowy.IO',
@@ -56,7 +57,7 @@ function generateListSchema() {
       {
         '@type': 'ListItem',
         position: 1,
-        url: 'https://appflowy.io',
+        url: site_url,
         name: metaTitle,
         description: metaDescription,
         image: Favicon.src,
@@ -70,19 +71,27 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gitData = await getGitData();
 
   return (
-    <html lang='en'>
-      <head>
-        {process.env.ENVIRONMENT !== 'production' && <meta name='robots' content='noindex,nofollow' />}
-        <link rel='canonical' href={'https://appflowy.io'} />
-        <Script id='schema-org' type='application/ld+json'>
-          {JSON.stringify(generateListSchema())}
-        </Script>
-      </head>
-      <body id={'body'}>
-        <App ua={ua} gitData={gitData}>
-          {children}
-        </App>
-      </body>
+    <html lang="en">
+    <head>
+      {process.env.ENVIRONMENT !== 'production' && <meta
+        name="robots"
+        content="noindex,nofollow"
+      />}
+      <Script
+        id="schema-org"
+        type="application/ld+json"
+      >
+        {JSON.stringify(generateListSchema())}
+      </Script>
+    </head>
+    <body id={'body'}>
+    <App
+      ua={ua}
+      gitData={gitData}
+    >
+      {children}
+    </App>
+    </body>
     </html>
   );
 }
