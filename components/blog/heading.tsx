@@ -26,9 +26,16 @@ const Heading: React.FC<HeadingProps> = ({ level = 1, children, className }) => 
   };
 
   return (
-    <Tag id={slug} className={cn(styles[level], className)}>
-      <a href={`#${slug}`} className='no-underline'>
+    <Tag
+      id={slug}
+      className={cn(styles[level], className)}
+    >
+      <a
+        href={`#${slug}`}
+        className="no-underline"
+      >
         {children}
+
       </a>
     </Tag>
   );
