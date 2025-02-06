@@ -16,7 +16,6 @@ import UseCases from '@/components/product/use-cases';
 import ScrollIcons from '@/components/shared/scroll-icons';
 import Image from 'next/image';
 import iconsBg from '@/assets/images/product/icons-bg.png';
-
 import React from 'react';
 
 export default function Page() {
@@ -41,7 +40,7 @@ export default function Page() {
       </div>
       <div className={'af-container'}>
         <div className={'af-box section-3'}>
-          <div className='glow'></div>
+          <div className="glow"></div>
           <h2 className={'section-3-title'}>
             AppFlowy AI{' '}
             <span
@@ -60,7 +59,7 @@ export default function Page() {
             </div>
             <div className={'cards'}>
               <div className={'card'}>
-                <div className='glow'></div>
+                <div className="glow"></div>
                 <AiLocalIcon />
                 <div className={'card-title'}>
                   AI model selection
@@ -71,7 +70,7 @@ export default function Page() {
                 </div>
               </div>
               <div className={'card'}>
-                <div className='glow'></div>
+                <div className="glow"></div>
                 <CollaborativeIcon />
                 <div className={'card-title'}>
                   Collaborative
@@ -82,7 +81,7 @@ export default function Page() {
               </div>
 
               <div className={'card'}>
-                <div className='glow'></div>
+                <div className="glow"></div>
                 <AiModelIcon />
                 <div className={'card-title'}>
                   Contextual
