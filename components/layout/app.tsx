@@ -49,7 +49,7 @@ export default function App({
       },
       modalProps,
     }),
-    [openModal, modalProps]
+    [openModal, modalProps],
   );
 
   const pathname = usePathname();
@@ -76,7 +76,7 @@ export default function App({
                     {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
                       <>
                         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                        <Script id='google-analytics'>
+                        <Script id="google-analytics">
                           {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -93,8 +93,9 @@ export default function App({
                   </div>
                 )}
 
-                <div className={'appflowy-overlay'} />
+
                 <Modal />
+                <div className={'appflowy-overlay'} />
               </ModalProvider>
             </DarkContext.Provider>
           </GitContext.Provider>

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import React, { useEffect, useRef, useState } from 'react';
-import Popover from '@/components/shared/popover';
+import Popover from '@mui/material/Popover';
 import { List, MenuItem } from '@mui/material';
 
 function DropdownBtn({
@@ -35,7 +35,10 @@ function DropdownBtn({
   }, []);
 
   return (
-    <div ref={ref} className={`dropdown-btn ${disabled ? 'disabled' : ''}`}>
+    <div
+      ref={ref}
+      className={`dropdown-btn ${disabled ? 'disabled' : ''}`}
+    >
       <Button
         size={'2xl'}
         onClick={() => {
@@ -53,8 +56,14 @@ function DropdownBtn({
         className={`download-btn dropdown-btn__file-extension ${open ? 'active' : ''}`}
       >
         <div className={`dropdown-btn__expand-icon ${open ? 'rotate-180' : ''}`}>
-          <svg viewBox='0 0 24 24' className='h-full w-full'>
-            <path fill='currentColor' d='M19.004 9h-14l7 8 7-8z'></path>
+          <svg
+            viewBox="0 0 24 24"
+            className="h-full w-full"
+          >
+            <path
+              fill="currentColor"
+              d="M19.004 9h-14l7 8 7-8z"
+            ></path>
           </svg>
         </div>
       </div>
