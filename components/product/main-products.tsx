@@ -9,6 +9,7 @@ import Website from '@/components/icons/website';
 import { TemplateIcon, KanbanIcon, ProjectsIcon, AiIcon } from '@/components/product/icons';
 import { TabPanel } from '@/components/shared/tab-panel';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
+import { useClient } from '@/lib/hooks/use-client';
 import MuiTab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
 import { useInView } from 'framer-motion';
@@ -17,9 +18,22 @@ import React, { useEffect, useMemo } from 'react';
 
 function MainProducts() {
   const [value, setValue] = React.useState('tasks');
+  const { isClient } = useClient();
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if(!isClient) {
+      return;
+    }
+
+    const token = window.localStorage.getItem('token');
+
+    if(token) {
+      window.location.href = '/app';
+    }
+  }, [isClient]);
 
   const tabOptions = useMemo(() => {
     return [
@@ -40,7 +54,7 @@ function MainProducts() {
   });
 
   useEffect(() => {
-    if (!inView) {
+    if(!inView) {
       stop();
     } else {
       start();
@@ -48,8 +62,14 @@ function MainProducts() {
   }, [inView, start, stop]);
 
   return (
-    <div ref={ref} className={'main-product'}>
-      <MuiTabs value={value} onChange={handleChange}>
+    <div
+      ref={ref}
+      className={'main-product'}
+    >
+      <MuiTabs
+        value={value}
+        onChange={handleChange}
+      >
         {tabOptions.map((tab) => (
           <MuiTab
             onClick={() => start()}
@@ -61,13 +81,26 @@ function MainProducts() {
           />
         ))}
       </MuiTabs>
-      <TabPanel value={value} index={'ai'}>
+      <TabPanel
+        value={value}
+        index={'ai'}
+      >
         <div className={'ai-image'}>
-          <Image src={AIImage.src} loading={'eager'} className={'object-cover'} alt={'AI'} width={1024} height={648} />
+          <Image
+            src={AIImage.src}
+            loading={'eager'}
+            className={'object-cover'}
+            alt={'AI'}
+            width={1024}
+            height={648}
+          />
         </div>
       </TabPanel>
 
-      <TabPanel value={value} index={'projects'}>
+      <TabPanel
+        value={value}
+        index={'projects'}
+      >
         <div className={'ai-image'}>
           <Image
             src={Grid.src}
@@ -79,12 +112,25 @@ function MainProducts() {
           />
         </div>
       </TabPanel>
-      <TabPanel value={value} index={'tasks'}>
+      <TabPanel
+        value={value}
+        index={'tasks'}
+      >
         <div className={'ai-image'}>
-          <Image src={Tasks.src} priority={true} className={'object-cover'} width={1024} height={648} alt={'Tasks'} />
+          <Image
+            src={Tasks.src}
+            priority={true}
+            className={'object-cover'}
+            width={1024}
+            height={648}
+            alt={'Tasks'}
+          />
         </div>
       </TabPanel>
-      <TabPanel value={value} index={'templates'}>
+      <TabPanel
+        value={value}
+        index={'templates'}
+      >
         <div className={'ai-image'}>
           <Image
             src={Templates.src}
@@ -96,9 +142,19 @@ function MainProducts() {
           />
         </div>
       </TabPanel>
-      <TabPanel value={value} index={'sites'}>
+      <TabPanel
+        value={value}
+        index={'sites'}
+      >
         <div className={'ai-image'}>
-          <Image src={Sites.src} loading={'eager'} className={'object-cover'} alt={'sites'} width={1024} height={648} />
+          <Image
+            src={Sites.src}
+            loading={'eager'}
+            className={'object-cover'}
+            alt={'sites'}
+            width={1024}
+            height={648}
+          />
         </div>
       </TabPanel>
     </div>

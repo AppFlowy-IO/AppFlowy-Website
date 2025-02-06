@@ -31,15 +31,15 @@ const getPages = () => {
 // 生成 sitemap XML
 const generateSitemap = async () => {
   const pages = getPages();
-  const siteUrl = 'https://appflowy.io';
+  const siteUrl = 'https://appflowy.com';
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${pages
-        .map((page) => {
-          const normalizedPath = page.replace(/\\/g, '/').replace(/^\//, '');
-          return `
+    .map((page) => {
+      const normalizedPath = page.replace(/\\/g, '/').replace(/^\//, '');
+      return `
             <url>
               <loc>${siteUrl}/${normalizedPath}</loc>
               <lastmod>${new Date().toISOString()}</lastmod>
@@ -47,8 +47,8 @@ const generateSitemap = async () => {
               <priority>1.0</priority>
             </url>
           `;
-        })
-        .join('')}
+    })
+    .join('')}
     </urlset>
   `;
 

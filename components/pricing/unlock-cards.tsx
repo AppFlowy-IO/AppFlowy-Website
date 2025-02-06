@@ -9,7 +9,14 @@ import AI2 from '@/assets/images/pricing/ai-2.png';
 
 function UnlockCards() {
   const renderCard = useCallback(
-    (item: { icon: React.ReactNode; title: string; desc: string; num: string; duration: string; content: string[] }) => (
+    (item: {
+      icon: React.ReactNode;
+      title: string;
+      desc: string;
+      num: string;
+      duration: string;
+      content: string[]
+    }) => (
       <div className={'ai-card'}>
         {item.icon}
         <div className={'flex flex-col gap-[14px]'}>
@@ -25,7 +32,10 @@ function UnlockCards() {
         </Link>
         <div className={'flex flex-col gap-2'}>
           {item.content.map((content, index) => (
-            <div key={index} className={'ai-card-content-item'}>
+            <div
+              key={index}
+              className={'ai-card-content-item'}
+            >
               <Tick />
               <div className={'flex-1 whitespace-pre-wrap break-words'}>{content}</div>
             </div>
@@ -33,21 +43,31 @@ function UnlockCards() {
         </div>
       </div>
     ),
-    []
+    [],
   );
 
   return (
     <div className={'ai-cards'}>
       {renderCard({
-        icon: <Image src={AI1} alt={''} width={65} height={90} />,
+        icon: <Image
+          src={AI1}
+          alt={''}
+          width={65}
+          height={90}
+        />,
         title: 'AI MAX',
         desc: 'Access the most advanced AI models including GPT 4-o and Claude 3 Sonnet',
         num: '$8',
         duration: `per user per month\nbilled annually`,
-        content: ['Unlimited AI responses', 'Unlimited file uploads'],
+        content: ['Unlimited AI responses', 'Unlimited file uploads', '50 AI images per month'],
       })}
       {renderCard({
-        icon: <Image src={AI2} alt={''} width={74.5} height={90} />,
+        icon: <Image
+          src={AI2}
+          alt={''}
+          width={74.5}
+          height={90}
+        />,
         title: 'AI On-device for Mac',
         desc: 'Run Mistral 7B, Llama 8B, and more local models on your machine',
         num: '$8',

@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       url: `${site_url}/compare/notion-vs-appflowy`,
       type: 'website',
-      siteName: 'AppFlowy.IO',
+      siteName: 'AppFlowy',
       images: [
         {
           url: `${site_url}/blog-og-image.png`,

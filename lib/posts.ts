@@ -55,7 +55,7 @@ export async function getPostData(slug: string): Promise<PostData> {
   const fileNames = fs.readdirSync(postsDirectory);
   const fileName = fileNames.find((name) => name.includes(slug))!;
 
-  if (!fileName) {
+  if(!fileName) {
     throw new Error('Post not found');
   }
 
@@ -111,9 +111,9 @@ export function getPostByFilename(fileName: string): PostData {
 
     toc: tocResult
       ? unified()
-          .use(remarkStringify)
-          // eslint-disable-next-line
-          .stringify(tocResult as any)
+        .use(remarkStringify)
+        // eslint-disable-next-line
+        .stringify(tocResult as any).replaceAll('**', '')
       : '',
     comments: data.comments !== undefined ? data.comments : true,
     canonical_url: data.canonical_url,

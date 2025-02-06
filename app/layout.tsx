@@ -14,7 +14,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-const metaTitle = 'AppFlowy.IO';
+const metaTitle = 'AppFlowy';
 const metaDescription =
   'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data';
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: site_url,
     title: metaTitle,
     description: metaDescription,
-    siteName: 'AppFlowy.IO',
+    siteName: 'AppFlowy',
     images: [
       {
         url: OpenGraph.src,
