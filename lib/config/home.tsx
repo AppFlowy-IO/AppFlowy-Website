@@ -39,7 +39,7 @@ export const heroSectionConfig = {
   subtitle: (
     <span>
       <span className={'bold'}>AppFlowy </span>
-      is an AI collaborative workspace where you achieve more without losing control of your data
+      is the AI collaborative workspace where you achieve more without losing control of your data
     </span>
   ),
   firstImgAlt: 'Appflowy',
@@ -64,7 +64,13 @@ export const productShowCaseConfig = {
       <span className={'primary-word'}>
         Easy
         <span className={'primary-line'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 179 19" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 179 19"
+            fill="none"
+          >
             <path
               d="M177.263 14.9724C129.071 7.4489 95.3553 -2.62395 16.3532 4.93072C14.0431 5.15164 13.9245 8.38732 16.2144 8.76384L67.2846 17.1611C36.1376 10.0862 19.1314 9.94373 2.19824 13.4691"
               stroke="currentColor"
@@ -123,7 +129,13 @@ export const supportAIConfig = {
       <span className={'primary-word'}>
         {`AI's`}
         <span className={'primary-line'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 160 19" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 160 19"
+            fill="none"
+          >
             <path
               d="M158.243 15.3474C115.271 7.71981 85.197 -2.42584 14.7927 4.95872C12.523 5.19678 12.3918 8.36289 14.6352 8.78198L60.2211 17.2981C32.4436 10.1562 17.2851 9.97696 2.19965 13.4656"
               stroke="currentColor"
@@ -133,7 +145,13 @@ export const supportAIConfig = {
           </svg>
         </span>
         <span className={'primary-star'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 28 39" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 28 39"
+            fill="none"
+          >
             <path
               d="M21.078 1C16.7995 17.4444 6.2678 14.7037 1.00195 14.7037C9.88807 18.1296 11.8316 26.0092 8.5715 38C10.2171 31.9475 17.5234 21.2815 27.002 22.926C17.4577 18.8148 18.7742 11.6203 21.078 1Z"
               stroke="currentColor"
@@ -172,7 +190,13 @@ export const dataSecurityConfig = {
       <span className={'primary-word'}>
         value privacy
         <span className={'primary-line'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 447 17" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 447 17"
+            fill="none"
+          >
             <path
               d="M2.00334 11.1304C29.163 7.4542 91.6327 0.650614 124.234 2.84564C156.835 5.04067 123.835 12.1705 103.26 15.461C183.818 8.89718 364.848 -2.27774 444.499 5.53286"
               stroke="currentColor"
@@ -228,7 +252,13 @@ export const mobileApplicationConfig = {
       <span className={'primary-word'}>
         Mobile
         <span className={'primary-line'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 247 17" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 247 17"
+            fill="none"
+          >
             <path
               d="M244.739 14.8474C229.745 10.6509 114.843 0.27214 96.9721 1.83718C79.1013 3.40221 97.3709 11.162 108.74 14.8462C64.3492 6.73561 44.7391 -0.658847 2.02227 3.85501"
               stroke="#9327FF"
@@ -250,7 +280,13 @@ export const communityConfig = {
       <span className={'primary-word'}>
         community
         <span className={'primary-line'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 381 15" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 381 15"
+            fill="none"
+          >
             <path
               d="M1.99979 9.37731C25.1033 6.25015 78.2435 0.462636 105.976 2.32985C133.708 4.19706 105.637 10.2621 88.1342 13.0612C156.662 7.47763 310.656 -2.02839 378.412 4.61575"
               stroke="currentColor"
@@ -320,7 +356,13 @@ export const startForFree = {
       <span className={'primary-word'}>
         free
         <span className={'primary-circle'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 193 80" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 193 80"
+            fill="none"
+          >
             <path
               d="M0.503462 14.4901C151.501 -15.9788 189.001 14.0126 191.001 34.5102C193.342 58.5039 154 77.5099 85.4809 77.5101C16.9614 77.5103 7.0495 57.997 8.50098 42.5039C10.1873 24.5039 31.135 14.9456 85.4809 12.5039"
               stroke="currentColor"

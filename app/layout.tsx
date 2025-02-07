@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 
 const metaTitle = 'AppFlowy';
 const metaDescription =
-  'AppFlowy is an AI collaborative workspace where you achieve more without losing control of your data';
+  'AppFlowy is the AI collaborative workspace where you achieve more without losing control of your data';
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export const metadata: Metadata = {
