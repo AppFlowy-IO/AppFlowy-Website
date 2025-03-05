@@ -55,8 +55,8 @@ export const links = [
         link: '/what-is-new',
       },
       {
-        name: 'Roadmap',
-        link: 'https://github.com/orgs/AppFlowy-IO/projects/5/views/12',
+        name: 'Zapier Integrations',
+        link: 'https://zapier.com/apps/appflowy/integrations',
       },
       {
         name: 'Blog',
