@@ -136,7 +136,7 @@ export const links = [
     children: [
       {
         name: 'Guides & Tutorials',
-        link: 'https://docs.appflowy.io/docs/guides/appflowy',
+        link: 'https://appflowy.com/guide/getting-started-with-appflowy',
       },
       {
         name: 'Developer Docs',
