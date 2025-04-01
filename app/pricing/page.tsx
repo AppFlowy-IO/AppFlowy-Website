@@ -17,7 +17,7 @@ import '@/styles/pricing.scss';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata (): Promise<Metadata> {
   return {
     alternates: {
       canonical: `${site_url}/pricing`,
@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function Page() {
+function Page () {
   return (
     <>
       <div className={'pricing-page'}>
@@ -116,7 +116,7 @@ function Page() {
                 />
                 <div className={'card-title'}>Help articles</div>
                 <Link
-                  href={'https://docs.appflowy.io/docs'}
+                  href={'https://appflowy.com/guide/getting-started-with-appflowy'}
                   className={'flex items-center gap-2'}
                 >
                   Learn more <LearnMore />

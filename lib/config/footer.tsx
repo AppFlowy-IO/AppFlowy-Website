@@ -119,7 +119,7 @@ export const links = [
       },
       {
         name: 'Community Hub',
-        link: 'https://forum.appflowy.io/',
+        link: 'https://forum.appflowy.com/',
       },
       {
         name: 'Report a bug',

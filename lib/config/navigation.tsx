@@ -123,7 +123,7 @@ export const navigation: Item[] = [
           {
             key: '4',
             name: 'Community forum',
-            href: 'https://forum.appflowy.io/',
+            href: 'https://forum.appflowy.com/',
             icon: (
               <i className={'text-primary'}>
                 <Forum />
