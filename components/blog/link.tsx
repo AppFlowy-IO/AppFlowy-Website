@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils';
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 
-function Link({
+function Link ({
   children,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement>> & {
@@ -17,7 +17,7 @@ function Link({
           window.open(href, '_blank');
         }
       }}
-      className={cn('decoration-muted cursor-pointer text-black underline opacity-70 hover:opacity-100')}
+      className={cn('decoration-muted overflow-hidden break-after-all break-words cursor-pointer text-black underline opacity-70 hover:opacity-100')}
     >
       {children}
     </span>
