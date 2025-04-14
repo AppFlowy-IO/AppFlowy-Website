@@ -12,15 +12,15 @@ const MDXTable: React.FC<TableProps> & {
   Cell: React.FC<TableProps>;
 } = ({ children }) => {
   return (
-    <div className='my-8 overflow-x-auto'>
-      <table className='w-full text-left text-sm text-gray-500 dark:text-gray-400'>{children}</table>
+    <div className="my-8 w-full overflow-x-auto">
+      <table className="w-full !my-0 !shadow-none text-left text-sm text-gray-500 dark:text-gray-400">{children}</table>
     </div>
   );
 };
 
 const TableHead: React.FC<TableProps> = ({ children }) => {
   return (
-    <thead className='bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400'>{children}</thead>
+    <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">{children}</thead>
   );
 };
 
@@ -29,19 +29,22 @@ const TableBody: React.FC<TableProps> = ({ children }) => {
 };
 
 const TableRow: React.FC<TableProps> = ({ children }) => {
-  return <tr className='border-b bg-white dark:border-gray-700 dark:bg-gray-800'>{children}</tr>;
+  return <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">{children}</tr>;
 };
 
 const TableHeader: React.FC<TableProps> = ({ children }) => {
   return (
-    <th scope='col' className='px-6 py-3'>
+    <th
+      scope="col"
+      className="px-6 py-3 min-w-[200px]"
+    >
       {children}
     </th>
   );
 };
 
 const TableCell: React.FC<TableProps> = ({ children }) => {
-  return <td className='px-6 py-4'>{children}</td>;
+  return <td className="px-6 py-4 min-w-[200px]">{children}</td>;
 };
 
 MDXTable.Head = TableHead;
