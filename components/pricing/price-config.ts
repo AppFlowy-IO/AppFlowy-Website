@@ -25,8 +25,9 @@ export const yearlyPrice = [
     content: [
       'Unlimited storage',
       'Up to 10 workspace members',
+      'Up to 100 guest editors',
       'Unlimited AI responses',
-      '10 AI images per month',
+      '50 AI images per month',
       'Unlimited file uploads',
       'Custom namespace',
     ],
