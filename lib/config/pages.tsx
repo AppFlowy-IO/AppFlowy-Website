@@ -206,11 +206,6 @@ export const aboutPageConfig = {
         darkLogo: '/images/jhu-w.svg',
       },
       {
-        name: 'build-ai',
-        logo: '/images/build-ai.svg',
-        darkLogo: '/images/build-ai-w.svg',
-      },
-      {
         name: 'delivery-hero',
         logo: '/images/delivery-hero.svg',
         darkLogo: '/images/delivery-hero-w.svg',
