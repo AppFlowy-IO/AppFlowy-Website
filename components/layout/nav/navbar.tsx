@@ -28,7 +28,7 @@ function Navbar() {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
-    if(!inView) return;
+    if (!inView) return;
     collectEvent(EventName.navigatorStartForFreeBtn, {
       type: 'view',
     });
@@ -57,6 +57,7 @@ function Navbar() {
             }}
             onMouseLeave={debounceClose}
             key={item.key}
+            isPopoverOpen={item.key === popoverType && anchorEl !== undefined}
           />
         ))}
       </div>
