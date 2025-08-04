@@ -701,3 +701,13 @@ next-image--dynamic-fill {
 
 
 }
+
+.expand-icon {
+  display: inline-flex;
+  transition: transform 0.2s;
+}
+
+.expand-icon.rotated {
+  transform: rotate(180deg);
+}
+
