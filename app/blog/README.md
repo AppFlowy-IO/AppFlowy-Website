@@ -80,7 +80,7 @@ date: '2024-01-01'
 # Must be valid date format
 
 # Whether to pin the article to the top of the list(optional)
-pinned: 1
+pinned: 
 # 1 = Pin to top of list with larger thumbnail
 # 2 = Pin to top of list with smaller thumbnail
 # 3 = Pin to top of list with smaller thumbnail                      
