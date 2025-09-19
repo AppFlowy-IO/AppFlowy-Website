@@ -6,10 +6,12 @@ import * as Select from '@radix-ui/react-select';
 import { comparisonPlans, comparisonFeatureGroups, ComparisonPlan } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
+import { ContactDialog } from './contact-dialog';
 
 export function MobileComparisonTable() {
   const [selectedPlan, setSelectedPlan] = useState<ComparisonPlan>(comparisonPlans[0]);
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   const handlePlanChange = (planId: string) => {
     const plan = comparisonPlans.find(p => p.id === planId);
@@ -21,6 +23,10 @@ export function MobileComparisonTable() {
 
   const handleUpgradeClick = () => {
     setIsUpgradeDialogOpen(true);
+  };
+
+  const handleContactClick = () => {
+    setIsContactDialogOpen(true);
   };
 
   return (
@@ -108,7 +114,7 @@ export function MobileComparisonTable() {
           
           {selectedPlan.id !== 'free' && (
             <button 
-              onClick={selectedPlan.cta.variant === 'upgrade' ? handleUpgradeClick : undefined}
+              onClick={selectedPlan.cta.variant === 'upgrade' ? handleUpgradeClick : selectedPlan.cta.variant === 'contact' ? handleContactClick : undefined}
               className={`px-6 w-full py-3 rounded-lg font-medium transition-colors ${
               selectedPlan.cta.variant === 'contact' 
                 ? 'border-2 border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white' 
@@ -180,6 +186,11 @@ export function MobileComparisonTable() {
       <UpgradeDialog 
         isOpen={isUpgradeDialogOpen} 
         onClose={() => setIsUpgradeDialogOpen(false)} 
+      />
+      
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen} 
       />
     </div>
   );

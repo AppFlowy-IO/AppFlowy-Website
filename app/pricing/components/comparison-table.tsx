@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { DesktopComparisonTable } from './desktop-comparison-table';
-import { TabletComparisonTable } from './tablet-comparison-table';
 import { MobileComparisonTable } from './mobile-comparison-table';
 
 interface ComparisonTableProps {
@@ -35,12 +34,8 @@ export function ComparisonTable({ show }: ComparisonTableProps) {
         </div>
         
         {/* Responsive Table Display */}
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
           <DesktopComparisonTable />
-        </div>
-        
-        <div className="hidden md:block lg:hidden">
-          <TabletComparisonTable />
         </div>
         
         <div className="block md:hidden">

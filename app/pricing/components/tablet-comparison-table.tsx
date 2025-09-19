@@ -5,12 +5,18 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { comparisonPlans, comparisonFeatureGroups } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
+import { ContactDialog } from './contact-dialog';
 
 export function TabletComparisonTable() {
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   const handleUpgradeClick = () => {
     setIsUpgradeDialogOpen(true);
+  };
+
+  const handleContactClick = () => {
+    setIsContactDialogOpen(true);
   };
 
   return (
@@ -93,7 +99,7 @@ export function TabletComparisonTable() {
                         </div>
                       )}
                       <button 
-                        onClick={plan.cta.variant === 'upgrade' ? handleUpgradeClick : undefined}
+                        onClick={plan.cta.variant === 'upgrade' ? handleUpgradeClick : plan.cta.variant === 'contact' ? handleContactClick : undefined}
                         className={`text-xs px-2 py-1 rounded ${
                         plan.cta.variant === 'contact' 
                           ? 'border border-[#9327FF] text-[#9327FF]' 
@@ -136,6 +142,11 @@ export function TabletComparisonTable() {
       <UpgradeDialog 
         isOpen={isUpgradeDialogOpen} 
         onClose={() => setIsUpgradeDialogOpen(false)} 
+      />
+      
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen} 
       />
     </div>
   );

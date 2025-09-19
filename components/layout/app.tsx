@@ -13,6 +13,7 @@ import { ModalProps, ModalProvider } from '@/lib/hooks/use-modal';
 import { usePathname } from 'next/navigation';
 import { ToastProvider } from '@/components/ui/toast';
 import { Toaster } from '@/components/ui/toaster';
+import { Toaster as SonnerToaster } from 'sonner';
 
 const Header = lazy(() => import('@/components/layout/header'));
 
@@ -101,6 +102,18 @@ export default function App({
           </GitContext.Provider>
         </UAContext.Provider>
         <Toaster />
+        <SonnerToaster 
+          position="top-right"
+          theme="light"
+          toastOptions={{
+            style: {
+              background: 'white',
+              border: '1px solid #e5e7eb',
+              color: '#374151',
+            },
+            className: 'rounded-[8px]',
+          }}
+        />
       </ToastProvider>
     </>
   );

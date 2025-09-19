@@ -138,7 +138,7 @@ export const comparisonFeatureGroups: ComparisonFeatureGroup[] = [
       {
         id: 'desktop-mobile',
         name: 'Desktop & mobile applications',
-        tooltip: 'A comprehensive admin portal to manage your workspaces',
+        tooltip: 'Highly rated native desktop and mobile apps',
         support: {
           free: false,
           seed: true,
@@ -200,7 +200,7 @@ export const comparisonFeatureGroups: ComparisonFeatureGroup[] = [
         name: 'Guest editors',
         tooltip: 'Guests get page access instead of full workspace access',
         support: {
-          free: 'Up to 3',
+          free: 'Coming soon',
           seed: 'Up to 3',
           one: 'Up to 10',
           team: 'Up to 100',

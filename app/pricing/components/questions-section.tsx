@@ -1,6 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { ContactDialog } from './contact-dialog';
 import helpImage from '/assets/images/pricing/help.png';
 import affiliateImage from '/assets/images/pricing/affiliate.png';
 import contactImage from '/assets/images/pricing/contact.png';
@@ -43,6 +47,23 @@ function ActionIcon() {
 }
 
 export function QuestionsSection() {
+  const searchParams = useSearchParams();
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+
+  // 检测 URL 参数中的 action=contact
+  useEffect(() => {
+    const action = searchParams.get('action');
+
+    if (action === 'contact') {
+      setIsContactDialogOpen(true);
+    }
+  }, [searchParams]);
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsContactDialogOpen(true);
+  };
+
   return (
     <section className="relative w-full bg-[#200E34] py-16 sm:py-20 md:py-24 lg:py-28 xl:py-[156px] overflow-hidden">
       {/* Top Gradient Ellipse Overlay */}
@@ -102,10 +123,22 @@ export function QuestionsSection() {
                   
                   {/* Action */}
                   <div className="flex items-center gap-2 mt-[15px]">
-                    {card.link ? (
+                    {card.id === 3 ? (
+                      <button 
+                        onClick={handleContactClick}
+                        className="flex items-center gap-2 hover:opacity-80 transition-opacity select-none touch-manipulation"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                      >
+                        <span className="text-[#E0C4FF] font-inter text-base font-medium leading-[150%]">
+                          {card.action}
+                        </span>
+                        <ActionIcon />
+                      </button>
+                    ) : card.link ? (
                       <Link 
                         href={card.link}
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                        className="flex items-center gap-2 hover:opacity-80 transition-opacity select-none touch-manipulation"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                         {...(card.link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       >
                         <span className="text-[#E0C4FF] font-inter text-base font-medium leading-[150%]">
@@ -127,6 +160,12 @@ export function QuestionsSection() {
           </div>
         </div>
       </div>
+
+      {/* Contact Dialog */}
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen}
+      />
     </section>
   );
 }

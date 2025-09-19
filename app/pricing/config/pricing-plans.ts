@@ -44,13 +44,14 @@ export const pricingPlans: PricingPlan[] = [
       }
     },
     features: [
-      '1 collaborative workspace up to 3 members',
+      '1 collaborative workspace up to 2 members',
       'Unlimited pages & blocks',
       '5 GB storage',
-      '30 days revision history',
       'Intelligent search',
-      '1,000 AI responses',
-      'Up to 20 pages for AI Chat with uploaded files'
+      '10 AI responses',
+      '2 AI images',
+      'Mobile app',
+      'Real-time collaboration'
     ],
     cta: {
       text: 'Get Started',
@@ -79,9 +80,11 @@ export const pricingPlans: PricingPlan[] = [
       'Everything in Free, and',
       'Unlimited storage',
       'Up to 10 workspace members',
-      '6 months revision history',
-      '10,000 AI responses per user per month',
-      'Up to 100 pages for AI Chat with uploaded files'
+      'Up to 100 guest editors',
+      'Unlimited AI responses',
+      '50 AI images per month',
+      'Unlimited file uploads',
+      'Custom namespace'
     ],
     cta: {
       text: 'Get Started',
