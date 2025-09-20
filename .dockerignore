@@ -1,0 +1,94 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store
+
+# Testing
+cypress
+cypress.config.js
+coverage
+.nyc_output
+
+# Next.js build output
+.next
+out
+dist
+
+# Development files
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Version Control
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+.circleci
+
+# IDE and Editor files
+.idea
+.vscode
+*.swp
+*.swo
+*.swn
+*.bak
+.DS_Store
+Thumbs.db
+*.sublime-*
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+docs
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Supervisor config (no longer needed)
+supervisord.conf
+
+# Scripts (build-time only)
+scripts
+deploy.sh
+
+# Cache
+.cache
+.parcel-cache
+.turbo
+.vercel
+
+# Logs
+logs
+*.log
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Editor directories and files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Claude
+.claude

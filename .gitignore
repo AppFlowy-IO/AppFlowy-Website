@@ -42,3 +42,4 @@ cypress/videos
 **/*.log
 
 .idea
+.claude
