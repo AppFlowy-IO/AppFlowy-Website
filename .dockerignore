@@ -92,3 +92,21 @@ Desktop.ini
 
 # Claude
 .claude
+
+# Additional optimization exclusions
+*.test.*
+*.spec.*
+__tests__
+e2e
+test
+storybook-static
+.storybook
+*.zip
+*.tar
+*.gz
+*.rar
+.eslintcache
+*.tsbuildinfo
+.next/cache
+.next/server/app-paths-manifest.json
+.next/server/pages-manifest.json

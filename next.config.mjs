@@ -93,6 +93,9 @@ const rewrites = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  output: 'standalone', // Enable standalone output for smaller Docker images
+  compress: true, // Enable gzip compression
+  poweredByHeader: false, // Remove X-Powered-By header
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
