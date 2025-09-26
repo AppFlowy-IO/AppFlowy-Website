@@ -53,11 +53,29 @@ function ScrollIcons() {
             <div
               key={index}
               style={{
+                display: 'flex',
+                width: '220px',
+                height: '100px',
+                padding: '30px 20px',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '10px',
+                borderRadius: '79px',
+                background: 'rgba(245, 245, 250, 0.45)',
                 color: 'var(--color-text)',
               }}
-              className={'logo'}
+              className={'logo opacity-100'}
             >
-              <img src={item.logo} alt={item.name} />
+              <img
+                src={item.logo}
+                className='opacity-60'
+                alt={item.name}
+                style={{
+                  filter:
+                    'brightness(0) saturate(100%) invert(7%) sepia(32%) saturate(2387%) hue-rotate(264deg) brightness(96%) contrast(104%)',
+                }}
+              />
             </div>
           ))}
         </div>

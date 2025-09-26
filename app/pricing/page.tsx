@@ -1,196 +1,182 @@
-import ScrollIcons from '@/components/shared/scroll-icons';
-import { LearnMore } from '@/components/pricing/icons';
-import Prices from '@/components/pricing/prices';
-import UnlockCards from '@/components/pricing/unlock-cards';
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import Card1 from '@/assets/images/pricing/card-1.png';
-import Card2 from '@/assets/images/pricing/card-2.png';
-import Card3 from '@/assets/images/pricing/card-3.png';
-import Card4 from '@/assets/images/pricing/card-4.png';
-import Help from '@/assets/images/pricing/help.png';
-import Affiliate from '@/assets/images/pricing/affiliate.png';
-import Contact from '@/assets/images/pricing/contact.png';
-import '@/styles/pricing.scss';
+import Script from 'next/script';
+import { PricingHeroContainer } from './components/pricing-hero-container';
+import { AiPowerSection } from './components/ai-power-section';
+import { QuestionsSection } from './components/questions-section';
+import { QASection } from './components/qa-section';
+import { PricingStateProvider } from './components/pricing-state-context';
+import { GetStartedSection } from './components/get-started-section';
+import OpenGraphImage from '../../public/images/og-image.png';
 
-const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+const title = 'AppFlowy Pricing - Cloud & Self-hosted Plans';
+const description = 'Choose the perfect AppFlowy plan for your team. Free forever plan, Pro cloud plan ($10/user/month), or self-hosted options from $1/month. AI-powered collaborative workspace with unlimited storage and advanced features.';
 
-export async function generateMetadata (): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${site_url}/pricing`,
+      type: 'website',
+      siteName: 'AppFlowy',
+      images: [
+        {
+          url: OpenGraphImage.src,
+          width: 1200,
+          height: 630,
+          alt: 'AppFlowy Pricing Plans',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [OpenGraphImage.src],
+    },
     alternates: {
       canonical: `${site_url}/pricing`,
     },
+    keywords: [
+      'AppFlowy pricing',
+      'collaborative workspace pricing',
+      'AI workspace plans',
+      'self-hosted workspace',
+      'cloud workspace',
+      'team collaboration pricing',
+      'notion alternative pricing',
+      'free workspace tool',
+      'enterprise workspace',
+      'unlimited storage workspace'
+    ].join(', '),
+    category: 'Software as a Service',
+    authors: [{ name: 'AppFlowy Team' }],
+    creator: 'AppFlowy',
+    publisher: 'AppFlowy',
   };
 }
 
-function Page () {
+// Generate structured data for pricing page
+function generatePricingSchema(siteUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: `${siteUrl}/pricing`,
+    mainEntity: {
+      '@type': 'Product',
+      name: 'AppFlowy',
+      description: 'AI-powered collaborative workspace with cloud and self-hosted options',
+      brand: {
+        '@type': 'Brand',
+        name: 'AppFlowy',
+      },
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Free Plan',
+          description: 'For individuals and small groups to organize everything',
+          price: '0',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '0',
+            priceCurrency: 'USD',
+            billingIncrement: 'month',
+          },
+          eligibleQuantity: {
+            '@type': 'QuantitativeValue',
+            value: 1,
+            unitText: 'user',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Pro Plan',
+          description: 'For small teams to manage projects and team knowledge',
+          price: '10',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '10',
+            priceCurrency: 'USD',
+            billingIncrement: 'month',
+          },
+          eligibleQuantity: {
+            '@type': 'QuantitativeValue',
+            unitText: 'user per month',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Self-hosted Plans',
+          description: 'Enterprise-grade self-hosted solutions starting from $1/month',
+          priceRange: '$1-Custom',
+          priceCurrency: 'USD',
+        },
+      ],
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AppFlowy',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/appflowy.ico`,
+      },
+    },
+    datePublished: new Date().toISOString(),
+    dateModified: new Date().toISOString(),
+  };
+}
+
+function PricingPage() {
+  const pricingSchema = generatePricingSchema(site_url);
+
   return (
     <>
-      <div className={'pricing-page'}>
-        <div className={'af-container'}>
-          <div className={'af-box section-1'}>
-            <div className={'main-title'}>
-              <div>Your work solution.</div>
-              <div className={'text-primary'}>Start free.</div>
-            </div>
-            <Prices />
-          </div>
+      <Script
+        id="pricing-ld-json"
+        type="application/ld+json"
+      >
+        {JSON.stringify(pricingSchema)}
+      </Script>
+      <PricingStateProvider>
+        <div className="pricing-page">
+        {/* Pricing Hero - Main title and deployment selection with full-width background */}
+        <div className="w-full bg-[#F5F5FA] pt-[104px]">
+          <PricingHeroContainer>
+            <h1 className="pricing-hero-title mb-10 sm:mb-12 md:mb-14 lg:mb-16 xl:mb-[60px]">
+              <div className="text-[#101012] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
+                Your work solution.
+              </div>
+              <div className="text-[#8427E0] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
+                Start free.
+              </div>
+            </h1>
+            
+          </PricingHeroContainer>
         </div>
-        <div className={'af-container'}>
-          <div className={'af-box section-2'}>
-            <div className={'flex max-w-[1100px]  flex-col gap-[60px]'}>
-              <div className={'main-title'}>
-              <span>
-                <span className={'text-primary'}>Unlock</span> unlimited AI power
-              </span>
-                <div className={'subtitle'}>AppFlowy AI includes</div>
-              </div>
-              <div className={'cards'}>
-                <div className={'card'}>
-                  <Image
-                    src={Card1}
-                    alt={''}
-                    width={257}
-                    height={320}
-                  />
-                  <div className={'desc'}>Find inspiration</div>
-                </div>
-                <div className={'card'}>
-                  <Image
-                    src={Card2}
-                    alt={''}
-                    width={257}
-                    height={320}
-                  />
-                  <div className={'desc'}>Write better</div>
-                </div>
-                <div className={'card'}>
-                  <Image
-                    src={Card3}
-                    alt={''}
-                    width={257}
-                    height={320}
-                  />
-                  <div className={'desc'}>Autofill tables</div>
-                </div>
-                <div className={'card'}>
-                  <Image
-                    src={Card4}
-                    alt={''}
-                    width={257}
-                    height={320}
-                  />
-                  <div className={'desc'}>Get answers</div>
-                </div>
-              </div>
-            </div>
-            <div className={'flex w-full max-w-[1100px] flex-col gap-[35px]'}>
-              <div className={'w-full text-right text-base max-sm:text-xs'}>
-                Prices in <span className={'font-bold'}>$ USD</span>
-              </div>
-              <UnlockCards />
-            </div>
-          </div>
-        </div>
-        <div className={'w-full bg-white pb-[110px]'}>
-          <ScrollIcons />
-        </div>
-        <div className={'af-container section-3-container'}>
-          <div className="glow"></div>
-          <div className={'af-box section-3'}>
-            <div className={'title'}>
-            <span>
-              Have additional <span className={'text-[#C89AFA]'}>questions?</span>
-            </span>
-            </div>
-            <div className={'cards'}>
-              <div className={'card'}>
-                <div className="glow"></div>
-                <Image
-                  src={Help}
-                  alt={''}
-                  width={151}
-                  height={121}
-                />
-                <div className={'card-title'}>Help articles</div>
-                <Link
-                  href={'https://appflowy.com/guide/getting-started-with-appflowy'}
-                  className={'flex items-center gap-2'}
-                >
-                  Learn more <LearnMore />
-                </Link>
-              </div>
-              <div className={'card'}>
-                <div className="glow"></div>
-                <Image
-                  src={Affiliate}
-                  alt={''}
-                  width={151}
-                  height={121}
-                />
-                <div className={'card-title'}>Affiliate programs</div>
 
-                <Link
-                  href={'/pricing'}
-                  className={'flex items-center gap-2'}
-                >
-                  {/*Learn more <LearnMore />*/}
-                  Coming soon
-                </Link>
-              </div>
-              <div className={'card'}>
-                <div className="glow"></div>
-                <Image
-                  src={Contact}
-                  alt={''}
-                  width={151}
-                  height={121}
-                />
-                <div className={'card-title'}>Contact support</div>
-                <Link
-                  href={'/contact'}
-                  className={'flex items-center gap-2'}
-                >
-                  Contact Us <LearnMore />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={'af-container'}>
-          <div className={'af-box section-4 gap-[30px]'}>
-            <div className="glow"></div>
-            <div className={'flex flex-col items-center gap-5'}>
-              <div className={'title'}>
-              <span>
-                Get started for
-                <span className={'text-[#C89AFA]'}> free</span>
-              </span>
-              </div>
-              <div className={'desc'}>Choose to own your data and a smarter way to work</div>
-            </div>
+        {/* Section 2 - AI Power */}
+        <AiPowerSection />
 
-            <div className={'btns'}>
-              <Link
-                className={'download-btn'}
-                href={'/download'}
-              >
-                Download
-              </Link>
-              <Link
-                className={'live-demo-btn'}
-                href={'/templates'}
-              >
-                Templates
-              </Link>
-            </div>
-          </div>
+        {/* Section 3 - Questions */}
+        <QuestionsSection />
+
+        {/* Section 4 - Q&A */}
+        <QASection />
+
+        {/* Section 5 - Get Started */}
+        <GetStartedSection />
         </div>
-      </div>
+      </PricingStateProvider>
     </>
   );
 }
 
-export default Page;
+export default PricingPage;
