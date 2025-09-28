@@ -17,13 +17,13 @@ const cloudFAQs = [
     id: 'cloud-2',
     question: 'How do I cancel my paid plan?',
     answer:
-      "Your AppFlowy subscription, annual or monthly, will automatically renew until you cancel it. You can cancel your subscription by going to Settings in the left-hand sidebar on a desktop computer, then selecting Billing, then Change plan, then click Downgrade under the Free plan column. After you cancel, you'll lose access to all the paid features immediately.",
+      'Your AppFlowy subscription, annual or monthly, will automatically renew until you cancel it. You can cancel your subscription by going to Settings in the left-hand sidebar on a desktop computer, then selecting Billing, then Change plan, then click Downgrade under the Free plan column. After cancellation, your workspace will immediately move to the Free plan, and any usage above the free limits may be restricted.',
   },
   {
     id: 'cloud-3',
     question: 'How does adding and removing members work?',
     answer:
-      "If you added members, your account will be charged a prorated amount based on the percentage of the billing cycle left when a user was added. If you removed members, you will not receive credit but instead will still have use of that seat for a different user for the remainder of the billing period.\n\nNote: After cancellation, you'll immediately lose access to all Pro features.",
+      'If you added members, your account will be charged a prorated amount based on the percentage of the billing cycle left when a user was added. If you removed members, you will not receive credit but instead will still have use of that seat for a different user for the remainder of the billing period.\n\nNote: After cancellation, your workspace will immediately move to the Free plan, and any usage above the free limits may be restricted.',
   },
   {
     id: 'cloud-4',
@@ -83,7 +83,7 @@ const selfHostedFAQs = [
     id: 'self-7',
     question: 'Do your plans come with customer support?',
     answer:
-      'We provide dedicated support for Team and Enterprise customers. You can access priority support information in the Super Admin panel under the Manage plan tab.',
+      'We provide dedicated support for Team and Enterprise customers. You can access priority support information in the Super Admin panel under the Upgrade Plan tab.',
   },
   {
     id: 'self-8',

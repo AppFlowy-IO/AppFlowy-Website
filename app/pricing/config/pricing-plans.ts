@@ -79,7 +79,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       'Everything in Free, and',
       'Unlimited storage',
-      'Up to 10 workspace members',
+      'Up to 50 workspace members',
       'Up to 100 guest editors',
       'Unlimited AI responses',
       '50 AI images per month',

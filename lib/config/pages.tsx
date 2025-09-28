@@ -143,7 +143,7 @@ export const aboutPageConfig = {
   ),
   communityData: [
     {
-      value: 330,
+      value: 400,
       label: 'GitHub Contributors',
       link: {
         text: 'Get started',
@@ -151,7 +151,7 @@ export const aboutPageConfig = {
       },
     },
     {
-      value: 6000,
+      value: 10000,
       label: 'Community members',
       link: {
         text: 'Join Discord',
@@ -159,7 +159,7 @@ export const aboutPageConfig = {
       },
     },
     {
-      value: 50000,
+      value: 150000,
       label: 'Newsletter subscribers',
       link: {
         text: 'Subscribe',

@@ -25,11 +25,7 @@ interface ContactDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const cloudInquiryTypes = [
-  'Pricing Questions',
-  'Volume Discount',
-  'General Support'
-];
+const cloudInquiryTypes = ['Pricing Questions', 'General Support'];
 
 const selfHostedInquiryTypes = [
   'Pricing Questions',

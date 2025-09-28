@@ -11,7 +11,8 @@ import OpenGraphImage from '../../public/images/og-image.png';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 const title = 'AppFlowy Pricing - Cloud & Self-hosted Plans';
-const description = 'Choose the perfect AppFlowy plan for your team. Free forever plan, Pro cloud plan ($10/user/month), or self-hosted options from $1/month. AI-powered collaborative workspace with unlimited storage and advanced features.';
+const description =
+  'Choose the perfect AppFlowy plan for your team.\nOpen source, true offline support, self-hosted, snappy performance, easy to use, and cross-platform.';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

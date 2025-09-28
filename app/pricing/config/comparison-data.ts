@@ -203,7 +203,7 @@ export const comparisonFeatureGroups: ComparisonFeatureGroup[] = [
           free: 'Coming soon',
           seed: 'Up to 3',
           one: 'Up to 10',
-          team: 'Up to 100',
+          team: 'Up to 1000',
           enterprise: 'Unlimited'
         }
       },
