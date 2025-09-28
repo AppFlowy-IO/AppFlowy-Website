@@ -38,7 +38,7 @@ function MobileViews() {
       },
       {
         value: 'ai_chat',
-        label: 'Chat with AI & GPT-4',
+        label: 'Chat with AI & GPT-5',
         icon: <ChatTeardrop />,
         desc: 'Just ask AI. Get the answers you need\nwithout interrupting a colleague.',
       },

@@ -64,8 +64,8 @@ export default function Page() {
                 <div className={'card-title'}>
                   AI model selection
                   <div className={'card-desc'}>
-                    Run Mistral 7B and Llama 3 on your machine. Choose from{' '}
-                    <span className={'whitespace-nowrap'}>GPT 4-o</span> and Claude 3 Sonnet.
+                  Run local AI models on your machine. Choose from{' '}
+                    <span className={'whitespace-nowrap'}>GPT 5, </span><span className={'whitespace-nowrap'}>Gemini 2.5, </span>and <span className={'whitespace-nowrap'}>Claude 3.7</span>.
                   </div>
                 </div>
               </div>
@@ -157,21 +157,21 @@ export default function Page() {
           <div className={'community-numbers'}>
             <div className={'community-number'}>
               <div className={'flex gap-2'}>
-                <div className={'number'}>6K</div>
+                <div className={'number'}>10K</div>
                 <div className={'plus'} />
               </div>
               <div className={'label'}>Community members</div>
             </div>
             <div className={'community-number'}>
               <div className={'flex gap-2'}>
-                <div className={'number'}>190</div>
+                <div className={'number'}>215</div>
                 <div className={'plus'} />
               </div>
               <div className={'label'}>Countries represented</div>
             </div>
             <div className={'community-number'}>
               <div className={'flex gap-2'}>
-                <div className={'number'}>330</div>
+                <div className={'number'}>400</div>
                 <div className={'plus'} />
               </div>
               <div className={'label'}>Contributors</div>

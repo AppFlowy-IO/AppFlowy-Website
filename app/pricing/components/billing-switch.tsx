@@ -46,7 +46,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
                   className='flex items-center justify-center rounded-md bg-[rgba(200,154,250,0.20)] px-1.5 py-1 sm:px-2 sm:py-1 md:px-2 md:py-1 lg:px-2 lg:py-1 xl:px-2 xl:py-1'
                 >
                   <span className='whitespace-nowrap font-inter text-xs font-medium leading-[150%] text-[#8427E0] sm:text-xs md:text-xs lg:text-xs xl:text-xs'>
-                    Save 20%
+                    Save 25%
                   </span>
                 </motion.div>
               )}
