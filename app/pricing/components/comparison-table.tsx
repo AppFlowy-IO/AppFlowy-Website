@@ -16,29 +16,27 @@ export function ComparisonTable({ show }: ComparisonTableProps) {
   }
 
   return (
-    <Tooltip.Provider>
+    <Tooltip.Provider delayDuration={300} skipDelayDuration={300}>
       <motion.div
-        className="w-full"
+        className='w-full'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3 }}
       >
         {/* Compare plans title */}
-        <div className="text-center py-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-[1100px] mx-auto">
-            <h2 className="font-inter font-medium text-[#101012] text-2xl">
-              Compare plans
-            </h2>
+        <div className='mx-auto w-full max-w-screen-xl px-4 py-10 text-center sm:px-6 lg:px-8'>
+          <div className='mx-auto w-full max-w-[1100px]'>
+            <h2 className='font-inter text-2xl font-medium text-[#101012]'>Compare plans</h2>
           </div>
         </div>
-        
+
         {/* Responsive Table Display */}
-        <div className="hidden md:block">
+        <div className='hidden md:block'>
           <DesktopComparisonTable />
         </div>
-        
-        <div className="block md:hidden">
+
+        <div className='block md:hidden'>
           <MobileComparisonTable />
         </div>
       </motion.div>
