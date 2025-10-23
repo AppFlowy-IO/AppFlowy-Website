@@ -200,7 +200,7 @@ export const comparisonFeatureGroups: ComparisonFeatureGroup[] = [
         name: 'Guest editors',
         tooltip: 'Guests get page access instead of full workspace access',
         support: {
-          free: 'Coming soon',
+          free: 'Up to 3',
           seed: 'Up to 3',
           one: 'Up to 10',
           team: 'Up to 1000',
