@@ -5,14 +5,14 @@ import { useSubscriber } from '@/components/blog/use-subscriber';
 import Reddit from '@/components/icons/reddit';
 import SearchIcon from '@/components/icons/search-icon';
 import Twitter from '@/components/icons/twitter';
-import { PostData } from '@/lib/posts';
+import { PostMetadata } from '@/lib/posts';
 import { cn } from '@/lib/utils';
 import { Grid } from '@mui/material';
 import { orderBy } from 'lodash-es';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
-function Articles({ posts }: { posts: PostData[] }) {
+function Articles({ posts }: { posts: PostMetadata[] }) {
   const { email, setEmail, handleSubscribe } = useSubscriber();
 
   const [searchValue, setSearchValue] = React.useState<string>('');

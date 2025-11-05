@@ -4,13 +4,13 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import React from 'react';
 import OpenGraphImage from '../../public/images/og-image.png';
-import { getAllPosts, PostData } from '@/lib/posts';
+import { getAllPostsMetadata, PostMetadata } from '@/lib/posts';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 const name = 'AppFlowy Blog | In the Flow';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const posts = getAllPosts();
+  const posts = getAllPostsMetadata();
 
   const description = `Receive the latest updates and tips from AppFlowy. Offline mode, self-hosting, iOS and Android, Markdown editing, GPT-4, Claude, Llama, and team collaboration.`;
 
@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function generateListSchema(posts: PostData[], siteUrl: string) {
+function generateListSchema(posts: PostMetadata[], siteUrl: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -89,7 +89,7 @@ function generateListSchema(posts: PostData[], siteUrl: string) {
 }
 
 function Blog() {
-  const posts = getAllPosts();
+  const posts = getAllPostsMetadata();
   const listSchema = generateListSchema(posts, site_url);
 
   return (

@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge';
-import { PostData } from '@/lib/posts';
+import { PostMetadata } from '@/lib/posts';
 import { colorArrayTint, formatDate, stringToColor } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
@@ -12,7 +12,7 @@ function PostItem({
   imageClassName,
 }: {
   showDescription?: boolean;
-  post: PostData;
+  post: PostMetadata;
   showCategories?: boolean;
   useThumbnail?: boolean;
   imageClassName?: string;
