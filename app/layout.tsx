@@ -20,6 +20,7 @@ const metaDescription =
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site_url || 'http://localhost:3000'),
   title: metaTitle,
   description: metaDescription,
   alternates: {
