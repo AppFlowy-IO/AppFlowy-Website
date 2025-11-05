@@ -122,6 +122,16 @@ const nextConfig = {
         headers: securityHeaders,
       },
       {
+        // Cache SVG sprite sheet for 1 year (immutable)
+        source: '/images/company-logos-sprite.svg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         source: '/:all*(docx)',
         headers: [
           {
