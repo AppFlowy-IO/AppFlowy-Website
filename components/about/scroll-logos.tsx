@@ -9,27 +9,43 @@ function ScrollLogos() {
     const scrollContainer = scrollRef.current;
 
     if (!scrollContainer) return;
-    let currentScrollPosition = 0;
 
-    const startScrolling = () => {
-      const move = () => {
+    const mediaQuery = typeof window !== 'undefined' && 'matchMedia' in window ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (mediaQuery?.matches) {
+      scrollContainer.scrollTo(0, 0);
+      return;
+    }
+
+    let currentScrollPosition = scrollContainer.scrollLeft || 0;
+    let animationFrameId: number | null = null;
+    let lastTimestamp = performance.now();
+    const frameDuration = 30;
+
+    const step = (timestamp: number) => {
+      const elapsed = timestamp - lastTimestamp;
+
+      if (elapsed >= frameDuration) {
         const totalWidth = scrollContainer.scrollWidth;
 
-        currentScrollPosition += 1; // move 1px per interval
+        currentScrollPosition += 1;
         if (currentScrollPosition >= totalWidth / 2) {
-          currentScrollPosition = 0; // reset to 0 when it reaches the end
+          currentScrollPosition = 0;
         }
 
         scrollContainer.scrollTo(currentScrollPosition, 0);
-      };
+        lastTimestamp = timestamp;
+      }
 
-      return setInterval(move, 16); // move every 20ms
+      animationFrameId = requestAnimationFrame(step);
     };
 
-    const intervalId = startScrolling();
+    animationFrameId = requestAnimationFrame(step);
 
-    // clear interval on unmount
-    return () => clearInterval(intervalId);
+    return () => {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   const logos = useMemo(
