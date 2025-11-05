@@ -11,7 +11,8 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "test": "NODE_ENV=test cypress open",
     "test:headless": "NODE_ENV=test cypress run --browser chrome",
-    "generate-sitemap": "node scripts/generate-sitemap.js"
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-sprite": "node scripts/generate-sprite.js"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.8",
