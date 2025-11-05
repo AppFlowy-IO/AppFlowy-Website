@@ -39,31 +39,154 @@ export interface PostData {
   unpublished?: boolean;
 }
 
+// Metadata-only type (excludes heavy fields)
+export type PostMetadata = Omit<PostData, 'content' | 'toc' | 'word_count' | 'reading_time'>;
+
 const postsDirectory = path.join(process.cwd(), '_blog');
 
+let cachedPosts: PostData[] | null = null;
+let cachedMetadata: PostMetadata[] | null = null;
+const postCache = new Map<string, PostData>();
+const filenameLookup = new Map<string, string>();
+const legacyFilenameLookup = new Map<string, string>();
+let currentSignature: string | null = null;
+
+const getSlugFromFilename = (fileName: string) => {
+  const [, , , ...rest] = fileName.replace(/\.mdx$/, '').split('-');
+  return rest.join('-');
+};
+
+const isMdxFile = (fileName: string) => fileName.endsWith('.mdx');
+
+function ensureCacheFresh(): string[] {
+  const fileNames = fs.readdirSync(postsDirectory).filter(isMdxFile).sort();
+
+  const signature = fileNames
+    .map((fileName) => {
+      const { mtimeMs, size } = fs.statSync(path.join(postsDirectory, fileName));
+      return `${fileName}:${mtimeMs}:${size}`;
+    })
+    .join('|');
+
+  if (signature !== currentSignature) {
+    cachedPosts = null;
+    cachedMetadata = null;
+    postCache.clear();
+    filenameLookup.clear();
+
+    fileNames.forEach((fileName) => {
+      const slug = getSlugFromFilename(fileName);
+      const baseName = fileName.replace(/\.mdx$/, '');
+
+      if (slug) {
+        filenameLookup.set(slug, fileName);
+      }
+
+      // legacy: related_posts may reference the date-prefixed filename
+      legacyFilenameLookup.set(baseName, fileName);
+    });
+
+    currentSignature = signature;
+  }
+
+  return fileNames;
+}
+
+/**
+ * Get all blog posts with full content.
+ * Results are cached and invalidated when the underlying MDX files change.
+ */
 export function getAllPosts(): PostData[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = ensureCacheFresh();
 
-  return fileNames
+  if (cachedPosts) {
+    return cachedPosts;
+  }
 
+  cachedPosts = fileNames
     .map(getPostByFilename)
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
     .filter((item) => !item.unpublished);
+
+  return cachedPosts;
 }
 
-export async function getPostData(slug: string): Promise<PostData> {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const fileName = fileNames.find((name) => name.includes(slug))!;
+/**
+ * Get all blog posts metadata only (fast operation)
+ * Skips content parsing, TOC generation, word counting, etc.
+ * Use this for listing pages where you don't need full content
+ */
+export function getAllPostsMetadata(): PostMetadata[] {
+  const fileNames = ensureCacheFresh();
 
-  if(!fileName) {
+  if (cachedMetadata) {
+    return cachedMetadata;
+  }
+
+  cachedMetadata = fileNames
+    .map((fileName) => {
+      const fullPath = path.join(postsDirectory, fileName);
+      const slug = getSlugFromFilename(fileName);
+
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data } = matter(fileContents); // Only parse frontmatter, skip content!
+
+      return {
+        slug,
+        unpublished: data.unpublished || false,
+        pinned: data.pinned || 0,
+        title: data.title,
+        description: data.description,
+        author: data.author,
+        author_title: data.author_title,
+        author_url: data.author_url,
+        author_image_url: data.author_image_url,
+        categories: data.categories || [],
+        tags: data.tags || [],
+        date: data.date,
+        video_url: data.video_url,
+        og_image: data.image,
+        thumb_image: data.thumb,
+        last_modified: data.last_modified || data.date,
+        featured: data.featured || false,
+        comments: data.comments !== undefined ? data.comments : true,
+        canonical_url: data.canonical_url,
+        series: data.series,
+        cover_image: data.image,
+        related_posts: data.related,
+      };
+    })
+    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+    .filter((item) => !item.unpublished);
+
+  return cachedMetadata;
+}
+
+/**
+ * Get a single blog post by slug.
+ * Returns a cached post when available; caches are reset if any MDX file
+ * changes to keep content fresh.
+ */
+export async function getPostData(slug: string): Promise<PostData> {
+  ensureCacheFresh();
+
+  const fileName = filenameLookup.get(slug) ?? legacyFilenameLookup.get(slug);
+
+  if (!fileName) {
     console.error(`[getPostData] Post not found for slug: "${slug}"`);
     console.error(`[getPostData] Posts directory: ${postsDirectory}`);
-    console.error(`[getPostData] Available files (${fileNames.length} total):`, fileNames.slice(0, 10));
-    console.error(`[getPostData] Searched with: name.includes("${slug}")`);
+    console.error(`[getPostData] Available slugs: ${Array.from(filenameLookup.keys()).slice(0, 10).join(', ')}`);
     throw new Error('Post not found');
   }
 
-  return getPostByFilename(fileName);
+  if (postCache.has(slug)) {
+    return postCache.get(slug)!;
+  }
+
+  const post = getPostByFilename(fileName);
+  postCache.set(slug, post);
+
+  return post;
 }
 
 export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
@@ -135,4 +258,13 @@ export function getPostByFilename(fileName: string): PostData {
     cover_image: data.image,
     related_posts: data.related,
   };
+}
+
+export function clearPostsCache() {
+  cachedPosts = null;
+  cachedMetadata = null;
+  postCache.clear();
+  filenameLookup.clear();
+  legacyFilenameLookup.clear();
+  currentSignature = null;
 }
