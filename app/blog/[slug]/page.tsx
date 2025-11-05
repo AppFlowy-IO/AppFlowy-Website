@@ -107,6 +107,8 @@ async function getData(slug: string) {
 
     return { post, relatedPosts };
   } catch(error) {
+    console.error(`[getData] Failed to get data for slug: "${slug}"`);
+    console.error(`[getData] Error:`, error);
     notFound();
   }
 }

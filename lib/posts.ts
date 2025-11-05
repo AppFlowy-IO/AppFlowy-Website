@@ -56,6 +56,10 @@ export async function getPostData(slug: string): Promise<PostData> {
   const fileName = fileNames.find((name) => name.includes(slug))!;
 
   if(!fileName) {
+    console.error(`[getPostData] Post not found for slug: "${slug}"`);
+    console.error(`[getPostData] Posts directory: ${postsDirectory}`);
+    console.error(`[getPostData] Available files (${fileNames.length} total):`, fileNames.slice(0, 10));
+    console.error(`[getPostData] Searched with: name.includes("${slug}")`);
     throw new Error('Post not found');
   }
 
@@ -65,9 +69,19 @@ export async function getPostData(slug: string): Promise<PostData> {
 export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
   const relatedPosts = post.related_posts || [];
 
-  const posts = await Promise.all(relatedPosts.map((slug) => getPostData(slug)));
+  const posts = await Promise.all(
+    relatedPosts.map(async (slug) => {
+      try {
+        return await getPostData(slug);
+      } catch (error) {
+        console.error(`[getRelatedPosts] Failed to load related post with slug: "${slug}" for post: "${post.slug}"`);
+        console.error(`[getRelatedPosts] Error:`, error);
+        return null;
+      }
+    })
+  );
 
-  return posts.filter((item) => !item.unpublished);
+  return posts.filter((item) => item !== null && !item.unpublished) as PostData[];
 }
 
 export function getPostByFilename(fileName: string): PostData {
