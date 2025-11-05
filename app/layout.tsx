@@ -6,6 +6,7 @@ import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
 import Script from 'next/script';
+import { ChunkLoadErrorBoundary } from '@/components/error-boundary/chunk-load-error-boundary';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -86,12 +87,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </Script>
     </head>
     <body id={'body'}>
-    <App
-      ua={ua}
-      gitData={gitData}
-    >
-      {children}
-    </App>
+    <ChunkLoadErrorBoundary>
+      <App
+        ua={ua}
+        gitData={gitData}
+      >
+        {children}
+      </App>
+    </ChunkLoadErrorBoundary>
     </body>
     </html>
   );
