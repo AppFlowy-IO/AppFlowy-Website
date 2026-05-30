@@ -181,7 +181,7 @@ export const navigation: Item[] = [
             name: 'Developers Docs',
             desc: 'Everything technical',
             icon: <Docs />,
-            href: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
+            href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
           },
           {
             key: '2',

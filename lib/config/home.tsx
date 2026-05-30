@@ -340,7 +340,7 @@ export const communityConfig = {
       content:
         'There isn’t a one-size-fits-all solution, and there shouldn’t be. Looking for something unique? There’s no need to wait. Design and modify AppFlowy your way and unlock endless possibilities.',
       btnText: 'Developer Docs',
-      btnLink: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
+      btnLink: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
       image: {
         src: communityImage2.src,
         darkSrc: communityDarkImage2.src,

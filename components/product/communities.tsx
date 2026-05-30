@@ -57,7 +57,7 @@ function Communities() {
             </div>
           </div>
           <Link
-            href={'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy'}
+            href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
             target={'_blank'}
             className={'community-btn'}
           >

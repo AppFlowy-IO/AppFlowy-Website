@@ -140,7 +140,7 @@ export const links = [
       },
       {
         name: 'Developer Docs',
-        link: 'https://docs.appflowy.io/docs/essential-documentation/readme/welcome-to-appflowy',
+        link: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
       },
       {
         name: 'AppFlowy Blocks',
