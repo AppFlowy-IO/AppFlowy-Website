@@ -140,7 +140,7 @@ export const navigation: Item[] = [
           {
             key: '1',
             name: 'Self-hosting AppFlowy with AppFlowy Cloud',
-            href: 'https://docs.appflowy.io/docs/guides/appflowy/self-hosting-appflowy',
+            href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
             image: {
               src: '/images/self-hosting-appflowy.webp',
               alt: 'Self-hosting AppFlowy with AppFlowy Cloud',
@@ -273,7 +273,7 @@ export const navigation: Item[] = [
           {
             key: '2',
             name: 'Self-hosting AppFlowy with AppFlowy Cloud',
-            href: 'https://docs.appflowy.io/docs/guides/appflowy/self-hosting-appflowy',
+            href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
             image: {
               src: '/images/self-hosting-appflowy.webp',
               alt: 'Self-hosting AppFlowy with AppFlowy Cloud',
