@@ -55,7 +55,7 @@ function Footer() {
       </div>
       <div className={'bottom'}>
         <div className={'col'}>
-          <div>Copyright © 2025, AppFlowy</div>
+          <div>Copyright © 2026, AppFlowy</div>
         </div>
       </div>
     </div>
