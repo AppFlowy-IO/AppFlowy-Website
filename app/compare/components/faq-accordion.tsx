@@ -2,16 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-interface FAQItem {
-    id: string;
-    question: string;
-    answer: string | React.ReactNode;
-}
-
-interface FAQAccordionProps {
-    items: FAQItem[];
-}
+import { FAQAccordionProps } from '@/lib/faq';
 
 // 展开时的减号图标
 function MinusIcon({ isHovered }: { isHovered: boolean }) {
