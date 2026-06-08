@@ -13,10 +13,11 @@ import Script from 'next/script';
 import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
+import { QASection } from '../components/qa-section';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const title = 'Notion vs AppFlowy | The #1 Open Source Notion Alternative is AppFlowy';
-const description = 'Open source, fast, offline support, self-hosting';
+const title = 'Notion vs AppFlowy | The #1 Open Source, Self Hosted Notion Alternative is AppFlowy';
+const description = 'Discover why AppFlowy is the best self-hosted, open-source Notion alternative. Compare offline mode, self-hosting, local AI, and full data ownership.';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -41,14 +42,13 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
     },
     keywords:
-      'best notion alternative, leading notion alternative, free notion alternative, offline notion alternative, self-hosted notion alternative, top notion alternative',
+      'best notion alternative, leading self-hostable notion alternative, leading notion alternative, free notion alternative, offline notion alternative, best self-hosted notion alternative, top notion alternative',
   };
 }
 
 function generateListSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
+  const webPageSchema = {
+    '@type': ['WebPage', 'ItemPage'],
     name: title,
     description: description,
     url: `${site_url}/compare/notion-vs-appflowy`,
@@ -64,9 +64,15 @@ function generateListSchema() {
             '@type': 'Offer',
             price: '0',
             priceCurrency: 'USD',
-            description: 'Free and open-source',
+            description: 'Free plan available; paid plans from $10/user/month',
           },
-          featureList: [],
+          featureList: [
+            'Cloud-based workspace',
+            'Linked databases and rollups',
+            'Notion AI (add-on)',
+            'Third-party integrations',
+            'Guest sharing and permissions',
+          ],
         },
         {
           '@type': 'SoftwareApplication',
@@ -81,10 +87,13 @@ function generateListSchema() {
           },
           featureList: [
             'Full offline mode',
-            'Self-hosting available',
-            'AI model selection',
+            'Self-hosting available via Docker in under 30 minutes',
+            'AI model selection including local models (Mistral, Llama)',
             'High customization',
             'Native mobile and desktop apps',
+            'Local-first data ownership',
+            'Open-source codebase',
+            'End-to-end data privacy',
           ],
         },
       ],
@@ -96,8 +105,113 @@ function generateListSchema() {
         '@type': 'ImageObject',
         url: `${site_url}/blog-og-image.png`,
       },
+      sameAs: [
+        'https://github.com/AppFlowy-IO/AppFlowy',
+        'https://twitter.com/appflowy',
+      ],
     },
-    dateModified: '2024-10-14',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.main-content', '.desc', '.vs-notion-faq'],
+    },
+    dateModified: new Date().toISOString().split('T')[0],
+  };
+
+  const faqSchema = {
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the biggest difference between Notion and AppFlowy?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "It comes down to where your data lives & who controls it. Notion is a cloud-first, proprietary service. Your data is stored on Notion's servers. It requires an internet connection to work seamlessly, and you are tied to their ecosystem.\n\nAppFlowy is a self-hosted, open-core alternative. Your data lives directly on your computer or a server managed by you. It works 100% offline.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I self-host AppFlowy? Can I self-host Notion?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AppFlowy can be fully self-hosted via AppFlowy Cloud, which you can run on your own server using Docker in under 30 minutes. This gives you complete control over your data, backups, and access. AppFlowy can be self-hosted in under 30 minutes. Notion cannot be self-hosted — it is a fully managed SaaS product with no on-premise option, even on Enterprise plans.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does AppFlowy have an offline mode like Notion?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "AppFlowy is built to be 'local-first,' it doesn't need an internet connection to load your workspaces, databases, or pages. You can work completely offline, and it will sync to the cloud later if you choose to use their cloud sync feature. Notion, on the other hand, is primarily a cloud-based service. While it has some offline capabilities, it's not designed to work fully offline and can be unreliable without an internet connection.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, and this is a massive differentiator for privacy enthusiasts. AppFlowy AI allows you to connect to local, open-source large language models (like Mistral 7B or Llama 3) running directly on your own machine. This means you can use AI to summarize, brainstorm, or write without your data ever leaving your hardware. Notion does not support local AI models.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: "How do AppFlowy's databases compare to Notion's?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Notion's databases are widely considered more mature — they support linked views, rollups, relations between databases, and a wide range of filter/sort options. AppFlowy supports grid, kanban, calendar, and gallery views and is actively developing its database layer. For most personal and small-team use cases, AppFlowy's databases are sufficient. For complex, cross-linked relational setups (e.g. a CRM or product roadmap with multiple linked tables), Notion is a good choice. AppFlowy is rapidly iterating on its database features and plans to support linked views and rollups in the near future.",
+        },
+      },
+    ],
+  };
+
+  const itemListSchema = {
+    '@type': 'ItemList',
+    name: 'Best Self-Hosted Notion Alternative',
+    description:
+      'AppFlowy is the best self-hosted alternative to Notion — open-source, offline-first, and privacy-focused with support for local AI models.',
+    numberOfItems: 1,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: 'AppFlowy',
+          url: site_url,
+          description:
+            'AppFlowy is the leading open-source, self-hosted alternative to Notion. It offers a local-first architecture, full offline support, Docker-based self-hosting in under 30 minutes, and the ability to run AI models locally — making it the best choice for privacy-conscious individuals and teams.',
+          applicationCategory: 'ProductivityApplication',
+          operatingSystem: 'Windows, macOS, Linux, iOS, Android',
+          isAccessibleForFree: true,
+          license: 'https://github.com/AppFlowy-IO/AppFlowy/blob/main/LICENSE',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.6',
+            reviewCount: '500',
+            bestRating: '5',
+            worstRating: '1',
+          },
+          featureList: [
+            'Self-hostable via Docker',
+            'Works 100% offline',
+            'Local AI model support (Mistral, Llama)',
+            'Open-source under AGPL-3.0',
+            'Grid, kanban, calendar, gallery database views',
+            'Native apps for all major platforms',
+            'End-to-end data ownership',
+          ],
+        },
+      },
+    ],
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [webPageSchema, faqSchema, itemListSchema]
   };
 }
 
@@ -231,6 +345,10 @@ function Page() {
             </div>
           </div>
         </div>
+        <div className={'vs-notion-faq'}>
+          <QASection />
+        </div>
+
         <GetStart />
       </div>
     </>
