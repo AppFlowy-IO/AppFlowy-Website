@@ -126,13 +126,13 @@ export function QASection() {
           {/* Title with padding */}
           <div className="px-6 sm:px-8 lg:px-12 xl:px-8">
             <h2 className="text-[#101012] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
-              Questions & <span className="text-[#8427E0]">answers</span>
+              Questions & <span className="text-[#8427E0]">Answers</span>
             </h2>
           </div>
-          
+
           {/* Deployment Tabs - no horizontal padding */}
           <div className="mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-[60px] flex justify-center">
-            <DeploymentTabs 
+            <DeploymentTabs
               deploymentMode={deploymentMode}
               onDeploymentChange={setDeploymentMode}
             />
