@@ -166,6 +166,14 @@ function generateListSchema() {
       },
       {
         '@type': 'Question',
+        name: 'Can AppFlowy fully replace Notion?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For many note-taking, wiki, and project management workflows, yes. Especially when teams prioritize data ownership, offline access, and local AI capabilities, AppFlowy can fully replace Notion for their note-taking and organizational needs. However, Notion has a more mature database system, ecosystem maturity, integrations that some power users rely on. If your workflow heavily depends on complex relational databases, Notion may still be necessary until AppFlowy adds those features.',
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'Does AppFlowy have an offline mode like Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
@@ -262,19 +270,24 @@ const vsNotionFAQs = [
   },
   {
     id: 'vs-notion-3',
+    question: 'Can AppFlowy fully replace Notion?',
+    answer: 'For many note-taking, wiki, and project management workflows, yes. Especially when teams prioritize data ownership, offline access, and local AI capabilities, AppFlowy can fully replace Notion for their note-taking and organizational needs. However, Notion has a more mature database system, ecosystem maturity, integrations that some power users rely on. If your workflow heavily depends on complex relational databases, Notion may still be necessary until AppFlowy adds those features.',
+  },
+  {
+    id: 'vs-notion-4',
     question: 'Does AppFlowy have an offline mode like Notion?',
     answer:
       "AppFlowy is built to be 'local-first,' it doesn't need an internet connection to load your workspaces, databases, or pages. You can work completely offline, and it will sync to the cloud later if you choose to use their cloud sync feature. Notion, on the other hand, is primarily a cloud-based service. While it has some offline capabilities, it's not designed to work fully offline and can be unreliable without an internet connection.",
   },
   {
-    id: 'vs-notion-4',
+    id: 'vs-notion-5',
     question: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
     answer: 'Yes, and this is a massive differentiator for privacy enthusiasts. AppFlowy AI allows you to connect to local, open-source large language models (like Mistral 7B or Llama 3) running directly on your own machine. This means you can use AI to summarize, brainstorm, or write without your data ever leaving your hardware. Notion does not support local AI models.',
   },
   {
-    id: 'vs-notion-5',
+    id: 'vs-notion-6',
     question: "How do AppFlowy's databases compare to Notion's?",
-    answer: "Notion's databases are widely considered more mature — they support linked views, rollups, relations between databases, and a wide range of filter/sort options. AppFlowy supports grid, kanban, calendar, and gallery views and is actively developing its database layer. For most personal and small-team use cases, AppFlowy's databases are sufficient. For complex, cross-linked relational setups (e.g. a CRM or product roadmap with multiple linked tables), Notion is a good choice. AppFlowy is rapidly iterating on its database features and plans to support linked views and rollups in the near future.",
+    answer: "Notion's databases are widely considered more mature — they support a wide range of filter/sort options. AppFlowy supports grid, kanban, calendar, and gallery views and is actively developing its database layer. For most personal and note-taking, wiki, and project management workflow use cases, AppFlowy's databases are sufficient. For complex, cross-linked relational setups, Notion may be stil necessary. AppFlowy is rapidly iterating on its database features and plans to support linked views and rollups in the near future.",
   },
 ];
 
