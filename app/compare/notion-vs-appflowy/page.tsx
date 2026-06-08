@@ -26,12 +26,20 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: `${site_url}/compare/notion-vs-appflowy`,
     },
+    robots: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+    },
     openGraph: {
       title,
       description,
       url: `${site_url}/compare/notion-vs-appflowy`,
-      type: 'website',
+      type: 'article',                          // was 'website' — 'article' unlocks publishedTime/modifiedTime
       siteName: 'AppFlowy',
+      publishedTime: '2024-10-14T00:00:00Z',
+      modifiedTime: new Date().toISOString(),
       images: [
         {
           url: `${site_url}/blog-og-image.png`,
@@ -41,8 +49,28 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       ],
     },
-    keywords:
-      'best notion alternative, leading self-hostable notion alternative, leading notion alternative, free notion alternative, offline notion alternative, best self-hosted notion alternative, top notion alternative',
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${site_url}/blog-og-image.png`],
+    },
+    keywords: [
+      'best notion alternative',
+      'leading self-hostable notion alternative',
+      'leading notion alternative',
+      'free notion alternative',
+      'offline notion alternative',
+      'best self-hosted notion alternative',
+      'top notion alternative',
+      'appflowy vs notion',
+      'notion vs appflowy',
+      'self-host notion alternative docker',
+      'notion alternative offline mode',
+      'notion alternative local ai',
+      'open source notion alternative',
+      'local ai notion alternative',
+    ],
   };
 }
 
