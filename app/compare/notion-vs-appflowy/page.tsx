@@ -153,7 +153,7 @@ function generateListSchema() {
         name: 'What is the biggest difference between Notion and AppFlowy?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "It comes down to where your data lives & who controls it. Notion is a cloud-first, proprietary service. Your data is stored on Notion's servers. It requires an internet connection to work seamlessly, and you are tied to their ecosystem.\n\nAppFlowy is a self-hosted, open-core alternative. Your data lives directly on your computer or a server managed by you. It works 100% offline.",
+          text: "While Notion locks teams into a rigid, proprietary cloud, AppFlowy delivers complete data sovereignty through a modular, self-hosted workspace built to fit your exact infrastructure. AppFlowy gives organizations complete control over where their data lives, how it is stored, and how the platform is deployed.Teams can run AppFlowy on their own infrastructure, in their preferred cloud region, or even in fully air- gapped environments.This enables complete data sovereignty, allowing organizations to meet their own security, compliance, residency, and retention requirements.AppFlowy features a highly modular architecture that seamlessly integrates into your existing IT system via configurable services such as custom authentication, local and on- prem LLMs, public APIs, storage, and white - label applications.This extensible design empowers enterprise teams to tailor AppFlowy directly to their tech stack. Notion is a proprietary SaaS platform that requires organizations to cede control over their data, infrastructure, and feature roadmap.As teams accumulate more data within the platform, they often fall into a trap of severe lock -in, making future migration incredibly difficult.Furthermore, its one - size - fits - all approach lacks the flexibility required to integrate seamlessly into an enterprise's existing infrastructure. For organizations that own their stack and data, AppFlowy is the clear choice over Notion.",
         },
       },
       {
@@ -161,7 +161,7 @@ function generateListSchema() {
         name: 'Can I self-host AppFlowy? Can I self-host Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'AppFlowy can be fully self-hosted via AppFlowy Cloud, which you can run on your own server using Docker in under 30 minutes. This gives you complete control over your data, backups, and access. AppFlowy can be self-hosted in under 30 minutes. Notion cannot be self-hosted — it is a fully managed SaaS product with no on-premise option, even on Enterprise plans.',
+          text: 'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\nOrganizations can self host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\nMost organizations can get AppFlowy running in under 30 minutes using our deployment guides, while still retaining the flexibility to customize the architecture as their requirements evolve.\nNotion can NOT be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service. Organizations',
         },
       },
       {
@@ -169,15 +169,7 @@ function generateListSchema() {
         name: 'Can AppFlowy fully replace Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For many note-taking, wiki, and project management workflows, yes. Especially when teams prioritize data ownership, offline access, and local AI capabilities, AppFlowy can fully replace Notion for their note-taking and organizational needs. However, Notion has a more mature database system, ecosystem maturity, integrations that some power users rely on. If your workflow heavily depends on complex relational databases, Notion may still be necessary until AppFlowy adds those features.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does AppFlowy have an offline mode like Notion?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "AppFlowy is built to be 'local-first,' it doesn't need an internet connection to load your workspaces, databases, or pages. You can work completely offline, and it will sync to the cloud later if you choose to use their cloud sync feature. Notion, on the other hand, is primarily a cloud-based service. While it has some offline capabilities, it's not designed to work fully offline and can be unreliable without an internet connection.",
+          text: "For many organizations & individuals, yes. AppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today. AppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local AI, infrastructure ownership, vault workspace, and deep customization. AppFlowy's database system has rapidly evolved and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows. Organizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find gaps today, but AppFlowy continues to close that gap with every release.",
         },
       },
       {
@@ -185,7 +177,15 @@ function generateListSchema() {
         name: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, and this is a massive differentiator for privacy enthusiasts. AppFlowy AI allows you to connect to local, open-source large language models (like Mistral 7B or Llama 3) running directly on your own machine. This means you can use AI to summarize, brainstorm, or write without your data ever leaving your hardware. Notion does not support local AI models.',
+          text: "Yes, you can run Local AI via Ollama or LMStudio in AppFlowy. This flexibility is especially valuable for organizations with security, compliance, or data residency requirements. Notion AI currently relies on cloud-hosted AI services and does not support running AI models locally on your own infrastructure. AppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: "What unique AI features does AppFlowy offer that Notion doesn't support?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Vault Workspace is a special AI workspace type that Notion doesn't support. It provides a full-featured AI that runs entirely on your device, a rich-text editor that supports 40+ content types and database views for organizing information, and local AI search that answers questions fully offline without a single byte leaving your vault. It is designed for professionals, such as portfolio managers, healthcare consultants, and high-tech researchers, who need maximum control over sensitive data. This combination of local storage, offline access, and locally running AI provides a level of privacy and data ownership that is difficult to achieve with traditional cloud-first workspace platforms. Notion does not offer an equivalent workspace type that combines local data storage with support for locally hosted AI models.",
         },
       },
       {
@@ -193,7 +193,15 @@ function generateListSchema() {
         name: "How do AppFlowy's databases compare to Notion's?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Notion's databases are widely considered more mature — they support linked views, rollups, relations between databases, and a wide range of filter/sort options. AppFlowy supports grid, kanban, calendar, and gallery views and is actively developing its database layer. For most personal and small-team use cases, AppFlowy's databases are sufficient. For complex, cross-linked relational setups (e.g. a CRM or product roadmap with multiple linked tables), Notion is a good choice. AppFlowy is rapidly iterating on its database features and plans to support linked views and rollups in the near future.",
+          text: "AppFlowy's database capabilities have advanced significantly and are among the most feature-complete options available for organizations seeking a self-hostable alternative to Notion. AppFlowy currently supports: Grid (table), Kanban, Calendar, Gallery, List, Feed, Chart views, along with Advanced filters, Two-way relations, Rollups, Calculations and Aggregations, Database templates, Grouping and Sorting options, Linked database workflows, multi-row bulk actions. For most project management, CRM, wiki, operations, and knowledge management use cases, AppFlowy's databases provide everything teams need. Notion still maintains an advantage with Timeline and Map views. However, AppFlowy is actively investing in database development and continues to close the remaining feature gaps while offering deployment flexibility and data ownership that Notion cannot provide.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: "Can I migrate from Notion to AppFlowy?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Yes. AppFlowy provides tools to help individuals and organizations migrate existing content from Notion. AppFlowy provides the most complete Notion migration experience among self-hostable alternatives. You can import pages, documents, databases, and workspace content from Notion into AppFlowy, allowing teams to transition without rebuilding their knowledge base from scratch. For most organizations, migration is a gradual process where teams can evaluate AppFlowy, import existing content, and move workflows over time. AppFlowy has already successfully migrated numerous teams off Notion without ever touching their data, fully preserving their pages, databases, and media with higher reliability. Enterprise teams with large workspaces can contact AppFlowy directly to receive hands-on migration assistance. AppFlowy continues to improve migration tooling and compatibility to make switching from Notion as seamless as possible, while providing additional benefits such as self-hosting, data ownership, local LLMs and deployement flexibility.",
         },
       },
     ],
@@ -260,35 +268,40 @@ const vsNotionFAQs = [
     id: 'vs-notion-1',
     question: 'What is the biggest difference between Notion and AppFlowy?',
     answer:
-      "It comes down to where your data lives and who owns the code. Notion is a cloud-first, proprietary service. Your data is stored on Notion’s servers. It requires an internet connection to work seamlessly, and you are tied to their ecosystem.\n\nAppFlowy is a self-hosted, open-core alternative. Your data lives directly on your computer or a server managed by you. It works 100% offline",
+      "While Notion locks teams into a rigid, proprietary cloud, AppFlowy delivers complete data sovereignty through a modular, self-hosted workspace built to fit your exact infrastructure.\nAppFlowy gives organizations complete control over where their data lives, how it is stored, and how the platform is deployed. Teams can run AppFlowy on their own infrastructure, in their preferred cloud region, or even in fully air-gapped environments. This enables complete data sovereignty, allowing organizations to meet their own security, compliance, residency, and retention requirements.\nAppFlowy features a highly modular architecture that seamlessly integrates into your existing IT system via configurable services such as custom authentication, local and on-prem LLMs, public APIs, storage, and white-label applications. This extensible design empowers enterprise teams to tailor AppFlowy directly to their tech stack.\nNotion is a proprietary SaaS platform that requires organizations to cede control over their data, infrastructure, and feature roadmap. As teams accumulate more data within the platform, they often fall into a trap of severe lock-in, making future migration incredibly difficult. Furthermore, its one-size-fits-all approach lacks the flexibility required to integrate seamlessly into an enterprise's existing infrastructure.\nFor organizations that own their stack and data, AppFlowy is the clear choice over Notion. ",
   },
   {
     id: 'vs-notion-2',
     question: 'Can I self-host AppFlowy? Can I self-host Notion?',
     answer:
-      'AppFlowy can be fully self-hosted via AppFlowy Cloud, which you can run on your own server using Docker. This gives you complete control over your data, backups, and access. AppFlowy can be self-hosted in under 30 minutes. Notion cannot be self-hosted — it is a fully managed SaaS product with no on-premise option, even on Enterprise plans',
+      'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\nOrganizations can self host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\nMost organizations can get AppFlowy running in under 30 minutes using our deployment guides, while still retaining the flexibility to customize the architecture as their requirements evolve.\nNotion can NOT be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service. Organizations',
   },
   {
     id: 'vs-notion-3',
     question: 'Can AppFlowy fully replace Notion?',
-    answer: 'For many note-taking, wiki, and project management workflows, yes. Especially when teams prioritize data ownership, offline access, and local AI capabilities, AppFlowy can fully replace Notion for their note-taking and organizational needs. However, Notion has a more mature database system, ecosystem maturity, integrations that some power users rely on. If your workflow heavily depends on complex relational databases, Notion may still be necessary until AppFlowy adds those features.',
+    answer: "For many organizations & individuals, yes.\nAppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today.\nAppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local AI, infrastructure ownership, vault workspace, and deep customization.\nAppFlowy's database system has rapidly evolved and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows.\nOrganizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find gaps today, but AppFlowy continues to close that gap with every release.",
   },
   {
     id: 'vs-notion-4',
-    question: 'Does AppFlowy have an offline mode like Notion?',
+    question: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
     answer:
-      "AppFlowy is built to be 'local-first,' it doesn't need an internet connection to load your workspaces, databases, or pages. You can work completely offline, and it will sync to the cloud later if you choose to use their cloud sync feature. Notion, on the other hand, is primarily a cloud-based service. While it has some offline capabilities, it's not designed to work fully offline and can be unreliable without an internet connection.",
+      "Yes, you can run Local AI via Ollama or LMStudio in AppFlowy.\nThis flexibility is especially valuable for organizations with security, compliance, or data residency requirements.\nNotion AI currently relies on cloud-hosted AI services and does not support running AI models locally on your own infrastructure.\nAppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
   },
   {
     id: 'vs-notion-5',
-    question: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
-    answer: 'Yes, and this is a massive differentiator for privacy enthusiasts. AppFlowy AI allows you to connect to local, open-source large language models (like Mistral 7B or Llama 3) running directly on your own machine. This means you can use AI to summarize, brainstorm, or write without your data ever leaving your hardware. Notion does not support local AI models.',
+    question: "What unique AI features does AppFlowy offer that Notion doesn't support?",
+    answer: "Vault Workspace is a special AI workspace type that Notion doesn't support. It provides a full-featured AI that runs entirely on your device, a rich-text editor that supports 40+ content types and database views for organizing information, and local AI search that answers questions fully offline without a single byte leaving your vault. It is designed for professionals, such as portfolio managers, healthcare consultants, and high-tech researchers, who need maximum control over sensitive data.\nThis combination of local storage, offline access, and locally running AI provides a level of privacy and data ownership that is difficult to achieve with traditional cloud-first workspace platforms.\nNotion does not offer an equivalent workspace type that combines local data storage with support for locally hosted AI models."
   },
   {
     id: 'vs-notion-6',
     question: "How do AppFlowy's databases compare to Notion's?",
-    answer: "Notion's databases are widely considered more mature — they support a wide range of filter/sort options. AppFlowy supports grid, kanban, calendar, and gallery views and is actively developing its database layer. For most personal and note-taking, wiki, and project management workflow use cases, AppFlowy's databases are sufficient. For complex, cross-linked relational setups, Notion may be stil necessary. AppFlowy is rapidly iterating on its database features and plans to support linked views and rollups in the near future.",
+    answer: "AppFlowy's database capabilities have advanced significantly and are among the most feature-complete options available for organizations seeking a self-hostable alternative to Notion.\nAppFlowy currently supports: Grid (table), Kanban, Calendar, Gallery, List, Feed, Chart views, along with Advanced filters, Two-way relations, Rollups, Calculations and Aggregations, Database templates, Grouping and Sorting options, Linked database workflows, multi-row bulk actions.\nFor most project management, CRM, wiki, operations, and knowledge management use cases, AppFlowy's databases provide everything teams need. Notion still maintains an advantage with Timeline and Map views. However, AppFlowy is actively investing in database development and continues to close the remaining feature gaps while offering deployment flexibility and data ownership that Notion cannot provide.",
   },
+  {
+    id: 'vs-notion-7',
+    question: "Can I migrate from Notion to AppFlowy?",
+    answer: "Yes. AppFlowy provides tools to help individuals and organizations migrate existing content from Notion. AppFlowy provides the most complete Notion migration experience among self-hostable alternatives.\nYou can import pages, documents, databases, and workspace content from Notion into AppFlowy, allowing teams to transition without rebuilding their knowledge base from scratch. For most organizations, migration is a gradual process where teams can evaluate AppFlowy, import existing content, and move workflows over time.\nAppFlowy has already successfully migrated numerous teams off Notion without ever touching their data, fully preserving their pages, databases, and media with higher reliability. Enterprise teams with large workspaces can contact AppFlowy directly to receive hands-on migration assistance.\nAppFlowy continues to improve migration tooling and compatibility to make switching from Notion as seamless as possible, while providing additional benefits such as self-hosting, data ownership, local LLMs and deployement flexibility."
+  }
 ];
 
 function Page() {
