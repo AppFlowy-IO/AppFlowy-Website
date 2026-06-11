@@ -48,7 +48,7 @@
       z-index: 1;
 
       .card {
-        @apply flex-1 h-[318px] flex flex-col items-center gap-6 p-10 rounded-[16px];
+        @apply flex-1 h-[340px] flex flex-col items-center gap-6 p-10 rounded-[16px];
         @apply max-lg:w-[350px] max-md:w-[80vw] max-md:flex-auto max-md:h-[auto]  max-md:p-6;
         @apply relative overflow-hidden bg-white;
 

@@ -95,9 +95,9 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                             }}
                             onAnimationComplete={() => handleAnimationComplete(item.id, isExpanded)}
                         >
-                            <div className='whitespace-pre-line font-inter text-sm font-normal leading-[150%] text-[#58585A] sm:text-base'>
+                            <p className='whitespace-pre-line font-inter text-sm font-normal leading-[150%] text-[#58585A] sm:text-base'>
                                 {item.answer}
-                            </div>
+                            </p>
                         </motion.div>
                     </motion.div>
                 );
