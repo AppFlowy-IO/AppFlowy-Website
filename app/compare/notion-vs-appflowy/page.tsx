@@ -363,8 +363,7 @@ function Page() {
                 <div className={'card-title'}>
                   <h4>On-prem and local AI</h4>
                   <p className={'card-desc'}>
-                    AI on your terms, not your vendor's. Run local models offline
-                    or connect a self-hosted LLM.
+                    AI on your terms, not your vendor&apos;s. Run local models offline or connect a self-hosted LLM.
                   </p>
                 </div>
               </div>
