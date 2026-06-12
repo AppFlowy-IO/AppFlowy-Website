@@ -16,8 +16,8 @@ import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const title = 'Notion vs AppFlowy | The #1 Open Source, Self Hosted Notion Alternative is AppFlowy';
-const description = 'Discover why AppFlowy is the best self-hosted, open-source Notion alternative. Compare offline mode, self-hosting, local AI, and full data ownership.';
+const title = 'Notion vs AppFlowy | The #1 Self-Hosted, Open Core Notion Alternative is AppFlowy';
+const description = 'Discover why AppFlowy is the best self-hosted, open-core Notion alternative. Compare offline mode, self-hosting, local AI, and full data ownership.';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: `${site_url}/compare/notion-vs-appflowy`,
-      type: 'article',                          // was 'website' — 'article' unlocks publishedTime/modifiedTime
+      type: 'article',
       siteName: 'AppFlowy',
       publishedTime: '2024-10-14T00:00:00Z',
       modifiedTime: new Date().toISOString(),
@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${site_url}/blog-og-image.png`,
           width: 1200,
           height: 630,
-          alt: 'The Best Open Source Notion Alternative - AppFlowy',
+          alt: 'The Best Self-Hosted Notion Alternative - AppFlowy',
         },
       ],
     },
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'notion alternative air-gapped',
       'notion alternative local ai',
       'notion alternative local llm',
-      'open source notion alternative',
+      'open core notion alternative',
       'local ai notion alternative',
       'easy to self-host notion alternative',
       'deploy anywhere notion alternative',
@@ -122,7 +122,7 @@ function generateListSchema() {
             'Customization and extensibility',
             'Native mobile and desktop apps',
             'Complete data ownership',
-            'Open-source codebase',
+            'Open Core codebase',
             'Deploy anywhere',
             'End-to-end data privacy',
           ],
@@ -164,7 +164,7 @@ function generateListSchema() {
         name: 'Can I self-host AppFlowy? Can I self-host Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\nOrganizations can self host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\nMost organizations can get AppFlowy running in under 30 minutes using our Deployment guides, Helm charts, while still retaining the flexibility to customize the architecture as their requirements evolve.\nNotion can NOT be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service.',
+          text: 'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\nOrganizations can self-host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\nMost organizations can get AppFlowy running in under 30 minutes using our deployment guides and video tutorials, while still retaining the flexibility to customize the architecture as their requirements evolve.\nNotion cannot be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service.',
         },
       },
       {
@@ -172,7 +172,7 @@ function generateListSchema() {
         name: 'Can AppFlowy fully replace Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "For many organizations & individuals, yes. AppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today. AppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local AI, infrastructure ownership, vault workspace, and deep customization. AppFlowy's database system has rapidly evolved and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows. Organizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find gaps today, but AppFlowy continues to close that gap with every release.",
+          text: "For many organizations and individuals, yes. AppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today. AppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local and on-prem AI, infrastructure ownership, offline workspace, and deep customization. AppFlowy's database system has evolved rapidly and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows. Organizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find limitations today, but AppFlowy continues to close that gap with every release.",
         },
       },
       {
@@ -180,7 +180,7 @@ function generateListSchema() {
         name: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Yes, you can run Local AI via Ollama or LMStudio in AppFlowy. This flexibility is especially valuable for organizations with security, compliance, or data residency requirements. Notion AI currently relies on cloud-hosted AI services and does not support running AI models locally on your own infrastructure. AppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
+          text: "Yes, you can run local AI via Ollama or LMStudio in AppFlowy. This flexibility is especially valuable for organizations with security, compliance, or data residency requirements. Notion AI, by contrast, currently relies on third-party, cloud-hosted AI services and does not support running AI models locally on your own infrastructure. AppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
         },
       },
       {
@@ -264,7 +264,7 @@ function generateListSchema() {
   };
 }
 
-const points = ['Self-hosting', 'Complete Data Control', 'Local & on-prem LLM support', 'Customization and extensibility', 'Offline workspace', 'Native mobile and desktop apps', 'Open-Core'];
+const points = ['Self-hosting', 'Complete Data Control', 'Local and on-prem LLM support', 'Customization and extensibility', 'Offline workspace', 'Native mobile and desktop apps', 'Open-Core'];
 
 const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
@@ -279,18 +279,18 @@ const vsNotionFAQs = [
     id: 'vs-notion-2',
     question: 'Can I self-host AppFlowy? Can I self-host Notion?',
     answer:
-      'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\n\nOrganizations can self host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\n\nMost organizations can get AppFlowy running in under 30 minutes using our Deployment guides, Helm charts, while still retaining the flexibility to customize the architecture as their requirements evolve.\n\nNotion can NOT be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service.',
+      'Yes, AppFlowy can be fully self-hosted and deployed on infrastructure you control.\n\nOrganizations can self-host AppFlowy using Docker, Kubernetes, or their preferred infrastructure stack while maintaining complete control over networking, storage, authentication, backups, and security policies. Teams can also choose which components to enable, including AI services, object storage providers, and external integrations.\n\nMost organizations can get AppFlowy running in under 30 minutes using our deployment guides and video tutorials, while still retaining the flexibility to customize the architecture as their requirements evolve.\n\nNotion cannot be self-hosted. All Notion plans, including Enterprise, are delivered as a fully managed out-of-the-box SaaS service.',
   },
   {
     id: 'vs-notion-3',
     question: 'Can AppFlowy fully replace Notion?',
-    answer: "For many organizations & individuals, yes.\n\nAppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today.\n\nAppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local AI, infrastructure ownership, vault workspace, and deep customization.\n\nAppFlowy's database system has rapidly evolved and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows.\n\nOrganizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find gaps today, but AppFlowy continues to close that gap with every release.",
+    answer: "For many organizations and individuals, yes.\n\nAppFlowy provides collaborative documents, wikis, project management, databases, AI capabilities, and workspace management features that cover the majority of workflows teams use Notion for today.\n\nAppFlowy offers capabilities that many organizations require but cannot achieve with Notion, including self-hosting, deployment flexibility, local and on-prem AI, infrastructure ownership, offline workspace, and deep customization.\n\nAppFlowy's database system has evolved rapidly and now includes advanced filters, two-way relations, rollups, calculations, templates, and multiple database views. Combined with a rich-text editor that supports 40+ content types, AppFlowy can support a wide range of knowledge management and operational workflows.\n\nOrganizations that rely heavily on Notion's most advanced ecosystem integrations or specific database views such as Timeline and Map views may still find limitations today, but AppFlowy continues to close that gap with every release.",
   },
   {
     id: 'vs-notion-4',
     question: 'Can I run AI locally in AppFlowy? Can I run AI locally in Notion?',
     answer:
-      "Yes, you can run Local AI via Ollama or LMStudio in AppFlowy.\n\nThis flexibility is especially valuable for organizations with security, compliance, or data residency requirements.\n\nNotion AI currently relies on cloud-hosted AI services and does not support running AI models locally on your own infrastructure.\n\nAppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
+      "Yes, you can run local AI via Ollama or LMStudio in AppFlowy.\n\nThis flexibility is especially valuable for organizations with security, compliance, or data residency requirements.\n\nNotion AI, by contrast, currently relies on third-party, cloud-hosted AI services and does not support running AI models locally on your own infrastructure.\n\nAppFlowy allows organizations to connect local and self-hosted AI models, enabling AI-powered workflows without sending sensitive information to external providers. Teams can choose the AI models they use, where those models run, and whether AI features are enabled at all.",
   },
   {
     id: 'vs-notion-5',
@@ -338,9 +338,9 @@ function Page() {
             </div>
             <div className={'main-content'}>
               <h1>
-                The #1 Open Source <span className={'text-primary'}>Notion Alternative</span>
+                The #1 Self-Hosted <span className={'text-primary'}>Notion Alternative</span>
               </h1>
-              <p className={'desc'}>Open core, self-hosting, local and on-prem AI, cross platform</p>
+              <p className={'desc'}>Open core, self-hosted, local and on-prem AI, cross platform</p>
             </div>
             <ImportLink importBaseURL={importBaseURL} />
           </div>
