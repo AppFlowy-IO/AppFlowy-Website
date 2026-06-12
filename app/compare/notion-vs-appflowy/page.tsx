@@ -151,19 +151,11 @@ function generateListSchema() {
           name: 'AppFlowy',
           applicationCategory: 'ProductivityApplication',
           operatingSystem: 'All',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-            description: 'Free plan available; paid enterprise plans with additional features and support',
-          },
           featureList: [
             'Self-hosted with Docker, Kubernetes, or air-gapped deployment',
             'Local and on-prem LLM support',
             'Customization and extensibility',
-            'Native mobile and desktop apps',
             'Complete data ownership',
-            'Open-Core codebase',
             'Deploy anywhere',
             'End-to-end data privacy',
           ],
@@ -201,57 +193,9 @@ function generateListSchema() {
     })),
   };
 
-  const itemListSchema = {
-    '@type': 'ItemList',
-    name: 'Best Self-Hosted Notion Alternative',
-    description:
-      'AppFlowy is the best self-hosted alternative to Notion — open-core, offline-first, and privacy-focused with support for local AI models.',
-    numberOfItems: 1,
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        item: {
-          '@type': 'SoftwareApplication',
-          name: 'AppFlowy',
-          url: site_url,
-          description:
-            'AppFlowy is the leading open-core, self-hosted alternative to Notion. It offers a local-first architecture, full offline support, Docker-based self-hosting in under 30 minutes, and the ability to run AI models locally — making it the best choice for privacy-conscious individuals and teams.',
-          applicationCategory: 'ProductivityApplication',
-          operatingSystem: 'Windows, macOS, Linux, iOS, Android',
-          isAccessibleForFree: true,
-          license: 'https://github.com/AppFlowy-IO/AppFlowy/blob/main/LICENSE',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.8',
-            reviewCount: '1500',
-            bestRating: '5',
-            worstRating: '1',
-          },
-          featureList: [
-            'Self-hosted, Deploy anywhere',
-            'Local and on-prem LLM support',
-            'Customization and extensibility',
-            'Open-core under AGPL-3.0',
-            'Grid, kanban, calendar, gallery database views',
-            'Native apps for all major platforms',
-            'Complete data ownership',
-            'Offline workspace',
-            'Modular architecture'
-          ],
-        },
-      },
-    ],
-  };
-
   return {
     "@context": "https://schema.org",
-    "@graph": [webPageSchema, faqSchema, itemListSchema]
+    "@graph": [webPageSchema, faqSchema]
   };
 }
 
