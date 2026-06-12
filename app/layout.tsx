@@ -64,7 +64,7 @@ function generateListSchema() {
     foundingDate: '2021',
     foundingLocation: {
       '@type': 'Place',
-      name: 'Global',
+      name: 'Singapore',
     },
     contactPoint: {
       '@type': 'ContactPoint',
@@ -75,9 +75,10 @@ function generateListSchema() {
     sameAs: [
       'https://github.com/AppFlowy-IO/AppFlowy',
       'https://twitter.com/appflowy',
-      'https://discord.gg/appflowy',
-      'https://www.youtube.com/@AppFlowy',
+      'https://discord.gg/9Q2xaN37tV',
+      'https://www.youtube.com/@appflowyhq',
       'https://www.linkedin.com/company/appflowy',
+      'https://www.reddit.com/r/AppFlowy'
     ],
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -107,7 +108,7 @@ function generateListSchema() {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
-      category: 'Free',
+      category: 'Free and paid plans available',
     },
     featureList: [
       'Self-hosted deployment',
@@ -128,7 +129,7 @@ function generateListSchema() {
       bestRating: '5',
       worstRating: '1',
     },
-    downloadUrl: 'https://appflowy.io/download',
+    downloadUrl: 'https://appflowy.com/download',
     screenshot: `${site_url}/images/og-image.png`,
   };
 
@@ -148,28 +149,9 @@ function generateListSchema() {
     },
   };
 
-  const breadcrumbListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: site_url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'AppFlowy - The Open-Source Notion Alternative',
-        item: site_url,
-      },
-    ],
-  };
-
   return {
     '@context': 'https://schema.org',
-    '@graph': [organizationSchema, softwareApplicationSchema, websiteSchema, breadcrumbListSchema],
+    '@graph': [organizationSchema, softwareApplicationSchema, websiteSchema],
   };
 }
 
