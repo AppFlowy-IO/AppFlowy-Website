@@ -3,58 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePricingState } from './pricing-state-context';
-
-interface FAQItem {
-  id: string;
-  question: string;
-  answer: string | React.ReactNode;
-}
-
-interface FAQAccordionProps {
-  items: FAQItem[];
-}
-
-// 展开时的减号图标
-function MinusIcon({ isHovered }: { isHovered: boolean }) {
-  return (
-    <motion.svg
-      xmlns='http://www.w3.org/2000/svg'
-      className='h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8'
-      viewBox='0 0 32 32'
-      fill='none'
-    >
-      <motion.path
-        d='M5.33203 16H26.6654'
-        stroke={isHovered ? '#9327FF' : '#101012'}
-        strokeWidth='1.5'
-        strokeLinecap='round'
-        animate={{ stroke: isHovered ? '#9327FF' : '#101012' }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      />
-    </motion.svg>
-  );
-}
-
-// 收起时的加号图标
-function PlusIcon({ isHovered }: { isHovered: boolean }) {
-  return (
-    <motion.svg
-      xmlns='http://www.w3.org/2000/svg'
-      className='h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8'
-      viewBox='0 0 32 32'
-      fill='none'
-    >
-      <motion.path
-        d='M5.33398 16.0026H26.6673M16.0007 26.6693V16.0026L16.0007 5.33594'
-        stroke={isHovered ? '#9327FF' : '#101012'}
-        strokeWidth='1.5'
-        strokeLinecap='round'
-        animate={{ stroke: isHovered ? '#9327FF' : '#101012' }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      />
-    </motion.svg>
-  );
-}
+import { FAQAccordionProps } from '@/lib/faq';
+import MinusIcon from '@/components/icons/minus-icon';
+import PlusIcon from '@/components/icons/plus-icon';
 
 export function FAQAccordion({ items }: FAQAccordionProps) {
   const { deploymentMode } = usePricingState();
@@ -104,19 +55,18 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
         return (
           <motion.div
             key={item.id}
-            className={`flex cursor-pointer flex-col justify-center rounded-[15px] border-2 bg-white px-6 py-6 sm:px-8 sm:py-8 md:px-[40px] md:py-[40px] select-none touch-manipulation ${
-              isExpanded ? 'gap-3 sm:gap-4 md:gap-[15px]' : isAnimating ? 'gap-3' : 'gap-0'
-            }`}
+            className={`flex cursor-pointer flex-col justify-center rounded-[15px] border-2 bg-white px-6 py-6 sm:px-8 sm:py-8 md:px-[40px] md:py-[40px] select-none touch-manipulation ${isExpanded ? 'gap-3 sm:gap-4 md:gap-[15px]' : isAnimating ? 'gap-3' : 'gap-0'
+              }`}
             style={{
               WebkitTapHighlightColor: 'transparent',
               ...(isHovered
                 ? {
-                    borderColor: 'transparent',
-                    background: `linear-gradient(white, white) padding-box, ${getGradient()} border-box`,
-                  }
+                  borderColor: 'transparent',
+                  background: `linear-gradient(white, white) padding-box, ${getGradient()} border-box`,
+                }
                 : {
-                    borderColor: 'rgba(213, 215, 222, 0.40)',
-                  })
+                  borderColor: 'rgba(213, 215, 222, 0.40)',
+                })
             }}
             animate={{
               borderColor: isHovered ? 'transparent' : 'rgba(213, 215, 222, 0.40)',
