@@ -2,7 +2,6 @@ import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import GetStart from '@/components/product/get-start';
-import ImportLink from '@/components/vs-outline/import-link';
 import OutlineImage from '@/assets/images/vs-notion/outline.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
@@ -13,7 +12,9 @@ import Script from 'next/script';
 import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
+
 import { QASection } from '../components/qa-section';
+import SelfHostLink from '../components/self-host-link';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs Outline | The Best Self-Hosted Enterprise Wiki';
@@ -152,46 +153,53 @@ function generateListSchema() {
         description: description,
         url: `${site_url}/compare/appflowy-vs-outline`,
         mainEntity: {
-            '@type': 'Article',
-            about: [
+            '@type': 'ItemList',
+            itemListElement: [
                 {
-                    '@type': 'SoftwareApplication',
-                    name: 'AppFlowy',
-                    applicationCategory: 'ProductivityApplication',
-                    operatingSystem: 'All',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Self-hosted workspace with documentation, databases, and AI features',
+                    '@type': 'ListItem',
+                    position: 1,
+                    item: {
+                        '@type': 'SoftwareApplication',
+                        name: 'AppFlowy',
+                        applicationCategory: 'ProductivityApplication',
+                        operatingSystem: 'All',
+                        offers: {
+                            '@type': 'Offer',
+                            price: '0',
+                            priceCurrency: 'USD',
+                            description: 'Self-hosted workspace with documentation, databases, and AI features',
+                        },
+                        featureList: [
+                            'Self-hosted workspace with documentation',
+                            'Databases and kanban boards',
+                            'Local and on-prem LLM support',
+                            'AI-powered features',
+                            'Native desktop and mobile apps',
+                            'Complete data ownership',
+                        ],
                     },
-                    featureList: [
-                        'Self-hosted workspace with documentation',
-                        'Databases and kanban boards',
-                        'Local and on-prem LLM support',
-                        'AI-powered features',
-                        'Native desktop and mobile apps',
-                        'Complete data ownership',
-                    ],
                 },
                 {
-                    '@type': 'SoftwareApplication',
-                    name: 'Outline',
-                    applicationCategory: 'ProductivityApplication',
-                    operatingSystem: 'Web-based',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Open-source team wiki focused on documentation',
+                    '@type': 'ListItem',
+                    position: 2,
+                    item: {
+                        '@type': 'SoftwareApplication',
+                        name: 'Outline',
+                        applicationCategory: 'ProductivityApplication',
+                        operatingSystem: 'Web-based',
+                        offers: {
+                            '@type': 'Offer',
+                            price: '0',
+                            priceCurrency: 'USD',
+                            description: 'Open-source team wiki focused on documentation',
+                        },
+                        featureList: [
+                            'Web-based team wiki',
+                            'Block-based editor',
+                            'Version history',
+                            'Collaborative editing',
+                        ],
                     },
-                    featureList: [
-                        'Web-based team wiki',
-                        'Block-based editor',
-                        'Version history',
-                        'Collaborative editing',
-                        'Integrations',
-                    ],
                 },
             ],
         },
@@ -233,17 +241,13 @@ function generateListSchema() {
 }
 
 const points = [
-    'Self-hosting',
-    'Block-based Editor',
-    'Collaborative Editing',
-    'AI Search',
-    'Version History',
+    'Local and on-prem LLM support',
     'Database Support',
+    'Kanban Boards',
+    'Calendar Views',
     'AI Writing Assistance',
     'Native Desktop & Mobile Apps',
 ];
-
-const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
 function Page() {
     return (
@@ -278,7 +282,7 @@ function Page() {
                             </h1>
                             <p className={'desc'}>Self-hosted, knowledge management, Notion alternatives, database, cross platform</p>
                         </div>
-                        <ImportLink importBaseURL={importBaseURL} />
+                        <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
@@ -313,8 +317,8 @@ function Page() {
                                 />
 
                                 <div className={'card-title'}>
-                                    <h4>Projects and Databases</h4>
-                                    <p className={'card-desc'}>Capture every detail in a database. Visualize the work in distinct formats, from calendars to boards.</p>
+                                    <h4>Not just a Wiki</h4>
+                                    <p className={'card-desc'}>Capture every detail in a database. Visualize in various formats, from calendars to boards.</p>
                                 </div>
                             </div>
 
@@ -351,21 +355,12 @@ function Page() {
                                 >
                                     <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point === 'Database Support' || point === 'AI Writing Assistance' || point === 'Native Desktop & Mobile Apps' ? (
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        ) : (
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                        )}
+                                        <Image
+                                            src={CloseImage}
+                                            alt={'Close'}
+                                            width={20}
+                                            height={20}
+                                        />
                                     </div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
                                         <Image
