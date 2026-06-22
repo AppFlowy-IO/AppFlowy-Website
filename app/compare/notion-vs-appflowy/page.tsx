@@ -135,7 +135,7 @@ function generateListSchema() {
             '@type': 'SoftwareApplication',
             name: 'AppFlowy',
             applicationCategory: 'ProductivityApplication',
-            operatingSystem: 'All',
+            operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
             featureList: [
               'Self-hosted with Docker, Kubernetes, or air-gapped deployment',
               'Local and on-prem LLM support',
@@ -153,7 +153,7 @@ function generateListSchema() {
             '@type': 'SoftwareApplication',
             name: 'Notion',
             applicationCategory: 'ProductivityApplication',
-            operatingSystem: 'All',
+            operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
             offers: {
               '@type': 'Offer',
               price: '0',
@@ -178,8 +178,11 @@ function generateListSchema() {
         url: `${site_url}/blog-og-image.png`,
       },
       sameAs: [
+        'https://appflowy.com',
         'https://github.com/AppFlowy-IO/AppFlowy',
         'https://twitter.com/appflowy',
+        'https://www.linkedin.com/company/appflowy',
+        'https://www.youtube.com/@AppFlowyHQ',
       ],
     },
     speakable: {
@@ -294,7 +297,7 @@ function Page() {
 
                 <div className={'card-title'}>
                   <h4>Cross-platform</h4>
-                  <p className={'card-desc'}>{`Works consistently across platforms your team works on; including completely offline.`}</p>
+                  <p className={'card-desc'}>{`Works consistently across platforms your team works on, including completely offline.`}</p>
                 </div>
               </div>
             </div>

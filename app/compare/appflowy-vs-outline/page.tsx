@@ -162,7 +162,7 @@ function generateListSchema() {
                         '@type': 'SoftwareApplication',
                         name: 'AppFlowy',
                         applicationCategory: 'ProductivityApplication',
-                        operatingSystem: 'All',
+                        operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
                         offers: {
                             '@type': 'Offer',
                             price: '0',
@@ -186,12 +186,12 @@ function generateListSchema() {
                         '@type': 'SoftwareApplication',
                         name: 'Outline',
                         applicationCategory: 'ProductivityApplication',
-                        operatingSystem: 'Web-based',
+                        operatingSystem: 'Web',
                         offers: {
                             '@type': 'Offer',
                             price: '0',
                             priceCurrency: 'USD',
-                            description: 'Open-source team wiki focused on documentation',
+                            description: 'Self-hosted team wiki focused on documentation',
                         },
                         featureList: [
                             'Web-based team wiki',
@@ -211,8 +211,11 @@ function generateListSchema() {
                 url: `${site_url}/blog-og-image.png`,
             },
             sameAs: [
+                'https://appflowy.com',
                 'https://github.com/AppFlowy-IO/AppFlowy',
                 'https://twitter.com/appflowy',
+                'https://www.linkedin.com/company/appflowy',
+                'https://www.youtube.com/@AppFlowyHQ',
             ],
         },
         speakable: {
@@ -375,7 +378,7 @@ function Page() {
                         </div>
                     </div>
                 </div>
-                <div className={'vs-notion-faq'}>
+                <div className={'vs-outline-faq'}>
                     <QASection items={vsOutlineFAQs} />
                 </div>
 
