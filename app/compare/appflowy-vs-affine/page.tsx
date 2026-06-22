@@ -3,7 +3,7 @@ import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import GetStart from '@/components/product/get-start';
 import ImportLink from '@/components/vs-notion/import-link';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
-import AffineImage from '@/assets/images/vs-notion/notion.svg';
+import AffineImage from '@/assets/images/vs-notion/affine.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
 import RightImage from '@/assets/images/vs-notion/right.svg';
@@ -22,7 +22,7 @@ const description = 'Both are open-source, both are self-hostable, and both aim 
 const vsAffineFAQs = [
     {
         id: 'vs-affine-1',
-        question: 'Is Affine truly open source?',
+        question: 'How do AppFlowy and Affine truly open source?',
         answer:
             'No, Affine is not fully open source by OSI standards.\n\nWhile the frontend client is permissively licensed (MPL 2.0 / MIT), all content under `packages/backend` and `packages/common/native` is licensed under a separate license with significant restrictions. The backend server\'s "EE" license places limitations on use, modification, and distribution that would not generally be considered open source.\n\nAFFiNE maintainers have clarified that the server part is "not required and it\'s an addon — you can still use AFFiNE offline without any issue, but sync and collaboration features will not be available." However, this creates a practical problem: most users rely on their Cloud Workspace, which requires internet connection all the time.\n\nAppFlowy, by contrast, is genuinely open source under the AGPL license, with a clear open-core model. All components, including the backend, are available under the same open-source license, providing true transparency and no hidden proprietary layers.',
     },
@@ -51,7 +51,7 @@ const vsAffineFAQs = [
     {
         id: 'vs-affine-7',
         question: 'What unique features does Affine have that AppFlowy doesn\'t?',
-        answer: "Affine's primary unique feature is its Canvas/whiteboard integration. AFFiNE's ability to place a database on an infinite canvas and convert frames to databases has no direct AppFlowy equivalent — genuinely differentiated for visual thinkers.\n\nHowever, this edge is limited to a specific use case (visual planning workflows) and doesn't outweigh Affine's broader limitations in database functionality, stability, open-source commitment, and enterprise-readiness.",
+        answer: "Affine's standout feature is its Canvas/whiteboard integration. The ability to place databases on an infinite canvas, convert frames to databases, and switch seamlessly between document and edgeless modes is genuinely differentiated. For visual thinkers and teams that combine brainstorming with structured documentation, this hybrid doc-plus-canvas workflow is unique among open-source tools.\n\nAppFlowy does not currently offer an equivalent infinite canvas feature. However, AppFlowy compensates with significantly stronger database functionality, more mature enterprise features (SAML SSO, admin panels, audit logs), and a fully open-source backend without license restrictions. The choice depends on whether your workflow prioritizes visual canvas planning or structured data management.",
     },
     {
         id: 'vs-affine-8',
@@ -229,7 +229,7 @@ function Page() {
                             <h1>
                                 AppFlowy vs. Affine (2026): <span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
                             </h1>
-                            <p className={'desc'}>A head-to-head comparison of the two leading open-source workspace platforms — and why teams that are serious about data ownership, database power, and true offline freedom choose AppFlowy.</p>
+                            <p className={'desc'}>A head-to-head comparison of the two leading open-source workspace platforms.</p>
                         </div>
                         <ImportLink importBaseURL={importBaseURL} />
                     </div>
