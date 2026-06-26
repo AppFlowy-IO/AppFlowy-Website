@@ -37,7 +37,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-3',
         question: "What's the biggest difference between AppFlowy and Outline?",
         answer:
-            "Outline is primarily a team wiki focused on documentation and knowledge management.\n\nAppFlowy is a broader workspace that combines documents, databases, kanban boards, task management, and AI-powered tools in a single platform.\n\nFor teams currently stitching together Outline + a project management tool, AppFlowy is a compelling consolidation play that provides everything Outline does for docs, plus databases, kanban, and task management in one tool.",
+            "Outline is primarily a team wiki focused on documentation and knowledge management.\n\nAppFlowy is a broader workspace that combines wikis, databases, kanban boards, project management, and AI-powered tools in a single platform.\n\nFor teams currently stitching together Outline + a project management tool, AppFlowy is a compelling consolidation play that provides everything Outline does for docs, plus databases, kanban, and project management in one tool.",
     },
     {
         id: 'vs-outline-4',
@@ -79,7 +79,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-10',
         question: 'Which platform is better as a Notion alternative?',
         answer:
-            'If you\'re looking for a broader workspace that combines documents, databases, project management, and AI features in a single tool, AppFlowy is the stronger choice.',
+            'If you\'re looking for a broader workspace that combines wikis, databases, project management, and AI features in a single tool, AppFlowy is the stronger choice.',
     },
     {
         id: 'vs-outline-11',
