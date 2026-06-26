@@ -210,7 +210,80 @@ function generateListSchema() {
   };
 }
 
-const points = ['Self-hosting', 'Complete Data Control', 'Local and on-prem LLM support', 'Customization and extensibility', 'Offline workspace', 'Native mobile and desktop apps', 'Open-Core'];
+const points = [
+  {
+    text: 'Self-hosted',
+    competitor: false,
+  },
+  {
+    text: 'Complete Data Control',
+    competitor: false,
+  },
+  {
+    text: 'Local and on-prem LLM support',
+    competitor: false,
+  },
+  {
+    text: 'Open-Core',
+    competitor: false,
+  },
+  {
+    text: 'Customization and extensibility',
+    competitor: false,
+  },
+  {
+    text: 'Offline workspace',
+    competitor: false,
+  },
+  {
+    text: 'Native Desktop & Mobile Apps',
+    competitor: false,
+  },
+  {
+    text: 'Collaborative Editing',
+    competitor: true,
+  },
+  {
+    text: 'Relational Databases',
+    competitor: true,
+  },
+  {
+    text: 'Kanban, Calendar, Gallery Views',
+    competitor: true,
+  },
+  {
+    text: 'AI Chat, Writing, Summary',
+    competitor: true,
+  },
+  {
+    text: 'AI Meeting Notes',
+    competitor: true,
+  },
+  {
+    text: 'Version History',
+    competitor: true,
+  },
+  {
+    text: 'Granular Permissions',
+    competitor: true,
+  },
+  {
+    text: 'Block-based Editor',
+    competitor: true,
+  },
+  {
+    text: 'Hierarchical docs/wiki structure',
+    competitor: true,
+  },
+  {
+    text: 'Inline comments',
+    competitor: true,
+  },
+  {
+    text: 'SSO/SAML',
+    competitor: true,
+  },
+];
 
 const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
@@ -313,19 +386,28 @@ function Page() {
               </div>
               {points.map((point) => (
                 <div
-                  key={point}
+                  key={point.text}
                   className={
                     'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
                   }
                 >
-                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
+                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
                   <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                    <Image
-                      src={CloseImage}
-                      alt={'Close'}
-                      width={20}
-                      height={20}
-                    />
+                    {point.competitor ?
+                      <Image
+                        src={RightImage}
+                        alt={'Right'}
+                        width={26}
+                        height={16}
+                      />
+                      :
+                      <Image
+                        src={CloseImage}
+                        alt={'Close'}
+                        width={20}
+                        height={20}
+                      />
+                    }
                   </div>
                   <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
                     <Image

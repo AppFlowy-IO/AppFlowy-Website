@@ -244,12 +244,70 @@ function generateListSchema() {
 }
 
 const points = [
-    'Local and on-prem LLM support',
-    'Database Support',
-    'Kanban Boards',
-    'Calendar Views',
-    'AI Writing Assistance',
-    'Native Desktop & Mobile Apps',
+    {
+        text: 'Local and on-prem LLM support',
+        competitor: false,
+    },
+    {
+        text: 'Database Support',
+        competitor: false,
+    },
+    {
+        text: 'Kanban Boards',
+        competitor: false,
+    },
+    {
+        text: 'Calendar Views',
+        competitor: false,
+    },
+    {
+        text: 'AI Writing Assistance',
+        competitor: false,
+    },
+    {
+        text: 'AI meeting notes',
+        competitor: false,
+    },
+    {
+        text: 'AI transcript',
+        competitor: false,
+    },
+    {
+        text: 'Native Desktop & Mobile Apps',
+        competitor: false,
+    },
+    {
+        text: 'Self-hosted',
+        competitor: true,
+    },
+    {
+        text: 'Collaborative Editing',
+        competitor: true,
+    },
+    {
+        text: 'Version History',
+        competitor: true,
+    },
+    {
+        text: 'Granular Permissions',
+        competitor: true,
+    },
+    {
+        text: 'Block-based Editor',
+        competitor: true,
+    },
+    {
+        text: 'Hierarchical docs/wiki structure',
+        competitor: true,
+    },
+    {
+        text: 'Inline comments',
+        competitor: true,
+    },
+    {
+        text: 'SSO/SAML',
+        competitor: true,
+    },
 ];
 
 function Page() {
@@ -320,7 +378,7 @@ function Page() {
                                 />
 
                                 <div className={'card-title'}>
-                                    <h4>Not just a Wiki</h4>
+                                    <h4>Projects & Databases</h4>
                                     <p className={'card-desc'}>Capture every detail in a database. Visualize in various formats, from calendars to boards.</p>
                                 </div>
                             </div>
@@ -351,19 +409,28 @@ function Page() {
                             </div>
                             {points.map((point) => (
                                 <div
-                                    key={point}
+                                    key={point.text}
                                     className={
                                         'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
                                     }
                                 >
-                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
+                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        <Image
-                                            src={CloseImage}
-                                            alt={'Close'}
-                                            width={20}
-                                            height={20}
-                                        />
+                                        {point.competitor ?
+                                            <Image
+                                                src={RightImage}
+                                                alt={'Right'}
+                                                width={26}
+                                                height={16}
+                                            />
+                                            :
+                                            <Image
+                                                src={CloseImage}
+                                                alt={'Close'}
+                                                width={20}
+                                                height={20}
+                                            />
+                                        }
                                     </div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
                                         <Image
