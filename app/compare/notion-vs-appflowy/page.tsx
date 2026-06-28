@@ -216,7 +216,7 @@ const points = [
     competitor: false,
   },
   {
-    text: 'Complete Data Control',
+    text: 'Complete data control',
     competitor: false,
   },
   {
@@ -224,7 +224,7 @@ const points = [
     competitor: false,
   },
   {
-    text: 'Open-Core',
+    text: 'Open-core',
     competitor: false,
   },
   {
@@ -236,39 +236,39 @@ const points = [
     competitor: false,
   },
   {
-    text: 'Native Desktop & Mobile Apps',
+    text: 'Native desktop & mobile apps',
     competitor: false,
   },
   {
-    text: 'Collaborative Editing',
+    text: 'Collaborative editing',
     competitor: true,
   },
   {
-    text: 'Relational Databases',
+    text: 'Relational databases',
     competitor: true,
   },
   {
-    text: 'Kanban, Calendar, Gallery Views',
+    text: 'Kanban, calendar, gallery views',
     competitor: true,
   },
   {
-    text: 'AI Chat, Writing, Summary',
+    text: 'AI chat, writing, summary',
     competitor: true,
   },
   {
-    text: 'AI Meeting Notes',
+    text: 'AI meeting notes',
     competitor: true,
   },
   {
-    text: 'Version History',
+    text: 'Version history',
     competitor: true,
   },
   {
-    text: 'Granular Permissions',
+    text: 'Granular permissions',
     competitor: true,
   },
   {
-    text: 'Block-based Editor',
+    text: 'Block-based editor',
     competitor: true,
   },
   {

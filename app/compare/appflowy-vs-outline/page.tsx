@@ -249,19 +249,19 @@ const points = [
         competitor: false,
     },
     {
-        text: 'Database Support',
+        text: 'Database support',
         competitor: false,
     },
     {
-        text: 'Kanban Boards',
+        text: 'Kanban boards',
         competitor: false,
     },
     {
-        text: 'Calendar Views',
+        text: 'Calendar views',
         competitor: false,
     },
     {
-        text: 'AI Writing Assistance',
+        text: 'AI writing assistance',
         competitor: false,
     },
     {
@@ -273,7 +273,7 @@ const points = [
         competitor: false,
     },
     {
-        text: 'Native Desktop & Mobile Apps',
+        text: 'Native desktop & mobile apps',
         competitor: false,
     },
     {
@@ -281,19 +281,19 @@ const points = [
         competitor: true,
     },
     {
-        text: 'Collaborative Editing',
+        text: 'Collaborative editing',
         competitor: true,
     },
     {
-        text: 'Version History',
+        text: 'Version history',
         competitor: true,
     },
     {
-        text: 'Granular Permissions',
+        text: 'Granular permissions',
         competitor: true,
     },
     {
-        text: 'Block-based Editor',
+        text: 'Block-based editor',
         competitor: true,
     },
     {
