@@ -31,19 +31,19 @@ const vsOutlineFAQs = [
         id: 'vs-outline-2',
         question: 'Can I self-host both AppFlowy and Outline?',
         answer:
-            'Yes.\n\nBoth AppFlowy and Outline support self-hosting and are designed for organizations that want full ownership of their data and infrastructure.',
+            'Yes, both AppFlowy and Outline can be self-hosted.\n\nBoth AppFlowy and Outline are designed for organizations that want full ownership of their data and infrastructure.',
     },
     {
         id: 'vs-outline-3',
         question: "What's the biggest difference between AppFlowy and Outline?",
         answer:
-            "Outline is primarily a team wiki focused on documentation and knowledge management.\n\nAppFlowy is a broader workspace that combines wikis, databases, kanban boards, project management, and AI-powered tools in a single platform.\n\nFor teams currently stitching together Outline + a project management tool, AppFlowy is a compelling consolidation play that provides everything Outline does for docs, plus databases, kanban, and project management in one tool.",
+            "AppFlowy is a broader workspace that combines wikis, databases, kanban boards, project management, and AI-powered tools in a single platform.\n\nOutline is primarily a team wiki focused on documentation and knowledge management.\n\nFor teams currently stitching together Outline + a project management tool, AppFlowy is a compelling consolidation play that provides everything Outline does for docs, plus databases, kanban, and project management in one tool.",
     },
     {
         id: 'vs-outline-4',
         question: 'Does Outline support databases and project management?',
         answer:
-            'No.\n\nOutline focuses on documentation and wiki functionality. It does not include databases, kanban boards, or project management features.\n\nAppFlowy includes all of these capabilities alongside its document editor.',
+            'No. It does not include databases, kanban boards, or project management features.\n\nOutline focuses on documentation and wiki functionality.\n\nAppFlowy includes all of these capabilities alongside its document editor.',
     },
     {
         id: 'vs-outline-5',
@@ -55,13 +55,13 @@ const vsOutlineFAQs = [
         id: 'vs-outline-6',
         question: 'Do AppFlowy and Outline support AI features?',
         answer:
-            'Both products offer AI-powered search.\n\nHowever, AppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
+            'While Both products offer AI-powered search, Outline\'s AI capabilities are more limited than AppFlowy.\n\nAppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
     },
     {
         id: 'vs-outline-7',
         question: 'Does Outline have desktop and mobile apps?',
         answer:
-            'No.\n\nOutline is primarily a web-based application.\n\nAppFlowy provides native applications across major desktop and mobile platforms in addition to its web app.',
+            'No, Outline does not have native desktop or mobile applications.\n\nOutline is primarily a web-based application.\n\nAppFlowy provides native applications across major desktop and mobile platforms in addition to its web app.',
     },
     {
         id: 'vs-outline-8',
@@ -79,7 +79,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-10',
         question: 'Which platform is better as a Notion alternative?',
         answer:
-            'If you\'re looking for a broader workspace that combines wikis, databases, project management, and AI features in a single tool, AppFlowy is the stronger choice.',
+            'AppFlowy is the stronger choice if you\'re looking for a broader workspace that combines wikis, databases, project management, and AI features in a single tool.',
     },
     {
         id: 'vs-outline-11',
