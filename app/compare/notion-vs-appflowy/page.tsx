@@ -135,7 +135,7 @@ function generateListSchema() {
             '@type': 'SoftwareApplication',
             name: 'AppFlowy',
             applicationCategory: 'ProductivityApplication',
-            operatingSystem: 'All',
+            operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
             featureList: [
               'Self-hosted with Docker, Kubernetes, or air-gapped deployment',
               'Local and on-prem LLM support',
@@ -153,7 +153,7 @@ function generateListSchema() {
             '@type': 'SoftwareApplication',
             name: 'Notion',
             applicationCategory: 'ProductivityApplication',
-            operatingSystem: 'All',
+            operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
             offers: {
               '@type': 'Offer',
               price: '0',
@@ -178,8 +178,11 @@ function generateListSchema() {
         url: `${site_url}/blog-og-image.png`,
       },
       sameAs: [
+        'https://appflowy.com',
         'https://github.com/AppFlowy-IO/AppFlowy',
         'https://twitter.com/appflowy',
+        'https://www.linkedin.com/company/appflowy',
+        'https://www.youtube.com/@AppFlowyHQ',
       ],
     },
     speakable: {
@@ -207,7 +210,80 @@ function generateListSchema() {
   };
 }
 
-const points = ['Self-hosting', 'Complete Data Control', 'Local and on-prem LLM support', 'Customization and extensibility', 'Offline workspace', 'Native mobile and desktop apps', 'Open-Core'];
+const points = [
+  {
+    text: 'Self-hosted',
+    competitor: false,
+  },
+  {
+    text: 'Complete data control',
+    competitor: false,
+  },
+  {
+    text: 'Local and on-prem LLM support',
+    competitor: false,
+  },
+  {
+    text: 'Open-core',
+    competitor: false,
+  },
+  {
+    text: 'Customization and extensibility',
+    competitor: false,
+  },
+  {
+    text: 'Offline workspace',
+    competitor: false,
+  },
+  {
+    text: 'Native desktop & mobile apps',
+    competitor: false,
+  },
+  {
+    text: 'Collaborative editing',
+    competitor: true,
+  },
+  {
+    text: 'Relational databases',
+    competitor: true,
+  },
+  {
+    text: 'Kanban, calendar, gallery views',
+    competitor: true,
+  },
+  {
+    text: 'AI chat, writing, summary',
+    competitor: true,
+  },
+  {
+    text: 'AI meeting notes',
+    competitor: true,
+  },
+  {
+    text: 'Version history',
+    competitor: true,
+  },
+  {
+    text: 'Granular permissions',
+    competitor: true,
+  },
+  {
+    text: 'Block-based editor',
+    competitor: true,
+  },
+  {
+    text: 'Hierarchical docs/wiki structure',
+    competitor: true,
+  },
+  {
+    text: 'Inline comments',
+    competitor: true,
+  },
+  {
+    text: 'SSO/SAML',
+    competitor: true,
+  },
+];
 
 const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
@@ -294,7 +370,7 @@ function Page() {
 
                 <div className={'card-title'}>
                   <h4>Cross-platform</h4>
-                  <p className={'card-desc'}>{`Works consistently across platforms your team works on; including completely offline.`}</p>
+                  <p className={'card-desc'}>{`Works consistently across platforms your team works on, including completely offline.`}</p>
                 </div>
               </div>
             </div>
@@ -310,19 +386,28 @@ function Page() {
               </div>
               {points.map((point) => (
                 <div
-                  key={point}
+                  key={point.text}
                   className={
                     'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
                   }
                 >
-                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
+                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
                   <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                    <Image
-                      src={CloseImage}
-                      alt={'Close'}
-                      width={20}
-                      height={20}
-                    />
+                    {point.competitor ?
+                      <Image
+                        src={RightImage}
+                        alt={'Right'}
+                        width={26}
+                        height={16}
+                      />
+                      :
+                      <Image
+                        src={CloseImage}
+                        alt={'Close'}
+                        width={20}
+                        height={20}
+                      />
+                    }
                   </div>
                   <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
                     <Image
