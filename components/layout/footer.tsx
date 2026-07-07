@@ -4,58 +4,86 @@ import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
 
 function Footer() {
-  const ExternalLinks = () => (
-    <>
-      {externalLinks.map((item) => (
-        <Link href={item.link} key={item.key}>
-          {item.icon}
-        </Link>
-      ))}
-    </>
-  );
+  const renderLink = (name: string, link?: string, badge?: number) => {
+    const content = (
+      <span className={'footer-link-text'}>
+        {name}
+        {badge && badge > 0 && <span className={'badge'}>{badge}</span>}
+      </span>
+    );
+
+    if (!link) {
+      return content;
+    }
+
+    if (link.startsWith('https')) {
+      return (
+        <a
+          href={link}
+          rel={'noreferrer'}
+          target={'_blank'}
+        >
+          {content}
+        </a>
+      );
+    }
+
+    return <Link href={link}>{content}</Link>;
+  };
 
   return (
     <div className={'appflowy-footer'}>
-      <div className={'top'}>
-        <div className={'logo'}>
-          <div className={'image h-[42px]  w-[189px] text-white'}>
-            <Logo />
-          </div>
-          <div className={'links'}>
-            <ExternalLinks />
-          </div>
-        </div>
-        <div className={'menu'}>
-          {links.map((item) => (
-            <div className={'item'} key={item.name}>
-              <span className={'group-name'}>{item.name}</span>
-              {item.children.map((child) => (
-                <div key={child.name} className={'group-item'}>
-                  {child.link.startsWith('https') ? (
-                    <a href={child.link} target={'_blank'}>
-                      {child.name}
-                    </a>
-                  ) : (
-                    <Link href={child.link || ''}>
-                      <span className={'relative'}>
-                        {child.name}
-
-                        {'badge' in child && Number(child.badge) > 0 && <span className={'badge'}>{child.badge}</span>}
-                      </span>
-                    </Link>
-                  )}
-                </div>
+      <div className={'footer-shell'}>
+        <div className={'top'}>
+          <div className={'logo'}>
+            <div className={'image h-[42px] w-[189px] text-white'}>
+              <Logo />
+            </div>
+            <div
+              aria-label={'AppFlowy social links'}
+              className={'social-links'}
+            >
+              {externalLinks.map((item) => (
+                <Link
+                  aria-label={item.key}
+                  href={item.link}
+                  key={item.key}
+                  rel={'noreferrer'}
+                  target={'_blank'}
+                >
+                  {item.icon}
+                </Link>
               ))}
             </div>
-          ))}
+          </div>
+          <nav
+            aria-label={'Footer'}
+            className={'menu'}
+          >
+            {links.map((item) => (
+              <div
+                className={'item'}
+                key={item.name}
+              >
+                <span className={'group-name'}>{item.link ? renderLink(item.name, item.link) : item.name}</span>
+                <div className={'group-links'}>
+                  {item.children.map((child) => (
+                    <div
+                      key={child.name}
+                      className={'group-item'}
+                    >
+                      {renderLink(child.name, child.link, 'badge' in child ? Number(child.badge) : undefined)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </nav>
         </div>
-        <div className={'links'}>
-          <ExternalLinks />
-        </div>
-      </div>
-      <div className={'bottom'}>
-        <div className={'col'}>
-          <div>Copyright © 2026, AppFlowy</div>
+        <div className={'bottom'}>
+          <div className={'col'}>
+            <div>Copyright © 2026, AppFlowy</div>
+          </div>
         </div>
       </div>
     </div>
