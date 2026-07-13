@@ -1,9 +1,9 @@
 import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
+import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import ImportLink from '@/components/vs-notion/import-link';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
-import AffineImage from '@/assets/images/vs-notion/affine.svg';
+import AFFiNEImage from '@/assets/images/vs-notion/AFFiNE.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
 import RightImage from '@/assets/images/vs-notion/right.svg';
@@ -16,53 +16,74 @@ import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const title = 'AppFlowy vs. Affine (2026): The Best Self-Hosted Notion Alternative';
-const description = 'Both are open-source, both are self-hostable, and both aim to replace Notion. But only one is stable, mature, and ready for your team today. Compare AppFlowy and AFFiNE side-by-side.';
+const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
+const description = 'A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.';
 
-const vsAffineFAQs = [
+const vsAFFiNEFAQs = [
     {
-        id: 'vs-affine-1',
-        question: 'How do AppFlowy and Affine truly open source?',
+        id: 'vs-AFFiNE-1',
+        question: 'What is the best self-hosted Notion alternative for enterprise teams?',
         answer:
-            'No, Affine is not fully open source by OSI standards.\n\nWhile the frontend client is permissively licensed (MPL 2.0 / MIT), all content under `packages/backend` and `packages/common/native` is licensed under a separate license with significant restrictions. The backend server\'s "EE" license places limitations on use, modification, and distribution that would not generally be considered open source.\n\nAFFiNE maintainers have clarified that the server part is "not required and it\'s an addon — you can still use AFFiNE offline without any issue, but sync and collaboration features will not be available." However, this creates a practical problem: most users rely on their Cloud Workspace, which requires internet connection all the time.\n\nAppFlowy, by contrast, is genuinely open source under the AGPL license, with a clear open-core model. All components, including the backend, are available under the same open-source license, providing true transparency and no hidden proprietary layers.',
+            'AppFlowy is one of the best self-hosted Notion alternatives for enterprise teams that need data ownership, structured databases, granular permissions, SAML SSO, SCIM, LDAP, audit logs, local AI, and on-prem deployment support. It is designed for organizations that want a Notion-style workspace while keeping control over their infrastructure and data.',
     },
     {
-        id: 'vs-affine-2',
-        question: 'Is Affine local-first?',
+        id: 'vs-AFFiNE-2',
+        question: 'Is AppFlowy more enterprise-ready than AFFiNE?',
         answer:
-            'No, Affine is not truly local-first.\n\nWhile Affine claims to be "offline-first," it has several critical limitations:\n\n1. Not fully air-gappable: There\'s a GitHub issue noting that due to dependencies like CloudFront for initial registration, it\'s not actually possible to run self-hosted AFFiNE in a fully air-gapped environment without internet.\n\n2. Non-transparent storage: AFFiNE\'s local storage is not fully transparent or user-configurable. Users cannot choose an exact folder path for their workspace data, which makes it difficult to manage, move, or back up data. Unlike Obsidian\'s vault system or AppFlowy\'s, there\'s no option to change the storage location — only import and export options exist.\n\n3. Hidden in browser-level app data: This has been a persistent community complaint. Users have called out the irony directly: an "offline-first" productivity app that promotes structure doesn\'t let you decide where your data is stored, leaving it buried in browser-level app data.\n\nAppFlowy, by contrast, provides true local-first capabilities with complete transparency and control over where your data is stored, making it genuinely suitable for offline and air-gapped environments.',
+            'Yes. AppFlowy is more enterprise-ready than AFFiNE for organizations that need enterprise collaboration, identity management, advanced databases, auditability, publishing, self-hosting, and flexible AI deployment. AFFiNE is stronger for whiteboarding, journaling, and visual thinking, while AppFlowy is stronger for governed team workflows and structured enterprise use cases such as project management and team wikis.',
     },
     {
-        id: 'vs-affine-3',
-        question: 'What are Affine\'s customization options?',
-        answer: "AFFiNE's customization story is primarily a developer/fork-it story, not an end-user story. If you can write code against BlockSuite, you have real extensibility, but there's no open-source, drop-in backend you can pair with BlockSuite freely in production at team scale.\n\nFor regular users, you get basic appearance settings and templates — nothing close to Obsidian's plugin ecosystem or even Notion's property/view customization depth. The \"extensive customization\" claim is quite overstated for non-technical users.\n\nAppFlowy offers significantly deeper end-user customization through its modular architecture, allowing organizations to customize authentication, integrate local and on-prem LLMs, configure storage, and white-label applications without requiring code-level fork customization.",
+        id: 'vs-AFFiNE-3',
+        question: 'Which is better for teams migrating from Notion: AppFlowy or AFFiNE?',
+        answer: "AppFlowy is better suited for teams migrating from Notion, especially if they rely on databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations. AppFlowy has stronger database capabilities, including linked views of a data source, relations, rollups, calculations, database templates, charts, calendar view, feed view, list view, and gallery view.\n\nAFFiNE currently supports Table and Kanban views, but it is more limited for complex structured data workflows because it lacks advanced property types such as Relation, Rollup, and Formula fields, as well as critical power features such as linked views and database rows as pages that can be shared and mentioned.",
     },
     {
-        id: 'vs-affine-4',
-        question: 'Is Affine privacy-focused?',
+        id: 'vs-AFFiNE-4',
+        question: 'Which tool has a better Notion importer: AppFlowy or AFFiNE?',
         answer:
-            "Affine has telemetry concerns even when self-hosted. You cannot run it fully in an intranet because some core things are needed from Affine servers.\n\nTelemetry is on by default and collects functionality usage, program errors, and crash data. While an opt-out exists in Settings → General → toggle off \"Enable Telemetry\", it's not opt-in — meaning data flows by default unless you know to turn it off.\n\nCritical issues with the toggle:\n\n1. Unreliable: Disabling the \"Enable Telemetry\" toggle has historically broken things. At least one user reported that disabling telemetry caused AFFiNE to show a black screen and stop loading entirely on their self-hosted Umbrel instance.\n\n2. Doesn't catch everything: Sentry (error/crash tracking) was found to still send network requests even when telemetry was disabled — a community PR had to fix this specifically for self-hosted instances, since Sentry was hooked into React's router and firing on every page navigation.\n\n3. Network-level blocking fails: Users have noted that blocking all AFFiNE domains at the network level causes other things to break — so it's not a clean alternative.\n\nFor self-hosted users, the `TELEMETRY_ENABLE=false` environment variable is more complete, but even then Sentry behavior may vary by version.\n\nBottom line: The toggle exists, but it's not fully reliable and doesn't cover all data flows.\n\nAppFlowy provides true privacy-first design with optional telemetry that can be disabled cleanly without breaking functionality, and full support for air-gapped deployments with zero external communication.",
+            "AppFlowy has a better Notion importer for teams migrating an existing Notion workspace because it can import Notion exports while closely preserving the original structure. This is especially important for teams whose most valuable Notion data lives in databases. \n\nAFFiNE’s importer is more limited because it can lose database structure during import, which makes migration harder for teams that rely on Notion databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations.",
     },
     {
-        id: 'vs-affine-6',
-        question: 'How do Affine and AppFlowy databases compare?',
-        answer: "Affine's database capabilities are significantly limited compared to AppFlowy:\n\nAffine database limitations:\n\n1. Only 2 views: Table and Kanban. No Gallery, Calendar, List, Feed, or Chart views.\n\n2. Missing critical property types: Affine lacks Relation, Rollup, and Formula fields. You cannot filter by relation fields — for example, filtering tasks by which project they belong to. This is the single biggest gap making AFFiNE unsuitable for real project management or CRM-style workflows.\n\n3. No linked views: Can't embed a database on another page with different filters. Can't relate it to a separate database. Both are core to how power users build Notion-style systems.\n\n4. UX limitations:\n   - Full-page database views not supported; embedded block model becomes cramped with more than 3 columns\n   - Database row pages cannot be opened as full-page; property hiding is inflexible and counterintuitive\n   - Limited bulk row actions compared to AppFlowy's multi-row bulk edit, delete, and duplicate capabilities\n\n5. Document blocks missing: No toggle/collapsible headings, table of contents, button blocks, breadcrumb blocks, or multi-column layout blocks.\n\nAppFlowy advantages:\n\nAppFlowy supports Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views with advanced filters, two-way relations, rollups, calculations, database templates, grouping, sorting, linked views, and multi-row bulk actions.\n\nAppFlowy's database UX is meaningfully more polished and feature-complete for practical workflows. For users migrating from Notion to do real project management or structured data work, AppFlowy is the stronger choice today.",
+        id: 'vs-AFFiNE-5',
+        question: 'Does AppFlowy support enterprise identity management?',
+        answer:
+            "Yes. AppFlowy supports SAML single sign-on, SCIM user provisioning, LDAP integration, and domain verification. These features help enterprise IT teams centralize authentication, automate onboarding and offboarding, and connect AppFlowy with existing identity and directory systems.",
     },
     {
-        id: 'vs-affine-7',
-        question: 'What unique features does Affine have that AppFlowy doesn\'t?',
-        answer: "Affine's standout feature is its Canvas/whiteboard integration. The ability to place databases on an infinite canvas, convert frames to databases, and switch seamlessly between document and edgeless modes is genuinely differentiated. For visual thinkers and teams that combine brainstorming with structured documentation, this hybrid doc-plus-canvas workflow is unique among open-source tools.\n\nAppFlowy does not currently offer an equivalent infinite canvas feature. However, AppFlowy compensates with significantly stronger database functionality, more mature enterprise features (SAML SSO, admin panels, audit logs), and a fully open-source backend without license restrictions. The choice depends on whether your workflow prioritizes visual canvas planning or structured data management.",
+        id: 'vs-AFFiNE-6',
+        question: 'Does AFFiNE support SSO, SCIM, LDAP, or domain verification?',
+        answer: "No. AFFiNE does not support SAML SSO, SCIM user provisioning, LDAP integration, or domain verification. This makes AFFiNE less suitable for enterprise teams that require centralized identity management and automated user lifecycle control.",
     },
     {
-        id: 'vs-affine-8',
-        question: 'Which is better for enterprise self-hosting?',
-        answer: "AppFlowy is significantly better for enterprise self-hosting:\n\nAuthentication & SSO:\n- AppFlowy: SAML 2.0 is available and well-documented\n- AFFiNE: Has OIDC but SAML is unclear and SSO reliability has regression issues\n\nKubernetes & Helm:\n- AppFlowy: Official, supported Helm chart available\n- AFFiNE: No official, supported Helm chart. The previously official repo at `github.com/toeverything/helm-charts` was reported as abandoned and missing files.\n\nAdmin Panel:\n- AppFlowy: Has a Super Admin panel for managing seats, upgrading plans, and accessing priority support. Team and Enterprise plan management flows through the self-hosted admin panel with role-based access controls and workspace oversight.\n- AFFiNE: Admin panel exists but is functional but sparse and poorly documented. Users have reported difficulty finding the administrative panel or understanding what administrative actions are available.\n\nAI Configuration:\n- AppFlowy: Supports local model configuration (Ollama/local LLM integration) with on-prem LLM support for self-hosted deployments\n- AFFiNE: Has a self-host AI configuration guide but routes primarily through AFFiNE Cloud or external providers without documented local model support\n\nSecurity:\n- AppFlowy: Security audit logs available in Team/Enterprise plans\n- AFFiNE: No security audit log capability\n\nOverall: AppFlowy's admin panel is more mature for team management, authentication is more reliable, Kubernetes support is official and documented, and security features are more complete.",
+        id: 'vs-AFFiNE-7',
+        question: 'Which open-source Notion alternative is better for enterprise self-hosting, and how do AppFlowy and AFFiNE differ in licensing?',
+        answer: "AppFlowy is the stronger open-source Notion alternative for enterprise self-hosting because its core self-hosted stack does not include hidden proprietary layers or enterprise license restrictions. AppFlowy follows an open-core model, with its cloud backend under the AGPL license and its web codebase fully open source. Organizations can inspect, modify, and deploy the platform with greater transparency and control.\n\nAFFiNE’s frontend client and editor are open source.However, its backend server components are source- available under an Enterprise Edition license rather than open source under a standard open - source license.This means the backend code can be publicly reviewed, but production use, modification, compilation, and redistribution of the EE - licensed backend require commercial authorization.",
     },
     {
-        id: 'vs-affine-9',
-        question: 'Can I migrate from Notion to AppFlowy?',
-        answer: "Yes. AppFlowy provides tools to help individuals and organizations migrate existing content from Notion. AppFlowy provides the most complete Notion migration experience among other self-hosted alternatives.\n\nYou can import pages, documents, databases, and workspace content from Notion into AppFlowy, allowing teams to transition without rebuilding their knowledge base from scratch. For most organizations, migration is a gradual process where teams can evaluate AppFlowy, import existing content, and move workflows over time.\n\nAppFlowy has already successfully migrated numerous teams off Notion while fully preserving their pages, databases, and media with high reliability. Enterprise teams with large workspaces can contact AppFlowy directly to receive hands-on migration assistance.\n\nAppFlowy continues to improve migration tooling and compatibility to make switching from Notion as seamless as possible, while providing additional benefits such as self-hosting, data ownership, local LLMs, and deployment flexibility.",
-    }
+        id: 'vs-AFFiNE-8',
+        question: 'Does AppFlowy support Helm chart deployment for enterprise self-hosting?',
+        answer: "Yes. AppFlowy provides an official Helm chart, making it easier for enterprise teams to deploy and manage AppFlowy on Kubernetes. This gives infrastructure teams a more standardized, repeatable deployment path for self-hosted environments. AFFiNE does not provide an official Helm chart, which makes AppFlowy a stronger fit for organizations that require Kubernetes-based deployment workflows.",
+    },
+    {
+        id: 'vs-AFFiNE-9',
+        question: 'Which tool is better for privacy-conscious enterprise teams?',
+        answer: "AppFlowy is better suited for privacy-conscious enterprise teams because it supports self-hosting, local AI, on-prem LLMs, no telemetry, granular permissions, and enterprise identity management. These capabilities give organizations stronger control over workspace data, usage data, AI workflows, and infrastructure.\n\nAFFiNE collects telemetry by default, including functionality usage, program errors, and crash data. Users can opt out in Settings, and self- hosted deployments can disable telemetry through environment variables.",
+    },
+    {
+        id: 'vs-AFFiNE-10',
+        question: 'Why should enterprises choose AppFlowy over AFFiNE?',
+        answer: "Enterprises should choose AppFlowy over AFFiNE if they need self-hosting, advanced databases, external guest editors, granular permissions, SSO, SCIM, LDAP, audit logs, local AI, on-prem LLMs, publishing, custom domains, PDF export, and stronger data ownership. AFFiNE is a good fit for personal productivity, whiteboarding, and daily journaling, but AppFlowy is better aligned with enterprise workspace requirements.",
+    },
+    {
+        id: 'vs-AFFiNE-11',
+        question: 'Is AppFlowy a better enterprise collaboration tool than AFFiNE?',
+        answer: "Yes, AppFlowy is a better collaboration tool especially for enterprise teams because it provides features such as External guest editors, granular permissions, SSO, SCIM, and LDAP. External guest editing is essential for enterprise collaboration while restricting access only to selected pages. Workspace owners can now queue guest invitations that require admin approval before the invite email is sent. Admins receive email notifications for new pending requests and can review, approve, or reject invites from the admin dashboard. For enterprise it is quintessential to limit access to information within the organization, this is where AppFlowy's granular permissions helps enterprise organizations. AppFlowy supports user provisioning and single sign on methods that makes it easy for enterprise teams to onboard new members or remove existing ones. \n\nWhile both AppFlowy and AFFiNE offer collaborative document editing, AppFlowy proves out to be the better collaboration tool for enterprises.",
+    },
+    {
+        id: 'vs-AFFiNE-12',
+        question: 'Should I choose AppFlowy or AFFiNE?',
+        answer: "Choose AFFiNE if your main priorities are whiteboarding, journaling, personal knowledge management, and visual thinking. AFFiNE is a good fit for individuals or families that want a flexible workspace for notes, brainstorming, and creative ideation.\n\nChoose AppFlowy if you need a more complete Notion alternative for project management, team wikis, databases, and enterprise collaboration.AppFlowy is better suited for teams that need Notion- style databases, external guest collaboration, publishing, and enterprise - grade features such as SAML SSO, SCIM, audit logs, and granular permissions.\n\nIn short, AFFiNE is stronger for visual and personal workflows, while AppFlowy is stronger for structured work, team collaboration, and enterprise - ready self - hosted deployments.",
+    },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -70,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
         title,
         description,
         alternates: {
-            canonical: `${site_url}/compare/affine-vs-appflowy`,
+            canonical: `${site_url}/compare/AFFiNE-vs-appflowy`,
         },
         robots: {
             index: true,
@@ -81,7 +102,7 @@ export async function generateMetadata(): Promise<Metadata> {
         openGraph: {
             title,
             description,
-            url: `${site_url}/compare/affine-vs-appflowy`,
+            url: `${site_url}/compare/AFFiNE-vs-appflowy`,
             type: 'article',
             siteName: 'AppFlowy',
             publishedTime: new Date().toISOString(),
@@ -91,7 +112,7 @@ export async function generateMetadata(): Promise<Metadata> {
                     url: `${site_url}/blog-og-image.png`,
                     width: 1200,
                     height: 630,
-                    alt: 'AppFlowy vs. Affine: The Best Self-Hosted Notion Alternative',
+                    alt: 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative',
                 },
             ],
         },
@@ -102,17 +123,23 @@ export async function generateMetadata(): Promise<Metadata> {
             images: [`${site_url}/blog-og-image.png`],
         },
         keywords: [
-            'appflowy vs affine',
-            'affine vs appflowy',
-            'affine comparison',
-            'appflowy open source alternative',
+            'appflowy vs AFFiNE',
+            'AFFiNE comparison',
+            'best self-hosted Notion alternative',
             'self-hosted productivity app',
-            'affine review',
+            'AFFiNE review',
             'best notion alternative',
-            'open source notion alternative',
+            'open core notion alternative',
             'self-hosted workspace',
             'local first productivity',
             'privacy focused workspace',
+            'enterprise collaboration tool',
+            'enterprise project management',
+            'enterprise team wiki',
+            'enterprise knowledge management',
+            'wiki with database',
+            'wiki with ai',
+            'wiki with project management',
         ],
     };
 }
@@ -122,7 +149,7 @@ function generateListSchema() {
         '@type': ['WebPage', 'ItemPage'],
         name: title,
         description: description,
-        url: `${site_url}/compare/affine-vs-appflowy`,
+        url: `${site_url}/compare/AFFiNE-vs-appflowy`,
         mainEntity: {
             '@type': 'ItemList',
             itemListElement: [
@@ -133,11 +160,11 @@ function generateListSchema() {
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'All',
                     featureList: [
-                        'Fully open-source (AGPL)',
-                        'True local-first and offline-first',
-                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
-                        'Local and on-prem LLM support',
+                        'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
+                        'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
+                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                        'Full AI features with on-prem & local LLMs',
                         'Complete data ownership',
                     ],
                 },
@@ -148,11 +175,12 @@ function generateListSchema() {
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'All',
                     featureList: [
-                        'Open-source frontend (permissively licensed)',
                         'Proprietary backend server',
                         'Canvas/whiteboard integration',
-                        'Table and Kanban views',
-                        'Limited offline capabilities',
+                        'Personal knowledge management and journaling',
+                        'Basic Table and Kanban views',
+                        'No support for SAML SSO, SCIM, LDAP, or audit logs',
+                        'Limited AI features with local LLMs'
                     ],
                 },
             ],
@@ -171,14 +199,14 @@ function generateListSchema() {
         },
         speakable: {
             '@type': 'SpeakableSpecification',
-            cssSelector: ['.main-content', '.desc', '.vs-notion-faq'],
+            cssSelector: ['.main-content', '.desc', '.vs-affine-faq'],
         },
         dateModified: new Date().toISOString().split('T')[0],
     };
 
     const faqSchema = {
         '@type': 'FAQPage',
-        mainEntity: vsAffineFAQs.map(faq => ({
+        mainEntity: vsAFFiNEFAQs.map(faq => ({
             '@type': 'Question',
             name: faq.question,
             acceptedAnswer: {
@@ -219,17 +247,18 @@ function Page() {
                             />
                             <span className={'text-sm font-semibold'}>vs</span>
                             <Image
-                                src={AffineImage}
-                                alt={'Affine'}
+                                src={AFFiNEImage}
+                                alt={'AFFiNE'}
                                 width={56}
                                 height={56}
                             />
                         </div>
                         <div className={'main-content'}>
                             <h1>
-                                AppFlowy vs. Affine (2026): <span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
+                                AppFlowy vs. AFFiNE:
+                                <br></br><span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
                             </h1>
-                            <p className={'desc'}>A head-to-head comparison of the two leading open-source workspace platforms.</p>
+                            <p className={'desc'}>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>
                         </div>
                         <ImportLink importBaseURL={importBaseURL} />
                     </div>
@@ -244,42 +273,42 @@ function Page() {
                             <div className={'card'}>
                                 <Image
                                     src={Object1}
-                                    alt={'Offline Mode'}
+                                    alt={'Custom on-prem AI'}
                                     width={151}
                                     height={121}
                                 />
                                 <div className={'card-title'}>
-                                    <h4>Offline Mode</h4>
+                                    <h4>AI Workspace</h4>
                                     <p className={'card-desc'}>
-                                        True offline-first workspace. Work completely without internet, with full transparency over where your data is stored.
+                                        AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and self-hosted LLMs.
                                     </p>
                                 </div>
                             </div>
                             <div className={'card'}>
                                 <Image
                                     src={Object2}
-                                    alt={'Native Mobile and Desktop Apps'}
+                                    alt={'Projects & Databases'}
                                     width={151}
                                     height={121}
                                 />
 
                                 <div className={'card-title'}>
-                                    <h4>Native Mobile & Desktop Apps</h4>
-                                    <p className={'card-desc'}>Native clients for iOS, Android, macOS, Windows, and Linux — not web-based, delivering true platform optimization.</p>
+                                    <h4>Projects & Databases</h4>
+                                    <p className={'card-desc'}>Capture every detail in a database. Visualize work in distinct formats, from calendars to boards.</p>
                                 </div>
                             </div>
 
                             <div className={'card'}>
                                 <Image
                                     src={Object3}
-                                    alt={'AI Model Selection'}
+                                    alt={'Enterprise-grade'}
                                     width={189}
                                     height={121}
                                 />
 
                                 <div className={'card-title'}>
-                                    <h4>AI Model Selection</h4>
-                                    <p className={'card-desc'}>{`Choose your own AI models, run them locally, or use on-prem LLMs. Your choice, not your vendor's.`}</p>
+                                    <h4>Enterprise-grade</h4>
+                                    <p className={'card-desc'}>{`Granular permissions, SAML SSO, LDAP, audit logs, custom migration, and flexible deployment.`}</p>
                                 </div>
                             </div>
                         </div>
@@ -322,8 +351,8 @@ function Page() {
                         </div>
                     </div>
                 </div>
-                <div className={'vs-notion-faq'}>
-                    <QASection items={vsAffineFAQs} />
+                <div className={'vs-affine-faq'}>
+                    <QASection items={vsAFFiNEFAQs} />
                 </div>
 
                 <GetStart />
