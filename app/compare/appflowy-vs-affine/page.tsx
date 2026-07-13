@@ -3,7 +3,7 @@ import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import ImportLink from '@/components/vs-notion/import-link';
-import AFFiNEImage from '@/assets/images/vs-notion/AFFiNE.svg';
+import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
 import RightImage from '@/assets/images/vs-notion/right.svg';
