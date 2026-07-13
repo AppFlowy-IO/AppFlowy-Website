@@ -137,9 +137,7 @@ export async function generateMetadata(): Promise<Metadata> {
             'enterprise project management',
             'enterprise team wiki',
             'enterprise knowledge management',
-            'wiki with database',
-            'wiki with ai',
-            'wiki with project management',
+
         ],
     };
 }
@@ -162,10 +160,10 @@ function generateListSchema() {
                     featureList: [
                         'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
-                        'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
-                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
-                        'Full AI features with on-prem & local LLMs',
                         'Complete data ownership',
+                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                        'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
+                        'Full AI features with on-prem & local LLMs',
                     ],
                 },
                 {
@@ -222,7 +220,133 @@ function generateListSchema() {
     };
 }
 
-const points = ['Offline Mode', 'Native Mobile and Desktop Apps', 'AI Model Selection', 'Easier to Migrate from Notion', 'Mature Database Views'];
+const points = [
+    {
+        text: 'Space level granular permissions',
+        appflowy: true,
+    },
+    {
+        text: 'SAML single sign on (SSO)',
+        appflowy: true,
+    },
+    {
+        text: 'User provisioning (SCIM)',
+        appflowy: true,
+    },
+    {
+        text: 'External guest editors',
+        appflowy: true,
+    },
+    {
+        text: 'Guest invite requests',
+        appflowy: true,
+    },
+    {
+        text: 'Audit logs',
+        appflowy: true,
+    },
+    {
+        text: 'LDAP integration',
+        appflowy: true,
+    },
+    {
+        text: 'Customizable LLM embeddings',
+        appflowy: true,
+    },
+    {
+        text: 'Domain verification',
+        appflowy: true,
+    },
+    {
+        text: 'AI search with self-hosted LLMs',
+        appflowy: true,
+    },
+    {
+        text: 'AI Meeting Notes with self-hosted LLMs',
+        appflowy: true,
+    },
+    {
+        text: 'AI Transcripts with self-hosted LLMs',
+        appflowy: true,
+    },
+    {
+        text: 'Calendar views',
+        appflowy: true,
+    },
+    {
+        text: 'List views',
+        appflowy: true,
+    },
+    {
+        text: 'Gallery views',
+        appflowy: true,
+    },
+    {
+        text: 'Chart views',
+        appflowy: true,
+    },
+    {
+        text: 'Form views',
+        appflowy: true,
+    },
+    {
+        text: 'Feed views',
+        appflowy: true,
+    },
+    {
+        text: 'Linked views of a data source',
+        appflowy: true,
+    },
+    {
+        text: 'Database relations and rollups',
+        appflowy: true,
+    },
+    {
+        text: 'Database templates',
+        appflowy: true,
+    },
+    {
+        text: 'Publish pages',
+        appflowy: true,
+    },
+    {
+        text: 'Custom domains',
+        appflowy: true,
+    },
+    {
+        text: 'Export to PDF',
+        appflowy: true,
+    },
+    {
+        text: 'Official Helm chart',
+        appflowy: true,
+    },
+    {
+        text: 'Whiteboard',
+        competitor: true,
+        appflowy: false,
+    },
+    {
+        text: 'Dedicated daily journaling',
+        competitor: true,
+        appflowy: false,
+    },
+    {
+        text: 'Collaborative editing',
+        competitor: true,
+        appflowy: true,
+    },
+    {
+        text: 'Version history',
+        competitor: true,
+        appflowy: true,
+    },
+    {
+        text: 'Inline comments',
+        competitor: true,
+        appflowy: true,
+    },
+];
 
 const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 
@@ -324,27 +448,45 @@ function Page() {
                             </div>
                             {points.map((point) => (
                                 <div
-                                    key={point}
+                                    key={point.text}
                                     className={
                                         'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
                                     }
                                 >
-                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point}</div>
+                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        <Image
-                                            src={CloseImage}
-                                            alt={'Close'}
-                                            width={20}
-                                            height={20}
-                                        />
+                                        {point.competitor ?
+                                            <Image
+                                                src={RightImage}
+                                                alt={'Right'}
+                                                width={26}
+                                                height={16}
+                                            />
+                                            :
+                                            <Image
+                                                src={CloseImage}
+                                                alt={'Close'}
+                                                width={20}
+                                                height={20}
+                                            />
+                                        }
                                     </div>
                                     <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        <Image
-                                            src={RightImage}
-                                            alt={'Right'}
-                                            width={26}
-                                            height={16}
-                                        />
+                                        {point.appflowy ?
+                                            <Image
+                                                src={RightImage}
+                                                alt={'Right'}
+                                                width={26}
+                                                height={16}
+                                            />
+                                            :
+                                            <Image
+                                                src={CloseImage}
+                                                alt={'Close'}
+                                                width={20}
+                                                height={20}
+                                            />
+                                        }
                                     </div>
                                 </div>
                             ))}

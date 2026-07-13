@@ -257,10 +257,6 @@ const points = [
         competitor: false,
     },
     {
-        text: 'Calendar views',
-        competitor: false,
-    },
-    {
         text: 'AI writing assistance',
         competitor: false,
     },
@@ -271,6 +267,26 @@ const points = [
     {
         text: 'AI transcript',
         competitor: false,
+    },
+    {
+        text: 'Calendar views',
+        competitor: false,
+    },
+    {
+        text: 'List views',
+        appflowy: true,
+    },
+    {
+        text: 'Gallery views',
+        appflowy: true,
+    },
+    {
+        text: 'Chart views',
+        appflowy: true,
+    },
+    {
+        text: 'Feed views',
+        appflowy: true,
     },
     {
         text: 'Native desktop & mobile apps',
@@ -293,6 +309,10 @@ const points = [
         competitor: true,
     },
     {
+        text: 'Publish pages',
+        competitor: true,
+    },
+    {
         text: 'Block-based editor',
         competitor: true,
     },
@@ -305,7 +325,11 @@ const points = [
         competitor: true,
     },
     {
-        text: 'SSO/SAML',
+        text: 'SAML single sign on (SSO)',
+        competitor: true,
+    },
+    {
+        text: 'Audit logs',
         competitor: true,
     },
 ];
@@ -352,7 +376,7 @@ function Page() {
                             {`Your workspace with `}
                             <span className={'text-primary'}>more capabilities</span>
                             <br />
-                            than documentation alone
+                            than wikis alone
                         </h2>
                         <div className={'cards'}>
                             <div className={'card'}>
