@@ -2,7 +2,6 @@ import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
-import ImportLink from '@/components/vs-notion/import-link';
 import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
@@ -14,6 +13,7 @@ import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
+import SelfHostLink from '../components/self-host-link';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
@@ -242,6 +242,10 @@ const points = [
         appflowy: true,
     },
     {
+        text: 'Domain verification',
+        appflowy: true,
+    },
+    {
         text: 'Audit logs',
         appflowy: true,
     },
@@ -251,10 +255,6 @@ const points = [
     },
     {
         text: 'Customizable LLM embeddings',
-        appflowy: true,
-    },
-    {
-        text: 'Domain verification',
         appflowy: true,
     },
     {
@@ -348,8 +348,6 @@ const points = [
     },
 ];
 
-const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
-
 function Page() {
     return (
         <>
@@ -384,7 +382,7 @@ function Page() {
                             </h1>
                             <p className={'desc'}>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>
                         </div>
-                        <ImportLink importBaseURL={importBaseURL} />
+                        <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>

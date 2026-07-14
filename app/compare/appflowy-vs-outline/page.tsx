@@ -55,7 +55,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-6',
         question: 'Do AppFlowy and Outline support AI features?',
         answer:
-            'While Both products offer AI-powered search, Outline\'s AI capabilities are more limited than AppFlowy.\n\nAppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
+            'While both products offer AI-powered search, Outline\'s AI capabilities are more limited than AppFlowy.\n\nAppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
     },
     {
         id: 'vs-outline-7',
@@ -363,7 +363,8 @@ function Page() {
                         </div>
                         <div className={'main-content'}>
                             <h1>
-                                AppFlowy vs Outline: The Best Self-Hosted Enterprise<span className={'text-primary'}> Team Wiki</span>
+                                AppFlowy vs Outline
+                                <br></br><span className={'text-primary'}>The Best Self-Hosted Enterprise Team Wiki</span>
                             </h1>
                             <p className={'desc'}>Self-hosted, knowledge management, Notion alternatives, database, cross platform</p>
                         </div>
