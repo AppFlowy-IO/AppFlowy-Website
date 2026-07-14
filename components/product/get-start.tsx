@@ -1,38 +1,39 @@
 'use client';
-import { useClient } from '@/lib/hooks/use-client';
+import logo from '@/assets/images/logo.svg';
 import { webApplicationUrl } from '@/lib/web-application';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 function GetStart() {
-  const { isMobile } = useClient();
-
   return (
-    <div className={'af-container bg-[#2B1A3F]'}>
+    <div className={'af-container section-8-container'}>
       <div className={'af-box section-8'}>
-        <div className="glow"></div>
+        <div className="glow" />
         <div className={'section-8-title'}>
-          <div>
-            Get started for
-            <span className={'text-[#C89AFA]'}> free</span>
+          <div className={'section-8-logo'}>
+            <Image src={logo} alt={'AppFlowy'} width={56} height={56} />
           </div>
-          <div className={'section-8-desc'}>Choose to own your data and a smarter way to work</div>
+          <h2>Get Started for Free</h2>
+          <div className={'section-8-desc'}>
+            The AI workspace where you achieve more without losing control of your data
+          </div>
         </div>
         <div className={'section-8-btns'}>
           <Link
             className={'download-btn'}
-            href={'/download'}
+            href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
+            target={'_blank'}
+            rel={'noopener noreferrer'}
           >
-            Download
+            Self-host AppFlowy
           </Link>
-          {!isMobile && (
-            <Link
-              className={'live-demo-btn'}
-              href={webApplicationUrl}
-            >
-              Try it free
-            </Link>
-          )}
+          <Link
+            className={'live-demo-btn'}
+            href={webApplicationUrl}
+          >
+            Get started free
+          </Link>
         </div>
       </div>
     </div>
