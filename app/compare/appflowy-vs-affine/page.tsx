@@ -379,7 +379,7 @@ function Page() {
                         </div>
                         <div className={'main-content'}>
                             <h1>
-                                AppFlowy vs. AFFiNE:
+                                AppFlowy vs. AFFiNE
                                 <br></br><span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
                             </h1>
                             <p className={'desc'}>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>
