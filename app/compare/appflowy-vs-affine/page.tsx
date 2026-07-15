@@ -402,7 +402,7 @@ function Page() {
                                 <div className={'card-title'}>
                                     <h4>AI Workspace</h4>
                                     <p className={'card-desc'}>
-                                        AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and self-hosted LLMs.
+                                        AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and local LLMs.
                                     </p>
                                 </div>
                             </div>
@@ -430,7 +430,7 @@ function Page() {
 
                                 <div className={'card-title'}>
                                     <h4>Enterprise-grade</h4>
-                                    <p className={'card-desc'}>{`Granular permissions, SAML SSO, LDAP, audit logs, custom migration, and flexible deployment.`}</p>
+                                    <p className={'card-desc'}>Granular permissions, SAML SSO, SCIM, LDAP, audit logs, migration, and flexible deployment.</p>
                                 </div>
                             </div>
                         </div>
