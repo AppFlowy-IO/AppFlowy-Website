@@ -26,7 +26,7 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-1',
         question: 'Is AppFlowy or Docmost the more complete self-hosted Notion alternative?',
         answer:
-            'AppFlowy is the more complete option for organizations that want documentation, advanced databases, project management, AI, and native applications in a single self-hosted workspace.\n\nDocmost is primarily designed as a collaborative wiki and documentation platform. It also offers Table and Kanban boards, but these are paid features and currently provide a narrower range of database and project-management capabilities.\n\nAppFlowy supports more database views, advanced database features, relational workflows, AI Meeting Notes, and native desktop and mobile apps.',
+            'AppFlowy is the more complete self-hosted Notion alternative for organizations that want documentation, advanced databases, project management, AI, and native applications in a single self-hosted workspace.\n\nDocmost is primarily designed as a collaborative wiki and documentation platform. It also offers Table and Kanban boards, but these are paid features and currently provide a narrower range of database and project-management capabilities.\n\nAppFlowy supports more database views, advanced database features, relational workflows, AI Meeting Notes, and native desktop and mobile apps.',
     },
     {
         id: 'vs-docmost-2',
@@ -44,13 +44,13 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-4',
         question: 'Do AppFlowy and Docmost support advanced databases and project management?',
         answer:
-            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates.',
+            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates. In AppFlowy, each database entry can act as fully-featured text pages, thus users can invite collaborators and add comments to individual database entries.',
     },
     {
         id: 'vs-docmost-5',
         question: 'Are AppFlowy database rows and Kanban cards fully editable pages?',
         answer:
-            'Yes. Every AppFlowy database row represents a page that can be opened and edited as a full page. Teams can add rich-text content, subpages, embedded content, relations, cross-references, and contextual comment threads inside database rows.\n\nKanban cards represent the same underlying database records, so they can also be opened and edited as pages.\n\nDocmost describes Base rows as structured records with editable properties. Its current documentation does not describe each Base record as a full rich-text page with an independent page body.',
+            'Yes. Every AppFlowy database row represents a page that can be opened and edited as a full page. Teams can add rich-text content, subpages, embedded content, relations, cross-references, and contextual comment threads inside database rows.\n\nKanban cards represent the same underlying database records, so they can also be opened and edited as pages.\n\nDocmost describes Base rows as structured records with editable properties. Its current documentation does not describe each Base record as a full rich-text page with an independent page body. Thus teams can not add comments or mentions inside Base records and Kanban cards in Docmost, which limits collaborative workflows compared to AppFlowy.',
     },
     {
         id: 'vs-docmost-6',
