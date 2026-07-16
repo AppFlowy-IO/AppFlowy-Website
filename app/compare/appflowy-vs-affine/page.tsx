@@ -128,6 +128,7 @@ export async function generateMetadata(): Promise<Metadata> {
             'best self-hosted Notion alternative',
             'self-hosted productivity app',
             'AFFiNE review',
+            'AppFlowy review',
             'best notion alternative',
             'open core notion alternative',
             'self-hosted workspace',
@@ -137,7 +138,6 @@ export async function generateMetadata(): Promise<Metadata> {
             'enterprise project management',
             'enterprise team wiki',
             'enterprise knowledge management',
-
         ],
     };
 }
@@ -156,7 +156,13 @@ function generateListSchema() {
                     position: 1,
                     name: 'AppFlowy',
                     applicationCategory: 'ProductivityApplication',
-                    operatingSystem: 'All',
+                    operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
+                    offers: {
+                        '@type': 'Offer',
+                        price: '0',
+                        priceCurrency: 'USD',
+                        description: 'Self-hosted workspace with documentation, databases, and AI features',
+                    },
                     featureList: [
                         'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
@@ -172,6 +178,12 @@ function generateListSchema() {
                     name: 'AFFiNE',
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'All',
+                    offers: {
+                        '@type': 'Offer',
+                        price: '0',
+                        priceCurrency: 'USD',
+                        description: 'Self-hosted knowledge base with whiteboarding and journaling',
+                    },
                     featureList: [
                         'Proprietary backend server',
                         'Canvas/whiteboard integration',
@@ -226,7 +238,7 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'SAML single sign on (SSO)',
+        text: 'SSO/SAML',
         appflowy: true,
     },
     {
@@ -258,15 +270,15 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'AI search with self-hosted LLMs',
+        text: 'AI search with self-hosted AI',
         appflowy: true,
     },
     {
-        text: 'AI Meeting Notes with self-hosted LLMs',
+        text: 'AI Meeting Notes with self-hosted AI',
         appflowy: true,
     },
     {
-        text: 'AI Transcripts with self-hosted LLMs',
+        text: 'AI Transcripts with self-hosted AI',
         appflowy: true,
     },
     {

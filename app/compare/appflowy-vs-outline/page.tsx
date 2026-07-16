@@ -128,6 +128,8 @@ export async function generateMetadata(): Promise<Metadata> {
         keywords: [
             'appflowy vs outline',
             'outline alternative',
+            'AppFlowy review',
+            'Outline review',
             'self-hosted wiki',
             'enterprise wiki alternative',
             'outline vs appflowy',
@@ -325,7 +327,7 @@ const points = [
         competitor: true,
     },
     {
-        text: 'SAML single sign on (SSO)',
+        text: 'SSO/SAML',
         competitor: true,
     },
     {
