@@ -475,13 +475,14 @@
     }
   }
 
-  .security-compliance-container {
+  .compliance-container {
     @apply w-full px-[80px] py-[120px];
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 70.192%), linear-gradient(90deg, #f6f6ff 0%, #f6f6ff 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 70.192%),
+      linear-gradient(90deg, #f6f6ff 0%, #f6f6ff 100%);
     @apply max-xl:px-[4vw] max-lg:py-[96px] max-sm:px-4 max-sm:py-[72px];
   }
 
-  .security-compliance {
+  .compliance {
     @apply relative overflow-hidden rounded-[16px];
     @apply flex min-h-[560px] w-full items-center justify-between gap-10 p-[40px];
     background: linear-gradient(90deg, rgba(246, 246, 255, 0.96) 0%, rgba(246, 246, 255, 0.86) 100%);
@@ -502,7 +503,13 @@
 
     &__panel-fade {
       @apply absolute inset-0;
-      background: linear-gradient(90deg, rgba(247, 247, 255, 0.94) 0%, rgba(247, 247, 255, 0.22) 45%, rgba(247, 247, 255, 0.02) 64%, rgba(247, 247, 255, 0.88) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(247, 247, 255, 0.94) 0%,
+        rgba(247, 247, 255, 0.22) 45%,
+        rgba(247, 247, 255, 0.02) 64%,
+        rgba(247, 247, 255, 0.88) 100%
+      );
     }
 
     &__copy {
@@ -559,28 +566,12 @@
     }
 
     &__card-label {
-      @apply min-w-full text-center font-mono text-[16px] tracking-[-0.04em] text-text-primary;
+      @apply min-w-full text-center font-mono text-[16px] font-semibold tracking-[-0.04em] text-text-primary;
       line-height: 24px;
     }
 
     &__badge-icon {
-      @apply relative h-[100px] w-[100px];
-
-      &--soc2 {
-        @apply h-[100px] w-[100px];
-      }
-
-      &--gdpr {
-        @apply h-[111px] w-[112px];
-      }
-
-      &--hippa {
-        @apply h-[112px] w-[112px];
-      }
-
-      &--iso {
-        @apply h-[112px] w-[112px];
-      }
+      @apply relative h-[112px] w-[112px];
     }
 
     &__badge-icon-backdrop {
@@ -594,6 +585,8 @@
 
   .section-8 {
     @apply relative overflow-hidden;
+    @apply flex w-full flex-col items-center justify-center gap-8 py-[80px] pb-[136px];
+    @apply max-md:min-h-fit max-md:gap-6 max-md:px-4 max-md:py-[64px] max-md:pb-[80px];
     background: transparent;
 
     .glow {
@@ -614,8 +607,6 @@
       pointer-events: none;
     }
 
-    @apply flex w-full flex-col items-center justify-center gap-8 py-[128px];
-    @apply max-md:min-h-fit max-md:gap-6 max-md:px-4 max-md:py-[96px];
     &-title {
       z-index: 1;
       @apply flex flex-col items-center justify-center gap-6 text-center text-[#171438];
