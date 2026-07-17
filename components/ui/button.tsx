@@ -18,11 +18,11 @@ const buttonVariants = cva(
         accent: 'bg-white text-accent-foreground shadow-sm hover:bg-accent',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
+        default: 'h-8 px-3 py-1',
+        sm: 'h-6 rounded-md px-2 text-xs',
+        lg: 'h-10 rounded-md px-6',
         '2xl': 'px-12 text-base rounded-[16px] py-[16px] px-12',
-        icon: 'h-9 w-9',
+        icon: 'h-8 w-8',
       },
     },
     defaultVariants: {

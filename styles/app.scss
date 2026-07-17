@@ -28,7 +28,7 @@ body {
 }
 
 .appflowy-footer {
-  @apply w-full overflow-hidden px-[24px] pb-[24px] pt-[28px] text-white;
+  @apply w-full overflow-hidden bg-white px-[24px] pb-[24px] text-white;
 
   .footer-shell {
     @apply w-full rounded-[30px] bg-black px-[40px] pb-[24px] pt-[84px];

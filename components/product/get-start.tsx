@@ -12,9 +12,9 @@ function GetStart() {
         <div className="glow" />
         <div className={'section-8-title'}>
           <div className={'section-8-logo'}>
-            <Image src={logo} alt={'AppFlowy'} width={56} height={56} />
+            <Image src={logo} alt={'AppFlowy'} />
           </div>
-          <h2>Get Started for Free</h2>
+          <h2 className={'text-h1'}>Get Started for Free</h2>
           <div className={'section-8-desc'}>
             The AI workspace where you achieve more without losing control of your data
           </div>
@@ -35,6 +35,7 @@ function GetStart() {
             Get started free
           </Link>
         </div>
+        <div className="circle-gradient"></div>
       </div>
     </div>
   );
