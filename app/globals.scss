@@ -29,6 +29,23 @@
 
 
 :root {
+  --font-family-sans: 'Inter', sans-serif;
+  --font-size-h1: 56px;
+  --line-height-h1: 68px;
+  --font-size-h2: 40px;
+  --line-height-h2: 48px;
+  --font-size-h3: 28px;
+  --line-height-h3: 36px;
+  --font-size-h4: 24px;
+  --line-height-h4: 28px;
+  --font-size-h5: 20px;
+  --line-height-h5: 28px;
+  --font-size-body-standard: 16px;
+  --line-height-body-standard: 24px;
+  --font-size-body-enhanced: 16px;
+  --line-height-body-enhanced: 24px;
+  --font-size-caption: 14px;
+  --line-height-caption: 20px;
   --color-primary: #8427E0;
   --color-primary-20: rgba(147, 39, 255, 0.20);
   --color-primary-10: rgba(147, 39, 255, 0.10);
@@ -37,6 +54,12 @@
   --color-bg: #EFF1FF;
   --color-text: #000;
   --color-fill-text: #fff;
+  --color-text-theme: #854CFF;
+  --color-text-primary: #140F28;
+  --color-text-secondary: #5A5A5A;
+  --color-text-tertiary: #AAAAAA;
+  --color-text-on-fill: #FFFFFF;
+  --color-text-inverse: #FFFFFF;
   --background: #EFF1FF;
   --foreground: #000;
   --card: 0 0% 100%;
@@ -79,11 +102,52 @@
 }
 
 body {
-  font-family: "Poppins", "Inter", sans-serif;
+  font-family: var(--font-family-sans);
   font-size: 14px;
   margin: 0;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   background: linear-gradient(to right, #deddf8 0%, rgb(223, 223, 252) 13%, rgb(238, 238, 253) 40%, #edecfc 60%, #EEECFD 100%) fixed;
   overscroll-behavior: none;
 }
 
+@layer utilities {
+  .text-style-h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+  }
+
+  .text-style-h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
+
+  .text-style-h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .text-style-h4 {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+  }
+
+  .text-style-h5 {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
+
+  .text-style-body-standard {
+    font-size: var(--font-size-body-standard);
+    line-height: var(--line-height-body-standard);
+  }
+
+  .text-style-body-enhanced {
+    font-size: var(--font-size-body-enhanced);
+    line-height: var(--line-height-body-enhanced);
+  }
+
+  .text-style-caption {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+  }
+}

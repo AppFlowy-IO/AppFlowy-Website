@@ -6,7 +6,7 @@ import Link from 'next/link';
 function Footer() {
   const renderLink = (name: string, link?: string, badge?: number) => {
     const content = (
-      <span className={'footer-link-text'}>
+      <span className={'footer-link-text text-style-body-standard'}>
         {name}
         {badge && badge > 0 && <span className={'badge'}>{badge}</span>}
       </span>
@@ -65,12 +65,12 @@ function Footer() {
                 className={'item'}
                 key={item.name}
               >
-                <span className={'group-name'}>{item.link ? renderLink(item.name, item.link) : item.name}</span>
+                <span className={'group-name text-style-h5'}>{item.link ? renderLink(item.name, item.link) : item.name}</span>
                 <div className={'group-links'}>
                   {item.children.map((child) => (
                     <div
                       key={child.name}
-                      className={'group-item'}
+                      className={'group-item text-style-body-standard'}
                     >
                       {renderLink(child.name, child.link, 'badge' in child ? Number(child.badge) : undefined)}
                     </div>
@@ -82,7 +82,7 @@ function Footer() {
         </div>
         <div className={'bottom'}>
           <div className={'col'}>
-            <div>Copyright © 2026, AppFlowy</div>
+            <div className={'text-style-body-standard'}>Copyright © 2026, AppFlowy</div>
           </div>
         </div>
       </div>

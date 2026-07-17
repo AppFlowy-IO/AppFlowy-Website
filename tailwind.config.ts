@@ -8,7 +8,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['Inter', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        h1: ['56px', { lineHeight: '68px' }],
+        h2: ['40px', { lineHeight: '48px' }],
+        h3: ['28px', { lineHeight: '36px' }],
+        h4: ['24px', { lineHeight: '28px' }],
+        h5: ['20px', { lineHeight: '28px' }],
+        'body-standard': ['16px', { lineHeight: '24px' }],
+        'body-enhanced': ['16px', { lineHeight: '24px' }],
+        caption: ['14px', { lineHeight: '20px' }],
       },
       colors: {
         primary: {
@@ -67,6 +78,12 @@ const config: Config = {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
         },
+        'text-theme': 'var(--color-text-theme)',
+        'text-primary': 'var(--color-text-primary)',
+        'text-secondary': 'var(--color-text-secondary)',
+        'text-tertiary': 'var(--color-text-tertiary)',
+        'text-on-fill': 'var(--color-text-on-fill)',
+        'text-inverse': 'var(--color-text-inverse)',
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',

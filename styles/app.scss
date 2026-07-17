@@ -1,7 +1,7 @@
 @import 'font.scss';
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .appflowy-app {
@@ -76,7 +76,7 @@ body {
   }
 
   .group-name {
-    @apply mb-[22px] block text-[18px] font-semibold leading-[24px] tracking-[-0.01em];
+    @apply mb-[22px] block font-semibold tracking-[-0.01em];
 
     a {
       @apply transition-opacity duration-200 hover:opacity-75 focus-visible:opacity-75;
@@ -88,7 +88,7 @@ body {
   }
 
   .group-item {
-    @apply text-[14px] leading-[22px] text-white/90;
+    @apply text-white/90;
 
     a {
       @apply relative inline-flex items-center transition-opacity duration-200 hover:opacity-75 focus-visible:opacity-75;
@@ -105,7 +105,7 @@ body {
   }
 
   .bottom {
-    @apply mt-[48px] border-t pt-[24px] text-[16px] leading-[24px] text-white/70;
+    @apply mt-[48px] border-t pt-[24px] text-white/70;
     border-color: rgba(255, 255, 255, 0.18);
   }
 }
@@ -502,7 +502,7 @@ body {
 }
 
 .MuiTab-root {
-  font-family: 'Inter', 'Poppins', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .gradient-text {

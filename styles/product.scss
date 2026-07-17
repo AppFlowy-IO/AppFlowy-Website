@@ -1,7 +1,7 @@
 .product-page {
   @apply min-h-screen w-screen bg-white;
 
-  font-family: "Poppins", "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 
   .af-container {
     @apply flex justify-center w-full;
@@ -245,7 +245,7 @@
         @apply pt-10 flex flex-col gap-[30px] items-center;
         .tab-panel-title {
           @apply text-center max-w-[640px] text-[24px] font-medium leading-[120%];
-          font-family: "Poppins", sans-serif;
+          font-family: "Inter", sans-serif;
           letter-spacing: -0.24px;
         }
 
