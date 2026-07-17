@@ -13,6 +13,7 @@ import MainDownload from '@/components/product/main-download';
 import MainProducts from '@/components/product/main-products';
 import UploadCloudIcon from '@/components/product/upload-cloud-icon';
 import UseCases from '@/components/product/use-cases';
+import SecurityCompliance from '@/components/product/security-compliance';
 import ScrollIcons from '@/components/shared/scroll-icons';
 import Image from 'next/image';
 import iconsBg from '@/assets/images/product/icons-bg.png';
@@ -194,6 +195,7 @@ export default function Page() {
           height={430}
         />
       </div>
+      <SecurityCompliance />
       <GetStart />
     </div>
   );
