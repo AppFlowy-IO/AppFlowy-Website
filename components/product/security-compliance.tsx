@@ -4,7 +4,7 @@ import React from 'react';
 const certificateBlockBg = '/images/sections/certificate-block-bg.webp';
 const soc2Badge = '/images/sections/soc2-logo.svg';
 const gdprBadge = '/images/sections/gdpr-logo.svg';
-const hippaBadge = '/images/sections/hippa-logo.svg';
+const hipaaBadge = '/images/sections/hippa-logo.svg';
 const isoBadge = '/images/sections/iso.svg';
 
 function ComplianceCard({
@@ -40,7 +40,7 @@ function SecurityCompliance() {
         </div>
         <div className={'compliance__panel'}>
           <div className={'compliance__copy'}>
-            <h2 className={'compliance__title text-style-h1 font-bold'}>
+            <h2 className={'text-style-h2 font-bold'}>
               Enterprise Privacy
               <br />
               Built on Trust
@@ -69,9 +69,9 @@ function SecurityCompliance() {
               </div>
             </ComplianceCard>
 
-            <ComplianceCard label={'HIPPA'}>
+            <ComplianceCard label={'HIPAA'}>
               <div className={'compliance__badge-icon '}>
-                <Image alt={'hippa badge'} fill={true} src={hippaBadge} />
+                <Image alt={'hipaa badge'} fill={true} src={hipaaBadge} />
               </div>
             </ComplianceCard>
 

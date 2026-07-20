@@ -68,7 +68,7 @@ body {
     @apply grid flex-1 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white;
     @apply max-2xl:gap-x-[40px];
     @apply max-lg:w-full max-lg:grid-cols-2 max-lg:gap-x-[32px] max-lg:gap-y-[36px];
-    @apply max-sm:grid-cols-1;
+    @apply max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px];
   }
 
   .item {

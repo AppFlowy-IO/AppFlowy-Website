@@ -545,26 +545,6 @@
       @apply relative flex h-[112px] w-[112px] items-center justify-center;
     }
 
-    &__card-mark-text {
-      @apply absolute inset-0 flex flex-col items-center justify-center text-center leading-[0] text-text-primary;
-    }
-
-    &__mark-copy {
-      @apply flex flex-col items-center justify-center text-center text-text-primary;
-
-      &--soc2 {
-        @apply gap-0;
-      }
-
-      &--gdpr {
-        @apply gap-0;
-      }
-
-      &--iso {
-        @apply gap-0;
-      }
-    }
-
     &__card-label {
       @apply min-w-full text-center font-mono text-[16px] font-semibold tracking-[-0.04em] text-text-primary;
       line-height: 24px;
@@ -572,10 +552,6 @@
 
     &__badge-icon {
       @apply relative h-[112px] w-[112px];
-    }
-
-    &__badge-icon-backdrop {
-      @apply object-contain;
     }
   }
 
@@ -654,7 +630,7 @@
         @apply h-[40px] min-w-[180px] bg-white px-8 text-[15px] font-medium text-[#171438];
         @apply max-sm:w-full;
         border-radius: 8px;
-        border: 1px solid transparent;
+        border: none;
         box-shadow: 0 10px 28px rgba(31, 28, 74, 0.04);
 
         &:hover {
