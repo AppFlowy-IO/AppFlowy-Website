@@ -83,7 +83,7 @@ function generateListSchema() {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '1500',
+      reviewCount: '1600',
       bestRating: '5',
       worstRating: '1',
     },
