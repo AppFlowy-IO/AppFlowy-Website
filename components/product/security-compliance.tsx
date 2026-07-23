@@ -40,7 +40,7 @@ function SecurityCompliance() {
         </div>
         <div className={'compliance__panel'}>
           <div className={'compliance__copy'}>
-            <h2 className={'text-style-h2 font-bold'}>
+            <h2 className={'text-style-h1 font-bold'}>
               Enterprise Privacy
               <br />
               Built on Trust

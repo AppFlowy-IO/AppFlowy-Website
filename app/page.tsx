@@ -1,5 +1,4 @@
 import '@/styles/product.scss';
-import Communities from '@/components/product/communities';
 import GetStart from '@/components/product/get-start';
 import MobileViews from '@/components/product/mobile-views';
 import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
@@ -14,6 +13,9 @@ import MainProducts from '@/components/product/main-products';
 import UploadCloudIcon from '@/components/product/upload-cloud-icon';
 import UseCases from '@/components/product/use-cases';
 import SecurityCompliance from '@/components/product/security-compliance';
+import { TestimonialSection } from '@/components/product/testimonial-card';
+import ReviewsSection from '@/components/product/reviews-section';
+import IntegrationsSection from '@/components/product/integrations-section';
 import ScrollIcons from '@/components/shared/scroll-icons';
 import Image from 'next/image';
 import iconsBg from '@/assets/images/product/icons-bg.png';
@@ -65,7 +67,7 @@ export default function Page() {
                 <div className={'card-title'}>
                   AI model selection
                   <div className={'card-desc'}>
-                  Run local AI models on your machine. Choose from{' '}
+                    Run local AI models on your machine. Choose from{' '}
                     <span className={'whitespace-nowrap'}>GPT 5, </span><span className={'whitespace-nowrap'}>Gemini 2.5, </span>and <span className={'whitespace-nowrap'}>Claude 3.7</span>.
                   </div>
                 </div>
@@ -149,52 +151,9 @@ export default function Page() {
           <MobileViews />
         </div>
       </div>
-      <div className={'af-container'}>
-        <div className={'af-box section-7'}>
-          <div className={'section-7-title'}>
-            AppFlowy is built with a vibrant
-            <span className={'text-primary'}> community</span>
-          </div>
-          <div className={'community-numbers'}>
-            <div className={'community-number'}>
-              <div className={'flex gap-2'}>
-                <div className={'number'}>10K</div>
-                <div className={'plus'} />
-              </div>
-              <div className={'label'}>Community members</div>
-            </div>
-            <div className={'community-number'}>
-              <div className={'flex gap-2'}>
-                <div className={'number'}>215</div>
-                <div className={'plus'} />
-              </div>
-              <div className={'label'}>Countries represented</div>
-            </div>
-            <div className={'community-number'}>
-              <div className={'flex gap-2'}>
-                <div className={'number'}>400</div>
-                <div className={'plus'} />
-              </div>
-              <div className={'label'}>Contributors</div>
-            </div>
-          </div>
-          <Communities />
-        </div>
-      </div>
-      <div className={'flex w-full items-center justify-center pb-[96px] max-md:pb-[10vh]'}>
-        <Image
-          loading={'eager'}
-          src={iconsBg}
-          alt={'AppFlowy AI workspace'}
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-          quality={100}
-          width={1555}
-          height={430}
-        />
-      </div>
+      <IntegrationsSection />
+      <ReviewsSection />
+      <TestimonialSection />
       <SecurityCompliance />
       <GetStart />
     </div>
