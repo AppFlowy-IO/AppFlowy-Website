@@ -16,9 +16,8 @@ import SecurityCompliance from '@/components/product/security-compliance';
 import { TestimonialSection } from '@/components/product/testimonial-card';
 import ReviewsSection from '@/components/product/reviews-section';
 import IntegrationsSection from '@/components/product/integrations-section';
+import PlatformSection from '@/components/product/platform-section';
 import ScrollIcons from '@/components/shared/scroll-icons';
-import Image from 'next/image';
-import iconsBg from '@/assets/images/product/icons-bg.png';
 import React from 'react';
 
 export default function Page() {
@@ -151,6 +150,7 @@ export default function Page() {
           <MobileViews />
         </div>
       </div>
+      <PlatformSection />
       <IntegrationsSection />
       <ReviewsSection />
       <TestimonialSection />
