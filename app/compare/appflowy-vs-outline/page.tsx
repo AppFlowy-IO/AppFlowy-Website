@@ -55,7 +55,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-6',
         question: 'Do AppFlowy and Outline support AI features?',
         answer:
-            'While Both products offer AI-powered search, Outline\'s AI capabilities are more limited than AppFlowy.\n\nAppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
+            'While both products offer AI-powered search, Outline\'s AI capabilities are more limited than AppFlowy.\n\nAppFlowy also includes additional AI capabilities such as AI writing assistance, AI chat, AI meeting notes, AI transcripts, and support for local AI models.',
     },
     {
         id: 'vs-outline-7',
@@ -128,6 +128,8 @@ export async function generateMetadata(): Promise<Metadata> {
         keywords: [
             'appflowy vs outline',
             'outline alternative',
+            'AppFlowy review',
+            'Outline review',
             'self-hosted wiki',
             'enterprise wiki alternative',
             'outline vs appflowy',
@@ -257,10 +259,6 @@ const points = [
         competitor: false,
     },
     {
-        text: 'Calendar views',
-        competitor: false,
-    },
-    {
         text: 'AI writing assistance',
         competitor: false,
     },
@@ -271,6 +269,26 @@ const points = [
     {
         text: 'AI transcript',
         competitor: false,
+    },
+    {
+        text: 'Calendar views',
+        competitor: false,
+    },
+    {
+        text: 'List views',
+        appflowy: true,
+    },
+    {
+        text: 'Gallery views',
+        appflowy: true,
+    },
+    {
+        text: 'Chart views',
+        appflowy: true,
+    },
+    {
+        text: 'Feed views',
+        appflowy: true,
     },
     {
         text: 'Native desktop & mobile apps',
@@ -293,6 +311,10 @@ const points = [
         competitor: true,
     },
     {
+        text: 'Publish pages',
+        competitor: true,
+    },
+    {
         text: 'Block-based editor',
         competitor: true,
     },
@@ -306,6 +328,10 @@ const points = [
     },
     {
         text: 'SSO/SAML',
+        competitor: true,
+    },
+    {
+        text: 'Audit logs',
         competitor: true,
     },
 ];
@@ -339,7 +365,8 @@ function Page() {
                         </div>
                         <div className={'main-content'}>
                             <h1>
-                                AppFlowy vs Outline: The Best Self-Hosted Enterprise<span className={'text-primary'}> Team Wiki</span>
+                                AppFlowy vs Outline
+                                <br></br><span className={'text-primary'}>The Best Self-Hosted Enterprise Team Wiki</span>
                             </h1>
                             <p className={'desc'}>Self-hosted, knowledge management, Notion alternatives, database, cross platform</p>
                         </div>
@@ -352,7 +379,7 @@ function Page() {
                             {`Your workspace with `}
                             <span className={'text-primary'}>more capabilities</span>
                             <br />
-                            than documentation alone
+                            than wikis alone
                         </h2>
                         <div className={'cards'}>
                             <div className={'card'}>
