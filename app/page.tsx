@@ -19,6 +19,7 @@ import IntegrationsSection from '@/components/product/integrations-section';
 import PlatformSection from '@/components/product/platform-section';
 import ScrollIcons from '@/components/shared/scroll-icons';
 import React from 'react';
+import { PricingCalculator } from '@/components/product/pricing-calculator';
 
 export default function Page() {
   return (
@@ -151,6 +152,7 @@ export default function Page() {
         </div>
       </div>
       <PlatformSection />
+      <PricingCalculator />
       <IntegrationsSection />
       <ReviewsSection />
       <TestimonialSection />

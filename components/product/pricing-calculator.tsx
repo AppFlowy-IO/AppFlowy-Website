@@ -126,13 +126,25 @@ function FeatureCheckbox({ id, label, checked, onChange }: FeatureCheckboxProps)
             role="checkbox"
             aria-checked={checked}
             onClick={() => onChange(id, !checked)}
-            className={`pricing-calculator-checkbox group ${checked ? 'checked' : ''}`}
+            className={`group flex w-full items-center justify-between gap-3 rounded-[10px] border px-4 py-4 text-left transition-all duration-200 select-none touch-manipulation cursor-pointer ${checked
+                ? 'border-[#bebebe] bg-white shadow-sm'
+                : 'border-white bg-white hover:border-[#101012]/25 hover:shadow-sm'
+                }`}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
         >
-            <span className="pricing-calculator-checkbox__label">
+            <span
+                className={`font-inter text-sm font-medium leading-[140%] transition-colors ${checked ? 'text-[#101012]' : 'text-[#4A4A5A]'
+                    }`}
+            >
                 {label}
             </span>
             {/* Custom circle checkbox */}
-            <span className="pricing-calculator-checkbox__circle">
+            <span
+                className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200 ${checked
+                    ? 'border-[#101012] bg-[#101012]'
+                    : 'border-[rgba(213,215,222,0.80)] bg-transparent group-hover:border-[#101012]/40'
+                    }`}
+            >
                 {checked && (
                     <svg width="10" height="8" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -194,21 +206,21 @@ export function PricingCalculator() {
     const hasSelection = selectedIds.size > 0;
 
     return (
-        <section className="pricing-calculator-section">
-            <div className="pricing-calculator-inner">
-                <div className="pricing-calculator-content">
+        <section className="af-container">
+            <div className="af-box pricing-calculator-section">
+                <div className="pricing-calculator-inner">
                     {/* Section Header */}
-                    <div className="pricing-calculator-header">
-                        <h2>
+                    <div className="mb-10 sm:mb-12 lg:mb-14">
+                        <h2 className="text-style-h1 font-bold leading-[105%]">
                             More productivity, fewer tools
                         </h2>
-                        <p>
+                        <p className="mt-3 text-style-h5 font-medium">
                             Select the capabilities your team needs. See how much you&apos;d spend assembling them from separate SaaS tools — and how much you save with AppFlowy.
                         </p>
                     </div>
 
                     {/* Feature Grid */}
-                    <div className="pricing-calculator-grid">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                         {VISIBLE_FEATURES.map((feature) => (
                             <FeatureCheckbox
                                 key={feature.id}
@@ -221,32 +233,37 @@ export function PricingCalculator() {
                     </div>
 
                     {/* Results Panel */}
-                    <div className="pricing-calculator-panel">
-                        <div className="pricing-calculator-panel-inner">
+                    <div
+                        className="mt-6 overflow-hidden rounded-2xl"
+                        style={{ background: 'linear-gradient(135deg, #1A1225 0%, #0F0A1A 100%)' }}
+                    >
+                        <div className="flex flex-col gap-8 p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-0">
                             {/* Team Size Control */}
-                            <div className="pricing-calculator-team">
-                                <div className="pricing-calculator-team-header">
-                                    <span className="pricing-calculator-team-label">Team size</span>
+                            <div className="flex-1 lg:border-r lg:border-white/10 lg:pr-8">
+                                <div className="mb-5 flex items-center justify-between">
+                                    <span className="font-inter text-base font-medium text-white/80">Team size</span>
                                     {/* +/- controls */}
-                                    <div className="pricing-calculator-team-controls">
+                                    <div className="flex items-center gap-4">
                                         <button
                                             id="team-size-decrease"
                                             aria-label="Decrease team size"
                                             onClick={() => setTeamSize((v) => Math.max(1, v - 1))}
-                                            className="pricing-calculator-icon-button"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
+                                            style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="2" viewBox="0 0 12 2" fill="none">
                                                 <path d="M1 1H11" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                                             </svg>
                                         </button>
-                                        <span className="pricing-calculator-team-size">
+                                        <span className="min-w-[3ch] text-center font-inter text-xl font-semibold text-white">
                                             {teamSize}
                                         </span>
                                         <button
                                             id="team-size-increase"
                                             aria-label="Increase team size"
                                             onClick={() => setTeamSize((v) => Math.min(1000, v + 1))}
-                                            className="pricing-calculator-icon-button"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
+                                            style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                                 <path d="M6 1V11M1 6H11" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
@@ -256,7 +273,7 @@ export function PricingCalculator() {
                                 </div>
 
                                 {/* Slider */}
-                                <div className="pricing-calculator-slider-wrap">
+                                <div className="relative">
                                     <input
                                         id="team-size-slider"
                                         type="range"
@@ -266,57 +283,62 @@ export function PricingCalculator() {
                                         onChange={(e) => setTeamSize(Number(e.target.value))}
                                         className="pricing-calculator-slider w-full cursor-pointer appearance-none"
                                         style={{
+                                            height: '4px',
+                                            borderRadius: '9999px',
                                             background: `linear-gradient(to right, #8427E0 0%, #8427E0 ${teamSize / 10}%, rgba(255,255,255,0.15) ${teamSize / 10}%, rgba(255,255,255,0.15) 100%)`,
+                                            outline: 'none',
                                         }}
                                     />
-                                    <div className="pricing-calculator-slider-labels">
-                                        <span>1 user</span>
-                                        <span>500 users</span>
-                                        <span>1000 users</span>
+                                    <div className="mt-3 flex justify-between">
+                                        <span className="font-inter text-xs text-white/40">1 user</span>
+                                        <span className="font-inter text-xs text-white/40">500 users</span>
+                                        <span className="font-inter text-xs text-white/40">1000 users</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Savings Display */}
-                            <div className="pricing-calculator-savings">
+                            <div className="flex flex-1 items-center justify-around lg:pl-8">
                                 {/* Monthly */}
-                                <div className="pricing-calculator-savings-item">
+                                <div className="text-center">
                                     <div
-                                        className={`value ${hasSelection ? 'value--active' : 'value--inactive'}`}
+                                        className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
+                                            }`}
                                     >
                                         {hasSelection ? formatDollars(monthlySavings) : '$0'}
                                     </div>
-                                    <div className="label">Monthly Savings</div>
+                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly Savings</div>
                                 </div>
 
                                 {/* Divider */}
-                                <div className="pricing-calculator-divider" />
+                                <div className="hidden h-16 w-px bg-white/10 lg:block" />
 
                                 {/* Annual */}
-                                <div className="pricing-calculator-savings-item">
+                                <div className="text-center">
                                     <div
-                                        className={`value ${hasSelection ? 'value--active' : 'value--inactive'}`}
+                                        className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
+                                            }`}
                                     >
                                         {hasSelection ? formatDollars(annualSavings) : '$0'}
                                     </div>
-                                    <div className="label">Annual Savings</div>
+                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Annual Savings</div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Bottom bar – context message */}
                         {hasSelection && annualSavings > 0 && (
-                            <div className="pricing-calculator-bar pricing-calculator-bar--active">
-                                <p>
+                            <div className="border-t border-white/10 bg-white/5 px-6 py-3 sm:px-8">
+                                <p className="font-inter text-sm text-white/60">
                                     AppFlowy covers all the feature above and is priced at{' '}
-                                    <span className="pricing-calculator-price">${APPFLOWY_PRICE_PER_USER_YEAR}/user/year</span>
+                                    <span className="font-semibold text-[#C89AFA]">${APPFLOWY_PRICE_PER_USER_YEAR}/user/year</span>
                                 </p>
                             </div>
                         )}
 
                         {!hasSelection && (
-                            <div className="pricing-calculator-bar pricing-calculator-bar--inactive">
-                                <p>
+                            <div className="border-t border-white/10 bg-white/5 px-6 py-3 sm:px-8">
+                                <p className="font-inter text-sm text-white/40">
                                     Select capabilities above to estimate your savings vs. assembling separate SaaS tools.
                                 </p>
                             </div>
