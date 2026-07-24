@@ -91,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
         title,
         description,
         alternates: {
-            canonical: `${site_url}/compare/AFFiNE-vs-appflowy`,
+            canonical: `${site_url}/compare/appflowy-vs-affine`,
         },
         robots: {
             index: true,
@@ -102,10 +102,10 @@ export async function generateMetadata(): Promise<Metadata> {
         openGraph: {
             title,
             description,
-            url: `${site_url}/compare/AFFiNE-vs-appflowy`,
+            url: `${site_url}/compare/appflowy-vs-affine`,
             type: 'article',
             siteName: 'AppFlowy',
-            publishedTime: new Date().toISOString(),
+            publishedTime: '2026-07-16T00:00:00Z',
             modifiedTime: new Date().toISOString(),
             images: [
                 {
@@ -125,6 +125,7 @@ export async function generateMetadata(): Promise<Metadata> {
         keywords: [
             'appflowy vs AFFiNE',
             'AFFiNE comparison',
+            'comparing AFFiNE and AppFlowy',
             'best self-hosted Notion alternative',
             'self-hosted productivity app',
             'AFFiNE review',
@@ -147,7 +148,7 @@ function generateListSchema() {
         '@type': ['WebPage', 'ItemPage'],
         name: title,
         description: description,
-        url: `${site_url}/compare/AFFiNE-vs-appflowy`,
+        url: `${site_url}/compare/appflowy-vs-affine`,
         mainEntity: {
             '@type': 'ItemList',
             itemListElement: [

@@ -108,7 +108,7 @@ export async function generateMetadata(): Promise<Metadata> {
             url: `${site_url}/compare/appflowy-vs-outline`,
             type: 'article',
             siteName: 'AppFlowy',
-            publishedTime: '2024-10-14T00:00:00Z',
+            publishedTime: '2026-07-02T00:00:00Z',
             modifiedTime: new Date().toISOString(),
             images: [
                 {
