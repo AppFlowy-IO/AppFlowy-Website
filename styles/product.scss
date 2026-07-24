@@ -984,4 +984,193 @@
       background: rgba(255, 255, 255, 0.16);
     }
   }
+
+  .pricing-calculator {
+    &-section {
+      @apply w-full bg-[#F5F5FA] py-16 sm:py-20 lg:py-24 xl:py-[120px];
+    }
+
+    &-inner {
+      @apply mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8;
+    }
+
+    &-content {
+      @apply mx-auto w-full max-w-[1100px];
+    }
+
+    &-header {
+      @apply mb-10 sm:mb-12 lg:mb-14;
+
+      h2 {
+        @apply font-inter text-3xl font-semibold leading-[105%] tracking-[-0.03em] text-[#101012] sm:text-4xl md:text-[40px];
+      }
+
+      p {
+        @apply mt-3 font-inter text-base font-normal leading-[150%] text-[#5A5A72];
+      }
+    }
+
+    &-grid {
+      @apply grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4;
+    }
+
+    &-checkbox {
+      @apply group flex w-full items-center justify-between gap-3 rounded-[10px] border px-4 py-4 text-left transition-all duration-200 select-none cursor-pointer touch-manipulation;
+      @apply border-white bg-white hover:border-[#101012]/25 hover:shadow-sm;
+      -webkit-tap-highlight-color: transparent;
+
+      &.checked {
+        @apply border-[#bebebe] bg-white shadow-sm;
+
+        .pricing-calculator-checkbox__label {
+          @apply text-[#101012];
+        }
+
+        .pricing-calculator-checkbox__circle {
+          @apply border-[#101012] bg-[#101012];
+        }
+      }
+
+      &__label {
+        @apply font-inter text-sm font-medium leading-[140%] transition-colors text-[#4A4A5A];
+      }
+
+      &__circle {
+        @apply flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200;
+        @apply border-[rgba(213,215,222,0.80)] bg-transparent group-hover:border-[#101012]/40;
+      }
+    }
+
+    &-panel {
+      @apply mt-6 overflow-hidden rounded-2xl;
+      background: linear-gradient(135deg, #1a1225 0%, #0f0a1a 100%);
+    }
+
+    &-panel-inner {
+      @apply flex flex-col gap-8 p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-0;
+    }
+
+    &-team {
+      @apply flex-1 lg:border-r lg:border-white/10 lg:pr-8;
+    }
+
+    &-team-header {
+      @apply mb-5 flex items-center justify-between;
+    }
+
+    &-team-label {
+      @apply font-inter text-base font-medium text-white/80;
+    }
+
+    &-team-controls {
+      @apply flex items-center gap-4;
+    }
+
+    &-icon-button {
+      @apply flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    &-team-size {
+      @apply min-w-[3ch] text-center font-inter text-xl font-semibold text-white;
+    }
+
+    &-slider-wrap {
+      @apply relative;
+    }
+
+    &-slider {
+      @apply w-full cursor-pointer appearance-none;
+      height: 4px;
+      border-radius: 9999px;
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      &::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      &::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    &-slider-labels {
+      @apply mt-3 flex justify-between;
+
+      span {
+        @apply font-inter text-xs text-white/40;
+      }
+    }
+
+    &-savings {
+      @apply flex flex-1 items-center justify-around lg:pl-8;
+    }
+
+    &-savings-item {
+      @apply text-center;
+
+      .value {
+        @apply font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px];
+      }
+
+      .value--active {
+        @apply text-white;
+      }
+
+      .value--inactive {
+        @apply text-white/25;
+      }
+
+      .label {
+        @apply mt-2 font-inter text-sm font-normal text-white/50;
+      }
+    }
+
+    &-divider {
+      @apply hidden h-16 w-px bg-white/10 lg:block;
+    }
+
+    &-bar {
+      @apply border-t border-white/10 bg-white/5 px-6 py-3 sm:px-8;
+
+      p {
+        @apply font-inter text-sm;
+      }
+
+      &--active p {
+        @apply text-white/60;
+      }
+
+      &--inactive p {
+        @apply text-white/40;
+      }
+    }
+
+    &-price {
+      @apply font-semibold text-[#C89AFA];
+    }
+
+    &-disclaimer {
+      @apply mt-4 font-inter text-xs leading-[160%] text-[#9090A8];
+    }
+  }
 }
