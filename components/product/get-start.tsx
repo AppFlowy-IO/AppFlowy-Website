@@ -7,20 +7,22 @@ import React from 'react';
 
 function GetStart() {
   return (
-    <div className={'af-container section-8-container'}>
-      <div className={'af-box section-8'}>
-        <div className={'section-8-title'}>
-          <div className={'section-8-logo'}>
-            <Image src={logo} alt={'AppFlowy'} />
+    <div className='flex w-full justify-center'>
+      <div className='section-8 min-w-0 max-w-full py-24 relative inset-0'>
+        <div className='section-8-title flex flex-col items-center justify-center gap-6 text-center max-md:gap-5'>
+          <div className='section-8-logo flex h-[90px] w-[90px] items-center justify-center rounded-[28px] border bg-white shadow-[0_18px_42px_rgba(41,33,84,0.08)]'>
+            <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
-          <h2 className={'text-style-h1'}>Get Started for Free</h2>
-          <div className={'section-8-desc'}>
+          <h2 className='text-style-h1 font-semibold tracking-[-0.04em] max-lg:text-[64px] max-md:text-[10vw]'>
+            Get Started for Free
+          </h2>
+          <div className='section-8-desc  max-w-[1020px] text-center text-style-h5 leading-[1.45] max-md:max-w-[640px] max-md:text-[15px]'>
             The AI workspace where you achieve more without losing control of your data
           </div>
         </div>
-        <div className={'section-8-btns'}>
+        <div className='section-8-btns py-12  flex items-center justify-center gap-3 max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col max-sm:gap-3'>
           <Link
-            className={'download-btn'}
+            className='download-btn h-[40px] min-w-[180px] border-0 bg-[#140F28] px-8 text-[15px] font-medium text-white max-sm:w-full'
             href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
             target={'_blank'}
             rel={'noopener noreferrer'}
@@ -28,13 +30,13 @@ function GetStart() {
             Self-host AppFlowy
           </Link>
           <Link
-            className={'live-demo-btn'}
+            className='live-demo-btn h-[40px] min-w-[180px] bg-white px-8 text-[15px] font-medium text-[#171438] max-sm:w-full'
             href={webApplicationUrl}
           >
             Get started free
           </Link>
         </div>
-        <div className="circle-gradient"></div>
+        <div className='circle-gradient'></div>
       </div>
     </div>
   );

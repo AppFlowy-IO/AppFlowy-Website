@@ -28,20 +28,6 @@ body {
 }
 
 .appflowy-footer {
-  @apply w-full overflow-hidden bg-white px-[24px] pb-[24px] text-white;
-
-  .footer-shell {
-    @apply w-full rounded-[30px] bg-black px-[40px] pb-[24px] pt-[84px];
-    @apply max-xl:px-[28px] max-xl:pt-[64px];
-    @apply max-lg:rounded-[24px] max-lg:px-[24px] max-lg:pt-[48px];
-  }
-
-  .top {
-    @apply flex items-start gap-[72px];
-    @apply max-xl:gap-[48px];
-    @apply max-lg:flex-col max-lg:gap-[40px];
-  }
-
   .logo {
     @apply flex w-[250px] shrink-0 flex-col;
     @apply max-lg:w-full;
@@ -64,27 +50,15 @@ body {
     }
   }
 
-  .menu {
-    @apply grid flex-1 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white;
-    @apply max-2xl:gap-x-[40px];
-    @apply max-lg:w-full max-lg:grid-cols-2 max-lg:gap-x-[32px] max-lg:gap-y-[36px];
-    @apply max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px];
-  }
-
-  .item {
-    @apply min-w-0;
-  }
-
   .group-name {
-    @apply mb-[22px] block font-semibold tracking-[-0.01em];
+    margin-bottom: 22px;
+    display: block;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 
     a {
       @apply transition-opacity duration-200 hover:opacity-75 focus-visible:opacity-75;
     }
-  }
-
-  .group-links {
-    @apply flex flex-col gap-[18px];
   }
 
   .group-item {
@@ -93,19 +67,9 @@ body {
     a {
       @apply relative inline-flex items-center transition-opacity duration-200 hover:opacity-75 focus-visible:opacity-75;
     }
-
-    .footer-link-text {
-      @apply relative inline-flex items-center;
-    }
-
-    .badge {
-      @apply absolute -right-[22px] -top-[8px];
-      @apply inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-[5px] text-[11px] leading-none text-white;
-    }
   }
 
   .bottom {
-    @apply mt-[48px] border-t pt-[24px] text-white/70;
     border-color: rgba(255, 255, 255, 0.18);
   }
 }

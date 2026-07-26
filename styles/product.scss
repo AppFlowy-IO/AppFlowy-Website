@@ -403,20 +403,6 @@
   }
 
   .testimonial-section {
-    @apply w-full overflow-hidden bg-[#F6F6FF] py-[120px];
-    @apply max-md:py-[10vh];
-
-    &__inner {
-      @apply mx-auto flex w-full max-w-[1440px] flex-col items-center px-[80px];
-      @apply max-xl:px-[4vw];
-    }
-
-    &__title {
-      @apply max-w-[1280px] text-center text-[56px] font-bold leading-[68px] tracking-[-0.03em] text-[#16152d];
-      @apply max-lg:text-[48px] max-lg:leading-[1.05];
-      @apply max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.1];
-    }
-
     &__mobile {
       @apply hidden w-full flex-col gap-6;
       @apply max-sm:flex;
@@ -458,12 +444,9 @@
     }
 
     &__stage {
-      @apply relative mt-[40px] w-full overflow-hidden pb-[44px];
-
       &::before,
       &::after {
         content: '';
-        @apply pointer-events-none absolute top-0 z-10 h-full w-[120px];
       }
 
       &::before {
@@ -478,89 +461,8 @@
     }
 
     &__track {
-      @apply flex w-max items-stretch gap-[20px];
       will-change: transform;
-
-      & + & {
-        @apply mt-[32px];
-      }
-
-      &--top {
-        @apply translate-x-[-6vw];
-      }
-
-      &--bottom {
-        @apply translate-x-[2vw];
-      }
     }
-
-    &__stage {
-      @apply max-md:overflow-visible;
-
-      &::before,
-      &::after {
-        @apply max-md:hidden;
-      }
-    }
-
-    &__track {
-      @apply max-md:w-full max-md:translate-x-0 max-md:flex-col max-md:gap-5;
-      @apply max-md:items-center;
-      @apply max-sm:hidden;
-    }
-
-    &__track--top,
-    &__track--bottom {
-      @apply max-md:mt-0;
-    }
-
-    &__track--bottom {
-      @apply max-md:ml-0;
-    }
-  }
-
-  .testimonial-card {
-    @apply flex h-[320px] w-[480px] flex-col justify-between rounded-[18px] bg-white p-[36px];
-    @apply max-md:w-full max-md:max-w-[480px];
-    box-shadow: 0 24px 72px -32px rgba(16, 16, 18, 0.18);
-
-    &__content {
-      @apply flex h-[168px] w-full flex-col items-start gap-[16px];
-    }
-
-    &__brand {
-      @apply relative h-[32px] w-full overflow-clip;
-    }
-
-    &__quote {
-      @apply w-full text-[16px] font-medium leading-[24px] text-[#140f28];
-    }
-
-    &__author {
-      @apply flex w-full items-center gap-[16px];
-    }
-
-    &__avatar {
-      @apply relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-full;
-    }
-
-    &__avatar-image {
-      @apply block h-full w-full object-cover;
-    }
-
-    &__author-text {
-      @apply flex min-w-0 flex-col;
-    }
-
-    &__name {
-      @apply text-[16px] font-medium leading-[24px] text-[#140f28];
-    }
-
-    &__title {
-      @apply text-[16px] font-normal leading-[24px] text-[#5a5a5a];
-    }
-
-    @apply max-sm:h-[360px] max-sm:w-[84vw] max-sm:max-w-[84vw] max-sm:shrink-0 max-sm:snap-start;
   }
 
   .integrations-section {
@@ -663,51 +565,6 @@
   }
 
   .reviews-section {
-    @apply w-full bg-[#F6F6FF] py-[120px];
-    @apply max-md:py-[10vh];
-
-    &__inner {
-      @apply mx-auto flex w-full max-w-[1440px] flex-col px-[80px];
-      @apply max-xl:px-[4vw];
-    }
-
-    &__title {
-      @apply mb-[56px] text-[56px] font-bold leading-[68px] tracking-[-0.03em] text-[#16152d];
-      @apply max-md:mb-10 max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.1];
-    }
-
-    &__metrics {
-      @apply flex w-full flex-col gap-[28px];
-    }
-
-    &__grid {
-      @apply grid w-full grid-cols-4 gap-[40px];
-      @apply max-md:grid-cols-2 max-md:gap-x-6 max-md:gap-y-10;
-    }
-
-    &__metric {
-      @apply flex min-w-0 flex-col gap-[28px];
-      @apply max-md:gap-3;
-    }
-
-    &__value {
-      @apply text-[64px] font-medium leading-[68px] text-[#140f28];
-      @apply max-md:text-[clamp(32px,7vw,64px)] max-md:leading-[1.05];
-    }
-
-    &__divider {
-      @apply h-[32px] w-full;
-      @apply max-md:hidden;
-    }
-
-    &__divider-image {
-      @apply block h-full w-full max-w-none object-fill;
-    }
-
-    &__label {
-      @apply text-[24px] font-medium leading-[28px] text-[#aaa];
-      @apply max-md:text-[16px] max-md:leading-[1.4];
-    }
   }
 
   .platform-section {
@@ -813,33 +670,16 @@
   }
 
   .compliance-container {
-    @apply w-full p-24;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 70.192%),
       linear-gradient(90deg, #f6f6ff 0%, #f6f6ff 100%);
-    @apply max-xl:px-[4vw] max-lg:py-[96px] max-sm:px-4 max-sm:py-[72px];
   }
 
   .compliance {
-    @apply relative overflow-hidden rounded-[16px];
-    @apply flex min-h-[560px] w-full items-center justify-between gap-10 p-20;
-    background: linear-gradient(90deg, rgba(246, 246, 255, 0.96) 0%, rgba(246, 246, 255, 0.86) 100%);
-    @apply max-xl:h-auto max-xl:flex-col max-xl:items-start max-xl:gap-8 max-xl:p-6;
-
     &__panel {
-      @apply relative flex min-h-[560px] w-full items-center justify-between gap-10 overflow-hidden rounded-[16px];
-      @apply max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-8;
-    }
-
-    &__panel-bg {
-      @apply pointer-events-none absolute inset-0;
-
-      img {
-        @apply object-cover;
-      }
+      background: linear-gradient(90deg, rgba(246, 246, 255, 0.96) 0%, rgba(246, 246, 255, 0.86) 100%);
     }
 
     &__panel-fade {
-      @apply absolute inset-0;
       background: linear-gradient(
         90deg,
         rgba(247, 247, 255, 0.94) 0%,
@@ -851,126 +691,61 @@
 
     &__copy {
       z-index: 1;
-      @apply flex w-[480px] shrink-0 flex-col gap-10 text-[#140f28];
-      @apply max-xl:w-full max-xl:max-w-[560px] max-xl:gap-6;
     }
 
     &__title {
       letter-spacing: -0.04em;
-      @apply text-text-primary;
     }
 
     &__desc {
-      @apply max-w-[480px] text-text-primary;
       letter-spacing: -0.02em;
-      @apply max-lg:max-w-[420px];
     }
 
     &__badges {
       z-index: 1;
-      @apply flex flex-wrap items-center justify-center gap-2;
-      @apply max-xl:w-full max-xl:justify-start max-sm:justify-center;
     }
 
     &__card {
-      @apply flex h-[220px] w-[160px] shrink-0 flex-col items-center justify-between rounded-[8px] bg-white py-[28px];
       box-shadow: 0 18px 48px rgba(26, 25, 43, 0.06);
-      @apply max-sm:w-[148px];
-    }
-
-    &__card-mark {
-      @apply relative flex h-[112px] w-[112px] items-center justify-center;
     }
 
     &__card-label {
-      @apply min-w-full text-center font-mono text-[16px] font-semibold tracking-[-0.04em] text-text-primary;
       line-height: 24px;
     }
-
-    &__badge-icon {
-      @apply relative h-[112px] w-[112px];
-    }
-  }
-
-  .section-8-container {
-    @apply w-full;
   }
 
   .section-8 {
-    @apply relative overflow-hidden;
-    @apply flex w-full flex-col items-center justify-center gap-8 py-[80px] pb-[136px];
-    @apply max-md:min-h-fit max-md:gap-6 max-md:px-4 max-md:py-[64px] max-md:pb-[80px];
     background: white;
 
     &-title {
       z-index: 1;
-      @apply flex flex-col items-center justify-center gap-6 text-center text-[#171438];
-      @apply max-md:gap-5;
 
       h2 {
-        @apply text-[76px] font-semibold leading-[1.02];
-        @apply max-lg:text-[64px] max-md:text-[10vw];
         letter-spacing: -0.04em;
       }
     }
 
     .section-8-logo {
-      @apply flex h-[90px] w-[90px] items-center justify-center rounded-[28px] border bg-white shadow-[0_18px_42px_rgba(41,33,84,0.08)];
       border-color: rgba(0, 0, 0, 0.08);
-
-      img {
-        @apply h-[56px] w-[56px];
-      }
     }
 
     .section-8-desc {
       z-index: 1;
-      @apply max-w-[1020px] text-center text-[18px] font-normal leading-[1.45] text-[#171438];
-      @apply max-md:max-w-[640px] max-md:text-[15px];
       letter-spacing: -0.02em;
     }
 
-    .section-8-btns {
-      z-index: 1;
-      @apply mb-[6px] flex gap-3;
-      @apply max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col max-sm:gap-3;
-
-      .download-btn {
-        @apply h-[40px] min-w-[180px] border-0 bg-[#140F28] px-8 text-[15px] font-medium text-white;
-        border-radius: 8px;
-        @apply max-sm:w-full;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background: #2c254c;
-        }
-      }
-
-      .live-demo-btn {
-        @apply h-[40px] min-w-[180px] bg-white px-8 text-[15px] font-medium text-[#171438];
-        @apply max-sm:w-full;
-        border-radius: 8px;
-        border: none;
-        box-shadow: 0 10px 28px rgba(31, 28, 74, 0.04);
-
-        &:hover {
-          color: #171438;
-        }
-      }
-    }
-
     .circle-gradient {
-      height: 35vw;
-      width: 35vw;
+      height: 200px;
+      width: 500px;
       border-radius: 50%;
       position: absolute;
-      bottom: -50vh;
+      bottom: 0vh;
       left: 50%;
       transform: translateX(-50%);
       background: radial-gradient(circle, rgba(138, 44, 231, 0.4) 0%, rgba(138, 44, 231, 0) 100%);
-      filter: blur(200px);
+      filter: blur(150px);
       pointer-events: none;
+      z-index: 0;
     }
 
     &-image {

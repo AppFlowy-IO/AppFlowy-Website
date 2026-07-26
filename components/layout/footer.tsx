@@ -6,9 +6,13 @@ import Link from 'next/link';
 function Footer() {
   const renderLink = (name: string, link?: string, badge?: number) => {
     const content = (
-      <span className={'footer-link-text text-style-body-standard'}>
+      <span className='text-style-body-standard relative inline-flex items-center'>
         {name}
-        {badge && badge > 0 && <span className={'badge'}>{badge}</span>}
+        {badge && badge > 0 && (
+          <span className='absolute -right-[22px] -top-[8px] inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-[5px] text-[11px] leading-none text-white'>
+            {badge}
+          </span>
+        )}
       </span>
     );
 
@@ -18,11 +22,7 @@ function Footer() {
 
     if (link.startsWith('https')) {
       return (
-        <a
-          href={link}
-          rel={'noreferrer'}
-          target={'_blank'}
-        >
+        <a href={link} rel={'noreferrer'} target={'_blank'}>
           {content}
         </a>
       );
@@ -32,25 +32,16 @@ function Footer() {
   };
 
   return (
-    <div className={'appflowy-footer'}>
-      <div className={'footer-shell'}>
-        <div className={'top'}>
+    <div className='appflowy-footer w-full overflow-hidden bg-white px-[24px] pb-[24px] text-white'>
+      <div className='w-full rounded-[30px] bg-black px-[40px] pb-[24px] pt-[84px] max-xl:px-[28px] max-xl:pt-[64px] max-lg:rounded-[24px] max-lg:px-[24px] max-lg:pt-[48px]'>
+        <div className='flex items-start gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
           <div className={'logo'}>
             <div className={'image h-[42px] w-[189px] text-white'}>
               <Logo />
             </div>
-            <div
-              aria-label={'AppFlowy social links'}
-              className={'social-links'}
-            >
+            <div aria-label={'AppFlowy social links'} className='social-links mt-[34px] flex items-center gap-[28px]'>
               {externalLinks.map((item) => (
-                <Link
-                  aria-label={item.key}
-                  href={item.link}
-                  key={item.key}
-                  rel={'noreferrer'}
-                  target={'_blank'}
-                >
+                <Link aria-label={item.key} href={item.link} key={item.key} rel={'noreferrer'} target={'_blank'}>
                   {item.icon}
                 </Link>
               ))}
@@ -58,20 +49,16 @@ function Footer() {
           </div>
           <nav
             aria-label={'Footer'}
-            className={'menu'}
+            className='grid flex-1 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-lg:w-full max-lg:grid-cols-2 max-lg:gap-x-[32px] max-lg:gap-y-[36px] max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px]'
           >
             {links.map((item) => (
-              <div
-                className={'item'}
-                key={item.name}
-              >
-                <span className={'group-name text-style-h5'}>{item.link ? renderLink(item.name, item.link) : item.name}</span>
-                <div className={'group-links'}>
+              <div className='min-w-0' key={item.name}>
+                <span className='group-name text-style-h5 mb-[22px] block font-semibold tracking-[-0.01em]'>
+                  {item.link ? renderLink(item.name, item.link) : item.name}
+                </span>
+                <div className='flex flex-col gap-[18px]'>
                   {item.children.map((child) => (
-                    <div
-                      key={child.name}
-                      className={'group-item text-style-body-standard'}
-                    >
+                    <div key={child.name} className={'group-item text-style-body-standard'}>
                       {renderLink(child.name, child.link, 'badge' in child ? Number(child.badge) : undefined)}
                     </div>
                   ))}
@@ -80,7 +67,7 @@ function Footer() {
             ))}
           </nav>
         </div>
-        <div className={'bottom'}>
+        <div className='bottom mt-[48px] border-t pt-[24px] text-white/70'>
           <div className={'col'}>
             <div className={'text-style-body-standard'}>Copyright © 2026, AppFlowy</div>
           </div>
