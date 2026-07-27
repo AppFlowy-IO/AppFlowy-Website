@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 
-const certificateBlockBg = '/images/sections/certificate-block-bg.webp';
-const soc2Badge = '/images/sections/soc2-logo.svg';
-const gdprBadge = '/images/sections/gdpr-logo.svg';
-const hipaaBadge = '/images/sections/hippa-logo.svg';
-const isoBadge = '/images/sections/iso.svg';
+import CertificateBlockBg from '@/assets/images/sections/certificate-block-bg.webp';
+import SOC2Badge from '@/assets/images/sections/soc2-logo.svg';
+import GDPRBadge from '@/assets/images/sections/gdpr-logo.svg';
+import HIPAABadge from '@/assets/images/sections/hippa-logo.svg';
+import ISOBadge from '@/assets/images/sections/iso.svg';
 
 function ComplianceCard({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -24,7 +24,7 @@ function SecurityCompliance() {
       <section className='compliance w-[1440px] min-w-0 max-w-full px-[80px] py-28 max-xl:px-[4vw]'>
         <div className='compliance__panel relative flex min-h-[560px] w-full items-center justify-between gap-10 overflow-hidden rounded-[16px] px-12 py-16 max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-8 max-xl:px-10 max-xl:py-12 max-md:px-6 max-md:py-8'>
           <div className='pointer-events-none absolute inset-0' aria-hidden={true}>
-            <Image alt={''} className={'object-cover'} fill={true} priority={false} src={certificateBlockBg} />
+            <Image alt={'compliance-background'} className={'object-cover'} fill={true} priority={false} src={CertificateBlockBg.src} />
             <div className='compliance__panel-fade absolute inset-0' />
           </div>
           <div className='compliance__copy z-[1] flex w-[480px] shrink-0 flex-col gap-10 text-[#140f28] max-xl:w-full max-xl:max-w-[560px] max-xl:gap-6'>
@@ -46,25 +46,25 @@ function SecurityCompliance() {
           >
             <ComplianceCard label={'SOC2 TYPE II'}>
               <div className='relative h-[112px] w-[112px]'>
-                <Image alt={'soc 2 badge'} fill={true} src={soc2Badge} />
+                <Image alt={'soc 2 badge'} fill={true} src={SOC2Badge} />
               </div>
             </ComplianceCard>
 
             <ComplianceCard label={'GDPR'}>
               <div className='relative h-[112px] w-[112px]'>
-                <Image alt={'gdpr badge'} fill={true} src={gdprBadge} />
+                <Image alt={'gdpr badge'} fill={true} src={GDPRBadge} />
               </div>
             </ComplianceCard>
 
             <ComplianceCard label={'HIPAA'}>
               <div className='relative h-[112px] w-[112px]'>
-                <Image alt={'hipaa badge'} fill={true} src={hipaaBadge} />
+                <Image alt={'hipaa badge'} fill={true} src={HIPAABadge} />
               </div>
             </ComplianceCard>
 
             <ComplianceCard label={'ISO 27001'}>
               <div className='relative h-[112px] w-[112px]'>
-                <Image alt={'iso 27001 badge'} fill={true} src={isoBadge} />
+                <Image alt={'iso 27001 badge'} fill={true} src={ISOBadge} />
               </div>
             </ComplianceCard>
           </div>
