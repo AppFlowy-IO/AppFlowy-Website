@@ -206,7 +206,7 @@ export function PricingCalculator() {
     const hasSelection = selectedIds.size > 0;
 
     return (
-        <section className="af-container">
+        <section className='w-full bg-[#F6F6FF] max-md:py-[10vh] flex justify-center'>
             <div className="af-box pricing-calculator-section">
                 <div className="pricing-calculator-inner">
                     {/* Section Header */}

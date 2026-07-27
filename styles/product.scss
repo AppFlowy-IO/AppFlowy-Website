@@ -660,12 +660,12 @@
     }
 
     &__media {
-      @apply relative min-h-[440px] w-[50%] overflow-hidden bg-[#F8F7FC];
+    @apply relative min-h-[440px] w-[50%] overflow-hidden p-6;
       @apply max-md:min-h-[340px] max-md:w-[42%];
     }
 
     &__image {
-      @apply h-full w-full object-cover;
+    @apply h-full w-full rounded-[12px] object-cover;
     }
   }
 
