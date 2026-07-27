@@ -1,0 +1,81 @@
+.gradient-layer--leaving {
+  animation: gradientFadeOut 850ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+@keyframes gradientFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.feature-illustration--enter {
+  z-index: 1;
+  animation: illustrationEnter 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.feature-illustration--leave {
+  z-index: 2;
+  animation: illustrationLeave 850ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+@keyframes illustrationEnter {
+  0% {
+    opacity: 0.78;
+    transform: translate3d(-50%, 26%, 0) scale(0.985);
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+}
+
+@keyframes illustrationLeave {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, 42%, 0) scale(0.975);
+  }
+}
+
+.title--enter {
+  z-index: 0;
+  animation: titleEnter 1200ms ease both;
+}
+
+.title--leave {
+  z-index: 1;
+  animation: titleLeave 1200ms ease both;
+}
+
+@keyframes titleEnter {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes titleLeave {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

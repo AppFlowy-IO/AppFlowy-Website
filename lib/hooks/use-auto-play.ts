@@ -1,17 +1,15 @@
 import { useCallback, useRef } from 'react';
 
-const duration = 8000;
+const defaultDuration = 8000;
 
 export function useAutoPlay({
   options,
   onChange,
+  duration = defaultDuration,
 }: {
-  options: {
-    value: string;
-    label: string;
-    icon: React.ReactNode;
-  }[];
+  options: { value: string }[];
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  duration?: number;
 }) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -24,7 +22,7 @@ export function useAutoPlay({
     });
 
     timeoutRef.current = setTimeout(onChangeValue, duration);
-  }, [options, onChange]);
+  }, [options, onChange, duration]);
 
   const stop = useCallback(() => {
     timeoutRef.current && clearTimeout(timeoutRef.current);
@@ -33,7 +31,7 @@ export function useAutoPlay({
   const start = useCallback(() => {
     stop();
     timeoutRef.current = setTimeout(onChangeValue, duration);
-  }, [stop, onChangeValue]);
+  }, [stop, onChangeValue, duration]);
 
   return {
     start,

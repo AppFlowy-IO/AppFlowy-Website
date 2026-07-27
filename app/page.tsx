@@ -21,6 +21,7 @@ import ScrollIcons from '@/components/shared/scroll-icons';
 import React from 'react';
 import { PricingCalculator } from '@/components/product/pricing-calculator';
 import DevInfoSection from '@/components/product/dev-info-section';
+import ShowcaseSection from '@/components/product/showcase-section';
 
 export default function Page() {
   return (
@@ -42,7 +43,7 @@ export default function Page() {
       <div className={'w-full bg-[#EEEEFD] pb-[120px]'}>
         <ScrollIcons />
       </div>
-      <div className={'af-container'}>
+      {/* <div className={'af-container'}>
         <div className={'af-box section-3'}>
           <div className="glow"></div>
           <h2 className={'section-3-title'}>
@@ -97,7 +98,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* <div className={'af-container'}>
         <div className={'af-box section-4'}>
           <div className={'section-4-title'}>
@@ -141,6 +142,7 @@ export default function Page() {
           </div>
         </div>
       </div> */}
+      <ShowcaseSection />
       <DevInfoSection />
       <PlatformSection />
       <PricingCalculator />

@@ -125,7 +125,7 @@ function DevInfoSection() {
             <div className='mx-auto flex w-full max-w-[1440px] flex-col border border-[#5A5A5A] px-[80px] max-xl:px-[4vw] sm:py-20 lg:py-24 xl:py-[120px]'>
                 <div className='w-full flex flex-col align-items-start mb-12'>
                     <h1 className='text-style-h1 text-white font-bold'>Built for teams who own their stack</h1>
-                    <p className='text-style-h5 text-white mt-4'>Your team. Your servers. Your rules.</p>
+                    <h5 className='text-style-h5 text-text-tertiary mt-4'>Your team. Your servers. Your rules.</h5>
                 </div>
                 <div ref={ref} className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-stretch'>
                     <MuiTabs
