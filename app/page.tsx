@@ -20,6 +20,7 @@ import PlatformSection from '@/components/product/platform-section';
 import ScrollIcons from '@/components/shared/scroll-icons';
 import React from 'react';
 import { PricingCalculator } from '@/components/product/pricing-calculator';
+import DevInfoSection from '@/components/product/dev-info-section';
 
 export default function Page() {
   return (
@@ -97,15 +98,15 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={'af-container'}>
+      {/* <div className={'af-container'}>
         <div className={'af-box section-4'}>
           <div className={'section-4-title'}>
             <span className={'text-primary'}>Easy-to-use</span> and powerful
           </div>
           <UseCases />
         </div>
-      </div>
-      <div className={'af-container'}>
+      </div> */}
+      {/* <div className={'af-container'}>
         <div className={'af-box section-5'}>
           <div className={'section-5-title'}>
             Built for people who value
@@ -139,18 +140,8 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </div>
-      <div className={'af-container'}>
-        <div className={'af-box section-6'}>
-          <div className={'section-6-title'}>
-            AppFlowy
-            <span className={'text-primary'}> for Mobile </span>
-            Work on the go
-          </div>
-          <MobileDownloadBtns />
-          <MobileViews />
-        </div>
-      </div>
+      </div> */}
+      <DevInfoSection />
       <PlatformSection />
       <PricingCalculator />
       <IntegrationsSection />
