@@ -22,17 +22,24 @@ import React from 'react';
 import { PricingCalculator } from '@/components/product/pricing-calculator';
 import DevInfoSection from '@/components/product/dev-info-section';
 import ShowcaseSection from '@/components/product/showcase-section';
+import HeroUnderlineIcon from '@/components/product/hero-underline-icon';
 
 export default function Page() {
   return (
     <div className={'product-page'}>
       <div className={'af-container'}>
         <div className={'af-box section-1'}>
+          <div className={'hero-blob hero-blob-left'} />
+          <div className={'hero-blob hero-blob-right'} />
           <div className={'main-content'}>
-            <h1>
-              Bring projects, wikis, and teams together <span className={'text-primary'}>with AI</span>
+            <h1 className='text-style-h1 font-bold'>
+              <span className={'hero-highlight'}>
+                Self-hosted
+                <HeroUnderlineIcon />
+              </span>{' '}
+              AI Workspace for Enterprise Teams
             </h1>
-            <div className={'desc'}>The AI workspace where you achieve more without losing control of your data</div>
+            <div className={'text-style-h5 text-text-tertiary'}>Bring projects, wikis, and teams together with AI</div>
           </div>
           <MainDownload />
           <div className={'flex flex-col items-center gap-4'}>
@@ -40,7 +47,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={'w-full bg-[#EEEEFD] pb-[120px]'}>
+      <div className={'w-full bg-white py-[60px]'}>
         <ScrollIcons />
       </div>
       {/* <div className={'af-container'}>

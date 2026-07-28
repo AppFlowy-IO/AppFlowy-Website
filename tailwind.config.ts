@@ -28,7 +28,7 @@ const config: Config = {
           DEFAULT: 'var(--color-primary)',
           foreground: 'var(--primary-foreground)',
         },
-        'night-blue': '#000212',
+        'night-blue': '#140F28',
         midnight: '#12101E',
         'dark-card': 'rgba(38, 32, 59, 0.80)',
         'purple-dream': '#A952FF',

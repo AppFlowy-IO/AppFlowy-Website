@@ -29,15 +29,17 @@ function HeroDesc({ inView }: { inView?: boolean }) {
   };
 
   return (
-    <div className={'hero-desc text-primary text-center text-[12px]'}>
+    <div className={'hero-desc text-primary text-center text-style-caption'}>
       <Link
+        className='no-underline'
         onClick={() => onClick(EventName.homePageWhatIsNewLink)}
         href={'/what-is-new'}
       >{`What's new in ${gitData?.lastVersion}`}</Link>
-      {` / `}
-      <Link onClick={() => onClick(EventName.homePageGetTemplatesLink)} href={'/templates'}>{`Get templates`}</Link>
-      {` / `}
+      {` | `}
+      <Link className='no-underline' onClick={() => onClick(EventName.homePageGetTemplatesLink)} href={'/templates'}>{`Get templates`}</Link>
+      {` | `}
       <Link
+        className='no-underline'
         onClick={() => onClick(EventName.homePageMorePlatformsLink)}
         href={'/download#across'}
       >{`More platforms`}</Link>

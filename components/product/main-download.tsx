@@ -3,52 +3,54 @@
 import HeroDesc from '@/components/shared/hero-desc';
 import { Button } from '@/components/ui/button';
 import { useClient } from '@/lib/hooks/use-client';
-import { useDownload } from '@/lib/hooks/use-download';
 import { webApplicationUrl } from '@/lib/web-application';
 import React, { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { collectEvent, EventName } from '@/lib/collect';
-import LinuxBtnGroup from '@/components/shared/linux-btn-group';
+import Link from 'next/link';
+
+const selfHostGuideUrl = 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production';
 
 function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
-  const { downloadOS, getOsDownloadLink } = useDownload();
   const ref = useRef(null);
-  const { isClient, isLinux, isMobile } = useClient();
+  const { isClient, isMobile } = useClient();
   const inView = useInView(ref, {
     once: true,
   });
 
   useEffect(() => {
-    if(inView && isClient) {
+    if (inView && isClient) {
       collectEvent(EventName.homePageDownloadBtn, {
         type: 'view',
       });
     }
   }, [isClient, inView]);
   return (
-    <div className={'main-download'}>
+    <div
+      ref={ref}
+      className={'flex flex-col items-center gap-4'}
+    >
       <div className={'flex w-full items-center justify-center gap-4 max-sm:flex-col'}>
-        {isLinux ? (
-          <LinuxBtnGroup title={'Download now'} />
-        ) : (
-          <Button
-            className={'flex-1'}
-            size={'2xl'}
+        <Button
+          asChild
+          size={'xl'}
+          className={
+            'flex-1 rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90'
+          }
+        >
+          <Link
+            href={selfHostGuideUrl}
+            target={'_blank'}
+            rel={'noopener noreferrer'}
             onClick={() => {
-              const link = getOsDownloadLink();
-
-              if(!link) return;
-
               collectEvent(EventName.homePageDownloadBtn, {
                 type: 'click',
               });
-
-              downloadOS();
             }}
           >
-            <div className={'title'}>{`Download now`}</div>
-          </Button>
-        )}
+            Self-host AppFlowy
+          </Link>
+        </Button>
         {!isMobile && (
           <Button
             onClick={() => {
@@ -58,11 +60,12 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
 
               window.open(webApplicationUrl, '_current');
             }}
-            className={'flex-1'}
-            size={'2xl'}
-            variant={'accent'}
+            size={'xl'}
+            className={
+              'flex-1 rounded-lg border border-[#E6E6E6] bg-white shadow-none text-night-blue transition-colors hover:bg-light-gray'
+            }
           >
-            Start for free
+            Get started free
           </Button>
         )}
       </div>
