@@ -16,6 +16,7 @@ function ScrollIcons() {
     if (!scrollContainer) return;
 
     const mediaQuery = typeof window !== 'undefined' && 'matchMedia' in window ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
     if (mediaQuery?.matches) {
       scrollContainer.scrollTo(0, 0);
       return;

@@ -7,7 +7,6 @@ import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import CloseImage from '@/assets/images/vs-notion/x.svg';
 import RightImage from '@/assets/images/vs-notion/right.svg';
-import { TestimonialCard } from '@/components/product/testimonial-card';
 import { Metadata } from 'next';
 import Script from 'next/script';
 

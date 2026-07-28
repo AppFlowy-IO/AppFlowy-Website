@@ -2,14 +2,6 @@
 
 import React, { useState, useCallback } from 'react';
 
-// Dedicated AI assistant tools only (Granola, Fireflies, Read AI)
-const AI_BENCHMARK = 400 // $415
-const TEAM_WIKI_BENCHMARK = 140 // Confluence $156, XWiki $84, Slab $180 — dedicated wikis only -> $140
-const CRM_BENCHMARK = 280 // Salesforce Starter — the canonical dedicated CRM benchmark
-const SITE_BUILDER_BENCHMARK = 350 // Wix Business — dedicated site-builder
-const PROJECT_MANAGEMENT_BENCHMARK = 200 // JIRA $166, Asana $228, Trello $210, Wrike $297 — dedicated PM tools
-const FORMS_BENCHMARK = 175 // Typeform $218, Tally $177 — dedicated form tools (free-tier outliers excluded)
-
 const FEATURES = [
     // row 1
     {
@@ -77,6 +69,7 @@ function formatDollars(value: number): string {
     if (value >= 1000) {
         return `$${(value / 1000).toFixed(1).replace(/\.0$/, '')}k`;
     }
+
     return `$${Math.round(value).toLocaleString()}`;
 }
 
@@ -140,6 +133,7 @@ export function PricingCalculator() {
     const handleFeatureChange = useCallback((id: string, checked: boolean) => {
         setSelectedIds((prev) => {
             const next = new Set(prev);
+
             if (checked) next.add(id);
             else next.delete(id);
             return next;

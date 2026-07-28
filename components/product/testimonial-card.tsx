@@ -11,6 +11,7 @@ export type TestimonialCardProps = {
 
 export function TestimonialCard({ quote, name, title, className }: TestimonialCardProps) {
   const testimonialCardClassName = `flex h-[320px] w-[480px] flex-col justify-between rounded-[18px] bg-white p-[36px] max-md:w-full max-md:max-w-[480px] ${className ? className : ''}`;
+
   return (
     <div
       className={testimonialCardClassName

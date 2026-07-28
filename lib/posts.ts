@@ -53,6 +53,7 @@ let currentSignature: string | null = null;
 
 const getSlugFromFilename = (fileName: string) => {
   const [, , , ...rest] = fileName.replace(/\.mdx$/, '').split('-');
+
   return rest.join('-');
 };
 
@@ -64,6 +65,7 @@ function ensureCacheFresh(): string[] {
   const signature = fileNames
     .map((fileName) => {
       const { mtimeMs, size } = fs.statSync(path.join(postsDirectory, fileName));
+
       return `${fileName}:${mtimeMs}:${size}`;
     })
     .join('|');
@@ -184,6 +186,7 @@ export async function getPostData(slug: string): Promise<PostData> {
   }
 
   const post = getPostByFilename(fileName);
+
   postCache.set(slug, post);
 
   return post;
