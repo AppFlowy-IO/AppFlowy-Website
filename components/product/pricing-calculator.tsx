@@ -2,27 +2,6 @@
 
 import React, { useState, useCallback } from 'react';
 
-// ─── Feature Data ────────────────────────────────────────────────────────────
-// METHODOLOGY: Each capability is assigned a single curated benchmark price
-// derived from the annual per-user cost of *dedicated, specialist* SaaS tools
-// for that capability only. Multi-feature platforms (Notion, ClickUp, Asana,
-// Monday, etc.) are deliberately excluded from individual capability benchmarks
-// because attributing a platform's full subscription price to a single feature
-// would double-count their cost across capabilities.
-//
-// AI features (Search, Meeting Notes, Writing, Research, Chatbot) are grouped
-// under a single "ai" group. When a user selects any combination of AI features,
-// the AI benchmark is counted only ONCE — reflecting that a single AI assistant
-// subscription covers all of these capabilities.
-//
-// Sources (all per user / per year, publicly listed):
-//   AI capability  → Granola $420, Fireflies $468, Read AI $357 (dedicated AI tools)
-//   Team Wiki      → Confluence $156, XWiki $84, Slab $180 (dedicated wikis)
-//   Site Builder   → Wix $468 (dedicated site-builder)
-//   Project Mgmt   → JIRA $166, Asana $228, Trello $210, Wrike $297 (dedicated PM)
-//   Basic CRM      → Salesforce $300 (dedicated CRM)
-//   Forms          → Typeform $218, Tally $177 (dedicated form tools)
-
 // Dedicated AI assistant tools only (Granola, Fireflies, Read AI)
 const AI_BENCHMARK = 400 // $415
 const TEAM_WIKI_BENCHMARK = 140 // Confluence $156, XWiki $84, Slab $180 — dedicated wikis only -> $140
@@ -36,64 +15,54 @@ const FEATURES = [
     {
         id: 'ai-search',
         label: 'AI Search',
-        pricePerYear: AI_BENCHMARK,
-        group: 'ai',
+        pricePerYear: 420,
     },
     {
         id: 'ai-writing',
         label: 'AI Writing Assistant',
-        pricePerYear: AI_BENCHMARK,
-        group: 'ai',
+        pricePerYear: 240,
     },
     {
         id: 'ai-chatbot',
         label: 'AI Chatbot',
-        pricePerYear: AI_BENCHMARK,
-        group: 'ai',
+        pricePerYear: 240,
     },
     {
         id: 'team-wiki',
         label: 'Team Wiki',
-        pricePerYear: TEAM_WIKI_BENCHMARK,
-        group: 'standalone',
+        pricePerYear: 120,
     },
     // row 2
     {
         id: 'ai-meeting',
         label: 'AI Meeting Notes',
-        pricePerYear: AI_BENCHMARK,
-        group: 'ai',
+        pricePerYear: 216,
     },
     {
         id: 'ai-research',
         label: 'AI Research',
-        pricePerYear: AI_BENCHMARK,
-        group: 'ai',
+        pricePerYear: 480,
     },
     {
         id: 'crm',
         label: 'Basic CRM',
-        pricePerYear: CRM_BENCHMARK,
-        group: 'standalone',
+        pricePerYear: 240,
     },
     // row 3
     {
         id: 'site-builder',
         label: 'Site Builder',
-        pricePerYear: SITE_BUILDER_BENCHMARK,
-        group: 'standalone',
+        pricePerYear: 240,
     },
     {
         id: 'project-management',
         label: 'Project Management Tool',
-        pricePerYear: PROJECT_MANAGEMENT_BENCHMARK,
-        group: 'standalone',
+        pricePerYear: 288,
     },
     {
         id: 'forms',
         label: 'Forms',
-        pricePerYear: FORMS_BENCHMARK,
-        group: 'standalone',
+        pricePerYear: 180,
     },
 ] as const;
 
@@ -184,17 +153,9 @@ export function PricingCalculator() {
     const selectedFeatures = VISIBLE_FEATURES.filter((f) => selectedIds.has(f.id));
 
     let estimatedMarketCostPerUserYear = 0;
-    let hasAiFeature = false;
 
     for (const f of selectedFeatures) {
-        if (f.group === 'ai') {
-            if (!hasAiFeature) {
-                estimatedMarketCostPerUserYear += f.pricePerYear; // AI counted once
-                hasAiFeature = true;
-            }
-        } else {
-            estimatedMarketCostPerUserYear += f.pricePerYear;
-        }
+        estimatedMarketCostPerUserYear += f.pricePerYear;
     }
 
     const estimatedMarketCostYear = estimatedMarketCostPerUserYear * teamSize;
@@ -211,7 +172,7 @@ export function PricingCalculator() {
                 <div className="pricing-calculator-inner">
                     {/* Section Header */}
                     <div className="mb-10 sm:mb-12 lg:mb-14">
-                        <h2 className="text-style-h1 font-bold leading-[105%]">
+                        <h2 className="text-style-h1 font-bold ">
                             More productivity, fewer tools
                         </h2>
                         <p className="mt-3 text-style-h5 font-medium">
@@ -241,7 +202,7 @@ export function PricingCalculator() {
                             {/* Team Size Control */}
                             <div className="flex-1 lg:border-r lg:border-white/10 lg:pr-8">
                                 <div className="mb-5 flex items-center justify-between">
-                                    <span className="font-inter text-base font-medium text-white/80">Team size</span>
+                                    <span className="text-base font-medium text-text-inverse">Team size</span>
                                     {/* +/- controls */}
                                     <div className="flex items-center gap-4">
                                         <button
@@ -285,14 +246,14 @@ export function PricingCalculator() {
                                         style={{
                                             height: '4px',
                                             borderRadius: '9999px',
-                                            background: `linear-gradient(to right, #8427E0 0%, #8427E0 ${teamSize / 10}%, rgba(255,255,255,0.15) ${teamSize / 10}%, rgba(255,255,255,0.15) 100%)`,
+                                            background: `linear-gradient(to right, #a76de1 0%, #8427E0 ${teamSize / 10}%, rgba(255,255,255,0.15) ${teamSize / 10}%, rgba(255,255,255,0.15) 100%)`,
                                             outline: 'none',
                                         }}
                                     />
                                     <div className="mt-3 flex justify-between">
-                                        <span className="font-inter text-xs text-white/40">1 user</span>
-                                        <span className="font-inter text-xs text-white/40">500 users</span>
-                                        <span className="font-inter text-xs text-white/40">1000 users</span>
+                                        <span className="text-xs text-text-tertiary">1 user</span>
+                                        <span className="text-xs text-text-tertiary">500 users</span>
+                                        <span className="text-xs text-text-tertiary">1000 users</span>
                                     </div>
                                 </div>
                             </div>
