@@ -47,7 +47,7 @@ export default function IntegrationsSection() {
         </div>
 
         <div
-          className="integrations__apps relative flex w-[700px] shrink-0 flex-col gap-[22px] overflow-hidden py-[24px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[110px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[110px] after:content-[''] max-lg:mx-auto max-lg:w-fit max-lg:max-w-none max-sm:before:w-[72px] max-sm:after:w-[72px]"
+          className="integrations__apps relative flex w-[700px] shrink-0 flex-col gap-[22px] overflow-hidden py-[24px] before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:block before:w-[110px] before:bg-[linear-gradient(90deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:block after:w-[110px] after:bg-[linear-gradient(270deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] after:content-[''] max-lg:mx-auto max-lg:w-fit max-lg:max-w-none max-sm:before:w-[48px] max-sm:after:w-[48px]"
           aria-label='Integration app placeholders'
         >
           <div className='flex items-center gap-[20px] pl-0 max-md:gap-[16px]'>

@@ -5,15 +5,18 @@ import Backlog from '@/assets/images/product/backlog.webp';
 import ProjectTracking from '@/assets/images/product/project-tracking.webp';
 import ReleaseReview from '@/assets/images/product/release-review.webp';
 import WeeklyBrief from '@/assets/images/product/wekkly-rose.webp';
-import { TabPanel } from '@/components/shared/tab-panel';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+import 'styles/showcase.scss';
 
 function MainProducts() {
   const [value, setValue] = React.useState('project-tracking');
+  const [previousValue, setPreviousValue] = React.useState<string | null>(null);
+  const transitionTimer = useRef<number | null>(null);
+  const previousValueRef = useRef(value);
   const { isClient } = useClient();
 
   useEffect(() => {
@@ -55,29 +58,65 @@ function MainProducts() {
     }
   }, [inView, start, stop]);
 
+  // Drives the crossfade for every value change, reusing the illustration
+  // enter/leave animation from the product showcase section.
+  useEffect(() => {
+    const leavingValue = previousValueRef.current;
+
+    previousValueRef.current = value;
+
+    if (leavingValue === value) return;
+
+    if (transitionTimer.current) {
+      window.clearTimeout(transitionTimer.current);
+    }
+
+    setPreviousValue(leavingValue);
+    transitionTimer.current = window.setTimeout(() => {
+      setPreviousValue(null);
+      transitionTimer.current = null;
+    }, 850);
+  }, [value]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current) {
+        window.clearTimeout(transitionTimer.current);
+      }
+    };
+  }, []);
+
+  const activeImage = imageOptions.find((image) => image.value === value) ?? imageOptions[0];
+  const previousImage = imageOptions.find((image) => image.value === previousValue) ?? null;
+
   return (
     <div
       ref={ref}
       className={'main-product'}
     >
-      {imageOptions.map((image) => (
-        <TabPanel
-          key={image.value}
-          value={value}
-          index={image.value}
-        >
-          <div className={'ai-image relative overflow-hidden'}>
-            <Image
-              src={image.src}
-              loading={'eager'}
-              className={'object-cover'}
-              alt={image.alt}
-              width={1280}
-              height={696}
-            />
-          </div>
-        </TabPanel>
-      ))}
+      <div className={'ai-image relative aspect-[1280/696] w-full overflow-hidden'}>
+        <Image
+          key={activeImage.value}
+          src={activeImage.src}
+          loading={'eager'}
+          className={`visual-image ${previousImage ? 'feature-illustration--enter' : ''}`}
+          alt={activeImage.alt}
+          width={1280}
+          height={696}
+        />
+        {previousImage ? (
+          <Image
+            key={`${previousImage.value}-leaving`}
+            src={previousImage.src}
+            loading={'eager'}
+            className={'visual-image feature-illustration--leave'}
+            alt={''}
+            aria-hidden={'true'}
+            width={1280}
+            height={696}
+          />
+        ) : null}
+      </div>
     </div>
   );
 }

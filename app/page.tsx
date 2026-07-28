@@ -42,7 +42,7 @@ export default function Page() {
             <div className={'text-style-h5 text-text-tertiary font-medium '}>Bring projects, wikis, and teams together with AI</div>
           </div>
           <MainDownload />
-          <div className={'flex flex-col items-center gap-4'}>
+          <div className={'flex w-full flex-col items-center gap-4'}>
             <MainProducts />
             <div className={'pointer-events-none w-full absolute inset-x-0 bottom-0 h-[64px] bg-gradient-to-b from-white/0 to-white'} />
           </div>
