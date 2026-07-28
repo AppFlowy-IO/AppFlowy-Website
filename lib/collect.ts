@@ -8,6 +8,7 @@ export enum EventName {
   homePageSwitchProductBtn = 'home_page_switch_product_btn',
   navigatorGithubBtn = 'navigator_github_btn',
   navigatorStartForFreeBtn = 'navigator_start_for_free_btn',
+  navigatorContactSalesBtn = 'navigator_contact_sales_btn',
   download = 'download',
   switchMode = 'switch_mode',
   themeView = 'theme_view',
@@ -41,6 +42,7 @@ export function collectEvent(
     | EventName.homePageTryForFreeBtn
     | EventName.navigatorGithubBtn
     | EventName.navigatorStartForFreeBtn
+    | EventName.navigatorContactSalesBtn
     | EventName.homePageGetStartedBtn
     | EventName.homePageGetTemplatesLink
     | EventName.homePageMorePlatformsLink

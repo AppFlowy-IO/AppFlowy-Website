@@ -4,7 +4,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Logo from '@/components/icons/logo';
 import { navigation } from '@/lib/config/navigation';
 import Link from 'next/link';
-import GithubBtn from '@/components/shared/github-btn';
+// import GithubBtn from '@/components/shared/github-btn';
+import { Button } from '@/components/ui/button';
 import useScroll from '@/lib/hooks/use-scroll';
 import debounce from 'lodash-es/debounce';
 import NavbarItem from '@/components/layout/nav/navbar-item';
@@ -61,27 +62,51 @@ function Navbar() {
           />
         ))}
       </div>
-      <div className={'navbar-right'}>
+      <div className={'navbar-right flex items-center'}>
         {/* Star Button */}
-        <div className={'navbar-btn-github'}>
+        {/* <div className={'navbar-btn-github'}>
           <GithubBtn />
+        </div> */}
+
+        {/* Contact Sales Button */}
+        <div className={'max-lg:hidden'}>
+          <Button
+            asChild
+            className={'h-9 rounded-lg border border-[#E6E6E6] bg-white px-4 text-sm text-night-blue shadow-none transition-colors hover:bg-light-gray'}
+          >
+            <Link
+              href={'/contact'}
+              onClick={() => {
+                collectEvent(EventName.navigatorContactSalesBtn, {
+                  type: 'click',
+                });
+              }}
+            >
+              Contact Sales
+            </Link>
+          </Button>
         </div>
 
-        {/* Star for free Button */}
+        {/* Start for free Button */}
         <div
           ref={ref}
           className={'navbar-btn-download'}
         >
-          <Link
-            onClick={() => {
-              collectEvent(EventName.navigatorStartForFreeBtn, {
-                type: 'click',
-              });
-            }}
-            href={webApplicationUrl}
+          <Button
+            asChild
+            className={'h-9 rounded-lg bg-night-blue px-4 text-sm text-white transition-colors hover:bg-night-blue/90'}
           >
-            <button className={'download-btn download-free-btn'}>{'Start for free'}</button>
-          </Link>
+            <Link
+              onClick={() => {
+                collectEvent(EventName.navigatorStartForFreeBtn, {
+                  type: 'click',
+                });
+              }}
+              href={webApplicationUrl}
+            >
+              Start for free
+            </Link>
+          </Button>
         </div>
         <span
           onClick={() => setOpenDrawer(true)}
