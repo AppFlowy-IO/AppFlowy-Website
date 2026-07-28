@@ -1,7 +1,5 @@
 import React from 'react';
 
-const imgDivider = 'https://www.figma.com/api/mcp/asset/5459b393-8189-491b-8e54-c074913b09ea';
-
 const stats = [
   { value: '5m+', label: 'Downloads' },
   { value: '1m+', label: 'Docker Pulls' },
@@ -15,6 +13,7 @@ function ReviewMetric({ value, label }: { value: string; label: string }) {
       <p className='text-[64px] font-medium leading-[68px] text-[#140f28] max-md:text-[clamp(32px,7vw,64px)] max-md:leading-[1.05]'>
         {value}
       </p>
+      <div className='h-8'></div>
       <p className='text-[24px] font-medium leading-[28px] text-[#aaa] max-md:text-[16px] max-md:leading-[1.4]'>
         {label}
       </p>
@@ -26,7 +25,7 @@ export default function ReviewsSection() {
   return (
     <section className='reviews-section w-full bg-[#F6F6FF]'>
       <div className='mx-auto flex w-full max-w-[1440px] py-[120px] px-[80px] flex-col max-md:py-[10vh] max-xl:px-[4vw]'>
-        <h2 className='mb-[56px] text-[56px] font-bold leading-[68px] tracking-[-0.03em] text-[#16152d] max-md:mb-10 max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.1]'>
+        <h2 className='mb-32 text-[56px] font-bold leading-[68px] tracking-[-0.03em] text-[#16152d] max-md:mb-10 max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.1]'>
           Empowering millions worldwide
         </h2>
 
@@ -36,11 +35,9 @@ export default function ReviewsSection() {
               <ReviewMetric key={item.label} value={item.value} label={item.label} />
             ))}
           </div>
-
-          <div className='h-[32px] w-full max-md:hidden'>
-            <img alt='' className='block h-full w-full max-w-none object-fill' src={imgDivider} />
-          </div>
         </div>
+
+        <div className='text-text-secondary border border-dashed translate-y-[-5rem]'></div>
       </div>
     </section>
   );

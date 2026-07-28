@@ -20,7 +20,7 @@ function GetStart() {
             The AI workspace where you achieve more without losing control of your data
           </div>
         </div>
-        <div className='section-8-btns py-12  flex items-center justify-center gap-3 max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col max-sm:gap-3'>
+        <div className='section-8-btns py-12 m-auto flex items-center justify-center gap-3 max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col sm:align-center max-sm:gap-3'>
           <Link
             className='download-btn h-[40px] min-w-[180px] border-0 bg-[#140F28] px-8 text-[15px] font-medium text-white max-sm:w-full'
             href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
