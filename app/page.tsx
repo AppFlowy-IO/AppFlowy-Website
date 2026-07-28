@@ -1,17 +1,17 @@
 import '@/styles/product.scss';
 import GetStart from '@/components/product/get-start';
-import MobileViews from '@/components/product/mobile-views';
-import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
-import AiExamples from '@/components/product/ai-examples';
-import AiLocalIcon from '@/components/product/ai-local-icon';
-import AiLocalLightIcon from '@/components/product/ai-local-light-icon';
-import AiModelIcon from '@/components/product/ai-model-icon';
-import CollaborativeIcon from '@/components/product/collaborative-icon';
-import FolderIcon from '@/components/product/folder-icon';
+// import MobileViews from '@/components/product/mobile-views';
+// import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
+// import AiExamples from '@/components/product/ai-examples';
+// import AiLocalIcon from '@/components/product/ai-local-icon';
+// import AiLocalLightIcon from '@/components/product/ai-local-light-icon';
+// import AiModelIcon from '@/components/product/ai-model-icon';
+// import CollaborativeIcon from '@/components/product/collaborative-icon';
+// import FolderIcon from '@/components/product/folder-icon';
 import MainDownload from '@/components/product/main-download';
 import MainProducts from '@/components/product/main-products';
-import UploadCloudIcon from '@/components/product/upload-cloud-icon';
-import UseCases from '@/components/product/use-cases';
+// import UploadCloudIcon from '@/components/product/upload-cloud-icon';
+// import UseCases from '@/components/product/use-cases';
 import SecurityCompliance from '@/components/product/security-compliance';
 import { TestimonialSection } from '@/components/product/testimonial-card';
 import ReviewsSection from '@/components/product/reviews-section';
@@ -44,10 +44,11 @@ export default function Page() {
           <MainDownload />
           <div className={'flex flex-col items-center gap-4'}>
             <MainProducts />
+            <div className={'pointer-events-none w-full absolute inset-x-0 bottom-0 h-[64px] bg-gradient-to-b from-white/0 to-white'} />
           </div>
         </div>
       </div>
-      <div className={'w-full bg-white py-[60px]'}>
+      <div className={'w-full bg-white pb-16 pt-24'}>
         <ScrollIcons />
       </div>
       {/* <div className={'af-container'}>

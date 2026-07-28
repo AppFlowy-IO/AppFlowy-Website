@@ -76,13 +76,10 @@ function ScrollIcons() {
                   display: 'flex',
                   width: '220px',
                   height: '100px',
-                  padding: '30px 20px',
                   flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'center',
                   gap: '10px',
-                  borderRadius: '79px',
-                  background: 'rgba(245, 245, 250, 0.45)',
                   color: 'var(--color-text)',
                 }}
                 className={'logo opacity-100'}

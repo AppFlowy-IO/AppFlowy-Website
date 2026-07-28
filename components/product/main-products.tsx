@@ -17,13 +17,13 @@ function MainProducts() {
   const { isClient } = useClient();
 
   useEffect(() => {
-    if(!isClient) {
+    if (!isClient) {
       return;
     }
 
     const token = window.localStorage.getItem('token');
 
-    if(token) {
+    if (token) {
       window.location.href = '/app';
     }
   }, [isClient]);
@@ -48,7 +48,7 @@ function MainProducts() {
   });
 
   useEffect(() => {
-    if(!inView) {
+    if (!inView) {
       stop();
     } else {
       start();
@@ -66,7 +66,7 @@ function MainProducts() {
           value={value}
           index={image.value}
         >
-          <div className={'ai-image'}>
+          <div className={'ai-image relative overflow-hidden'}>
             <Image
               src={image.src}
               loading={'eager'}

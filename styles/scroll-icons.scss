@@ -14,8 +14,8 @@
 
       @apply max-md:gap-[10px];
       .logo {
-        @apply h-[100px] w-[220px] flex-shrink-0 flex items-center justify-center rounded-full bg-white opacity-60 px-10 py-3;
-        @apply max-md:h-[60px] max-md:w-[120px] max-md:px-4 max-md:py-2;
+        @apply h-[100px] w-[220px] flex-shrink-0 flex items-center justify-center opacity-60;
+        @apply max-md:h-[60px] max-md:w-[120px];
         img {
           @apply w-full h-full object-contain;
         }
