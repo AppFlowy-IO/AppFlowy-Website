@@ -1,10 +1,4 @@
 import Send from '@/components/icons/send';
-import Star from '@/components/icons/star';
-import Eye from '@/components/icons/eye';
-import Forum from '@/components/icons/forum';
-import Github from '@/components/icons/github';
-import Twitter from '@/components/icons/twitter';
-import Discord from '@/components/icons/discord';
 import Docs from '@/components/icons/docs';
 import Blocks from '@/components/icons/blocks';
 import Roadmap from '@/components/icons/roadmap';
@@ -47,122 +41,6 @@ export const navigation: Item[] = [
             href: '/download#macOS',
             icon: <Desktop />,
             desc: '',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Community',
-    key: 'community',
-    children: [
-      {
-        name: 'Community',
-        key: 'community-group-1',
-        children: [
-          {
-            key: '1',
-            name: 'Write for AppFlowy',
-            href: 'https://appflowy.gitbook.io/docs/essential-documentation/contribute-to-appflowy/write-for-appflowy',
-            icon: <Send />,
-            desc: 'Help AppFlowy developers and end users — and get paid',
-          },
-          {
-            key: '2',
-            name: 'Top Contributors',
-            href: '/contributors',
-            icon: <Star />,
-            desc: '300+ are helping build secure workplace solutions',
-          },
-          {
-            key: '3',
-            name: 'AppFlowy Mentorship',
-            href: 'https://docs.appflowy.io/docs/appflowy/community/appflowy-mentorship-program/contributor-guidance',
-            icon: <Eye />,
-            desc: 'Hands-on learning for new developers',
-          },
-        ],
-      },
-      {
-        name: 'Connect with us',
-        key: 'community-group-2',
-        children: [
-          {
-            key: '1',
-            name: 'Discord',
-            href: 'https://discord.gg/9Q2xaN37tV',
-            icon: (
-              <i className={'text-primary'}>
-                <Discord />
-              </i>
-            ),
-            desc: 'Get tips and support from 5,000+  users',
-          },
-          {
-            key: '2',
-            name: 'Twitter',
-            href: 'https://twitter.com/appflowy',
-            icon: (
-              <i className={'text-primary'}>
-                <Twitter />
-              </i>
-            ),
-            desc: 'Follow the latest news',
-          },
-          {
-            key: '3',
-            name: 'Github',
-            href: 'https://github.com/AppFlowy-IO/AppFlowy',
-            icon: (
-              <i className={'text-primary'}>
-                <Github />
-              </i>
-            ),
-            desc: 'Access the AppFlowy source code',
-          },
-          {
-            key: '4',
-            name: 'Community forum',
-            href: 'https://forum.appflowy.com/',
-            icon: (
-              <i className={'text-primary'}>
-                <Forum />
-              </i>
-            ),
-            desc: 'Discuss questions and ideas',
-          },
-        ],
-      },
-      {
-        key: 'featured',
-        name: 'Featured',
-        children: [
-          {
-            key: '1',
-            name: 'Self-hosting AppFlowy with AppFlowy Cloud',
-            href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
-            image: {
-              src: '/images/self-hosting-appflowy.webp',
-              alt: 'Self-hosting AppFlowy with AppFlowy Cloud',
-            },
-          },
-          {
-            key: '2',
-            name: 'AppFlowy 2nd Anniversary and 2023 Roundup',
-            href: '/blog/appflowy-2nd-anniversary-and-2023-roundup',
-            image: {
-              src: '/images/appflowy-2nd-anniversary-and-2023-roundup.png',
-              alt: 'AppFlowy 2nd Anniversary and 2023 Roundup',
-            },
-          },
-          {
-            key: '3',
-            name: 'How to Contribute to AppFlowy',
-            href: '/blog/how-to-contribute-to-appflowy/',
-            image: {
-              src: '/images/how-to-contribute-to-appflowy.png',
-              alt: 'How to Contribute to AppFlowy',
-            },
           },
         ],
       },
@@ -296,6 +174,11 @@ export const navigation: Item[] = [
     name: 'Pricing',
     href: '/pricing',
     key: 'pricing',
+  },
+  {
+    name: 'Self-host AppFlowy',
+    href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
+    key: 'self-host',
   },
 ];
 
