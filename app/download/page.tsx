@@ -6,6 +6,7 @@ import DownloadOS from '@/components/download/os';
 import DownloadMobile from '@/components/download/mobile';
 import DownloadAcross from '@/components/download/across';
 import ModalDownload from '@/components/download/modal-download';
+import DownloadModal from '@/components/download/download-modal';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
@@ -24,6 +25,7 @@ function Page() {
       <DownloadMobile />
       <DownloadAcross />
       <ModalDownload />
+      <DownloadModal />
     </div>
   );
 }

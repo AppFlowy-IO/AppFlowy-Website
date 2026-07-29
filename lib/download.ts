@@ -1,6 +1,8 @@
 import { collectEvent, DownloadParams, EventName } from '@/lib/collect';
 import { Storage } from '@/lib/storage';
 
+export const DOWNLOAD_MODAL_EVENT = 'appflowy-download-modal-open';
+
 export function parseDownloadUrl(url: string): DownloadParams {
   const infos = url.split('/Appflowy-')[1].split('-');
   const [version, platform, archAndExtension] = infos;
@@ -21,14 +23,14 @@ export function download(url: string, transfer = true, isMobile = false) {
     a.href = url;
     a.target = '_blank';
   } else {
-    if (transfer) {
-      Storage.set('download_url', url);
-      a.href = `/downloaded`;
-    } else {
-      a.href = url;
-      const params = parseDownloadUrl(url);
+    a.href = url;
+    const params = parseDownloadUrl(url);
 
-      collectEvent(EventName.download, params);
+    collectEvent(EventName.download, params);
+
+    if (transfer) {
+      Storage.set('manually_download_url', url);
+      window.dispatchEvent(new Event(DOWNLOAD_MODAL_EVENT));
     }
   }
 
