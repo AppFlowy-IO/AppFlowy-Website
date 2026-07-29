@@ -223,7 +223,7 @@ function ShowcaseSection() {
                     {tabs.map((tab) => (
                         <button
                             aria-pressed={currentId === tab.id}
-                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-[180ms] ease-in-out hover:-translate-y-px max-[760px]:min-h-[44px] max-[760px]:min-w-max max-[760px]:px-4 max-[760px]:py-2 max-[760px]:text-[15px] max-[760px]:leading-[22px] ${currentId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
+                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-180ms ease-in-out hover:-translate-y-px max-[760px]:min-h-[44px] max-[760px]:min-w-max max-[760px]:px-4 max-[760px]:py-2 max-[760px]:text-[15px] max-[760px]:leading-[22px] ${currentId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
                                 }`}
                             key={tab.id}
                             onClick={() => {

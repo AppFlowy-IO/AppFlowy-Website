@@ -73,7 +73,7 @@ const platformCards: PlatformCardProps[] = [
 ];
 
 const controlButtonClasses =
-  'inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#8427E0] transition-[transform,background-color] duration-[180ms] ease-[ease] hover:-translate-y-px hover:bg-slate-200 [&>svg]:h-4 [&>svg]:w-4';
+  'inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#8427E0] transition-[transform,background-color] duration-180ms ease-ease hover:-translate-y-px hover:bg-slate-200 [&>svg]:h-4 [&>svg]:w-4';
 
 export default function PlatformSection() {
   const trackRef = React.useRef<HTMLDivElement>(null);
