@@ -40,6 +40,11 @@ const FEATURES = [
         label: 'Basic CRM',
         pricePerYear: 240,
     },
+    {
+        id: 'documentation',
+        label: 'Documentation',
+        pricePerYear: 240,
+    },
     // row 3
     {
         id: 'site-builder',
@@ -56,6 +61,11 @@ const FEATURES = [
         label: 'Forms',
         pricePerYear: 180,
     },
+    {
+        id: 'databases',
+        label: 'Databases',
+        pricePerYear: 240,
+    },
 ] as const;
 
 // Filter out hidden entries for rendering
@@ -67,7 +77,7 @@ const APPFLOWY_PRICE_PER_USER_YEAR = 120;
 // ─── Helper ──────────────────────────────────────────────────────────────────
 function formatDollars(value: number): string {
     if (value >= 1000) {
-        return `$${(value / 1000).toFixed(1).replace(/\.0$/, '')}k`;
+        return `$${(value / 1000).toFixed(0).replace(/\.0$/, '')}k`;
     }
 
     return `$${Math.round(value).toLocaleString()}`;
@@ -89,7 +99,7 @@ function FeatureCheckbox({ id, label, checked, onChange }: FeatureCheckboxProps)
             aria-checked={checked}
             onClick={() => onChange(id, !checked)}
             className={`group flex w-full items-center justify-between gap-3 rounded-[10px] border px-4 py-4 text-left transition-all duration-200 select-none touch-manipulation cursor-pointer ${checked
-                ? 'border-[#bebebe] bg-white shadow-sm'
+                ? 'border-text-tertiary bg-white'
                 : 'border-white bg-white hover:border-[#101012]/25 hover:shadow-sm'
                 }`}
             style={{ WebkitTapHighlightColor: 'transparent' }}
@@ -125,8 +135,9 @@ function FeatureCheckbox({ id, label, checked, onChange }: FeatureCheckboxProps)
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export function PricingCalculator() {
+    // Select all available options by default
     const [selectedIds, setSelectedIds] = useState<Set<string>>(
-        new Set(['project-management', 'team-wiki'])
+        new Set(VISIBLE_FEATURES.map((f) => f.id))
     );
     const [teamSize, setTeamSize] = useState<number>(100);
 
