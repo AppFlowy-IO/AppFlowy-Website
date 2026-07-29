@@ -1,5 +1,6 @@
 'use client';
 import logo from '@/assets/images/logo.svg';
+import { Button } from '@/components/ui/button';
 import { webApplicationUrl } from '@/lib/web-application';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +10,7 @@ function GetStart() {
   return (
     <div className='flex w-full justify-center'>
       <div className='section-8 min-w-0 max-w-full py-24 relative inset-0'>
+        <div className='circle-gradient'></div>
         <div className='section-8-title flex flex-col items-center justify-center gap-6 text-center max-md:gap-5'>
           <div className='section-8-logo flex h-[90px] w-[90px] items-center justify-center rounded-[28px] border bg-white shadow-[0_18px_42px_rgba(41,33,84,0.08)]'>
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
@@ -21,22 +23,28 @@ function GetStart() {
           </div>
         </div>
         <div className='section-8-btns py-12 m-auto flex items-center justify-center gap-3 max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col sm:align-center max-sm:gap-3'>
-          <Link
-            className='download-btn h-[40px] min-w-[180px] border-0 bg-[#140F28] px-8 text-[15px] font-medium text-white max-sm:w-full'
-            href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
-            target={'_blank'}
-            rel={'noopener noreferrer'}
+          <Button
+            asChild
+            size={'xl'}
+            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90 max-sm:w-full'}
           >
-            Self-host AppFlowy
-          </Link>
-          <Link
-            className='live-demo-btn h-[40px] min-w-[180px] bg-white px-8 text-[15px] font-medium text-[#171438] max-sm:w-full'
-            href={webApplicationUrl}
+            <Link
+              href={'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'}
+              target={'_blank'}
+              rel={'noopener noreferrer'}
+            >
+              Self-host AppFlowy
+            </Link>
+          </Button>
+          <Button
+            asChild
+            size={'xl'}
+            className={'min-w-[180px] rounded-lg border border-[#E6E6E6] bg-white text-night-blue shadow-none transition-colors hover:bg-light-gray max-sm:w-full'}
           >
-            Get started free
-          </Link>
+            <Link href={webApplicationUrl}>Get started free</Link>
+          </Button>
         </div>
-        <div className='circle-gradient'></div>
+
       </div>
     </div>
   );
