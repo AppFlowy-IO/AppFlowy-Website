@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { StaticImageData } from "next/image";
 import { useInView } from "framer-motion";
 import { useAutoPlay } from "@/lib/hooks/use-auto-play";
@@ -81,6 +81,7 @@ const tabs: Tab[] = [
 
 const autoplayOptions = tabs.map((tab) => ({ value: tab.id }));
 const autoplayDuration = 5000;
+const TRANSITION_MS = 850;
 
 const cloudBaseClass = "absolute rounded-full blur-[95px] pointer-events-none [transform:translateZ(0)]";
 
@@ -116,7 +117,7 @@ function illustrationSizeClass(tabId: string) {
 }
 
 const titleBaseClass =
-    "[grid-area:1/1] m-0 text-text-primary text-center text-h2 font-semibold max-[760px]:text-[30px] max-[760px]:leading-[38px] [will-change:opacity]";
+    "[grid-area:1/1] m-0 text-text-primary text-center text-h2 font-semibold max-[760px]:text-[30px] max-[760px]:leading-[38px]";
 
 function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; className?: string; hidden?: boolean }) {
     const lines = tab.title.split("|");
@@ -158,48 +159,41 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
 }
 
 function ShowcaseSection() {
-    const [activeTabId, setActiveTabId] = useState(tabs[0].id);
-    const [previousTabId, setPreviousTabId] = useState<string | null>(null);
-    const transitionTimer = useRef<number | null>(null);
-    const previousActiveTabIdRef = useRef(activeTabId);
+    const [{ currentId, previousId }, setTransition] = useState<{
+        currentId: string;
+        previousId: string | null;
+    }>({ currentId: tabs[0].id, previousId: null });
     const autoplayStoppedRef = useRef(false);
-    const activeTab = tabs.find((tab) => tab.id === activeTabId) || tabs[0];
-    const previousTab = tabs.find((tab) => tab.id === previousTabId) || null;
+    const activeTab = tabs.find((tab) => tab.id === currentId) || tabs[0];
+    const previousTab = tabs.find((tab) => tab.id === previousId) || null;
 
     const sectionRef = useRef<HTMLDivElement>(null);
     const inView = useInView(sectionRef);
 
-    // Drives the crossfade for every activeTabId change, whether it came from
-    // a manual click or the autoplay cycle below.
-    useEffect(() => {
-        const leavingTabId = previousActiveTabIdRef.current;
-
-        previousActiveTabIdRef.current = activeTabId;
-
-        if (leavingTabId === activeTabId) return;
-
-        if (transitionTimer.current) {
-            window.clearTimeout(transitionTimer.current);
-        }
-
-        setPreviousTabId(leavingTabId);
-        transitionTimer.current = window.setTimeout(() => {
-            setPreviousTabId(null);
-            transitionTimer.current = null;
-        }, 1200);
-    }, [activeTabId]);
-
-    useEffect(() => {
-        return () => {
-            if (transitionTimer.current) {
-                window.clearTimeout(transitionTimer.current);
-            }
-        };
+    const goToTab = useCallback((id: string) => {
+        setTransition((prev) =>
+            prev.currentId === id ? prev : { currentId: id, previousId: prev.currentId }
+        );
     }, []);
+
+    // Clears the outgoing tab once its leave animation has finished.
+    useEffect(() => {
+        if (previousId === null) return;
+
+        const timer = window.setTimeout(() => {
+            setTransition((prev) => (prev.previousId === previousId ? { ...prev, previousId: null } : prev));
+        }, TRANSITION_MS);
+
+        return () => window.clearTimeout(timer);
+    }, [currentId, previousId]);
 
     const { start, stop } = useAutoPlay({
         options: autoplayOptions,
-        onChange: setActiveTabId,
+        onChange: (action) => {
+            const nextId = typeof action === "function" ? action(currentId) : action;
+
+            goToTab(nextId);
+        },
         duration: autoplayDuration,
     });
 
@@ -228,14 +222,14 @@ function ShowcaseSection() {
                 >
                     {tabs.map((tab) => (
                         <button
-                            aria-pressed={activeTabId === tab.id}
-                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-[180ms] ease-in-out hover:-translate-y-px max-[760px]:min-h-[44px] max-[760px]:min-w-max max-[760px]:px-4 max-[760px]:py-2 max-[760px]:text-[15px] max-[760px]:leading-[22px] ${activeTabId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
+                            aria-pressed={currentId === tab.id}
+                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-[180ms] ease-in-out hover:-translate-y-px max-[760px]:min-h-[44px] max-[760px]:min-w-max max-[760px]:px-4 max-[760px]:py-2 max-[760px]:text-[15px] max-[760px]:leading-[22px] ${currentId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
                                 }`}
                             key={tab.id}
                             onClick={() => {
                                 autoplayStoppedRef.current = true;
                                 stop();
-                                setActiveTabId(tab.id);
+                                goToTab(tab.id);
                             }}
                             type="button"
                         >

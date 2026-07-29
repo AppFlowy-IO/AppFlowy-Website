@@ -50,14 +50,16 @@
   }
 }
 
-.title--enter {
-  z-index: 0;
-  animation: titleEnter 1200ms ease both;
-}
-
 .title--leave {
   z-index: 1;
-  animation: titleLeave 1200ms ease both;
+  will-change: opacity;
+  animation: titleLeave 240ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.title--enter {
+  z-index: 0;
+  will-change: opacity;
+  animation: titleEnter 360ms 260ms cubic-bezier(0, 0, 0.2, 1) both;
 }
 
 @keyframes titleEnter {
