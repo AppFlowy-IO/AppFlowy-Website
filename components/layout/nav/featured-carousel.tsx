@@ -45,18 +45,18 @@ function FeaturedCarousel({ items, onNavigate }: { items: Item[]; onNavigate?: (
         className={'absolute inset-0'}
         style={{ background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 100%)' }}
       />
-      <div className={'absolute bottom-[36px] left-[16px] right-[16px] text-[15px] font-semibold leading-[1.3] text-white'}>
+      <p className={'absolute bottom-10 left-4 right-4 text-style-h5 font-semibold text-white'}>
         {current.name}
-      </div>
+      </p>
       {items.length > 1 && (
         <div
-          className={'absolute bottom-[14px] left-[16px] flex items-center gap-[6px]'}
+          className={'absolute bottom-[14px] left-[16px] flex items-center gap-2'}
           onClick={(e) => e.preventDefault()}
         >
           {items.map((item, index) => (
             <span
               key={item.key}
-              className={`h-[6px] cursor-pointer rounded-full transition-all ${index === active ? 'w-[18px] bg-white' : 'w-[6px] bg-white/40'
+              className={`h-3 cursor-pointer rounded-full transition-all ${index === active ? 'w-10 bg-white' : 'w-3 bg-white/40'
                 }`}
               onClick={(e) => {
                 e.preventDefault();

@@ -191,16 +191,12 @@ body {
     }
 
     &.featured {
-      @apply pr-0;
+      @apply ml-4 pr-0;
     }
 
     .group-item {
       @apply flex cursor-pointer flex-row items-start p-4 last:mb-0 hover:rounded-[8px];
       @apply hover:bg-light-blue-gray;
-
-      .item-content {
-        @apply ml-[10px] flex max-w-[280px] flex-col justify-center;
-      }
     }
   }
 }

@@ -62,7 +62,7 @@ export const navigation: Item[] = [
     children: [
       {
         key: 'resources-group-1',
-        name: 'Docs',
+        name: 'Discover',
         children: [
           {
             key: 'menu.updates',

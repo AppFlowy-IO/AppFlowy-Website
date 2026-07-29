@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from '@/lib/config/navigation';
 import { useRouter } from 'next/navigation';
-import ExpandMore from '@/components/icons/expand-more';
+import ExpandMore from '@/components/icons/expand-nav-icon';
 
 function NavbarItem({
   item,
