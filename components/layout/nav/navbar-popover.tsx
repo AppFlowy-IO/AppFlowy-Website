@@ -5,6 +5,7 @@ import Popover from '@/components/shared/popover';
 import { navigation } from '@/lib/config/navigation';
 import { DebouncedFunc } from 'lodash-es';
 import Link from 'next/link';
+import FeaturedCarousel from '@/components/layout/nav/featured-carousel';
 
 function NavbarPopover({
   anchorEl,
@@ -24,53 +25,42 @@ function NavbarPopover({
 
     return (
       <div className={'menu-popover-content'}>
-        {children?.map((group) => (
-          <div
-            key={group.name}
-            className={'group'}
-          >
-            <div className={'name'}>{group.name}</div>
-            {group.children?.map((item) => (
-              <Link
-                target={item.href?.startsWith('https') ? '_blank' : ''}
-                href={item.href || ''}
-                key={item.name}
-                onClick={debounceClose}
-                className={`group-item ${item.image ? 'items-center' : ''}`}
-              >
-                {item.icon && <div className={'flex h-[24px] w-[24px] items-center justify-center'}>{item.icon}</div>}
-                {item.image && (
-                  <div className={'group-item-image'}>
-                    <img
-                      src={item.image.src}
-                      alt={item.image.alt}
-                    />
-                  </div>
-                )}
-                <div className={'item-content'}>
-                  <div className={'item-name'}>{item.name}</div>
-                  {item.desc && <div className={'item-desc'}>{item.desc}</div>}
-                </div>
-              </Link>
-            ))}
-            {group.name === 'Download' && (
-              <div className={'w-full overflow-hidden whitespace-pre-wrap px-4 text-sm text-gray-400'}>
-                AppFlowy is now in{' '}
+        {children?.map((group) =>
+          group.key === 'featured' ? (
+            <div
+              key={group.name}
+              className={'group featured'}
+            >
+              <FeaturedCarousel
+                items={group.children || []}
+                onNavigate={debounceClose}
+              />
+            </div>
+          ) : (
+            <div
+              key={group.name}
+              className={'group'}
+            >
+              <p className='py-3 px-5 text-style-h5 font-bold'>{group.name}</p>
+              {group.children?.map((item) => (
                 <Link
-                  onClick={() => {
-                    collectEvent(EventName.downloadBrowserBtn, {
-                      type: 'click',
-                    });
-                  }}
-                  className={'hover:text-primary underline'}
-                  href={webApplicationUrl}
+                  target={item.href?.startsWith('https') ? '_blank' : ''}
+                  href={item.href || ''}
+                  key={item.name}
+                  onClick={debounceClose}
+                  className={`group-item ${item.desc ? '' : 'items-center'}`}
                 >
-                  your browser
+                  {item.icon && <div className='flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#d6d6d6]'>{item.icon}</div>}
+                  <div className={'item-content'}>
+                    <p className='font-medium'>{item.name}</p>
+                    {item.desc && <div className='text-sm text-gray-400'>{item.desc}</div>}
+                  </div>
                 </Link>
-              </div>
-            )}
-          </div>
-        ))}
+              ))}
+
+            </div>
+          )
+        )}
       </div>
     );
   }, [item, debounceClose]);

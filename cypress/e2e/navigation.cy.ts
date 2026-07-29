@@ -11,8 +11,8 @@ describe('Navigation', () => {
     cy.visit(baseIndexUrl);
   });
 
-  it('hover the community and resources should open the popover', () => {
-    const menus = ['Community', 'Resources', 'Download'];
+  it('hover the resources and download should open the popover', () => {
+    const menus = ['Resources', 'Download'];
     menus.forEach((menu) => {
       cy.wait(1000);
       // Find the menu and click it

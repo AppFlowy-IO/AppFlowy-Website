@@ -175,41 +175,31 @@ body {
 .modal-paper {
   @apply pointer-events-auto overflow-hidden bg-white;
 
-  border-radius: 26px !important;
+  border-radius: 16px !important;
   box-shadow: none !important;
   border: 1px solid var(--color-primary-20) !important;
 }
 
 .menu-popover-content {
-  @apply flex flex-row p-[28px];
+  @apply flex flex-row p-5;
+
   .group {
-    @apply flex flex-col pr-[36px];
+    @apply flex flex-col pr-[12px];
 
     &:last-child {
       @apply pr-0;
     }
 
-    .name {
-      @apply mb-[10px] px-[10px] text-[15px] font-bold;
+    &.featured {
+      @apply pr-0;
     }
 
     .group-item {
-      @apply mb-[10px] flex cursor-pointer flex-row items-start p-[10px] last:mb-0 hover:rounded-[20px];
+      @apply flex cursor-pointer flex-row items-start p-4 last:mb-0 hover:rounded-[8px];
       @apply hover:bg-light-blue-gray;
 
       .item-content {
-        @apply ml-[10px] flex max-w-[200px] flex-col;
-        .item-desc {
-          @apply text-sm text-gray-400;
-        }
-      }
-
-      .group-item-image {
-        @apply aspect-auto h-[68px] w-[98px] overflow-hidden rounded-[16px] border border-primary-10;
-
-        > img {
-          @apply h-full w-full object-cover;
-        }
+        @apply ml-[10px] flex max-w-[280px] flex-col justify-center;
       }
     }
   }
