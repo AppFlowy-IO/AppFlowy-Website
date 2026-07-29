@@ -32,14 +32,14 @@ export default function Page() {
           <div className={'hero-blob hero-blob-left'} />
           <div className={'hero-blob hero-blob-right'} />
           <div className={'main-content'}>
-            <h1 className='text-style-h1 font-bold'>
+            <h1 className='main-content__title font-bold'>
               <span className={'hero-highlight'}>
                 Self-hosted
                 <HeroUnderlineIcon />
               </span>{' '}
-              AI Workspace for Enterprise Teams
+              AI Workspace <br></br>for Enterprise Teams
             </h1>
-            <div className={'text-style-h5 text-text-tertiary font-medium '}>Bring projects, wikis, and teams together with AI</div>
+            <h4 className={'text-style-h4 text-text-tertiary font-medium max-w-[600px]'}>Bring projects, wikis, and teams together with AI</h4>
           </div>
           <MainDownload />
           <div className={'flex w-full flex-col items-center gap-4'}>

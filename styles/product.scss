@@ -49,8 +49,9 @@
       @apply flex max-w-[984px] flex-col items-center gap-4 break-words text-center;
       @apply max-md:gap-4 max-md:px-[5vw] max-md:text-[8vw] max-md:leading-[120%];
 
-      .desc {
-        @apply max-w-[360px];
+      &__title {
+        font-size: clamp(44px, 6.5vw, 64px);
+        line-height: clamp(50px, 7vw, 80px);
       }
 
       .hero-highlight {
