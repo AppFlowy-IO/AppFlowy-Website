@@ -1,17 +1,7 @@
 import '@/styles/product.scss';
 import GetStart from '@/components/product/get-start';
-// import MobileViews from '@/components/product/mobile-views';
-// import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
-// import AiExamples from '@/components/product/ai-examples';
-// import AiLocalIcon from '@/components/product/ai-local-icon';
-// import AiLocalLightIcon from '@/components/product/ai-local-light-icon';
-// import AiModelIcon from '@/components/product/ai-model-icon';
-// import CollaborativeIcon from '@/components/product/collaborative-icon';
-// import FolderIcon from '@/components/product/folder-icon';
 import MainDownload from '@/components/product/main-download';
 import MainProducts from '@/components/product/main-products';
-// import UploadCloudIcon from '@/components/product/upload-cloud-icon';
-// import UseCases from '@/components/product/use-cases';
 import SecurityCompliance from '@/components/product/security-compliance';
 import { TestimonialSection } from '@/components/product/testimonial-card';
 import ReviewsSection from '@/components/product/reviews-section';
@@ -51,105 +41,6 @@ export default function Page() {
       <div className={'w-full bg-white pb-16 pt-24'}>
         <ScrollIcons />
       </div>
-      {/* <div className={'af-container'}>
-        <div className={'af-box section-3'}>
-          <div className="glow"></div>
-          <h2 className={'section-3-title'}>
-            AppFlowy AI{' '}
-            <span
-              style={{
-                color: 'rgba(200, 154, 250, 0.67)',
-              }}
-            >
-              Your go-to teammate
-            </span>
-          </h2>
-          <AiExamples />
-          <div className={'flex w-full flex-col items-center justify-center gap-[80px] pt-[26px] max-md:gap-10'}>
-            <div className={'section-3-subtitle gradient-text'}>
-              Accessible, collaborative, and contextual
-              <span className={'text-[#C89AFA]'}></span>
-            </div>
-            <div className={'cards'}>
-              <div className={'card'}>
-                <div className="glow"></div>
-                <AiLocalIcon />
-                <div className={'card-title'}>
-                  AI model selection
-                  <div className={'card-desc'}>
-                    Run local AI models on your machine. Choose from{' '}
-                    <span className={'whitespace-nowrap'}>GPT 5, </span><span className={'whitespace-nowrap'}>Gemini 2.5, </span>and <span className={'whitespace-nowrap'}>Claude 3.7</span>.
-                  </div>
-                </div>
-              </div>
-              <div className={'card'}>
-                <div className="glow"></div>
-                <CollaborativeIcon />
-                <div className={'card-title'}>
-                  Collaborative
-                  <div className={'card-desc'}>
-                    AppFlowy AI is your go-to teammate who adapts to your changing needs and priorities.
-                  </div>
-                </div>
-              </div>
-
-              <div className={'card'}>
-                <div className="glow"></div>
-                <AiModelIcon />
-                <div className={'card-title'}>
-                  Contextual
-                  <div className={'card-desc'}>
-                    {`Get intelligent insight, extract actionable items, and generate takeaways across pages.`}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* <div className={'af-container'}>
-        <div className={'af-box section-4'}>
-          <div className={'section-4-title'}>
-            <span className={'text-primary'}>Easy-to-use</span> and powerful
-          </div>
-          <UseCases />
-        </div>
-      </div> */}
-      {/* <div className={'af-container'}>
-        <div className={'af-box section-5'}>
-          <div className={'section-5-title'}>
-            Built for people who value
-            <span className={'text-primary'}> privacy</span>
-          </div>
-          <div className={'cards'}>
-            <div className={'card'}>
-              <AiLocalLightIcon />
-              <div className={'card-title'}>
-                AI On-device
-                <div className={'card-desc'}>
-                  {`Run Mistral 7B, Llama 3, and\nmore local models on your\nmachine for ultimate privacy.`}
-                </div>
-              </div>
-            </div>
-            <div className={'card'}>
-              <FolderIcon />
-              <div className={'card-title'}>
-                Always available
-                <div className={'card-desc'}>
-                  {`100% offline mode. Remain local\nand sync as required.\nOne account, any device.`}
-                </div>
-              </div>
-            </div>
-            <div className={'card'}>
-              <UploadCloudIcon />
-              <div className={'card-title'}>
-                Own your data
-                <div className={'card-desc'}>{`Self-host AppFlowy wherever\nyou want; no vendor lock-in.`}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <ShowcaseSection />
       <DevInfoSection />
       <PlatformSection />
