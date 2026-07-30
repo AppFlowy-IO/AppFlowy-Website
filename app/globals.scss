@@ -29,22 +29,22 @@
 
 :root {
   --font-family-sans: 'Inter', sans-serif;
-  --font-size-h1: clamp(46px, 5.5vw, 56px);
-  --line-height-h1: 68px;
+  --font-size-h1: clamp(40px, 5.25vw, 56px);
+  --line-height-h1: clamp(44px, 6vw, 68px);
   --font-size-h2: clamp(32px, 4.75vw, 40px);
-  --line-height-h2: 48px;
+  --line-height-h2: clamp(36px, 5vw, 48px);
   --font-size-h3: clamp(24px, 3.5vw, 32px);
-  --line-height-h3: 36px;
+  --line-height-h3: clamp(28px, 3.5vw, 46px);
   --font-size-h4: clamp(18px, 2.5vw, 24px);
-  --line-height-h4: 28px;
+  --line-height-h4: clamp(22px, 2.5vw, 28px);
   --font-size-h5: clamp(16px, 2vw, 20px);
-  --line-height-h5: 28px;
+  --line-height-h5: clamp(20px, 2vw, 24px)
   --font-size-body-standard: clamp(14px, 1.5vw, 16px);
-  --line-height-body-standard: 24px;
+  --line-height-body-standard: clamp(18px, 2vw, 20px);
   --font-size-body-enhanced: clamp(16px, 2.2vw, 24px);
-  --line-height-body-enhanced: 24px;
+  --line-height-body-enhanced: clamp(20px, 2.5vw, 28px);
   --font-size-caption: clamp(12px, 1vw, 14px);
-  --line-height-caption: 20px;
+  --line-height-caption: 18px;
   --color-primary: #8427e0;
   --color-primary-20: rgba(147, 39, 255, 0.2);
   --color-primary-10: rgba(147, 39, 255, 0.1);
