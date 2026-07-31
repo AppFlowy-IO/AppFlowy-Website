@@ -28,7 +28,7 @@ function ImportLink({ importBaseURL }: { importBaseURL: string }) {
       <Link
         target={'_blank'}
         href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
-        className={'main-button download-btn'}
+        className='relative z-[1] mt-9 inline-flex items-center justify-center rounded-full bg-night-blue px-8 py-4 font-inter text-base font-medium text-white transition-colors hover:bg-night-blue/90'
       >
         Import from Notion
       </Link>
