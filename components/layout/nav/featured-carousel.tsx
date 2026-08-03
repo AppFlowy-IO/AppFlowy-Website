@@ -56,7 +56,7 @@ function FeaturedCarousel({ items, onNavigate }: { items: Item[]; onNavigate?: (
           {items.map((item, index) => (
             <span
               key={item.key}
-              className={`h-3 cursor-pointer rounded-full transition-all ${index === active ? 'w-10 bg-white' : 'w-3 bg-white/40'
+              className={`h-2 cursor-pointer rounded-full transition-all ${index === active ? 'w-10 bg-white' : 'w-2 bg-white/40'
                 }`}
               onClick={(e) => {
                 e.preventDefault();

@@ -39,7 +39,7 @@ function NavbarPopover({
               key={group.name}
               className={'group'}
             >
-              <p className='py-3 px-5 text-style-h5 font-bold'>{group.name}</p>
+              <p className='py-3 px-6 text-style-h5 font-bold'>{group.name}</p>
               {group.children?.map((item) => (
                 <Link
                   target={item.href?.startsWith('https') ? '_blank' : ''}
