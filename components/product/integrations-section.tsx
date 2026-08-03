@@ -5,25 +5,25 @@ import TrelloLogo from '@/assets/images/integrations/trello.svg';
 import DriveLogo from '@/assets/images/integrations/drive.svg';
 import ChatGPTLogo from '@/assets/images/integrations/chatgpt.svg';
 import GoogleCalendarLogo from '@/assets/images/integrations/gcal.svg';
-import NotionLogo from '@/assets/images/integrations/notion.svg';
-import ObsidianLogo from '@/assets/images/integrations/obsidian.svg';
+import JiraLogo from '@/assets/images/integrations/jira.svg';
+import TeamsLogo from '@/assets/images/integrations/teams.svg';
 import AirtableLogo from '@/assets/images/integrations/airtable.svg';
 import GitHubLogo from '@/assets/images/integrations/github.svg';
 import GmailLogo from '@/assets/images/integrations/gmail.svg';
 import ClaudeLogo from '@/assets/images/integrations/claude.svg';
 
 const integrationTiles = [
-  { name: 'Notion', logo: NotionLogo },
-  { name: 'Slack', logo: SlackLogo },
-  { name: 'Trello', logo: TrelloLogo },
-  { name: 'Google Drive', logo: DriveLogo },
-  { name: 'ChatGPT', logo: ChatGPTLogo },
-  { name: 'Google Calendar', logo: GoogleCalendarLogo },
   { name: 'Airtable', logo: AirtableLogo },
+  { name: 'Jira', logo: JiraLogo },
+  { name: 'Google Drive', logo: DriveLogo },
+  { name: 'Slack', logo: SlackLogo },
+  { name: 'ChatGPT', logo: ChatGPTLogo },
   { name: 'GitHub', logo: GitHubLogo },
-  { name: 'Gmail', logo: GmailLogo },
   { name: 'Claude', logo: ClaudeLogo },
-  { name: 'Obsidian', logo: ObsidianLogo },
+  { name: 'Teams', logo: TeamsLogo },
+  { name: 'Google Calendar', logo: GoogleCalendarLogo },
+  { name: 'Gmail', logo: GmailLogo },
+  { name: 'Trello', logo: TrelloLogo },
 ];
 
 export default function IntegrationsSection() {

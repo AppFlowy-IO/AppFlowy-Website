@@ -16,7 +16,7 @@ function GetStart() {
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
           <h2 className='text-style-h1 font-semibold tracking-[-0.04em] max-lg:text-[64px] max-md:text-[10vw]'>
-            Get Started for Free
+            Get started for free
           </h2>
           <div className='section-8-desc  max-w-[1020px] text-center text-style-h5 leading-[1.45] max-md:max-w-[640px] max-md:text-[15px]'>
             The AI workspace where you achieve more without losing control of your data
