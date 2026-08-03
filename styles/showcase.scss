@@ -1,3 +1,15 @@
+.showcase-title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 600;
+
+  @media (max-width: 760px) {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+  }
+}
+
 .gradient-layer--leaving {
   animation: gradientFadeOut 850ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }

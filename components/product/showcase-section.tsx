@@ -108,16 +108,14 @@ function GradientLayer({ tab, leaving = false }: { tab: Tab; leaving?: boolean }
 }
 
 const illustrationBaseClass =
-    "absolute left-1/2 bottom-0 z-[1] block h-full max-h-[560px] w-[min(1120px,100%)] object-cover object-bottom pointer-events-none select-none -translate-x-1/2 [filter:drop-shadow(0_0_30px_rgba(0,18,178,0.04))] [will-change:transform,opacity] max-[760px]:w-[118%] max-[760px]:max-w-none max-[760px]:max-h-[430px]";
+    "absolute left-1/2 bottom-0 z-[1] block h-full max-h-[560px] w-[min(1120px,100%)] object-cover object-bottom pointer-events-none select-none -translate-x-1/2 [will-change:transform,opacity]";
 
 function illustrationSizeClass(tabId: string) {
-    // "!" forces these to win over the max-[760px] mobile overrides below,
-    // matching the higher-specificity compound selector in the original CSS.
-    return tabId === "ai" ? "!w-[min(1120px,104%)] !max-h-[552px]" : "";
+    return tabId === "ai" ? "w-[min(1120px,104%)] max-h-[552px]" : "";
 }
 
 const titleBaseClass =
-    "[grid-area:1/1] m-0 text-text-primary text-center text-h2 font-semibold max-[760px]:text-[30px] max-[760px]:leading-[38px]";
+    "[grid-area:1/1] m-0 text-text-primary text-center showcase-title";
 
 function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; className?: string; hidden?: boolean }) {
     const lines = tab.title.split("|");
@@ -132,7 +130,7 @@ function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; classNa
 
 function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTab: Tab | null }) {
     return (
-        <div className="relative h-[720px] overflow-hidden rounded-2xl bg-white shadow-[0_0_20px_rgba(93,113,221,0.12)] flex flex-col items-center pt-[60px] px-20 isolate max-[1100px]:h-[680px] max-[1100px]:pt-12 max-[1100px]:px-7 max-[760px]:h-[560px] max-[760px]:pt-9 max-[760px]:px-4 max-[760px]:rounded-[14px]">
+        <div className="relative h-[720px] overflow-hidden rounded-2xl bg-white flex flex-col items-center pt-[60px] px-20 isolate max-[1100px]:h-[680px] max-[1100px]:pt-12 max-[1100px]:px-7">
             <GradientLayer tab={activeTab} />
             {previousTab ? <GradientLayer tab={previousTab} leaving /> : null}
             <div className="relative z-[1] w-full grid">
@@ -154,6 +152,20 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                     />
                 ) : null}
             </div>
+        </div>
+    );
+}
+
+function MobileFeatureCard({ tab }: { tab: Tab }) {
+    return (
+        <div className="relative overflow-hidden rounded-[14px] bg-white flex flex-col items-center pt-9 px-4 pb-0">
+            <GradientLayer tab={tab} />
+            <TitleBlock tab={tab} className="relative z-[1]" />
+            <img
+                className="relative z-[1] mt-5 w-full max-w-[340px] h-auto object-contain pointer-events-none select-none"
+                src={tab.image.src}
+                alt={`${tab.label} illustration`}
+            />
         </div>
     );
 }
@@ -217,13 +229,13 @@ function ShowcaseSection() {
                 aria-label="AppFlowy feature previews"
             >
                 <nav
-                    className="grid grid-cols-5 gap-3 mb-4 max-[1100px]:grid-cols-3 max-[760px]:flex max-[760px]:gap-2 max-[760px]:overflow-x-auto max-[760px]:pb-1 max-[760px]:[scrollbar-width:none] max-[760px]:[&::-webkit-scrollbar]:hidden"
+                    className="grid grid-cols-5 gap-3 mb-4 max-[1100px]:grid-cols-3 max-[760px]:hidden"
                     aria-label="Product features"
                 >
                     {tabs.map((tab) => (
                         <button
                             aria-pressed={currentId === tab.id}
-                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-180ms ease-in-out hover:-translate-y-px max-[760px]:min-h-[44px] max-[760px]:min-w-max max-[760px]:px-4 max-[760px]:py-2 max-[760px]:text-[15px] max-[760px]:leading-[22px] ${currentId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
+                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color,transform] duration-180ms ease-in-out hover:-translate-y-px ${currentId === tab.id ? "bg-text-primary text-white" : "bg-light-gray text-text-primary"
                                 }`}
                             key={tab.id}
                             onClick={() => {
@@ -237,7 +249,14 @@ function ShowcaseSection() {
                         </button>
                     ))}
                 </nav>
-                <FeaturePreview activeTab={activeTab} previousTab={previousTab} />
+                <div className="max-[760px]:hidden">
+                    <FeaturePreview activeTab={activeTab} previousTab={previousTab} />
+                </div>
+                <div className="hidden max-[760px]:flex max-[760px]:flex-col max-[760px]:gap-4">
+                    {tabs.map((tab) => (
+                        <MobileFeatureCard key={tab.id} tab={tab} />
+                    ))}
+                </div>
             </section>
         </div>
     );
