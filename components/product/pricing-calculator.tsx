@@ -20,9 +20,9 @@ const FEATURES = [
         pricePerYear: 240,
     },
     {
-        id: 'team-wiki',
-        label: 'Team Wiki',
-        pricePerYear: 120,
+        id: 'ai-research',
+        label: 'AI Research',
+        pricePerYear: 480,
     },
     // row 2
     {
@@ -31,40 +31,40 @@ const FEATURES = [
         pricePerYear: 216,
     },
     {
-        id: 'ai-research',
-        label: 'AI Research',
-        pricePerYear: 480,
-    },
-    {
-        id: 'crm',
-        label: 'Basic CRM',
-        pricePerYear: 240,
+        id: 'project-management',
+        label: 'Project Management Tool',
+        pricePerYear: 288,
     },
     {
         id: 'documentation',
         label: 'Documentation',
         pricePerYear: 240,
     },
+    {
+        id: 'crm',
+        label: 'Basic CRM',
+        pricePerYear: 240,
+    },
     // row 3
+    {
+        id: 'team-wiki',
+        label: 'Team Wiki',
+        pricePerYear: 120,
+    },
+    {
+        id: 'databases',
+        label: 'Databases',
+        pricePerYear: 240,
+    },
     {
         id: 'site-builder',
         label: 'Site Builder',
         pricePerYear: 240,
     },
     {
-        id: 'project-management',
-        label: 'Project Management Tool',
-        pricePerYear: 288,
-    },
-    {
         id: 'forms',
         label: 'Forms',
         pricePerYear: 180,
-    },
-    {
-        id: 'databases',
-        label: 'Databases',
-        pricePerYear: 240,
     },
 ] as const;
 
@@ -180,8 +180,8 @@ export function PricingCalculator() {
                         <h2 className="text-style-h1 font-bold ">
                             More productivity, fewer tools
                         </h2>
-                        <p className="mt-3 text-style-h5 font-medium">
-                            Select the capabilities your team needs. See how much you&apos;d spend assembling them from separate SaaS tools — and how much you save with AppFlowy.
+                        <p className="mt-3 text-style-h5 text-gray-400">
+                            Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.
                         </p>
                     </div>
 
@@ -273,7 +273,7 @@ export function PricingCalculator() {
                                     >
                                         {hasSelection ? formatDollars(monthlySavings) : '$0'}
                                     </div>
-                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly Savings</div>
+                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly savings</div>
                                 </div>
 
                                 {/* Divider */}
@@ -287,7 +287,7 @@ export function PricingCalculator() {
                                     >
                                         {hasSelection ? formatDollars(annualSavings) : '$0'}
                                     </div>
-                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Annual Savings</div>
+                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Annual savings</div>
                                 </div>
                             </div>
                         </div>
