@@ -12,17 +12,21 @@ import VibrantCommunityImage from '@/assets/images/platform/vibrant-community.we
 import VibrantCommunityIcon from '@/assets/images/platform/vibrant-community-icon.svg';
 
 export type PlatformCardProps = {
-  heading: string;
+  heading: {
+    top: string;
+    bottom: string;
+  };
   subtitle: string;
   icon: StaticImageData | string;
   image: StaticImageData | string;
 };
 
 export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardProps) {
+
   return (
-    <article className="platform-card flex w-[min(100%,820px)] shrink-0 snap-start overflow-hidden rounded-xl bg-white min-h-[440px]">
-      <div className="flex w-1/2 flex-col justify-between gap-4 p-8 max-md:w-[58%] max-md:p-5">
-        <div className="flex h-8 w-8 items-center justify-center">
+    <article className="platform-card flex w-[min(100%,820px)] shrink-0 snap-start overflow-hidden rounded-xl bg-white min-h-[440px] max-md:min-h-0 max-md:flex-col">
+      <div className="flex w-1/2 flex-col justify-between gap-4 px-8 py-10 max-md:w-full max-md:gap-3 max-md:px-5 max-md:py-5">
+        <div className="flex h-8 w-8 items-center justify-center max-md:hidden">
           <Image
             alt=""
             className="h-8 w-8 object-contain"
@@ -30,19 +34,21 @@ export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardPro
           />
         </div>
         <div>
-          <h2 className="mb-4 text-style-h2 font-semibold">
-            {heading}
+          <h2 className="mb-4 font-semibold text-[40px] leading-[48px] max-md:text-[24px] max-md:leading-[28px]">
+            {heading.top}
+            <br />
+            {heading.bottom}
           </h2>
-          <p className="whitespace-pre-line text-style-body-standard text-text-secondary">
+          <p className="whitespace-pre-line text-style-body-standard text-text-secondary mb-4 md:mb-0">
             {subtitle}
           </p>
         </div>
 
       </div>
 
-      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[340px] max-md:w-[42%]">
+      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[280px] max-md:w-full max-md:p-5 max-md:pt-0">
         <Image
-          alt={heading}
+          alt={heading.top + ' ' + heading.bottom}
           className="h-full w-full rounded-xl object-cover"
           src={image}
         />
@@ -55,20 +61,29 @@ const platformCards: PlatformCardProps[] = [
   {
     image: CrossPlatformImage,
     icon: CrossPlatformIcon,
-    heading: 'Cross platform and Always available',
-    subtitle: 'Supports MacOS, Windows, Linux, Web; Works on the go\nWorks where your team works - including completely offline',
+    heading: {
+      top: 'Work anywhere, ',
+      bottom: 'on any device',
+    },
+    subtitle: 'Available on macOS, Windows, Linux, iOS, Android, and the web, with seamless sync across devices.',
   },
   {
     image: MigrationSupportImage,
     icon: MigrationSupportIcon,
-    heading: 'Migration support for your team',
-    subtitle: "Auditable, extensible, and backed by a community that means it's not going anywhere.",
+    heading: {
+      top: 'Open core, ',
+      bottom: ' built together',
+    },
+    subtitle: "Auditable and extensible, with transparent development and an active global community.",
   },
   {
     image: VibrantCommunityImage,
     icon: VibrantCommunityIcon,
-    heading: 'A vibrant community of builders',
-    subtitle: 'We help you migrate without touching your data.',
+    heading: {
+      top: 'Migration without',
+      bottom: ' compromise',
+    },
+    subtitle: 'We help you migrate from Notion, Confluence, and more to AppFlowy, without ever touching your data.',
   },
 ];
 
@@ -109,8 +124,8 @@ export default function PlatformSection() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[80px] max-xl:px-[4vw]">
         <div className="flex max-w-[760px] flex-col gap-5 max-md:gap-4">
-          <h2 className="text-h1 font-bold tracking-[-0.03em] text-[#16152d] max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.08]">
-            One unified platform for entire workflow
+          <h2 className="text-h1 font-bold tracking-[-0.03em] text-[#16152d] max-md:text-[clamp(30px,7vw,56px)] max-md:leading-[36px]">
+            Self-hosted freedom at enterprise scale
           </h2>
           <p className="max-w-[620px] text-h5 font-medium text-[#58585A] max-md:text-[16px] max-md:leading-[1.5]">
             Your team. Your servers. Your rules.
@@ -125,13 +140,13 @@ export default function PlatformSection() {
           >
             {platformCards.map((card) => (
               <PlatformCard
-                key={card.heading}
+                key={card.heading.top}
                 {...card}
               />
             ))}
           </div>
 
-          <div className="flex w-full items-center justify-start gap-3">
+          <div className="flex w-full items-center gap-3 justify-center md:justify-start">
             <button
               type="button"
               className={controlButtonClasses}
