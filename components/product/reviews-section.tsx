@@ -1,9 +1,9 @@
 import React from 'react';
 
 const stats = [
-  { value: '5m+', label: 'Downloads' },
+  { value: '8m+', label: 'Downloads' },
   { value: '1m+', label: 'Docker Pulls' },
-  { value: '70K+', label: 'Github Stars' },
+  { value: '75K+', label: 'Github Stars' },
   { value: '10K+', label: 'Community Members' },
 ];
 
