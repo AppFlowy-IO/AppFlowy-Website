@@ -26,7 +26,7 @@ function NavbarItem({
           }
           : undefined
       }
-      className={`navigation-item navigation-item-${item.key}`}
+      className={`navigation-item navigation-item-${item.key} ${isPopoverOpen ? 'popover-open' : ''}`}
       onMouseEnter={children ? onMouseEnter : undefined}
       onMouseLeave={children ? onMouseLeave : undefined}
     >

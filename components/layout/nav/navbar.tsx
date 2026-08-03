@@ -34,7 +34,9 @@ function Navbar() {
       type: 'view',
     });
   }, [inView]);
+
   return (
+
     <nav className={`appflowy-navbar ${scrolled ? 'sticky' : ''}`}>
       {/* Logo */}
       <div className={'logo-wrapper'}>

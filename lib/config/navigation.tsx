@@ -162,7 +162,7 @@ export const navigation: Item[] = [
     key: 'pricing',
   },
   {
-    name: 'Self-host AppFlowy',
+    name: 'Self-host',
     href: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
     key: 'self-host',
   },

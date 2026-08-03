@@ -141,7 +141,8 @@ body {
   @apply flex items-center justify-center;
   @apply mx-2 p-3 text-[15px];
   &:hover,
-  &:active {
+  &:active,
+  &.popover-open {
     color: var(--color-primary);
   }
 }
@@ -195,7 +196,7 @@ body {
     }
 
     .group-item {
-      @apply flex cursor-pointer flex-row items-start p-4 last:mb-0 hover:rounded-[8px];
+      @apply flex cursor-pointer flex-row items-start p-4 py-3 last:mb-0 hover:rounded-[8px];
       @apply hover:bg-light-blue-gray;
     }
   }
