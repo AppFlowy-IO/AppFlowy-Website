@@ -35,7 +35,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
           asChild
           size={'xl'}
           className={
-            'flex-1 rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90'
+            'flex-1 rounded-lg bg-night-blue text-white transition-colors hover:bg-[#2C254C]'
           }
         >
           <Link
@@ -61,9 +61,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
               window.open(webApplicationUrl, '_current');
             }}
             size={'xl'}
-            className={
-              'flex-1 rounded-lg border border-[#E6E6E6] bg-white shadow-none text-night-blue transition-colors hover:bg-light-gray'
-            }
+            variant={'outline'}
           >
             Get started free
           </Button>

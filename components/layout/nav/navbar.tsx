@@ -74,7 +74,8 @@ function Navbar() {
         <div className={'max-lg:hidden'}>
           <Button
             asChild
-            className={'h-9 rounded-lg border border-[#E6E6E6] bg-white px-4 text-sm text-night-blue shadow-none transition-colors hover:bg-light-gray'}
+            variant={'outline'}
+            size={'lg'}
           >
             <Link
               href={'/contact'}
@@ -96,7 +97,8 @@ function Navbar() {
         >
           <Button
             asChild
-            className={'h-9 rounded-lg bg-night-blue px-4 text-sm text-white transition-colors hover:bg-night-blue/90'}
+            size={'lg'}
+            className={'rounded-lg bg-night-blue px-5 text-sm text-white transition-colors hover:bg-[#2C254C]'}
           >
             <Link
               onClick={() => {
