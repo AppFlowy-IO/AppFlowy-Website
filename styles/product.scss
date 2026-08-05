@@ -213,6 +213,7 @@
 
   .section-8 {
     background: white;
+    isolation: isolate;
 
     &-title {
       z-index: 1;
@@ -232,17 +233,17 @@
     }
 
     .circle-gradient {
-      height: 200px;
-      width: 500px;
+      height: 600px;
+      width: 600px;
       border-radius: 50%;
       position: absolute;
-      bottom: 0vh;
+      bottom: -50vh;
       left: 50%;
       transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(138, 44, 231, 0.4) 0%, rgba(138, 44, 231, 0) 100%);
-      filter: blur(150px);
+      background: #dcdcff;
+      filter: blur(100px);
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
 
     &-image {

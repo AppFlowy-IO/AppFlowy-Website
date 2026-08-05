@@ -28,6 +28,13 @@ body {
 }
 
 .appflowy-footer {
+  // The page's last section (.section-8) is `position: relative`, so it paints in the
+  // positioned-elements phase — above this footer, which is otherwise unpositioned.
+  // Its .circle-gradient blob overhangs by design and would wash out the black box.
+  // Giving the footer its own layer puts it back on top.
+  position: relative;
+  z-index: 1;
+
   .logo {
     @apply flex w-[250px] shrink-0 flex-col;
     @apply max-lg:w-full;
