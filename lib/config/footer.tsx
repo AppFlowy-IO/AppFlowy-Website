@@ -2,6 +2,7 @@ import Twitter from '@/components/icons/twitter';
 import Reddit from '@/components/icons/reddit';
 import Github from '@/components/icons/github';
 import Discord from '@/components/icons/discord';
+import Linkedin from '@/components/icons/linkedin';
 import { webApplicationUrl } from '@/lib/web-application';
 
 export const externalLinks = [
@@ -40,6 +41,15 @@ export const externalLinks = [
       </i>
     ),
     link: 'https://discord.gg/9Q2xaN37tV',
+  },
+  {
+    key: 'linkedin',
+    icon: (
+      <i className={'text-white'}>
+        <Linkedin />
+      </i>
+    ),
+    link: 'https://www.linkedin.com/company/appflowy/',
   },
 ];
 
