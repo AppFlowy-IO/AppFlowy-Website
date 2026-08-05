@@ -167,17 +167,15 @@ function DevInfoSection() {
                   }}
                   label={
                     <div
-                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border px-6 py-7 text-left transition-colors ${
-                        value === tab.value
-                          ? 'border-[#BEBEBE] bg-[#0F0A1E]'
-                          : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
-                      }`}
+                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border px-6 py-7 text-left transition-colors ${value === tab.value
+                        ? 'border-[#BEBEBE] bg-[#0F0A1E]'
+                        : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
+                        }`}
                     >
                       <div className='flex items-center gap-4'>
                         <div
-                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                            value === tab.value ? 'bg-white text-night-blue' : 'bg-gray-10 text-white'
-                          }`}
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[6px] transition-colors ${value === tab.value ? 'bg-white text-night-blue' : 'bg-gray-10 text-white'
+                            }`}
                         >
                           {tab.icon}
                         </div>
@@ -255,9 +253,8 @@ function DevInfoSection() {
                   <span
                     key={tab.value}
                     onClick={() => goToIndex(index)}
-                    className={`h-2 cursor-pointer rounded-full transition-all ${
-                      index === activeIndex ? 'w-10 bg-white' : 'w-2 bg-white/40'
-                    }`}
+                    className={`h-2 cursor-pointer rounded-full transition-all ${index === activeIndex ? 'w-10 bg-white' : 'w-2 bg-white/40'
+                      }`}
                   />
                 ))}
               </div>
