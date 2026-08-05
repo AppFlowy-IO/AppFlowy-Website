@@ -62,6 +62,7 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
             }}
             size={'xl'}
             variant={'outline'}
+            className={'h-[48px]'}
           >
             Get started free
           </Button>

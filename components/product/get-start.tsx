@@ -39,13 +39,15 @@ function GetStart() {
           <Button
             asChild
             size={'xl'}
-            className={'min-w-[180px] rounded-lg border border-[#E6E6E6] bg-white text-night-blue shadow-none transition-colors hover:bg-light-gray max-sm:w-full'}
+            variant={'outline'}
+            className={'min-w-[180px] flex-none  max-sm:w-full '}
           >
             <Link href={webApplicationUrl}>Get started free</Link>
           </Button>
         </div>
 
       </div>
+
     </div>
   );
 }
