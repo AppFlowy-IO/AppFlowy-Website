@@ -188,6 +188,11 @@ body {
   border: 1px solid var(--color-primary-20) !important;
 }
 
+.popover-paper:has(.menu-popover-content) {
+  border-color: #d6d6d6 !important;
+  box-shadow: 0 0 20px 0 rgba(44, 37, 76, 0.08) !important;
+}
+
 .menu-popover-content {
   @apply flex flex-row p-5;
 

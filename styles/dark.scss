@@ -543,6 +543,9 @@
       @apply text-gray-400;
     }
   }
+  .popover-paper:has(.menu-popover-content) {
+    border-color: rgba(255, 255, 255, 0.16) !important;
+  }
   .menu-popover-content {
     .group {
       .group-item {
