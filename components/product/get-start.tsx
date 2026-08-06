@@ -12,7 +12,7 @@ function GetStart() {
       <div className='section-8 min-w-0 max-w-full py-24 relative inset-0'>
         <div className='circle-gradient'></div>
         <div className='section-8-title flex flex-col items-center justify-center gap-6 text-center max-md:gap-5'>
-          <div className='section-8-logo flex h-[90px] w-[90px] items-center justify-center rounded-[28px] border bg-white shadow-[0_18px_42px_rgba(41,33,84,0.08)]'>
+          <div className='section-8-logo flex h-[90px] w-[90px] items-center justify-center rounded-[20px] border bg-white shadow-[0_0_40px_0_rgba(73,87,240,0.08)]'>
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
           <h2 className='text-style-h1 font-semibold tracking-[-0.04em] max-lg:text-[64px] max-md:text-[10vw]'>
