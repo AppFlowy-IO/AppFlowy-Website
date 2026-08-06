@@ -29,14 +29,12 @@ function SecurityCompliance() {
           </div>
           <div className='compliance__copy z-[1] flex w-[480px] shrink-0 flex-col gap-10 text-[#140f28] max-xl:w-full max-xl:max-w-[560px] max-xl:gap-6'>
             <h2 className='compliance__title text-style-h1 font-bold text-text-primary max-w-250px'>
-              Enterprise
-              Privacy
-              Built on Trust
+              Enterprise-grade security
             </h2>
-            <p className='compliance__desc text-style-h5 max-w-[480px] font-medium tracking-[-0.02em] text-text-primary max-lg:max-w-[420px]'>
-              Your data belongs to you.
-              <br />
-              Experience out-of-the-box security backed by industry-leading compliance
+            <p className='compliance__desc text-style-h5 max-w-[480px] font-medium text-text-primary max-lg:max-w-[420px]'>
+              Designed for teams with
+              <br></br>
+              stringent security & privacy requirements
             </p>
           </div>
 

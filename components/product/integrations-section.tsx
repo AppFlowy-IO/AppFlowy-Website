@@ -35,14 +35,12 @@ export default function IntegrationsSection() {
       <div className='mx-auto flex w-full max-w-[1440px] items-center gap-[40px] px-[80px] max-xl:px-[4vw] max-lg:flex-col max-lg:items-start max-lg:gap-[56px]'>
         <div className='flex flex-1 flex-col gap-[40px] max-lg:w-full max-lg:gap-6'>
           <h2 className='text-style-h1 font-bold leading-[68px] max-md:text-[clamp(40px,8vw,56px)] max-md:leading-[1.08]'>
-            Customize with
+            Works with tools
             <br />
-            dozens of
-            <br />
-            integrations
+            you already use
           </h2>
-          <p className='max-w-[520px] text-style-h5 font-medium leading-[28px] max-md:leading-[1.5]'>
-            AppFlowy connects to the tools your team already runs on your teams.
+          <p className='max-w-[520px] text-style-h5 text-text-tertiary font-medium '>
+            Connect AppFlowy to your existing systems to keep work and data in sync.
           </p>
         </div>
 

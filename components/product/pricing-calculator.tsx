@@ -180,7 +180,7 @@ export function PricingCalculator() {
                         <h2 className="text-style-h1 font-bold ">
                             More productivity, fewer tools
                         </h2>
-                        <p className="mt-3 text-style-h5 text-gray-400">
+                        <p className="mt-3 text-style-h5 text-text-tertiary font-medium">
                             Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.
                         </p>
                     </div>

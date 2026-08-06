@@ -4,7 +4,7 @@ const stats = [
   { value: '8M+', label: 'Downloads' },
   { value: '1M+', label: 'Docker Pulls' },
   { value: '75K+', label: 'Github Stars' },
-  { value: '10K+', label: 'Community Members' },
+  { value: '20K+', label: 'Community Members' },
 ];
 
 function ReviewMetric({ value, label }: { value: string; label: string }) {
@@ -14,7 +14,7 @@ function ReviewMetric({ value, label }: { value: string; label: string }) {
         {value}
       </p>
       <div className='h-8 max-md:hidden'></div>
-      <p className='text-[24px] font-medium leading-[28px] text-[#aaa] max-md:text-[15px] max-md:leading-[1.4]'>
+      <p className='font-medium text-style-h4 text-text-tertiary'>
         {label}
       </p>
     </div>
