@@ -5,8 +5,8 @@ import type { StaticImageData } from "next/image";
 import { useInView } from "framer-motion";
 import { useAutoPlay } from "@/lib/hooks/use-auto-play";
 
-import AINotesImage from '@/assets/images/product-showcase-new/ai-notes.webp';
 import AISearchImage from '@/assets/images/product-showcase-new/ai-search.webp';
+import AINotesImage from '@/assets/images/product-showcase-new/ai-notes.webp';
 import DocsImage from '@/assets/images/product-showcase-new/docs.webp';
 import KnowledgeImage from '@/assets/images/product-showcase-new/knowledge-base.webp';
 import ProjectsImage from '@/assets/images/product-showcase-new/projects.webp';
@@ -229,13 +229,13 @@ function ShowcaseSection() {
                 aria-label="AppFlowy feature previews"
             >
                 <nav
-                    className="grid grid-cols-5 gap-3 mb-4 max-[1100px]:grid-cols-3 max-[760px]:hidden"
+                    className="grid grid-cols-5 gap-3 max-[1100px]:grid-cols-3 max-[760px]:hidden"
                     aria-label="Product features"
                 >
                     {tabs.map((tab) => (
                         <button
                             aria-pressed={currentId === tab.id}
-                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-3 text-h5 font-medium whitespace-nowrap transition-[background-color,color] duration-[180ms] ease-in-out ${currentId === tab.id
+                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-4 text-h5 font-medium whitespace-nowrap transition-[background-color,color] duration-[180ms] ease-in-out ${currentId === tab.id
                                 ? "bg-text-primary text-white"
                                 : "bg-[#F6F5F6] text-text-primary hover:bg-[#ECECEE] active:bg-text-primary active:text-white"
                                 }`}

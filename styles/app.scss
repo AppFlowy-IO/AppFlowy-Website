@@ -5,7 +5,7 @@ body {
 }
 
 .appflowy-app {
-  @apply flex w-full flex-col overflow-x-hidden;
+  @apply flex w-full flex-col overflow-hidden;
 }
 
 .appflowy-overlay {
@@ -15,6 +15,7 @@ body {
 
 .absolute-image {
   @apply absolute left-0 top-0 flex h-full w-full justify-center;
+
   &.dark-image {
     @apply hidden;
   }
@@ -91,6 +92,7 @@ body {
 
 .appflowy-drawer-nav {
   @apply flex flex-col;
+
   > .header {
     @apply flex items-center justify-between p-[20px];
   }
@@ -147,6 +149,7 @@ body {
 .navigation-item {
   @apply flex items-center justify-center;
   @apply mx-2 p-3 text-[16px];
+
   &:hover,
   &:active,
   &.popover-open {
@@ -217,6 +220,7 @@ body {
 .banner {
   @apply flex transform items-center justify-center bg-[#EDDDFF] text-sm text-black translate-z-0;
   @apply text-[12px];
+
   .learn-more-link {
     @apply mr-1 flex cursor-pointer items-center font-medium text-[#8427E0];
   }
@@ -230,6 +234,7 @@ body {
 .mobile-images {
   @apply relative mb-[234px] mt-[148px] min-h-screen w-full;
   @apply max-sm:mb-[20px] max-sm:mt-[67px] max-sm:h-[1180px];
+
   > .image {
     @apply absolute aspect-auto transform translate-z-0;
 
@@ -276,8 +281,10 @@ body {
 
   .icons {
     @apply absolute left-0 top-0 h-full w-full;
+
     .icon {
       @apply absolute;
+
       &.icon-1 {
         @apply left-[122px] top-[106px];
         @apply max-lg:left-[10px] max-md:left-[20px] max-md:top-[0px] max-md:h-[83px] max-md:w-[78px];
@@ -308,6 +315,7 @@ body {
 
   .docx-wrapper {
     @apply w-full bg-transparent px-0;
+
     .docx {
       width: 100% !important;
       padding: 0 !important;
@@ -348,6 +356,7 @@ body {
 
 .primary-word {
   @apply relative whitespace-nowrap;
+
   .primary-line {
     @apply absolute bottom-[-4px] left-0 w-full text-primary;
   }
@@ -355,6 +364,7 @@ body {
   .primary-circle {
     @apply absolute left-[-20px] top-[-20px] h-[140%] w-[140%] text-primary;
     @apply max-sm:left-[-10px] max-sm:top-[-10px];
+
     > svg {
       @apply absolute;
     }
@@ -376,6 +386,7 @@ body {
 
   .download-alert {
     @apply mx-[20px] rounded-[12px] border border-primary-10 bg-[#EEF1FF] text-primary;
+
     .MuiSvgIcon-root {
       @apply text-primary;
     }
@@ -385,6 +396,7 @@ body {
 .linux-btn-group {
   @apply flex gap-[20px];
   @apply max-md:flex-col;
+
   > button {
     @apply w-[220px] px-0;
   }
@@ -399,6 +411,7 @@ body {
 .modal-paper .modal-actions {
   @apply p-7;
   @apply max-sm:flex max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:justify-center max-sm:gap-1 max-sm:px-6 max-sm:pb-1 max-sm:pt-4;
+
   button {
     @apply max-sm:w-full;
   }
@@ -415,6 +428,7 @@ body {
 .modal-paper .modal-title {
   @apply mt-2 text-[20px] font-semibold;
   @apply dark:text-white max-sm:flex max-sm:items-center max-sm:justify-center max-sm:text-center max-sm:text-[18px];
+
   > div {
     @apply max-sm:w-[200px];
   }
@@ -423,6 +437,7 @@ body {
 .modal-paper .download-mobile-modal-content {
   @apply pl-7 text-[16px] leading-8 text-[#1F2329] dark:text-gray-500;
   @apply dark:text-[#F7F8F8] max-sm:px-2 max-sm:text-[14px] max-sm:leading-[26px];
+
   .link {
     @apply font-medium text-primary underline dark:text-[#AE65FF];
   }
@@ -434,6 +449,7 @@ body {
   }
 
   @apply relative mt-[16px] flex pl-5 text-[12px] leading-[24px] text-[#1F232999] dark:text-[#BBB] dark:text-opacity-70 max-sm:leading-[18px];
+
   .highlight {
     @apply text-primary dark:text-[#AE65FF];
   }
@@ -442,6 +458,7 @@ body {
 .developers {
   @apply mb-[150px] flex w-full flex-col items-center;
   @apply max-sm:mb-[50px];
+
   .developers-title {
     @apply mb-[100px] text-[40px] font-medium leading-[110%] tracking-[-1px];
     @apply max-sm:mb-[20px] max-sm:px-[56px] max-sm:text-center max-sm:text-[24px] max-sm:leading-[115%] max-sm:tracking-[-0.96px];
@@ -449,6 +466,7 @@ body {
 
   .developers-logos {
     @apply w-full overflow-hidden;
+
     .logo-wrapper {
       @apply mr-4 flex w-fit min-w-full items-center justify-between gap-[100px];
       @apply max-md:gap-[40px];
@@ -456,6 +474,7 @@ body {
       .logo {
         @apply max-h-[225px] w-[200px] flex-shrink-0;
         @apply max-sm:h-[100px] max-sm:w-[100px];
+
         img {
           @apply h-full w-full object-contain;
         }
@@ -503,6 +522,7 @@ body {
 
 .short-inline-codeblock {
   word-wrap: break-word;
+
   @media screen and (min-width: 769px) {
     white-space: pre !important;
   }
@@ -611,6 +631,7 @@ next-image--dynamic-fill {
 
   li {
     @apply text-base font-medium;
+
     > a,
     > p {
       @apply hover:text-primary;
@@ -625,10 +646,12 @@ next-image--dynamic-fill {
 .share {
   @apply flex flex-wrap gap-3;
   @apply max-md:gap-2;
+
   button,
   .share-btn {
     @apply flex h-[56px] w-[56px] items-center justify-center rounded-full border;
     @apply max-md:h-[40px] max-md:w-[40px];
+
     &:hover {
       @apply border-primary text-primary;
     }
@@ -636,6 +659,7 @@ next-image--dynamic-fill {
     svg {
       @apply h-[24px] w-[24px];
       @apply max-md:h-[16px] max-md:w-[16px];
+
       g {
         opacity: 1;
       }

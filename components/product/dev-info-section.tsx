@@ -145,7 +145,7 @@ function DevInfoSection() {
   };
 
   return (
-    <section className='dev-info-section relative w-full overflow-hidden bg-night-blue py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20'>
+    <section className='dev-info-section relative w-full overflow-hidden bg-night-blue py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20 lg:[--grid-x:80px]'>
       {/*
         Grid background. The vertical rules span the whole section at every breakpoint. The
         horizontal rules are inset from the section edges from `sm` up, but on mobile they bracket
@@ -163,7 +163,7 @@ function DevInfoSection() {
         <span className='absolute bottom-[var(--grid-y)] right-[var(--grid-x)] hidden h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] sm:block' />
       </div>
 
-      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-20'>
+      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-20 lg:px-32'>
         <div className='align-items-start mb-12 flex w-full flex-col'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
           <h5 className='text-style-h5 mt-2 text-text-tertiary'>Your team. Your servers. Your rules.</h5>
@@ -199,7 +199,7 @@ function DevInfoSection() {
                   }}
                   label={
                     <div
-                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border px-7 py-8 text-left transition-colors ${value === tab.value
+                      className={`flex w-full items-center justify-between gap-4 rounded-[12px] border-2 px-7 py-8 text-left transition-colors ${value === tab.value
                         ? 'border-[#BEBEBE] bg-[#0F0A1E]'
                         : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
                         }`}
@@ -229,7 +229,7 @@ function DevInfoSection() {
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
                   <div className='flex w-full flex-col '>
-                    <div className='relative h-[320px] w-full shrink-0 overflow-hidden rounded-2xl max-md:h-[200px]'>
+                    <div className='relative h-[320px] w-full shrink-0 overflow-hidden rounded-[12px] max-md:h-[200px]'>
                       <Image
                         loading={'eager'}
                         fill
@@ -239,7 +239,7 @@ function DevInfoSection() {
                         alt={panel.title}
                       />
                     </div>
-                    <div className='mt-8 flex flex-col gap-3'>
+                    <div className='mt-8 flex flex-col gap-5'>
                       <h2 className='text-style-h2 font-semibold text-white'>{panel.title}</h2>
                       <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{panel.desc}</p>
                     </div>

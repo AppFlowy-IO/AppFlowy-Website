@@ -266,7 +266,7 @@ export function PricingCalculator() {
                             {/* Savings Display */}
                             <div className="flex flex-1 items-center justify-around lg:pl-8">
                                 {/* Monthly */}
-                                <div className="text-center">
+                                <div className="text-left">
                                     <div
                                         className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
                                             }`}
@@ -276,11 +276,8 @@ export function PricingCalculator() {
                                     <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly savings</div>
                                 </div>
 
-                                {/* Divider */}
-                                <div className="hidden h-16 w-px bg-white/10 lg:block" />
-
                                 {/* Annual */}
-                                <div className="text-center">
+                                <div className="text-left">
                                     <div
                                         className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
                                             }`}
