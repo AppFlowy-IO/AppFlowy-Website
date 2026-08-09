@@ -32,11 +32,11 @@ function Footer() {
   };
 
   return (
-    <div className='appflowy-footer w-full overflow-hidden bg-white px-[24px] pb-[24px] text-white'>
-      <div className='w-full rounded-[30px] bg-black px-[40px] pb-[24px] pt-[84px] max-xl:px-[28px] max-xl:pt-[64px] max-lg:rounded-[24px] max-lg:px-[24px] max-lg:pt-[48px]'>
+    <div className='appflowy-footer w-full overflow-hidden bg-white px-[24px] pb-[24px]'>
+      <div className='w-full rounded-[20px] bg-black p-10 pt-15 max-xl:px-[28px] max-lg:px-[24px]'>
         <div className='flex items-start gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
           <div className={'logo'}>
-            <div className={'image h-[42px] w-[189px] text-white'}>
+            <div className={'image aspect-ratio-3/2 text-white'}>
               <Logo />
             </div>
             <div aria-label={'AppFlowy social links'} className='social-links mt-[34px] flex items-center gap-[28px]'>
@@ -53,7 +53,7 @@ function Footer() {
           >
             {links.map((item) => (
               <div className='min-w-0' key={item.name}>
-                <span className='group-name text-style-h5 mb-[22px] block font-semibold tracking-[-0.01em]'>
+                <span className='group-name text-style-h5 mb-[22px] block font-semibold'>
                   {item.link ? renderLink(item.name, item.link) : item.name}
                 </span>
                 <div className='flex flex-col gap-[18px]'>
