@@ -81,19 +81,16 @@ function ScrollIcons() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   gap: '10px',
-                  color: 'var(--color-text)',
+                  color: 'var(--color-text-primary)',
                 }}
                 className={'logo opacity-100'}
               >
                 <svg
-                  className='opacity-60'
                   style={{
                     width: '100%',
                     height: '100%',
                     maxWidth: '160px',
                     maxHeight: '50px',
-                    filter:
-                      'brightness(0) saturate(100%) invert(7%) sepia(32%) saturate(2387%) hue-rotate(264deg) brightness(96%) contrast(104%)',
                   }}
                   aria-label={item.name}
                 >
