@@ -33,6 +33,20 @@ function TabArrowIcon({ className }: { className?: string }) {
   );
 }
 
+/**
+ * A horizontal rule of the background grid, drawn in the content flow so it can sit at a
+ * content-relative position. `-mx-8` cancels the content wrapper's mobile padding so the rule
+ * bleeds to the section edges, and the dots land on the vertical rules via `--grid-x`.
+ */
+function GridRule({ className }: { className?: string }) {
+  return (
+    <div aria-hidden className={`relative -mx-8 border-t border-[#5a5a5a] ${className ?? ''}`}>
+      <span className='absolute left-[var(--grid-x)] top-0 h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 bg-[#d9d9d9]' />
+      <span className='absolute right-[var(--grid-x)] top-0 h-[5px] w-[5px] -translate-y-1/2 translate-x-1/2 bg-[#d9d9d9]' />
+    </div>
+  );
+}
+
 function DevInfoSection() {
   const [value, setValue] = React.useState('deploy');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -131,12 +145,30 @@ function DevInfoSection() {
   };
 
   return (
-    <section className='dev-info-section w-full bg-night-blue px-[80px] py-16 max-xl:px-[4vw] sm:py-20  lg:py-24 xl:py-[120px]'>
-      <div className='mx-auto flex w-full max-w-[1440px] flex-col border border-[#5A5A5A] px-[80px] max-xl:px-[4vw] sm:py-20 lg:py-24 xl:py-[120px]'>
+    <section className='dev-info-section relative w-full overflow-hidden bg-night-blue py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20'>
+      {/*
+        Grid background. The vertical rules span the whole section at every breakpoint. The
+        horizontal rules are inset from the section edges from `sm` up, but on mobile they bracket
+        the tab content instead, so there they are rendered in the flow as <GridRule /> below.
+      */}
+      <div aria-hidden className='pointer-events-none absolute inset-0'>
+        <div className='absolute inset-x-0 top-[var(--grid-y)] hidden border-t border-[#5a5a5a] sm:block' />
+        <div className='absolute inset-x-0 bottom-[var(--grid-y)] hidden border-t border-[#5a5a5a] sm:block' />
+        <div className='absolute inset-y-0 left-[var(--grid-x)] border-l border-[#5a5a5a]' />
+        <div className='absolute inset-y-0 right-[var(--grid-x)] border-r border-[#5a5a5a]' />
+
+        <span className='absolute left-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 bg-[#d9d9d9] sm:block' />
+        <span className='absolute right-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-y-1/2 translate-x-1/2 bg-[#d9d9d9] sm:block' />
+        <span className='absolute bottom-[var(--grid-y)] left-[var(--grid-x)] hidden h-[5px] w-[5px] -translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] sm:block' />
+        <span className='absolute bottom-[var(--grid-y)] right-[var(--grid-x)] hidden h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] sm:block' />
+      </div>
+
+      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-20'>
         <div className='align-items-start mb-12 flex w-full flex-col'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
-          <h5 className='text-style-h5 mt-4 text-text-tertiary'>Your team. Your servers. Your rules.</h5>
+          <h5 className='text-style-h5 mt-2 text-text-tertiary'>Your team. Your servers. Your rules.</h5>
         </div>
+        <GridRule className='mb-12 sm:hidden' />
         <div ref={ref}>
           <div className='hidden grid-cols-1 items-stretch gap-8 sm:grid lg:grid-cols-2 lg:gap-20'>
             <MuiTabs
@@ -159,7 +191,7 @@ function DevInfoSection() {
                   value={tab.value}
                   sx={{
                     width: '100%',
-                    maxWidth: '540px',
+                    maxWidth: '520px',
                     minWidth: 0,
                     padding: 0,
                     textTransform: 'none',
@@ -167,7 +199,7 @@ function DevInfoSection() {
                   }}
                   label={
                     <div
-                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border px-6 py-7 text-left transition-colors ${value === tab.value
+                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border px-7 py-8 text-left transition-colors ${value === tab.value
                         ? 'border-[#BEBEBE] bg-[#0F0A1E]'
                         : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
                         }`}
@@ -197,7 +229,7 @@ function DevInfoSection() {
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
                   <div className='flex w-full flex-col '>
-                    <div className='relative h-[300px] w-full shrink-0 overflow-hidden rounded-2xl max-md:h-[200px]'>
+                    <div className='relative h-[320px] w-full shrink-0 overflow-hidden rounded-2xl max-md:h-[200px]'>
                       <Image
                         loading={'eager'}
                         fill
@@ -223,7 +255,7 @@ function DevInfoSection() {
             </div>
             {activePanel && (
               <div className='mt-6 flex w-full flex-col'>
-                <div className='relative h-[200px] w-full shrink-0 overflow-hidden rounded-2xl'>
+                <div className='relative h-[328px] w-full shrink-0 overflow-hidden rounded-[12px]'>
                   <Image
                     loading={'eager'}
                     fill
@@ -233,12 +265,13 @@ function DevInfoSection() {
                     alt={activePanel.title}
                   />
                 </div>
-                <div className='mt-8 flex h-[220px] flex-col gap-3'>
+                <div className='mt-8 flex h-[172px] flex-col gap-3'>
                   <h2 className='text-style-h2 font-semibold text-white'>{activePanel.title}</h2>
                   <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{activePanel.desc}</p>
                 </div>
               </div>
             )}
+            <GridRule className='mt-10' />
             <div className='mt-10 flex w-full items-center justify-between'>
               <button
                 type='button'

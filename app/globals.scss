@@ -29,12 +29,12 @@
 
 :root {
   --font-family-sans: 'Inter', sans-serif;
-  --font-size-h1: clamp(40px, 5.25vw, 56px);
-  --line-height-h1: clamp(44px, 6vw, 68px);
-  --font-size-h2: clamp(32px, 4.75vw, 40px);
-  --line-height-h2: clamp(36px, 5vw, 48px);
-  --font-size-h3: clamp(24px, 3.5vw, 32px);
-  --line-height-h3: clamp(28px, 3.5vw, 46px);
+  --font-size-h1: clamp(28px, 5.25vw, 56px);
+  --line-height-h1: clamp(36px, 6vw, 68px);
+  --font-size-h2: clamp(24px, 4.75vw, 40px);
+  --line-height-h2: clamp(28px, 5vw, 48px);
+  --font-size-h3: clamp(20px, 3.5vw, 32px);
+  --line-height-h3: clamp(24px, 3.5vw, 40px);
   --font-size-h4: clamp(18px, 2.5vw, 24px);
   --line-height-h4: clamp(22px, 2.5vw, 28px);
   --font-size-h5: clamp(16px, 2vw, 20px);
