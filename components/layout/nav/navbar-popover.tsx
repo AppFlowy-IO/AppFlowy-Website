@@ -48,7 +48,7 @@ function NavbarPopover({
                   onClick={debounceClose}
                   className={`group-item ${item.desc ? '' : 'items-center'}`}
                 >
-                  {item.icon && <div className='flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#d6d6d6]'>{item.icon}</div>}
+                  {item.icon && <div className='flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#d6d6d6] bg-white'>{item.icon}</div>}
                   <div className='ml-[16px] flex max-w-[280px] flex-col justify-center'>
                     <p className='font-medium'>{item.name}</p>
                     {item.desc && <div className='text-sm text-gray-400'>{item.desc}</div>}

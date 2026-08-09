@@ -212,7 +212,7 @@ body {
 
     .group-item {
       @apply flex cursor-pointer flex-row items-start px-5 py-3 last:mb-0 hover:rounded-[8px];
-      @apply hover:bg-light-blue-gray;
+      @apply hover:bg-[#f6f5f6];
     }
   }
 }
