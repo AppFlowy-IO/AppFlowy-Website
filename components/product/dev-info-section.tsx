@@ -49,7 +49,7 @@ function GridRule({ className }: { className?: string }) {
 
 function DevInfoSection() {
   const [value, setValue] = React.useState('deploy');
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -229,7 +229,7 @@ function DevInfoSection() {
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
                   <div className='flex w-full flex-col '>
-                    <div className='relative h-[320px] w-full shrink-0 overflow-hidden rounded-[12px] max-md:h-[200px]'>
+                    <div className='relative h-[320px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] max-md:h-[200px]'>
                       <Image
                         loading={'eager'}
                         fill
@@ -239,7 +239,7 @@ function DevInfoSection() {
                         alt={panel.title}
                       />
                     </div>
-                    <div className='mt-8 flex flex-col gap-5'>
+                    <div className='mt-8 flex flex-col gap-5 max-w-[450px]'>
                       <h2 className='text-style-h2 font-semibold text-white'>{panel.title}</h2>
                       <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{panel.desc}</p>
                     </div>
