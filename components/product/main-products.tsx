@@ -94,7 +94,7 @@ function MainProducts() {
       ref={ref}
       className={'main-product'}
     >
-      <div className={'ai-image relative aspect-[1280/696] w-full overflow-hidden'}>
+      <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
         <Image
           key={activeImage.value}
           src={activeImage.src}

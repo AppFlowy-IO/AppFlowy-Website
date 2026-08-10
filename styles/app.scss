@@ -91,14 +91,16 @@ body {
 }
 
 .appflowy-drawer-nav {
-  @apply flex flex-col;
+  @apply flex min-h-screen flex-col;
+  background: #2f2f2f;
 
   > .header {
-    @apply flex items-center justify-between p-[20px];
+    @apply flex items-center justify-between bg-white px-4 py-4;
   }
 
   > .content {
-    @apply flex flex-col items-center p-[20px];
+    @apply flex flex-1 flex-col p-2;
+    overflow-y: auto;
   }
 }
 
@@ -110,6 +112,198 @@ body {
 
   .logo {
     @apply h-[30px];
+  }
+}
+
+.appflowy-drawer {
+  @apply bg-transparent shadow-none;
+}
+
+.drawer-nav-close-btn {
+  @apply flex h-9 w-9 items-center justify-center rounded-lg bg-white text-black transition-colors;
+  @apply hover:bg-[#f5f5f5];
+}
+
+.drawer-nav-panel {
+  @apply flex w-full flex-col rounded-[12px] bg-white p-3;
+  gap: 20px;
+}
+
+.drawer-nav-main {
+  @apply flex flex-col;
+}
+
+.drawer-nav-section {
+  @apply flex flex-col;
+}
+
+.drawer-nav-row {
+  @apply flex w-full items-center gap-[10px] rounded-[8px] py-3 pl-4 pr-3 text-left;
+  min-height: 52px;
+
+  &.expanded {
+    background: rgba(20, 15, 40, 0.04);
+  }
+
+  &__label {
+    color: #140f28;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    @apply flex-1;
+  }
+
+  &__action {
+    @apply flex h-9 w-9 items-center justify-center rounded-[8px] bg-white;
+  }
+}
+
+.drawer-nav-toggle-icon {
+  @apply relative block h-4 w-4;
+
+  &__horizontal,
+  &__vertical {
+    @apply absolute left-1/2 top-1/2 block rounded-full bg-[#140f28];
+    transform: translate(-50%, -50%);
+  }
+
+  &__horizontal {
+    height: 1.5px;
+    width: 16px;
+  }
+
+  &__vertical {
+    height: 16px;
+    width: 1.5px;
+  }
+}
+
+.drawer-nav-submenu-list {
+  @apply flex flex-col;
+}
+
+.drawer-nav-submenu-link {
+  @apply flex w-full items-center gap-4 py-3 pl-4 pr-5;
+
+  &__icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-white text-[#140f28];
+
+    svg {
+      @apply h-6 w-6;
+    }
+  }
+
+  &__title {
+    color: #140f28;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.drawer-nav-resource-groups {
+  @apply flex flex-col pb-3;
+}
+
+.drawer-nav-resource-group {
+  @apply flex flex-col;
+
+  &__title {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    @apply px-5 pb-2 pt-4;
+  }
+
+  &__items {
+    @apply flex flex-col;
+  }
+}
+
+.drawer-nav-resource-link {
+  @apply flex w-full items-start gap-4 px-4 py-3;
+
+  &__icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-white text-[#140f28];
+
+    svg {
+      @apply h-6 w-6;
+    }
+  }
+
+  &__content {
+    @apply flex min-w-0 flex-1 flex-col gap-1;
+  }
+
+  &__title {
+    color: #140f28;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  &__desc {
+    color: #5a5a5a;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.drawer-nav-resource-banner {
+  @apply relative mt-3 flex h-[220px] w-full overflow-hidden rounded-[12px] bg-cover bg-center bg-no-repeat;
+
+  &__overlay {
+    @apply absolute inset-0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, 0.86) 100%);
+  }
+
+  &__content {
+    @apply relative z-[1] mt-auto flex w-full flex-col gap-4 p-7 text-white;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    max-width: 220px;
+  }
+
+  &__indicators {
+    @apply flex items-center gap-2;
+
+    span {
+      @apply block rounded-full bg-white/40;
+      height: 8px;
+      width: 8px;
+    }
+
+    .active {
+      @apply bg-white;
+      height: 6px;
+      width: 32px;
+    }
+  }
+}
+
+.drawer-nav-actions {
+  @apply flex flex-col gap-2 border-t border-[#E6E6E6] pt-2;
+
+  &__primary,
+  &__secondary {
+    @apply flex min-h-[48px] items-center justify-center rounded-[8px] px-5 py-3 text-center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  &__primary {
+    @apply bg-night-blue text-white;
+  }
+
+  &__secondary {
+    @apply border border-[#E6E6E6] bg-white text-[#140f28];
   }
 }
 
