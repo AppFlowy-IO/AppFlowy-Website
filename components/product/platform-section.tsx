@@ -100,17 +100,37 @@ export default function PlatformSection() {
       return;
     }
 
-    const card = track.querySelector<HTMLElement>('.platform-card');
+    const cards = Array.from(track.querySelectorAll<HTMLElement>('.platform-card'));
 
-    if (!card) {
+    if (cards.length === 0) {
       return;
     }
 
-    const gap = Number.parseFloat(window.getComputedStyle(track).gap || '0');
-    const offset = card.getBoundingClientRect().width + gap;
+    const trackLeft = track.getBoundingClientRect().left;
+    // Scroll position that aligns each card with the start of the track.
+    const positions = cards.map((card) => card.getBoundingClientRect().left - trackLeft + track.scrollLeft);
 
-    track.scrollBy({
-      left: direction === 'next' ? offset : -offset,
+    const current = positions.reduce(
+      (closest, position, index) =>
+        Math.abs(position - track.scrollLeft) < Math.abs(positions[closest] - track.scrollLeft) ? index : closest,
+      0,
+    );
+
+    // The last card may not be able to align with the start of the track, so
+    // rely on the scroll edges to know when to wrap around.
+    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+    const atStart = track.scrollLeft <= 1;
+
+    let target: number;
+
+    if (direction === 'next') {
+      target = atEnd || current === cards.length - 1 ? 0 : current + 1;
+    } else {
+      target = atStart || current === 0 ? cards.length - 1 : current - 1;
+    }
+
+    track.scrollTo({
+      left: positions[target],
       behavior: 'smooth',
     });
   };
