@@ -166,7 +166,7 @@ function DevInfoSection() {
       <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-20 lg:px-32'>
         <div className='align-items-start mb-12 flex w-full flex-col'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
-          <h5 className='text-style-h5 mt-2 text-text-tertiary'>Your team. Your servers. Your rules.</h5>
+          <h5 className='text-style-h5 mt-2 text-text-tertiary font-normal'>Your team. Your servers. Your rules.</h5>
         </div>
         <GridRule className='mb-12 sm:hidden' />
         <div ref={ref}>

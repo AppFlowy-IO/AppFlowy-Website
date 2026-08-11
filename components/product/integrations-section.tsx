@@ -34,12 +34,12 @@ export default function IntegrationsSection() {
     <section className='integrations w-full bg-[#F6F6FF] py-[120px] max-md:py-[10vh]'>
       <div className='mx-auto flex w-full max-w-[1440px] items-center gap-[40px] px-[80px] max-xl:px-[4vw] max-lg:flex-col max-lg:items-start max-lg:gap-[56px]'>
         <div className='flex flex-1 flex-col gap-[40px] max-lg:w-full max-lg:gap-6'>
-          <h2 className='text-style-h1 font-bold leading-[68px] max-md:text-[clamp(30px,7vw,56px)] max-md:leading-[36px]'>
+          <h2 className='text-style-h1 font-bold'>
             Works with tools
             <br />
             you already use
           </h2>
-          <p className='max-w-[520px] text-style-h5 text-text-tertiary font-medium max-md:text-[16px] max-md:leading-[1.5]'>
+          <p className='max-w-[520px] text-style-h5 text-text-tertiary font-normal '>
             Connect AppFlowy to your existing systems to keep work and data in sync.
           </p>
         </div>

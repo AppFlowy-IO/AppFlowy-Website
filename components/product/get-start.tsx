@@ -18,7 +18,7 @@ function GetStart() {
           <h2 className='text-style-h1 font-semibold tracking-[-0.04em] max-lg:text-[64px] max-md:text-[10vw]'>
             Get started for free
           </h2>
-          <div className='section-8-desc max-w-[1020px] text-center text-text-tertiary font-medium text-style-h5 max-md:max-w-[640px] '>
+          <div className='section-8-desc max-w-[1020px] text-center text-text-tertiary font-normal text-style-h5 max-md:max-w-[640px] '>
             The AI workspace where you achieve more without losing control of your data
           </div>
         </div>

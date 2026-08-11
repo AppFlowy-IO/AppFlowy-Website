@@ -180,7 +180,7 @@ export function PricingCalculator() {
                         <h2 className="text-style-h1 font-bold ">
                             More productivity, fewer tools
                         </h2>
-                        <p className="mt-3 text-style-h5 text-text-tertiary font-medium">
+                        <p className="mt-3 text-style-h5 text-text-tertiary font-normal">
                             Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.
                         </p>
                     </div>
@@ -289,29 +289,9 @@ export function PricingCalculator() {
                             </div>
                         </div>
 
-                        {/* Bottom bar – context message */}
-                        {hasSelection && annualSavings > 0 && (
-                            <div className="border-t border-white/10 bg-white/5 px-6 py-3 sm:px-8">
-                                <p className="font-inter text-sm text-white/60">
-                                    AppFlowy covers all the feature above and is priced at{' '}
-                                    <span className="font-semibold text-[#C89AFA]">${APPFLOWY_PRICE_PER_USER_YEAR}/user/year</span>
-                                </p>
-                            </div>
-                        )}
 
-                        {!hasSelection && (
-                            <div className="border-t border-white/10 bg-white/5 px-6 py-3 sm:px-8">
-                                <p className="font-inter text-sm text-white/40">
-                                    Select capabilities above to estimate your savings vs. assembling separate SaaS tools.
-                                </p>
-                            </div>
-                        )}
                     </div>
 
-                    {/* Disclaimer */}
-                    <p className="pricing-calculator-disclaimer">
-                        Estimates are based on publicly available annual per-user pricing for popular SaaS tools and represent the estimated market value of each capability. Actual pricing varies by vendor, plan, and contract.
-                    </p>
                 </div>
             </div>
         </section>

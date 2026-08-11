@@ -143,11 +143,11 @@ export default function PlatformSection() {
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[80px] max-xl:px-[4vw]">
-        <div className="flex max-w-[760px] flex-col gap-5 max-md:gap-4">
-          <h2 className="text-h1 font-bold tracking-[-0.03em] text-[#140F28] max-md:text-[clamp(30px,7vw,56px)] max-md:leading-[36px]">
+        <div className="flex flex-col gap-5 max-md:gap-4">
+          <h2 className="text-style-h1 font-bold">
             Self-hosted freedom at enterprise scale
           </h2>
-          <p className="max-w-[620px] text-h5 font-medium text-[#aaa] max-md:text-[16px] max-md:leading-[1.5]">
+          <p className="max-w-[620px] text-style-h5 font-normal text-text-tertiary ">
             Your team. Your servers. Your rules.
           </p>
         </div>

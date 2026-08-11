@@ -50,8 +50,8 @@
       @apply max-md:gap-4 max-md:px-[5vw] max-md:text-[8vw] max-md:leading-[120%];
 
       &__title {
-        font-size: clamp(44px, 6.5vw, 64px);
-        line-height: clamp(50px, 7vw, 80px);
+        font-size: clamp(28px, 6vw, 56px);
+        line-height: clamp(36px, 6vw, 68px);
       }
 
       .hero-highlight {
@@ -233,15 +233,15 @@
     }
 
     .circle-gradient {
-      height: 600px;
-      width: 600px;
+      height: 700px;
+      width: 700px;
       border-radius: 50%;
       position: absolute;
       bottom: -50vh;
       left: 50%;
       transform: translateX(-50%);
       background: #dcdcff;
-      filter: blur(200px);
+      filter: blur(175px);
       pointer-events: none;
       z-index: -1;
     }
