@@ -145,7 +145,7 @@ function DevInfoSection() {
   };
 
   return (
-    <section className='dev-info-section relative w-full overflow-hidden bg-night-blue py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20 lg:[--grid-x:80px]'>
+    <section className='dev-info-section relative w-full overflow-hidden bg-[#0D091C] py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20 lg:[--grid-x:80px]'>
       {/*
         Grid background. The vertical rules span the whole section at every breakpoint. The
         horizontal rules are inset from the section edges from `sm` up, but on mobile they bracket

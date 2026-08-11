@@ -25,7 +25,7 @@ export default function ReviewsSection() {
   return (
     <section className='reviews-section w-full bg-[#F6F6FF]'>
       <div className='mx-auto flex w-full max-w-[1440px] py-[120px] px-[80px] flex-col max-md:py-[10vh] max-xl:px-[4vw]'>
-        <h2 className='mb-32 text-[56px] font-bold leading-[68px] tracking-[-0.03em] text-[#16152d] max-md:mb-10 max-md:text-[clamp(32px,7vw,56px)] max-md:leading-[1.1]'>
+        <h2 className='mb-20 text-style-h1 font-bold text-[#140F28] max-md:mb-10'>
           Empowering millions worldwide
         </h2>
 
