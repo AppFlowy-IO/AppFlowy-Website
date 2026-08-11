@@ -199,7 +199,7 @@ function DevInfoSection() {
                   }}
                   label={
                     <div
-                      className={`flex w-full items-center justify-between gap-4 rounded-[12px] border-2 px-7 py-8 text-left transition-colors ${value === tab.value
+                      className={`flex w-full items-center justify-between gap-4 rounded-[12px] border-2 px-8 py-7 text-left transition-colors ${value === tab.value
                         ? 'border-[#BEBEBE] bg-[#0F0A1E]'
                         : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
                         }`}
@@ -228,7 +228,7 @@ function DevInfoSection() {
             <div className='w-full'>
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
-                  <div className='flex w-full flex-col '>
+                  <div className='flex w-full flex-col items-end'>
                     <div className='relative h-[320px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] max-md:h-[200px]'>
                       <Image
                         loading={'eager'}
