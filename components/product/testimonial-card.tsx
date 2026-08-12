@@ -130,13 +130,13 @@ export function TestimonialSection() {
 
   return (
     <div className='w-full overflow-hidden bg-[#F6F6FF] py-[120px] max-md:py-[10vh]'>
-      <div className='mx-auto flex w-full max-w-[1440px] flex-col items-center px-[80px] max-xl:px-[4vw]'>
+      <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-10 items-center px-[80px] max-xl:px-[4vw]'>
         <div className='flex w-full'>
           <h2 className='text-style-h1 font-bold'>
             Teams that ship smarter choose AppFlowy
           </h2>
         </div>
-        <div className="testimonial-section__stage relative mt-[60px] w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden">
+        <div className="testimonial-section__stage relative w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden">
           <div className='testimonial-section__track flex w-max translate-x-[-6vw] items-stretch gap-[20px] max-md:mt-0 max-md:w-full max-md:translate-x-0 max-md:flex-col max-md:items-center max-md:gap-5'>
             {topRowTestimonials.map((testimonial, index) => (
               <TestimonialCard key={`${testimonial.name}-${index}`} {...testimonial} />

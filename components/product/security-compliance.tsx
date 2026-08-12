@@ -54,8 +54,8 @@ function ComplianceCard({ label, alt, src }: { label: string; alt: string; src: 
 function SecurityCompliance() {
   return (
     <div className='compliance-container flex w-full justify-center'>
-      <section className='compliance w-full max-w-[1440px] py-20 sm:py-[120px]'>
-        <div className='compliance__panel relative flex min-h-[676px] w-full p-20 items-center justify-between gap-10 overflow-hidden rounded-[16px] max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-10 '>
+      <section className='compliance w-full max-w-[1440px] py-20 sm:py-[120px] max-xl:px-6 max-sm:px-4'>
+        <div className='compliance__panel relative flex min-h-[676px] w-full p-10 items-center justify-between gap-10 overflow-hidden rounded-[16px] max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-10 sm:p-20'>
           <div className='pointer-events-none absolute inset-0' aria-hidden={true}>
             <Image
               alt={'compliance-background'}
