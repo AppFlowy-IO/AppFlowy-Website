@@ -40,11 +40,11 @@ const BADGES = [
 
 function ComplianceCard({ label, alt, src }: { label: string; alt: string; src: string }) {
   return (
-    <div className='compliance__card flex h-[250px] w-[220px] min-w-0 shrink-0 flex-col items-center justify-center gap-7 rounded-[12px] max-sm:h-[200px] max-sm:w-full max-sm:shrink max-sm:gap-4'>
-      <div className='relative h-[112px] w-[112px] max-sm:h-[88px] max-sm:w-[88px]'>
+    <div className='compliance__card flex h-[250px] w-[220px] min-w-0 shrink-0 flex-col items-center justify-center gap-7 rounded-[12px] max-xl:h-[220px] max-xl:w-full max-xl:shrink max-xl:gap-5 max-sm:h-[200px] max-sm:gap-4'>
+      <div className='relative h-[112px] w-[112px] max-xl:h-[88px] max-xl:w-[88px]'>
         <Image alt={alt} fill={true} src={src} />
       </div>
-      <p className='compliance__card-label min-w-full text-center font-mono text-[20px] font-semibold tracking-[-0.04em] text-text-primary max-sm:text-[16px]'>
+      <p className='compliance__card-label min-w-full text-center font-mono text-[20px] font-semibold tracking-[-0.04em] text-text-primary max-xl:text-[16px] max-sm:text-[14px]'>
         {label}
       </p>
     </div>
@@ -98,7 +98,7 @@ function SecurityCompliance() {
           </div>
 
           <div
-            className='compliance__badges z-[1] grid grid-cols-2 gap-[14px] max-xl:w-full max-xl:justify-items-start max-sm:w-full max-sm:gap-4 max-sm:justify-items-stretch'
+            className='compliance__badges z-[1] grid grid-cols-2 gap-[14px] max-xl:w-full max-xl:grid-cols-4 max-xl:justify-items-stretch max-md:grid-cols-2 max-sm:gap-4'
             aria-label={'Security and compliance certifications'}
           >
             {BADGES.map((badge) => (

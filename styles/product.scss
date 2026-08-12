@@ -13,7 +13,7 @@
   }
 
   .section-1 {
-    @apply relative isolate flex min-h-screen w-full flex-col items-center gap-[40px] overflow-hidden bg-white pt-[196px];
+    @apply relative isolate flex w-full flex-col items-center gap-[40px] overflow-hidden bg-white pt-[196px];
     @apply max-md:pt-[25vh] max-sm:pt-[20vh];
 
     .hero-blob {
@@ -47,7 +47,7 @@
 
     .main-content {
       @apply flex max-w-[984px] flex-col items-center gap-4 break-words text-center;
-      @apply max-md:gap-4 max-md:px-[5vw] max-md:text-[8vw] max-md:leading-[120%];
+      @apply max-md:gap-4 max-md:px-[2vw] max-md:text-[8vw] max-md:leading-[120%];
 
       &__title {
         font-size: clamp(28px, 6vw, 56px);
@@ -238,8 +238,8 @@
     }
 
     .circle-gradient {
-      height: 700px;
-      width: 700px;
+      height: clamp(500px, 50vw, 700px);
+      width: clamp(500px, 50vw, 700px);
       border-radius: 50%;
       position: absolute;
       bottom: -50vh;
@@ -249,6 +249,10 @@
       filter: blur(175px);
       pointer-events: none;
       z-index: -1;
+
+      @media (max-width: 720px) {
+        display: none;
+      }
     }
 
     &-image {
