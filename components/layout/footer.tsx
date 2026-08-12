@@ -32,8 +32,8 @@ function Footer() {
   };
 
   return (
-    <div className='appflowy-footer w-full overflow-hidden bg-white px-[24px] pb-[24px]'>
-      <div className='w-full rounded-[20px] bg-black p-10 pt-15 max-xl:px-[28px] max-lg:px-[24px]'>
+    <div className='appflowy-footer w-full overflow-hidden bg-white px-4 pb-4 sm:px-6 sm:pb-6'>
+      <div className='w-full rounded-[16px] bg-black p-10 pt-15 max-xl:px-[28px] max-lg:px-5 max-lg:pt-5 sm:rounded-[20px]'>
         <div className='flex items-start gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
           <div className={'logo'}>
             <div className={'image aspect-ratio-3/2 text-white'}>

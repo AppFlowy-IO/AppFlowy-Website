@@ -173,11 +173,11 @@ export function PricingCalculator() {
 
     return (
         <section className='w-full bg-[#F6F6FF] max-md:py-[10vh] flex justify-center'>
-            <div className="af-box pricing-calculator-section">
-                <div className="pricing-calculator-inner">
+            <div className="mx-auto w-full max-w-[1440px] items-center px-[80px] max-xl:px-[4vw]  max-lg:items-start">
+                <div>
                     {/* Section Header */}
                     <div className="mb-10 sm:mb-12 lg:mb-14">
-                        <h2 className="text-style-h1 font-bold ">
+                        <h2 className="text-style-h1 font-bold">
                             More productivity, fewer tools
                         </h2>
                         <p className="mt-3 text-style-h5 text-text-tertiary font-normal">

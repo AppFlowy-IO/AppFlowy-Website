@@ -154,7 +154,7 @@ export default function PlatformSection() {
         <div className="flex flex-col gap-5">
           <div
             ref={trackRef}
-            className="flex snap-x snap-mandatory scroll-smooth gap-7 overflow-x-auto px-2 py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory scroll-smooth gap-7 overflow-x-auto py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="Platform cards"
           >
             {platformCards.map((card) => (
