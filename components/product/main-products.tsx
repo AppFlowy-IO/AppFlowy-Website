@@ -47,7 +47,7 @@ function MainProducts() {
   const { start, stop } = useAutoPlay({
     options: imageOptions,
     onChange: setValue,
-    duration: 3000,
+    duration: 4500,
   });
 
   useEffect(() => {
