@@ -2,18 +2,17 @@
 
 import React from 'react';
 import BackArrowIcon from '@/components/icons/back-arrow-icon';
+import StarFill from '@/components/icons/star-yellow';
 import { cn } from '@/lib/utils';
-
-const chicagoLogoSrc = '/images/chicago.svg';
 
 export type TestimonialCardProps = {
   quote: string;
   name: string;
-  title: string;
+  subtitle: string;
   className?: string;
 };
 
-export function TestimonialCard({ quote, name, title, className }: TestimonialCardProps) {
+export function TestimonialCard({ quote, name, subtitle, className }: TestimonialCardProps) {
   const testimonialCardClassName = `testimonial-card flex h-[320px] w-[480px] shrink-0 flex-col justify-between rounded-[18px] bg-white p-[36px] max-md:w-full max-md:max-w-[480px] max-sm:h-auto max-sm:min-h-[260px] max-sm:w-[86vw] max-sm:max-w-[420px] max-sm:p-6 ${className ? className : ''}`;
 
   return (
@@ -21,17 +20,18 @@ export function TestimonialCard({ quote, name, title, className }: TestimonialCa
       className={testimonialCardClassName
       }
     >
-      <div className='flex h-[168px] w-full flex-col items-start gap-[16px] max-sm:h-auto'>
-        <div className='relative h-[32px] w-full overflow-clip'>
-          <img alt='Chicago' className='block h-full w-full object-cover' src={chicagoLogoSrc} />
-        </div>
-        <p className='w-full text-[16px] font-medium leading-[24px] text-[#140f28]'>{quote}</p>
-      </div>
+      <p className='w-full text-[16px] font-medium leading-[24px] text-[#140f28]'>{quote}</p>
 
-      <div className='flex w-full items-center gap-[16px]'>
+      <div className='flex w-full flex-col items-start gap-[16px]'>
+        <div className='flex items-center gap-[8px]'>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <StarFill key={index} />
+          ))}
+        </div>
+
         <div className='flex min-w-0 flex-col'>
           <p className='text-[16px] font-medium leading-[24px] text-[#140f28]'>{name}</p>
-          <p className='text-[16px] font-normal leading-[24px] text-[#5a5a5a]'>{title}</p>
+          <p className='text-[16px] font-normal leading-[24px] text-[#5a5a5a]'>{subtitle}</p>
         </div>
       </div>
     </div>
@@ -45,55 +45,55 @@ const sectionTestimonials: TestimonialCardProps[] = [
     quote:
       "The AI's context-awareness regarding our specific codebase is eerie. It's like having a senior dev sitting right next to me 24/7.",
     name: 'Amara Okafor',
-    title: 'Full Stack Developer',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'The self-hosted setup was surprisingly painless. It’s rare to find a tool that balances high security with such a smooth developer experience.',
     name: 'Hiroshi Tanaka',
-    title: 'Senior DevOps Engineer',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Our product velocity increased by 40% in the first quarter. The team spends less time on boilerplate and more time on core features.',
     name: 'Sarah Jenkins',
-    title: 'VP of Product',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Owning our data while leveraging cutting-edge AI is a non-negotiable for us. This platform is the only one that truly delivered on that promise.',
     name: 'David Chen',
-    title: 'Chief Information Officer',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
     name: 'Elena Vance',
-    title: 'Lead Data Scientist',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'It has completely transformed our internal knowledge base. Finding answers in our legacy documentation now takes seconds instead of hours.',
     name: 'Sophie Müller',
-    title: 'Head of Innovation',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Passing our latest security audit was much easier because this tool stays within our infrastructure. Total control, no external leaks.',
     name: 'Julian Ricci',
-    title: 'Security Architect',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
     name: 'Elena Vance',
-    title: 'Lead Data Scientist',
+    subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Integrating this workspace changed how we handle PR reviews. What used to be a bottleneck is now a seamless, automated flow.',
     name: 'Marcus Thorne',
-    title: 'Engineering Manager',
+    subtitle: 'Reviewed on G2 Crowd',
   },
 ];
 
