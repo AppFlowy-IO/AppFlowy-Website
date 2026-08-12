@@ -17,6 +17,7 @@ type Tab = {
     label: string;
     title: string;
     image: StaticImageData;
+    mobileScale?: number;
     clouds: [string, string, string];
 };
 
@@ -26,6 +27,7 @@ const tabs: Tab[] = [
         label: "AI Search",
         title: "Get answers in seconds,|grounded in your sources",
         image: AISearchImage,
+        mobileScale: 1.075,
         clouds: [
             "rgba(196, 205, 255, 0.95)",
             "rgba(249, 227, 255, 0.95)",
@@ -46,8 +48,9 @@ const tabs: Tab[] = [
     {
         id: "projects",
         label: "Projects",
-        title: "Manage projects end to end.|Ship faster with less overhead.",
+        title: "Manage projects end to end.|Ship faster with less overhead",
         image: ProjectsImage,
+        mobileScale: 1,
         clouds: [
             "rgba(172, 249, 230, 0.82)",
             "rgba(230, 255, 187, 0.9)",
@@ -57,8 +60,9 @@ const tabs: Tab[] = [
     {
         id: "meetings",
         label: "AI Meeting Notes",
-        title: "Turn meetings into action items and insights,|right where you work",
+        title: "Turn meetings into actions and insights, right where you work",
         image: AINotesImage,
+        mobileScale: 1.075,
         clouds: [
             "rgba(181, 196, 255, 0.75)",
             "rgba(181, 234, 255, 0.92)",
@@ -69,7 +73,7 @@ const tabs: Tab[] = [
         id: "docs",
         label: "Docs",
         title:
-            "Get your team on the same page.|Co-edit in real-time or comment async.",
+            "Get your team on the same page.|Co-edit in real-time or comment async",
         image: DocsImage,
         clouds: [
             "rgba(181, 234, 255, 0.86)",
@@ -115,7 +119,7 @@ function illustrationSizeClass(tabId: string) {
 }
 
 const titleBaseClass =
-    "[grid-area:1/1] m-0 text-text-primary text-center showcase-title";
+    "[grid-area:1/1] m-0 text-text-primary text-center showcase-title mb-5 sm:mb-12";
 
 function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; className?: string; hidden?: boolean }) {
     const lines = tab.title.split("|");
@@ -137,7 +141,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                 <TitleBlock tab={activeTab} className={previousTab ? "title--enter" : ""} />
                 {previousTab ? <TitleBlock tab={previousTab} className="title--leave" hidden /> : null}
             </div>
-            <div className="relative z-[1] flex-1 w-full min-h-0 flex items-end justify-center mt-[22px] overflow-visible max-[760px]:mt-4">
+            <div className="relative z-[1] flex-1 w-full min-h-0 flex items-end justify-center overflow-visible max-[760px]:mt-4">
                 <img
                     className={`${illustrationBaseClass} ${illustrationSizeClass(activeTab.id)} ${previousTab ? "feature-illustration--enter" : ""}`}
                     src={activeTab.image.src}
@@ -158,13 +162,14 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
 
 function MobileFeatureCard({ tab }: { tab: Tab }) {
     return (
-        <div className="relative overflow-hidden rounded-[14px] bg-white flex flex-col items-center pt-9 px-4 pb-0">
+        <div className="relative overflow-hidden rounded-xl bg-white flex flex-col items-center pt-5 px-3 pb-0">
             <GradientLayer tab={tab} />
             <TitleBlock tab={tab} className="relative z-[1]" />
             <img
-                className="relative z-[1] mt-5 w-full max-w-[340px] h-auto object-contain pointer-events-none select-none"
+                className="relative z-[1] mt-4 w-full h-auto object-contain pointer-events-none select-none"
                 src={tab.image.src}
                 alt={`${tab.label} illustration`}
+                style={{ scale: tab.mobileScale ? tab.mobileScale : 1.05 }}
             />
         </div>
     );
