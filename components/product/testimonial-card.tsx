@@ -1,16 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  motion,
-  useAnimationFrame,
-  useInView,
-  useMotionValue,
-  useReducedMotion,
-  wrap,
-} from 'framer-motion';
 import BackArrowIcon from '@/components/icons/back-arrow-icon';
 import StarFill from '@/components/icons/star-yellow';
+import Marquee from '@/components/shared/marquee';
 import ScrollFillText from '@/components/shared/scroll-fill-text';
 import { cn } from '@/lib/utils';
 
@@ -114,156 +107,16 @@ const carouselControlButtonClasses =
  */
 const TOP_ROW_SPEED = 70; // px per second
 const BOTTOM_ROW_SPEED = 55; // deliberately off from the top row, so the two never lock in step
-/** Rows slow to a near-stop on hover so a card can actually be read. */
-const HOVER_SPEED_FACTOR = 0.08;
-/** Longest frame we integrate, so a backgrounded tab doesn't jump on return. */
-const MAX_FRAME_DELTA = 50;
 
-/** Rows render static for anyone with the OS reduced-motion setting enabled. */
-const RESPECT_REDUCED_MOTION = true;
-
-function MarqueeRow({
-  testimonials,
-  direction,
-  baseSpeed,
-  active,
-  paused,
-  className,
-}: {
-  testimonials: TestimonialCardProps[];
-  /** `1` runs left to right, `-1` runs right to left. */
-  direction: 1 | -1;
-  baseSpeed: number;
-  /** False while the section is off-screen, so idle frames cost nothing. */
-  active: boolean;
-  paused: boolean;
-  className?: string;
-}) {
-  const trackRef = React.useRef<HTMLDivElement>(null);
-  const copyRef = React.useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-
-  // Width of one copy of the list, including the gap that follows it. Wrapping
-  // by exactly this makes the reset invisible.
-  const periodRef = React.useRef(0);
-  const enabledRef = React.useRef(false);
-  const pausedRef = React.useRef(false);
-  // Eased so hovering in and out doesn't snap the speed.
-  const hoverFactorRef = React.useRef(1);
-
-  const prefersReducedMotion = useReducedMotion();
-  const [isWideViewport, setIsWideViewport] = React.useState(false);
-
-  const enabled =
-    isWideViewport && active && !(RESPECT_REDUCED_MOTION && prefersReducedMotion);
-
-  enabledRef.current = enabled;
-  pausedRef.current = paused;
-
-  // Only animate at md and up. Below that the rows are vertical stacks, where a
-  // horizontal translation would be meaningless.
-  React.useEffect(() => {
-    const query = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsWideViewport(query.matches);
-
-    update();
-    query.addEventListener('change', update);
-
-    return () => query.removeEventListener('change', update);
-  }, []);
-
-  // Re-measure on resize and on web-font load; a stale period is what makes a
-  // marquee visibly jump once per loop.
-  React.useEffect(() => {
-    const track = trackRef.current;
-    const copy = copyRef.current;
-
-    if (!track || !copy) {
-      return;
-    }
-
-    const measure = () => {
-      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || '0');
-      const period = copy.offsetWidth + gap;
-
-      if (period <= 0) {
-        return;
-      }
-
-      const hadPeriod = periodRef.current > 0;
-
-      periodRef.current = period;
-
-      // Running left to right has to start a full copy back, otherwise the
-      // first frame immediately wraps and pops.
-      x.set(hadPeriod ? wrap(-period, 0, x.get()) : direction === 1 ? -period : 0);
-    };
-
-    measure();
-
-    const observer = new ResizeObserver(measure);
-
-    observer.observe(copy);
-
-    return () => observer.disconnect();
-  }, [direction, x]);
-
-  useAnimationFrame((_, delta) => {
-    const period = periodRef.current;
-
-    if (!enabledRef.current || period <= 0) {
-      return;
-    }
-
-    const frameDelta = Math.min(delta, MAX_FRAME_DELTA);
-    const hoverTarget = pausedRef.current ? HOVER_SPEED_FACTOR : 1;
-
-    hoverFactorRef.current +=
-      (hoverTarget - hoverFactorRef.current) * Math.min(1, frameDelta / 160);
-
-    const moveBy = direction * baseSpeed * hoverFactorRef.current * (frameDelta / 1000);
-
-    x.set(wrap(-period, 0, x.get() + moveBy));
-  });
-
-  return (
-    <div className={cn('w-max max-md:w-full', className)}>
-      <motion.div
-        ref={trackRef}
-        style={{ x: enabled ? x : 0 }}
-        className='testimonial-section__track flex w-max items-stretch gap-[20px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-5'
-      >
-        <div
-          ref={copyRef}
-          className='flex shrink-0 items-stretch gap-[20px] max-md:contents'
-        >
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={`${testimonial.name}-${index}`} {...testimonial} />
-          ))}
-        </div>
-
-        {/* Duplicate copy: what makes the wrap seamless. Hidden from assistive
-            tech, and dropped entirely where the row is a vertical stack. */}
-        <div
-          aria-hidden='true'
-          className='flex shrink-0 items-stretch gap-[20px] max-md:hidden'
-        >
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={`duplicate-${testimonial.name}-${index}`} {...testimonial} />
-          ))}
-        </div>
-      </motion.div>
-    </div>
-  );
-}
+const testimonialTrackClassName =
+  'testimonial-section__track flex w-max items-stretch gap-[20px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-5';
+const testimonialCopyClassName = 'flex shrink-0 items-stretch gap-[20px] max-md:contents';
 
 export function TestimonialSection() {
   const topRowTestimonials = sectionTestimonials.slice(0, 4);
   const bottomRowTestimonials = sectionTestimonials.slice(4);
 
   const carouselTrackRef = React.useRef<HTMLDivElement>(null);
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const stageInView = useInView(stageRef, { margin: '200px' });
   const [isStageHovered, setIsStageHovered] = React.useState(false);
 
   const scrollByCard = (direction: 'prev' | 'next') => {
@@ -297,28 +150,39 @@ export function TestimonialSection() {
           </h2>
         </div>
         <div
-          ref={stageRef}
           onMouseEnter={() => setIsStageHovered(true)}
           onMouseLeave={() => setIsStageHovered(false)}
           className="testimonial-section__stage relative w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden"
         >
-          <MarqueeRow
-            testimonials={topRowTestimonials}
+          <Marquee
             direction={1}
-            baseSpeed={TOP_ROW_SPEED}
-            active={stageInView}
+            speed={TOP_ROW_SPEED}
             paused={isStageHovered}
-            className='translate-x-[-6vw] max-md:mt-0 max-md:translate-x-0'
-          />
+            minViewportWidth={768}
+            className='w-max max-md:w-full translate-x-[-6vw] max-md:mt-0 max-md:translate-x-0'
+            trackClassName={testimonialTrackClassName}
+            copyClassName={testimonialCopyClassName}
+            duplicateClassName='max-md:hidden'
+          >
+            {topRowTestimonials.map((testimonial, index) => (
+              <TestimonialCard key={`${testimonial.name}-${index}`} {...testimonial} />
+            ))}
+          </Marquee>
 
-          <MarqueeRow
-            testimonials={bottomRowTestimonials}
+          <Marquee
             direction={-1}
-            baseSpeed={BOTTOM_ROW_SPEED}
-            active={stageInView}
+            speed={BOTTOM_ROW_SPEED}
             paused={isStageHovered}
-            className='mt-[20px] translate-x-[2vw] max-md:ml-0 max-md:mt-0 max-md:translate-x-0'
-          />
+            minViewportWidth={768}
+            className='mt-[20px] w-max max-md:w-full translate-x-[2vw] max-md:ml-0 max-md:mt-0 max-md:translate-x-0'
+            trackClassName={testimonialTrackClassName}
+            copyClassName={testimonialCopyClassName}
+            duplicateClassName='max-md:hidden'
+          >
+            {bottomRowTestimonials.map((testimonial, index) => (
+              <TestimonialCard key={`${testimonial.name}-${index}`} {...testimonial} />
+            ))}
+          </Marquee>
         </div>
 
         <div className='hidden w-full flex-col gap-6 max-sm:flex'>

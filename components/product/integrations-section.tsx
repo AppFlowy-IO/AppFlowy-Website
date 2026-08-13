@@ -12,24 +12,39 @@ import AirtableLogo from '@/assets/images/integrations/airtable.svg';
 import GitHubLogo from '@/assets/images/integrations/github.svg';
 import GmailLogo from '@/assets/images/integrations/gmail.svg';
 import ClaudeLogo from '@/assets/images/integrations/claude.svg';
+import AcrobatLogo from '@/assets/images/integrations/acrobat.svg';
+import GitLabLogo from '@/assets/images/integrations/gitlab.svg';
+import LoomLogo from '@/assets/images/integrations/loom.svg';
+import SalesforceLogo from '@/assets/images/integrations/salesforce.svg';
+import ZapierLogo from '@/assets/images/integrations/zapier.svg';
 
 const integrationTiles = [
-  { name: 'Airtable', logo: AirtableLogo },
-  { name: 'Jira', logo: JiraLogo },
-  { name: 'Google Drive', logo: DriveLogo },
+  { name: 'Trello', logo: TrelloLogo },
   { name: 'Slack', logo: SlackLogo },
-  { name: 'ChatGPT', logo: ChatGPTLogo },
-  { name: 'GitHub', logo: GitHubLogo },
-  { name: 'Claude', logo: ClaudeLogo },
   { name: 'Teams', logo: TeamsLogo },
   { name: 'Google Calendar', logo: GoogleCalendarLogo },
+  { name: 'ChatGPT', logo: ChatGPTLogo },
+  { name: 'Airtable', logo: AirtableLogo },
   { name: 'Gmail', logo: GmailLogo },
-  { name: 'Trello', logo: TrelloLogo },
+  { name: 'GitHub', logo: GitHubLogo },
+  { name: 'Google Drive', logo: DriveLogo },
+  { name: 'Jira', logo: JiraLogo },
+  { name: 'Claude', logo: ClaudeLogo },
+  { name: 'Acrobat', logo: AcrobatLogo },
+  { name: 'GitLab', logo: GitLabLogo },
+  { name: 'Zapier', logo: ZapierLogo },
+  { name: 'Loom', logo: LoomLogo },
+  { name: 'Salesforce', logo: SalesforceLogo },
+  { name: 'Teams', logo: TeamsLogo },
+];
+
+const integrationRows = [
+  { tiles: integrationTiles.slice(0, 6), offsetClassName: 'pl-0 max-md:ml-[-28px]' },
+  { tiles: integrationTiles.slice(6, 11), offsetClassName: 'pl-[52px] max-md:pl-[22px]' },
+  { tiles: integrationTiles.slice(11), offsetClassName: 'pl-0 max-md:ml-[-28px]' },
 ];
 
 export default function IntegrationsSection() {
-  const topRowTiles = integrationTiles.slice(0, 5);
-  const bottomRowTiles = integrationTiles.slice(5);
 
   return (
     <section className='integrations w-full bg-[#F6F6FF] py-[120px] max-md:py-[10vh]'>
@@ -47,37 +62,26 @@ export default function IntegrationsSection() {
           className="integrations__apps relative flex w-[700px] shrink-0 flex-col gap-[22px] overflow-hidden py-[24px] before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:block before:w-[110px] before:bg-[linear-gradient(90deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:block after:w-[110px] after:bg-[linear-gradient(270deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] after:content-[''] max-lg:mx-auto max-lg:w-fit max-lg:max-w-none max-md:mx-[-4vw] max-md:w-[calc(100%+8vw)] max-md:gap-[14px] max-md:py-0 max-md:before:w-[40px] max-md:after:w-[40px]"
           aria-label='Integration app placeholders'
         >
-          <div className='flex items-center gap-[20px] pl-0 max-md:ml-[-28px] max-md:gap-[10px]'>
-            {topRowTiles.map((tile) => (
-              <div
-                key={tile.name}
-                className='integrations__app-card relative z-[1] flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-[20px] bg-white max-md:h-[78px] max-md:w-[78px] max-md:rounded-[18px]'
-                aria-label={tile.name}
-              >
-                <Image
-                  alt={tile.name}
-                  className='integrations__app-logo object-contain max-md:h-[46px] max-md:w-[46px]'
-                  src={tile.logo}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className='integrations__apps-row--bottom flex items-center gap-[20px] pl-[52px] max-md:gap-[10px] max-md:pl-[22px]'>
-            {bottomRowTiles.map((tile) => (
-              <div
-                key={tile.name}
-                className='integrations__app-card relative z-[1] flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-[20px] bg-white max-md:h-[78px] max-md:w-[78px] max-md:rounded-[18px]'
-                aria-label={tile.name}
-              >
-                <Image
-                  alt={tile.name}
-                  className='integrations__app-logo object-contain max-md:h-[46px] max-md:w-[46px]'
-                  src={tile.logo}
-                />
-              </div>
-            ))}
-          </div>
+          {integrationRows.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className={`flex items-center gap-[20px] max-md:gap-[10px] ${row.offsetClassName}`}
+            >
+              {row.tiles.map((tile, tileIndex) => (
+                <div
+                  key={`${tile.name}-${tileIndex}`}
+                  className='integrations__app-card relative z-[1] flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-[20px] bg-white max-md:h-[78px] max-md:w-[78px] max-md:rounded-[18px]'
+                  aria-label={tile.name}
+                >
+                  <Image
+                    alt={tile.name}
+                    className='integrations__app-logo object-contain max-md:h-[46px] max-md:w-[46px]'
+                    src={tile.logo}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>
