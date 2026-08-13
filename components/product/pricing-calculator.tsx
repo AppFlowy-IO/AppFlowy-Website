@@ -186,7 +186,7 @@ export function PricingCalculator() {
 
     return (
         <section className='w-full bg-[#F6F6FF] max-md:py-[10vh] flex justify-center'>
-            <div className="mx-auto w-full max-w-[1440px] items-center px-[80px] max-xl:px-[4vw]  max-lg:items-start">
+            <div className="mx-auto w-full max-w-[1440px] items-center px-[80px] py-[120px] max-xl:px-[4vw]  max-lg:items-start">
                 <div>
                     {/* Section Header */}
                     <div className="mb-10 sm:mb-12 lg:mb-14">

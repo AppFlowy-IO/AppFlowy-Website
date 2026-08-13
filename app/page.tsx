@@ -22,7 +22,7 @@ export default function Page() {
           <div className={'hero-blob hero-blob-left'} />
           <div className={'hero-blob hero-blob-right'} />
           <div className={'main-content'}>
-            <h1 className='main-content__title font-bold'>
+            <h1 className='text-style-h1 font-bold'>
               <span className={'hero-highlight'}>
                 Self-hosted
                 <HeroUnderlineIcon />
@@ -32,9 +32,9 @@ export default function Page() {
             <h4 className={'text-style-h4 text-text-tertiary font-normal max-w-[600px]'}>Bring projects, wikis, and teams together with AI</h4>
           </div>
           <MainDownload />
-          <div className={'flex w-full flex-col items-center gap-4'}>
+          <div className={'flex w-full flex-col items-center'}>
             <MainProducts />
-            <div className={'pointer-events-none w-full absolute inset-x-0 bottom-0 h-[64px] bg-gradient-to-b from-white/0 to-white'} />
+            <div className={'pointer-events-none w-full absolute inset-x-0 bottom-0 h-[90px] bg-gradient-to-b from-white/0 to-white sm:h-[180px]'} />
           </div>
         </div>
       </div>

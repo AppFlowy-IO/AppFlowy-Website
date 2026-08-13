@@ -10,11 +10,10 @@ const stats = [
 
 function ReviewMetric({ value, label }: { value: string; label: string }) {
   return (
-    <div className='flex min-w-0 flex-col gap-[28px] max-md:rounded-2xl max-md:bg-white max-md:gap-2 max-md:px-5 max-md:py-8 max-md:text-center'>
+    <div className='flex min-w-0 flex-col gap-[28px] rounded-2xl bg-transparent max-md:gap-2 max-md:bg-white max-md:px-5 max-md:py-8 max-md:text-center'>
       <p className='text-[64px] font-medium leading-[68px] text-[#140f28] max-md:text-[clamp(28px,7vw,40px)] max-md:leading-[1.05]'>
         {value}
       </p>
-      <div className='h-8 max-md:hidden'></div>
       <p className='font-medium text-style-h4 text-text-tertiary'>
         {label}
       </p>
@@ -30,15 +29,11 @@ export default function ReviewsSection() {
           <ScrollFillText>Trusted by a growing community</ScrollFillText>
         </h2>
 
-        <div className='flex w-full flex-col gap-[28px]'>
-          <div className='grid w-full grid-cols-4 gap-[40px] max-md:grid-cols-2 max-md:gap-4'>
-            {stats.map((item) => (
-              <ReviewMetric key={item.label} value={item.value} label={item.label} />
-            ))}
-          </div>
+        <div className='grid w-full grid-cols-4 gap-[40px] max-md:grid-cols-2 max-md:gap-4'>
+          {stats.map((item) => (
+            <ReviewMetric key={item.label} value={item.value} label={item.label} />
+          ))}
         </div>
-
-        <div className='text-text-secondary border border-dashed translate-y-[-5rem] max-md:hidden'></div>
       </div>
     </section>
   );

@@ -136,7 +136,7 @@ export default function PlatformSection() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#F6F6FF] py-[120px] max-md:py-[10vh]">
+    <section className="relative w-full overflow-hidden bg-[#F6F6FF] pb-[120px] pt-[160px] max-md:py-[10vh]">
       <div
         className="platform-section__dot-grid absolute inset-0 z-0"
         aria-hidden="true"

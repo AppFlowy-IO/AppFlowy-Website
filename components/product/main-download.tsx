@@ -28,11 +28,11 @@ function MainDownload({ showDesc = true }: { showDesc?: boolean }) {
   return (
     <div
       ref={ref}
-      className={'flex flex-col items-center gap-4 max-sm:w-full'}
+      className={'flex flex-col items-center gap-5 max-sm:w-full'}
     >
       <div
         className={
-          'flex w-full items-center justify-center gap-4 max-sm:mx-auto max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col max-sm:gap-3'
+          'flex w-full items-center justify-center gap-3 max-sm:mx-auto max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col max-sm:gap-3'
         }
       >
         <Button

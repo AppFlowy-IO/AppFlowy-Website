@@ -46,13 +46,8 @@
     }
 
     .main-content {
-      @apply flex max-w-[984px] flex-col items-center gap-4 break-words text-center;
+      @apply flex max-w-[984px] flex-col items-center gap-3 break-words text-center;
       @apply max-md:gap-4 max-md:px-[2vw] max-md:text-[8vw] max-md:leading-[120%];
-
-      &__title {
-        font-size: clamp(28px, 6vw, 56px);
-        line-height: clamp(36px, 6vw, 68px);
-      }
 
       .hero-highlight {
         position: relative;
@@ -84,10 +79,6 @@
     @apply max-md:text-sm;
 
     .ai-image {
-      @apply mt-[44px];
-      border-radius: 20px;
-      box-shadow: 0px 28px 80px -27.492px rgba(40, 16, 80, 0.16);
-
       .visual-image {
         @apply pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 select-none object-cover;
       }
