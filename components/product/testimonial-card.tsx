@@ -3,6 +3,7 @@
 import React from 'react';
 import BackArrowIcon from '@/components/icons/back-arrow-icon';
 import StarFill from '@/components/icons/star-yellow';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 import { cn } from '@/lib/utils';
 
 export type TestimonialCardProps = {
@@ -133,7 +134,7 @@ export function TestimonialSection() {
       <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-10 items-center px-[80px] max-xl:px-[4vw]'>
         <div className='flex w-full'>
           <h2 className='text-style-h1 font-bold'>
-            Teams that ship smarter choose AppFlowy
+            <ScrollFillText>Teams that ship smarter choose AppFlowy</ScrollFillText>
           </h2>
         </div>
         <div className="testimonial-section__stage relative w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden">

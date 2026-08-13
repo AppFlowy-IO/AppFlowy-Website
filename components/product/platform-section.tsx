@@ -3,6 +3,7 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import BackArrowIcon from '@/components/icons/back-arrow-icon';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 import { cn } from '@/lib/utils';
 import CrossPlatformImage from '@/assets/images/platform/cross-platform.webp';
 import CrossPlatformIcon from '@/assets/images/platform/cross-platform-icon.svg';
@@ -144,7 +145,7 @@ export default function PlatformSection() {
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[80px] max-xl:px-[4vw]">
         <div className="flex flex-col gap-5 max-md:gap-4">
           <h2 className="text-style-h1 font-bold">
-            Self-hosted freedom at enterprise scale
+            <ScrollFillText>Self-hosted freedom at enterprise scale</ScrollFillText>
           </h2>
           <p className="max-w-[620px] text-style-h5 font-normal text-text-tertiary ">
             Your team. Your servers. Your rules.

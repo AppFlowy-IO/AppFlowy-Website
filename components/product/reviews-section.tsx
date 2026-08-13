@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 
 const stats = [
   { value: '8M+', label: 'Downloads' },
@@ -26,7 +27,7 @@ export default function ReviewsSection() {
     <section className='reviews-section w-full bg-[#F6F6FF]'>
       <div className='mx-auto flex w-full max-w-[1440px] py-[120px] px-[80px] flex-col max-md:py-[10vh] max-xl:px-[4vw]'>
         <h2 className='mb-20 text-style-h1 font-bold text-[#140F28] max-md:mb-10'>
-          Trusted by a growing community
+          <ScrollFillText>Trusted by a growing community</ScrollFillText>
         </h2>
 
         <div className='flex w-full flex-col gap-[28px]'>

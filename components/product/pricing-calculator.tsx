@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 
 const FEATURES = [
     // row 1
@@ -190,7 +191,7 @@ export function PricingCalculator() {
                     {/* Section Header */}
                     <div className="mb-10 sm:mb-12 lg:mb-14">
                         <h2 className="text-style-h1 font-bold">
-                            More productivity, fewer tools
+                            <ScrollFillText>More productivity, fewer tools</ScrollFillText>
                         </h2>
                         <p className="mt-3 text-style-h5 text-text-tertiary font-normal">
                             Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.

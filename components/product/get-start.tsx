@@ -1,6 +1,7 @@
 'use client';
 import logo from '@/assets/images/logo.svg';
 import { Button } from '@/components/ui/button';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 import { EventName, collectEvent } from '@/lib/collect';
 import { webApplicationUrl } from '@/lib/web-application';
 import Image from 'next/image';
@@ -17,7 +18,8 @@ function GetStart() {
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
           <h2 className='text-style-h1 font-semibold '>
-            Get started for free
+            {/* Lines are `w-fit` blocks, so they need centring of their own here. */}
+            <ScrollFillText lineClassName='mx-auto'>Get started for free</ScrollFillText>
           </h2>
           <div className='section-8-desc max-w-[1020px] text-center text-text-tertiary font-normal text-style-h5 max-md:max-w-[640px] '>
             The AI workspace where you achieve more without losing control of your data

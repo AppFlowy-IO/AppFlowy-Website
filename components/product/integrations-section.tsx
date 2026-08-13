@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import ScrollFillText from '@/components/shared/scroll-fill-text';
 import SlackLogo from '@/assets/images/integrations/slack.svg';
 import TrelloLogo from '@/assets/images/integrations/trello.svg';
 import DriveLogo from '@/assets/images/integrations/drive.svg';
@@ -35,9 +36,7 @@ export default function IntegrationsSection() {
       <div className='mx-auto flex w-full max-w-[1440px] items-center gap-[40px] px-[80px] max-xl:px-[4vw] max-lg:flex-col max-lg:items-start max-lg:gap-[56px]'>
         <div className='flex flex-1 flex-col gap-[40px] max-lg:w-full max-lg:gap-6'>
           <h2 className='text-style-h1 font-bold'>
-            Works with tools
-            <br />
-            you already use
+            <ScrollFillText>Works with tools you already use</ScrollFillText>
           </h2>
           <p className='max-w-[520px] text-style-h5 text-text-tertiary font-normal '>
             Connect AppFlowy to your existing systems to keep work and data in sync.
