@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Marquee from '@/components/shared/marquee';
 import ScrollFillText from '@/components/shared/scroll-fill-text';
 import SlackLogo from '@/assets/images/integrations/slack.svg';
 import TrelloLogo from '@/assets/images/integrations/trello.svg';
@@ -38,11 +39,34 @@ const integrationTiles = [
   { name: 'Teams', logo: TeamsLogo },
 ];
 
+/**
+ * Outer rows run left to right, the middle one runs back the other way. The
+ * speeds are deliberately all different, so the rows never lock in step.
+ */
 const integrationRows = [
-  { tiles: integrationTiles.slice(0, 6), offsetClassName: 'pl-0 max-md:ml-[-28px]' },
-  { tiles: integrationTiles.slice(6, 11), offsetClassName: 'pl-[52px] max-md:pl-[22px]' },
-  { tiles: integrationTiles.slice(11), offsetClassName: 'pl-0 max-md:ml-[-28px]' },
-];
+  {
+    tiles: integrationTiles.slice(0, 6),
+    direction: 1,
+    speed: 46, // px per second
+    offsetClassName: 'pl-0 max-md:ml-[-28px]',
+  },
+  {
+    tiles: integrationTiles.slice(6, 11),
+    direction: -1,
+    speed: 34,
+    offsetClassName: 'pl-[52px] max-md:pl-[22px]',
+  },
+  {
+    tiles: integrationTiles.slice(11),
+    direction: 1,
+    speed: 40,
+    offsetClassName: 'pl-0 max-md:ml-[-28px]',
+  },
+] as const;
+
+const integrationRowClassName = 'flex w-max items-center gap-[20px] max-md:gap-[10px]';
+const integrationCopyClassName =
+  'flex shrink-0 items-center gap-[20px] max-md:gap-[10px]';
 
 export default function IntegrationsSection() {
 
@@ -59,13 +83,17 @@ export default function IntegrationsSection() {
         </div>
 
         <div
-          className="integrations__apps relative flex w-[700px] shrink-0 flex-col gap-[22px] overflow-hidden py-[24px] before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:block before:w-[110px] before:bg-[linear-gradient(90deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:block after:w-[110px] after:bg-[linear-gradient(270deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] after:content-[''] max-lg:mx-auto max-lg:w-fit max-lg:max-w-none max-md:mx-[-4vw] max-md:w-[calc(100%+8vw)] max-md:gap-[14px] max-md:py-0 max-md:before:w-[40px] max-md:after:w-[40px]"
+          className="integrations__apps relative flex w-[700px] shrink-0 flex-col gap-[22px] overflow-hidden py-[24px] before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:block before:w-[110px] before:bg-[linear-gradient(90deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:block after:w-[110px] after:bg-[linear-gradient(270deg,#F6F6FF_0%,rgba(246,246,255,0.92)_32%,rgba(246,246,255,0)_100%)] after:content-[''] max-lg:mx-auto max-lg:w-full max-lg:max-w-[700px] max-md:mx-[-4vw] max-md:w-[calc(100%+8vw)] max-md:max-w-none max-md:gap-[14px] max-md:py-0 max-md:before:w-[40px] max-md:after:w-[40px]"
           aria-label='Integration app placeholders'
         >
           {integrationRows.map((row, rowIndex) => (
-            <div
+            <Marquee
               key={rowIndex}
-              className={`flex items-center gap-[20px] max-md:gap-[10px] ${row.offsetClassName}`}
+              direction={row.direction}
+              speed={row.speed}
+              className={`w-max ${row.offsetClassName}`}
+              trackClassName={integrationRowClassName}
+              copyClassName={integrationCopyClassName}
             >
               {row.tiles.map((tile, tileIndex) => (
                 <div
@@ -80,7 +108,7 @@ export default function IntegrationsSection() {
                   />
                 </div>
               ))}
-            </div>
+            </Marquee>
           ))}
         </div>
       </div>
