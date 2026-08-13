@@ -136,6 +136,9 @@
     }
 
     &__stage {
+      // Keeps the marquee's repaints inside the stage.
+      contain: paint;
+
       &::before,
       &::after {
         content: '';
