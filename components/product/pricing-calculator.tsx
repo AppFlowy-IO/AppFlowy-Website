@@ -83,6 +83,18 @@ function formatDollars(value: number): string {
     return `$${Math.round(value).toLocaleString()}`;
 }
 
+// ─── Savings Amount ───────────────────────────────────────────────────────────
+function SavingsAmount({ value, active }: { value: number; active: boolean }) {
+    return (
+        <div
+            className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${active ? 'text-white' : 'text-white/25'
+                }`}
+        >
+            {active ? formatDollars(value) : '$0'}
+        </div>
+    );
+}
+
 // ─── Checkbox Component ───────────────────────────────────────────────────────
 interface FeatureCheckboxProps {
     id: string;
@@ -206,29 +218,29 @@ export function PricingCalculator() {
                         <div className="flex flex-col gap-8 p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-0">
                             {/* Team Size Control */}
                             <div className="flex-1 lg:border-r lg:border-white/10 lg:pr-8">
-                                <div className="mb-5 flex items-center justify-between">
-                                    <span className="text-base font-medium text-text-inverse">Team size</span>
+                                <div className="mb-5 flex flex-col gap-6 max-lg:mb-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
+                                    <span className="text-base font-medium text-text-inverse max-lg:text-lg">Team size</span>
                                     {/* +/- controls */}
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4 max-lg:w-full max-lg:justify-between">
                                         <button
                                             id="team-size-decrease"
                                             aria-label="Decrease team size"
                                             onClick={() => setTeamSize((v) => Math.max(1, v - 1))}
-                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="2" viewBox="0 0 12 2" fill="none">
                                                 <path d="M1 1H11" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                                             </svg>
                                         </button>
-                                        <span className="min-w-[3ch] text-center font-inter text-xl font-semibold text-white">
+                                        <span className="min-w-[3ch] text-center font-inter text-xl font-semibold text-white max-lg:text-2xl">
                                             {teamSize}
                                         </span>
                                         <button
                                             id="team-size-increase"
                                             aria-label="Increase team size"
                                             onClick={() => setTeamSize((v) => Math.min(1000, v + 1))}
-                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -264,26 +276,16 @@ export function PricingCalculator() {
                             </div>
 
                             {/* Savings Display */}
-                            <div className="flex flex-1 items-center justify-around lg:pl-8">
+                            <div className="flex flex-1 items-center justify-around max-lg:flex-col max-lg:items-start max-lg:justify-start max-lg:gap-8 max-lg:border-t max-lg:border-dashed max-lg:border-white/20 max-lg:pt-8 lg:pl-8">
                                 {/* Monthly */}
                                 <div className="text-left">
-                                    <div
-                                        className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
-                                            }`}
-                                    >
-                                        {hasSelection ? formatDollars(monthlySavings) : '$0'}
-                                    </div>
+                                    <SavingsAmount value={monthlySavings} active={hasSelection} />
                                     <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly savings</div>
                                 </div>
 
                                 {/* Annual */}
                                 <div className="text-left">
-                                    <div
-                                        className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${hasSelection ? 'text-white' : 'text-white/25'
-                                            }`}
-                                    >
-                                        {hasSelection ? formatDollars(annualSavings) : '$0'}
-                                    </div>
+                                    <SavingsAmount value={annualSavings} active={hasSelection} />
                                     <div className="mt-2 font-inter text-sm font-normal text-white/50">Annual savings</div>
                                 </div>
                             </div>
