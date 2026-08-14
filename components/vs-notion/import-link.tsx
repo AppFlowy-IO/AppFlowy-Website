@@ -1,6 +1,7 @@
 'use client';
 
 import Dialog from '@mui/material/Dialog';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
@@ -25,13 +26,18 @@ function ImportLink({ importBaseURL }: { importBaseURL: string }) {
 
   return (
     <>
-      <Link
-        target={'_blank'}
-        href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
-        className='relative z-[1] mt-9 inline-flex items-center justify-center rounded-full bg-night-blue px-8 py-4 font-inter text-base font-medium text-white transition-colors hover:bg-night-blue/90'
+      <Button
+        asChild
+        size={'xl'}
+        className='relative z-[1] mt-9 min-w-[180px] rounded-lg bg-night-blue font-inter text-base text-white transition-colors hover:bg-night-blue/90'
       >
-        Import from Notion
-      </Link>
+        <Link
+          target={'_blank'}
+          href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
+        >
+          Import from Notion
+        </Link>
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
