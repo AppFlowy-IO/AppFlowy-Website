@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import type { StaticImageData } from "next/image";
 import { useInView } from "framer-motion";
 import { useAutoPlay } from "@/lib/hooks/use-auto-play";
+import { useScrollTabLock } from "@/lib/hooks/use-scroll-tab-lock";
 
 import AISearchImage from '@/assets/images/product-showcase-new/ai-search.webp';
 import AINotesImage from '@/assets/images/product-showcase-new/ai-notes.webp';
@@ -185,7 +186,9 @@ function ShowcaseSection() {
     const previousTab = tabs.find((tab) => tab.id === previousId) || null;
 
     const sectionRef = useRef<HTMLDivElement>(null);
+    const pinRef = useRef<HTMLElement>(null);
     const inView = useInView(sectionRef);
+    const activeIndex = tabs.findIndex((tab) => tab.id === activeTab.id);
 
     const goToTab = useCallback((id: string) => {
         setTransition((prev) =>
@@ -214,6 +217,18 @@ function ShowcaseSection() {
         duration: autoplayDuration,
     });
 
+    // Scrolling over the pinned section cycles the tabs before the page moves on.
+    useScrollTabLock({
+        targetRef: pinRef,
+        index: activeIndex,
+        count: tabs.length,
+        onStep: (direction) => goToTab(tabs[activeIndex + direction].id),
+        onEngage: () => {
+            autoplayStoppedRef.current = true;
+            stop();
+        },
+    });
+
     useEffect(() => {
         if (autoplayStoppedRef.current) return;
 
@@ -230,6 +245,7 @@ function ShowcaseSection() {
             className="w-full max-w-[1440px] px-[80px] py-[120px] mx-auto max-[1100px]:px-5 max-[1100px]:py-12 max-[760px]:px-3 max-[760px]:py-6"
         >
             <section
+                ref={pinRef}
                 className="w-full flex flex-col gap-5 max-[760px]:gap-3"
                 aria-label="AppFlowy feature previews"
             >
