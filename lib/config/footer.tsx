@@ -1,11 +1,29 @@
 import Twitter from '@/components/icons/twitter';
-import Reddit from '@/components/icons/reddit';
 import Github from '@/components/icons/github';
 import Discord from '@/components/icons/discord';
 import Linkedin from '@/components/icons/linkedin';
 import { webApplicationUrl } from '@/lib/web-application';
+import Youtube from '@/components/icons/youtube';
 
 export const externalLinks = [
+  {
+    key: 'discord',
+    icon: (
+      <i className={'text-white'}>
+        <Discord />
+      </i>
+    ),
+    link: 'https://discord.gg/9Q2xaN37tV',
+  },
+  {
+    key: 'youtube',
+    icon: (
+      <i className={'text-white'}>
+        <Youtube />
+      </i>
+    ),
+    link: 'https://www.youtube.com/@AppFlowyHQ',
+  },
   {
     key: 'twitter',
     icon: (
@@ -15,15 +33,7 @@ export const externalLinks = [
     ),
     link: 'https://twitter.com/appflowy',
   },
-  {
-    key: 'reddit',
-    icon: (
-      <i className={'text-white'}>
-        <Reddit />
-      </i>
-    ),
-    link: 'https://www.reddit.com/r/AppFlowy',
-  },
+
   {
     key: 'github',
     icon: (
@@ -32,15 +42,6 @@ export const externalLinks = [
       </i>
     ),
     link: 'https://github.com/AppFlowy-IO/appflowy',
-  },
-  {
-    key: 'discord',
-    icon: (
-      <i className={'text-white'}>
-        <Discord />
-      </i>
-    ),
-    link: 'https://discord.gg/9Q2xaN37tV',
   },
   {
     key: 'linkedin',
@@ -62,7 +63,7 @@ export const links = [
         link: '/templates',
       },
       {
-        name: 'What\'s New',
+        name: "What's New",
         link: '/what-is-new',
       },
       {

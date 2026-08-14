@@ -145,32 +145,33 @@ function DevInfoSection() {
   };
 
   return (
-    <section className='dev-info-section relative w-full overflow-hidden bg-[#0D091C] py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:40px] sm:py-20 lg:[--grid-x:80px]'>
+    <section className='dev-info-section relative w-full overflow-hidden bg-[#0D091C] py-0 [--grid-x:16px] [--grid-y:80px] sm:[--grid-x:24px] sm:py-20 lg:[--grid-x:40px] xl:[--grid-x:80px]'>
       {/*
-        Grid background. The vertical rules span the whole section at every breakpoint. The
-        horizontal rules are inset from the section edges from `sm` up, but on mobile they bracket
-        the tab content instead, so there they are rendered in the flow as <GridRule /> below.
+        Grid background. The vertical rules span the whole section at every breakpoint, tracking the
+        content padding via `--grid-x`. The horizontal rules are inset from the section edges once
+        the two-column layout kicks in at 900px; below that the carousel brackets itself with
+        in-flow <GridRule /> instead.
       */}
       <div aria-hidden className='pointer-events-none absolute inset-0'>
-        <div className='absolute inset-x-0 top-[var(--grid-y)] hidden border-t border-[#5a5a5a] sm:block' />
-        <div className='absolute inset-x-0 bottom-[var(--grid-y)] hidden border-t border-[#5a5a5a] sm:block' />
+        <div className='absolute inset-x-0 top-[var(--grid-y)] hidden border-t border-[#5a5a5a] min-[900px]:block' />
+        <div className='absolute inset-x-0 bottom-[var(--grid-y)] hidden border-t border-[#5a5a5a] min-[900px]:block' />
         <div className='absolute inset-y-0 left-[var(--grid-x)] border-l border-[#5a5a5a]' />
         <div className='absolute inset-y-0 right-[var(--grid-x)] border-r border-[#5a5a5a]' />
 
-        <span className='absolute left-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 bg-[#d9d9d9] sm:block' />
-        <span className='absolute right-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-y-1/2 translate-x-1/2 bg-[#d9d9d9] sm:block' />
-        <span className='absolute bottom-[var(--grid-y)] left-[var(--grid-x)] hidden h-[5px] w-[5px] -translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] sm:block' />
-        <span className='absolute bottom-[var(--grid-y)] right-[var(--grid-x)] hidden h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] sm:block' />
+        <span className='absolute left-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 bg-[#d9d9d9] min-[900px]:block' />
+        <span className='absolute right-[var(--grid-x)] top-[var(--grid-y)] hidden h-[5px] w-[5px] -translate-y-1/2 translate-x-1/2 bg-[#d9d9d9] min-[900px]:block' />
+        <span className='absolute bottom-[var(--grid-y)] left-[var(--grid-x)] hidden h-[5px] w-[5px] -translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] min-[900px]:block' />
+        <span className='absolute bottom-[var(--grid-y)] right-[var(--grid-x)] hidden h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] min-[900px]:block' />
       </div>
 
-      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-20'>
-        <div className='align-items-start mb-12 flex w-full flex-col'>
+      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-10 lg:px-12 xl:px-20'>
+        <div className='align-items-start mb-8 flex w-full flex-col lg:mb-10 xl:mb-12'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
           <h5 className='text-style-h5 mt-2 text-text-tertiary font-normal'>Your team. Your servers. Your rules.</h5>
         </div>
-        <GridRule className='mb-12 sm:hidden' />
+        <GridRule className='mb-12 min-[900px]:hidden' />
         <div ref={ref}>
-          <div className='hidden grid-cols-1 items-stretch gap-8 sm:grid lg:grid-cols-2 lg:gap-20'>
+          <div className='hidden grid-cols-2 items-stretch gap-6 min-[900px]:grid lg:gap-10 xl:gap-20'>
             <MuiTabs
               className='w-full'
               orientation='vertical'
@@ -179,7 +180,10 @@ function DevInfoSection() {
               TabIndicatorProps={{ style: { display: 'none' } }}
               sx={{
                 '& .MuiTabs-flexContainer': {
-                  gap: '12px',
+                  gap: '8px',
+                  '@media (min-width: 1280px)': {
+                    gap: '12px',
+                  },
                 },
               }}
             >
@@ -199,25 +203,25 @@ function DevInfoSection() {
                   }}
                   label={
                     <div
-                      className={`flex w-full items-center justify-between gap-4 rounded-[12px] border-2 px-8 py-7 text-left transition-colors ${value === tab.value
+                      className={`flex w-full items-center justify-between gap-2 rounded-[12px] border-2 px-3 py-3 text-left transition-colors lg:gap-3 lg:px-5 lg:py-5 xl:gap-4 xl:px-8 xl:py-7 ${value === tab.value
                         ? 'border-[#BEBEBE] bg-[#0F0A1E]'
                         : 'border-[#2D2B3B] bg-[#161325] hover:bg-gray-03'
                         }`}
                     >
-                      <div className='flex items-center gap-4'>
+                      <div className='flex min-w-0 items-center gap-2.5 lg:gap-3 xl:gap-4'>
                         <div
-                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[6px] transition-colors ${value === tab.value ? 'bg-white text-night-blue' : 'bg-gray-10 text-white'
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] transition-colors lg:h-10 lg:w-10 xl:h-12 xl:w-12 ${value === tab.value ? 'bg-white text-night-blue' : 'bg-gray-10 text-white'
                             }`}
                         >
                           {tab.icon}
                         </div>
-                        <span className='text-style-h5 whitespace-nowrap font-mono font-semibold text-white'>
+                        <span className='text-style-body-standard truncate font-mono font-semibold text-white xl:text-style-h5'>
                           {tab.label}
                         </span>
                       </div>
                       {value === tab.value && (
                         <span className='shrink-0 text-white'>
-                          <TabArrowIcon />
+                          <TabArrowIcon className='h-5 w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8' />
                         </span>
                       )}
                     </div>
@@ -229,17 +233,17 @@ function DevInfoSection() {
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
                   <div className='flex w-full flex-col items-end'>
-                    <div className='relative h-[320px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] max-md:h-[200px]'>
+                    <div className='relative h-[220px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] lg:h-[270px] xl:h-[320px]'>
                       <Image
                         loading={'eager'}
                         fill
-                        sizes='(max-width: 1024px) 100vw, 50vw'
+                        sizes='(max-width: 900px) 100vw, 50vw'
                         className='object-cover'
                         src={panel.image.src}
                         alt={panel.title}
                       />
                     </div>
-                    <div className='mt-8 flex flex-col gap-5 max-w-[450px]'>
+                    <div className='mt-5 flex flex-col gap-3 max-w-[450px] lg:mt-6 lg:gap-4 xl:mt-8 xl:gap-5'>
                       <h2 className='text-style-h2 font-semibold text-white'>{panel.title}</h2>
                       <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{panel.desc}</p>
                     </div>
@@ -248,14 +252,14 @@ function DevInfoSection() {
               ))}
             </div>
           </div>
-          <div className='flex w-full flex-col sm:hidden'>
+          <div className='flex w-full flex-col min-[900px]:hidden'>
             <div className='flex items-center gap-2 text-white'>
               <span className='shrink-0'>{tabOptions[activeIndex]?.icon}</span>
               <span className='text-style-caption font-mono text-white'>{tabOptions[activeIndex]?.label}</span>
             </div>
             {activePanel && (
               <div className='mt-6 flex w-full flex-col'>
-                <div className='relative h-[328px] w-full shrink-0 overflow-hidden rounded-[12px]'>
+                <div className='relative h-[328px] w-full shrink-0 overflow-hidden rounded-[12px] sm:h-[380px]'>
                   <Image
                     loading={'eager'}
                     fill
@@ -265,7 +269,7 @@ function DevInfoSection() {
                     alt={activePanel.title}
                   />
                 </div>
-                <div className='mt-8 flex h-[172px] flex-col gap-3'>
+                <div className='mt-8 flex min-h-[172px] flex-col gap-3'>
                   <h2 className='text-style-h2 font-semibold text-white'>{activePanel.title}</h2>
                   <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{activePanel.desc}</p>
                 </div>
