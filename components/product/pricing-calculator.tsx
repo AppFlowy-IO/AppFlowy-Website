@@ -88,7 +88,7 @@ function formatDollars(value: number): string {
 function SavingsAmount({ value, active }: { value: number; active: boolean }) {
     return (
         <div
-            className={`font-inter text-[42px] font-semibold leading-none tracking-[-1px] transition-all duration-300 sm:text-[52px] ${active ? 'text-white' : 'text-white/25'
+            className={`font-inter text-[52px] font-semibold leading-[64px] tracking-[-1px] transition-all duration-300 sm:text-[60px] sm:leading-[72px] ${active ? 'text-white' : 'text-white/25'
                 }`}
         >
             {active ? formatDollars(value) : '$0'}
@@ -118,7 +118,7 @@ function FeatureCheckbox({ id, label, checked, onChange }: FeatureCheckboxProps)
             style={{ WebkitTapHighlightColor: 'transparent' }}
         >
             <span
-                className={`font-inter text-sm font-medium leading-[140%] transition-colors ${checked ? 'text-[#101012]' : 'text-[#4A4A5A]'
+                className={`text-font-size-body-standard font-medium transition-colors ${checked ? 'text-[#101012]' : 'text-[#4A4A5A]'
                     }`}
             >
                 {label}
@@ -216,32 +216,32 @@ export function PricingCalculator() {
                         className="mt-6 overflow-hidden rounded-2xl"
                         style={{ background: 'linear-gradient(135deg, #1A1225 0%, #0F0A1A 100%)' }}
                     >
-                        <div className="flex flex-col gap-8 p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-0">
+                        <div className="flex flex-col gap-8 p-6 sm:p-12 lg:flex-row lg:items-center lg:gap-0">
                             {/* Team Size Control */}
                             <div className="flex-1 lg:border-r lg:border-white/10 lg:pr-8">
                                 <div className="mb-5 flex flex-col gap-6 max-lg:mb-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
-                                    <span className="text-base font-medium text-text-inverse max-lg:text-lg">Team size</span>
+                                    <span className="text-xl font-medium text-text-inverse max-lg:text-2xl">Team size</span>
                                     {/* +/- controls */}
                                     <div className="flex items-center gap-4 max-lg:w-full max-lg:justify-between">
                                         <button
                                             id="team-size-decrease"
                                             aria-label="Decrease team size"
                                             onClick={() => setTeamSize((v) => Math.max(1, v - 1))}
-                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
+                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="2" viewBox="0 0 12 2" fill="none">
                                                 <path d="M1 1H11" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                                             </svg>
                                         </button>
-                                        <span className="min-w-[3ch] text-center font-inter text-xl font-semibold text-white max-lg:text-2xl">
+                                        <span className="min-w-[3ch] text-center text-style-h4 font-semibold text-white ">
                                             {teamSize}
                                         </span>
                                         <button
                                             id="team-size-increase"
                                             aria-label="Increase team size"
                                             onClick={() => setTeamSize((v) => Math.min(1000, v + 1))}
-                                            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
+                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -281,13 +281,13 @@ export function PricingCalculator() {
                                 {/* Monthly */}
                                 <div className="text-left">
                                     <SavingsAmount value={monthlySavings} active={hasSelection} />
-                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Monthly savings</div>
+                                    <div className="mt-2 text-xl font-normal text-white/50 max-lg:text-2xl">Monthly savings</div>
                                 </div>
 
                                 {/* Annual */}
                                 <div className="text-left">
                                     <SavingsAmount value={annualSavings} active={hasSelection} />
-                                    <div className="mt-2 font-inter text-sm font-normal text-white/50">Annual savings</div>
+                                    <div className="mt-2 text-xl font-normal text-white/50 max-lg:text-2xl">Annual savings</div>
                                 </div>
                             </div>
                         </div>
