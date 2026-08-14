@@ -45,58 +45,58 @@ export default TestimonialCard;
 const sectionTestimonials: TestimonialCardProps[] = [
   {
     quote:
-      "The AI's context-awareness regarding our specific codebase is eerie. It's like having a senior dev sitting right next to me 24/7.",
-    name: 'Amara Okafor',
-    subtitle: 'Reviewed on G2 Crowd',
+      'Cool und effektiv. Nicht mit Funktionen überladen, die ich nicht brauche',
+    name: 'Marcus Thorne',
+    subtitle: 'Reviewed on Google Play',
   },
   {
     quote:
-      'The self-hosted setup was surprisingly painless. It’s rare to find a tool that balances high security with such a smooth developer experience.',
-    name: 'Hiroshi Tanaka',
-    subtitle: 'Reviewed on G2 Crowd',
+      'La meilleure solution de note alternative à Notion gratuite et open source je l\'utilise maintenant tout les jours pour mes projets. Merci les devs',
+    name: 'Bastien Boucq',
+    subtitle: 'Reviewed on Google Play',
+  },
+  {
+    quote:
+      'Me encanta AppFlowy, la tengo sincronizada en mi laptop y en mi celular. Me gusta mucho más que Notion.',
+    name: 'Carlos Eduardo Magallon Zepeda',
+    subtitle: 'Reviewed on Google Play',
   },
   {
     quote:
       'Our product velocity increased by 40% in the first quarter. The team spends less time on boilerplate and more time on core features.',
-    name: 'Sarah Jenkins',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
-  {
-    quote:
-      'Owning our data while leveraging cutting-edge AI is a non-negotiable for us. This platform is the only one that truly delivered on that promise.',
-    name: 'David Chen',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
-  {
-    quote:
-      'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
-    name: 'Elena Vance',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
-  {
-    quote:
-      'It has completely transformed our internal knowledge base. Finding answers in our legacy documentation now takes seconds instead of hours.',
-    name: 'Sophie Müller',
+    name: 'Reviewed on Google Play',
     subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Passing our latest security audit was much easier because this tool stays within our infrastructure. Total control, no external leaks.',
     name: 'Julian Ricci',
+    subtitle: 'Reviewed on Google Play',
+  },
+  {
+    quote:
+      'Best option for self hosting for projects and organization\n\nBefore we started this we didn’t have a good system for collaboration on projects. Now appflowy solved this. We use it for our international business and project management',
+    name: 'casual retired',
+    subtitle: 'Reviewed on App Store',
+  },
+  {
+    quote:
+      'Hidden gem, private notion killer.',
+    name: 'S Gill',
+    subtitle: 'Reviewed on Google Play',
+  },
+  {
+    quote:
+      'Voulant utilisé une application similaire à notion sur Linux , j’ai trouvé cette application qui est presque comme notion et qui se synchronise correctement entre chaque appareil Linux -iOS et même Windows et en plus c’est open source donc je recommande fortement un grand merci au développeurs de appflowy',
+    name: 'K4iw',
     subtitle: 'Reviewed on G2 Crowd',
   },
   {
     quote:
       'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
     name: 'Elena Vance',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
-  {
-    quote:
-      'Integrating this workspace changed how we handle PR reviews. What used to be a bottleneck is now a seamless, automated flow.',
-    name: 'Marcus Thorne',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
+    subtitle: 'Reviewed on Google Play',
+  }
 ];
 
 const carouselControlButtonClasses =
