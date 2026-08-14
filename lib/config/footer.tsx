@@ -1,7 +1,6 @@
 import Twitter from '@/components/icons/twitter';
 import Github from '@/components/icons/github';
 import Discord from '@/components/icons/discord';
-import Linkedin from '@/components/icons/linkedin';
 import { webApplicationUrl } from '@/lib/web-application';
 import Youtube from '@/components/icons/youtube';
 
@@ -42,15 +41,6 @@ export const externalLinks = [
       </i>
     ),
     link: 'https://github.com/AppFlowy-IO/appflowy',
-  },
-  {
-    key: 'linkedin',
-    icon: (
-      <i className={'text-white'}>
-        <Linkedin />
-      </i>
-    ),
-    link: 'https://www.linkedin.com/company/appflowy/',
   },
 ];
 
