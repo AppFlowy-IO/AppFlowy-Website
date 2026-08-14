@@ -15,13 +15,11 @@ export type TestimonialCardProps = {
 };
 
 export function TestimonialCard({ quote, name, subtitle, className }: TestimonialCardProps) {
-  const testimonialCardClassName = `testimonial-card flex h-[320px] w-[480px] shrink-0 flex-col justify-between rounded-[18px] bg-white p-[36px] max-md:w-full max-md:max-w-[480px] max-sm:h-auto max-sm:min-h-[260px] max-sm:w-[86vw] max-sm:max-w-[420px] max-sm:p-6 ${className ? className : ''}`;
+  const testimonialCardClassName = `testimonial-card flex h-[320px] w-[480px] shrink-0 flex-col justify-between rounded-[18px] bg-white p-[36px] max-md:w-full max-md:max-w-[480px] max-sm:h-auto max-sm:min-h-[260px] max-sm:w-[86vw] max-sm:max-w-[420px] max-sm:p-6 ${className ? className : ''
+    }`;
 
   return (
-    <div
-      className={testimonialCardClassName
-      }
-    >
+    <div className={testimonialCardClassName}>
       <p className='w-full text-[16px] font-medium leading-[24px] text-[#140f28]'>{quote}</p>
 
       <div className='flex w-full flex-col items-start gap-[16px]'>
@@ -44,20 +42,41 @@ export default TestimonialCard;
 
 const sectionTestimonials: TestimonialCardProps[] = [
   {
-    quote:
-      'Cool und effektiv. Nicht mit Funktionen überladen, die ich nicht brauche',
-    name: 'Marcus Thorne',
+    quote: 'Cool und effektiv. Nicht mit Funktionen überladen, die ich nicht brauche',
+    name: 'Matthias Traub',
     subtitle: 'Reviewed on Google Play',
   },
   {
     quote:
-      'La meilleure solution de note alternative à Notion gratuite et open source je l\'utilise maintenant tout les jours pour mes projets. Merci les devs',
+      "One of the best open-source alternatives to notion. It was easy to transfer my data from notion to here. I also highly recommend the desktop version, it's as amazing as this.❤️❤️❤️❤️❤️",
+    name: 'Sera SD',
+    subtitle: 'Reviewed on Google Play',
+  },
+  {
+    quote:
+      'I moved from Notion to AppFlowy, because Notion was very heavy and slow, and appflowy is faster, also appflowy is open source, and the sync between device in realtime.',
+    name: 'Rinto Proboresky',
+    subtitle: 'Reviewed on Google Play',
+  },
+  {
+    quote: 'As a freelancer this app really helps me to get the most out of my work and I really appreciate it',
+    name: 'TheBigAlmighty',
+    subtitle: 'Reviewed on App Store',
+  },
+  {
+    quote:
+      "Recommended! Nice to see an open source project that seems well-run & making a useful product. It's a level now where I feel comfortable using it in a business setting.",
+    name: 'Bobstar76544',
+    subtitle: 'Reviewed on App Store',
+  },
+  {
+    quote:
+      "La meilleure solution de note alternative à Notion gratuite et open source je l'utilise maintenant tout les jours pour mes projets. Merci les devs",
     name: 'Bastien Boucq',
     subtitle: 'Reviewed on Google Play',
   },
   {
-    quote:
-      'Me encanta AppFlowy, la tengo sincronizada en mi laptop y en mi celular. Me gusta mucho más que Notion.',
+    quote: 'Me encanta AppFlowy, la tengo sincronizada en mi laptop y en mi celular. Me gusta mucho más que Notion.',
     name: 'Carlos Eduardo Magallon Zepeda',
     subtitle: 'Reviewed on Google Play',
   },
@@ -80,8 +99,7 @@ const sectionTestimonials: TestimonialCardProps[] = [
     subtitle: 'Reviewed on App Store',
   },
   {
-    quote:
-      'Hidden gem, private notion killer.',
+    quote: 'Hidden gem, private notion killer.',
     name: 'S Gill',
     subtitle: 'Reviewed on Google Play',
   },
@@ -96,7 +114,13 @@ const sectionTestimonials: TestimonialCardProps[] = [
       'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
     name: 'Elena Vance',
     subtitle: 'Reviewed on Google Play',
-  }
+  },
+  {
+    quote:
+      'Wonderful. Allowed us to get rid of both Notion & Trello. The developers are super responsive and the community is great.',
+    name: 'Julian Engel',
+    subtitle: 'Reviewed on Product Hunt',
+  },
 ];
 
 const carouselControlButtonClasses =
@@ -143,10 +167,10 @@ export function TestimonialSection() {
 
   return (
     <div className='w-full overflow-hidden bg-[#F6F6FF] py-[160px] max-md:py-[10vh]'>
-      <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-10 items-center px-[80px] max-xl:px-[4vw]'>
+      <div className='mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-[80px] max-xl:px-[4vw]'>
         <div className='flex w-full'>
           <h2 className='text-style-h1 font-bold'>
-            <ScrollFillText>Teams that ship smarter choose AppFlowy</ScrollFillText>
+            <ScrollFillText>Chosen for the way work gets done</ScrollFillText>
           </h2>
         </div>
         <div
@@ -159,7 +183,7 @@ export function TestimonialSection() {
             speed={TOP_ROW_SPEED}
             paused={isStageHovered}
             minViewportWidth={768}
-            className='w-max max-md:w-full translate-x-[-6vw] max-md:mt-0 max-md:translate-x-0'
+            className='w-max translate-x-[-6vw] max-md:mt-0 max-md:w-full max-md:translate-x-0'
             trackClassName={testimonialTrackClassName}
             copyClassName={testimonialCopyClassName}
             duplicateClassName='max-md:hidden'
@@ -174,7 +198,7 @@ export function TestimonialSection() {
             speed={BOTTOM_ROW_SPEED}
             paused={isStageHovered}
             minViewportWidth={768}
-            className='mt-[20px] w-max max-md:w-full translate-x-[2vw] max-md:ml-0 max-md:mt-0 max-md:translate-x-0'
+            className='mt-[20px] w-max translate-x-[2vw] max-md:ml-0 max-md:mt-0 max-md:w-full max-md:translate-x-0'
             trackClassName={testimonialTrackClassName}
             copyClassName={testimonialCopyClassName}
             duplicateClassName='max-md:hidden'
@@ -188,15 +212,11 @@ export function TestimonialSection() {
         <div className='hidden w-full flex-col gap-6 max-sm:flex'>
           <div
             ref={carouselTrackRef}
-            className='flex snap-x snap-mandatory scroll-smooth gap-4 overflow-x-auto px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+            className='flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
             aria-label='Testimonial cards'
           >
             {sectionTestimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={`${testimonial.name}-${index}`}
-                {...testimonial}
-                className='snap-start'
-              />
+              <TestimonialCard key={`${testimonial.name}-${index}`} {...testimonial} className='snap-start' />
             ))}
           </div>
 
