@@ -142,7 +142,7 @@ export function TestimonialSection() {
   };
 
   return (
-    <div className='w-full overflow-hidden bg-[#F6F6FF] py-[120px] max-md:py-[10vh]'>
+    <div className='w-full overflow-hidden bg-[#F6F6FF] py-[160px] max-md:py-[10vh]'>
       <div className='mx-auto flex w-full max-w-[1440px] flex-col gap-10 items-center px-[80px] max-xl:px-[4vw]'>
         <div className='flex w-full'>
           <h2 className='text-style-h1 font-bold'>
