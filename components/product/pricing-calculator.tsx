@@ -218,7 +218,7 @@ export function PricingCalculator() {
                     >
                         <div className="flex flex-col gap-8 p-6 sm:p-12 lg:flex-row lg:items-center lg:gap-0">
                             {/* Team Size Control */}
-                            <div className="flex-1 lg:border-r lg:border-white/10 lg:pr-8">
+                            <div className="flex-1 lg:border-white/10 lg:pr-8">
                                 <div className="mb-5 flex flex-col gap-6 max-lg:mb-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
                                     <span className="text-xl font-medium text-text-inverse max-lg:text-2xl">Team size</span>
                                     {/* +/- controls */}

@@ -281,7 +281,7 @@ function DevInfoSection() {
                 type='button'
                 aria-label='Previous'
                 onClick={() => goToIndex(activeIndex - 1)}
-                className='flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#2D2B3B] text-white'
+                className='flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#2D2B3B] text-white'
               >
                 <TabArrowIcon className='h-5 w-5 rotate-180' />
               </button>
@@ -299,7 +299,7 @@ function DevInfoSection() {
                 type='button'
                 aria-label='Next'
                 onClick={() => goToIndex(activeIndex + 1)}
-                className='flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#2D2B3B] text-white'
+                className='flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#2D2B3B] text-white'
               >
                 <TabArrowIcon className='h-5 w-5' />
               </button>

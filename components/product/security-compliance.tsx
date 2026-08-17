@@ -55,7 +55,7 @@ function SecurityCompliance() {
   return (
     <div className='compliance-container flex w-full justify-center'>
       <section className='compliance w-full max-w-[1440px] py-20 sm:py-[120px] max-xl:px-6 max-sm:px-4'>
-        <div className='compliance__panel relative flex min-h-[676px] w-full p-10 items-center justify-between gap-10 overflow-hidden rounded-[16px] max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-10 sm:p-20'>
+        <div className='compliance__panel relative flex min-h-[676px] w-full p-2 items-center justify-between gap-10 overflow-hidden rounded-[16px] max-xl:min-h-0 max-xl:flex-col max-xl:items-start max-xl:gap-10 sm:p-20'>
           <div className='pointer-events-none absolute inset-0' aria-hidden={true}>
             <Image
               alt={'compliance-background'}
@@ -67,7 +67,7 @@ function SecurityCompliance() {
             <div className='compliance__panel-fade absolute inset-0' />
           </div>
 
-          <div className='compliance__copy z-[1] flex w-[620px] shrink-0 flex-col gap-10 max-xl:w-full max-xl:max-w-[620px] max-xl:gap-8'>
+          <div className='compliance__copy z-[1] flex w-[620px] shrink-0 flex-col gap-10 p-3 max-xl:w-full max-xl:max-w-[620px] max-xl:gap-8 sm:p-0'>
             <h2 className='compliance__title text-style-h1 max-w-[520px] font-bold text-text-primary'>
               Enterprise-grade
               <br />
