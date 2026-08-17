@@ -34,8 +34,8 @@ function Footer() {
   return (
     <div className='appflowy-footer w-full overflow-hidden bg-white px-4 pb-4 sm:px-6 sm:pb-6'>
       <div className='w-full rounded-[16px] bg-black p-10 pt-15 max-xl:px-[28px] max-lg:px-5 max-lg:pt-5 sm:rounded-[20px]'>
-        <div className='flex items-start gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
-          <div className={'logo'}>
+        <div className='flex items-start justify-between gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
+          <div className={'logo shrink-0'}>
             <div className={'image aspect-ratio-3/2 text-white'}>
               <Logo />
             </div>
@@ -49,7 +49,7 @@ function Footer() {
           </div>
           <nav
             aria-label={'Footer'}
-            className='grid flex-1 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-lg:w-full max-lg:grid-cols-2 max-lg:gap-x-[32px] max-lg:gap-y-[36px] max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px]'
+            className='grid min-w-0 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-xl:gap-x-[28px] max-md:w-full max-md:grid-cols-2 max-md:gap-x-[32px] max-md:gap-y-[36px] max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px] lg:grid-cols-[repeat(6,minmax(0,max-content))]'
           >
             {links.map((item) => (
               <div className='min-w-0' key={item.name}>
