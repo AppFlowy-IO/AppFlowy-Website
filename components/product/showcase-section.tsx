@@ -115,6 +115,16 @@ function GradientLayer({ tab, leaving = false }: { tab: Tab; leaving?: boolean }
 const illustrationBaseClass =
     "absolute left-1/2 bottom-0 z-[1] block h-full max-h-[560px] w-[min(1120px,100%)] object-cover object-bottom pointer-events-none select-none -translate-x-1/2 [will-change:transform,opacity]";
 
+// Fades the bottom edge of the screenshots into the card's gradient, matching
+// the fade under the hero product image.
+const bottomFadeFrom = (start: string): CSSProperties => ({
+    maskImage: `linear-gradient(to bottom, black ${start}, transparent 100%)`,
+    WebkitMaskImage: `linear-gradient(to bottom, black ${start}, transparent 100%)`,
+});
+
+const illustrationFadeStyle = bottomFadeFrom("82%");
+const mobileIllustrationFadeStyle = bottomFadeFrom("86%");
+
 function illustrationSizeClass(tabId: string) {
     return tabId === "ai" ? "w-[min(1120px,104%)] max-h-[552px]" : "";
 }
@@ -147,6 +157,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                     className={`${illustrationBaseClass} ${illustrationSizeClass(activeTab.id)} ${previousTab ? "feature-illustration--enter" : ""}`}
                     src={activeTab.image.src}
                     alt={`${activeTab.label} illustration`}
+                    style={illustrationFadeStyle}
                 />
                 {previousTab ? (
                     <img
@@ -154,6 +165,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                         src={previousTab.image.src}
                         alt=""
                         aria-hidden="true"
+                        style={illustrationFadeStyle}
                     />
                 ) : null}
             </div>
@@ -170,7 +182,7 @@ function MobileFeatureCard({ tab }: { tab: Tab }) {
                 className="relative z-[1] mt-4 w-full h-auto object-contain pointer-events-none select-none"
                 src={tab.image.src}
                 alt={`${tab.label} illustration`}
-                style={{ scale: tab.mobileScale ? tab.mobileScale : 1.05 }}
+                style={{ scale: tab.mobileScale ? tab.mobileScale : 1.05, ...mobileIllustrationFadeStyle }}
             />
         </div>
     );
