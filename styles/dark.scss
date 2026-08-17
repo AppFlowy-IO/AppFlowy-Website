@@ -503,8 +503,10 @@
   .appflowy-drawer {
     @apply bg-transparent;
   }
+  .appflowy-navbar {
+    @apply max-md:bg-night-blue;
+  }
   .appflowy-navbar.sticky {
-
     @apply bg-night-blue;
   }
   .arrow-badge {

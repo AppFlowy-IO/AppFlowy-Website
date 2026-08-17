@@ -84,6 +84,7 @@ body {
 
 .appflowy-navbar {
   @apply h-[68px] w-full font-medium;
+  @apply max-md:bg-white;
   @apply max-lg:h-[68px];
   @apply flex items-center;
   @apply px-[28px];
