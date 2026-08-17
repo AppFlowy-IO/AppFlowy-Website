@@ -220,7 +220,7 @@ export function TestimonialSection() {
             ))}
           </div>
 
-          <div className='flex w-full items-center justify-start gap-3'>
+          <div className='flex w-full items-center justify-center gap-3'>
             <button
               type='button'
               className={carouselControlButtonClasses}
