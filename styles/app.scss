@@ -289,7 +289,7 @@ body {
 }
 
 .drawer-nav-actions {
-  @apply flex flex-col gap-2 border-t border-[#E6E6E6] pt-2;
+  @apply flex flex-col gap-2 pt-2;
 
   &__primary,
   &__secondary {

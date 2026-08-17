@@ -56,7 +56,7 @@ function Footer() {
                 <span className='group-name text-style-h5 mb-[22px] block font-semibold'>
                   {item.link ? renderLink(item.name, item.link) : item.name}
                 </span>
-                <div className='flex flex-col gap-[18px]'>
+                <div className='flex flex-col gap-2'>
                   {item.children.map((child) => (
                     <div key={child.name} className={'group-item text-style-body-standard'}>
                       {renderLink(child.name, child.link, 'badge' in child ? Number(child.badge) : undefined)}
