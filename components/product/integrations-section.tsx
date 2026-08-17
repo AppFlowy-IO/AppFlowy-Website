@@ -73,7 +73,7 @@ export default function IntegrationsSection() {
   return (
     <section className='integrations w-full bg-[#F6F6FF] py-[160px] max-md:py-[10vh]'>
       <div className='mx-auto flex w-full max-w-[1440px] items-center gap-[40px] px-[80px] max-xl:px-[4vw] max-lg:flex-col max-lg:items-start max-lg:gap-[56px]'>
-        <div className='flex flex-1 flex-col gap-[40px] max-lg:w-full max-lg:gap-6'>
+        <div className='flex flex-1 flex-col gap-2 max-lg:w-full sm:gap-10'>
           <h2 className='text-style-h1 font-bold'>
             <ScrollFillText>Works with tools you already use</ScrollFillText>
           </h2>

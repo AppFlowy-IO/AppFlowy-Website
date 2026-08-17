@@ -175,7 +175,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
 
 function MobileFeatureCard({ tab }: { tab: Tab }) {
     return (
-        <div className="relative overflow-hidden rounded-xl bg-white flex flex-col items-center pt-5 px-3 pb-0">
+        <div className="relative h-[270px] overflow-hidden rounded-xl bg-white flex flex-col items-center pt-5 px-3 pb-0">
             <GradientLayer tab={tab} />
             <TitleBlock tab={tab} className="relative z-[1]" />
             <img

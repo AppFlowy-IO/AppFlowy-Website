@@ -26,7 +26,7 @@ export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardPro
 
   return (
     <article className="platform-card flex w-[min(100%,840px)] shrink-0 snap-start overflow-hidden rounded-xl bg-white min-h-[440px] max-md:min-h-0 max-md:flex-col">
-      <div className="flex w-1/2 flex-col justify-between gap-4 px-8 py-10 max-md:w-full max-md:gap-3 max-md:px-5 max-md:py-5">
+      <div className="flex w-1/2 flex-col justify-between gap-4 px-8 py-10 max-md:w-full max-md:gap-3 max-md:px-5 max-md:py-5 max-md:pt-8">
         <div className="flex h-8 w-8 items-center justify-center max-md:hidden">
           <Image
             alt={heading.top + ' ' + heading.bottom}
@@ -46,7 +46,7 @@ export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardPro
         </div>
       </div>
 
-      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[280px] max-md:w-full max-md:p-5 max-md:pt-0">
+      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[280px] max-md:w-full max-md:p-2 max-md:pt-0">
         <Image
           alt={heading.top + ' ' + heading.bottom}
           className="h-full w-full rounded-xl object-cover"
@@ -143,7 +143,7 @@ export default function PlatformSection() {
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[80px] max-xl:px-[4vw]">
-        <div className="flex flex-col gap-5 max-md:gap-4">
+        <div className="flex flex-col gap-2">
           <h2 className="text-style-h1 font-bold">
             <ScrollFillText>Self-hosted freedom at enterprise scale</ScrollFillText>
           </h2>

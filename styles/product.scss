@@ -46,8 +46,8 @@
     }
 
     .main-content {
-      @apply flex max-w-[984px] flex-col items-center gap-3 break-words text-center;
-      @apply max-md:gap-4 max-md:px-[2vw] max-md:text-[8vw] max-md:leading-[120%];
+      @apply flex max-w-[984px] flex-col items-center gap-2 break-words text-center sm:gap-3;
+      @apply max-md:px-[2vw] max-md:text-[8vw] max-md:leading-[120%];
 
       .hero-highlight {
         position: relative;

@@ -29,7 +29,7 @@ export default function Page() {
               </span>{' '}
               AI Workspace for Enterprise Teams
             </h1>
-            <h5 className={'text-style-h5 text-text-tertiary font-normal max-w-[600px]'}>Bring projects, wikis, and teams together with AI</h5>
+            <h5 className={'text-base text-text-tertiary font-normal max-w-[600px]'}>Bring projects, wikis, and teams together with AI</h5>
           </div>
           <MainDownload />
           <div className={'flex w-full flex-col items-center'}>
@@ -38,7 +38,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={'w-full bg-white pb-16 pt-24'}>
+      <div className={'w-full bg-white pb-16 pt-24 max-md:py-5'}>
         <ScrollIcons />
       </div>
       <ShowcaseSection />

@@ -88,7 +88,7 @@ function formatDollars(value: number): string {
 function SavingsAmount({ value, active }: { value: number; active: boolean }) {
     return (
         <div
-            className={`font-inter text-[52px] font-semibold leading-[64px] tracking-[-1px] transition-all duration-300 sm:text-[60px] sm:leading-[72px] ${active ? 'text-white' : 'text-white/25'
+            className={`font-inter text-[40px] leading-[48px] sm:text-[60px] font-semibold sm:leading-[72px] tracking-[-1px] transition-all duration-300 sm:text-[60px] sm:leading-[72px] ${active ? 'text-white' : 'text-white/25'
                 }`}
         >
             {active ? formatDollars(value) : '$0'}
@@ -193,7 +193,7 @@ export function PricingCalculator() {
                         <h2 className="text-style-h1 font-bold">
                             <ScrollFillText>More productivity, fewer tools</ScrollFillText>
                         </h2>
-                        <p className="mt-3 text-style-h5 text-text-tertiary font-normal">
+                        <p className="mt-2 text-style-h5 text-text-tertiary font-normal">
                             Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.
                         </p>
                     </div>
@@ -227,21 +227,21 @@ export function PricingCalculator() {
                                             id="team-size-decrease"
                                             aria-label="Decrease team size"
                                             onClick={() => setTeamSize((v) => Math.max(1, v - 1))}
-                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
+                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="2" viewBox="0 0 12 2" fill="none">
                                                 <path d="M1 1H11" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                                             </svg>
                                         </button>
-                                        <span className="min-w-[3ch] text-center text-style-h4 font-semibold text-white ">
+                                        <span className="min-w-[3ch] text-center text-[24px] leading-[28px] font-semibold text-white ">
                                             {teamSize}
                                         </span>
                                         <button
                                             id="team-size-increase"
                                             aria-label="Increase team size"
                                             onClick={() => setTeamSize((v) => Math.min(1000, v + 1))}
-                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation max-lg:h-11 max-lg:w-11"
+                                            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-95 select-none touch-manipulation"
                                             style={{ WebkitTapHighlightColor: 'transparent' }}
                                         >
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -269,9 +269,9 @@ export function PricingCalculator() {
                                         }}
                                     />
                                     <div className="mt-3 flex justify-between">
-                                        <span className="text-xs text-text-tertiary">1 user</span>
-                                        <span className="text-xs text-text-tertiary">500 users</span>
-                                        <span className="text-xs text-text-tertiary">1000 users</span>
+                                        <span className="text-sm text-text-tertiary">1 user</span>
+                                        <span className="text-sm text-text-tertiary">500 users</span>
+                                        <span className="text-sm text-text-tertiary">1000 users</span>
                                     </div>
                                 </div>
                             </div>
@@ -281,13 +281,13 @@ export function PricingCalculator() {
                                 {/* Monthly */}
                                 <div className="text-left">
                                     <SavingsAmount value={monthlySavings} active={hasSelection} />
-                                    <div className="mt-2 text-xl font-normal text-white/50 max-lg:text-2xl">Monthly savings</div>
+                                    <div className="mt-2 text-style-h5 font-normal text-white/50">Monthly savings</div>
                                 </div>
 
                                 {/* Annual */}
                                 <div className="text-left">
                                     <SavingsAmount value={annualSavings} active={hasSelection} />
-                                    <div className="mt-2 text-xl font-normal text-white/50 max-lg:text-2xl">Annual savings</div>
+                                    <div className="mt-2 text-style-h5 font-normal text-white/50">Annual savings</div>
                                 </div>
                             </div>
                         </div>

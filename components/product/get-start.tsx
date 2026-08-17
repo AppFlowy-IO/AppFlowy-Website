@@ -13,15 +13,15 @@ function GetStart() {
     <div className='flex w-full justify-center'>
       <div className='section-8 min-w-0 max-w-full py-20 relative inset-0'>
         <div className='circle-gradient'></div>
-        <div className='section-8-title flex flex-col items-center justify-center gap-6 text-center max-md:gap-5'>
-          <div className='section-8-logo flex h-[84px] w-[84px] items-center justify-center rounded-[20px] border bg-white shadow-[0_0_40px_0_rgba(73,87,240,0.08)]'>
+        <div className='section-8-title flex flex-col items-center justify-center gap-6 text-center max-md:gap-3'>
+          <div className='section-8-logo flex h-[84px] w-[84px] items-center justify-center rounded-[20px] mb-7 border bg-white shadow-[0_0_40px_0_rgba(73,87,240,0.08)]'>
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
           <h2 className='text-style-h1 font-semibold '>
             {/* Lines are `w-fit` blocks, so they need centring of their own here. */}
             <ScrollFillText lineClassName='mx-auto'>Get started for free</ScrollFillText>
           </h2>
-          <div className='section-8-desc max-w-[1020px] text-center text-text-tertiary font-normal text-style-h5 max-md:max-w-[640px] '>
+          <div className='section-8-desc max-w-[1020px] text-center px-4 text-text-tertiary font-normal text-style-h5 max-md:max-w-[640px] '>
             The AI workspace where you achieve more without losing control of your data
           </div>
         </div>

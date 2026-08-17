@@ -1,5 +1,5 @@
 .scroll-icons {
-  @apply flex w-full transform-gpu flex-col items-center gap-10;
+  @apply flex w-full transform-gpu flex-col items-center gap-10 max-md:gap-5;
   will-change: auto;
 
   &-title {

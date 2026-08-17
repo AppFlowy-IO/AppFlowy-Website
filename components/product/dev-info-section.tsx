@@ -255,7 +255,7 @@ function DevInfoSection() {
           <div className='flex w-full flex-col min-[900px]:hidden'>
             <div className='flex items-center gap-2 text-white'>
               <span className='shrink-0'>{tabOptions[activeIndex]?.icon}</span>
-              <span className='text-style-caption font-mono text-white'>{tabOptions[activeIndex]?.label}</span>
+              <span className='text-sm font-mono text-white'>{tabOptions[activeIndex]?.label}</span>
             </div>
             {activePanel && (
               <div className='mt-6 flex w-full flex-col'>
@@ -271,7 +271,7 @@ function DevInfoSection() {
                 </div>
                 <div className='mt-8 flex min-h-[172px] flex-col gap-3'>
                   <h2 className='text-style-h2 font-semibold text-white'>{activePanel.title}</h2>
-                  <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{activePanel.desc}</p>
+                  <p className='text-base whitespace-pre-wrap text-text-tertiary'>{activePanel.desc}</p>
                 </div>
               </div>
             )}
