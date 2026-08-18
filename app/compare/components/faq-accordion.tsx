@@ -6,57 +6,107 @@ import { FAQAccordionProps } from '@/lib/faq';
 import MinusIcon from '@/components/icons/minus-icon';
 import PlusIcon from '@/components/icons/plus-icon';
 
+// The compare FAQ uses larger, thinner icons than the icons' pricing-page defaults.
+const ICON_CLASS = 'h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8';
+
 export function FAQAccordion({ items }: FAQAccordionProps) {
     const [expandedItem, setExpandedItem] = useState<string>(items[0]?.id || '');
+    const [hoveredItem, setHoveredItem] = useState<string>('');
+    const [animatingItems, setAnimatingItems] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         setExpandedItem(items[0]?.id || '');
     }, [items]);
 
     const toggleItem = (itemId: string) => {
-        setExpandedItem((prev) => (prev === itemId ? '' : itemId));
+        const isCurrentlyExpanded = expandedItem === itemId;
+
+        if (isCurrentlyExpanded) {
+            setAnimatingItems((prev) => new Set(prev).add(itemId));
+        }
+
+        setExpandedItem(isCurrentlyExpanded ? '' : itemId);
+    };
+
+    const handleAnimationComplete = (itemId: string, isExpanded: boolean) => {
+        if (!isExpanded) {
+            setAnimatingItems((prev) => {
+                const newSet = new Set(prev);
+
+                newSet.delete(itemId);
+                return newSet;
+            });
+        }
     };
 
     return (
-        <div className='w-full space-y-3'>
+        <div className='w-full space-y-3 sm:space-y-4 md:space-y-[15px]'>
             {items.map((item) => {
                 const isExpanded = expandedItem === item.id;
+                const isHovered = hoveredItem === item.id;
+                const isAnimating = animatingItems.has(item.id);
 
                 return (
-                    <div
+                    <motion.div
                         key={item.id}
-                        className='w-full cursor-pointer select-none rounded-2xl bg-white px-5 py-5 shadow-[0_1px_2px_rgba(16,16,18,0.04)] transition-shadow duration-200 touch-manipulation hover:shadow-[0_4px_16px_rgba(16,16,18,0.06)] sm:px-6 sm:py-6'
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                        className={`flex cursor-pointer flex-col justify-center rounded-[15px] border-2 bg-white px-6 py-6 sm:px-8 sm:py-8 md:px-[40px] md:py-[40px] select-none touch-manipulation ${isExpanded ? 'gap-3 sm:gap-4 md:gap-[15px]' : isAnimating ? 'gap-3' : 'gap-0'
+                            }`}
+                        style={{
+                            WebkitTapHighlightColor: 'transparent',
+                            ...(isHovered
+                                ? {
+                                    borderColor: 'transparent',
+                                    background: `linear-gradient(white, white) padding-box, linear-gradient(90deg, #8427E0 0%, #EC6FEC 100%)} border-box`,
+                                }
+                                : {
+                                    borderColor: 'rgba(213, 215, 222, 0.40)',
+                                })
+                        }}
+                        animate={{
+                            borderColor: isHovered ? 'transparent' : 'rgba(213, 215, 222, 0.40)',
+                        }}
                         onClick={() => toggleItem(item.id)}
+                        onMouseEnter={() => setHoveredItem(item.id)}
+                        onMouseLeave={() => setHoveredItem('')}
+                        transition={{
+                            duration: 0.3,
+                            ease: 'easeInOut',
+                            borderColor: { duration: 0.25, ease: 'easeOut' },
+                        }}
                     >
                         {/* Question and Icon Row */}
-                        <div className='flex w-full items-center justify-between gap-4'>
-                            <h3 className='flex-1 font-inter text-base font-semibold leading-[130%] tracking-[-0.2px] text-[#101012] sm:text-lg md:text-xl'>
+                        <div className='flex w-full items-center justify-between'>
+                            <h3 className='flex-1 pr-2 font-inter text-lg font-medium leading-[120%] tracking-[-0.24px] text-[#101012] sm:pr-4 sm:text-xl md:text-2xl'>
                                 {item.question}
                             </h3>
-                            <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[10px] bg-[#F5F5F7] sm:h-10 sm:w-10'>
-                                {isExpanded ? <MinusIcon /> : <PlusIcon />}
+                            <div className='flex-shrink-0'>
+                                {isExpanded ? (
+                                    <MinusIcon isHovered={true} className={ICON_CLASS} strokeWidth={1.5} />
+                                ) : (
+                                    <PlusIcon isHovered={isHovered} className={ICON_CLASS} strokeWidth={1.5} />
+                                )}
                             </div>
                         </div>
 
                         {/* Answer */}
                         <motion.div
                             className='w-full overflow-hidden'
-                            initial={false}
+                            initial={{ height: 0, opacity: 0 }}
                             animate={{
                                 height: isExpanded ? 'auto' : 0,
                                 opacity: isExpanded ? 1 : 0,
                             }}
                             transition={{
-                                duration: 0.2,
+                                duration: 0.1,
                                 ease: 'easeInOut',
                             }}
+                            onAnimationComplete={() => handleAnimationComplete(item.id, isExpanded)}
                         >
-                            <p className='whitespace-pre-line pt-3 font-inter text-sm font-normal leading-[150%] text-[#58585A] sm:pt-4 sm:text-base'>
+                            <p className='whitespace-pre-line font-inter text-sm font-normal leading-[150%] text-[#58585A] sm:text-base'>
                                 {item.answer}
                             </p>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 );
             })}
         </div>

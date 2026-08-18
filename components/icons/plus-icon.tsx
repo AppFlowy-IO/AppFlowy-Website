@@ -1,17 +1,32 @@
-export default function PlusIcon() {
+import { motion } from 'framer-motion';
+
+// 收起时的加号图标
+// Defaults match the pricing FAQ (small, static). The compare FAQ opts into the
+// larger size and the purple hover tint.
+export default function PlusIcon({
+    isHovered = false,
+    className = 'h-4 w-4 sm:h-[18px] sm:w-[18px]',
+    strokeWidth = 2,
+}: {
+    isHovered?: boolean;
+    className?: string;
+    strokeWidth?: number;
+}) {
     return (
-        <svg
+        <motion.svg
             xmlns='http://www.w3.org/2000/svg'
-            className='h-4 w-4 sm:h-[18px] sm:w-[18px]'
+            className={className}
             viewBox='0 0 32 32'
             fill='none'
         >
-            <path
+            <motion.path
                 d='M5.33398 16.0026H26.6673M16.0007 26.6693V16.0026L16.0007 5.33594'
-                stroke='#101012'
-                strokeWidth='2'
+                stroke={isHovered ? '#9327FF' : '#101012'}
+                strokeWidth={strokeWidth}
                 strokeLinecap='round'
+                animate={{ stroke: isHovered ? '#9327FF' : '#101012' }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
             />
-        </svg>
+        </motion.svg>
     );
 }
