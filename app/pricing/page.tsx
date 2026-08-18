@@ -6,7 +6,7 @@ import { AiPowerSection } from './components/ai-power-section';
 import { QuestionsSection } from './components/questions-section';
 import { QASection } from './components/qa-section';
 import { PricingStateProvider } from './components/pricing-state-context';
-import { GetStartedSection } from './components/get-started-section';
+import GetStart from '@/components/product/get-start';
 import OpenGraphImage from '../../public/images/og-image.png';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
@@ -147,7 +147,8 @@ function PricingPage() {
         {JSON.stringify(pricingSchema)}
       </Script>
       <PricingStateProvider>
-        <div className="pricing-page">
+        {/* Opaque so the global body gradient in globals.scss does not show through. */}
+        <div className="pricing-page bg-white">
         {/* Pricing Hero - Main title and deployment selection with full-width background */}
         <div className="w-full bg-[#F5F5FA] pt-[104px]">
           <PricingHeroContainer>
@@ -173,7 +174,7 @@ function PricingPage() {
         <QASection />
 
         {/* Section 5 - Get Started */}
-        <GetStartedSection />
+        <GetStart showGlow={false} />
         </div>
       </PricingStateProvider>
     </>

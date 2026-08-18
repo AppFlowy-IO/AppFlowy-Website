@@ -23,14 +23,17 @@ export function download(url: string, transfer = true, isMobile = false) {
     a.href = url;
     a.target = '_blank';
   } else {
-    a.href = url;
-    const params = parseDownloadUrl(url);
-
-    collectEvent(EventName.download, params);
-
+    // Temporarily back to the pre-modal flow: hand off to /downloaded, which fires
+    // the actual download (and the collect event) via `download(url, false)`.
+    // The modal path is kept in components/download/download-modal.tsx for reuse.
     if (transfer) {
-      Storage.set('manually_download_url', url);
-      window.dispatchEvent(new Event(DOWNLOAD_MODAL_EVENT));
+      Storage.set('download_url', url);
+      a.href = `/downloaded`;
+    } else {
+      a.href = url;
+      const params = parseDownloadUrl(url);
+
+      collectEvent(EventName.download, params);
     }
   }
 
