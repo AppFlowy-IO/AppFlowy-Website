@@ -12,30 +12,30 @@ const FEATURE_GROUPS = [
   {
     title: 'Data control & governance',
     items: [
-      'Built-in identity and access controls',
+      'Built-in identity and access management',
       'Granular permissions and admin controls',
-      'Fine-grained controls over AI access and usage',
+      'Fine-grained control over AI access and usage',
     ],
   },
   {
     title: 'Flexible administration',
-    items: ['SCIM user provisioning and LDAP integration', 'Fine-grained control to enable and use AI'],
+    items: ['SCIM user provisioning and LDAP integration', 'Centralized user, workspace, and instance administration'],
   },
   {
     title: 'Scalable infrastructure',
     items: [
       'Built to support deployments with hundreds of thousands of users',
-      'Scale out across multiple nodes as demand grows',
+      'Scale horizontally across multiple nodes as demand grows',
       'Deploy and scale individual services independently',
     ],
   },
 ];
 
 const BADGES = [
-  { label: 'SOC 2 TYPE II', src: SOC2Badge, alt: 'soc 2 badge' },
+  { label: 'SOC 2 Type II', src: SOC2Badge, alt: 'soc 2 badge' },
   { label: 'GDPR', src: GDPRBadge, alt: 'gdpr badge' },
   { label: 'HIPAA', src: HIPAABadge, alt: 'hipaa badge' },
-  { label: 'ISO 27001', src: ISOBadge, alt: 'iso 27001 badge' },
+  { label: 'ISO/IEC 27001', src: ISOBadge, alt: 'iso 27001 badge' },
 ];
 
 function ComplianceCard({ label, alt, src }: { label: string; alt: string; src: string }) {

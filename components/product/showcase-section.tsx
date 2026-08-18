@@ -26,7 +26,7 @@ const tabs: Tab[] = [
     {
         id: "ai",
         label: "AI Search",
-        title: "Get answers in seconds,|grounded in your sources",
+        title: "Get answers in seconds,|grounded in your sources.",
         image: AISearchImage,
         mobileScale: 1.075,
         clouds: [
@@ -38,7 +38,7 @@ const tabs: Tab[] = [
     {
         id: "knowledge",
         label: "Knowledge Base",
-        title: "A single source of truth for|teams and AI agents",
+        title: "A single source of truth for|teams and AI agents.",
         image: KnowledgeImage,
         clouds: [
             "rgba(255, 200, 201, 0.72)",
@@ -49,7 +49,7 @@ const tabs: Tab[] = [
     {
         id: "projects",
         label: "Projects",
-        title: "Manage projects end to end.|Ship faster with less overhead",
+        title: "Manage projects end-to-end.|Ship faster with less overhead.",
         image: ProjectsImage,
         mobileScale: 1,
         clouds: [
@@ -61,7 +61,7 @@ const tabs: Tab[] = [
     {
         id: "meetings",
         label: "AI Meeting Notes",
-        title: "Turn meetings into actions and insights, right where you work",
+        title: "Turn meetings into actions and insights,|right where you work.",
         image: AINotesImage,
         mobileScale: 1.075,
         clouds: [
@@ -74,7 +74,7 @@ const tabs: Tab[] = [
         id: "docs",
         label: "Docs",
         title:
-            "Get your team on the same page.|Co-edit in real-time or comment async",
+            "Get your team on the same page.|Co-edit in real-time or comment async.",
         image: DocsImage,
         clouds: [
             "rgba(181, 234, 255, 0.86)",

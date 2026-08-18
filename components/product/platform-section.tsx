@@ -148,7 +148,7 @@ export default function PlatformSection() {
             <ScrollFillText>Self-hosted freedom at enterprise scale</ScrollFillText>
           </h2>
           <p className="max-w-[620px] text-style-h5 font-normal text-text-tertiary ">
-            Your team. Your servers. Your rules.
+            Open by design. Flexible by default.
           </p>
         </div>
 

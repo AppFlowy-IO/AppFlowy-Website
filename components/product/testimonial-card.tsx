@@ -107,7 +107,7 @@ const sectionTestimonials: TestimonialCardProps[] = [
     quote:
       'Voulant utilisé une application similaire à notion sur Linux , j’ai trouvé cette application qui est presque comme notion et qui se synchronise correctement entre chaque appareil Linux -iOS et même Windows et en plus c’est open source donc je recommande fortement un grand merci au développeurs de appflowy',
     name: 'K4iw',
-    subtitle: 'Reviewed on G2 Crowd',
+    subtitle: 'Reviewed on App Store',
   },
   {
     quote:
