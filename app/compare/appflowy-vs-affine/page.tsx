@@ -9,7 +9,7 @@ import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
 import { ComparisonTable } from '../components/comparison-table';
 import { FeatureCards } from '../components/feature-cards';
-import { HeroGlow, HeroIconGrid } from '../components/hero-background';
+import { HeroApps } from '../components/hero-background';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
@@ -368,8 +368,7 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <HeroGlow />
-                        <HeroIconGrid competitorName='AFFiNE' competitorImage={AFFiNEImage} />
+                        <HeroApps competitorName='AFFiNE' competitorImage={AFFiNEImage} />
                         <div className={'main-content'}>
                             <h1 className='text-style-h1'>The Best Self-Hosted Notion Alternative</h1>
                             <p className='desc text-style-h5'>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>

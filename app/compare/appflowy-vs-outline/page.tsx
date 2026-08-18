@@ -10,7 +10,7 @@ import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
 import { ComparisonTable } from '../components/comparison-table';
 import { FeatureCards } from '../components/feature-cards';
-import { HeroGlow, HeroIconGrid } from '../components/hero-background';
+import { HeroApps } from '../components/hero-background';
 import { HeroChips } from '../components/hero-chips';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -367,8 +367,7 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <HeroGlow />
-                        <HeroIconGrid competitorName='Outline' competitorImage={OutlineImage} />
+                        <HeroApps competitorName='Outline' competitorImage={OutlineImage} />
                         <div className={'main-content'}>
                             <h1 className='text-style-h1'>The Best Self-Hosted Enterprise Team Wiki</h1>
                         </div>

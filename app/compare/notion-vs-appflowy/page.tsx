@@ -9,7 +9,7 @@ import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 import { ComparisonTable } from '../components/comparison-table';
 import { FeatureCards } from '../components/feature-cards';
-import { HeroGlow, HeroIconGrid } from '../components/hero-background';
+import { HeroApps } from '../components/hero-background';
 import { HeroChips } from '../components/hero-chips';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -314,8 +314,7 @@ function Page() {
       <div className={'vs-notion-page'}>
         <div className={'af-container'}>
           <div className={'af-box section-1'}>
-            <HeroGlow />
-            <HeroIconGrid competitorName='Notion' competitorImage={NotionImage} />
+            <HeroApps competitorName='Notion' competitorImage={NotionImage} />
             <div className={'main-content'}>
               <h1 className='text-style-h1'>The #1 Self-Hosted Notion Alternative</h1>
             </div>
