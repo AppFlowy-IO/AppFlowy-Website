@@ -46,7 +46,7 @@ export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardPro
         </div>
       </div>
 
-      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[280px] max-md:w-full max-md:p-2 max-md:pt-0 max-md:pb-4">
+      <div className="relative min-h-[440px] w-1/2 overflow-hidden p-6 max-md:min-h-[280px] max-md:w-full max-md:p-2 max-md:pt-0">
         <Image
           alt={heading.top + ' ' + heading.bottom}
           className="h-full w-full rounded-xl object-cover"
