@@ -268,7 +268,7 @@ function ShowcaseSection() {
                     {tabs.map((tab) => (
                         <button
                             aria-pressed={currentId === tab.id}
-                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-4 text-h5 font-medium whitespace-nowrap transition-[background-color,color] duration-[180ms] ease-in-out ${currentId === tab.id
+                            className={`min-h-[52px] rounded-xl grid place-items-center px-5 py-4 text-h5 font-medium whitespace-nowrap transition-[background-color,color] duration-180 ease-in-out ${currentId === tab.id
                                 ? "bg-text-primary text-white"
                                 : "bg-[#F6F5F6] text-text-primary hover:bg-[#ECECEE] active:bg-text-primary active:text-white"
                                 }`}

@@ -105,31 +105,31 @@ function DevInfoSection() {
         value: 'deploy',
         image: DeployImage,
         title: 'On-prem, cloud, air-gapped',
-        desc: 'Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment',
+        desc: 'Run AppFlowy on your infrastructure, in your cloud, or in a fully air-gapped environment.',
       },
       {
         value: 'local_ai',
         image: LocalAIImage,
         title: "AI on your terms, not your vendor's",
-        desc: "Your data never touches a model you don't control. Run local models offline or connect a self-hosted LLM — AI on your infrastructure, under your rules.",
+        desc: "Keep AI processing and data inside your environment. Power AppFlowy AI with self-hosted LLMs and embedding models.",
       },
       {
         value: 'compliance',
         image: ComplianceImage,
-        title: 'Your jurisdiction. Your compliance baseline.',
-        desc: 'Deploy in your region, under your retention policies. No vendor access, no shared cloud — sovereignty over where your data lives and who can touch it.',
+        title: 'Your jurisdiction, Your data residency',
+        desc: 'Control where your data is stored and processed to meet residency, security, and regulatory requirements. No vendor access to your self-hosted instance.',
       },
       {
         value: 'architecture',
         image: ArchitectureImage,
-        title: 'Flexible and extensible architecture',
-        desc: 'Open plugin system, SSO, SAML, LDAP, and custom auth, public APIs, modular by design. Extend AppFlowy to fit your stack — without waiting on a roadmap.',
+        title: 'Fits into your existing stack',
+        desc: 'SAML & OIDC SSO, SCIM, LDAP, MCP, and public APIs. Extend AppFlowy to fit your stack not the other way around.',
       },
       {
         value: 'admin',
         image: AdminImage,
         title: 'Full control, one view',
-        desc: 'Manage users, audit workspaces, enforce SSO and permissions across your entire org, built-in deployment tools without leaving the panel.',
+        desc: 'Manage users, workspaces, and instance settings, enforce SSO and permissions, and access server management tools from the admin panel.',
       },
     ];
   }, []);
