@@ -4,7 +4,7 @@ import AiOverview from '@/assets/images/product/ai-overview.webp';
 import Backlog from '@/assets/images/product/backlog.webp';
 import ProjectTracking from '@/assets/images/product/project-tracking.webp';
 import ReleaseReview from '@/assets/images/product/release-review.webp';
-import WeeklyBrief from '@/assets/images/product/wekkly-rose.webp';
+import WeeklyBrief from '@/assets/images/product/weekly-brief.webp';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
 import { useInView } from 'framer-motion';
@@ -47,7 +47,7 @@ function MainProducts() {
   const { start, stop } = useAutoPlay({
     options: imageOptions,
     onChange: setValue,
-    duration: 4500,
+    duration: 7500,
   });
 
   useEffect(() => {

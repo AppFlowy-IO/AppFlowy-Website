@@ -80,7 +80,7 @@
 
     .ai-image {
       .visual-image {
-        @apply pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 select-none object-cover;
+        @apply pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 select-none object-contain;
       }
     }
   }
