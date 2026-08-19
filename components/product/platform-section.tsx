@@ -68,8 +68,8 @@ const platformCards: PlatformCardProps[] = [
     subtitle: 'Available on macOS, Windows, Linux, iOS, Android, and the web, with seamless sync across devices.',
   },
   {
-    image: MigrationSupportImage,
-    icon: MigrationSupportIcon,
+    image: VibrantCommunityImage,
+    icon: VibrantCommunityIcon,
     heading: {
       top: 'Open core, ',
       bottom: ' built together',
@@ -77,8 +77,8 @@ const platformCards: PlatformCardProps[] = [
     subtitle: "Auditable and extensible, with transparent development and an active global community.",
   },
   {
-    image: VibrantCommunityImage,
-    icon: VibrantCommunityIcon,
+    image: MigrationSupportImage,
+    icon: MigrationSupportIcon,
     heading: {
       top: 'Migration without',
       bottom: ' compromise',
