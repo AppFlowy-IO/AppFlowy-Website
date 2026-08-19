@@ -14,7 +14,7 @@ function ReviewMetric({ value, label }: { value: string; label: string }) {
       <p className='text-[64px] font-medium leading-[68px] text-[#140f28] max-md:text-[40px] max-md:leading-[48px]'>
         {value}
       </p>
-      <p className='font-medium text-style-h4 text-text-tertiary'>
+      <p className='font-medium text-style-h4 text-text-secondary'>
         {label}
       </p>
     </div>

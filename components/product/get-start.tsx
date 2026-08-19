@@ -29,7 +29,7 @@ function GetStart({ showGlow = true }: GetStartProps) {
             {/* Lines are `w-fit` blocks, so they need centring of their own here. */}
             <ScrollFillText lineClassName='mx-auto'>Get started for free</ScrollFillText>
           </h2>
-          <div className='section-8-desc relative z-[1] max-w-[1020px] text-center px-4 tracking-[-0.02em] text-text-tertiary font-normal text-style-h5 max-md:max-w-[640px]'>
+          <div className='section-8-desc relative z-[1] max-w-[1020px] text-center px-4 tracking-[-0.02em] text-text-secondary font-normal text-style-h5 max-md:max-w-[640px]'>
             The AI workspace where you achieve more without losing control of your data
           </div>
         </div>

@@ -193,7 +193,7 @@ export function PricingCalculator() {
                         <h2 className="text-style-h1 font-bold">
                             <ScrollFillText>More productivity, fewer tools</ScrollFillText>
                         </h2>
-                        <p className="mt-2 text-style-h5 text-text-tertiary font-normal">
+                        <p className="mt-2 text-style-h5 text-text-secondary font-normal">
                             Bring your teams and workflows into one AI workspace. Move faster and cut costs without constantly switching between tools.
                         </p>
                     </div>

@@ -77,7 +77,7 @@ export default function IntegrationsSection() {
           <h2 className='text-style-h1 font-bold'>
             <ScrollFillText>Works with tools you already use</ScrollFillText>
           </h2>
-          <p className='max-w-[520px] text-style-h5 text-text-tertiary font-normal '>
+          <p className='max-w-[520px] text-style-h5 text-text-secondary font-normal '>
             Connect AppFlowy to your existing systems to keep work and data in sync.
           </p>
         </div>
