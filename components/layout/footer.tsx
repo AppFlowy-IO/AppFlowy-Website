@@ -1,10 +1,14 @@
+'use client';
 import React from 'react';
 import Logo from '@/components/icons/logo';
 import { externalLinks, links } from '@/lib/config/footer';
 import Link from 'next/link';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 
 function Footer() {
-  const renderLink = (name: string, link?: string, badge?: number) => {
+  const { openContactDialog } = useContactDialog();
+
+  const renderLink = (name: string, link?: string, badge?: number, action?: string) => {
     const content = (
       <span className='text-style-body-standard relative inline-flex items-center'>
         {name}
@@ -15,6 +19,17 @@ function Footer() {
         )}
       </span>
     );
+
+    if (action === 'contact-sales') {
+      return (
+        <button
+          type={'button'}
+          onClick={() => openContactDialog({ title: 'Contact sales', source: 'footer' })}
+        >
+          {content}
+        </button>
+      );
+    }
 
     if (!link) {
       return content;
@@ -59,7 +74,12 @@ function Footer() {
                 <div className='flex flex-col gap-2'>
                   {item.children.map((child) => (
                     <div key={child.name} className={'group-item text-style-body-standard'}>
-                      {renderLink(child.name, child.link, 'badge' in child ? Number(child.badge) : undefined)}
+                      {renderLink(
+                        child.name,
+                        'link' in child ? child.link : undefined,
+                        'badge' in child ? Number(child.badge) : undefined,
+                        'action' in child ? child.action : undefined,
+                      )}
                     </div>
                   ))}
                 </div>

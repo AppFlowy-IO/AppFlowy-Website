@@ -72,7 +72,9 @@ body {
   .group-item {
     @apply text-text-tertiary;
 
-    a {
+    // `button` covers entries that open a dialog instead of navigating.
+    a,
+    button {
       @apply relative inline-flex items-center transition-opacity duration-200 hover:opacity-75 focus-visible:opacity-75;
     }
   }

@@ -13,6 +13,10 @@ const drawerWidth = '100vw';
 
 interface DrawerNavbarProps {
   onClose: () => void;
+  /** Asks the navbar to close the drawer and queue the contact dialog. */
+  onContactSales?: () => void;
+  /** Fired once the drawer has finished sliding out. */
+  onExited?: () => void;
   activePageKey?: string;
   open: boolean;
 }
@@ -42,7 +46,7 @@ function isExpandable(item: Item) {
   return Boolean(item.children?.length && (item.key === 'download' || item.key === 'resources'));
 }
 
-export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNavbarProps) {
+export default function DrawerNavbar({ onClose, onContactSales, onExited, activePageKey, open }: DrawerNavbarProps) {
   const [expanded, setExpanded] = useState<string>();
   const container = typeof window !== 'undefined' ? () => window.document.body : undefined;
 
@@ -204,6 +208,9 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
       ModalProps={{
         keepMounted: true,
       }}
+      SlideProps={{
+        onExited,
+      }}
       BackdropProps={{
         sx: {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -230,9 +237,9 @@ export default function DrawerNavbar({ onClose, activePageKey, open }: DrawerNav
               <Link href={webApplicationUrl} className={'drawer-nav-actions__primary'} onClick={onClose}>
                 Start for free
               </Link>
-              <Link href='/contact' className={'drawer-nav-actions__secondary'} onClick={onClose}>
+              <button type='button' className={'drawer-nav-actions__secondary'} onClick={onContactSales}>
                 Contact sales
-              </Link>
+              </button>
             </div>
           </div>
         </div>

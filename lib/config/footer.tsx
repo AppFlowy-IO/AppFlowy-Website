@@ -159,9 +159,9 @@ export const links = [
         link: '/contact',
       },
       {
-        // TODO: temporary link
         name: 'Contact sales',
-        link: '/contact',
+        // Opens the contact dialog in place instead of navigating.
+        action: 'contact-sales' as const,
       },
       {
         name: 'Report a bug',

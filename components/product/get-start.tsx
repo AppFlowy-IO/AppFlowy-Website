@@ -7,6 +7,7 @@ import { webApplicationUrl } from '@/lib/web-application';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 
 interface GetStartProps {
   /** The blurred glow behind the section. Off for pages that want a plain white band. */
@@ -14,6 +15,8 @@ interface GetStartProps {
 }
 
 function GetStart({ showGlow = true }: GetStartProps) {
+  const { openContactDialog } = useContactDialog();
+
   return (
     <div className='flex w-full justify-center'>
       <div className='section-8 min-w-0 max-w-full py-20 relative inset-0 isolate bg-white'>
@@ -32,20 +35,16 @@ function GetStart({ showGlow = true }: GetStartProps) {
         </div>
         <div className='section-8-btns relative z-[1] py-12 m-auto flex items-center justify-center gap-3 max-sm:w-full max-sm:max-w-[300px] max-sm:flex-col sm:align-center max-sm:gap-3'>
           <Button
-            asChild
             size={'xl'}
             className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90 max-sm:w-full'}
+            onClick={() => {
+              collectEvent(EventName.navigatorContactSalesBtn, {
+                type: 'click',
+              });
+              openContactDialog({ title: 'Contact sales', source: 'get-started-section' });
+            }}
           >
-            <Link
-              href={'/contact'}
-              onClick={() => {
-                collectEvent(EventName.navigatorContactSalesBtn, {
-                  type: 'click',
-                });
-              }}
-            >
-              Contact Sales
-            </Link>
+            Contact Sales
           </Button>
           <Button
             asChild

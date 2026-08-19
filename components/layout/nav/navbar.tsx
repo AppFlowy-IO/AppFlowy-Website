@@ -14,6 +14,7 @@ import Menu from '@/components/icons/menu';
 import DrawerNavbar from '@/components/layout/nav/drawer-nav';
 import { collectEvent, EventName } from '@/lib/collect';
 import { useInView } from 'framer-motion';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 
 const closeDuration = 200;
 
@@ -27,6 +28,18 @@ function Navbar() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | undefined>();
   const debounceClose = useMemo(() => debounce(() => setAnchorEl(undefined), closeDuration), []);
   const [openDrawer, setOpenDrawer] = useState(false);
+  // The drawer is an MUI modal with its own focus trap; opening the contact
+  // dialog on top of it makes the form untypable. Queue it for after the
+  // drawer's exit transition instead.
+  const [contactSalesPending, setContactSalesPending] = useState(false);
+  const { openContactDialog } = useContactDialog();
+
+  const openContactSales = (source: string) => {
+    collectEvent(EventName.navigatorContactSalesBtn, {
+      type: 'click',
+    });
+    openContactDialog({ title: 'Contact sales', source });
+  };
 
   useEffect(() => {
     if (!inView) return;
@@ -73,20 +86,11 @@ function Navbar() {
         {/* Contact Sales Button */}
         <div className={'max-lg:hidden'}>
           <Button
-            asChild
             variant={'outline'}
             size={'lg'}
+            onClick={() => openContactSales('navbar')}
           >
-            <Link
-              href={'/contact'}
-              onClick={() => {
-                collectEvent(EventName.navigatorContactSalesBtn, {
-                  type: 'click',
-                });
-              }}
-            >
-              Contact Sales
-            </Link>
+            Contact Sales
           </Button>
         </div>
 
@@ -113,7 +117,13 @@ function Navbar() {
           </Button>
         </div>
         <span
-          onClick={() => setOpenDrawer(true)}
+          onClick={() => {
+            // Reopening cancels any queued contact-sales open from a
+            // still-in-flight close, so it can't fire on a later,
+            // unrelated close once the exit transition finally completes.
+            setContactSalesPending(false);
+            setOpenDrawer(true);
+          }}
           className={'trigger-btn'}
         >
           <Menu />
@@ -127,6 +137,15 @@ function Navbar() {
       />
       <DrawerNavbar
         onClose={() => setOpenDrawer(false)}
+        onContactSales={() => {
+          setContactSalesPending(true);
+          setOpenDrawer(false);
+        }}
+        onExited={() => {
+          if (!contactSalesPending) return;
+          setContactSalesPending(false);
+          openContactSales('mobile-drawer');
+        }}
         open={openDrawer}
       />
     </nav>

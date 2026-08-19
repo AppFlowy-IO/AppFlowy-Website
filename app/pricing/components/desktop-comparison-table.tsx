@@ -5,18 +5,20 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { comparisonPlans, comparisonFeatureGroups } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
-import { ContactDialog } from './contact-dialog';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
+import { usePricingState } from './pricing-state-context';
 
 export function DesktopComparisonTable() {
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
-  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const { openContactDialog } = useContactDialog();
+  const { deploymentMode } = usePricingState();
 
   const handleUpgradeClick = () => {
     setIsUpgradeDialogOpen(true);
   };
 
   const handleContactClick = () => {
-    setIsContactDialogOpen(true);
+    openContactDialog({ deploymentMode });
   };
 
   return (
@@ -189,7 +191,6 @@ export function DesktopComparisonTable() {
 
       <UpgradeDialog isOpen={isUpgradeDialogOpen} onClose={() => setIsUpgradeDialogOpen(false)} />
 
-      <ContactDialog open={isContactDialogOpen} onOpenChange={setIsContactDialogOpen} />
     </div>
   );
 }
