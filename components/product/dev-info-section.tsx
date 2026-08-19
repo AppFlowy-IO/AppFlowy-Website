@@ -2,7 +2,7 @@
 
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useInView } from 'framer-motion';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import React, { useEffect, useMemo } from 'react';
 import { TabPanel } from '@/components/shared/tab-panel';
 import MuiTab from '@mui/material/Tab';
@@ -12,6 +12,8 @@ import LocalAIImage from '@/assets/images/dev-info/local-ai.webp';
 import ComplianceImage from '@/assets/images/dev-info/compliance.webp';
 import ArchitectureImage from '@/assets/images/dev-info/architecture.webp';
 import AdminImage from '@/assets/images/dev-info/admin.webp';
+import AdminMobileImage from '@/assets/images/dev-info/admin-mobile.webp';
+
 
 import DeployIcon from '@/components/product/deploy-icon';
 import LocalAIIcon from '@/components/product/local-ai-icon';
@@ -47,6 +49,50 @@ function GridRule({ className }: { className?: string }) {
   );
 }
 
+type Panel = {
+  value: string;
+  image: StaticImageData;
+  /** Alternate crop for the mobile carousel, where the desktop artwork reads poorly. */
+  mobileImage?: StaticImageData;
+  title1: string;
+  title2: string;
+  desc: string;
+};
+
+/**
+ * Panel artwork. Both the desktop grid and the mobile carousel stay mounted at every breakpoint
+ * (the inactive one is only `display: none`), and browsers fetch an `<img src>` even when it is
+ * hidden. So a panel with a mobile-specific crop renders a `<picture>`: the browser resolves the
+ * media query itself and downloads exactly one file per viewport. Images are served unoptimized
+ * (`images.unoptimized` in next.config), so dropping `next/image` here costs nothing.
+ */
+function PanelImage({ panel, sizes }: { panel: Panel; sizes: string }) {
+  if (panel.mobileImage) {
+    return (
+      <picture>
+        <source media='(min-width: 900px)' srcSet={panel.image.src} />
+        <img
+          loading={'eager'}
+          className='absolute inset-0 h-full w-full object-cover'
+          src={panel.mobileImage.src}
+          alt={panel.title1}
+        />
+      </picture>
+    );
+  }
+
+  return (
+    <Image
+      loading={'eager'}
+      fill
+      sizes={sizes}
+      className='object-cover'
+      src={panel.image.src}
+      alt={panel.title1}
+    />
+  );
+}
+
 function DevInfoSection() {
   const [value, setValue] = React.useState('deploy');
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
@@ -57,27 +103,27 @@ function DevInfoSection() {
     return [
       {
         value: 'deploy',
-        label: 'Deploy Anywhere',
+        label: 'Deploy anywhere',
         icon: <DeployIcon />,
       },
       {
         value: 'local_ai',
-        label: 'On-Prem and Local AI',
+        label: 'On-prem and local AI',
         icon: <LocalAIIcon />,
       },
       {
         value: 'compliance',
-        label: 'Complete Data Sovereignty',
+        label: 'Complete data sovereignty',
         icon: <ComplianceIcon />,
       },
       {
         value: 'architecture',
-        label: 'Architecture',
+        label: 'Integrations & architecture',
         icon: <ArchitectureIcon />,
       },
       {
         value: 'admin',
-        label: 'Admin Panel',
+        label: 'Centralised admin panel',
         icon: <AdminIcon />,
       },
     ];
@@ -99,36 +145,42 @@ function DevInfoSection() {
     }
   }, [inView, start, stop]);
 
-  const panels = useMemo(() => {
+  const panels: Panel[] = useMemo(() => {
     return [
       {
         value: 'deploy',
         image: DeployImage,
-        title: 'On-prem, cloud, air-gapped',
+        title1: 'On-prem, cloud,',
+        title2: 'air-gapped',
         desc: 'Run AppFlowy on your infrastructure, in your cloud, or in a fully air-gapped environment.',
       },
       {
         value: 'local_ai',
         image: LocalAIImage,
-        title: "AI on your terms, not your vendor's",
+        title1: "AI on your terms,",
+        title2: "not your vendor's",
         desc: "Keep AI processing and data inside your environment. Power AppFlowy AI with self-hosted LLMs and embedding models.",
       },
       {
         value: 'compliance',
         image: ComplianceImage,
-        title: 'Your jurisdiction, Your data residency',
+        title1: 'Your jurisdiction,',
+        title2: 'Your data residency',
         desc: 'Control where your data is stored and processed to meet residency, security, and regulatory requirements. No vendor access to your self-hosted instance.',
       },
       {
         value: 'architecture',
         image: ArchitectureImage,
-        title: 'Fits into your existing stack',
+        title1: 'Fits into your existing',
+        title2: 'stack',
         desc: 'SAML & OIDC SSO, SCIM, LDAP, MCP, and public APIs. Extend AppFlowy to fit your stack not the other way around.',
       },
       {
         value: 'admin',
         image: AdminImage,
-        title: 'Full control, one view',
+        mobileImage: AdminMobileImage,
+        title1: 'Full control, one view',
+        title2: '',
         desc: 'Manage users, workspaces, and instance settings, enforce SSO and permissions, and access server management tools from the admin panel.',
       },
     ];
@@ -167,7 +219,7 @@ function DevInfoSection() {
       <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-10 lg:px-12 xl:px-20'>
         <div className='align-items-start mb-8 flex w-full flex-col lg:mb-10 xl:mb-12'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
-          <h5 className='text-style-h5 mt-2 text-text-tertiary font-normal'>Your team. Your servers. Your rules.</h5>
+          <h5 className='text-style-h5 mt-2 text-text-tertiary font-normal'>Your infrastructure. Your data. Your rules.</h5>
         </div>
         <GridRule className='mb-12 min-[900px]:hidden' />
         <div ref={ref}>
@@ -234,17 +286,13 @@ function DevInfoSection() {
                 <TabPanel key={panel.value} index={panel.value} value={value}>
                   <div className='flex w-full flex-col items-end'>
                     <div className='relative h-[220px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] lg:h-[270px] xl:h-[320px]'>
-                      <Image
-                        loading={'eager'}
-                        fill
-                        sizes='(max-width: 900px) 100vw, 50vw'
-                        className='object-cover'
-                        src={panel.image.src}
-                        alt={panel.title}
-                      />
+                      <PanelImage panel={panel} sizes='(max-width: 900px) 100vw, 50vw' />
                     </div>
                     <div className='mt-5 flex flex-col gap-3 max-w-[450px] lg:mt-6 lg:gap-4 xl:mt-8 xl:gap-5'>
-                      <h2 className='text-style-h2 font-semibold text-white'>{panel.title}</h2>
+                      <div className='text-style-h2 font-semibold text-white'>
+                        <h2>{panel.title1}</h2>
+                        <h2>{panel.title2}</h2>
+                      </div>
                       <p className='text-style-h5 whitespace-pre-wrap text-gray-40'>{panel.desc}</p>
                     </div>
                   </div>
@@ -260,17 +308,13 @@ function DevInfoSection() {
             {activePanel && (
               <div className='mt-6 flex w-full flex-col'>
                 <div className='relative h-[328px] w-full shrink-0 overflow-hidden rounded-[12px] sm:h-[380px]'>
-                  <Image
-                    loading={'eager'}
-                    fill
-                    sizes='100vw'
-                    className='object-cover'
-                    src={activePanel.image.src}
-                    alt={activePanel.title}
-                  />
+                  <PanelImage panel={activePanel} sizes='100vw' />
                 </div>
                 <div className='mt-8 flex min-h-[172px] flex-col gap-3'>
-                  <h2 className='text-style-h2 font-semibold text-white'>{activePanel.title}</h2>
+                  <div className='text-style-h2 font-semibold text-white'>
+                    <h2>{activePanel.title1}</h2>
+                    <h2>{activePanel.title2}</h2>
+                  </div>
                   <p className='text-base whitespace-pre-wrap text-text-tertiary'>{activePanel.desc}</p>
                 </div>
               </div>
