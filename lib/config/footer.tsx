@@ -50,7 +50,7 @@ export const links = [
     children: [
       {
         name: 'Contacts',
-        link: '/contact',
+        link: 'mailto:support@appflowy.io',
       },
       {
         name: 'About Us',
@@ -154,9 +154,8 @@ export const links = [
     name: 'Support',
     children: [
       {
-        // TODO: temporary link
         name: 'General support',
-        link: '/contact',
+        link: 'mailto:support@appflowy.io',
       },
       {
         name: 'Contact sales',
