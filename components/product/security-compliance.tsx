@@ -19,7 +19,7 @@ const FEATURE_GROUPS = [
   },
   {
     title: 'Flexible administration',
-    items: ['SCIM user provisioning and LDAP integration', 'Centralized user, workspace, and instance administration'],
+    items: ['SCIM  provisioning and LDAP integration', 'Centralized user, workspace, and instance administration'],
   },
   {
     title: 'Scalable infrastructure',

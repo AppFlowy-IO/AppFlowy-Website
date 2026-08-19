@@ -71,6 +71,12 @@ const sectionTestimonials: TestimonialCardProps[] = [
   },
   {
     quote:
+      'Wonderful. Allowed us to get rid of both Notion & Trello. The developers are super responsive and the community is great.',
+    name: 'Julian Engel',
+    subtitle: 'Reviewed on Product Hunt',
+  },
+  {
+    quote:
       "La meilleure solution de note alternative à Notion gratuite et open source je l'utilise maintenant tout les jours pour mes projets. Merci les devs",
     name: 'Bastien Boucq',
     subtitle: 'Reviewed on Google Play',
@@ -78,18 +84,6 @@ const sectionTestimonials: TestimonialCardProps[] = [
   {
     quote: 'Me encanta AppFlowy, la tengo sincronizada en mi laptop y en mi celular. Me gusta mucho más que Notion.',
     name: 'Carlos Eduardo Magallon Zepeda',
-    subtitle: 'Reviewed on Google Play',
-  },
-  {
-    quote:
-      'Our product velocity increased by 40% in the first quarter. The team spends less time on boilerplate and more time on core features.',
-    name: 'Reviewed on Google Play',
-    subtitle: 'Reviewed on G2 Crowd',
-  },
-  {
-    quote:
-      'Passing our latest security audit was much easier because this tool stays within our infrastructure. Total control, no external leaks.',
-    name: 'Julian Ricci',
     subtitle: 'Reviewed on Google Play',
   },
   {
@@ -108,18 +102,6 @@ const sectionTestimonials: TestimonialCardProps[] = [
       'Voulant utilisé une application similaire à notion sur Linux , j’ai trouvé cette application qui est presque comme notion et qui se synchronise correctement entre chaque appareil Linux -iOS et même Windows et en plus c’est open source donc je recommande fortement un grand merci au développeurs de appflowy',
     name: 'K4iw',
     subtitle: 'Reviewed on App Store',
-  },
-  {
-    quote:
-      'Finally, an AI tool that respects our VPC boundaries. We get the power of LLMs without ever compromising our data sovereignty.',
-    name: 'Elena Vance',
-    subtitle: 'Reviewed on Google Play',
-  },
-  {
-    quote:
-      'Wonderful. Allowed us to get rid of both Notion & Trello. The developers are super responsive and the community is great.',
-    name: 'Julian Engel',
-    subtitle: 'Reviewed on Product Hunt',
   },
 ];
 
