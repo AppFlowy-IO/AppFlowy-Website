@@ -202,6 +202,11 @@
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       box-shadow: 0 18px 48px rgba(26, 25, 43, 0.06);
+
+      @media (max-width: 1279px) {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.08);
+      }
     }
 
     &__card-label {

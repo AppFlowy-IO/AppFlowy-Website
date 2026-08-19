@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
@@ -38,16 +41,25 @@ const BADGES = [
   { label: 'ISO/IEC 27001', src: ISOBadge, alt: 'iso 27001 badge' },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
+};
+
 function ComplianceCard({ label, alt, src }: { label: string; alt: string; src: string }) {
   return (
-    <div className='compliance__card flex h-[250px] w-[220px] min-w-0 shrink-0 flex-col items-center justify-center gap-7 rounded-[12px] max-xl:h-[220px] max-xl:w-full max-xl:shrink max-xl:gap-5 max-sm:h-[200px] max-sm:gap-4'>
+    <motion.div
+      variants={cardVariants}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className='compliance__card flex h-[250px] w-[220px] min-w-0 shrink-0 flex-col items-center justify-center gap-7 rounded-[12px] max-xl:h-[220px] max-xl:w-full max-xl:shrink max-xl:gap-5 max-sm:gap-4'
+    >
       <div className='relative h-[112px] w-[112px] max-xl:h-[88px] max-xl:w-[88px]'>
         <Image alt={alt} fill={true} src={src} />
       </div>
       <p className='compliance__card-label min-w-full text-center font-mono text-[20px] font-semibold tracking-[-0.04em] text-text-primary max-xl:text-[16px] max-sm:text-[14px]'>
         {label}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -97,14 +109,18 @@ function SecurityCompliance() {
             </div>
           </div>
 
-          <div
+          <motion.div
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ staggerChildren: 0.08 }}
             className='compliance__badges z-[1] grid grid-cols-2 gap-[14px] max-xl:w-full max-xl:grid-cols-4 max-xl:justify-items-stretch max-md:grid-cols-2 max-sm:gap-4'
             aria-label={'Security and compliance certifications'}
           >
             {BADGES.map((badge) => (
               <ComplianceCard key={badge.label} alt={badge.alt} label={badge.label} src={badge.src} />
             ))}
-          </div>
+          </motion.div>
         </div >
       </section >
     </div >
