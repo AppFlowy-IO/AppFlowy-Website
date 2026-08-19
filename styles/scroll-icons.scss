@@ -2,10 +2,6 @@
   @apply flex w-full transform-gpu flex-col items-center gap-10 max-md:gap-5;
   will-change: auto;
 
-  &-title {
-    @apply text-center text-[24px] font-medium leading-[120%];
-  }
-
   .developers-logos {
     @apply w-full overflow-hidden;
 

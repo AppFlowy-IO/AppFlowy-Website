@@ -20,12 +20,17 @@ export type PlatformCardProps = {
   subtitle: string;
   icon: StaticImageData | string;
   image: StaticImageData | string;
+  /** Marks the trailing duplicate used to make the "next" loop seamless. */
+  'aria-hidden'?: boolean;
 };
 
-export function PlatformCard({ heading, subtitle, icon, image }: PlatformCardProps) {
+export function PlatformCard({ heading, subtitle, icon, image, 'aria-hidden': ariaHidden }: PlatformCardProps) {
 
   return (
-    <article className="platform-card flex w-[min(100%,840px)] shrink-0 snap-start overflow-hidden rounded-xl bg-white min-h-[440px] max-md:min-h-0 max-md:flex-col">
+    <article
+      aria-hidden={ariaHidden}
+      className="platform-card flex w-[min(100%,840px)] shrink-0 snap-start overflow-hidden rounded-xl bg-white min-h-[440px] max-md:min-h-0 max-md:flex-col"
+    >
       <div className="flex w-1/2 flex-col justify-between gap-4 px-8 py-10 max-md:w-full max-md:gap-3 max-md:px-5 max-md:py-5 max-md:pt-8">
         <div className="flex h-8 w-8 items-center justify-center max-md:hidden">
           <Image
@@ -87,11 +92,80 @@ const platformCards: PlatformCardProps[] = [
   },
 ];
 
+// A single trailing duplicate can't always be scrolled far enough to align
+// with the start of the track (the browser clamps scrollLeft before it gets
+// there), so the loop-reset below would never fire. Duplicating the whole
+// set gives the track enough scrollable width to always reach the first
+// duplicate cleanly.
+const loopCards: PlatformCardProps[] = [...platformCards, ...platformCards];
+
 const controlButtonClasses =
   'inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#8427E0] transition-[transform,background-color] duration-180ms ease-ease hover:-translate-y-px hover:bg-slate-200 [&>svg]:h-4 [&>svg]:w-4';
 
 export default function PlatformSection() {
   const trackRef = React.useRef<HTMLDivElement>(null);
+  const realCardCount = platformCards.length;
+
+  const getCardPositions = (track: HTMLDivElement) => {
+    const cards = Array.from(track.querySelectorAll<HTMLElement>('.platform-card'));
+    const trackLeft = track.getBoundingClientRect().left;
+    // Scroll position that aligns each card with the start of the track.
+    const positions = cards.map((card) => card.getBoundingClientRect().left - trackLeft + track.scrollLeft);
+
+    return { cards, positions };
+  };
+
+  const getCurrentIndex = (track: HTMLDivElement, positions: number[]) =>
+    positions.reduce(
+      (closest, position, index) =>
+        Math.abs(position - track.scrollLeft) < Math.abs(positions[closest] - track.scrollLeft) ? index : closest,
+      0,
+    );
+
+  // Once the loop scrolls onto any duplicate card, snap straight back to the
+  // matching real card without animating — duplicates are visually identical
+  // to their real counterparts, so the reset is invisible and "next" never
+  // runs out of cards. `scrollend` (not a debounced 'scroll' handler) is what
+  // makes this reliable: smooth-scroll animations decelerate at the end, so a
+  // fixed gap between 'scroll' events can look "settled" while the browser's
+  // own animation is still running — racing our instant jump against it and
+  // leaving the track at a random in-between position.
+  React.useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const handleScrollEnd = () => {
+      const { positions } = getCardPositions(track);
+      const current = getCurrentIndex(track, positions);
+
+      if (current < realCardCount) {
+        return;
+      }
+
+      const target = positions[current % realCardCount];
+
+      // `behavior: 'auto'` alone isn't reliably instant here — with
+      // scroll-snap-type active some browsers still ease into the settled
+      // snap position, which shows up as the exact "visible rewind to card
+      // 1" this reset is supposed to hide. Dropping both scroll-behavior and
+      // scroll-snap-type for the single jump forces it to be a hard cut.
+      track.style.scrollBehavior = 'auto';
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = target;
+      // Restore next frame, after the browser has applied the jump.
+      requestAnimationFrame(() => {
+        track.style.scrollBehavior = '';
+        track.style.scrollSnapType = '';
+      });
+    };
+
+    track.addEventListener('scrollend', handleScrollEnd);
+
+    return () => track.removeEventListener('scrollend', handleScrollEnd);
+  }, [realCardCount]);
 
   const scrollByCard = (direction: 'prev' | 'next') => {
     const track = trackRef.current;
@@ -100,33 +174,23 @@ export default function PlatformSection() {
       return;
     }
 
-    const cards = Array.from(track.querySelectorAll<HTMLElement>('.platform-card'));
+    const { cards, positions } = getCardPositions(track);
 
     if (cards.length === 0) {
       return;
     }
 
-    const trackLeft = track.getBoundingClientRect().left;
-    // Scroll position that aligns each card with the start of the track.
-    const positions = cards.map((card) => card.getBoundingClientRect().left - trackLeft + track.scrollLeft);
-
-    const current = positions.reduce(
-      (closest, position, index) =>
-        Math.abs(position - track.scrollLeft) < Math.abs(positions[closest] - track.scrollLeft) ? index : closest,
-      0,
-    );
-
-    // The last card may not be able to align with the start of the track, so
-    // rely on the scroll edges to know when to wrap around.
-    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-    const atStart = track.scrollLeft <= 1;
+    const current = getCurrentIndex(track, positions);
 
     let target: number;
 
     if (direction === 'next') {
-      target = atEnd || current === cards.length - 1 ? 0 : current + 1;
+      // Glide onto the duplicate first card past the last real card; the
+      // scroll listener above then snaps it back to the real one.
+      target = current >= cards.length - 1 ? 0 : current + 1;
     } else {
-      target = atStart || current === 0 ? cards.length - 1 : current - 1;
+      // Skip the trailing duplicate when wrapping backward from the first card.
+      target = current <= 0 ? realCardCount - 1 : current - 1;
     }
 
     track.scrollTo({
@@ -158,10 +222,11 @@ export default function PlatformSection() {
             className="flex snap-x snap-mandatory scroll-smooth gap-7 overflow-x-auto py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="Platform cards"
           >
-            {platformCards.map((card) => (
+            {loopCards.map((card, index) => (
               <PlatformCard
-                key={card.heading.top}
+                key={index < realCardCount ? card.heading.top : `${card.heading.top}-duplicate-${index}`}
                 {...card}
+                aria-hidden={index >= realCardCount}
               />
             ))}
           </div>

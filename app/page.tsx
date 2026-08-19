@@ -38,7 +38,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={'w-full bg-white pb-16 pt-24 max-md:py-5'}>
+      <div className={'w-full bg-white pb-16 pt-24 max-md:py-5 max-md:pt-[60px]'}>
         <ScrollIcons />
       </div>
       <ShowcaseSection />

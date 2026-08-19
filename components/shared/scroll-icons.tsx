@@ -63,7 +63,7 @@ function ScrollIcons() {
 
   return (
     <div className={'scroll-icons'}>
-      <div className={'text-style-body-standard text-text-secondary'}>Trusted by teams and individuals from</div>
+      <p className={'text-style-body-standard text-text-secondary'}>Trusted by teams and individuals from</p>
       <div ref={scrollRef} className={'developers-logos'}>
         <div className={'logo-wrapper'}>
           {logos.map((item, index) => {
