@@ -137,12 +137,12 @@
 
       &::before {
         left: 0;
-        background: linear-gradient(90deg, #f6f6ff 0%, rgba(246, 246, 255, 0) 100%);
+        background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
       }
 
       &::after {
         right: 0;
-        background: linear-gradient(270deg, #f6f6ff 0%, rgba(246, 246, 255, 0) 100%);
+        background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
       }
     }
 
@@ -161,8 +161,7 @@
   }
 
   .compliance-container {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 70.192%),
-      linear-gradient(90deg, #f6f6ff 0%, #f6f6ff 100%);
+    background: #ffffff;
   }
 
   .compliance {

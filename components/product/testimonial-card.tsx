@@ -15,7 +15,7 @@ export type TestimonialCardProps = {
 };
 
 export function TestimonialCard({ quote, name, subtitle, className }: TestimonialCardProps) {
-  const testimonialCardClassName = `testimonial-card flex h-[320px] w-[480px] shrink-0 flex-col justify-between rounded-[18px] bg-white p-[36px] max-md:w-full max-md:max-w-[480px] max-sm:h-auto max-sm:min-h-[260px] max-sm:w-[86vw] max-sm:max-w-[420px] max-sm:p-6 ${className ? className : ''
+  const testimonialCardClassName = `testimonial-card flex h-[320px] w-[480px] shrink-0 flex-col justify-between rounded-[var(--radius-radius-2xl,16px)] bg-[var(--surface-container-2,#FAFAFA)] p-[36px] max-md:w-full max-md:max-w-[480px] max-sm:h-auto max-sm:min-h-[260px] max-sm:w-[86vw] max-sm:max-w-[420px] max-sm:p-6 ${className ? className : ''
     }`;
 
   return (
@@ -148,7 +148,7 @@ export function TestimonialSection() {
   };
 
   return (
-    <div className='w-full overflow-hidden bg-[#F6F6FF] py-[160px] max-md:py-[10vh]'>
+    <div className='w-full overflow-hidden bg-white py-[160px] max-md:py-[10vh]'>
       <div className='mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-[80px] max-xl:px-[4vw]'>
         <div className='flex w-full'>
           <h2 className='text-style-h1 font-bold'>
