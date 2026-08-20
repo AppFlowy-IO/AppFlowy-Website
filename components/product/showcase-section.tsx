@@ -38,7 +38,7 @@ const tabs: Tab[] = [
     {
         id: "knowledge",
         label: "Knowledge Base",
-        title: "A single source of truth for|teams and AI agents.",
+        title: "One source of truth for|teams and AI agents.",
         image: KnowledgeImage,
         clouds: [
             "rgba(255, 200, 201, 0.72)",
