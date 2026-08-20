@@ -90,7 +90,7 @@ function Navbar() {
             size={'lg'}
             onClick={() => openContactSales('navbar')}
           >
-            Contact Sales
+            Contact sales
           </Button>
         </div>
 

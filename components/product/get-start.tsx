@@ -44,7 +44,7 @@ function GetStart({ showGlow = true }: GetStartProps) {
               openContactDialog({ title: 'Contact sales', source: 'get-started-section' });
             }}
           >
-            Contact Sales
+            Contact sales
           </Button>
           <Button
             asChild
