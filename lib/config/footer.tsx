@@ -1,37 +1,10 @@
 import Twitter from '@/components/icons/twitter';
-import Reddit from '@/components/icons/reddit';
 import Github from '@/components/icons/github';
 import Discord from '@/components/icons/discord';
 import { webApplicationUrl } from '@/lib/web-application';
+import Youtube from '@/components/icons/youtube';
 
 export const externalLinks = [
-  {
-    key: 'twitter',
-    icon: (
-      <i className={'text-white'}>
-        <Twitter />
-      </i>
-    ),
-    link: 'https://twitter.com/appflowy',
-  },
-  {
-    key: 'reddit',
-    icon: (
-      <i className={'text-white'}>
-        <Reddit />
-      </i>
-    ),
-    link: 'https://www.reddit.com/r/AppFlowy',
-  },
-  {
-    key: 'github',
-    icon: (
-      <i className={'text-white'}>
-        <Github />
-      </i>
-    ),
-    link: 'https://github.com/AppFlowy-IO/appflowy',
-  },
   {
     key: 'discord',
     icon: (
@@ -41,31 +14,60 @@ export const externalLinks = [
     ),
     link: 'https://discord.gg/9Q2xaN37tV',
   },
+  {
+    key: 'youtube',
+    icon: (
+      <i className={'text-white'}>
+        <Youtube />
+      </i>
+    ),
+    link: 'https://www.youtube.com/@AppFlowyHQ',
+  },
+  {
+    key: 'twitter',
+    icon: (
+      <i className={'text-white'}>
+        <Twitter />
+      </i>
+    ),
+    link: 'https://twitter.com/appflowy',
+  },
+
+  {
+    key: 'github',
+    icon: (
+      <i className={'text-white'}>
+        <Github />
+      </i>
+    ),
+    link: 'https://github.com/AppFlowy-IO/appflowy',
+  },
 ];
 
 export const links = [
   {
-    name: 'Product',
+    name: 'Company',
     children: [
       {
-        name: 'Templates',
-        link: '/templates',
+        name: 'Contacts',
+        link: 'mailto:support@appflowy.io',
       },
       {
-        name: 'What\'s New',
-        link: '/what-is-new',
+        name: 'About Us',
+        link: '/about',
       },
       {
-        name: 'Zapier Integrations',
-        link: 'https://zapier.com/apps/appflowy/integrations',
+        name: 'Privacy',
+        link: '/privacy',
       },
       {
-        name: 'Blog',
-        link: '/blog',
+        name: 'Terms',
+        link: '/terms',
       },
       {
-        name: 'Email Newsletter',
-        link: '/subscribe-newsletter',
+        name: 'Careers',
+        link: '/join',
+        badge: 1,
       },
       {
         name: 'Pricing',
@@ -103,52 +105,35 @@ export const links = [
     ],
   },
   {
-    name: 'Community',
-    children: [
-      {
-        name: 'GitHub',
-        link: 'https://github.com/AppFlowy-IO/AppFlowy',
-      },
-      {
-        name: 'Twitter',
-        link: 'https://twitter.com/appflowy',
-      },
-      {
-        name: 'Discord',
-        link: 'https://discord.gg/9Q2xaN37tV',
-      },
-      {
-        name: 'Community Hub',
-        link: 'https://forum.appflowy.com/',
-      },
-      {
-        name: 'Report a bug',
-        link: 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose',
-      },
-      {
-        name: 'Request a feature',
-        link: 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose',
-      },
-    ],
-  },
-  {
     name: 'Resources',
     children: [
       {
-        name: 'Guides & Tutorials',
+        name: 'Product guides',
         link: 'https://appflowy.com/guide/getting-started-with-appflowy',
       },
       {
-        name: 'Developer Docs',
+        name: 'Developer docs',
         link: 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production',
+      },
+      {
+        name: 'Templates',
+        link: '/templates',
+      },
+      {
+        name: 'Videos',
+        link: 'https://www.youtube.com/@AppFlowyHQ',
+      },
+      {
+        name: "What's new",
+        link: '/what-is-new',
+      },
+      {
+        name: 'Zapier integration',
+        link: 'https://zapier.com/apps/appflowy/integrations',
       },
       {
         name: 'AppFlowy Blocks',
         link: '/appflowy-blocks',
-      },
-      {
-        name: 'Request a resource',
-        link: 'https://tally.so/r/npoyeb',
       },
       {
         name: 'RSS',
@@ -166,28 +151,32 @@ export const links = [
     ],
   },
   {
-    name: 'Company',
+    name: 'Support',
     children: [
       {
-        name: 'About Us',
-        link: '/about',
+        name: 'General support',
+        link: 'mailto:support@appflowy.io',
       },
       {
-        name: 'Careers',
-        link: '/join',
-        badge: 1,
+        name: 'Contact sales',
+        // Opens the contact dialog in place instead of navigating.
+        action: 'contact-sales' as const,
       },
       {
-        name: 'Privacy',
-        link: '/privacy',
+        name: 'Report a bug',
+        link: 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose',
       },
       {
-        name: 'Terms',
-        link: '/terms',
+        name: 'Request a feature',
+        link: 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose',
       },
       {
-        name: 'Contacts',
-        link: '/contact',
+        name: 'Community server',
+        link: 'https://discord.gg/9Q2xaN37tV',
+      },
+      {
+        name: 'Forums',
+        link: 'https://forum.appflowy.com/',
       },
     ],
   },

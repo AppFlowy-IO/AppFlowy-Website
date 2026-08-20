@@ -501,10 +501,12 @@
     @apply bg-night-blue;
   }
   .appflowy-drawer {
-    @apply bg-night-blue;
+    @apply bg-transparent;
+  }
+  .appflowy-navbar {
+    @apply max-md:bg-night-blue;
   }
   .appflowy-navbar.sticky {
-
     @apply bg-night-blue;
   }
   .arrow-badge {
@@ -542,6 +544,9 @@
     > a {
       @apply text-gray-400;
     }
+  }
+  .popover-paper:has(.menu-popover-content) {
+    border-color: rgba(255, 255, 255, 0.16) !important;
   }
   .menu-popover-content {
     .group {
@@ -630,4 +635,3 @@
   }
 
 }
-

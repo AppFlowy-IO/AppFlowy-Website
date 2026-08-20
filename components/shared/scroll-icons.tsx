@@ -16,6 +16,7 @@ function ScrollIcons() {
     if (!scrollContainer) return;
 
     const mediaQuery = typeof window !== 'undefined' && 'matchMedia' in window ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
     if (mediaQuery?.matches) {
       scrollContainer.scrollTo(0, 0);
       return;
@@ -62,7 +63,7 @@ function ScrollIcons() {
 
   return (
     <div className={'scroll-icons'}>
-      <div className={'scroll-icons-title'}>Trusted by teams and individuals from</div>
+      <p className={'text-style-body-standard text-text-secondary'}>Trusted by teams and individuals from</p>
       <div ref={scrollRef} className={'developers-logos'}>
         <div className={'logo-wrapper'}>
           {logos.map((item, index) => {
@@ -76,26 +77,20 @@ function ScrollIcons() {
                   display: 'flex',
                   width: '220px',
                   height: '100px',
-                  padding: '30px 20px',
                   flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'center',
                   gap: '10px',
-                  borderRadius: '79px',
-                  background: 'rgba(245, 245, 250, 0.45)',
-                  color: 'var(--color-text)',
+                  color: 'var(--color-text-primary)',
                 }}
                 className={'logo opacity-100'}
               >
                 <svg
-                  className='opacity-60'
                   style={{
                     width: '100%',
                     height: '100%',
                     maxWidth: '160px',
                     maxHeight: '50px',
-                    filter:
-                      'brightness(0) saturate(100%) invert(7%) sepia(32%) saturate(2387%) hue-rotate(264deg) brightness(96%) contrast(104%)',
                   }}
                   aria-label={item.name}
                 >

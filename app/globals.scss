@@ -27,17 +27,39 @@
   background: #9ca3af;
 }
 
-
 :root {
-  --color-primary: #8427E0;
-  --color-primary-20: rgba(147, 39, 255, 0.20);
-  --color-primary-10: rgba(147, 39, 255, 0.10);
+  --font-family-sans: 'Inter', sans-serif;
+  --font-size-h1: clamp(28px, 5.25vw, 56px);
+  --line-height-h1: clamp(36px, 6vw, 68px);
+  --font-size-h2: clamp(24px, 4.75vw, 40px);
+  --line-height-h2: clamp(28px, 5vw, 48px);
+  --font-size-h3: clamp(20px, 3.5vw, 32px);
+  --line-height-h3: clamp(24px, 3.5vw, 40px);
+  --font-size-h4: clamp(16px, 2.5vw, 24px);
+  --line-height-h4: clamp(24px, 2.5vw, 28px);
+  --font-size-h5: clamp(16px, 2vw, 20px);
+  --line-height-h5: clamp(20px, 2vw, 24px)
+  --font-size-body-standard: clamp(14px, 1.5vw, 16px);
+  --line-height-body-standard: clamp(22px, 2vw, 24px);
+  --font-size-body-enhanced: clamp(16px, 2.2vw, 24px);
+  --line-height-body-enhanced: clamp(20px, 2.5vw, 28px);
+  --font-size-caption: clamp(12px, 1vw, 14px);
+  --line-height-caption: clamp(18px, 1vw, 20px);;
+  --color-primary: #8427e0;
+  --color-primary-20: rgba(147, 39, 255, 0.2);
+  --color-primary-10: rgba(147, 39, 255, 0.1);
   --color-night-blue: #000212;
   -webkit-font-smoothing: antialiased;
-  --color-bg: #EFF1FF;
+  --color-bg: #eff1ff;
   --color-text: #000;
   --color-fill-text: #fff;
-  --background: #EFF1FF;
+  --color-text-theme: #854cff;
+  --color-text-primary: #140f28;
+  --color-text-secondary: #5a5a5a;
+  --color-text-tertiary: #aaaaaa;
+  --color-text-on-fill: #ffffff;
+  --color-text-inverse: #ffffff;
+  --background: #eff1ff;
   --foreground: #000;
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
@@ -45,9 +67,9 @@
   --popover-foreground: 222.2 84% 4.9%;
   --primary: 222.2 47.4% 11.2%;
   --primary-foreground: #fff;
-  --secondary: #E7F5FF;
+  --secondary: #e7f5ff;
   --secondary-foreground: #333;
-  --muted: #F4F5F7;
+  --muted: #f4f5f7;
   --muted-foreground: #333;
   --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%;
@@ -60,9 +82,9 @@
 }
 
 @mixin darkVars {
-  --color-primary: #601DAA;
-  --color-primary-20: rgba(96, 29, 170, 0.20);
-  --color-primary-10: rgba(96, 29, 170, 0.10);
+  --color-primary: #601daa;
+  --color-primary-20: rgba(96, 29, 170, 0.2);
+  --color-primary-10: rgba(96, 29, 170, 0.1);
   --color-bg: #000212;
   --color-text: white;
   --color-fill-text: #000;
@@ -79,11 +101,60 @@
 }
 
 body {
-  font-family: "Poppins", "Inter", sans-serif;
-  font-size: 14px;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-standard);
   margin: 0;
-  color: var(--color-text);
-  background: linear-gradient(to right, #deddf8 0%, rgb(223, 223, 252) 13%, rgb(238, 238, 253) 40%, #edecfc 60%, #EEECFD 100%) fixed;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+      to right,
+      #deddf8 0%,
+      rgb(223, 223, 252) 13%,
+      rgb(238, 238, 253) 40%,
+      #edecfc 60%,
+      #eeecfd 100%
+    )
+    fixed;
   overscroll-behavior: none;
 }
 
+@layer utilities {
+  .text-style-h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+  }
+
+  .text-style-h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
+
+  .text-style-h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .text-style-h4 {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+  }
+
+  .text-style-h5 {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
+
+  .text-style-body-standard {
+    font-size: var(--font-size-body-standard);
+    line-height: var(--line-height-body-standard);
+  }
+
+  .text-style-body-enhanced {
+    font-size: var(--font-size-body-enhanced);
+    line-height: var(--line-height-body-enhanced);
+  }
+
+  .text-style-caption {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+  }
+}

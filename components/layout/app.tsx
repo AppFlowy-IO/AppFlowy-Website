@@ -10,6 +10,7 @@ import Script from 'next/script';
 import * as process from 'process';
 import Modal from '@/components/shared/modal';
 import { ModalProps, ModalProvider } from '@/lib/hooks/use-modal';
+import { ContactDialogProvider } from '@/components/shared/contact-dialog-provider';
 import { usePathname } from 'next/navigation';
 import { ToastProvider } from '@/components/ui/toast';
 import { Toaster } from '@/components/ui/toaster';
@@ -64,21 +65,22 @@ export default function App({
           <GitContext.Provider value={gitData}>
             <DarkContext.Provider value={false}>
               <ModalProvider value={modalContext}>
-                {isSinglePage ? (
-                  <div className={'appflowy-app'}>
-                    <main>{children}</main>
-                  </div>
-                ) : (
-                  <div className={'appflowy-app'}>
-                    <Header />
+                <ContactDialogProvider>
+                  {isSinglePage ? (
+                    <div className={'appflowy-app'}>
+                      <main>{children}</main>
+                    </div>
+                  ) : (
+                    <div className={'appflowy-app'}>
+                      <Header />
 
-                    <main>{children}</main>
-                    <Footer />
-                    {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
-                      <>
-                        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                        <Script id="google-analytics">
-                          {`
+                      <main>{children}</main>
+                      <Footer />
+                      {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+                        <>
+                          <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+                          <Script id="google-analytics">
+                            {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -88,12 +90,12 @@ export default function App({
                 });
                 gtag('config', '${ADS_ID}');
               `}
-                        </Script>
-                      </>
-                    )}
-                  </div>
-                )}
-
+                          </Script>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </ContactDialogProvider>
 
                 <Modal />
                 <div className={'appflowy-overlay'} />
@@ -102,7 +104,7 @@ export default function App({
           </GitContext.Provider>
         </UAContext.Provider>
         <Toaster />
-        <SonnerToaster 
+        <SonnerToaster
           position="top-right"
           theme="light"
           toastOptions={{

@@ -1,0 +1,95 @@
+.showcase-title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 600;
+
+  @media (max-width: 760px) {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+  }
+}
+
+.gradient-layer--leaving {
+  animation: gradientFadeOut 850ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+@keyframes gradientFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.feature-illustration--enter {
+  z-index: 1;
+  animation: illustrationEnter 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.feature-illustration--leave {
+  z-index: 2;
+  animation: illustrationLeave 850ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+@keyframes illustrationEnter {
+  0% {
+    opacity: 0.78;
+    transform: translate3d(-50%, 26%, 0) scale(0.985);
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+}
+
+@keyframes illustrationLeave {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, 42%, 0) scale(0.975);
+  }
+}
+
+.title--leave {
+  z-index: 1;
+  will-change: opacity;
+  animation: titleLeave 240ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.title--enter {
+  z-index: 0;
+  will-change: opacity;
+  animation: titleEnter 360ms 260ms cubic-bezier(0, 0, 0.2, 1) both;
+}
+
+@keyframes titleEnter {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes titleLeave {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

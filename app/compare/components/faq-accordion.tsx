@@ -6,6 +6,9 @@ import { FAQAccordionProps } from '@/lib/faq';
 import MinusIcon from '@/components/icons/minus-icon';
 import PlusIcon from '@/components/icons/plus-icon';
 
+// The compare FAQ uses larger, thinner icons than the icons' pricing-page defaults.
+const ICON_CLASS = 'h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8';
+
 export function FAQAccordion({ items }: FAQAccordionProps) {
     const [expandedItem, setExpandedItem] = useState<string>(items[0]?.id || '');
     const [hoveredItem, setHoveredItem] = useState<string>('');
@@ -77,7 +80,11 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                                 {item.question}
                             </h3>
                             <div className='flex-shrink-0'>
-                                {isExpanded ? <MinusIcon isHovered={true} /> : <PlusIcon isHovered={isHovered} />}
+                                {isExpanded ? (
+                                    <MinusIcon isHovered={true} className={ICON_CLASS} strokeWidth={1.5} />
+                                ) : (
+                                    <PlusIcon isHovered={isHovered} className={ICON_CLASS} strokeWidth={1.5} />
+                                )}
                             </div>
                         </div>
 

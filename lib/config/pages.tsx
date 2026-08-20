@@ -15,6 +15,7 @@ import Link from 'next/link';
  */
 export const whatIsNewConfig = {
   title: 'What’s New?',
+  subtitle: 'The latest AppFlowy releases, updates and fixes.',
 };
 
 /**

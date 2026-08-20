@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { useSearchParams } from 'next/navigation';
 import { DeploymentMode } from './pricing-tabs';
 import { BillingCycle } from './billing-switch';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 
 interface PricingState {
   deploymentMode: DeploymentMode;
@@ -40,7 +41,8 @@ export function PricingStateProvider({ children }: PricingStateProviderProps) {
 
   const [deploymentMode, setDeploymentMode] = useState<DeploymentMode>(getInitialDeploymentMode());
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('yearly');
-  
+  const { setDefaultDeploymentMode } = useContactDialog();
+
   // Auto-switch deployment mode based on source parameter
   useEffect(() => {
     const sourceParam = searchParams.get('source');
@@ -49,6 +51,16 @@ export function PricingStateProvider({ children }: PricingStateProviderProps) {
       setDeploymentMode('self-hosted');
     }
   }, [searchParams]);
+
+  // Let triggers outside the pricing tree (navbar, footer) open the dialog
+  // preselected to whichever tab is currently visible.
+  useEffect(() => {
+    setDefaultDeploymentMode(deploymentMode);
+  }, [deploymentMode, setDefaultDeploymentMode]);
+
+  useEffect(() => {
+    return () => setDefaultDeploymentMode('cloud');
+  }, [setDefaultDeploymentMode]);
 
   const value: PricingState = {
     deploymentMode,

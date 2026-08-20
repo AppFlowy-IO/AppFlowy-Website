@@ -1,47 +1,43 @@
 'use client';
 
-import AIImage from '@/assets/images/product/ai.png';
-import Grid from '@/assets/images/product/Grid.png';
-import Sites from '@/assets/images/product/sites.png';
-import Tasks from '@/assets/images/product/tasks.png';
-import Templates from '@/assets/images/product/template.png';
-import Website from '@/components/icons/website';
-import { TemplateIcon, KanbanIcon, ProjectsIcon, AiIcon } from '@/components/product/icons';
-import { TabPanel } from '@/components/shared/tab-panel';
+import AiOverview from '@/assets/images/product/ai-overview.webp';
+import Backlog from '@/assets/images/product/backlog.webp';
+import ProjectTracking from '@/assets/images/product/project-tracking.webp';
+import ReleaseReview from '@/assets/images/product/release-review.webp';
+import WeeklyBrief from '@/assets/images/product/weekly-brief.webp';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
-import MuiTab from '@mui/material/Tab';
-import MuiTabs from '@mui/material/Tabs';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+import 'styles/showcase.scss';
 
 function MainProducts() {
-  const [value, setValue] = React.useState('tasks');
+  const [value, setValue] = React.useState('project-tracking');
+  const [previousValue, setPreviousValue] = React.useState<string | null>(null);
+  const transitionTimer = useRef<number | null>(null);
+  const previousValueRef = useRef(value);
   const { isClient } = useClient();
-  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
 
   useEffect(() => {
-    if(!isClient) {
+    if (!isClient) {
       return;
     }
 
     const token = window.localStorage.getItem('token');
 
-    if(token) {
+    if (token) {
       window.location.href = '/app';
     }
   }, [isClient]);
 
-  const tabOptions = useMemo(() => {
+  const imageOptions = useMemo(() => {
     return [
-      { value: 'ai', label: 'AI', icon: <AiIcon /> },
-      { value: 'projects', label: 'Projects', icon: <ProjectsIcon /> },
-      { value: 'tasks', label: 'Tasks', icon: <KanbanIcon /> },
-      { value: 'templates', label: 'Templates', icon: <TemplateIcon /> },
-      { value: 'sites', label: 'Sites', icon: <Website /> },
+      { value: 'project-tracking', src: ProjectTracking.src, alt: 'Project tracking' },
+      { value: 'backlog', src: Backlog.src, alt: 'Backlog' },
+      { value: 'ai-overview', src: AiOverview.src, alt: 'AI overview' },
+      { value: 'release-review', src: ReleaseReview.src, alt: 'Release review' },
+      { value: 'weekly-brief', src: WeeklyBrief.src, alt: 'Weekly brief' },
     ];
   }, []);
 
@@ -49,114 +45,78 @@ function MainProducts() {
   const inView = useInView(ref);
 
   const { start, stop } = useAutoPlay({
-    options: tabOptions,
+    options: imageOptions,
     onChange: setValue,
+    duration: 7500,
   });
 
   useEffect(() => {
-    if(!inView) {
+    if (!inView) {
       stop();
     } else {
       start();
     }
   }, [inView, start, stop]);
 
+  // Drives the crossfade for every value change, reusing the illustration
+  // enter/leave animation from the product showcase section.
+  useEffect(() => {
+    const leavingValue = previousValueRef.current;
+
+    previousValueRef.current = value;
+
+    if (leavingValue === value) return;
+
+    if (transitionTimer.current) {
+      window.clearTimeout(transitionTimer.current);
+    }
+
+    setPreviousValue(leavingValue);
+    transitionTimer.current = window.setTimeout(() => {
+      setPreviousValue(null);
+      transitionTimer.current = null;
+    }, 850);
+  }, [value]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current) {
+        window.clearTimeout(transitionTimer.current);
+      }
+    };
+  }, []);
+
+  const activeImage = imageOptions.find((image) => image.value === value) ?? imageOptions[0];
+  const previousImage = imageOptions.find((image) => image.value === previousValue) ?? null;
+
   return (
     <div
       ref={ref}
       className={'main-product'}
     >
-      <MuiTabs
-        value={value}
-        onChange={handleChange}
-      >
-        {tabOptions.map((tab) => (
-          <MuiTab
-            onClick={() => start()}
-            className={`product-tab ${value === tab.value ? 'selected' : ''}`}
-            key={tab.value}
-            value={tab.value}
-            label={<span className={'tab-label'}>{tab.label}</span>}
-            icon={tab.icon}
-          />
-        ))}
-      </MuiTabs>
-      <TabPanel
-        value={value}
-        index={'ai'}
-      >
-        <div className={'ai-image'}>
+      <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
+        <Image
+          key={activeImage.value}
+          src={activeImage.src}
+          loading={'eager'}
+          className={`visual-image ${previousImage ? 'feature-illustration--enter' : ''}`}
+          alt={activeImage.alt}
+          width={1280}
+          height={696}
+        />
+        {previousImage ? (
           <Image
-            src={AIImage.src}
+            key={`${previousImage.value}-leaving`}
+            src={previousImage.src}
             loading={'eager'}
-            className={'object-cover'}
-            alt={'AI'}
-            width={1024}
-            height={648}
+            className={'visual-image feature-illustration--leave'}
+            alt={''}
+            aria-hidden={'true'}
+            width={1280}
+            height={696}
           />
-        </div>
-      </TabPanel>
-
-      <TabPanel
-        value={value}
-        index={'projects'}
-      >
-        <div className={'ai-image'}>
-          <Image
-            src={Grid.src}
-            loading={'eager'}
-            className={'object-cover'}
-            width={1024}
-            height={652}
-            alt={'Projects'}
-          />
-        </div>
-      </TabPanel>
-      <TabPanel
-        value={value}
-        index={'tasks'}
-      >
-        <div className={'ai-image'}>
-          <Image
-            src={Tasks.src}
-            priority={true}
-            className={'object-cover'}
-            width={1024}
-            height={648}
-            alt={'Tasks'}
-          />
-        </div>
-      </TabPanel>
-      <TabPanel
-        value={value}
-        index={'templates'}
-      >
-        <div className={'ai-image'}>
-          <Image
-            src={Templates.src}
-            loading={'eager'}
-            className={'object-cover'}
-            alt={'templates'}
-            width={1024}
-            height={648}
-          />
-        </div>
-      </TabPanel>
-      <TabPanel
-        value={value}
-        index={'sites'}
-      >
-        <div className={'ai-image'}>
-          <Image
-            src={Sites.src}
-            loading={'eager'}
-            className={'object-cover'}
-            alt={'sites'}
-            width={1024}
-            height={648}
-          />
-        </div>
-      </TabPanel>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -6,12 +6,14 @@ import * as Select from '@radix-ui/react-select';
 import { comparisonPlans, comparisonFeatureGroups, ComparisonPlan } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
-import { ContactDialog } from './contact-dialog';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
+import { usePricingState } from './pricing-state-context';
 
 export function MobileComparisonTable() {
   const [selectedPlan, setSelectedPlan] = useState<ComparisonPlan>(comparisonPlans[0]);
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
-  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const { openContactDialog } = useContactDialog();
+  const { deploymentMode } = usePricingState();
   const [openTooltips, setOpenTooltips] = useState<Set<string>>(new Set());
 
   const handlePlanChange = (planId: string) => {
@@ -27,7 +29,7 @@ export function MobileComparisonTable() {
   };
 
   const handleContactClick = () => {
-    setIsContactDialogOpen(true);
+    openContactDialog({ deploymentMode });
   };
 
   const handleTooltipToggle = (featureId: string) => {
@@ -238,7 +240,6 @@ export function MobileComparisonTable() {
 
       <UpgradeDialog isOpen={isUpgradeDialogOpen} onClose={() => setIsUpgradeDialogOpen(false)} />
 
-      <ContactDialog open={isContactDialogOpen} onOpenChange={setIsContactDialogOpen} />
     </div>
   );
 }

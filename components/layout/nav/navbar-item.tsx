@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from '@/lib/config/navigation';
 import { useRouter } from 'next/navigation';
-import ExpandMore from '@/components/icons/expand-more';
+import ExpandMore from '@/components/icons/expand-nav-icon';
 
 function NavbarItem({
   item,
@@ -26,7 +26,7 @@ function NavbarItem({
           }
           : undefined
       }
-      className={`navigation-item navigation-item-${item.key}`}
+      className={`navigation-item navigation-item-${item.key} ${isPopoverOpen ? 'popover-open' : ''}`}
       onMouseEnter={children ? onMouseEnter : undefined}
       onMouseLeave={children ? onMouseLeave : undefined}
     >

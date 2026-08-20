@@ -1,86 +1,68 @@
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
-import NewFeature from '@/components/icons/new-feature';
-import BugFixes from '@/components/icons/bug-fixes';
-import DataMigration from '@/components/icons/data-migration';
-import { IVersion } from '@/lib/config/versions';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import ExpandMore from '@/components/icons/expand-more';
 import Link from 'next/link';
-import defaultImage from '@/assets/images/versions/default.png';
+import { IVersion } from '@/lib/config/versions';
 
 dayjs.extend(LocalizedFormat);
-const iconMap: Record<string, React.ReactNode> = {
-  'new-features': <NewFeature />,
-  'bug-fixes': <BugFixes />,
-  'other-updates': <NewFeature />,
-  'data-migration': <DataMigration />,
+
+const sectionIcons: Record<string, string> = {
+  'new-features': '🚀',
+  improvements: '💎',
+  'bug-fixes': '🛠️',
+  'data-migration': '🗃️',
+  'other-updates': '✨',
+};
+
+const DEFAULT_SECTION_ICON = '📌';
+
+const tagLabels: Record<string, string> = {
+  'new-features': 'New Feature',
+  improvements: 'Improvement',
+  'bug-fixes': 'Bug Fixes',
+  'data-migration': 'Data Migration',
+  'other-updates': 'Update',
 };
 
 function Version({ version }: { version: IVersion }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [showReadMore, setShowReadMore] = useState(false);
-
-  useEffect(() => {
-    const container = ref.current;
-
-    if (!container) return;
-    const imageEl = container.querySelector('.image');
-    const releaseInfoEl = container.querySelector('.release-info');
-
-    if (!imageEl || !releaseInfoEl) return;
-    setShowReadMore(imageEl.clientHeight < releaseInfoEl.clientHeight);
-  }, []);
-
   return (
-    <div ref={ref} className={'version-panel'}>
-      <div className={'image'}>
-        <img src={version.image.src || defaultImage.src} alt={version.image.alt} width={470} height={424} />
+    <div className={'version-panel'}>
+      <div className={'version-meta'}>
+        <Link href={version.url} target={'_blank'} className={'version-title'}>
+          AppFlowy v{version.version}
+        </Link>
+        <div className={'version-date'}>{dayjs(version.time).format('LL')}</div>
+        <div className={'version-tags'}>
+          {version.content.map((section) => (
+            <span key={section.type} className={'tag'}>
+              {tagLabels[section.type] || section.name}
+            </span>
+          ))}
+        </div>
       </div>
-      <div className={'release-wrap'}>
-        <div className={'release-info'}>
-          <div className={'release-time'}>
-            {dayjs(version.time).format('LL')} - v{version.version}
+      <div className={'version-body'}>
+        {version.image.src && (
+          <div className={'version-image'}>
+            <img src={version.image.src} alt={version.image.alt} width={940} height={480} />
           </div>
-          <div className={'release-desc'}>
-            <Link href={version.url} target={'_blank'}>
-              <span className={'text-primary'}>v{version.version} </span>
-            </Link>
-
-            {version.desc}
-          </div>
-          <div className={'release-update-infos'}>
-            {version.content.map((updateItem) => (
-              <div key={updateItem.name} className={'update-item'}>
-                <div className={'update-type'}>
-                  {iconMap[updateItem.type]}
-                  {updateItem.name}
-                </div>
-                <div className={'update-infos'}>
-                  {updateItem.items.map((item, index) => (
-                    <div key={index} className={'update-info'}>
-                      <div>{item}</div>
-                    </div>
-                  ))}
-                </div>
+        )}
+        {version.desc && <div className={'version-desc'}>{version.desc}</div>}
+        <div className={'version-sections'}>
+          {version.content.map((section) => (
+            <div key={section.type} className={'version-section'}>
+              <div className={'section-heading'}>
+                <span className={'section-icon'}>{sectionIcons[section.type] || DEFAULT_SECTION_ICON}</span>
+                {section.name}
               </div>
-            ))}
-          </div>
-          {showReadMore && (
-            <div
-              className={'read-more'}
-              onClick={(e) => {
-                const container = ref.current;
-                const releaseInfoEl = container?.querySelector('.release-wrap') as HTMLDivElement;
-
-                releaseInfoEl.style.height = 'auto';
-                (e.currentTarget as HTMLDivElement).remove();
-              }}
-            >
-              Read more <ExpandMore />
+              <div className={'section-items'}>
+                {section.items.map((item, index) => (
+                  <div key={index} className={'section-item'}>
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </div>

@@ -47,9 +47,10 @@ const components = {
   },
   Quote: Quote,
   Caption,
-  Img: ({ zoomable = true, className, ...props }: ImageProps & { wide?: boolean }) => (
+  Img: ({ zoomable = true, className, alt = '', ...props }: ImageProps & { wide?: boolean }) => (
     <Image
       fill
+      alt={alt}
       className={cn('m-0 object-cover', 'rounded-md border', props.wide && 'wide', className)}
       zoomable={zoomable}
       {...props}

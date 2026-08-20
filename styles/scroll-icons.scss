@@ -1,23 +1,21 @@
 .scroll-icons {
-  @apply flex flex-col items-center gap-10 w-full  transform-gpu;
+  @apply flex w-full transform-gpu flex-col items-center gap-10 max-md:gap-5;
   will-change: auto;
-
-  &-title {
-    @apply text-center text-[24px] font-medium leading-[120%]
-  }
 
   .developers-logos {
     @apply w-full overflow-hidden;
-    .logo-wrapper {
-      @apply w-fit flex justify-between items-center gap-[20px] mr-4 min-w-full;
 
+    .logo-wrapper {
+      @apply mr-4 flex w-fit min-w-full items-center justify-between gap-[20px];
 
       @apply max-md:gap-[10px];
+
       .logo {
-        @apply h-[100px] w-[220px] flex-shrink-0 flex items-center justify-center rounded-full bg-white opacity-60 px-10 py-3;
-        @apply max-md:h-[60px] max-md:w-[120px] max-md:px-4 max-md:py-2;
+        @apply flex h-[100px] w-[220px] flex-shrink-0 items-center justify-center;
+        @apply max-md:h-[60px] max-md:w-[120px];
+
         img {
-          @apply w-full h-full object-contain;
+          @apply h-full w-full object-contain;
         }
       }
     }

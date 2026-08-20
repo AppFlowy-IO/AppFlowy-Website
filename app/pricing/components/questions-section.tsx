@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ContactDialog } from './contact-dialog';
+import { useContactDialog } from '@/components/shared/contact-dialog-provider';
+import { usePricingState } from './pricing-state-context';
 import helpImage from '/assets/images/pricing/help.png';
 import affiliateImage from '/assets/images/pricing/affiliate.png';
 import contactImage from '/assets/images/pricing/contact.png';
@@ -48,20 +49,27 @@ function ActionIcon() {
 
 export function QuestionsSection() {
   const searchParams = useSearchParams();
-  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const { openContactDialog } = useContactDialog();
+  const { deploymentMode } = usePricingState();
+
+  // Read through a ref so the deep-link effect below does not re-fire (and
+  // reopen the dialog) merely because the user switched deployment tabs.
+  const deploymentModeRef = useRef(deploymentMode);
+
+  deploymentModeRef.current = deploymentMode;
 
   // 检测 URL 参数中的 action=contact
   useEffect(() => {
     const action = searchParams.get('action');
 
     if (action === 'contact') {
-      setIsContactDialogOpen(true);
+      openContactDialog({ deploymentMode: deploymentModeRef.current });
     }
-  }, [searchParams]);
+  }, [searchParams, openContactDialog]);
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsContactDialogOpen(true);
+    openContactDialog({ deploymentMode });
   };
 
   return (
@@ -160,12 +168,6 @@ export function QuestionsSection() {
           </div>
         </div>
       </div>
-
-      {/* Contact Dialog */}
-      <ContactDialog 
-        open={isContactDialogOpen} 
-        onOpenChange={setIsContactDialogOpen}
-      />
     </section>
   );
 }

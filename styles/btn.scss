@@ -1,84 +1,89 @@
-.github-btn, .github-btn[type='button'] {
-  @apply flex w-[124px] rounded-[14px] h-[48px] items-center justify-center border border-light-gray;
+.github-btn,
+.github-btn[type='button'] {
+  @apply flex h-[48px] w-[124px] items-center justify-center rounded-[14px] border border-light-gray;
   @apply text-[14px] max-lg:rounded-[12px];
   @apply max-sm:text-[12px];
   @apply bg-white/40 hover:bg-gray-40 active:bg-light-gray-40 disabled:bg-white/40 disabled:opacity-[30%];
 }
 
-
-.download-btn, .download-btn[type='button'], .download-btn[type='reset'], .download-btn[type='submit'] {
+.download-btn,
+.download-btn[type='button'],
+.download-btn[type='reset'],
+.download-btn[type='submit'] {
   gap: 10px;
   border-radius: 20px;
   padding: 17px 40px;
-  @apply flex items-center justify-center rounded-[18px] text-white border;
-  @apply max-lg:text-base max-lg:px-[26px] max-lg:leading-[100%];
+  @apply flex items-center justify-center rounded-[18px] border text-white;
+  @apply max-lg:px-[26px] max-lg:text-base max-lg:leading-[100%];
   background: var(--color-primary);
-  border-color: rgba(255, 255, 255, 0.20);
+  border-color: rgba(255, 255, 255, 0.2);
 
   &.download-free-btn {
     border-radius: 14px;
-    @apply w-[124px] h-[48px] text-[14px] p-0;
+    @apply h-[48px] w-[124px] p-0 text-[14px];
   }
 
   &:hover {
-    background: #A952FF;
+    background: #a952ff;
   }
 
-  &:active, &.active {
-    background: #7D26DE;
+  &:active,
+  &.active {
+    background: #7d26de;
   }
 
-  &:disabled, &.disabled {
-    background: #7D26DE;
+  &:disabled,
+  &.disabled {
+    background: #7d26de;
     pointer-events: none;
     opacity: 0.3;
   }
 }
 
-
-.live-demo-btn, .live-demo-btn[type='button'] {
+.live-demo-btn,
+.live-demo-btn[type='button'] {
   padding: 19px 40px 21px 40px;
-  @apply text-primary flex justify-center items-center rounded-[20px] gap-[10px] border border-primary;
+  @apply flex items-center justify-center gap-[10px] rounded-[20px] border border-primary text-primary;
   &:hover {
-    border-color: #A952FF;
-    color: #A952FF;
+    border-color: #a952ff;
+    color: #a952ff;
   }
 
   &:active {
-    border-color: #7D26DE;
-    color: #7D26DE;
+    border-color: #7d26de;
+    color: #7d26de;
   }
 
   &:disabled {
-    border-color: #7D26DE;
-    color: #7D26DE;
+    border-color: #7d26de;
+    color: #7d26de;
     opacity: 0.3;
   }
 }
 
 .trigger-btn {
-  @apply text-black text-[18px] lg:hidden max-lg:flex ml-[20px];
+  @apply ml-[20px] text-[18px] text-black max-lg:flex lg:hidden;
 }
 
 #body .dropdown-btn {
-  @apply flex rounded-[16px] overflow-hidden items-center;
+  @apply flex items-center overflow-hidden rounded-[16px];
   background: var(--color-primary);
 
   &__title {
-    @apply rounded-none pl-6 pr-3 border-0 cursor-pointer;
+    @apply cursor-pointer rounded-none border-0 pl-6 pr-3;
   }
 
   &__file-extension {
-    @apply rounded-none pr-3 pl-3 border-0 cursor-pointer h-full;
+    @apply h-full cursor-pointer rounded-none border-0 pl-3 pr-3;
     @apply flex;
   }
 
   &__divider {
-    @apply w-[1px] bg-[#A952FF] h-[16px];
+    @apply h-[16px] w-[1px] bg-[#A952FF];
   }
 
   &__expand-icon {
-    @apply w-[16px] h-[16px] flex items-center transform translate-z-0 transition-all;
+    @apply flex h-[16px] w-[16px] transform items-center transition-all translate-z-0;
   }
 
   &__popover-paper {
@@ -89,39 +94,42 @@
   }
 
   &__extension-options {
-    @apply py-0 gap-[4px] flex flex-col;
+    @apply flex flex-col gap-[4px] py-0;
   }
 
   &__extension-option {
-    @apply p-3 rounded-[14px];
+    @apply rounded-[14px] p-3;
     &:hover {
       @apply bg-light-blue-gray;
     }
 
-    &.Mui-selected, &.Mui-selected:hover {
+    &.Mui-selected,
+    &.Mui-selected:hover {
       @apply bg-light-blue-gray;
     }
   }
 
   &.disabled {
     pointer-events: none;
-    background: #7D26DE;
+    background: #7d26de;
     opacity: 0.3;
   }
 }
 
-.cancel-btn, .cancel-btn[type='button'] {
+.cancel-btn,
+.cancel-btn[type='button'] {
   border: 1px solid;
   text-transform: none;
-  @apply border-[var(--color-primary)] max-sm:border-none px-6 py-[11px] dark:hover:bg-primary-20 hover:bg-light-blue-gray rounded-xl text-[var(--color-primary)];
+  @apply rounded-xl border-[var(--color-primary)] px-6 py-[11px] text-[var(--color-primary)] hover:bg-light-blue-gray dark:hover:bg-primary-20 max-sm:border-none;
   @apply dark:border-[#773BB9] dark:text-[#AE65FF];
-  @apply max-sm:px-0 max-sm:bg-transparent max-sm:hover:bg-transparent max-sm:dark:hover:bg-transparent;
+  @apply max-sm:bg-transparent max-sm:px-0 max-sm:hover:bg-transparent max-sm:dark:hover:bg-transparent;
 }
 
-.ok-btn, .ok-btn[type='button'] {
+.ok-btn,
+.ok-btn[type='button'] {
   border: 1px solid;
   text-transform: none;
   white-space: nowrap;
   @apply max-sm:ml-0;
-  @apply border-[var(--color-primary)] px-6 bg-primary py-[11px] hover:bg-[#A952FF] rounded-xl text-white;
+  @apply rounded-xl border-[var(--color-primary)] bg-primary px-6 py-[11px] text-white hover:bg-[#A952FF];
 }
