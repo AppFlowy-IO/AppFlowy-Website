@@ -1,6 +1,6 @@
 import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
 import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
+import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import ConfluenceImage from '@/assets/images/vs-notion/confluence.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
@@ -138,7 +138,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: `${site_url}/compare/appflowy-vs-confluence`,
       type: 'article',
       siteName: 'AppFlowy',
-      publishedTime: '2026-08-20T00:00:00Z',
+      publishedTime: '2026-08-22T00:00:00Z',
       modifiedTime: new Date().toISOString(),
       images: [
         {
@@ -390,6 +390,34 @@ function Page() {
             <div className={'cards'}>
               <div className={'card'}>
                 <Image
+                  src={Object2}
+                  alt={'Self-host for the long term'}
+                  width={151}
+                  height={121}
+                />
+
+                <div className={'card-title'}>
+                  <h4>Self-host for the long term</h4>
+                  <p className={'card-desc'}>Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment.</p>
+                </div>
+              </div>
+
+              <div className={'card'}>
+                <Image
+                  src={Object3}
+                  alt={'Beyond pages & macros'}
+                  width={189}
+                  height={121}
+                />
+
+                <div className={'card-title'}>
+                  <h4>Beyond pages & macros</h4>
+                  <p className={'card-desc'}>{`Manage projects in one workspace with relational databases, full-page database records, linked views, templates, and rollups.`}</p>
+                </div>
+              </div>
+
+              <div className={'card'}>
+                <Image
                   src={Object1}
                   alt={'On-prem and local AI'}
                   width={151}
@@ -398,35 +426,8 @@ function Page() {
                 <div className={'card-title'}>
                   <h4>On-prem and local AI</h4>
                   <p className={'card-desc'}>
-                    AI on your terms, not your vendor&apos;s. Run local models offline or connect a self-hosted LLM.
+                    Use local or self-hosted AI while keeping sensitive workspace data in your own infrastructure.
                   </p>
-                </div>
-              </div>
-              <div className={'card'}>
-                <Image
-                  src={Object2}
-                  alt={'Deploy Anywhere'}
-                  width={151}
-                  height={121}
-                />
-
-                <div className={'card-title'}>
-                  <h4>Deploy Anywhere</h4>
-                  <p className={'card-desc'}>Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment.</p>
-                </div>
-              </div>
-
-              <div className={'card'}>
-                <Image
-                  src={Object3}
-                  alt={'Cross-platform'}
-                  width={189}
-                  height={121}
-                />
-
-                <div className={'card-title'}>
-                  <h4>Cross-platform</h4>
-                  <p className={'card-desc'}>{`Works consistently across platforms your team works on, including completely offline.`}</p>
                 </div>
               </div>
             </div>
