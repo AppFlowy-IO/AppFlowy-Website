@@ -5,8 +5,6 @@ import ImportLink from '@/components/vs-notion/import-link';
 import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import CloseImage from '@/assets/images/vs-notion/x.svg';
-import RightImage from '@/assets/images/vs-notion/right.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
@@ -14,6 +12,7 @@ import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
+import { ComparisonTable } from '../components/comparison-table';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'Notion vs AppFlowy | The #1 Self-Hosted, Open-Core Notion Alternative is AppFlowy';
@@ -213,74 +212,92 @@ function generateListSchema() {
 const points = [
   {
     text: 'Self-hosted',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Complete data control',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Local and on-prem LLM support',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Open-core',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Customization and extensibility',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Offline workspace',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Native desktop & mobile apps',
+    appflowy: true,
     competitor: false,
   },
   {
     text: 'Collaborative editing',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Relational databases',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Kanban, calendar, gallery views',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'AI chat, writing, summary',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'AI meeting notes',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Version history',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Granular permissions',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Block-based editor',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Hierarchical docs/wiki structure',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'Inline comments',
+    appflowy: true,
     competitor: true,
   },
   {
     text: 'SSO/SAML',
+    appflowy: true,
     competitor: true,
   },
 ];
@@ -374,52 +391,7 @@ function Page() {
                 </div>
               </div>
             </div>
-            <div
-              className={
-                'flex w-full min-w-0 max-w-[1100px] flex-col gap-1 text-[26px] max-lg:text-[18px] max-md:text-base'
-              }
-            >
-              <div className={'flex w-full items-center justify-between'}>
-                <p className="w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4">Compare features</p>
-                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">Notion</p>
-                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AppFlowy</p>
-              </div>
-              {points.map((point) => (
-                <div
-                  key={point.text}
-                  className={
-                    'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
-                  }
-                >
-                  <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
-                  <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                    {point.competitor ?
-                      <Image
-                        src={RightImage}
-                        alt={'Right'}
-                        width={26}
-                        height={16}
-                      />
-                      :
-                      <Image
-                        src={CloseImage}
-                        alt={'Close'}
-                        width={20}
-                        height={20}
-                      />
-                    }
-                  </div>
-                  <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                    <Image
-                      src={RightImage}
-                      alt={'Right'}
-                      width={26}
-                      height={16}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ComparisonTable competitorName='Notion' competitorImage={NotionImage} points={points} />
           </div>
         </div>
         <div className={'vs-notion-faq'}>

@@ -4,10 +4,12 @@ import { cn } from '@/lib/utils';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
+export type ComparisonValue = boolean | string;
+
 export interface ComparisonPoint {
     text: string;
-    competitor?: boolean;
-    appflowy: boolean;
+    competitor?: ComparisonValue;
+    appflowy: ComparisonValue;
 }
 
 interface ComparisonTableProps {
@@ -24,15 +26,28 @@ function Cross() {
     );
 }
 
-function Mark({ isChecked, isAppFlowy }: { isChecked: boolean; isAppFlowy: boolean }) {
+function Mark({ value, isAppFlowy }: { value: ComparisonValue; isAppFlowy: boolean }) {
+    if (typeof value === 'string') {
+        return (
+            <p
+                className={cn(
+                    'font-inter text-center text-sm font-medium sm:text-base',
+                    isAppFlowy ? 'text-primary' : 'text-[#9CA0AA]'
+                )}
+            >
+                {value}
+            </p>
+        );
+    }
+
     return (
         <div
             className={cn(
                 'h-4 w-4 md:h-[18px] md:w-[18px]',
-                isChecked ? (isAppFlowy ? 'text-primary' : 'text-[#9CA0AA]') : 'text-[#D3D5DC]'
+                value ? (isAppFlowy ? 'text-primary' : 'text-[#9CA0AA]') : 'text-[#D3D5DC]'
             )}
         >
-            {isChecked ? <Check /> : <Cross />}
+            {value ? <Check /> : <Cross />}
         </div>
     );
 }
@@ -71,10 +86,10 @@ export function ComparisonTable({ competitorName, competitorImage, points }: Com
                                     isLast && 'rounded-b-[20px]'
                                 )}
                             >
-                                <Mark isChecked={point.appflowy} isAppFlowy={true} />
+                                <Mark value={point.appflowy} isAppFlowy={true} />
                             </div>
                             <div className='flex w-1/4 items-center justify-center px-2 py-4 sm:px-4 md:py-5'>
-                                <Mark isChecked={Boolean(point.competitor)} isAppFlowy={false} />
+                                <Mark value={point.competitor ?? false} isAppFlowy={false} />
                             </div>
                         </div>
                     );
