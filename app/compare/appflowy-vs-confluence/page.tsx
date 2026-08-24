@@ -269,94 +269,124 @@ function generateListSchema() {
 
 const points = [
   {
-    text: 'Self-hosted',
+    text: 'Supported long-term self-hosting',
+    competitor: 'Data Center becomes read-only on March 28, 2029',
     appflowy: true,
-    competitor: false,
   },
   {
-    text: 'Complete data control',
+    text: 'Available to new self-hosted customers',
+    competitor: 'No. New Data Center sales ended March 30, 2026',
     appflowy: true,
-    competitor: false,
   },
   {
-    text: 'Local and on-prem LLM support',
+    text: 'Fully air-gapped deployment',
+    competitor: 'Data Center only, through its remaining lifecycle',
     appflowy: true,
-    competitor: false,
   },
   {
     text: 'Open-core',
-    appflowy: true,
     competitor: false,
+    appflowy: true,
   },
   {
-    text: 'Customization and extensibility',
+    text: 'Local and on-prem LLM support',
+    competitor: 'No native local LLM execution; Rovo is a cloud service',
     appflowy: true,
-    competitor: false,
   },
   {
-    text: 'Offline workspace',
-    appflowy: true,
-    competitor: false,
+    text: 'Native Jira and Atlassian ecosystem integration',
+    competitor: 'Extensive',
+    appflowy: 'More limited',
   },
   {
-    text: 'Native desktop & mobile apps',
-    appflowy: true,
+    text: 'Database layouts',
+    competitor: 'Table, Card, Board',
+    appflowy: 'Grid, Kanban, Calendar, Gallery, List, Feed, Chart, Form',
+  },
+  {
+    text: 'Independent linked views of one data source',
     competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'Database entry is a full page',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'Apply templates directly to database entries',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'Relations between databases',
+    competitor: 'Entry links and backlinks',
+    appflowy: 'Two-way relations',
+  },
+  {
+    text: 'Database Rollups',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'Database templates',
+    competitor: 'Templates for database creation; linked page templates',
+    appflowy: 'Templates applied directly to database records',
+  },
+  {
+    text: 'AI search with self-hosted AI',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'AI Meeting Notes with self-hosted AI',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'AI Transcripts with self-hosted AI',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'Desktop Apps',
+    competitor: false,
+    appflowy: true,
+  },
+  {
+    text: 'White Labeling',
+    competitor: false,
+    appflowy: true,
   },
   {
     text: 'Collaborative editing',
-    appflowy: true,
     competitor: true,
+    appflowy: true,
   },
   {
-    text: 'Relational databases',
-    appflowy: true,
+    text: 'SSO and SAML',
     competitor: true,
-  },
-  {
-    text: 'Kanban, calendar, gallery views',
     appflowy: true,
-    competitor: true,
-  },
-  {
-    text: 'AI chat, writing, summary',
-    appflowy: true,
-    competitor: true,
-  },
-  {
-    text: 'AI meeting notes',
-    appflowy: true,
-    competitor: true,
   },
   {
     text: 'Version history',
-    appflowy: true,
     competitor: true,
+    appflowy: true,
   },
   {
-    text: 'Granular permissions',
-    appflowy: true,
+    text: 'Hierarchical documents and wikis',
     competitor: true,
-  },
-  {
-    text: 'Block-based editor',
     appflowy: true,
-    competitor: true,
-  },
-  {
-    text: 'Hierarchical docs/wiki structure',
-    appflowy: true,
-    competitor: true,
   },
   {
     text: 'Inline comments',
-    appflowy: true,
     competitor: true,
+    appflowy: true,
   },
   {
-    text: 'SSO/SAML',
-    appflowy: true,
+    text: 'Whiteboards',
     competitor: true,
+    appflowy: false,
   },
 ];
 
