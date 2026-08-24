@@ -1,14 +1,13 @@
 'use client';
 
-import AiOverview from '@/assets/images/product/ai-overview.webp';
-import Backlog from '@/assets/images/product/backlog.webp';
-import ProjectTracking from '@/assets/images/product/project-tracking.webp';
-import ReleaseReview from '@/assets/images/product/release-review.webp';
-import WeeklyBrief from '@/assets/images/product/weekly-brief.webp';
+import AiOverviewIllu from '@/components/illustrations/ai-overview-illu';
+import BacklogIllu from '@/components/illustrations/backlog-illu';
+import ProjectTrackingIllu from '@/components/illustrations/project-tracking-illu';
+import ReleaseReviewIllu from '@/components/illustrations/release-review-illu';
+import WeeklyBriefIllu from '@/components/illustrations/weekly-brief-illu';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
 import { useInView } from 'framer-motion';
-import Image from 'next/image';
 import React, { useEffect, useMemo, useRef } from 'react';
 import 'styles/showcase.scss';
 
@@ -31,13 +30,13 @@ function MainProducts() {
     }
   }, [isClient]);
 
-  const imageOptions = useMemo(() => {
+  const illustrationOptions = useMemo(() => {
     return [
-      { value: 'project-tracking', src: ProjectTracking.src, alt: 'Project tracking' },
-      { value: 'backlog', src: Backlog.src, alt: 'Backlog' },
-      { value: 'ai-overview', src: AiOverview.src, alt: 'AI overview' },
-      { value: 'release-review', src: ReleaseReview.src, alt: 'Release review' },
-      { value: 'weekly-brief', src: WeeklyBrief.src, alt: 'Weekly brief' },
+      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
+      { value: 'backlog', Illustration: BacklogIllu },
+      { value: 'ai-overview', Illustration: AiOverviewIllu },
+      { value: 'release-review', Illustration: ReleaseReviewIllu },
+      { value: 'weekly-brief', Illustration: WeeklyBriefIllu },
     ];
   }, []);
 
@@ -45,7 +44,7 @@ function MainProducts() {
   const inView = useInView(ref);
 
   const { start, stop } = useAutoPlay({
-    options: imageOptions,
+    options: illustrationOptions,
     onChange: setValue,
     duration: 7500,
   });
@@ -86,8 +85,12 @@ function MainProducts() {
     };
   }, []);
 
-  const activeImage = imageOptions.find((image) => image.value === value) ?? imageOptions[0];
-  const previousImage = imageOptions.find((image) => image.value === previousValue) ?? null;
+  const activeIllustration =
+    illustrationOptions.find((illustration) => illustration.value === value) ?? illustrationOptions[0];
+  const previousIllustration = illustrationOptions.find((illustration) => illustration.value === previousValue) ?? null;
+
+  const ActiveIllustration = activeIllustration.Illustration;
+  const PreviousIllustration = previousIllustration?.Illustration;
 
   return (
     <div
@@ -95,26 +98,17 @@ function MainProducts() {
       className={'main-product'}
     >
       <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
-        <Image
-          key={activeImage.value}
-          src={activeImage.src}
-          loading={'eager'}
-          className={`visual-image ${previousImage ? 'feature-illustration--enter' : ''}`}
-          alt={activeImage.alt}
-          width={1280}
-          height={696}
+        <ActiveIllustration
+          key={activeIllustration.value}
+          className={`visual-image ${previousIllustration ? 'feature-illustration--enter' : ''}`}
         />
-        {previousImage ? (
-          <Image
-            key={`${previousImage.value}-leaving`}
-            src={previousImage.src}
-            loading={'eager'}
-            className={'visual-image feature-illustration--leave'}
-            alt={''}
-            aria-hidden={'true'}
-            width={1280}
-            height={696}
-          />
+        {PreviousIllustration ? (
+          <div aria-hidden={'true'}>
+            <PreviousIllustration
+              key={`${previousIllustration.value}-leaving`}
+              className={'visual-image feature-illustration--leave'}
+            />
+          </div>
         ) : null}
       </div>
     </div>
