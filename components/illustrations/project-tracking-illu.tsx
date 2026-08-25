@@ -43,8 +43,36 @@ const MATHIEU = {
   dest: { left: 37, top: 37 },
 };
 
+// "You" — a third, always-present collaborator. Arrives with the others,
+// lands near a card in the Completed column right as Natasha reaches the big
+// card, then wanders inward toward the board's center in a few small,
+// unevenly-timed hops — a bit of idle "still there, just looking around"
+// motion rather than a purposeful trip to any card.
+const YOU_COLOR = '#FB006D'; // AppFlowy's bright pink (fresh-red), also used in the logo mark
+const YOU = {
+  spawn: { left: 90, top: 18 },
+  dest: { left: 93, top: 33.5 }, // arrival point, timed to CARD_PICKUP_ARRIVE below
+};
+const YOU_WANDER = [
+  { left: 88, top: 37 },
+  { left: 85, top: 33 },
+  { left: 80, top: 40 },
+  { left: 77, top: 37 },
+];
+const YOU_WANDER_STEP_DURATIONS = [0.9, 0.7, 0.9, 0.7]; // uneven step lengths read as "random", not mechanical
+
 const CURSORS_APPEAR = 0.9; // also when Natasha sets off toward the big card
 const CARD_PICKUP_ARRIVE = 1.6; // when Natasha reaches the card
+
+// You starts wandering the instant Natasha reaches the big card, then hops
+// through YOU_WANDER at its uneven step durations. YOU_WANDER_TIMESTAMPS are
+// the absolute moments each hop lands; the last one is where it settles.
+const YOU_WANDER_TIMESTAMPS = YOU_WANDER_STEP_DURATIONS.reduce(
+  (timestamps, stepDuration) => [...timestamps, timestamps[timestamps.length - 1] + stepDuration],
+  [CARD_PICKUP_ARRIVE]
+).slice(1);
+const YOU_WANDER_END = YOU_WANDER_TIMESTAMPS[YOU_WANDER_TIMESTAMPS.length - 1];
+
 const CARD_LIFT_DURATION = 0.5; // big card's pickup reaction, played on arrival
 const CARD_SETTLE_DURATION = 0.4; // big card's relax back to rest, played as Natasha leaves
 
@@ -312,6 +340,69 @@ function ProjectTrackingIllu({ className }: IllustrationProps) {
             <Cursor
               label={'Mathieu'}
               color={'#3B82F6'}
+              direction={'right-top'}
+            />
+          </div>
+        </motion.div>
+
+        {/* You: arrives alongside Natasha and Mathieu, lands near a card in
+            the Completed column right as Natasha reaches the big card, then
+            wanders inward toward the board's center in a few small,
+            unevenly-timed hops before settling — nothing to pick up, just a
+            third presence idly drifting. */}
+        <motion.div
+          className={'absolute inset-0'}
+          initial={{
+            opacity: 0,
+            x: `${YOU.spawn.left - YOU.dest.left}%`,
+            y: `${YOU.spawn.top - YOU.dest.top}%`,
+          }}
+          animate={{
+            opacity: 1,
+            x: [
+              `${YOU.spawn.left - YOU.dest.left}%`,
+              '0%',
+              ...YOU_WANDER.map((point) => `${point.left - YOU.dest.left}%`),
+            ],
+            y: [
+              `${YOU.spawn.top - YOU.dest.top}%`,
+              '0%',
+              ...YOU_WANDER.map((point) => `${point.top - YOU.dest.top}%`),
+            ],
+          }}
+          transition={{
+            opacity: { delay: CURSORS_APPEAR, duration: 0.4, ease: 'easeOut' },
+            x: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: YOU_WANDER_END - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (CARD_PICKUP_ARRIVE - CURSORS_APPEAR) / (YOU_WANDER_END - CURSORS_APPEAR),
+                ...YOU_WANDER_TIMESTAMPS.map((t) => (t - CURSORS_APPEAR) / (YOU_WANDER_END - CURSORS_APPEAR)),
+              ],
+            },
+            y: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: YOU_WANDER_END - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (CARD_PICKUP_ARRIVE - CURSORS_APPEAR) / (YOU_WANDER_END - CURSORS_APPEAR),
+                ...YOU_WANDER_TIMESTAMPS.map((t) => (t - CURSORS_APPEAR) / (YOU_WANDER_END - CURSORS_APPEAR)),
+              ],
+            },
+          }}
+        >
+          <div
+            className={'absolute'}
+            style={{ left: `${YOU.dest.left}%`, top: `${YOU.dest.top}%` }}
+          >
+            <Cursor
+              label={'You'}
+              color={YOU_COLOR}
               direction={'right-top'}
             />
           </div>
