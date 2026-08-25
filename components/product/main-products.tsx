@@ -17,7 +17,7 @@ import 'styles/showcase.scss';
 const AUTOPLAY_ENABLED = false;
 
 function MainProducts() {
-  const [value, setValue] = React.useState('project-tracking');
+  const [value, setValue] = React.useState('backlog');
   const [previousValue, setPreviousValue] = React.useState<string | null>(null);
   const transitionTimer = useRef<number | null>(null);
   const previousValueRef = useRef(value);
@@ -37,8 +37,8 @@ function MainProducts() {
 
   const illustrationOptions = useMemo(() => {
     return [
-      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
       { value: 'backlog', Illustration: BacklogIllu },
+      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
       { value: 'ai-overview', Illustration: AiOverviewIllu },
       { value: 'release-review', Illustration: ReleaseReviewIllu },
       { value: 'weekly-brief', Illustration: WeeklyBriefIllu },
