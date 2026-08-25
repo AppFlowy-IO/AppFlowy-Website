@@ -1,7 +1,8 @@
 'use client';
 
-import BigCard from '@/assets/images/illustrations/big-card.png';
-import ProjectTrackerBase from '@/assets/images/illustrations/project-tracker-base.png';
+import BigCard from '@/assets/images/illustrations/big-card.webp';
+import ProjectTrackerBase from '@/assets/images/illustrations/project-tracker-base.webp';
+import SmallCard from '@/assets/images/illustrations/small-card.webp';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Cursor from './cursor';
@@ -16,20 +17,56 @@ const CARD_SLOT = {
   height: 18.9,
 };
 
+// Footprint of the "Review product requirements" card (top of the To do
+// column) inside the base image, same percentage convention as CARD_SLOT.
+const SMALL_CARD_SLOT = {
+  left: 22.5,
+  top: 32.4,
+  width: 17,
+  height: 4.15,
+};
+
+const BASE_SHADOW = 'drop-shadow(0 0px 0px rgba(15,23,42,0))';
+const LIFT_SHADOW = 'drop-shadow(0 32px 40px rgba(15,23,42,0.38))';
+
 // Natasha spawns far up-left on the board and travels all the way to the
 // card, "picking it up" (triggers the card's reaction below) on arrival.
 const NATASHA = {
-  spawn: { left: 8, top: 18 },
-  dest: { left: 59, top: 42.3 },
+  spawn: { left: 80, top: 80 },
+  dest: { left: 70, top: 60 },
 };
 
-// Mathieu spawns near the Completed column and just wanders nearby —
-// unrelated to the card, kept alive with a small idle drift.
-const MATHIEU_SPAWN = { left: 90, top: 20 };
+// Mathieu spawns right next to the small card and sits still while Natasha's
+// story plays out, then makes the short hop onto the card once it's his turn.
+const MATHIEU = {
+  spawn: { left: 25, top: 50 },
+  dest: { left: 37, top: 37 },
+};
 
-const CARD_PICKUP_START = 0.55; // when the big-card entrance begins
-const CARD_PICKUP_ARRIVE = 2.2; // when Natasha reaches the card / pickup completes
-const CURSORS_APPEAR = 0.9;
+const CURSORS_APPEAR = 0.9; // also when Natasha sets off toward the big card
+const CARD_PICKUP_ARRIVE = 1.6; // when Natasha reaches the card
+const CARD_LIFT_DURATION = 0.5; // big card's pickup reaction, played on arrival
+const CARD_SETTLE_DURATION = 0.4; // big card's relax back to rest, played as Natasha leaves
+
+// Mathieu only sets off once Natasha has been hovering the big card for a
+// beat — keeps the two stories from reading as simultaneous. That's also the
+// cue for Natasha to leave and the big card to settle back down.
+const MATHIEU_TRAVEL_START = 2.5;
+const MATHIEU_TRAVEL_DURATION = 0.9;
+const MATHIEU_ARRIVE = MATHIEU_TRAVEL_START + MATHIEU_TRAVEL_DURATION;
+
+const NATASHA_LEAVE_START = MATHIEU_TRAVEL_START + 0.5; // leaves a beat after Mathieu sets off
+const NATASHA_LEAVE_DURATION = 0.9;
+const CARD_SETTLE_START = MATHIEU_TRAVEL_START;
+
+const SMALL_CARD_LIFT_DURATION = 0.35; // small card's pickup reaction, played on arrival
+const SMALL_CARD_HOVER_DURATION = 3; // how long it stays lifted while "read"
+const SMALL_CARD_SETTLE_DURATION = 0.35; // relaxes back into place as Mathieu leaves
+const SMALL_CARD_SETTLE_START = MATHIEU_ARRIVE + SMALL_CARD_LIFT_DURATION + SMALL_CARD_HOVER_DURATION;
+
+const MATHIEU_LEAVE_START = SMALL_CARD_SETTLE_START; // steps away in sync with the card settling
+const MATHIEU_LEAVE_DURATION = 0.6;
+const MATHIEU_LEAVE_END = MATHIEU_LEAVE_START + MATHIEU_LEAVE_DURATION;
 
 function ProjectTrackingIllu({ className }: IllustrationProps) {
   return (
@@ -48,58 +85,95 @@ function ProjectTrackingIllu({ className }: IllustrationProps) {
             sizes={'(max-width: 1280px) 100vw, 1280px'}
             className={'object-contain'}
           />
-        </motion.div>
 
-        {/* Big card: fades/scales into its slot, then — timed to Natasha's
-            arrival — lifts with a rotate + scale + deeper shadow, as if
-            just picked up. */}
-        <motion.div
-          className={'absolute'}
-          style={{
-            left: `${CARD_SLOT.left}%`,
-            top: `${CARD_SLOT.top}%`,
-            width: `${CARD_SLOT.width}%`,
-            height: `${CARD_SLOT.height}%`,
-          }}
-          initial={{
-            opacity: 0,
-            y: 16,
-            scale: 0.95,
-            rotate: 0,
-            filter: 'drop-shadow(0 8px 12px rgba(15,23,42,0.18))',
-          }}
-          animate={{
-            opacity: [0, 1, 1, 1],
-            y: [16, 0, 0, 0],
-            scale: [0.95, 1, 1, 1.08],
-            rotate: [0, 0, 0, -5],
-            filter: [
-              'drop-shadow(0 8px 12px rgba(15,23,42,0.18))',
-              'drop-shadow(0 8px 12px rgba(15,23,42,0.18))',
-              'drop-shadow(0 8px 12px rgba(15,23,42,0.18))',
-              'drop-shadow(0 32px 40px rgba(15,23,42,0.38))',
-            ],
-          }}
-          transition={{
-            type: 'tween',
-            duration: CARD_PICKUP_ARRIVE - CARD_PICKUP_START,
-            times: [0, 0.24, 0.85, 1],
-            delay: CARD_PICKUP_START,
-            ease: 'easeOut',
-          }}
-        >
-          <Image
-            src={BigCard}
-            alt={''}
-            fill
-            className={'object-contain'}
-          />
+          {/* Big card: nested inside the base image's own wrapper so it rides
+              the same entrance slide with zero relative motion — it sits at
+              rest in its slot from the very first frame (the base image
+              already shows it there, so no separate fade of its own), then —
+              timed to Natasha's arrival — lifts with a rotate + scale +
+              deeper shadow, as if just picked up, holds through her hover,
+              then relaxes back to rest as she leaves and Mathieu sets off. */}
+          <motion.div
+            className={'absolute'}
+            style={{
+              left: `${CARD_SLOT.left}%`,
+              top: `${CARD_SLOT.top}%`,
+              width: `${CARD_SLOT.width}%`,
+              height: `${CARD_SLOT.height}%`,
+            }}
+            initial={{ scale: 1, rotate: 0, filter: BASE_SHADOW }}
+            animate={{
+              scale: [1, 1.08, 1.08, 1],
+              rotate: [0, -5, -5, 0],
+              filter: [BASE_SHADOW, LIFT_SHADOW, LIFT_SHADOW, BASE_SHADOW],
+            }}
+            transition={{
+              type: 'tween',
+              duration: CARD_SETTLE_START + CARD_SETTLE_DURATION - CARD_PICKUP_ARRIVE,
+              delay: CARD_PICKUP_ARRIVE,
+              times: [
+                0,
+                CARD_LIFT_DURATION / (CARD_SETTLE_START + CARD_SETTLE_DURATION - CARD_PICKUP_ARRIVE),
+                (CARD_SETTLE_START - CARD_PICKUP_ARRIVE) / (CARD_SETTLE_START + CARD_SETTLE_DURATION - CARD_PICKUP_ARRIVE),
+                1,
+              ],
+              ease: 'easeOut',
+            }}
+          >
+            <Image
+              src={BigCard}
+              alt={''}
+              fill
+              className={'object-contain'}
+            />
+          </motion.div>
+
+          {/* Small card: same nested, instant overlay. Once Mathieu arrives
+              it lifts the same way, holds for a beat while "hovered", then
+              relaxes back to its resting pose as he steps away. */}
+          <motion.div
+            className={'absolute'}
+            style={{
+              left: `${SMALL_CARD_SLOT.left}%`,
+              top: `${SMALL_CARD_SLOT.top}%`,
+              width: `${SMALL_CARD_SLOT.width}%`,
+              height: `${SMALL_CARD_SLOT.height}%`,
+            }}
+            initial={{ scale: 1, rotate: 0, filter: BASE_SHADOW }}
+            animate={{
+              scale: [1, 1.06, 1.06, 1],
+              rotate: [0, 2, 2, 0],
+              filter: [BASE_SHADOW, LIFT_SHADOW, LIFT_SHADOW, BASE_SHADOW],
+            }}
+            transition={{
+              type: 'tween',
+              duration: SMALL_CARD_SETTLE_START + SMALL_CARD_SETTLE_DURATION - MATHIEU_ARRIVE,
+              delay: MATHIEU_ARRIVE,
+              times: [
+                0,
+                SMALL_CARD_LIFT_DURATION / (SMALL_CARD_LIFT_DURATION + SMALL_CARD_HOVER_DURATION + SMALL_CARD_SETTLE_DURATION),
+                (SMALL_CARD_LIFT_DURATION + SMALL_CARD_HOVER_DURATION) /
+                (SMALL_CARD_LIFT_DURATION + SMALL_CARD_HOVER_DURATION + SMALL_CARD_SETTLE_DURATION),
+                1,
+              ],
+              ease: 'easeOut',
+            }}
+          >
+            <Image
+              src={SmallCard}
+              alt={''}
+              fill
+              className={'object-contain'}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Outer wrapper is full-frame so a percentage transform on it is
             relative to the whole scene (not just the cursor's own size) —
             keeps the long cross-board travel responsive while staying
-            transform-only. */}
+            transform-only. Natasha retraces her steps back to her spawn
+            point (fading out as she goes) once Mathieu sets off, in sync
+            with the big card settling back down. */}
         <motion.div
           className={'absolute inset-0'}
           initial={{
@@ -107,11 +181,58 @@ function ProjectTrackingIllu({ className }: IllustrationProps) {
             x: `${NATASHA.spawn.left - NATASHA.dest.left}%`,
             y: `${NATASHA.spawn.top - NATASHA.dest.top}%`,
           }}
-          animate={{ opacity: 1, x: '0%', y: '0%' }}
+          animate={{
+            opacity: [0, 1, 1, 1],
+            x: [
+              `${NATASHA.spawn.left - NATASHA.dest.left}%`,
+              '0%',
+              '0%',
+              `${NATASHA.spawn.left - NATASHA.dest.left}%`,
+            ],
+            y: [
+              `${NATASHA.spawn.top - NATASHA.dest.top}%`,
+              '0%',
+              '0%',
+              `${NATASHA.spawn.top - NATASHA.dest.top}%`,
+            ],
+          }}
           transition={{
-            opacity: { delay: CURSORS_APPEAR, duration: 0.4, ease: 'easeOut' },
-            x: { type: 'tween', delay: CURSORS_APPEAR, duration: CARD_PICKUP_ARRIVE - CURSORS_APPEAR, ease: 'easeInOut' },
-            y: { type: 'tween', delay: CURSORS_APPEAR, duration: CARD_PICKUP_ARRIVE - CURSORS_APPEAR, ease: 'easeInOut' },
+            opacity: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR,
+              ease: 'easeOut',
+              times: [
+                0,
+                0.4 / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                (NATASHA_LEAVE_START - CURSORS_APPEAR) / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                1,
+              ],
+            },
+            x: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (CARD_PICKUP_ARRIVE - CURSORS_APPEAR) / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                (NATASHA_LEAVE_START - CURSORS_APPEAR) / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                1,
+              ],
+            },
+            y: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (CARD_PICKUP_ARRIVE - CURSORS_APPEAR) / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                (NATASHA_LEAVE_START - CURSORS_APPEAR) / (NATASHA_LEAVE_START + NATASHA_LEAVE_DURATION - CURSORS_APPEAR),
+                1,
+              ],
+            },
           }}
         >
           <div
@@ -126,19 +247,67 @@ function ProjectTrackingIllu({ className }: IllustrationProps) {
           </div>
         </motion.div>
 
+        {/* Mathieu: holds at his spawn point next to the small card until
+            Natasha has hovered the big card for a beat, hops onto the small
+            card and holds through its hover window, then steps back to his
+            spawn point in sync with the card settling. */}
         <motion.div
           className={'absolute inset-0'}
-          initial={{ opacity: 0, x: '0%', y: '0%' }}
-          animate={{ opacity: 1, x: ['0%', '-8%', '0%'], y: ['0%', '10%', '0%'] }}
+          initial={{
+            opacity: 0,
+            x: `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
+            y: `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
+          }}
+          animate={{
+            opacity: 1,
+            x: [
+              `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
+              `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
+              '0%',
+              '0%',
+              `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
+            ],
+            y: [
+              `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
+              `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
+              '0%',
+              '0%',
+              `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
+            ],
+          }}
           transition={{
             opacity: { delay: CURSORS_APPEAR, duration: 0.4, ease: 'easeOut' },
-            x: { type: 'tween', delay: CURSORS_APPEAR, duration: 4.8, repeat: Infinity, ease: 'easeInOut' },
-            y: { type: 'tween', delay: CURSORS_APPEAR, duration: 4.8, repeat: Infinity, ease: 'easeInOut' },
+            x: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: MATHIEU_LEAVE_END - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (MATHIEU_TRAVEL_START - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                (MATHIEU_ARRIVE - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                (MATHIEU_LEAVE_START - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                1,
+              ],
+            },
+            y: {
+              type: 'tween',
+              delay: CURSORS_APPEAR,
+              duration: MATHIEU_LEAVE_END - CURSORS_APPEAR,
+              ease: 'easeInOut',
+              times: [
+                0,
+                (MATHIEU_TRAVEL_START - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                (MATHIEU_ARRIVE - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                (MATHIEU_LEAVE_START - CURSORS_APPEAR) / (MATHIEU_LEAVE_END - CURSORS_APPEAR),
+                1,
+              ],
+            },
           }}
         >
           <div
             className={'absolute'}
-            style={{ left: `${MATHIEU_SPAWN.left}%`, top: `${MATHIEU_SPAWN.top}%` }}
+            style={{ left: `${MATHIEU.dest.left}%`, top: `${MATHIEU.dest.top}%` }}
           >
             <Cursor
               label={'Mathieu'}

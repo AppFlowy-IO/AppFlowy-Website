@@ -9,8 +9,8 @@ export interface CursorPointerIconProps {
 function CursorPointerIcon({ className, style, color = 'currentColor' }: CursorPointerIconProps) {
   return (
     <svg
-      width={31}
-      height={32}
+      width={20}
+      height={21}
       viewBox={'0 0 26 27'}
       fill={'none'}
       className={className}

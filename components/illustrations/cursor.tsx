@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { CSSProperties } from 'react';
 import CursorPointerIcon from './cursor-pointer-icon';
 
-export type CursorDirection = 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom';
+export type CursorDirection = 'left-top' | 'right-top';
 
 export interface CursorProps {
   className?: string;
@@ -23,19 +23,17 @@ const DEFAULT_COLOR = '#8427E0';
 // the label text changes width) that pulls that corner back onto the origin.
 const DIRECTION_CONFIG: Record<
   CursorDirection,
-  { scaleX: number; scaleY: number; flexDirection: CSSProperties['flexDirection']; anchor: string }
+  { scaleX: number; scaleY: number; flexDirection: CSSProperties['flexDirection']; anchor: string, pointerX: number, pointerY: number }
 > = {
-  'left-top': { scaleX: 1, scaleY: 1, flexDirection: 'row', anchor: 'translate(0%, 0%)' },
-  'right-top': { scaleX: -1, scaleY: 1, flexDirection: 'row-reverse', anchor: 'translate(-100%, 0%)' },
-  'left-bottom': { scaleX: 1, scaleY: -1, flexDirection: 'row', anchor: 'translate(0%, -100%)' },
-  'right-bottom': { scaleX: -1, scaleY: -1, flexDirection: 'row-reverse', anchor: 'translate(-100%, -100%)' },
+  'left-top': { scaleX: 1, scaleY: 1, flexDirection: 'row', anchor: 'translate(0%, 0%)', pointerX: 10, pointerY: -20 },
+  'right-top': { scaleX: -1, scaleY: 1, flexDirection: 'row-reverse', anchor: 'translate(-100%, 0%)', pointerX: 10, pointerY: -20 },
 };
 
 // The arrow's tip is the anchor point: position/move this component by
 // translating the root (e.g. `style={{ transform: 'translate3d(x, y, 0)' }}`),
 // and pick `direction` for which corner of the bubble that tip sits in.
 function Cursor({ className, style, label, color = DEFAULT_COLOR, direction = 'left-top' }: CursorProps) {
-  const { scaleX, scaleY, flexDirection, anchor } = DIRECTION_CONFIG[direction];
+  const { scaleX, scaleY, flexDirection, anchor, pointerX, pointerY } = DIRECTION_CONFIG[direction];
 
   return (
     <div
@@ -49,7 +47,7 @@ function Cursor({ className, style, label, color = DEFAULT_COLOR, direction = 'l
         <CursorPointerIcon
           color={color}
           className={'shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]'}
-          style={{ transform: `scale(${scaleX}, ${scaleY})` }}
+          style={{ transform: `scale(${scaleX}, ${scaleY}) translate(${pointerX}px, ${pointerY}px)` }}
         />
         <AnimatePresence
           mode={'popLayout'}

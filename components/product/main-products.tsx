@@ -11,6 +11,11 @@ import { useInView } from 'framer-motion';
 import React, { useEffect, useMemo, useRef } from 'react';
 import 'styles/showcase.scss';
 
+// TODO: Slideshow autoplay is temporarily disabled while the illustrations
+// are being hand-edited — only the first illustration renders. Flip this
+// back to true to restore the auto-cycling slideshow.
+const AUTOPLAY_ENABLED = false;
+
 function MainProducts() {
   const [value, setValue] = React.useState('project-tracking');
   const [previousValue, setPreviousValue] = React.useState<string | null>(null);
@@ -50,6 +55,8 @@ function MainProducts() {
   });
 
   useEffect(() => {
+    if (!AUTOPLAY_ENABLED) return;
+
     if (!inView) {
       stop();
     } else {
