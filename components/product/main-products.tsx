@@ -17,7 +17,7 @@ import 'styles/showcase.scss';
 const AUTOPLAY_ENABLED = false;
 
 function MainProducts() {
-  const [value, setValue] = React.useState('ai-overview');
+  const [value, setValue] = React.useState('weekly-brief');
   const [previousValue, setPreviousValue] = React.useState<string | null>(null);
   const transitionTimer = useRef<number | null>(null);
   const previousValueRef = useRef(value);
@@ -37,11 +37,11 @@ function MainProducts() {
 
   const illustrationOptions = useMemo(() => {
     return [
-      { value: 'ai-overview', Illustration: AiOverviewIllu },
-      { value: 'backlog', Illustration: BacklogIllu },
-      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
-      { value: 'release-review', Illustration: ReleaseReviewIllu },
       { value: 'weekly-brief', Illustration: WeeklyBriefIllu },
+      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
+      { value: 'backlog', Illustration: BacklogIllu },
+      { value: 'ai-overview', Illustration: AiOverviewIllu },
+      { value: 'release-review', Illustration: ReleaseReviewIllu },
     ];
   }, []);
 
