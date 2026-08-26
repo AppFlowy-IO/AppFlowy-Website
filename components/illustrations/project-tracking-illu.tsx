@@ -11,19 +11,19 @@ import { IllustrationProps } from './types';
 // Footprint of the "Refine AI meeting..." card inside the base image,
 // expressed as a percentage of the frame so it holds at any render size.
 const CARD_SLOT = {
-  left: 59.9,
-  top: 42.6,
-  width: 17.3,
-  height: 18.9,
+  left: 60.31,
+  top: 45.98,
+  width: 17.03,
+  height: 21.84,
 };
 
 // Footprint of the "Review product requirements" card (top of the To do
 // column) inside the base image, same percentage convention as CARD_SLOT.
 const SMALL_CARD_SLOT = {
   left: 22.5,
-  top: 32.4,
-  width: 17,
-  height: 4.15,
+  top: 35.63,
+  width: 17.03,
+  height: 4.6,
 };
 
 const BASE_SHADOW = 'drop-shadow(0 0px 0px rgba(15,23,42,0))';
@@ -99,7 +99,7 @@ const MATHIEU_LEAVE_END = MATHIEU_LEAVE_START + MATHIEU_LEAVE_DURATION;
 function ProjectTrackingIllu({ className }: IllustrationProps) {
   return (
     <div className={className}>
-      <div className={'relative w-full aspect-[2560/1532]'}>
+      <div className={'relative w-full aspect-[2560/1392]'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}

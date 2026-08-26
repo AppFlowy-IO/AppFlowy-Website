@@ -37,7 +37,7 @@ function MainProducts() {
   // illustration into one fixed ratio.
   const illustrationOptions = useMemo(() => {
     return [
-      { value: 'project-tracking', Illustration: ProjectTrackingIllu, aspectRatio: 2560 / 1532 },
+      { value: 'project-tracking', Illustration: ProjectTrackingIllu, aspectRatio: 2560 / 1392 },
       { value: 'backlog', Illustration: BacklogIllu, aspectRatio: 2560 / 1392 },
       { value: 'ai-overview', Illustration: AiOverviewIllu, aspectRatio: 2560 / 1392 },
       { value: 'release-review', Illustration: ReleaseReviewIllu, aspectRatio: 2560 / 1480 },
@@ -46,7 +46,10 @@ function MainProducts() {
   }, []);
 
   const ref = React.useRef<HTMLDivElement>(null);
-  const inView = useInView(ref);
+  // Generous margin: keeps autoplay (and the animation bursts it triggers)
+  // running until the section is a couple of screens away, not just the
+  // instant it crosses the viewport edge.
+  const inView = useInView(ref, { margin: '800px 0px 800px 0px' });
 
   const { start, stop } = useAutoPlay({
     options: illustrationOptions,

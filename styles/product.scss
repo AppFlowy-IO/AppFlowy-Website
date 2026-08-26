@@ -78,6 +78,12 @@
     @apply flex w-full flex-col items-center justify-center;
     @apply max-md:text-sm;
 
+    // Skip layout/paint work for this section entirely while it's off-screen;
+    // contain-intrinsic-size keeps its reserved space stable so nothing jumps
+    // when it's skipped or restored. No-op in browsers that don't support it.
+    content-visibility: auto;
+    contain-intrinsic-size: 1280px 750px;
+
     .ai-image {
       .visual-image {
         @apply pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 select-none object-contain;
