@@ -8,7 +8,7 @@ import WeeklyBriefIllu from '@/components/illustrations/weekly-brief-illu';
 import ProjectTrackerBase from '@/assets/images/illustrations/project-tracker-base.webp';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useRef } from 'react';
 import 'styles/showcase.scss';
@@ -147,10 +147,9 @@ function MainProducts() {
         </div>
       ) : null}
       {renderAnimatedHero ? (
-        <motion.div
+        <div
           className={'main-product__animated ai-image relative w-full max-w-[1280px] overflow-hidden'}
-          animate={{ aspectRatio: activeIllustration.aspectRatio }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          style={{ aspectRatio: activeIllustration.aspectRatio }}
         >
           <ActiveIllustration
             key={activeIllustration.value}
@@ -164,7 +163,7 @@ function MainProducts() {
               />
             </div>
           ) : null}
-        </motion.div>
+        </div>
       ) : null}
     </div>
   );

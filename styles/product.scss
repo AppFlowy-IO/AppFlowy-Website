@@ -26,7 +26,11 @@
     .hero-blob-left {
       --blob-sz: clamp(200px, 40vw, 800px);
       left: -200px;
-      top: 12%;
+      // vh, not %: a percentage of .section-1's own height would re-anchor
+      // (and visibly jump) every time that height wobbles during load — web
+      // font swap, content mounting, the hero image settling — since this
+      // element's own box never changes. vh is stable regardless.
+      top: 12vh;
       width: var(--blob-sz);
       height: var(--blob-sz);
       background: #d0c4ff;
@@ -37,7 +41,7 @@
     .hero-blob-right {
       --blob-sz: clamp(300px, 50vw, 960px);
       right: -140px;
-      top: 65%;
+      top: 65vh;
       width: var(--blob-sz);
       height: var(--blob-sz);
       background: #9cbdff;
@@ -92,6 +96,13 @@
 
     .main-product__static {
       display: none;
+    }
+
+    // Aspect-ratio is a plain inline style (not Framer Motion) so it's present
+    // in the server-rendered HTML and reserves height before hydration —
+    // this transition is what makes switching illustrations still animate.
+    .main-product__animated {
+      transition: aspect-ratio 0.85s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @media (prefers-reduced-motion: reduce) {
