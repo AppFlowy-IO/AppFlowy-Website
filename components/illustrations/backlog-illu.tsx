@@ -57,7 +57,7 @@ const MENU_FADE_DURATION = 0.5;
 function BacklogIllu({ className }: IllustrationProps) {
   return (
     <div className={className}>
-      <div className={'relative mx-auto aspect-[2560/1392] h-full overflow-hidden'}>
+      <div className={'relative w-full aspect-[2560/1392] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}

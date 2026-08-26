@@ -7,17 +7,14 @@ import ReleaseReviewIllu from '@/components/illustrations/release-review-illu';
 import WeeklyBriefIllu from '@/components/illustrations/weekly-brief-illu';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import React, { useEffect, useMemo, useRef } from 'react';
 import 'styles/showcase.scss';
 
-// TODO: Slideshow autoplay is temporarily disabled while the illustrations
-// are being hand-edited — only the first illustration renders. Flip this
-// back to true to restore the auto-cycling slideshow.
-const AUTOPLAY_ENABLED = false;
+const AUTOPLAY_ENABLED = true;
 
 function MainProducts() {
-  const [value, setValue] = React.useState('weekly-brief');
+  const [value, setValue] = React.useState('project-tracking');
   const [previousValue, setPreviousValue] = React.useState<string | null>(null);
   const transitionTimer = useRef<number | null>(null);
   const previousValueRef = useRef(value);
@@ -35,13 +32,16 @@ function MainProducts() {
     }
   }, [isClient]);
 
+  // Each illustration's own canvas ratio (native export dimensions), used to
+  // size the container to the active illustration instead of forcing every
+  // illustration into one fixed ratio.
   const illustrationOptions = useMemo(() => {
     return [
-      { value: 'weekly-brief', Illustration: WeeklyBriefIllu },
-      { value: 'project-tracking', Illustration: ProjectTrackingIllu },
-      { value: 'backlog', Illustration: BacklogIllu },
-      { value: 'ai-overview', Illustration: AiOverviewIllu },
-      { value: 'release-review', Illustration: ReleaseReviewIllu },
+      { value: 'project-tracking', Illustration: ProjectTrackingIllu, aspectRatio: 2560 / 1532 },
+      { value: 'backlog', Illustration: BacklogIllu, aspectRatio: 2560 / 1392 },
+      { value: 'ai-overview', Illustration: AiOverviewIllu, aspectRatio: 2560 / 1392 },
+      { value: 'release-review', Illustration: ReleaseReviewIllu, aspectRatio: 2560 / 1480 },
+      { value: 'weekly-brief', Illustration: WeeklyBriefIllu, aspectRatio: 2560 / 1480 },
     ];
   }, []);
 
@@ -51,7 +51,7 @@ function MainProducts() {
   const { start, stop } = useAutoPlay({
     options: illustrationOptions,
     onChange: setValue,
-    duration: 7500,
+    duration: 5000,
   });
 
   useEffect(() => {
@@ -104,7 +104,11 @@ function MainProducts() {
       ref={ref}
       className={'main-product'}
     >
-      <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
+      <motion.div
+        className={'ai-image relative w-full max-w-[1280px] overflow-hidden'}
+        animate={{ aspectRatio: activeIllustration.aspectRatio }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      >
         <ActiveIllustration
           key={activeIllustration.value}
           className={`visual-image ${previousIllustration ? 'feature-illustration--enter' : ''}`}
@@ -117,7 +121,7 @@ function MainProducts() {
             />
           </div>
         ) : null}
-      </div>
+      </motion.div>
     </div>
   );
 }

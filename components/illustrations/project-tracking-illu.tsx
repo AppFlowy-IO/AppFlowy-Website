@@ -99,7 +99,7 @@ const MATHIEU_LEAVE_END = MATHIEU_LEAVE_START + MATHIEU_LEAVE_DURATION;
 function ProjectTrackingIllu({ className }: IllustrationProps) {
   return (
     <div className={className}>
-      <div className={'relative mx-auto aspect-[2560/1532] h-full'}>
+      <div className={'relative w-full aspect-[2560/1532]'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}

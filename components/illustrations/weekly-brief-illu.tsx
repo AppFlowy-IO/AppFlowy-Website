@@ -77,7 +77,7 @@ const INPUT_REVEAL_DURATION = 0.4;
 function WeeklyBriefIllu({ className }: IllustrationProps) {
   return (
     <div className={className}>
-      <div className={'relative mx-auto aspect-[2560/1480] h-full overflow-hidden'}>
+      <div className={'relative w-full aspect-[2560/1480] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}
