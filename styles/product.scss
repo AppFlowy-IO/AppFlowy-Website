@@ -89,6 +89,20 @@
         @apply pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 select-none object-contain;
       }
     }
+
+    .main-product__static {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .main-product__animated {
+        display: none;
+      }
+
+      .main-product__static {
+        display: block;
+      }
+    }
   }
 
   .testimonial-section {

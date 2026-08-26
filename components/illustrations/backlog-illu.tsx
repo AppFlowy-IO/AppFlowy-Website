@@ -21,7 +21,7 @@ const EMILY_COLOR = '#14B8A6';
 const EMILY_SPAWN = { left: 20, top: 50 };
 const EMILY_DEST = { left: 20, top: 100 };
 const EMILY_REVEAL_START = 0.25;
-const EMILY_APPEAR_DURATION = 1.25;
+const EMILY_APPEAR_DURATION = 1.5;
 
 // Table footprint, measured directly off backlog-illu-base.webp as a
 // percentage of its own 2560x1392 canvas — spans from the border above the

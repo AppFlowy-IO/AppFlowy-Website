@@ -5,9 +5,11 @@ import BacklogIllu from '@/components/illustrations/backlog-illu';
 import ProjectTrackingIllu from '@/components/illustrations/project-tracking-illu';
 import ReleaseReviewIllu from '@/components/illustrations/release-review-illu';
 import WeeklyBriefIllu from '@/components/illustrations/weekly-brief-illu';
+import ProjectTrackerBase from '@/assets/images/illustrations/project-tracker-base.webp';
 import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import React, { useEffect, useMemo, useRef } from 'react';
 import 'styles/showcase.scss';
 
@@ -51,21 +53,44 @@ function MainProducts() {
   // instant it crosses the viewport edge.
   const inView = useInView(ref, { margin: '800px 0px 800px 0px' });
 
+  // Starts unresolved so the server and first client render match. CSS handles
+  // the first paint, then React unmounts the unused hero once the preference is
+  // known.
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (!window.matchMedia) return;
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handleChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches);
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const renderStaticHero = prefersReducedMotion !== false;
+  const renderAnimatedHero = prefersReducedMotion !== true;
+
   const { start, stop } = useAutoPlay({
     options: illustrationOptions,
     onChange: setValue,
-    duration: 5000,
+    duration: 7500,
   });
 
   useEffect(() => {
-    if (!AUTOPLAY_ENABLED) return;
+    if (!AUTOPLAY_ENABLED || renderStaticHero) {
+      stop();
+      return;
+    }
 
     if (!inView) {
       stop();
     } else {
       start();
     }
-  }, [inView, start, stop]);
+  }, [inView, renderStaticHero, start, stop]);
 
   // Drives the crossfade for every value change, reusing the illustration
   // enter/leave animation from the product showcase section.
@@ -107,24 +132,40 @@ function MainProducts() {
       ref={ref}
       className={'main-product'}
     >
-      <motion.div
-        className={'ai-image relative w-full max-w-[1280px] overflow-hidden'}
-        animate={{ aspectRatio: activeIllustration.aspectRatio }}
-        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <ActiveIllustration
-          key={activeIllustration.value}
-          className={`visual-image ${previousIllustration ? 'feature-illustration--enter' : ''}`}
-        />
-        {PreviousIllustration ? (
-          <div aria-hidden={'true'}>
-            <PreviousIllustration
-              key={`${previousIllustration.value}-leaving`}
-              className={'visual-image feature-illustration--leave'}
-            />
-          </div>
-        ) : null}
-      </motion.div>
+      {renderStaticHero ? (
+        <div
+          className={'main-product__static ai-image relative w-full max-w-[1280px] overflow-hidden'}
+          style={{ aspectRatio: 2560 / 1392 }}
+        >
+          <Image
+            src={ProjectTrackerBase}
+            alt={'Project Tracker'}
+            fill
+            sizes={'(max-width: 1280px) 100vw, 1280px'}
+            className={'object-contain'}
+          />
+        </div>
+      ) : null}
+      {renderAnimatedHero ? (
+        <motion.div
+          className={'main-product__animated ai-image relative w-full max-w-[1280px] overflow-hidden'}
+          animate={{ aspectRatio: activeIllustration.aspectRatio }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <ActiveIllustration
+            key={activeIllustration.value}
+            className={`visual-image ${previousIllustration ? 'feature-illustration--enter' : ''}`}
+          />
+          {PreviousIllustration ? (
+            <div aria-hidden={'true'}>
+              <PreviousIllustration
+                key={`${previousIllustration.value}-leaving`}
+                className={'visual-image feature-illustration--leave'}
+              />
+            </div>
+          ) : null}
+        </motion.div>
+      ) : null}
     </div>
   );
 }
