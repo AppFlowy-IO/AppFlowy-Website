@@ -3,11 +3,15 @@
 import BacklogBase from '@/assets/images/illustrations/backlog-illu-base.webp';
 import BacklogMenu1 from '@/assets/images/illustrations/backlog-menu-1.webp';
 import BacklogMenu2 from '@/assets/images/illustrations/backlog-menu-2.webp';
-import BacklogOverlay from '@/assets/images/illustrations/backlog-illu-overlay.webp';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Cursor from './cursor';
 import { IllustrationProps } from './types';
+
+// DecoyReveal: backlog-illu-base.webp already has the table fully drawn in
+// alongside the page chrome. Instead of a separate overlay image, we hide
+// the table behind a plain white decoy and animate the decoy away to
+// reveal it — no second layer to export.
 
 const BASE_SLIDE_DURATION = 0.6;
 
@@ -19,13 +23,22 @@ const EMILY_DEST = { left: 20, top: 100 };
 const EMILY_REVEAL_START = 0.25;
 const EMILY_APPEAR_DURATION = 1.25;
 
-// The overlay (tabs/toolbar + table) reveals as one continuous accordion —
-// height animates 0 -> 'auto', which Framer Motion resolves to the image's
-// real rendered height. Starts once Emily has landed, so the table appears
-// to grow in right after she arrives.
-const OVERLAY_REVEAL_START = 0.1;
-const OVERLAY_REVEAL_DURATION = 1.5;
-const OVERLAY_REVEAL_END = OVERLAY_REVEAL_START + OVERLAY_REVEAL_DURATION;
+// Table footprint, measured directly off backlog-illu-base.webp as a
+// percentage of its own 2560x1392 canvas — spans from the border above the
+// column headers down to the bottom of the frame (the last row's fade is
+// already baked into the base image below that).
+const TABLE_LEFT = 4.69;
+const TABLE_TOP = 50;
+const TABLE_WIDTH = 90.63;
+const TABLE_HEIGHT = 50;
+
+// Table decoy: height animates to 0, pinned via `bottom`, so it recedes
+// downward — uncovering the header and rows top-to-bottom, one after
+// another. Starts once Emily has landed, so the table appears to grow in
+// right after she arrives.
+const TABLE_REVEAL_START = 0.1;
+const TABLE_REVEAL_DURATION = 1.5;
+const TABLE_REVEAL_END = TABLE_REVEAL_START + TABLE_REVEAL_DURATION;
 
 // Sized/positioned off the original composited backlog.webp reference: both
 // cards share their native width (they're the same width in their source
@@ -37,7 +50,7 @@ const MENU_WIDTH = 28;
 const MENU_2_SLOT = { right: 14, top: 15 };
 const MENU_1_SLOT = { right: -1, top: 50 };
 
-const MENU_START = OVERLAY_REVEAL_END + 0.15;
+const MENU_START = TABLE_REVEAL_END + 0.15;
 const MENU_STAGGER = 0.2;
 const MENU_FADE_DURATION = 0.5;
 
@@ -59,26 +72,22 @@ function BacklogIllu({ className }: IllustrationProps) {
             className={'object-contain'}
           />
 
-          {/* Overlay: nested inside the base's own wrapper so it rides the
-              same entrance slide with zero relative motion. The height
-              reveal is the accordion — overflow-hidden clips a naturally
-              full-height image, so growing the wrapper's height uncovers
-              the tabs/toolbar first, then the table rows beneath. */}
-          <motion.div
-            className={'absolute left-0 top-6 w-full overflow-hidden'}
-            initial={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            transition={{ duration: OVERLAY_REVEAL_DURATION, delay: OVERLAY_REVEAL_START, ease: 'easeInOut' }}
+          {/* Table decoy: nested inside the base's own wrapper for the same
+              zero-relative-motion reason as Emily and the menus below. */}
+          <div
+            className={'absolute'}
+            style={{ left: `${TABLE_LEFT}%`, top: `${TABLE_TOP}%`, width: `${TABLE_WIDTH}%`, height: `${TABLE_HEIGHT}%` }}
           >
-            <Image
-              src={BacklogOverlay}
-              alt={''}
-              className={'block h-auto w-full'}
+            <motion.div
+              className={'absolute inset-x-0 bottom-0 bg-white'}
+              initial={{ height: '100%' }}
+              animate={{ height: '0%' }}
+              transition={{ duration: TABLE_REVEAL_DURATION, delay: TABLE_REVEAL_START, ease: 'easeInOut' }}
             />
-          </motion.div>
+          </div>
 
           {/* Emily: nested inside the base wrapper for the same zero-
-              relative-motion reason as the overlay below — fades in and
+              relative-motion reason as the table decoy above — fades in and
               slides down to her landing spot before the table starts
               growing in beneath her. */}
           <motion.div
