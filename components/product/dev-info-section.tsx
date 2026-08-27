@@ -216,14 +216,14 @@ function DevInfoSection() {
         <span className='absolute bottom-[var(--grid-y)] right-[var(--grid-x)] hidden h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 bg-[#d9d9d9] min-[900px]:block' />
       </div>
 
-      <div className='relative mx-auto flex w-full max-w-[1440px] flex-col px-8 py-20 sm:px-10 lg:px-12 xl:px-20'>
-        <div className='align-items-start mb-8 flex w-full flex-col lg:mb-10 xl:mb-12'>
+      <div className='relative mx-auto flex w-full max-w-[1280px] flex-col px-8 py-20 sm:px-10 lg:px-16 xl:px-20'>
+        <div className='align-items-start mb-6 flex w-full flex-col lg:mb-8 xl:mb-12'>
           <h1 className='text-style-h1 font-bold text-white'>Built for teams who own their stack</h1>
           <h5 className='text-style-h5 mt-2 text-text-tertiary font-normal'>Your infrastructure. Your data. Your rules.</h5>
         </div>
         <GridRule className='mb-12 min-[900px]:hidden' />
         <div ref={ref}>
-          <div className='hidden grid-cols-2 items-stretch gap-6 min-[900px]:grid lg:gap-10 xl:gap-20'>
+          <div className='hidden grid-cols-2 items-stretch gap-6 min-[900px]:grid lg:gap-10 xl:gap-[60px]'>
             <MuiTabs
               className='w-full'
               orientation='vertical'
@@ -247,7 +247,7 @@ function DevInfoSection() {
                   value={tab.value}
                   sx={{
                     width: '100%',
-                    maxWidth: '520px',
+                    maxWidth: '100%',
                     minWidth: 0,
                     padding: 0,
                     textTransform: 'none',
@@ -284,11 +284,11 @@ function DevInfoSection() {
             <div className='w-full'>
               {panels.map((panel) => (
                 <TabPanel key={panel.value} index={panel.value} value={value}>
-                  <div className='flex w-full flex-col items-end'>
-                    <div className='relative h-[220px] max-w-[450px] w-full shrink-0 overflow-hidden rounded-[12px] lg:h-[270px] xl:h-[320px]'>
+                  <div className='flex w-full flex-col'>
+                    <div className='relative h-[220px] w-full shrink-0 overflow-hidden rounded-[12px] lg:h-[270px] xl:h-[320px]'>
                       <PanelImage panel={panel} sizes='(max-width: 900px) 100vw, 50vw' />
                     </div>
-                    <div className='mt-5 flex flex-col gap-3 max-w-[450px] lg:mt-6 lg:gap-4 xl:mt-8 xl:gap-5'>
+                    <div className='mt-5 flex flex-col gap-3 lg:mt-6 lg:gap-4 xl:mt-8 xl:gap-5'>
                       <div className='text-style-h2 font-semibold text-white'>
                         <h2>{panel.title1}</h2>
                         <h2>{panel.title2}</h2>
@@ -306,7 +306,7 @@ function DevInfoSection() {
               <span className='text-sm font-mono text-white'>{tabOptions[activeIndex]?.label}</span>
             </div>
             {activePanel && (
-              <div className='mt-6 flex w-full flex-col'>
+              <div className='mt-8 flex w-full flex-col'>
                 <div className='relative h-[328px] w-full shrink-0 overflow-hidden rounded-[12px] sm:h-[380px]'>
                   <PanelImage panel={activePanel} sizes='100vw' />
                 </div>
