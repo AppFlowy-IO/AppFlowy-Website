@@ -63,14 +63,16 @@ type Panel = {
  * Panel artwork. Both the desktop grid and the mobile carousel stay mounted at every breakpoint
  * (the inactive one is only `display: none`), and browsers fetch an `<img src>` even when it is
  * hidden. So a panel with a mobile-specific crop renders a `<picture>`: the browser resolves the
- * media query itself and downloads exactly one file per viewport. Images are served unoptimized
+ * media query itself and downloads exactly one file per viewport. The 500px source breakpoint is
+ * independent of the 900px layout breakpoint (grid vs. carousel) — the mobile crop only kicks in
+ * below 500px, even while the carousel layout is already active. Images are served unoptimized
  * (`images.unoptimized` in next.config), so dropping `next/image` here costs nothing.
  */
 function PanelImage({ panel, sizes }: { panel: Panel; sizes: string }) {
   if (panel.mobileImage) {
     return (
       <picture>
-        <source media='(min-width: 900px)' srcSet={panel.image.src} />
+        <source media='(min-width: 500px)' srcSet={panel.image.src} />
         <img
           loading={'eager'}
           className='absolute inset-0 h-full w-full object-cover'
