@@ -123,7 +123,6 @@ export function TestimonialSection() {
   const bottomRowTestimonials = sectionTestimonials.slice(4);
 
   const carouselTrackRef = React.useRef<HTMLDivElement>(null);
-  const [isStageHovered, setIsStageHovered] = React.useState(false);
 
   const scrollByCard = (direction: 'prev' | 'next') => {
     const track = carouselTrackRef.current;
@@ -155,15 +154,10 @@ export function TestimonialSection() {
             <ScrollFillText>Chosen for the way work gets done</ScrollFillText>
           </h2>
         </div>
-        <div
-          onMouseEnter={() => setIsStageHovered(true)}
-          onMouseLeave={() => setIsStageHovered(false)}
-          className="testimonial-section__stage relative w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden"
-        >
+        <div className="testimonial-section__stage relative w-full overflow-hidden pb-[44px] before:pointer-events-none before:absolute before:inset-y-0 before:z-10 before:block before:w-[120px] before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:z-10 after:block after:w-[120px] after:content-[''] max-md:overflow-visible max-md:before:hidden max-md:after:hidden max-sm:hidden">
           <Marquee
             direction={1}
             speed={TOP_ROW_SPEED}
-            paused={isStageHovered}
             minViewportWidth={768}
             className='w-max translate-x-[-6vw] max-md:mt-0 max-md:w-full max-md:translate-x-0'
             trackClassName={testimonialTrackClassName}
@@ -178,7 +172,6 @@ export function TestimonialSection() {
           <Marquee
             direction={-1}
             speed={BOTTOM_ROW_SPEED}
-            paused={isStageHovered}
             minViewportWidth={768}
             className='mt-[20px] w-max translate-x-[2vw] max-md:ml-0 max-md:mt-0 max-md:w-full max-md:translate-x-0'
             trackClassName={testimonialTrackClassName}
