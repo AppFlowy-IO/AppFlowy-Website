@@ -4,8 +4,6 @@ import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import CloseImage from '@/assets/images/vs-notion/x.svg';
-import RightImage from '@/assets/images/vs-notion/right.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
@@ -14,6 +12,7 @@ import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
+import { ComparisonTable } from '../components/comparison-table';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
@@ -447,61 +446,7 @@ function Page() {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            className={
-                                'flex w-full min-w-0 max-w-[1100px] flex-col gap-1 text-[26px] max-lg:text-[18px] max-md:text-base'
-                            }
-                        >
-                            <div className={'flex w-full items-center justify-between'}>
-                                <p className="w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4">Compare features</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AFFiNE</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AppFlowy</p>
-                            </div>
-                            {points.map((point) => (
-                                <div
-                                    key={point.text}
-                                    className={
-                                        'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
-                                    }
-                                >
-                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point.competitor ?
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                            :
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point.appflowy ?
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                            :
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <ComparisonTable competitorName='AFFiNE' competitorImage={AFFiNEImage} points={points} />
                     </div>
                 </div>
                 <div className={'vs-affine-faq'}>
