@@ -6,7 +6,6 @@ import ConfluenceImage from '@/assets/images/vs-notion/confluence.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
-
 import React from 'react';
 import Image from 'next/image';
 import 'styles/vs-notion.scss';
@@ -210,13 +209,7 @@ function generateListSchema() {
             '@type': 'SoftwareApplication',
             name: 'Confluence',
             applicationCategory: 'ProductivityApplication',
-            operatingSystem: 'Windows, macOS, Android, iOS, Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              description: 'Free plan available; paid Cloud and Data Center plans',
-            },
+            operatingSystem: 'Android, iOS, Web',
             featureList: [
               'Cloud-based and Data Center workspace',
               'Linked and embedded databases',
@@ -438,7 +431,7 @@ function Page() {
               <div className={'card'}>
                 <Image
                   src={Object2}
-                  alt={'Self-host for the long term'}
+                  alt={'Self-host long term'}
                   width={151}
                   height={121}
                 />
@@ -463,7 +456,7 @@ function Page() {
                 </div>
               </div>
 
-              <div className={'card'}>
+              <div className={'card mb-4'}>
                 <Image
                   src={Object1}
                   alt={'On-prem and local AI'}
