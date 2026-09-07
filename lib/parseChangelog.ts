@@ -2,17 +2,27 @@ import { IVersion } from '@/lib/config/versions';
 
 export function parseChangelog({
   version,
+  headline,
   changeLog,
   publishedAt,
   url,
 }: {
   version: string;
+  headline: string;
   changeLog: string;
   publishedAt: string;
   url: string;
 }): IVersion {
+  const bodyHeadline = extractBodyHeadline(changeLog);
+  const resolvedHeadline = !isGenericHeadline(bodyHeadline, version)
+    ? bodyHeadline
+    : !isGenericHeadline(headline, version)
+      ? headline.trim()
+      : '';
+
   const changelogJSON: IVersion = {
     version,
+    headline: resolvedHeadline,
     time: publishedAt,
     image: {
       src: '',
@@ -35,6 +45,38 @@ export function parseChangelog({
   changelogJSON.desc = buildSummary(version, changelogJSON.content);
 
   return changelogJSON;
+}
+
+// A single "# ..." line at the very top of the changelog body (before the
+// "## Version ..." heading) is the authored headline, e.g.:
+//   # Fix for Potential Data Loss & Windows Certificate Update
+//   ## Version 0.14.1 – 09/01/2026
+// Existing changelogs that open with a boilerplate "# Release Notes" line are
+// filtered out by isGenericHeadline below.
+function extractBodyHeadline(changeLog: string): string {
+  const firstLine = changeLog
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .find((line) => line.trim().length > 0);
+
+  const match = firstLine?.match(/^#\s+(.*)$/);
+
+  return match ? match[1].trim().replace(/[:.\s]+$/, '') : '';
+}
+
+// GitHub release titles default to "v0.14.1" / "0.14.1" when nobody bothers to
+// write a real one, and changelog bodies often open with a boilerplate
+// "Release Notes" heading. Treat both as "no headline" so we fall back to
+// "AppFlowy vX.Y.Z".
+function isGenericHeadline(headline: string, version: string): boolean {
+  const normalized = headline.trim().toLowerCase().replace(/^v/, '');
+  const genericLabels = ['release notes', 'changelog', 'release note', "what's new"];
+
+  return (
+    !normalized ||
+    normalized === version.toLowerCase().replace(/^v/, '') ||
+    genericLabels.includes(normalized)
+  );
 }
 
 function parseImage(text: string) {

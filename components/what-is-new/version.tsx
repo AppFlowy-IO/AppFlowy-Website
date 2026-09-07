@@ -29,12 +29,13 @@ function Version({ version }: { version: IVersion }) {
     <div className={'version-panel'}>
       <div className={'version-meta'}>
         <Link href={version.url} target={'_blank'} className={'version-title'}>
-          AppFlowy v{version.version}
+          {version.headline || `AppFlowy v${version.version}`}
         </Link>
         <div className={'version-date'}>{dayjs(version.time).format('LL')}</div>
         <div className={'version-tags'}>
+          <span className={'tag tag-version'}>v{version.version}</span>
           {version.content.map((section) => (
-            <span key={section.type} className={'tag'}>
+            <span key={section.type} className={'tag tag-type'}>
               {tagLabels[section.type] || section.name}
             </span>
           ))}

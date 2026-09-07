@@ -4,7 +4,7 @@
   background: white;
 
   .subtitle {
-    @apply mb-[80px] mt-[16px] px-[30px] text-center text-[20px] leading-[140%] text-text-secondary;
+    @apply mb-[80px] mt-[16px] px-[30px] text-center text-[20px] leading-[140%] text-text-tertiary;
     @apply max-sm:mb-[46px] max-sm:text-[15px];
   }
 
@@ -28,22 +28,30 @@
   @apply max-sm:flex-col max-sm:gap-[24px];
 
   .version-meta {
-    @apply flex w-[300px] flex-shrink-0 flex-col;
+    @apply flex w-[420px] flex-shrink-0 flex-col;
     @apply max-sm:w-full;
 
     .version-title {
-      @apply mb-[10px] text-[28px] font-semibold leading-[125%] tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
+      @apply mb-[16px] text-[28px] font-semibold leading-[36px] tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
     }
 
     .version-date {
-      @apply mb-[20px] text-[15px] text-text-tertiary;
+      @apply mb-[16px] text-[16px] leading-[24px] text-text-tertiary;
     }
 
     .version-tags {
       @apply flex flex-wrap gap-[8px];
 
       .tag {
-        @apply inline-flex items-center rounded-md bg-primary-10 px-[10px] py-[4px] text-[13px] font-medium text-primary;
+        @apply inline-flex items-center rounded-md px-[10px] py-[4px] text-[16px] font-medium leading-[24px];
+      }
+
+      .tag-version {
+        @apply bg-primary-10 text-primary;
+      }
+
+      .tag-type {
+        @apply bg-light-blue-gray text-lake-blue;
       }
     }
   }
