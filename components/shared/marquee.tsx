@@ -13,8 +13,6 @@ import { cn } from '@/lib/utils';
 
 /** Rows render static for anyone with the OS reduced-motion setting enabled. */
 const RESPECT_REDUCED_MOTION = true;
-/** How far the row slows down while `paused`. */
-const PAUSED_SPEED_FACTOR = 0.08;
 /** Longest frame we integrate, so a backgrounded tab doesn't jump on return. */
 const MAX_FRAME_DELTA = 50;
 
@@ -28,8 +26,6 @@ export type MarqueeProps = {
   direction: 1 | -1;
   /** Constant speed, in px per second. */
   speed: number;
-  /** Slows the row to a near-stop — e.g. while the section is hovered. */
-  paused?: boolean;
   /** Skips the animation below this viewport width, where a row may reflow. */
   minViewportWidth?: number;
   /** Classes for the outer wrapper. The wrapper's parent must clip overflow. */
@@ -51,7 +47,6 @@ export default function Marquee({
   children,
   direction,
   speed,
-  paused = false,
   minViewportWidth = 0,
   className,
   trackClassName,
@@ -67,9 +62,6 @@ export default function Marquee({
   // is what makes the reset invisible.
   const periodRef = React.useRef(0);
   const enabledRef = React.useRef(false);
-  const pausedRef = React.useRef(false);
-  // Eased, so pausing and resuming doesn't snap the speed.
-  const pauseFactorRef = React.useRef(1);
 
   // Enough copies to cover the visible width plus one full period; fewer would
   // leave a gap at the far edge of the loop when a copy is narrower than the row.
@@ -83,7 +75,6 @@ export default function Marquee({
     isWideEnough && inView && !(RESPECT_REDUCED_MOTION && prefersReducedMotion);
 
   enabledRef.current = enabled;
-  pausedRef.current = paused;
 
   React.useEffect(() => {
     if (minViewportWidth === 0) {
@@ -149,12 +140,7 @@ export default function Marquee({
     }
 
     const frameDelta = Math.min(delta, MAX_FRAME_DELTA);
-    const pauseTarget = pausedRef.current ? PAUSED_SPEED_FACTOR : 1;
-
-    pauseFactorRef.current +=
-      (pauseTarget - pauseFactorRef.current) * Math.min(1, frameDelta / 160);
-
-    const moveBy = direction * speed * pauseFactorRef.current * (frameDelta / 1000);
+    const moveBy = direction * speed * (frameDelta / 1000);
 
     x.set(wrap(-period, 0, x.get() + moveBy));
   });

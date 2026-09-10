@@ -39,27 +39,26 @@ const integrationTiles = [
   { name: 'Teams', logo: TeamsLogo },
 ];
 
-/**
- * Outer rows run left to right, the middle one runs back the other way. The
- * speeds are deliberately all different, so the rows never lock in step.
- */
+/** Outer rows run left to right, the middle one runs back the other way. */
+const ROW_SPEED = 46; // px per second
+
 const integrationRows = [
   {
     tiles: integrationTiles.slice(0, 6),
     direction: 1,
-    speed: 46, // px per second
+    speed: ROW_SPEED,
     offsetClassName: 'pl-0 max-md:ml-[-28px]',
   },
   {
     tiles: integrationTiles.slice(6, 11),
     direction: -1,
-    speed: 34,
+    speed: ROW_SPEED,
     offsetClassName: 'pl-[52px] max-md:pl-[22px]',
   },
   {
     tiles: integrationTiles.slice(11),
     direction: 1,
-    speed: 40,
+    speed: ROW_SPEED,
     offsetClassName: 'pl-0 max-md:ml-[-28px]',
   },
 ] as const;
