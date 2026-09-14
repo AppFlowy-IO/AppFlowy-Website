@@ -81,7 +81,7 @@ const vsConfluenceFAQs = [
     id: 'vs-confluence-11',
     question: 'Which enterprise workflows benefit most from AppFlowy’s database model?',
     answer:
-      'AppFlowy is particularly useful when a business record needs to be both structured data and an evolving working document.\n\nCommon use cases include:\nProduct development and epics\nProject and portfolio management\nOKR tracking\nIncident and risk management\nCustomer and account management\nSecurity and compliance reviews\nVendor and procurement workflows\nHiring and candidate management\nRecurring team reviews and meetings\n\nTeams can track structured properties, write detailed documentation, collaborate, create tailored views, and automatically aggregate related information without maintaining separate records and pages.',
+      'AppFlowy is particularly useful when a business record needs to be both structured data and an evolving working document.\n\nCommon use cases include:\n• Product development and epics\n• Project and portfolio management\n• OKR tracking\n• Incident and risk management\n• Customer and account management\n• Security and compliance reviews\n• Vendor and procurement workflows\n• Hiring and candidate management\n• Recurring team reviews and meetings\n\nTeams can track structured properties, write detailed documentation, collaborate, create tailored views, and automatically aggregate related information without maintaining separate records and pages.',
   },
   {
     id: 'vs-confluence-12',
@@ -105,7 +105,7 @@ const vsConfluenceFAQs = [
     id: 'vs-confluence-15',
     question: 'Should I choose AppFlowy or Confluence?',
     answer:
-      'Confluence may remain the stronger choice when an organization:\nIs committed to moving fully to Atlassian Cloud\nDepends extensively on Jira-native workflows\nUses a large number of specialized Marketplace apps\nHas developed custom macros or Atlassian automations\nPrefers a single vendor for its broader Atlassian stack\n\nAppFlowy is the stronger fit when an organization prioritizes:\nLong-term self-hosting\nInfrastructure and data ownership\nAir-gapped or restricted-network deployment\nLocal and on-prem AI\nNative desktop and mobile apps alongside a stable web app\nAdvanced relational workflows\nMinimal duplication and a single source of truth with powerful database features\nReducing dependence on the Atlassian ecosystem',
+      'Confluence may remain the stronger choice when an organization:\n• Is committed to moving fully to Atlassian Cloud\n• Depends extensively on Jira-native workflows\n• Uses a large number of specialized Marketplace apps\n• Has developed custom macros or Atlassian automations\n• Prefers a single vendor for its broader Atlassian stack\n\nAppFlowy is the stronger fit when an organization prioritizes:\n• Long-term self-hosting\n• Infrastructure and data ownership\n• Air-gapped or restricted-network deployment\n• Local and on-prem AI\n• Native desktop and mobile apps alongside a stable web app\n• Advanced relational workflows\n• Minimal duplication and a single source of truth with powerful database features\n• Reducing dependence on the Atlassian ecosystem',
   },
   {
     id: 'vs-confluence-16',
@@ -416,7 +416,7 @@ function Page() {
             <FeatureCards
               items={[
                 {
-                  icon: 'server',
+                  icon: 'calendar',
                   title: 'Self-host for the long term',
                   description: 'Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment.',
                 },
@@ -428,7 +428,7 @@ function Page() {
                 },
                 {
                   icon: 'sparkle',
-                  title: 'On-prem and local AI',
+                  title: 'On-prem & local AI',
                   description: 'Use local or self-hosted AI while keeping sensitive workspace data in your own infrastructure.',
                 },
               ]}
