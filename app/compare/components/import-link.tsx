@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import ImportImage from '@/assets/images/vs-notion/import.png';
+import { Button } from '@/components/ui/button';
 
 function ImportLink({ importBaseURL }: { importBaseURL: string }) {
   const [open, setOpen] = React.useState(() => {
@@ -25,13 +26,18 @@ function ImportLink({ importBaseURL }: { importBaseURL: string }) {
 
   return (
     <>
-      <Link
-        target={'_blank'}
-        href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
-        className={'main-button download-btn'}
+      <Button
+        asChild
+        size={'xl'}
+        className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90'}
       >
-        Import from Notion
-      </Link>
+        <Link
+          target={'_blank'}
+          href={`${importBaseURL}/import?action=import&source=notion&redirectToImport=${redirectTo}`}
+        >
+          Import from Notion
+        </Link>
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
