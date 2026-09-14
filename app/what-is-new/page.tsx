@@ -21,8 +21,10 @@ async function Page() {
 
   return (
     <div className="what-is-new-page">
-      <div className="z-10 px-6 text-center text-style-h1 font-bold">{whatIsNewConfig.title}</div>
-      <div className={'subtitle'}>{whatIsNewConfig.subtitle}</div>
+      <div className="py-[80px] px-6 text-center max-sm:py-[60px] w-full">
+        <div className="z-10 text-center text-style-h1 font-bold">{whatIsNewConfig.title}</div>
+        <div className={'text-text-tertiary text-style-h5 font-normal mt-3'}>{whatIsNewConfig.subtitle}</div>
+      </div>
       <div className={'content'}>
         <Versions versions={versions.map(parseChangelog)} />
       </div>

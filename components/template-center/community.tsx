@@ -5,7 +5,7 @@ import TransparentIcons from '@/assets/images/transparent-icons.png';
 
 function Community() {
   return (
-    <div className={'h-fit w-full bg-[#2B1A3F]'}>
+    <div className={'h-fit w-full bg-[#2B1A3F] mb-4 sm:mb-6'}>
       <div className={'community'}>
         <div className={'image'}>
           <Image loading={'eager'} src={TransparentIcons} alt={''} quality={100} width={1555} height={430} />
