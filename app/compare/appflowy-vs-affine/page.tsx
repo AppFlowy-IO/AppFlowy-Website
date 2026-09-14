@@ -155,12 +155,6 @@ function generateListSchema() {
                     name: 'AppFlowy',
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Self-hosted workspace with documentation, databases, and AI features',
-                    },
                     featureList: [
                         'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
@@ -176,12 +170,6 @@ function generateListSchema() {
                     name: 'AFFiNE',
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'All',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Self-hosted knowledge base with whiteboarding and journaling',
-                    },
                     featureList: [
                         'Proprietary backend server',
                         'Canvas/whiteboard integration',

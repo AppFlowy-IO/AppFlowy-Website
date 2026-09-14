@@ -12,7 +12,7 @@ import { HeroFeaturePills } from '../components/hero-feature-pills';
 import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const title = 'Confluence vs AppFlowy | The Best Self-Hosted Confluence Data Center Alternative';
+const title = 'AppFlowy vs Confluence | The Best Self-Hosted Confluence Data Center Alternative';
 const description =
   'Confluence Data Center reaches end of life in 2029. Compare AppFlowy and Confluence on infrastructure control, data ownership, local AI, and long-term self-hosting.';
 
@@ -99,7 +99,7 @@ const vsConfluenceFAQs = [
     id: 'vs-confluence-14',
     question: 'Which platform offers more customization?',
     answer:
-      'AppFlowy offers more customization options, white labeling and custom domains or URLs for sharing public pages. AppFlowy users can customize fonts, font size, page width, profile cards, cursor colors, selection colors, themes, page covers, and page icons.\n\nConfluence’s customization options are more limited. Confluence does not natively support custom domains or vanity URLs for shared pages, users have to use third-party apps to achieve custom domains or URLs for Confluence. It also does not support white labeling.',
+      'AppFlowy offers more customization options, white labeling, and custom domains or URLs for sharing public pages. AppFlowy users can customize fonts, font size, page width, profile cards, cursor colors, selection colors, themes, page covers, and page icons.\n\nConfluence’s customization options are more limited. Confluence does not natively support custom domains or vanity URLs for shared pages, users have to use third-party apps to achieve this. It also does not support white labeling.',
   },
   {
     id: 'vs-confluence-15',
@@ -134,7 +134,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: `${site_url}/compare/appflowy-vs-confluence`,
       type: 'article',
       siteName: 'AppFlowy',
-      publishedTime: '2026-08-22T00:00:00Z',
+      publishedTime: '2026-09-15T00:00:00Z',
       modifiedTime: new Date().toISOString(),
       images: [
         {
@@ -164,7 +164,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'confluence alternative air-gapped',
       'confluence alternative local ai',
       'confluence alternative local llm',
-      'local ai confluence alternative',
+      'self-hosted confluence data center alternative',
       'easy to self-host confluence alternative',
       'deploy anywhere confluence alternative',
       'privacy-focused confluence alternative',
@@ -192,11 +192,13 @@ function generateListSchema() {
             operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
             featureList: [
               'Self-hosted with Docker, Kubernetes, or air-gapped deployment',
-              'Local and on-prem LLM support',
+              'Full AI features with on-prem & local LLMs',
               'Customization and extensibility',
               'Complete data ownership',
               'Deploy anywhere',
               'End-to-end data privacy',
+              'Native desktop and mobile apps',
+              'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
             ],
           },
         },

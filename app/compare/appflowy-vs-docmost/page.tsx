@@ -180,12 +180,6 @@ function generateListSchema() {
                         name: 'AppFlowy',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted workspace with documentation, databases, and AI features',
-                        },
                         featureList: [
                             'Fully open-core (AGPL)',
                             'Self-hosted workspace with documentation',
@@ -207,12 +201,6 @@ function generateListSchema() {
                         name: 'Docmost',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted team wiki focused on documentation',
-                        },
                         featureList: [
                             'On-prem wiki for documentation',
                             'Wiki-style documents',

@@ -162,12 +162,6 @@ function generateListSchema() {
                         name: 'AppFlowy',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted workspace with documentation, databases, and AI features',
-                        },
                         featureList: [
                             'Self-hosted workspace with documentation',
                             'Databases and kanban boards',
@@ -186,12 +180,6 @@ function generateListSchema() {
                         name: 'Outline',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted team wiki focused on documentation',
-                        },
                         featureList: [
                             'Web-based team wiki',
                             'Block-based editor',

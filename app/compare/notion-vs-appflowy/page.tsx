@@ -151,12 +151,6 @@ function generateListSchema() {
             name: 'Notion',
             applicationCategory: 'ProductivityApplication',
             operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              description: 'Free plan available; paid plans from $10/user/month',
-            },
             featureList: [
               'Cloud-based workspace',
               'Linked databases and rollups',

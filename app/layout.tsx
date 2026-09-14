@@ -80,13 +80,6 @@ function generateListSchema() {
       'https://www.linkedin.com/company/appflowy',
       'https://www.reddit.com/r/AppFlowy'
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '1600',
-      bestRating: '5',
-      worstRating: '1',
-    },
   };
 
   const softwareApplicationSchema = {
@@ -122,13 +115,6 @@ function generateListSchema() {
       'Multiple database views: Grid, Kanban, Calendar, Gallery, List, Feed, Chart',
       'Advanced filters and relations',
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '1500',
-      bestRating: '5',
-      worstRating: '1',
-    },
     downloadUrl: 'https://appflowy.com/download',
     screenshot: `${site_url}/images/og-image.png`,
   };
