@@ -9,6 +9,7 @@ export interface Contributor {
 export interface Version {
   id?: string;
   version: string;
+  headline: string;
   changeLog: string;
   publishedAt: string;
   url: string;
