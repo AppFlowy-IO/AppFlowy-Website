@@ -13,126 +13,47 @@
   }
 
   .section-1 {
-    @apply flex w-full flex-col items-center gap-6 bg-[#EEEEFD] pb-[110px] pt-[196px];
+    @apply flex w-full flex-col items-center gap-6 bg-white pb-[110px] pt-[196px];
     @apply max-md:pb-[70px] max-md:pt-[25vh] max-sm:pt-[20vh];
+
     .main-content {
-      @apply flex max-w-[1100px] flex-col items-center gap-5 text-center;
+      @apply flex max-w-[1100px] flex-col items-center gap-6 text-center;
       @apply max-md:gap-4 max-md:px-[5vw];
-      h1 {
-        @apply whitespace-pre-wrap break-words text-[74px] font-medium leading-[108%] text-[#101012];
-        @apply max-lg:text-[7vw] max-md:leading-[120%];
-      }
 
       .desc {
         @apply max-w-full text-[24px] font-medium leading-[160%];
         @apply max-md:text-base max-md:leading-[150%];
       }
     }
-
-    .main-button {
-      @apply mt-[36px] cursor-pointer rounded-[15px] px-[50px] py-5 text-base font-medium;
-    }
   }
 
   .section-2 {
-    @apply flex w-full flex-col items-center justify-center gap-[60px] bg-[#F9F9FC] py-[110px];
+    @apply relative isolate flex w-full flex-col items-center justify-center gap-10 overflow-hidden py-[120px];
     @apply max-md:min-h-fit max-md:py-[10vh];
-    &-title {
-      @apply w-full min-w-0 max-w-[1100px] whitespace-pre-wrap text-center text-[58px] font-medium leading-[115%] tracking-[-1.16px];
-      @apply max-lg:text-[7vw] max-md:px-[5vw] max-md:leading-[120%];
+
+    .section-2-blobs {
+      @apply pointer-events-none absolute inset-0 top-[20vh] z-[-1] flex w-full items-center justify-between max-md:flex-col;
     }
 
-    .cards {
-      @apply flex w-full min-w-0 max-w-[1100px] items-center justify-center gap-6;
-      @apply max-lg:flex-col max-lg:gap-10;
-      z-index: 1;
-
-      .card {
-        @apply flex h-[340px] flex-1 flex-col items-center gap-6 rounded-[16px] p-10;
-        @apply max-lg:w-[350px] max-md:h-[auto] max-md:w-[80vw] max-md:flex-auto  max-md:p-6;
-        @apply relative overflow-hidden bg-white;
-
-        svg {
-          height: 120px;
-        }
-
-        .card-title {
-          @apply flex flex-col gap-4 text-center text-xl font-medium leading-[120%] text-black;
-
-          .card-desc {
-            @apply whitespace-pre-wrap break-words text-sm font-normal leading-[140%] text-[#58585A];
-            letter-spacing: -0.3px;
-          }
-        }
-      }
-    }
-  }
-
-  .section-8 {
-    @apply relative overflow-hidden;
-    background-color: #200e34;
-
-    .glow {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 50%;
-      bottom: -100%;
-
-      transform: translate3d(-50%, -50%, 0px);
-      background: radial-gradient(ellipse 1030px 515px at center, rgba(138, 44, 231, 0.4) 0%, rgba(138, 44, 231, 0) 70%);
-      filter: blur(200px);
+    .section-2-blob {
+      --blob-sz: clamp(360px, 45vw, 600px);
+      height: var(--blob-sz);
+      width: var(--blob-sz);
+      border-radius: 50%;
+      filter: blur(600px);
+      opacity: 0.3;
     }
 
-    @apply flex w-full flex-col items-center justify-center gap-[30px] py-[158px];
-    @apply max-md:min-h-fit max-md:gap-[40px] max-md:px-4 max-md:py-[10vh];
-    &-title {
-      z-index: 1;
-      @apply flex max-w-[724px] flex-col items-center justify-center gap-[20px] text-center text-[58px] font-medium leading-[105%] text-white;
-      @apply max-md:text-[8vw];
-      letter-spacing: -1.68px;
+    .section-2-blob-1 {
+      background: #d0c4ff;
     }
 
-    .section-8-desc {
-      z-index: 1;
-      @apply max-w-[429px] text-center text-[16px] font-normal leading-[150%] text-white opacity-70;
-      letter-spacing: -0.16px;
+    .section-2-blob-2 {
+      background: #9cbdff;
     }
 
-    .section-8-btns {
-      z-index: 1;
-      @apply mb-[6px] flex gap-4;
-      @apply max-sm:w-full max-sm:flex-col max-sm:gap-4;
-      .download-btn {
-        @apply min-w-[174px] bg-white text-black;
-        @apply max-sm:w-full;
-        &:hover {
-          background: #f9f9fc;
-        }
-      }
-
-      .live-demo-btn {
-        @apply min-w-[174px];
-        @apply max-sm:w-full;
-        border-radius: 15px;
-        border: 1px solid #e0c4ff;
-        @apply text-white;
-
-        &:hover {
-          border-color: #8427e0;
-        }
-      }
-    }
-
-    &-image {
-      z-index: 1;
-      @apply overflow-hidden p-[6px];
-      img {
-        @apply rounded-[14px];
-      }
-
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.16);
+    .section-2-blob-3 {
+      background: #d0c4ff;
     }
   }
 }

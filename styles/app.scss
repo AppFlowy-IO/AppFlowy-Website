@@ -29,7 +29,7 @@ body {
 }
 
 .appflowy-footer {
-  // The page's last section (.section-8) is `position: relative`, so it paints in the
+  // The page's last section (.get-started-section) is `position: relative`, so it paints in the
   // positioned-elements phase — above this footer, which is otherwise unpositioned.
   // Its .circle-gradient blob overhangs by design and would wash out the black box.
   // Giving the footer its own layer puts it back on top.

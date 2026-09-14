@@ -1,19 +1,17 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import GetStart from '@/components/product/get-start';
 import DocmostImage from '@/assets/images/vs-notion/docmost.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
 import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs Docmost: The Best On-Premises Notion Alternative';
@@ -387,66 +385,60 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <div className={'flex items-center justify-center gap-2'}>
-                            <Image src={AppFlowyImage} alt={'AppFlowy'} width={56} height={56} />
-                            <span className={'text-sm font-semibold'}>vs</span>
-                            <Image src={DocmostImage} alt={'Docmost'} width={56} height={56} />
-                        </div>
+                        <HeroApps competitorName='Docmost' competitorImage={DocmostImage} />
                         <div className={'main-content'}>
-                            <h1>
-                                AppFlowy vs Docmost
-                                <br></br>
-                                <span className={'text-primary'}>The Best On-Premises Notion Alternative</span>
-                            </h1>
-                            <p className={'desc'}>
-                                Self-hosted, knowledge base, project management, relational database, all-in-one workspace,
-                                cross-platform apps
-                            </p>
+                            <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best On-Premises Notion<br></br> Alternative</h1>
+                            <HeroFeaturePills
+                                className='desc'
+                                items={[
+                                    'Self-hosted',
+                                    'Knowledge Base',
+                                    'Project Management',
+                                    'Relational Database',
+                                    'All-in-One Workspace',
+                                    'Cross-platform Apps',
+                                ]}
+                            />
                         </div>
                         <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
-                    <div className={'af-box section-2'}>
-                        <h2 className={'section-2-title'}>
+                    <div className={'af-box section-2 bg-white'}>
+                        <h2 className={'text-style-h1 font-bold text-center'}>
                             {`Why AppFlowy is the better choice for `}
                             <span className={'text-primary'}>your team</span>
                             <br />
                         </h2>
-                        <div className={'cards'}>
-                            <div className={'card'}>
-                                <Image src={Object1} alt={'AI Workspace'} width={151} height={121} />
-                                <div className={'card-title'}>
-                                    <h4>AI Workspace</h4>
-                                    <p className={'card-desc'}>
-                                        {`AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.`}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={'card'}>
-                                <Image src={Object2} alt={'Projects and Databases'} width={151} height={121} />
-
-                                <div className={'card-title'}>
-                                    <h4>Projects & Databases</h4>
-                                    <p className={'card-desc'}>
-                                        {`Capture every detail in a database. Visualize in various formats, from calendars to boards.`}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={'card'}>
-                                <Image src={Object3} alt={'Cross-platform'} width={189} height={121} />
-
-                                <div className={'card-title'}>
-                                    <h4>Cross-platform</h4>
-                                    <p
-                                        className={'card-desc'}
-                                    >{`Works consistently across platforms your team works on, including desktop and mobile`}</p>
-                                </div>
-                            </div>
+                        <FeatureCards
+                            items={[
+                                {
+                                    icon: 'sparkle',
+                                    title: 'AI Workspace',
+                                    description:
+                                        'AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.',
+                                },
+                                {
+                                    icon: 'database',
+                                    title: 'Projects & Databases',
+                                    description: 'Capture every detail in a database. Visualize in various formats, from calendars to boards.',
+                                },
+                                {
+                                    icon: 'layers',
+                                    title: 'Cross-platform',
+                                    description: 'Works consistently across platforms your team works on, including desktop and mobile',
+                                },
+                            ]}
+                        />
+                        <div className={'section-2-blobs'}>
+                            <div className={'section-2-blob section-2-blob-1'} />
+                            <div className={'section-2-blob section-2-blob-2'} />
+                            <div className={'section-2-blob section-2-blob-3'} />
                         </div>
-                        <ComparisonTable competitorName='Docmost' competitorImage={DocmostImage} points={points} />
                     </div>
+                </div>
+                <div className="af-box section-2">
+                    <ComparisonTable competitorName='Docmost' competitorImage={DocmostImage} points={points} />
                 </div>
                 <div className={'vs-docmost-faq'}>
                     <QASection items={vsDocmostFAQs} />

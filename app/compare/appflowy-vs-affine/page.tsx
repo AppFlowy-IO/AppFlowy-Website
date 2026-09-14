@@ -1,18 +1,16 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
 import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
@@ -372,82 +370,59 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <div className={'flex items-center justify-center gap-2'}>
-                            <Image
-                                src={AppFlowyImage}
-                                alt={'AppFlowy'}
-                                width={56}
-                                height={56}
-                            />
-                            <span className={'text-sm font-semibold'}>vs</span>
-                            <Image
-                                src={AFFiNEImage}
-                                alt={'AFFiNE'}
-                                width={56}
-                                height={56}
-                            />
-                        </div>
+                        <HeroApps competitorName='AFFiNE' competitorImage={AFFiNEImage} />
                         <div className={'main-content'}>
-                            <h1>
-                                AppFlowy vs. AFFiNE
-                                <br></br><span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
-                            </h1>
-                            <p className={'desc'}>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>
+                            <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best Self-Hosted Notion<br></br> Alternative</h1>
+                            <HeroFeaturePills
+                                className='desc'
+                                items={[
+                                    'Collaboration',
+                                    'Permissions',
+                                    'Identity Management',
+                                    'Self-hosting',
+                                    'Advanced Databases',
+                                    'Local and on-prem AI',
+                                    'Data Control',
+                                ]}
+                            />
                         </div>
                         <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
-                    <div className={'af-box section-2'}>
-                        <h2 className={'section-2-title'}>
-                            Where <span className={'text-primary'}>AppFlowy</span> <br />
+                    <div className={'af-box section-2 bg-white'}>
+                        <h2 className={'text-style-h1 font-bold text-center'}>
+                            Where AppFlowy <br />
                             pulls ahead
                         </h2>
-                        <div className={'cards'}>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object1}
-                                    alt={'Custom on-prem AI'}
-                                    width={151}
-                                    height={121}
-                                />
-                                <div className={'card-title'}>
-                                    <h4>AI Workspace</h4>
-                                    <p className={'card-desc'}>
-                                        AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and local LLMs.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object2}
-                                    alt={'Projects & Databases'}
-                                    width={151}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Projects & Databases</h4>
-                                    <p className={'card-desc'}>Capture every detail in a database. Visualize work in distinct formats, from calendars to boards.</p>
-                                </div>
-                            </div>
-
-                            <div className={'card'}>
-                                <Image
-                                    src={Object3}
-                                    alt={'Enterprise-grade'}
-                                    width={189}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Enterprise-grade</h4>
-                                    <p className={'card-desc'}>Granular permissions, SAML SSO, SCIM, LDAP, audit logs, migration, and flexible deployment.</p>
-                                </div>
-                            </div>
+                        <FeatureCards
+                            items={[
+                                {
+                                    icon: 'sparkle',
+                                    title: 'AI Workspace',
+                                    description: 'AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and local LLMs.',
+                                },
+                                {
+                                    icon: 'database',
+                                    title: 'Projects & Databases',
+                                    description: 'Capture every detail in a database. Visualize work in distinct formats, from calendars to boards.',
+                                },
+                                {
+                                    icon: 'shield',
+                                    title: 'Enterprise-grade',
+                                    description: 'Granular permissions, SAML SSO, SCIM, LDAP, audit logs, migration, and flexible deployment.',
+                                },
+                            ]}
+                        />
+                        <div className={'section-2-blobs'}>
+                            <div className={'section-2-blob section-2-blob-1'} />
+                            <div className={'section-2-blob section-2-blob-2'} />
+                            <div className={'section-2-blob section-2-blob-3'} />
                         </div>
-                        <ComparisonTable competitorName='AFFiNE' competitorImage={AFFiNEImage} points={points} />
                     </div>
+                </div>
+                <div className="af-box section-2">
+                    <ComparisonTable competitorName='AFFiNE' competitorImage={AFFiNEImage} points={points} />
                 </div>
                 <div className={'vs-affine-faq'}>
                     <QASection items={vsAFFiNEFAQs} />

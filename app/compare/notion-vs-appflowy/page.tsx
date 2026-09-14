@@ -1,18 +1,16 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
 import GetStart from '@/components/product/get-start';
-import ImportLink from '@/components/vs-notion/import-link';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
+import ImportLink from '../components/import-link';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'Notion vs AppFlowy | The #1 Self-Hosted, Open-Core Notion Alternative is AppFlowy';
@@ -316,83 +314,56 @@ function Page() {
       <div className={'vs-notion-page'}>
         <div className={'af-container'}>
           <div className={'af-box section-1'}>
-            <div className={'flex items-center justify-center gap-2'}>
-              <Image
-                src={AppFlowyImage}
-                alt={'AppFlowy'}
-                width={56}
-                height={56}
-              />
-              <span className={'text-sm font-semibold'}>vs</span>
-              <Image
-                src={NotionImage}
-                alt={'Notion'}
-                width={56}
-                height={56}
-              />
-            </div>
+            <HeroApps competitorName='Notion' competitorImage={NotionImage} />
             <div className={'main-content'}>
-              <h1>
-                The #1 Self-Hosted <span className={'text-primary'}>Notion Alternative</span>
+              <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>
+                The #1 Self-Hosted Notion<br></br>
+                Alternative
               </h1>
-              <p className={'desc'}>Open-Core, self-hosted, local and on-prem AI, cross platform</p>
+              <HeroFeaturePills
+                className='desc'
+                items={['Open-Core', 'Self-hosted', 'Local & On-Prem AI', 'Cross-platform']}
+              />
             </div>
             <ImportLink importBaseURL={importBaseURL} />
           </div>
         </div>
         <div className={'af-container'}>
-          <div className={'af-box section-2'}>
-            <h2 className={'section-2-title'}>
+          <div className={'af-box section-2 bg-white'}>
+            <h2 className={'text-style-h1 font-bold text-center'}>
               {`Enjoy the `}
               <span className={'text-primary'}>flexibility</span>
               <br />
               without losing control of your data
             </h2>
-            <div className={'cards'}>
-              <div className={'card'}>
-                <Image
-                  src={Object1}
-                  alt={'On-prem and local AI'}
-                  width={151}
-                  height={121}
-                />
-                <div className={'card-title'}>
-                  <h4>On-prem and local AI</h4>
-                  <p className={'card-desc'}>
-                    AI on your terms, not your vendor&apos;s. Run local models offline or connect a self-hosted LLM.
-                  </p>
-                </div>
-              </div>
-              <div className={'card'}>
-                <Image
-                  src={Object2}
-                  alt={'Deploy Anywhere'}
-                  width={151}
-                  height={121}
-                />
-
-                <div className={'card-title'}>
-                  <h4>Deploy Anywhere</h4>
-                  <p className={'card-desc'}>Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment.</p>
-                </div>
-              </div>
-
-              <div className={'card'}>
-                <Image
-                  src={Object3}
-                  alt={'Cross-platform'}
-                  width={189}
-                  height={121}
-                />
-
-                <div className={'card-title'}>
-                  <h4>Cross-platform</h4>
-                  <p className={'card-desc'}>{`Works consistently across platforms your team works on, including completely offline.`}</p>
-                </div>
-              </div>
+            <FeatureCards
+              items={[
+                {
+                  icon: 'sparkle',
+                  title: 'On-prem and local AI',
+                  description: "AI on your terms, not your vendor's. Run local models offline or connect a self-hosted LLM.",
+                },
+                {
+                  icon: 'server',
+                  title: 'Deploy Anywhere',
+                  description: 'Run AppFlowy on your hardware, your cloud region, or in a fully air-gapped environment.',
+                },
+                {
+                  icon: 'layers',
+                  title: 'Cross-platform',
+                  description: 'Works consistently across platforms your team works on, including completely offline.',
+                },
+              ]}
+            />
+            <div className={'section-2-blobs'}>
+              <div className={'section-2-blob section-2-blob-1'} />
+              <div className={'section-2-blob section-2-blob-2'} />
+              <div className={'section-2-blob section-2-blob-3'} />
             </div>
-            <ComparisonTable competitorName='Notion' competitorImage={NotionImage} points={points} />
           </div>
+        </div>
+        <div className="af-box section-2">
+          <ComparisonTable competitorName='Notion' competitorImage={NotionImage} points={points} />
         </div>
         <div className={'vs-notion-faq'}>
           <QASection items={vsNotionFAQs} />
