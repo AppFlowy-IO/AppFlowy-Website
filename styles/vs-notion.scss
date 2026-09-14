@@ -42,6 +42,10 @@
       border-radius: 50%;
       filter: blur(600px);
       opacity: 0.3;
+
+      @media (max-width: 768px) {
+        filter: blur(200px);
+      }
     }
 
     .section-2-blob-1 {

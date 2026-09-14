@@ -61,7 +61,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                     >
                         {/* Question and Icon Row */}
                         <div className='flex w-full items-center justify-between'>
-                            <h3 className='flex-1 pr-2 font-inter text-base font-medium leading-[120%] tracking-[-0.24px] text-text-primary sm:pr-4'>
+                            <h3 className='flex-1 pr-2 font-inter text-base font-medium leading-[150%] tracking-[-0.24px] text-text-primary sm:pr-4'>
                                 {item.question}
                             </h3>
                             <div className='flex-shrink-0'>

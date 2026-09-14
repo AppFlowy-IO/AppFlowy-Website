@@ -6,7 +6,7 @@ export default function SelfHostLink() {
         <Button
             asChild
             size={'xl'}
-            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90'}
+            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90 max-sm:w-full'}
         >
             <Link
                 href="https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production"

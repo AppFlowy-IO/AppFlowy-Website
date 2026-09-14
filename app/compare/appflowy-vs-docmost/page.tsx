@@ -405,7 +405,7 @@ function Page() {
                 </div>
                 <div className={'af-container'}>
                     <div className={'af-box section-2 bg-white'}>
-                        <h2 className={'text-style-h1 font-bold text-center'}>
+                        <h2 className={'text-style-h1 font-bold w-full text-left sm:w-auto sm:text-center'}>
                             {`Why AppFlowy is the better choice for `}
                             <span className={'text-primary'}>your team</span>
                             <br />

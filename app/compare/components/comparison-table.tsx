@@ -79,10 +79,10 @@ export function ComparisonTable({ competitorName, points }: ComparisonTableProps
                 <div className='flex min-w-[480px] flex-col sm:min-w-0'>
                     {/* Header row */}
                     <div className='flex w-full items-stretch'>
-                        <div className='sticky left-0 z-10 flex w-1/2 items-center px-4 py-6 sm:static sm:px-6 md:px-8 md:py-8'>
+                        <div className='sticky left-0 z-10 flex w-1/2 items-center px-4 py-6 sm:static sm:px-6 md:px-8 md:py-8 max-md:bg-[#F9F9FC] max-md:rounded-t-[8px]'>
                             <p className='font-inter text-base font-semibold text-[#101012] sm:text-lg'>Compare features</p>
                         </div>
-                        <div className='flex w-1/4 items-center justify-center rounded-t-[20px] bg-[#F5F4FC] px-2 py-6 sm:px-4 md:py-8'>
+                        <div className='flex w-1/4 items-center justify-center rounded-t-[20px] bg-[#F5F4FC] px-2 py-6 sm:px-4 md:py-8 max-md:rounded-t-[8px]'>
                             <p className='font-inter text-sm font-semibold text-[#101012] sm:text-base'>AppFlowy</p>
                         </div>
                         <div className='flex w-1/4 items-center justify-center px-2 py-6 sm:px-4 md:py-8'>
@@ -125,7 +125,7 @@ export function ComparisonTable({ competitorName, points }: ComparisonTableProps
                                     <div
                                         className={cn(
                                             'flex w-1/4 items-center justify-center bg-[#F5F4FC] px-2 py-4 sm:px-4 md:py-5',
-                                            isLast && 'rounded-b-[20px]'
+                                            isLast && 'rounded-b-[20px] max-md:rounded-b-[8px]'
                                         )}
                                     >
                                         <Mark value={point.appflowy} isAppFlowy={true} />
@@ -139,6 +139,6 @@ export function ComparisonTable({ competitorName, points }: ComparisonTableProps
                     </div>
                 </div>
             </div>
-        </Tooltip.Provider>
+        </Tooltip.Provider >
     );
 }

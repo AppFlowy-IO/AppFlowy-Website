@@ -29,7 +29,7 @@ function ImportLink({ importBaseURL }: { importBaseURL: string }) {
       <Button
         asChild
         size={'xl'}
-        className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90'}
+        className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90 max-sm:w-full'}
       >
         <Link
           target={'_blank'}

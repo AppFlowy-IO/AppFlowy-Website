@@ -25,7 +25,12 @@ function GetStart({ showGlow = true }: GetStartProps) {
           <div className='get-started-logo flex h-[84px] w-[84px] items-center justify-center rounded-[20px] mb-7 border border-black/[0.08] bg-white shadow-[0_0_40px_0_rgba(73,87,240,0.08)]'>
             <Image src={logo} alt={'AppFlowy'} className='h-[56px] w-[56px]' />
           </div>
-          <h2 className='text-style-h1 font-semibold tracking-[-0.04em]'>
+          {/*
+            self-stretch: without a real width here, this flex-centered item shrinks to
+            fit its own (already-wrapped) lines, so ScrollFillText's wrap measurement
+            gets pinned to whatever width it last wrapped to and can never widen back out.
+          */}
+          <h2 className='w-full self-stretch text-style-h1 font-semibold tracking-[-0.04em]'>
             {/* Lines are `w-fit` blocks, so they need centring of their own here. */}
             <ScrollFillText lineClassName='mx-auto'>Get started for free</ScrollFillText>
           </h2>
