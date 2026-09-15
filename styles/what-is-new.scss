@@ -1,26 +1,24 @@
+// Fluid font sizes: shrink gracefully from desktop down to tablet width instead of
+// snapping at a single breakpoint.
+$font-fluid-title: clamp(20px, 17.18px + 0.75vw, 28px);
+$font-fluid-heading: clamp(16px, 14.59px + 0.38vw, 20px);
+$font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
+
 .what-is-new-page {
-  @apply flex w-full flex-col items-center pt-[220px];
-  @apply max-sm:pt-[169px];
+  @apply flex w-full flex-col items-center pt-[80px];
   background: white;
 
-  .subtitle {
-    @apply mb-[80px] mt-[16px] px-[30px] text-center text-[20px] leading-[140%] text-text-secondary;
-    @apply max-sm:mb-[46px] max-sm:text-[15px];
-  }
-
   .content {
-    @apply flex w-full items-center justify-center px-[100px];
-    @apply max-sm:px-[20px];
+    @apply flex w-full items-center justify-center px-6 sm:px-10;
 
     .versions {
-      @apply flex w-full max-w-[1240px] flex-col pb-[100px];
+      @apply flex w-full max-w-[1280px] flex-col pb-[100px];
     }
   }
 }
 
 .version-divider {
   @apply my-[60px] h-px w-full bg-primary-10;
-  @apply max-sm:my-[40px];
 }
 
 .version-panel {
@@ -28,22 +26,37 @@
   @apply max-sm:flex-col max-sm:gap-[24px];
 
   .version-meta {
-    @apply flex w-[300px] flex-shrink-0 flex-col;
+    @apply flex flex-shrink-0 flex-col;
     @apply max-sm:w-full;
+    width: clamp(260px, 28vw, 420px);
 
     .version-title {
-      @apply mb-[10px] text-[28px] font-semibold leading-[125%] tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
+      @apply mb-[16px] font-semibold tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
+      font-size: $font-fluid-title;
+      line-height: 1.29;
     }
 
     .version-date {
-      @apply mb-[20px] text-[15px] text-text-tertiary;
+      @apply mb-[16px] text-text-secondary;
+      font-size: $font-fluid-body;
+      line-height: 1.5;
     }
 
     .version-tags {
       @apply flex flex-wrap gap-[8px];
 
       .tag {
-        @apply inline-flex items-center rounded-md bg-primary-10 px-[10px] py-[4px] text-[13px] font-medium text-primary;
+        @apply inline-flex items-center rounded-[8px] px-[12px] py-[4px] font-medium;
+        font-size: $font-fluid-body;
+        line-height: 1.5;
+      }
+
+      .tag-version {
+        @apply bg-primary-10 text-primary;
+      }
+
+      .tag-type {
+        @apply bg-light-blue-gray text-lake-blue;
       }
     }
   }
@@ -60,7 +73,8 @@
     }
 
     .version-desc {
-      @apply mb-[40px] text-[16px] leading-[160%] text-text-secondary;
+      @apply mb-[60px] leading-[150%] text-text-primary max-sm:mb-[40px];
+      font-size: $font-fluid-body;
     }
 
     .version-sections {
@@ -68,7 +82,8 @@
 
       .version-section {
         .section-heading {
-          @apply mb-[15px] flex items-center gap-[8px] text-[17px] font-medium leading-[110%] tracking-[-0.4px];
+          @apply mb-2 flex items-center gap-[8px] font-bold leading-[140%];
+          font-size: $font-fluid-heading;
         }
 
         .section-items {

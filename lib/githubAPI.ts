@@ -144,6 +144,7 @@ export const fetchVersions = async (): Promise<Version[]> => {
   for (const item of data) {
     versions.push({
       version: item.tag_name,
+      headline: item.name,
       changeLog: item.body,
       publishedAt: item.published_at,
       url: item.html_url,

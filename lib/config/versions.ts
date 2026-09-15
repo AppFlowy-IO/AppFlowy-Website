@@ -5,6 +5,7 @@ export interface IVersion {
   };
   url: string;
   version: string;
+  headline: string;
   time: string;
   desc: string;
   content: {
