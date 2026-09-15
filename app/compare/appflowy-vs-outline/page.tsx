@@ -283,6 +283,14 @@ const points = [
         appflowy: true,
     },
     {
+        text: 'Timeline views',
+        appflowy: true,
+    },
+    {
+        text: 'Form views',
+        appflowy: true,
+    },
+    {
         text: 'Native desktop & mobile apps',
         appflowy: true,
         competitor: false,
@@ -356,7 +364,7 @@ function Page() {
                             <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best Self-Hosted Enterprise<br></br>Team Wiki</h1>
                             <HeroFeaturePills
                                 className='desc'
-                                items={['Self-hosted', 'Knowledge Management', 'Notion Alternative', 'Database', 'Cross-platform']}
+                                items={['Self-hosted', 'Knowledge management', 'Notion alternative', 'Database', 'Cross-platform']}
                             />
                         </div>
                         <SelfHostLink />

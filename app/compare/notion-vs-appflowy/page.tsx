@@ -48,7 +48,7 @@ const vsNotionFAQs = [
   {
     id: 'vs-notion-6',
     question: "How do AppFlowy's databases compare to Notion's?",
-    answer: "AppFlowy's database capabilities have advanced significantly and are among the most feature-complete options available for organizations seeking a self-hosted alternative to Notion.\n\nAppFlowy currently supports: Grid (table), Kanban, Calendar, Gallery, List, Feed, Chart views, along with Advanced filters, Two-way relations, Rollups, Calculations, Database templates, Grouping and Sorting options, Linked views of data source, Multi-row bulk actions.\n\nFor most project management, CRM, wiki, operations, and knowledge management use cases, AppFlowy's databases provide everything teams need. Notion still maintains an advantage with Timeline and Map views. However, AppFlowy is actively investing in database development and continues to close the remaining feature gaps while offering deployment flexibility and data ownership that Notion cannot provide.",
+    answer: "AppFlowy's database capabilities have advanced significantly and are among the most feature-complete options available for organizations seeking a self-hosted alternative to Notion.\n\nAppFlowy currently supports: Grid (table), Kanban, Calendar, Gallery, List, Timeline, Feed, Form, Chart views, along with Advanced filters, Two-way relations, Rollups, Calculations, Database templates, Grouping and Sorting options, Linked views of data source, Multi-row bulk actions.\n\nFor most project management, CRM, wiki, operations, and knowledge management use cases, AppFlowy's databases provide everything teams need. Notion still maintains an advantage with Map views. However, AppFlowy is actively investing in database development and continues to close the remaining feature gaps while offering deployment flexibility and data ownership that Notion cannot provide.",
   },
   {
     id: 'vs-notion-7',
@@ -248,7 +248,7 @@ const points = [
     competitor: true,
   },
   {
-    text: 'Kanban, calendar, gallery views',
+    text: 'Kanban, calendar, gallery, timeline, form views',
     appflowy: true,
     competitor: true,
   },
@@ -316,7 +316,7 @@ function Page() {
               </h1>
               <HeroFeaturePills
                 className='desc'
-                items={['Open-Core', 'Self-hosted', 'Local & On-Prem AI', 'Cross-platform']}
+                items={['Open-core', 'Self-hosted', 'Local & on-prem AI', 'Cross-platform', 'Data control',]}
               />
             </div>
             <ImportLink importBaseURL={importBaseURL} />

@@ -29,7 +29,7 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-2',
         question: 'What is the biggest difference between AppFlowy and Docmost?',
         answer:
-            'The biggest difference is product scope. Docmost focuses primarily on wikis, documentation, and browser-based knowledge management. AppFlowy is a broader workspace that combines wikis, databases, Kanban boards, project management, and AI-powered workflows in one platform.\n\nAppFlowy supports multidimensional project tracking through Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also treats database records as editable pages, allowing teams to add rich-text content, comments, relations, and cross-references directly within structured records.\n\nFor teams currently using Docmost alongside a separate project-management tool such as Jira or Trello, AppFlowy may help consolidate documentation and project workflows into one workspace.',
+            'The biggest difference is product scope. Docmost focuses primarily on wikis, documentation, and browser-based knowledge management. AppFlowy is a broader workspace that combines wikis, databases, Kanban boards, project management, and AI-powered workflows in one platform.\n\nAppFlowy supports multidimensional project tracking through Grid, Kanban, Calendar, Gallery, List, Feed, Timeline, Form, and Chart views. It also treats database records as editable pages, allowing teams to add rich-text content, comments, relations, and cross-references directly within structured records.\n\nFor teams currently using Docmost alongside a separate project-management tool such as Jira or Trello, AppFlowy may help consolidate documentation and project workflows into one workspace.',
     },
     {
         id: 'vs-docmost-3',
@@ -41,7 +41,7 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-4',
         question: 'Do AppFlowy and Docmost support advanced databases and project management?',
         answer:
-            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates. In AppFlowy, each database entry can act as fully-featured text pages, thus users can invite collaborators and add comments to individual database entries.',
+            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates. In AppFlowy, each database entry can act as fully-featured text pages, thus users can invite collaborators and add comments to individual database entries.',
     },
     {
         id: 'vs-docmost-5',
@@ -184,7 +184,7 @@ function generateListSchema() {
                             'Fully open-core (AGPL)',
                             'Self-hosted workspace with documentation',
                             'Databases and kanban boards',
-                            'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                            'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, Chart)',
                             'Full AI features with on-prem & local LLMs',
                             'Local and on-prem LLM support',
                             'AI-powered features',
@@ -285,15 +285,17 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'Database row as a page',
+        text: 'Database layouts',
+        competitor: 'Table, Kanban',
+        appflowy: 'Grid, Kanban, Calendar, Gallery, Timeline, List, Feed, Chart, Form',
+    },
+    {
+        text: 'Independent linked views of one data source',
         appflowy: true,
     },
     {
-        text: 'Linked view of a data source',
-        appflowy: true,
-    },
-    {
-        text: 'Calendar, Gallery, Feed, List, Chart database views',
+        text: 'Database entry is a full page',
+        competitor: false,
         appflowy: true,
     },
     {
@@ -380,11 +382,11 @@ function Page() {
                                 className='desc'
                                 items={[
                                     'Self-hosted',
-                                    'Knowledge Base',
-                                    'Project Management',
-                                    'Relational Database',
-                                    'All-in-One Workspace',
-                                    'Cross-platform Apps',
+                                    'Knowledge base',
+                                    'Project management',
+                                    'Advanced relational database',
+                                    'All-in-One workspace',
+                                    'Cross-platform',
                                 ]}
                             />
                         </div>

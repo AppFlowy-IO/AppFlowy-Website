@@ -45,7 +45,7 @@ const vsConfluenceFAQs = [
     id: 'vs-confluence-5',
     question: 'How does AppFlowy compare with Confluence for project and operational databases?',
     answer:
-      'Confluence Cloud provides databases with structured fields, filters, sorting, relations, saved views, and Table, Card, and Board layouts.\n\nAppFlowy offers relational databases in self-hosted deployments with Grid, Kanban, Calendar, Gallery, List, Feed, Chart, and Form views, along with linked views, full-page records, database templates, relations, and rollups.\n\nThis makes AppFlowy particularly useful for organizations that want to manage projects and operational data without moving structured business data into Confluence Cloud.',
+      'Confluence Cloud provides databases with structured fields, filters, sorting, relations, saved views, and Table, Card, and Board layouts.\n\nAppFlowy offers relational databases in self-hosted deployments with Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Chart, and Form views, along with linked views, full-page records, database templates, relations, and rollups.\n\nThis makes AppFlowy particularly useful for organizations that want to manage projects and operational data without moving structured business data into Confluence Cloud.',
   },
   {
     id: 'vs-confluence-6',
@@ -294,7 +294,7 @@ const points = [
   {
     text: 'Database layouts',
     competitor: 'Table, Card, Board',
-    appflowy: 'Grid, Kanban, Calendar, Gallery, List, Feed, Chart, Form',
+    appflowy: 'Grid, Kanban, Calendar, Gallery, Timeline, List, Feed, Chart, Form',
   },
   {
     text: 'Independent linked views of one data source',
@@ -357,8 +357,8 @@ const points = [
     appflowy: true,
   },
   {
-    text: 'SSO and SAML',
-    competitor: true,
+    text: 'SAML and OIDC',
+    competitor: 'SAML only',
     appflowy: true,
   },
   {
@@ -402,7 +402,7 @@ function Page() {
               </h1>
               <HeroFeaturePills
                 className='desc'
-                items={['Open-Core', 'Self-hosted', 'Local & On-Prem AI', 'Cross-platform', 'Advanced Relational Databases']}
+                items={['Open-core', 'Self-hosted', 'Local & on-prem AI', 'Cross-platform', 'Advanced relational databases']}
               />
             </div>
             <SelfHostLink />

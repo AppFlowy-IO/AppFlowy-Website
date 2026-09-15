@@ -32,7 +32,7 @@ const vsAFFiNEFAQs = [
     {
         id: 'vs-AFFiNE-3',
         question: 'Which is better for teams migrating from Notion: AppFlowy or AFFiNE?',
-        answer: "AppFlowy is better suited for teams migrating from Notion, especially if they rely on databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations. AppFlowy has stronger database capabilities, including linked views of a data source, relations, rollups, calculations, database templates, charts, calendar view, feed view, list view, and gallery view.\n\nAFFiNE currently supports Table and Kanban views, but it is more limited for complex structured data workflows because it lacks advanced property types such as Relation, Rollup, and Formula fields, as well as critical power features such as linked views and database rows as pages that can be shared and mentioned.",
+        answer: "AppFlowy is better suited for teams migrating from Notion, especially if they rely on databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations. AppFlowy has stronger database capabilities, including linked views of a data source, relations, rollups, calculations, database templates, charts, calendar view, feed view, list view, gallery view, timeline view, and form view.\n\nAFFiNE currently supports Table and Kanban views, but it is more limited for complex structured data workflows because it lacks advanced property types such as Relation, Rollup, and Formula fields, as well as critical power features such as linked views and database rows as pages that can be shared and mentioned.",
     },
     {
         id: 'vs-AFFiNE-4',
@@ -159,7 +159,7 @@ function generateListSchema() {
                         'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
                         'Complete data ownership',
-                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, Chart)',
                         'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
                         'Full AI features with on-prem & local LLMs',
                     ],
@@ -268,31 +268,17 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'Calendar views',
+        text: 'Database layouts',
+        competitor: 'Table, Kanban',
+        appflowy: 'Grid, Kanban, Calendar, Gallery, Timeline, List, Feed, Chart, Form',
+    },
+    {
+        text: 'Independent linked views of one data source',
         appflowy: true,
     },
     {
-        text: 'List views',
-        appflowy: true,
-    },
-    {
-        text: 'Gallery views',
-        appflowy: true,
-    },
-    {
-        text: 'Chart views',
-        appflowy: true,
-    },
-    {
-        text: 'Form views',
-        appflowy: true,
-    },
-    {
-        text: 'Feed views',
-        appflowy: true,
-    },
-    {
-        text: 'Linked views of a data source',
+        text: 'Database entry is a full page',
+        competitor: false,
         appflowy: true,
     },
     {
@@ -366,11 +352,11 @@ function Page() {
                                 items={[
                                     'Collaboration',
                                     'Permissions',
-                                    'Identity Management',
+                                    'Identity management',
                                     'Self-hosting',
-                                    'Advanced Databases',
+                                    'Advanced databases',
                                     'Local and on-prem AI',
-                                    'Data Control',
+                                    'Data control',
                                 ]}
                             />
                         </div>
