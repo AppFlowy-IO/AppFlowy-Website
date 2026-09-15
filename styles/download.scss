@@ -1,10 +1,39 @@
 
 .download-page {
-  @apply flex w-full flex-col items-center pt-[220px];
+  @apply relative isolate flex w-full flex-col items-center overflow-hidden pt-[220px];
   @apply max-sm:pt-[169px];
   background: linear-gradient(192deg, #EDECFC -21.69%, #F3F7FE 16.86%, #F8F9FF 30.5%, #FAFAFF 56.96%, #F5F2FF 74.04%, #FFF 83.14%);
 
   transform: translate3d(0, 0, 0);
+
+  .hero-blob {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-blob-left {
+    --blob-sz: clamp(200px, 40vw, 800px);
+    left: -200px;
+    top: 12%;
+    width: var(--blob-sz);
+    height: var(--blob-sz);
+    background: #d0c4ff;
+    filter: blur(600px);
+    @apply max-md:h-[380px] max-md:w-[380px];
+  }
+
+  .hero-blob-right {
+    --blob-sz: clamp(300px, 50vw, 960px);
+    right: -140px;
+    top: 65%;
+    width: var(--blob-sz);
+    height: var(--blob-sz);
+    background: #9cbdff;
+    filter: blur(300px);
+    @apply max-md:h-[320px] max-md:w-[320px];
+  }
 
   > .title, > .download-mobile .title, > .across .title {
     @apply z-10 tracking-[-4px] text-[74px] leading-[115%] px-[30px] font-medium mb-[40px] text-center relative;

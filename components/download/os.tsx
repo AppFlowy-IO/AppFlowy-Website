@@ -8,6 +8,8 @@ import DownloadIllustration from '@/assets/images/download/download-illustration
 function DownloadOS() {
   return (
     <>
+      <div className={'hero-blob hero-blob-left'} />
+      <div className={'hero-blob hero-blob-right'} />
       <DownloadOsBtn />
       <div className={'download-os image relative z-[1] aspect-video h-fit w-full max-w-screen-xl'}>
         <div className={'absolute-image aspect-auto h-fit'}>
