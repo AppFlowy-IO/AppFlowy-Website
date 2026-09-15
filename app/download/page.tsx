@@ -4,9 +4,11 @@ import '@/styles/download.scss';
 
 import DownloadOS from '@/components/download/os';
 import DownloadMobile from '@/components/download/mobile';
-import DownloadAcross from '@/components/download/across';
+import DownloadApps from '@/components/download/apps';
 import ModalDownload from '@/components/download/modal-download';
 import DownloadModal from '@/components/download/download-modal';
+import ScrollIcons from '@/components/shared/scroll-icons';
+import GetStart from '@/components/product/get-start';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
@@ -22,8 +24,12 @@ function Page() {
   return (
     <div className={'download-page'}>
       <DownloadOS />
-      <DownloadMobile />
-      <DownloadAcross />
+      <div className={'w-full bg-white pb-16 pt-24 max-md:py-5 max-md:pt-[60px]'}>
+        <ScrollIcons />
+      </div>
+      {/* <DownloadMobile /> */}
+      <DownloadApps />
+      <GetStart />
       <ModalDownload />
       <DownloadModal />
     </div>

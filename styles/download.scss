@@ -1,9 +1,7 @@
-
 .download-page {
-  @apply relative isolate flex w-full flex-col items-center overflow-hidden pt-[220px];
-  @apply max-sm:pt-[169px];
-  background: linear-gradient(192deg, #EDECFC -21.69%, #F3F7FE 16.86%, #F8F9FF 30.5%, #FAFAFF 56.96%, #F5F2FF 74.04%, #FFF 83.14%);
-
+  @apply relative isolate flex w-full flex-col items-center overflow-hidden pt-[200px];
+  @apply max-sm:pt-[160px];
+  background: white;
   transform: translate3d(0, 0, 0);
 
   .hero-blob {
@@ -16,7 +14,7 @@
   .hero-blob-left {
     --blob-sz: clamp(200px, 40vw, 800px);
     left: -200px;
-    top: 12%;
+    top: 2%;
     width: var(--blob-sz);
     height: var(--blob-sz);
     background: #d0c4ff;
@@ -25,48 +23,54 @@
   }
 
   .hero-blob-right {
-    --blob-sz: clamp(300px, 50vw, 960px);
-    right: -140px;
-    top: 65%;
+    --blob-sz: clamp(300px, 50vw, 700px);
+    right: -150px;
+    top: 7.5%;
     width: var(--blob-sz);
     height: var(--blob-sz);
     background: #9cbdff;
-    filter: blur(300px);
+    filter: blur(500px);
     @apply max-md:h-[320px] max-md:w-[320px];
   }
 
-  > .title, > .download-mobile .title, > .across .title {
-    @apply z-10 tracking-[-4px] text-[74px] leading-[115%] px-[30px] font-medium mb-[40px] text-center relative;
-    @apply max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px] max-sm:text-center max-sm:mb-[30px];
+  > .title,
+  > .download-mobile .title,
+  > .across .title {
+    @apply relative z-10 mb-[40px] px-[30px] text-center text-[74px] font-medium leading-[115%] tracking-[-4px];
+    @apply max-sm:mb-[30px] max-sm:text-center max-sm:text-[32px] max-sm:leading-[115%] max-sm:tracking-[-0.96px];
 
     &.mobile-title {
-      @apply w-[640px] mb-[10px];
+      @apply mb-[10px] w-[640px];
       @apply max-sm:w-[295px];
     }
   }
 
-
   @media not all and (min-width: 768px) {
     > .download-mobile {
-      background: linear-gradient(201deg, #EDECFC -1.12%, #EFF1FF 33.09%, #EEECFD 45.19%, #FAFAFF 68.66%, #FDFCFF 76.51%, #FFF 91.89%);
+      background: linear-gradient(
+        201deg,
+        #edecfc -1.12%,
+        #eff1ff 33.09%,
+        #eeecfd 45.19%,
+        #fafaff 68.66%,
+        #fdfcff 76.51%,
+        #fff 91.89%
+      );
     }
   }
 
   .download-os {
     .ellipse {
-      @apply bg-primary pointer-events-none absolute left-1/3 top-[-20%] h-screen w-[500px] rotate-[51deg] transform opacity-[10%] blur-[150px] max-lg:h-[300px] translate-z-0;
+      @apply pointer-events-none absolute left-1/3 top-[-20%] h-screen w-[500px] rotate-[51deg] transform bg-primary opacity-[10%] blur-[150px] translate-z-0 max-lg:h-[300px];
     }
 
     &.image {
-      @apply mb-[60px];
-      > .dark-image {
-        @apply pl-[20px];
-      }
+      @apply mb-[0px];
     }
   }
 
   .download-mobile {
-    @apply flex flex-col w-full items-center pt-[60px];
+    @apply flex w-full flex-col items-center pt-[60px];
     @apply max-sm:pb-[60px];
     .desc {
       @apply text-[12px];
@@ -74,37 +78,35 @@
     }
 
     > .btn-group {
-      @apply flex gap-[20px] items-center justify-center w-full mb-[110px];
+      @apply mb-[110px] flex w-full items-center justify-center gap-[20px];
       @apply max-sm:mb-[65px];
       > .download-btn {
-        @apply w-[188px] h-[66px] p-0 flex items-center justify-center;
-        @apply max-sm:h-[56px] text-[14px];
+        @apply flex h-[66px] w-[188px] items-center justify-center p-0;
+        @apply text-[14px] max-sm:h-[56px];
       }
     }
 
     > .image {
-      @apply mb-[316px] relative;
-      @apply max-sm:mb-[140px] max-sm:mx-[30px];
+      @apply relative mb-[316px];
+      @apply max-sm:mx-[30px] max-sm:mb-[140px];
       .ellipse {
-        @apply bg-primary pointer-events-none absolute left-0 top-0 h-[600px] w-full transform translate-z-0 opacity-[10%] blur-[150px] max-lg:h-[300px];
+        @apply pointer-events-none absolute left-0 top-0 h-[600px] w-full transform bg-primary opacity-[10%] blur-[150px] translate-z-0 max-lg:h-[300px];
       }
     }
 
-
     > .notes-tasks-projects {
-      @apply relative mb-[100px] mx-0;
-      @apply max-sm:mb-[60px] max-sm:mx-0;
+      @apply relative mx-0 mb-[100px];
+      @apply max-sm:mx-0 max-sm:mb-[60px];
 
       .ellipse {
-        @apply bg-primary pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform opacity-[5%] blur-[250px] max-lg:h-[1200px] max-lg:blur-[150px] translate-z-0;
+        @apply pointer-events-none absolute left-0 top-2/3 h-[80vw] w-2/3 transform bg-primary opacity-[5%] blur-[250px] translate-z-0 max-lg:h-[1200px] max-lg:blur-[150px];
       }
     }
   }
 
-
   .download {
-    @apply mt-[20px] mb-[126px] flex flex-col items-center;
-    @apply max-sm:mt-0 max-sm:mb-[60px];
+    @apply mb-[80px] mt-[20px] flex flex-col items-center;
+
     > .hero-desc {
       @apply mt-[20px] text-center text-sm;
       @apply max-sm:mt-[15px];
@@ -125,27 +127,25 @@
   }
 
   > .image {
-    @apply mb-[150px] relative;
+    @apply relative mb-[150px];
     @apply max-sm:mb-[80px];
   }
 
-
   .across {
-    @apply flex flex-col items-center w-full;
+    @apply flex w-full flex-col items-center;
     @apply max-md:bg-white;
 
-
     .across-title {
-      @apply w-[700px] mb-[100px];
-      @apply max-sm:w-[300px] max-sm:mb-[40px];
+      @apply mb-[100px] w-[700px];
+      @apply max-sm:mb-[40px] max-sm:w-[300px];
       .line {
-        @apply absolute w-[276px] h-[19px] bottom-0 left-[300px];
-        @apply max-sm:w-[113px] max-sm:left-[120px] max-sm:bottom-[-10px];
+        @apply absolute bottom-0 left-[300px] h-[19px] w-[276px];
+        @apply max-sm:bottom-[-10px] max-sm:left-[120px] max-sm:w-[113px];
       }
 
       .icon {
-        @apply absolute top-[-40px] right-[40px] w-[40px] h-[56px];
-        @apply max-sm:w-[24px] max-sm:h-[28px] max-sm:top-[-20px] max-sm:right-[20px];
+        @apply absolute right-[40px] top-[-40px] h-[56px] w-[40px];
+        @apply max-sm:right-[20px] max-sm:top-[-20px] max-sm:h-[28px] max-sm:w-[24px];
       }
     }
 
@@ -156,31 +156,29 @@
     }
 
     .across-download {
-      @apply flex gap-[30px] w-full justify-center mb-[220px] px-[20px];
-      @apply max-md:flex-col max-md:gap-[20px] max-md:px-[20px] max-md:mb-[48px];
+      @apply mb-[220px] flex w-full justify-center gap-[30px] px-[20px];
+      @apply max-md:mb-[48px] max-md:flex-col max-md:gap-[20px] max-md:px-[20px];
       .across-download-item {
-        @apply flex flex-col flex-1 rounded-[18px] border border-primary-10 bg-white overflow-hidden relative p-[40px] max-w-[360px];
-        @apply max-sm:px-[30px] max-sm:pt-[40px] max-sm:pb-[20px] max-sm:flex-auto max-md:max-w-full;
+        @apply relative flex max-w-[360px] flex-1 flex-col overflow-hidden rounded-[18px] border border-primary-10 bg-white p-[40px];
+        @apply max-md:max-w-full max-sm:flex-auto max-sm:px-[30px] max-sm:pb-[20px] max-sm:pt-[40px];
         @apply min-w-[330px];
         .across-download-item-desc {
           @apply mb-6 text-[12px];
           .linux-desc {
             @apply flex flex-col gap-[10px];
-
           }
 
           .linux-download-extensions {
-            @apply inline-flex gap-[4px] mx-1;
-
+            @apply mx-1 inline-flex gap-[4px];
           }
 
           .download-extension-link {
-            @apply italic text-primary cursor-pointer underline;
+            @apply cursor-pointer italic text-primary underline;
           }
         }
 
         .bg {
-          @apply absolute -top-1/2 -left-1/2 w-[500px] h-[400px] bg-[#4A1DFF] opacity-20 transform translate-z-0  blur-[250px] rounded-[554px] pointer-events-none;
+          @apply pointer-events-none absolute -left-1/2 -top-1/2 h-[400px] w-[500px] transform rounded-[554px] bg-[#4A1DFF]  opacity-20 blur-[250px] translate-z-0;
         }
 
         .across-download-item-icon {
@@ -188,7 +186,7 @@
         }
 
         .across-download-item-title {
-          @apply text-[40px] font-medium leading-[110%] mt-[10px] tracking-[-1.6px] mb-[40px];
+          @apply mb-[40px] mt-[10px] text-[40px] font-medium leading-[110%] tracking-[-1.6px];
           @apply max-sm:text-[24px];
         }
 
@@ -203,7 +201,7 @@
         }
 
         .across-download-item-btns {
-          @apply flex flex-col w-full flex-1 items-center overflow-hidden justify-end gap-[20px];
+          @apply flex w-full flex-1 flex-col items-center justify-end gap-[20px] overflow-hidden;
           @apply max-sm:gap-[10px];
           > button {
             @apply w-full;
@@ -211,11 +209,64 @@
         }
       }
     }
-
-
   }
 
+  .apps {
+    @apply relative flex w-full flex-col items-center px-[20px] pb-[120px];
+    @apply max-md:pb-[80px];
+
+    .apps-card {
+      @apply relative w-full max-w-[1240px] rounded-[32px] bg-white px-[20px] pb-[90px] pt-[110px];
+      @apply max-md:px-0 max-md:pb-[50px] max-md:pt-[70px];
+    }
+
+    .apps-grid {
+      @apply relative z-10 grid w-full grid-cols-2 gap-[32px];
+      @apply max-md:grid-cols-1;
+    }
+
+    .apps-col {
+      @apply flex flex-col rounded-[20px] border border-primary-10 bg-white p-[40px];
+      @apply max-sm:p-[24px];
+    }
+
+    .apps-col-title {
+      @apply mb-[36px] text-[20px] font-medium;
+    }
+
+    .apps-spacer {
+      @apply h-[179px];
+      @apply max-md:hidden;
+    }
+
+    .apps-row {
+      @apply flex flex-col gap-[14px];
+
+      + .apps-row {
+        @apply mt-[36px];
+      }
+    }
+
+    .apps-row-label {
+      @apply flex items-center gap-[8px] text-[14px] font-medium text-text-secondary;
+    }
+
+    .apps-row-btns {
+      @apply flex flex-col gap-[10px];
+    }
+
+    .linux-btn-group {
+      @apply w-full;
+    }
+  }
 }
 
+// The dropdown's own utility classes are emitted with the `#body` important
+// prefix, so these overrides need that prefix to outrank them.
+#body .download-page .apps .linux-btn-group > .dropdown-btn {
+  @apply h-[48px] w-full justify-between rounded-lg;
 
-
+  .dropdown-btn__title {
+    @apply h-full flex-1 justify-start py-0 pl-5 text-base font-medium;
+  }
+}
