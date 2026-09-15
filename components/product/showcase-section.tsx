@@ -143,10 +143,10 @@ function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; classNa
     const lines = tab.title.split("|");
 
     return (
-        <h1 className={`${titleBaseClass} ${className}`} aria-hidden={hidden || undefined}>
+        <h2 className={`${titleBaseClass} ${className}`} aria-hidden={hidden || undefined}>
             {lines[0]}
             <span className="block">{lines[1]}</span>
-        </h1>
+        </h2>
     );
 }
 
