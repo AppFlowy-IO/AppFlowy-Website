@@ -23,9 +23,6 @@ export const whatIsNewConfig = {
  */
 export const downloadPageConfig = {
   downloadOSImageAlt: 'Download for your OS',
-  mobileSubtitle: 'Native, Interactive, Intuitive.',
-  downloadMobileImgAlt: 'AppFlowy for iOS and Android',
-  downloadOtherPlatformTitle: 'Work across all your devices',
 };
 
 /**

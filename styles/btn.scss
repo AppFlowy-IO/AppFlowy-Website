@@ -66,8 +66,23 @@
 }
 
 #body .dropdown-btn {
-  @apply flex items-center overflow-hidden rounded-[16px];
-  background: var(--color-primary);
+  @apply flex items-center overflow-hidden rounded-lg;
+  background: var(--color-night-blue, #140f28);
+
+  &__title,
+  &__file-extension {
+    background: transparent !important;
+    border-color: transparent !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    &:active,
+    &.active {
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+  }
 
   &__title {
     @apply cursor-pointer rounded-none border-0 pl-6 pr-3;
@@ -79,7 +94,7 @@
   }
 
   &__divider {
-    @apply h-[16px] w-[1px] bg-[#A952FF];
+    @apply h-[16px] w-[1px] bg-white/20;
   }
 
   &__expand-icon {
@@ -111,7 +126,6 @@
 
   &.disabled {
     pointer-events: none;
-    background: #7d26de;
     opacity: 0.3;
   }
 }

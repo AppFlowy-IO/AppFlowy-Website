@@ -199,46 +199,6 @@
       }
     }
 
-    .download-mobile {
-      > .image {
-
-        .ellipse {
-          @apply opacity-[20%];
-        }
-      }
-
-      > .notes-tasks-projects {
-        @apply relative mx-0;
-        @apply max-sm:mb-[60px] max-sm:mx-0;
-
-        .ellipse {
-          @apply opacity-[50%];
-        }
-      }
-    }
-
-    .across {
-      @apply max-sm:bg-night-blue;
-      .across-download {
-        .across-download-item {
-          @apply bg-dark-card;
-          .bg {
-            @apply bg-[#8A5EB7];
-          }
-
-          .across-download-item-desc {
-
-            .download-extension-link {
-              @apply text-lavender-purple;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .download-mobile {
-    background: var(--color-night-blue);
   }
 
   .download-progress-page {
@@ -337,12 +297,6 @@
     }
   }
 
-  .mobile {
-    @apply bg-night-blue;
-    > .bg {
-      @apply bg-lavender-purple opacity-20 blur-[250px];
-    }
-  }
   .home-page {
     background: var(--color-night-blue);
   }

@@ -3,10 +3,12 @@ import React from 'react';
 import '@/styles/download.scss';
 
 import DownloadOS from '@/components/download/os';
-import DownloadMobile from '@/components/download/mobile';
-import DownloadAcross from '@/components/download/across';
+import DownloadApps from '@/components/download/apps';
+import LightTestimonial from '@/components/download/light-testimonial';
 import ModalDownload from '@/components/download/modal-download';
 import DownloadModal from '@/components/download/download-modal';
+import ScrollIcons from '@/components/shared/scroll-icons';
+import GetStart from '@/components/product/get-start';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
@@ -20,10 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function Page() {
   return (
-    <div className={'download-page'}>
+    <div className={'download-page overflow-hidden'}>
       <DownloadOS />
-      <DownloadMobile />
-      <DownloadAcross />
+      <div className={'w-full bg-white pb-16 pt-24 max-md:py-5 max-md:pt-[60px]'}>
+        <ScrollIcons />
+      </div>
+      <DownloadApps />
+      <LightTestimonial />
+      <GetStart />
       <ModalDownload />
       <DownloadModal />
     </div>
