@@ -36,17 +36,10 @@ export function LayersIcon() {
 
 export function ServerIcon() {
     return (
-        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 24 24' fill='none' color='#5317D5'>
-            <circle cx='12' cy='12' r='9' stroke='currentColor' strokeWidth='1.5' />
-            <path d='M3 12h18' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' />
-            <path
-                d='M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9s1.3-6.3 3.8-9z'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-            />
-        </svg >
+        <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 11V5M8 8L11 11L14 8M11 15V19M7 19H15M3 1H19C20.1046 1 21 1.89543 21 3V13C21 14.1046 20.1046 15 19 15H3C1.89543 15 1 14.1046 1 13V3C1 1.89543 1.89543 1 3 1Z" stroke="#5317D5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
     );
 }
 
