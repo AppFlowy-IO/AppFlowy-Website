@@ -28,13 +28,12 @@ function DownloadOsBtn() {
           <LinuxBtnGroup title={'Download'} />
         ) : (
           <Button onClick={downloadOS} size={'xl'}
-            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors hover:bg-night-blue/90 max-sm:w-full'}>
+            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors text-base leading-[150%] hover:bg-night-blue/90 max-sm:w-full'}>
             {'Download ' + name + ' app'}
           </Button>
         )}
-        <a href="#platforms" className='text-base text-text-tertiary hover:text-text-primary transition-colors duration-280 flex items-center justify-center gap-2'>
+        <a href="#across" className='text-base text-text-tertiary hover:text-text-primary transition-colors duration-280 flex items-center justify-center gap-2'>
           View all platforms
-
         </a>
       </div>
     </div>

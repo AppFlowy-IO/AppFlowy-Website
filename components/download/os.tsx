@@ -11,16 +11,14 @@ function DownloadOS() {
       <div className={'hero-blob hero-blob-left'} />
       <div className={'hero-blob hero-blob-right'} />
       <DownloadOsBtn />
-      <div className={'download-os image relative z-[1] aspect-video h-fit w-full max-w-screen-xl'}>
-        <div className={'absolute-image aspect-auto h-fit'}>
-          <Image
-            className={'relative mx-[28px]'}
-            src={DownloadIllustration}
-            alt={downloadPageConfig.downloadOSImageAlt}
-            width={1280}
-            height={740}
-          />
-        </div>
+      <div className={'download-os image relative z-[1] mx-auto w-full max-w-[1280px] px-[80px] max-xl:px-[4vw]'}>
+        <Image
+          className={'relative aspect-[1280/740] h-auto w-full'}
+          src={DownloadIllustration}
+          alt={downloadPageConfig.downloadOSImageAlt}
+          width={1280}
+          height={740}
+        />
       </div>
     </>
   );
