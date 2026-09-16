@@ -278,6 +278,77 @@
       @apply w-full;
     }
   }
+
+  .light-testimonial {
+    @apply relative flex w-full justify-center py-[120px];
+    @apply max-md:py-[80px];
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+  }
+
+  .light-testimonial-stage {
+    @apply relative w-full overflow-hidden;
+  }
+
+  .light-testimonial-track {
+    @apply flex w-full items-stretch justify-center gap-[20px] px-6;
+    @apply max-md:px-4;
+  }
+
+  .light-testimonial-card {
+    @apply flex w-[600px] shrink-0 flex-col justify-between gap-[36px] rounded-[16px] border border-primary-10 bg-white p-[28px];
+    @apply max-lg:w-[480px] max-md:w-full max-md:max-w-[480px] max-md:gap-[24px];
+
+    // Only the middle card is fully in view; the ones on either side are
+    // clipped by the stage and dimmed by the fades.
+    &:first-child,
+    &:last-child {
+      @apply max-md:hidden;
+    }
+  }
+
+  .light-testimonial-quote {
+    @apply text-[16px] font-medium leading-[150%] text-night-blue;
+  }
+
+  .light-testimonial-meta {
+    @apply flex flex-col items-center gap-[16px];
+  }
+
+  .light-testimonial-stars {
+    @apply flex items-center gap-[8px];
+  }
+
+  .light-testimonial-author {
+    @apply flex items-center gap-[12px] text-[16px] leading-[150%];
+  }
+
+  .light-testimonial-name {
+    @apply font-medium text-night-blue;
+  }
+
+  .light-testimonial-divider {
+    @apply h-[18px] w-px bg-primary-10;
+  }
+
+  .light-testimonial-source {
+    @apply text-text-secondary;
+  }
+
+  .light-testimonial-fade {
+    @apply pointer-events-none absolute inset-y-0 z-10 w-[clamp(120px,22vw,440px)];
+    @apply max-md:hidden;
+  }
+
+  .light-testimonial-fade-left {
+    @apply left-0;
+    background: linear-gradient(90deg, #fff 35%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .light-testimonial-fade-right {
+    @apply right-0;
+    background: linear-gradient(270deg, #fff 35%, rgba(255, 255, 255, 0) 100%);
+  }
+
 }
 
 // The dropdown's own utility classes are emitted with the `#body` important
