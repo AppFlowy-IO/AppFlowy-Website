@@ -108,8 +108,13 @@ function DownloadApps() {
 
   return (
     <div id={'across'} className={'apps'}>
-      <div className={'apps-card'}>
-        <div className="flex flex-col gap-2 mb-20">
+      <div className={'apps-bg'}>
+        <div className={'apps-bg-circle apps-bg-circle-1'} />
+        <div className={'apps-bg-circle apps-bg-circle-2'} />
+        <div className={'apps-bg-circle apps-bg-circle-3'} />
+      </div>
+      <div className={'relative w-full max-w-[1280px] py-[120px] px-6 max-md:py-[80px] max-md:px-4 '}>
+        <div className="flex flex-col gap-3 mb-20">
           <h2 className={'text-center text-style-h1 font-bold'}>Get AppFlowy at your desk or on the go</h2>
           <p className={'text-base leading-[150%] text-text-secondary text-center'}>Fast and minimal. Work without distractions.</p>
         </div>

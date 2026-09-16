@@ -212,17 +212,36 @@
   }
 
   .apps {
-    @apply relative flex w-full flex-col items-center px-[20px] pb-[120px];
-    @apply max-md:pb-[80px];
+    @apply relative flex w-full flex-col items-center;
 
-    .apps-card {
-      @apply relative w-full max-w-[1240px] rounded-[32px] bg-white px-[20px] pb-[90px] pt-[110px];
-      @apply max-md:px-0 max-md:pb-[50px] max-md:pt-[70px];
+    .apps-bg {
+      @apply pointer-events-none absolute inset-0 z-0 flex w-full items-center justify-between;
+    }
+
+    .apps-bg-circle {
+      @apply shrink-0 rounded-full;
+    }
+
+    .apps-bg-circle-1,
+    .apps-bg-circle-3 {
+      width: 600px;
+      height: 600px;
+      opacity: 0.15;
+      background: #9cbdff;
+      filter: blur(150px);
+    }
+
+    .apps-bg-circle-2 {
+      width: 400px;
+      height: 400px;
+      opacity: 0.8;
+      background: #d0c4ff;
+      filter: blur(300px);
     }
 
     .apps-grid {
-      @apply relative z-10 grid w-full grid-cols-2 gap-[32px];
-      @apply max-md:grid-cols-1;
+      @apply relative z-10 grid w-full grid-cols-2 gap-10;
+      @apply max-lg:gap-6 max-md:grid-cols-1 max-md:gap-4;
     }
 
     .apps-col {
