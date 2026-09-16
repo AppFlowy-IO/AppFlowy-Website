@@ -3,7 +3,6 @@ import React from 'react';
 import '@/styles/download.scss';
 
 import DownloadOS from '@/components/download/os';
-import DownloadMobile from '@/components/download/mobile';
 import DownloadApps from '@/components/download/apps';
 import LightTestimonial from '@/components/download/light-testimonial';
 import ModalDownload from '@/components/download/modal-download';
@@ -28,7 +27,6 @@ function Page() {
       <div className={'w-full bg-white pb-16 pt-24 max-md:py-5 max-md:pt-[60px]'}>
         <ScrollIcons />
       </div>
-      {/* <DownloadMobile /> */}
       <DownloadApps />
       <LightTestimonial />
       <GetStart />
