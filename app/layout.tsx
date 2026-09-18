@@ -11,8 +11,6 @@ import { ChunkLoadErrorBoundary } from '@/components/error-boundary/chunk-load-e
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 const metaTitle = 'AppFlowy';
