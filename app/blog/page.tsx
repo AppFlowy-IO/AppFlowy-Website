@@ -1,7 +1,8 @@
 import Articles from '@/components/blog/articles';
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 import React from 'react';
 import OpenGraphImage from '../../public/images/og-image.png';
 import { getAllPostsMetadata, PostMetadata } from '@/lib/posts';
@@ -48,8 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 function generateListSchema(posts: PostMetadata[], siteUrl: string) {
-  return {
-    '@context': 'https://schema.org',
+  const itemListSchema = {
     '@type': 'ItemList',
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -86,6 +86,11 @@ function generateListSchema(posts: PostMetadata[], siteUrl: string) {
     datePublished: new Date().toISOString(),
     dateModified: new Date().toISOString(),
   };
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [itemListSchema, generateBreadcrumbSchema([{ name: 'Blog', path: '/blog' }])],
+  };
 }
 
 function Blog() {
@@ -94,12 +99,10 @@ function Blog() {
 
   return (
     <>
-      <Script
+      <SeoData
         id="ld-json"
-        type="application/ld+json"
-      >
-        {JSON.stringify(listSchema)}
-      </Script>
+        data={listSchema}
+      />
       <div
         className={cn(
           'bg-white',

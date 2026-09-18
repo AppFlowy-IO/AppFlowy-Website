@@ -5,7 +5,7 @@ import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
 import { ChunkLoadErrorBoundary } from '@/components/error-boundary/chunk-load-error-boundary';
 
 export const viewport: Viewport = {
@@ -150,12 +150,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           name="robots"
           content="noindex,nofollow"
         />}
-        <Script
+        <SeoData
           id="schema-org"
-          type="application/ld+json"
-        >
-          {JSON.stringify(generateListSchema())}
-        </Script>
+          data={generateListSchema()}
+        />
       </head>
       <body id={'body'}>
         <ChunkLoadErrorBoundary>

@@ -1,7 +1,8 @@
 import GetStart from '@/components/product/get-start';
 import DocmostImage from '@/assets/images/vs-notion/docmost.svg';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 import React from 'react';
 import 'styles/vs-notion.scss';
@@ -249,9 +250,11 @@ function generateListSchema() {
         })),
     };
 
+    const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'AppFlowy vs Docmost', path: '/compare/appflowy-vs-docmost' }]);
+
     return {
         '@context': 'https://schema.org',
-        '@graph': [webPageSchema, faqSchema],
+        '@graph': [webPageSchema, faqSchema, breadcrumbSchema],
     };
 }
 
@@ -369,9 +372,7 @@ const points = [
 function Page() {
     return (
         <>
-            <Script id='ld-json' type='application/ld+json'>
-                {JSON.stringify(generateListSchema())}
-            </Script>
+            <SeoData id='ld-json' data={generateListSchema()} />
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
