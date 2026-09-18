@@ -1,20 +1,17 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import GetStart from '@/components/product/get-start';
 import DocmostImage from '@/assets/images/vs-notion/docmost.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import CloseImage from '@/assets/images/vs-notion/x.svg';
-import RightImage from '@/assets/images/vs-notion/right.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
+import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs Docmost: The Best On-Premises Notion Alternative';
@@ -32,7 +29,7 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-2',
         question: 'What is the biggest difference between AppFlowy and Docmost?',
         answer:
-            'The biggest difference is product scope. Docmost focuses primarily on wikis, documentation, and browser-based knowledge management. AppFlowy is a broader workspace that combines wikis, databases, Kanban boards, project management, and AI-powered workflows in one platform.\n\nAppFlowy supports multidimensional project tracking through Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also treats database records as editable pages, allowing teams to add rich-text content, comments, relations, and cross-references directly within structured records.\n\nFor teams currently using Docmost alongside a separate project-management tool such as Jira or Trello, AppFlowy may help consolidate documentation and project workflows into one workspace.',
+            'The biggest difference is product scope. Docmost focuses primarily on wikis, documentation, and browser-based knowledge management. AppFlowy is a broader workspace that combines wikis, databases, Kanban boards, project management, and AI-powered workflows in one platform.\n\nAppFlowy supports multidimensional project tracking through Grid, Kanban, Calendar, Gallery, List, Feed, Timeline, Form, and Chart views. It also treats database records as editable pages, allowing teams to add rich-text content, comments, relations, and cross-references directly within structured records.\n\nFor teams currently using Docmost alongside a separate project-management tool such as Jira or Trello, AppFlowy may help consolidate documentation and project workflows into one workspace.',
     },
     {
         id: 'vs-docmost-3',
@@ -44,7 +41,7 @@ const vsDocmostFAQs = [
         id: 'vs-docmost-4',
         question: 'Do AppFlowy and Docmost support advanced databases and project management?',
         answer:
-            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Feed, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates. In AppFlowy, each database entry can act as fully-featured text pages, thus users can invite collaborators and add comments to individual database entries.',
+            'Both products support structured databases, but their capabilities differ substantially.\n\nDocmost Bases support Table and Kanban views, properties, filters, sorting, formulas, and structured records. Docmost does not currently document the ability to place linked views of the same Base across different pages.\n\nAppFlowy supports a broader project-management feature set, including Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, and Chart views. It also supports advanced filters, grouping, multi-row editing, relations, rollups, linked database views, and reusable database templates. In AppFlowy, each database entry can act as fully-featured text pages, thus users can invite collaborators and add comments to individual database entries.',
     },
     {
         id: 'vs-docmost-5',
@@ -183,17 +180,11 @@ function generateListSchema() {
                         name: 'AppFlowy',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted workspace with documentation, databases, and AI features',
-                        },
                         featureList: [
                             'Fully open-core (AGPL)',
                             'Self-hosted workspace with documentation',
                             'Databases and kanban boards',
-                            'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                            'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, Chart)',
                             'Full AI features with on-prem & local LLMs',
                             'Local and on-prem LLM support',
                             'AI-powered features',
@@ -210,12 +201,6 @@ function generateListSchema() {
                         name: 'Docmost',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted team wiki focused on documentation',
-                        },
                         featureList: [
                             'On-prem wiki for documentation',
                             'Wiki-style documents',
@@ -300,15 +285,17 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'Database row as a page',
+        text: 'Database layouts',
+        competitor: 'Table, Kanban',
+        appflowy: 'Grid, Kanban, Calendar, Gallery, Timeline, List, Feed, Chart, Form',
+    },
+    {
+        text: 'Independent linked views of one data source',
         appflowy: true,
     },
     {
-        text: 'Linked view of a data source',
-        appflowy: true,
-    },
-    {
-        text: 'Calendar, Gallery, Feed, List, Chart database views',
+        text: 'Database entry is a full page',
+        competitor: false,
         appflowy: true,
     },
     {
@@ -388,102 +375,60 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <div className={'flex items-center justify-center gap-2'}>
-                            <Image src={AppFlowyImage} alt={'AppFlowy'} width={56} height={56} />
-                            <span className={'text-sm font-semibold'}>vs</span>
-                            <Image src={DocmostImage} alt={'Docmost'} width={56} height={56} />
-                        </div>
+                        <HeroApps competitorName='Docmost' competitorImage={DocmostImage} />
                         <div className={'main-content'}>
-                            <h1>
-                                AppFlowy vs Docmost
-                                <br></br>
-                                <span className={'text-primary'}>The Best On-Premises Notion Alternative</span>
-                            </h1>
-                            <p className={'desc'}>
-                                Self-hosted, knowledge base, project management, relational database, all-in-one workspace,
-                                cross-platform apps
-                            </p>
+                            <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best On-Premises Notion<br></br> Alternative</h1>
+                            <HeroFeaturePills
+                                className='desc'
+                                items={[
+                                    'Self-hosted',
+                                    'Knowledge base',
+                                    'Project management',
+                                    'Advanced relational database',
+                                    'All-in-One workspace',
+                                    'Cross-platform',
+                                ]}
+                            />
                         </div>
                         <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
-                    <div className={'af-box section-2'}>
-                        <h2 className={'section-2-title'}>
+                    <div className={'af-box section-2 bg-white'}>
+                        <h2 className={'text-style-h1 font-bold w-full text-left sm:w-auto sm:text-center'}>
                             {`Why AppFlowy is the better choice for `}
                             <span className={'text-primary'}>your team</span>
                             <br />
                         </h2>
-                        <div className={'cards'}>
-                            <div className={'card'}>
-                                <Image src={Object1} alt={'AI Workspace'} width={151} height={121} />
-                                <div className={'card-title'}>
-                                    <h4>AI Workspace</h4>
-                                    <p className={'card-desc'}>
-                                        {`AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.`}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={'card'}>
-                                <Image src={Object2} alt={'Projects and Databases'} width={151} height={121} />
-
-                                <div className={'card-title'}>
-                                    <h4>Projects & Databases</h4>
-                                    <p className={'card-desc'}>
-                                        {`Capture every detail in a database. Visualize in various formats, from calendars to boards.`}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={'card'}>
-                                <Image src={Object3} alt={'Cross-platform'} width={189} height={121} />
-
-                                <div className={'card-title'}>
-                                    <h4>Cross-platform</h4>
-                                    <p
-                                        className={'card-desc'}
-                                    >{`Works consistently across platforms your team works on, including desktop and mobile`}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={
-                                'flex w-full min-w-0 max-w-[1100px] flex-col gap-1 text-[26px] max-lg:text-[18px] max-md:text-base'
-                            }
-                        >
-                            <div className={'flex w-full items-center justify-between'}>
-                                <p className='w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4'>Compare features</p>
-                                <p className='w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4'>Docmost</p>
-                                <p className='w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4'>AppFlowy</p>
-                            </div>
-                            {points.map((point) => (
-                                <div
-                                    key={point.text}
-                                    className={
-                                        'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
-                                    }
-                                >
-                                    <div className='w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5'>
-                                        {point.text}
-                                    </div>
-                                    <div className='flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5'>
-                                        {point.competitor ? (
-                                            <Image src={RightImage} alt={'Right'} width={26} height={16} />
-                                        ) : (
-                                            <Image src={CloseImage} alt={'Close'} width={20} height={20} />
-                                        )}
-                                    </div>
-                                    <div className='flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5'>
-                                        {point.appflowy ? (
-                                            <Image src={RightImage} alt={'Right'} width={26} height={16} />
-                                        ) : (
-                                            <Image src={CloseImage} alt={'Close'} width={20} height={20} />
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
+                        <FeatureCards
+                            items={[
+                                {
+                                    icon: 'sparkle',
+                                    title: 'AI Workspace',
+                                    description:
+                                        'AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.',
+                                },
+                                {
+                                    icon: 'database',
+                                    title: 'Projects & Databases',
+                                    description: 'Capture every detail in a database. Visualize in various formats, from calendars to boards.',
+                                },
+                                {
+                                    icon: 'layers',
+                                    title: 'Cross-platform',
+                                    description: 'Works consistently across platforms your team works on, including desktop and mobile',
+                                },
+                            ]}
+                        />
+                        <div className={'section-2-blobs'}>
+                            <div className={'section-2-blob section-2-blob-1'} />
+                            <div className={'section-2-blob section-2-blob-2'} />
+                            <div className={'section-2-blob section-2-blob-3'} />
                         </div>
                     </div>
+                </div>
+                <div className="af-box section-2">
+                    <ComparisonTable competitorName='Docmost' competitorImage={DocmostImage} points={points} />
                 </div>
                 <div className={'vs-docmost-faq'}>
                     <QASection items={vsDocmostFAQs} />

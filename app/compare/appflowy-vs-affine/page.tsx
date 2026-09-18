@@ -1,19 +1,16 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-4.png';
 import GetStart from '@/components/product/get-start';
 import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import CloseImage from '@/assets/images/vs-notion/x.svg';
-import RightImage from '@/assets/images/vs-notion/right.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
+import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs. AFFiNE: The Best Self-Hosted Notion Alternative for Enterprise Teams';
@@ -35,7 +32,7 @@ const vsAFFiNEFAQs = [
     {
         id: 'vs-AFFiNE-3',
         question: 'Which is better for teams migrating from Notion: AppFlowy or AFFiNE?',
-        answer: "AppFlowy is better suited for teams migrating from Notion, especially if they rely on databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations. AppFlowy has stronger database capabilities, including linked views of a data source, relations, rollups, calculations, database templates, charts, calendar view, feed view, list view, and gallery view.\n\nAFFiNE currently supports Table and Kanban views, but it is more limited for complex structured data workflows because it lacks advanced property types such as Relation, Rollup, and Formula fields, as well as critical power features such as linked views and database rows as pages that can be shared and mentioned.",
+        answer: "AppFlowy is better suited for teams migrating from Notion, especially if they rely on databases for project management, CRM workflows, content calendars, product roadmaps, team wikis, or internal operations. AppFlowy has stronger database capabilities, including linked views of a data source, relations, rollups, calculations, database templates, charts, calendar view, feed view, list view, gallery view, timeline view, and form view.\n\nAFFiNE currently supports Table and Kanban views, but it is more limited for complex structured data workflows because it lacks advanced property types such as Relation, Rollup, and Formula fields, as well as critical power features such as linked views and database rows as pages that can be shared and mentioned.",
     },
     {
         id: 'vs-AFFiNE-4',
@@ -158,17 +155,11 @@ function generateListSchema() {
                     name: 'AppFlowy',
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Self-hosted workspace with documentation, databases, and AI features',
-                    },
                     featureList: [
                         'Fully open-core (AGPL)',
                         'Enterprise-ready self-hosting',
                         'Complete data ownership',
-                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Feed, Chart)',
+                        'Multiple database views (Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Form, Chart)',
                         'Granular permissions, SAML SSO, SCIM, LDAP, audit logs',
                         'Full AI features with on-prem & local LLMs',
                     ],
@@ -179,12 +170,6 @@ function generateListSchema() {
                     name: 'AFFiNE',
                     applicationCategory: 'ProductivityApplication',
                     operatingSystem: 'All',
-                    offers: {
-                        '@type': 'Offer',
-                        price: '0',
-                        priceCurrency: 'USD',
-                        description: 'Self-hosted knowledge base with whiteboarding and journaling',
-                    },
                     featureList: [
                         'Proprietary backend server',
                         'Canvas/whiteboard integration',
@@ -283,31 +268,17 @@ const points = [
         appflowy: true,
     },
     {
-        text: 'Calendar views',
+        text: 'Database layouts',
+        competitor: 'Table, Kanban',
+        appflowy: 'Grid, Kanban, Calendar, Gallery, Timeline, List, Feed, Chart, Form',
+    },
+    {
+        text: 'Independent linked views of one data source',
         appflowy: true,
     },
     {
-        text: 'List views',
-        appflowy: true,
-    },
-    {
-        text: 'Gallery views',
-        appflowy: true,
-    },
-    {
-        text: 'Chart views',
-        appflowy: true,
-    },
-    {
-        text: 'Form views',
-        appflowy: true,
-    },
-    {
-        text: 'Feed views',
-        appflowy: true,
-    },
-    {
-        text: 'Linked views of a data source',
+        text: 'Database entry is a full page',
+        competitor: false,
         appflowy: true,
     },
     {
@@ -373,136 +344,59 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <div className={'flex items-center justify-center gap-2'}>
-                            <Image
-                                src={AppFlowyImage}
-                                alt={'AppFlowy'}
-                                width={56}
-                                height={56}
-                            />
-                            <span className={'text-sm font-semibold'}>vs</span>
-                            <Image
-                                src={AFFiNEImage}
-                                alt={'AFFiNE'}
-                                width={56}
-                                height={56}
-                            />
-                        </div>
+                        <HeroApps competitorName='AFFiNE' competitorImage={AFFiNEImage} />
                         <div className={'main-content'}>
-                            <h1>
-                                AppFlowy vs. AFFiNE
-                                <br></br><span className={'text-primary'}>The Best Self-Hosted Notion Alternative</span>
-                            </h1>
-                            <p className={'desc'}>A practical comparison of collaboration, permissions, identity management, self-hosting, databases, AI, and data control for enterprise teams.</p>
+                            <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best Self-Hosted Notion<br></br> Alternative</h1>
+                            <HeroFeaturePills
+                                className='desc'
+                                items={[
+                                    'Collaboration',
+                                    'Permissions',
+                                    'Identity management',
+                                    'Self-hosting',
+                                    'Advanced databases',
+                                    'Local and on-prem AI',
+                                    'Data control',
+                                ]}
+                            />
                         </div>
                         <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
-                    <div className={'af-box section-2'}>
-                        <h2 className={'section-2-title'}>
-                            Where <span className={'text-primary'}>AppFlowy</span> <br />
+                    <div className={'af-box section-2 bg-white'}>
+                        <h2 className={'text-style-h1 font-bold w-full text-left sm:w-auto sm:text-center'}>
+                            Where AppFlowy <br />
                             pulls ahead
                         </h2>
-                        <div className={'cards'}>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object1}
-                                    alt={'Custom on-prem AI'}
-                                    width={151}
-                                    height={121}
-                                />
-                                <div className={'card-title'}>
-                                    <h4>AI Workspace</h4>
-                                    <p className={'card-desc'}>
-                                        AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and local LLMs.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object2}
-                                    alt={'Projects & Databases'}
-                                    width={151}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Projects & Databases</h4>
-                                    <p className={'card-desc'}>Capture every detail in a database. Visualize work in distinct formats, from calendars to boards.</p>
-                                </div>
-                            </div>
-
-                            <div className={'card'}>
-                                <Image
-                                    src={Object3}
-                                    alt={'Enterprise-grade'}
-                                    width={189}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Enterprise-grade</h4>
-                                    <p className={'card-desc'}>Granular permissions, SAML SSO, SCIM, LDAP, audit logs, migration, and flexible deployment.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={
-                                'flex w-full min-w-0 max-w-[1100px] flex-col gap-1 text-[26px] max-lg:text-[18px] max-md:text-base'
-                            }
-                        >
-                            <div className={'flex w-full items-center justify-between'}>
-                                <p className="w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4">Compare features</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AFFiNE</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AppFlowy</p>
-                            </div>
-                            {points.map((point) => (
-                                <div
-                                    key={point.text}
-                                    className={
-                                        'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
-                                    }
-                                >
-                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point.competitor ?
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                            :
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point.appflowy ?
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                            :
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                </div>
-                            ))}
+                        <FeatureCards
+                            items={[
+                                {
+                                    icon: 'sparkle',
+                                    title: 'AI Workspace',
+                                    description: 'AI Meeting Notes, AI Writers, AI Transcripts and AI Search with on-prem and local LLMs.',
+                                },
+                                {
+                                    icon: 'database',
+                                    title: 'Projects & Databases',
+                                    description: 'Capture every detail in a database. Visualize work in distinct formats, from calendars to boards.',
+                                },
+                                {
+                                    icon: 'shield',
+                                    title: 'Enterprise-grade',
+                                    description: 'Granular permissions, SAML SSO, SCIM, LDAP, audit logs, migration, and flexible deployment.',
+                                },
+                            ]}
+                        />
+                        <div className={'section-2-blobs'}>
+                            <div className={'section-2-blob section-2-blob-1'} />
+                            <div className={'section-2-blob section-2-blob-2'} />
+                            <div className={'section-2-blob section-2-blob-3'} />
                         </div>
                     </div>
+                </div>
+                <div className="af-box section-2">
+                    <ComparisonTable competitorName='AFFiNE' competitorImage={AFFiNEImage} points={points} />
                 </div>
                 <div className={'vs-affine-faq'}>
                     <QASection items={vsAFFiNEFAQs} />

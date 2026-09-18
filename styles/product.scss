@@ -214,11 +214,11 @@
     }
   }
 
-  .section-8 {
+  .get-started-section {
     background: white;
     isolation: isolate;
 
-    &-title {
+    .get-started-title {
       z-index: 1;
 
       h2 {
@@ -226,11 +226,11 @@
       }
     }
 
-    .section-8-logo {
+    .get-started-logo {
       border-color: rgba(0, 0, 0, 0.08);
     }
 
-    .section-8-desc {
+    .get-started-desc {
       z-index: 1;
       letter-spacing: -0.02em;
     }

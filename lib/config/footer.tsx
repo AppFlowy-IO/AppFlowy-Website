@@ -148,6 +148,10 @@ export const links = [
         name: 'vs Notion',
         link: '/compare/notion-vs-appflowy',
       },
+      {
+        name: 'vs Confluence',
+        link: '/compare/appflowy-vs-confluence',
+      },
     ],
   },
   {

@@ -1,20 +1,17 @@
-import Object1 from '@/assets/images/vs-notion/OBJECTS-1.png';
-import Object2 from '@/assets/images/vs-notion/OBJECTS-2.png';
-import Object3 from '@/assets/images/vs-notion/OBJECTS-3.png';
 import GetStart from '@/components/product/get-start';
 import OutlineImage from '@/assets/images/vs-notion/outline.svg';
-import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import CloseImage from '@/assets/images/vs-notion/x.svg';
-import RightImage from '@/assets/images/vs-notion/right.svg';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
 import React from 'react';
-import Image from 'next/image';
 import 'styles/vs-notion.scss';
 
 import { QASection } from '../components/qa-section';
 import SelfHostLink from '../components/self-host-link';
+import { ComparisonTable } from '../components/comparison-table';
+import { HeroApps } from '../components/hero-apps';
+import { HeroFeaturePills } from '../components/hero-feature-pills';
+import { FeatureCards } from '../components/feature-cards';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const title = 'AppFlowy vs Outline | The Best Self-Hosted Enterprise Wiki';
@@ -165,12 +162,6 @@ function generateListSchema() {
                         name: 'AppFlowy',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Windows, macOS, Linux, Android, iOS, Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted workspace with documentation, databases, and AI features',
-                        },
                         featureList: [
                             'Self-hosted workspace with documentation',
                             'Databases and kanban boards',
@@ -189,12 +180,6 @@ function generateListSchema() {
                         name: 'Outline',
                         applicationCategory: 'ProductivityApplication',
                         operatingSystem: 'Web',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'USD',
-                            description: 'Self-hosted team wiki focused on documentation',
-                        },
                         featureList: [
                             'Web-based team wiki',
                             'Block-based editor',
@@ -248,30 +233,37 @@ function generateListSchema() {
 const points = [
     {
         text: 'Local and on-prem LLM support',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'Database support',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'Kanban boards',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'AI writing assistance',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'AI meeting notes',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'AI transcript',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'Calendar views',
+        appflowy: true,
         competitor: false,
     },
     {
@@ -291,47 +283,66 @@ const points = [
         appflowy: true,
     },
     {
+        text: 'Timeline views',
+        appflowy: true,
+    },
+    {
+        text: 'Form views',
+        appflowy: true,
+    },
+    {
         text: 'Native desktop & mobile apps',
+        appflowy: true,
         competitor: false,
     },
     {
         text: 'Self-hosted',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Collaborative editing',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Version history',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Granular permissions',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Publish pages',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Block-based editor',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Hierarchical docs/wiki structure',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Inline comments',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'SSO/SAML',
+        appflowy: true,
         competitor: true,
     },
     {
         text: 'Audit logs',
+        appflowy: true,
         competitor: true,
     },
 ];
@@ -348,129 +359,53 @@ function Page() {
             <div className={'vs-notion-page'}>
                 <div className={'af-container'}>
                     <div className={'af-box section-1'}>
-                        <div className={'flex items-center justify-center gap-2'}>
-                            <Image
-                                src={AppFlowyImage}
-                                alt={'AppFlowy'}
-                                width={56}
-                                height={56}
-                            />
-                            <span className={'text-sm font-semibold'}>vs</span>
-                            <Image
-                                src={OutlineImage}
-                                alt={'Outline'}
-                                width={56}
-                                height={56}
-                            />
-                        </div>
+                        <HeroApps competitorName='Outline' competitorImage={OutlineImage} />
                         <div className={'main-content'}>
-                            <h1>
-                                AppFlowy vs Outline
-                                <br></br><span className={'text-primary'}>The Best Self-Hosted Enterprise Team Wiki</span>
-                            </h1>
-                            <p className={'desc'}>Self-hosted, knowledge management, Notion alternatives, database, cross platform</p>
+                            <h1 className='whitespace-pre-wrap break-words text-style-h1 font-bold my-3'>The Best Self-Hosted Enterprise<br></br>Team Wiki</h1>
+                            <HeroFeaturePills
+                                className='desc'
+                                items={['Self-hosted', 'Knowledge management', 'Notion alternative', 'Database', 'Cross-platform']}
+                            />
                         </div>
                         <SelfHostLink />
                     </div>
                 </div>
                 <div className={'af-container'}>
-                    <div className={'af-box section-2'}>
-                        <h2 className={'section-2-title'}>
+                    <div className={'af-box section-2 bg-white'}>
+                        <h2 className={'text-style-h1 font-bold w-full text-left sm:w-auto sm:text-center'}>
                             {`Your workspace with `}
                             <span className={'text-primary'}>more capabilities</span>
                             <br />
                             than wikis alone
                         </h2>
-                        <div className={'cards'}>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object1}
-                                    alt={'AI Workspace'}
-                                    width={151}
-                                    height={121}
-                                />
-                                <div className={'card-title'}>
-                                    <h4>AI Workspace</h4>
-                                    <p className={'card-desc'}>
-                                        AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={'card'}>
-                                <Image
-                                    src={Object2}
-                                    alt={'Projects and Databases'}
-                                    width={151}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Projects & Databases</h4>
-                                    <p className={'card-desc'}>Capture every detail in a database. Visualize in various formats, from calendars to boards.</p>
-                                </div>
-                            </div>
-
-                            <div className={'card'}>
-                                <Image
-                                    src={Object3}
-                                    alt={'Cross-platform'}
-                                    width={189}
-                                    height={121}
-                                />
-
-                                <div className={'card-title'}>
-                                    <h4>Cross-platform</h4>
-                                    <p className={'card-desc'}>{`Works consistently across platforms your team works on, including desktop and mobile.`}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={
-                                'flex w-full min-w-0 max-w-[1100px] flex-col gap-1 text-[26px] max-lg:text-[18px] max-md:text-base'
-                            }
-                        >
-                            <div className={'flex w-full items-center justify-between'}>
-                                <p className="w-1/2 px-[48px] py-6 text-[#58585a] max-md:px-4 max-md:py-4">Compare features</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">Outline</p>
-                                <p className="w-1/4 px-[48px] py-6 text-center text-[#58585a] max-md:px-4 max-md:py-4">AppFlowy</p>
-                            </div>
-                            {points.map((point) => (
-                                <div
-                                    key={point.text}
-                                    className={
-                                        'flex w-full items-center justify-between rounded-[15px] border border-gray-100 bg-white text-[24px] max-lg:text-base max-md:text-sm'
-                                    }
-                                >
-                                    <div className="w-1/2 px-[48px] py-10 font-medium text-black max-md:px-4 max-md:py-5">{point.text}</div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        {point.competitor ?
-                                            <Image
-                                                src={RightImage}
-                                                alt={'Right'}
-                                                width={26}
-                                                height={16}
-                                            />
-                                            :
-                                            <Image
-                                                src={CloseImage}
-                                                alt={'Close'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                    <div className="flex w-1/4 items-center justify-center px-[48px] py-6 max-md:px-4 max-md:py-5">
-                                        <Image
-                                            src={RightImage}
-                                            alt={'Right'}
-                                            width={26}
-                                            height={16}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
+                        <FeatureCards
+                            items={[
+                                {
+                                    icon: 'sparkle',
+                                    title: 'AI Workspace',
+                                    description: 'AI Meeting Notes, AI Writers, and AI Search. Run local models offline or connect a self-hosted LLM.',
+                                },
+                                {
+                                    icon: 'database',
+                                    title: 'Projects & Databases',
+                                    description: 'Capture every detail in a database. Visualize in various formats, from calendars to boards.',
+                                },
+                                {
+                                    icon: 'layers',
+                                    title: 'Cross-platform',
+                                    description: 'Works consistently across platforms your team works on, including desktop and mobile.',
+                                },
+                            ]}
+                        />
+                        <div className={'section-2-blobs'}>
+                            <div className={'section-2-blob section-2-blob-1'} />
+                            <div className={'section-2-blob section-2-blob-2'} />
+                            <div className={'section-2-blob section-2-blob-3'} />
                         </div>
                     </div>
+                </div>
+                <div className="af-box section-2">
+                    <ComparisonTable competitorName='Outline' competitorImage={OutlineImage} points={points} />
                 </div>
                 <div className={'vs-outline-faq'}>
                     <QASection items={vsOutlineFAQs} />
