@@ -29,7 +29,7 @@ export default function Page() {
               </span>{' '}
               AI Workspace for Enterprise Teams
             </h1>
-            <h5 className={'text-base text-text-secondary font-normal max-w-[600px]'}>Bring projects, wikis, and teams together with AI</h5>
+            <p className={'text-base text-text-secondary font-normal max-w-[600px]'}>Bring projects, wikis, and teams together with AI</p>
           </div>
           <MainDownload />
           <div className={'flex w-full flex-col items-center'}>
