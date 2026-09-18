@@ -1,0 +1,52 @@
+# AppFlowy
+
+> AppFlowy is an open-source AI collaborative workspace — an alternative to Notion and Confluence where teams write docs, run wikis, and manage projects without giving up control of their data. It runs offline-first, can be self-hosted, and is available on macOS, Windows, Linux, iOS, Android, and the browser.
+
+Key things to know:
+
+- Open source (AppFlowy-IO/AppFlowy on GitHub), open-core, with cloud and self-hosted plans.
+- Local-first: data stays on device by default and syncs when you want it to.
+- AI is built in and model-agnostic — use AppFlowy AI, a local on-device model, or bring your own provider.
+- AppFlowy also publishes standalone Flutter building blocks (AppFlowy Editor, AppFlowy Board) for developers.
+
+## Product
+
+- [Home](https://appflowy.com/): Overview of the AI collaborative workspace, features, and platforms.
+- [Download](https://appflowy.com/download): Installers for macOS, Windows, Linux, iOS, and Android.
+- [Pricing](https://appflowy.com/pricing): Cloud and self-hosted plans for individuals and teams.
+- [Templates](https://appflowy.com/templates): Community and official templates by category.
+- [What's new](https://appflowy.com/what-is-new): Latest releases and product changes.
+- [AppFlowy Blocks](https://appflowy.com/appflowy-blocks): Standalone building blocks — AppFlowy Editor and AppFlowy Board — for developers building their own apps.
+
+## Compare
+
+- [Notion vs AppFlowy](https://appflowy.com/compare/notion-vs-appflowy): Self-hosted, open-core alternative to Notion.
+- [AppFlowy vs Confluence](https://appflowy.com/compare/appflowy-vs-confluence): Alternative to Confluence Data Center for self-hosted teams.
+- [AppFlowy vs AFFiNE](https://appflowy.com/compare/appflowy-vs-affine): Self-hosted Notion alternative comparison for enterprise teams.
+- [AppFlowy vs Docmost](https://appflowy.com/compare/appflowy-vs-docmost): On-premises wiki and docs comparison.
+- [AppFlowy vs Outline](https://appflowy.com/compare/appflowy-vs-outline): Self-hosted enterprise wiki comparison.
+
+## Learn
+
+- [Product guides](https://appflowy.com/guide/getting-started-with-appflowy): Getting started and how-to guides for using AppFlowy.
+- [Self-hosting guide](https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production): Step-by-step self-hosting from zero to production.
+- [Blog](https://appflowy.com/blog): "In the Flow" — product news, features, and insights ([RSS](https://appflowy.com/blog/feed.xml)).
+- [Developer docs](https://docs.appflowy.io/): Architecture, contributing, and developer documentation.
+
+## Company
+
+- [About](https://appflowy.com/about): Mission and the team behind AppFlowy.
+- [Contributors](https://appflowy.com/contributors): The open-source community building AppFlowy.
+- [Careers](https://appflowy.com/join): Open roles.
+- [Contact](https://appflowy.com/contact): Sales and general enquiries (support@appflowy.io).
+- [Privacy Policy](https://appflowy.com/privacy)
+- [Terms of Service](https://appflowy.com/terms)
+
+## Optional
+
+- [GitHub repository](https://github.com/AppFlowy-IO/AppFlowy): Source code, issues, and releases.
+- [Discord](https://discord.gg/9Q2xaN37tV): Community server.
+- [Forum](https://forum.appflowy.com/): Long-form community discussion.
+- [YouTube](https://www.youtube.com/@AppFlowyHQ): Video walkthroughs and demos.
+- [Zapier integration](https://zapier.com/apps/appflowy/integrations): Connect AppFlowy to other tools.
+- [Sitemap](https://appflowy.com/sitemap.xml): Full list of indexed pages.
