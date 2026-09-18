@@ -110,6 +110,7 @@ function FeatureCheckbox({ id, label, checked, onChange }: FeatureCheckboxProps)
             id={`feature-checkbox-${id}`}
             role="checkbox"
             aria-checked={checked}
+            aria-label={label}
             onClick={() => onChange(id, !checked)}
             className={`group flex w-full items-center justify-between gap-3 rounded-[10px] border px-4 py-4 text-left transition-all duration-200 select-none touch-manipulation cursor-pointer ${checked
                 ? 'border-text-tertiary bg-white'
@@ -256,6 +257,7 @@ export function PricingCalculator() {
                                     <input
                                         id="team-size-slider"
                                         type="range"
+                                        aria-label="Team size"
                                         min={1}
                                         max={1000}
                                         value={teamSize}
