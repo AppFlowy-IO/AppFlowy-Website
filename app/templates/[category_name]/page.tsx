@@ -9,6 +9,60 @@ import React from 'react';
 import Community from '@/components/template-center/community';
 
 import '@/styles/template.scss';
+import { Metadata } from 'next';
+import OpenGraphImage from '../../../public/images/og-image.png';
+
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+
+interface Props {
+  params: { category_name: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  let category;
+
+  try {
+    ({ category } = await getData(params.category_name));
+  } catch (error) {
+    // Unknown category slugs render notFound(); returning nothing keeps them
+    // from inheriting the root canonical and claiming to be the homepage.
+    return {};
+  }
+
+  const title = `${category.name} Templates | AppFlowy`;
+  const description = category.description.trim().slice(0, 160);
+  const canonicalUrl = `${site_url}/templates/${slugify(category.name)}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      type: 'website',
+      siteName: 'AppFlowy',
+      images: [
+        {
+          url: OpenGraphImage.src,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [OpenGraphImage.src],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    keywords: [`${category.name} templates`, 'AppFlowy templates', 'notion alternative templates'],
+  };
+}
 
 async function Page({ params }: { params: { category_name: string } }) {
   const name = params.category_name;
