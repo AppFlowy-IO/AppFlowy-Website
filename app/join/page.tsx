@@ -41,7 +41,7 @@ function Page() {
           </svg>
         </span>
       </h1>
-      <div className={'desc'}>{joinPageConfig.subtitle}</div>
+      <p className={'desc'}>{joinPageConfig.subtitle}</p>
       <Link href={'/join#opening'}>
         <div className={'download-btn'}>Open roles</div>
       </Link>
@@ -68,12 +68,12 @@ function Page() {
           ))}
         </div>
       </div>
-      <div
+      <h2
         className={'title opening'}
         id={'opening'}
       >
         {joinPageConfig.currentJobTitle}
-      </div>
+      </h2>
       <div className={'jobs'}>
         {joinPageConfig.jobs.length > 0 ? (
           joinPageConfig.jobs.map((item: { title: string; link: string }) => (

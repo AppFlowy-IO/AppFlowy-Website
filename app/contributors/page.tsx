@@ -26,9 +26,9 @@ async function Page() {
     <div className={'contributors-page'}>
       <div className={'ellipse'} />
       <h1 className={'title'}>{contributorsPageConfig.mainTitle}</h1>
-      <div className={'desc'}>{contributorsPageConfig.subtitle}</div>
+      <p className={'desc'}>{contributorsPageConfig.subtitle}</p>
       <ContributorsList contributors={contributors} />
-      <div className={'title learn-more'}>{contributorsPageConfig.learnMoreTitle}</div>
+      <h2 className={'title learn-more'}>{contributorsPageConfig.learnMoreTitle}</h2>
       <Link
         href={contributorsPageConfig.learnMoreLink}
         target={'_blank'}
@@ -40,7 +40,7 @@ async function Page() {
   );
 }
 
-const getData = async() => {
+const getData = async () => {
   try {
     return await fetchContributors();
   } catch {
