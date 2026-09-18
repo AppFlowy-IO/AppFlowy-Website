@@ -23,7 +23,7 @@ function CategoryTemplatesHeader({ category }: { category?: TemplateCategory }) 
 
   return (
     <div className={'header'}>
-      <div className={'title'}>{title}</div>
+      <h1 className={'title'}>{title}</h1>
       <div className={'description'}>{desc}</div>
     </div>
   );
