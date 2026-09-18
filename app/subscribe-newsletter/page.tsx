@@ -1,12 +1,24 @@
 import React from 'react';
 import '@/styles/contact.scss';
 import Form from '@/components/subscribe-newsletter/form';
+import type { Metadata } from 'next';
+
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+
+export const metadata: Metadata = {
+  title: 'Newsletter: Product News and Release Updates | AppFlowy',
+  description:
+    'Subscribe to the AppFlowy newsletter for product news, new releases and feature updates sent straight to your inbox. We respect your privacy.',
+  alternates: {
+    canonical: `${site_url}/subscribe-newsletter`,
+  },
+};
 
 function Page() {
   return (
     <div className={'subscribe-newsletter-page'}>
       <div className={'ellipse'} />
-      <div className={'title'}>
+      <h1 className={'title'}>
         <span>
           {`AppFlowy `}
           <span className={'primary-word'}>
@@ -23,8 +35,8 @@ function Page() {
             </span>
           </span>
         </span>
-      </div>
-      <div className={'desc'}>{`Sign up with your email address to receive news and updates.`}</div>
+      </h1>
+      <p className={'desc'}>{`Sign up with your email address to receive news and updates.`}</p>
       <Form />
       <div className={'desc mt-[10px]'}>{`We respect your privacy.`}</div>
       <div className={'icon icon-1'}>

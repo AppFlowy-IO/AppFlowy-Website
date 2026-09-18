@@ -10,6 +10,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Careers: Remote-Friendly Open Source Jobs | AppFlowy',
+    description:
+      'Explore remote-friendly opportunities at AppFlowy, contribute to open source, and join the mission to make secure workplace tools fit for everyone.',
     alternates: {
       canonical: `${site_url}/join`,
     },
@@ -19,9 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
 function Page() {
   return (
     <div className={'join-page'}>
-      <div className={'title'}>
+      <h1 className={'title'}>
         {joinPageConfig.title}
-        <div className={'line'}>
+        <span className={'line'}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
@@ -36,8 +39,8 @@ function Page() {
               strokeLinecap="square"
             />
           </svg>
-        </div>
-      </div>
+        </span>
+      </h1>
       <div className={'desc'}>{joinPageConfig.subtitle}</div>
       <Link href={'/join#opening'}>
         <div className={'download-btn'}>Open roles</div>

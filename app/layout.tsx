@@ -13,7 +13,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const metaTitle = 'AppFlowy';
+const metaTitle = 'Self-Hosted AI Workspace for Enterprise Teams | AppFlowy';
 const metaDescription =
   'AppFlowy is the AI collaborative workspace where you achieve more without losing control of your data';
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: site_url,
-    title: metaTitle,
+    title: 'Bring projects, wikis, and teams together with AI',
     description: metaDescription,
     siteName: 'AppFlowy',
     images: [

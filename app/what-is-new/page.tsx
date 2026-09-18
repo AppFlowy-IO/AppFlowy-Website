@@ -10,6 +10,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: "What's New: Latest Releases and Updates | AppFlowy",
+    description:
+      'The latest AppFlowy releases, updates and fixes. Follow every version’s new features, improvements and bug fixes across desktop and mobile.',
     alternates: {
       canonical: `${site_url}/what-is-new`,
     },
