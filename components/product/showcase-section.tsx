@@ -163,6 +163,8 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                 <img
                     className={`${illustrationBaseClass} ${illustrationSizeClass(activeTab.id)} ${previousTab ? "feature-illustration--enter" : ""}`}
                     src={activeTab.image.src}
+                    width={activeTab.image.width}
+                    height={activeTab.image.height}
                     alt={`${activeTab.label} illustration`}
                     style={illustrationStyle(activeTab.image, illustrationFadeStyle)}
                 />
@@ -170,6 +172,8 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                     <img
                         className={`${illustrationBaseClass} ${illustrationSizeClass(previousTab.id)} feature-illustration--leave`}
                         src={previousTab.image.src}
+                        width={previousTab.image.width}
+                        height={previousTab.image.height}
                         alt=""
                         aria-hidden="true"
                         style={illustrationStyle(previousTab.image, illustrationFadeStyle)}
@@ -188,6 +192,8 @@ function MobileFeatureCard({ tab }: { tab: Tab }) {
             <img
                 className="relative z-[1] mt-4 w-full h-auto object-contain pointer-events-none select-none"
                 src={tab.image.src}
+                width={tab.image.width}
+                height={tab.image.height}
                 alt={`${tab.label} illustration`}
                 style={{ scale: tab.mobileScale ? tab.mobileScale : 1.05, ...mobileIllustrationFadeStyle }}
             />
