@@ -81,14 +81,14 @@
     <loc>https://appflowy.com/downloaded</loc>
     <lastmod>2026-09-18T10:34:36.464Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://appflowy.com/invitation/expired</loc>
     <lastmod>2026-09-18T10:34:36.464Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.3</priority>
   </url>
 
   <url>
@@ -158,7 +158,7 @@
     <loc>https://appflowy.com/blog/hacktoberfest-celebrate-open-source-together-with-appflowy</loc>
     <lastmod>2022-09-26T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>
@@ -172,7 +172,7 @@
     <loc>https://appflowy.com/blog/appflowy-1st-anniversary-and-2022-recap</loc>
     <lastmod>2022-12-23T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>

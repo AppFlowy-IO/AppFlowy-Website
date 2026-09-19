@@ -11,10 +11,6 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Invitation Expired | AppFlowy',
-  robots: {
-    index: false,
-    follow: false,
-  },
 };
 
 function Page() {
