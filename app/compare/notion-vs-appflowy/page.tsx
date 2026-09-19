@@ -2,7 +2,8 @@ import GetStart from '@/components/product/get-start';
 import ImportLink from '../components/import-link';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 import React from 'react';
 import 'styles/vs-notion.scss';
@@ -195,9 +196,11 @@ function generateListSchema() {
     })),
   };
 
+  const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Notion vs AppFlowy', path: '/compare/notion-vs-appflowy' }]);
+
   return {
     "@context": "https://schema.org",
-    "@graph": [webPageSchema, faqSchema]
+    "@graph": [webPageSchema, faqSchema, breadcrumbSchema]
   };
 }
 
@@ -299,12 +302,7 @@ const importBaseURL: string = `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/app`;
 function Page() {
   return (
     <>
-      <Script
-        id="ld-json"
-        type="application/ld+json"
-      >
-        {JSON.stringify(generateListSchema())}
-      </Script>
+      <SeoData id='ld-json' data={generateListSchema()} />
       <div className={'vs-notion-page'}>
         <div className={'af-container'}>
           <div className={'af-box section-1'}>

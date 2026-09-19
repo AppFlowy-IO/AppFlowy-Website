@@ -5,17 +5,15 @@ import OpenGraph from '../public/images/og-image.png';
 import App from '@/components/layout/app';
 import { getGitData } from '@/lib/get-git';
 import { getUAFromServer } from '@/lib/get-os';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
 import { ChunkLoadErrorBoundary } from '@/components/error-boundary/chunk-load-error-boundary';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
-const metaTitle = 'AppFlowy';
+const metaTitle = 'Self-Hosted AI Workspace for Enterprise Teams | AppFlowy';
 const metaDescription =
   'AppFlowy is the AI collaborative workspace where you achieve more without losing control of your data';
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -37,7 +35,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: site_url,
-    title: metaTitle,
+    title: 'Bring projects, wikis, and teams together with AI',
     description: metaDescription,
     siteName: 'AppFlowy',
     images: [
@@ -152,14 +150,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           name="robots"
           content="noindex,nofollow"
         />}
-        <Script
-          id="schema-org"
-          type="application/ld+json"
-        >
-          {JSON.stringify(generateListSchema())}
-        </Script>
       </head>
       <body id={'body'}>
+        {/*
+          Rendered inside <body>, not <head>. React hydrates a non-hoistable element
+          like this <script> by position, so anything that injects a script into <head>
+          before hydration (Cypress does exactly that) gets claimed in its place and the
+          root fails to hydrate. JSON-LD is valid anywhere in the document, and every
+          other page in the app renders SeoData from the page body for the same reason.
+        */}
+        <SeoData
+          id="schema-org"
+          data={generateListSchema()}
+        />
         <ChunkLoadErrorBoundary>
           <App
             ua={ua}

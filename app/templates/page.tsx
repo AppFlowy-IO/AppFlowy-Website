@@ -13,6 +13,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Free Templates for Docs, Wikis and Projects | AppFlowy',
+    description:
+      'Browse free AppFlowy templates for documents, team wikis, project boards and databases. Add a ready-made setup to your workspace and start working right away.',
     alternates: {
       canonical: `${site_url}/templates`,
     },

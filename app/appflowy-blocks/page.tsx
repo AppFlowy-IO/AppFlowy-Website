@@ -9,8 +9,11 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'AppFlowy Blocks: Editor and Kanban Board for Flutter',
+    description:
+      'Reliable, customizable standalone building blocks from AppFlowy, including AppFlowy Editor and Kanban Board, for developers building their own applications.',
     alternates: {
-      canonical: `${site_url}/appflowy-about`,
+      canonical: `${site_url}/appflowy-blocks`,
     },
   };
 }
@@ -19,9 +22,9 @@ function Page() {
   return (
     <div className={'blocks-page'}>
       <div className={'ellipse'} />
-      <div className={'title'}>
+      <h1 className={'title'}>
         {blocksPageConfig.title}
-        <div className={'line'}>
+        <span className={'line'}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
@@ -36,8 +39,8 @@ function Page() {
               strokeLinecap="square"
             />
           </svg>
-        </div>
-      </div>
+        </span>
+      </h1>
       <div className={'desc'}>{blocksPageConfig.subtitle}</div>
       <AppflowyBlocks />
     </div>

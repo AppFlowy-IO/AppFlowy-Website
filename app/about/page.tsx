@@ -10,6 +10,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'About Us: Our Mission, Values and Team | AppFlowy',
+    description:
+      'AppFlowy exists to help everyone achieve more with secure workplace tools, built on data privacy, community-driven extensibility and an open source philosophy.',
     alternates: {
       canonical: `${site_url}/about`,
     },

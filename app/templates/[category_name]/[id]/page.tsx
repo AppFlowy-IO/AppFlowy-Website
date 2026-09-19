@@ -11,13 +11,75 @@ import Community from '@/components/template-center/community';
 import { CategoryIcon } from '@/components/template-center/icons';
 import RelatedTemplates from '@/components/template-center/template/related-templates';
 import TemplateSection from '@/components/template-center/template/template-section';
-import { slugify } from '@/components/template-center/utils';
+import { canonicalTemplatePath, slugify } from '@/components/template-center/utils';
 import { parseAbout } from '@/lib/template-about';
 import { getTemplateById } from '@/lib/templateAPI';
 import Link from 'next/link';
 import React from 'react';
 import '@/styles/template.scss';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import OpenGraphImage from '../../../../public/images/og-image.png';
+
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+
+interface Props {
+  params: { id: string; category_name: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  let template;
+
+  try {
+    template = await getData(params.id);
+  } catch (error) {
+    // The page itself renders notFound() for this id; without per-page metadata
+    // it would inherit the root canonical, so return nothing rather than
+    // pointing a missing template at the homepage.
+    return {};
+  }
+
+  // Many template names already end in "Template"; don't stutter.
+  const title = /template/i.test(template.name) ? `${template.name} | AppFlowy` : `${template.name} Template | AppFlowy`;
+  const description = template.description.slice(0, 160);
+
+  // Canonicalize to a single category path so the copies of this template under
+  // its other categories consolidate instead of competing.
+  const canonicalPath =
+    canonicalTemplatePath(template.categories, params.id) ?? `/templates/${params.category_name}/${params.id}`;
+  const canonicalUrl = `${site_url}${canonicalPath}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      type: 'article',
+      siteName: 'AppFlowy',
+      images: [
+        {
+          url: OpenGraphImage.src,
+          width: 1200,
+          height: 630,
+          alt: template.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [OpenGraphImage.src],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    creator: template.creator.name,
+    keywords: template.categories.map((category) => `${category.name} template`),
+  };
+}
 
 async function Page({ params }: { params: { id: string; category_name: string } }) {
   const id = params.id;

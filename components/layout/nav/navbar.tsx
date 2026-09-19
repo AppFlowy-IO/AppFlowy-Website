@@ -56,6 +56,7 @@ function Navbar() {
         <Link
           href={'/'}
           className={'logo text-black dark:text-white'}
+          aria-label={'AppFlowy Home'}
         >
           <Logo />
         </Link>

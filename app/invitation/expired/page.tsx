@@ -7,6 +7,11 @@ import '@/styles/invitation.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import NextTopLoader from 'nextjs-toploader';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Invitation Expired | AppFlowy',
+};
 
 function Page() {
   return (

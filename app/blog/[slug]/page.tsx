@@ -13,7 +13,8 @@ import Image from '@/components/blog/mdx-image';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Script from 'next/script';
+import SeoData from '@/components/layout/seo-data';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 import React from 'react';
 import { notFound } from 'next/navigation';
 
@@ -68,8 +69,7 @@ export async function generateStaticParams() {
 }
 
 function generateListSchema(slug: string, post: PostData, siteUrl: string) {
-  return {
-    '@context': 'https://schema.org',
+  const blogPostingSchema = {
     '@type': 'BlogPosting',
     headline: post.title,
     image: post.og_image || `${siteUrl}/blog-og-image.png`,
@@ -97,6 +97,17 @@ function generateListSchema(slug: string, post: PostData, siteUrl: string) {
     articleBody: post.content,
     wordCount: post.word_count,
     articleSection: post.categories.join(', '),
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      blogPostingSchema,
+      generateBreadcrumbSchema([
+        { name: 'Blog', path: '/blog' },
+        { name: post.title, path: `/blog/${slug}` },
+      ]),
+    ],
   };
 }
 
@@ -252,12 +263,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         )}
       </div>
 
-      <Script
+      <SeoData
         id="ld-json"
-        type="application/ld+json"
-      >
-        {JSON.stringify(generateListSchema(params.slug, post, site_url))}
-      </Script>
+        data={generateListSchema(params.slug, post, site_url)}
+      />
     </>
   );
 }

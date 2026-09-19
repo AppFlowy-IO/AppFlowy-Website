@@ -117,6 +117,16 @@ body {
   overscroll-behavior: none;
 }
 
+// iOS Safari auto-zooms into any focused text field rendering below 16px. Body
+// text clamps to 14px on phones, so form controls opt out of that inheritance.
+@media (max-width: 767px) {
+  input:not([type='range']):not([type='checkbox']):not([type='radio']),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 @layer utilities {
   .text-style-h1 {
     font-size: var(--font-size-h1);

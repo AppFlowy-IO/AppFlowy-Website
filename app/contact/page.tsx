@@ -8,6 +8,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Contact Us: Sales and Support | AppFlowy',
+    description:
+      'Get in touch with the AppFlowy team about sales, enterprise plans and self-hosting. For technical issues, our Discord community will get you a quicker response.',
     alternates: {
       canonical: `${site_url}/contact`,
     },
@@ -18,7 +21,7 @@ function Page() {
   return (
     <div className={'contact-page'}>
       <div className={'ellipse'} />
-      <div className={'title'}>{contactPageConfig.title}</div>
+      <h1 className={'title'}>{contactPageConfig.title}</h1>
       <div className={'desc'}>{contactPageConfig.desc}</div>
       <Form />
       <div className={'icon icon-1'}>

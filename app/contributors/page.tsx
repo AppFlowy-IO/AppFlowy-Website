@@ -10,6 +10,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Our Open Source Contributors | AppFlowy',
+    description:
+      'Meet the open source contributors who build AppFlowy on GitHub, and find out how to make your own first contribution to the project.',
     alternates: {
       canonical: `${site_url}/contributors`,
     },
@@ -22,10 +25,10 @@ async function Page() {
   return (
     <div className={'contributors-page'}>
       <div className={'ellipse'} />
-      <div className={'title'}>{contributorsPageConfig.mainTitle}</div>
-      <div className={'desc'}>{contributorsPageConfig.subtitle}</div>
+      <h1 className={'title'}>{contributorsPageConfig.mainTitle}</h1>
+      <p className={'desc'}>{contributorsPageConfig.subtitle}</p>
       <ContributorsList contributors={contributors} />
-      <div className={'title learn-more'}>{contributorsPageConfig.learnMoreTitle}</div>
+      <h2 className={'title learn-more'}>{contributorsPageConfig.learnMoreTitle}</h2>
       <Link
         href={contributorsPageConfig.learnMoreLink}
         target={'_blank'}
@@ -37,7 +40,7 @@ async function Page() {
   );
 }
 
-const getData = async() => {
+const getData = async () => {
   try {
     return await fetchContributors();
   } catch {

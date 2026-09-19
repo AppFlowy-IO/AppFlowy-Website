@@ -12,6 +12,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Download for Mac, Windows, Linux, iOS & Android | AppFlowy',
+    description:
+      'Download AppFlowy free for macOS, Windows, Linux, iOS and Android. A fast native app that works offline and keeps your data on your own infrastructure.',
     alternates: {
       canonical: `${site_url}/download`,
     },

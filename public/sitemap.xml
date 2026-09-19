@@ -1,150 +1,1327 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://appflowy.com/about</loc>
+    <lastmod>2026-09-18T10:34:36.463Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-     <url>
-        <loc>https://appflowy.com/</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/appflowy-blocks</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/about</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/blog</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/appflowy-blocks</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/compare/appflowy-vs-affine</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/compare/notion-vs-appflowy</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/compare/appflowy-vs-confluence</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/compare/appflowy-vs-affine</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/compare/appflowy-vs-docmost</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/compare/appflowy-vs-docmost</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/compare/appflowy-vs-outline</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/compare/appflowy-vs-outline</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/compare/notion-vs-appflowy</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/contact</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/contact</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/contributors</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/contributors</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/download</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/download</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/downloaded</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/downloaded</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/invitation/expired</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/invitation/expired</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/join</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/join</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/pricing</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/privacy</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/pricing</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/subscribe-newsletter</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/privacy</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/templates</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/subscribe-newsletter</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/templates/[category_name]</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/templates</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/templates/[category_name]/[id]</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/terms</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/terms</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/what-is-new</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <url>
-        <loc>https://appflowy.com/what-is-new</loc>
-        <lastmod>2026-07-24T04:21:21.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+  <url>
+    <loc>https://appflowy.com/blog/tech-design-flutter-rust</loc>
+    <lastmod>2021-12-10T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/hacktoberfest-celebrate-open-source-together-with-appflowy</loc>
+    <lastmod>2022-09-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-we-built-a-highly-customizable-rich-text-editor-for-flutter</loc>
+    <lastmod>2022-12-12T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-1st-anniversary-and-2022-recap</loc>
+    <lastmod>2022-12-23T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-to-contribute-to-appflowy</loc>
+    <lastmod>2023-05-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/dont-try-to-load-code-dynamically-in-your-flutter-app-its-terrible</loc>
+    <lastmod>2023-08-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/creating-a-calendar-view-for-the-appflowy-database</loc>
+    <lastmod>2023-08-27T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/hacktoberfest-23-celebrate-open-source-together-with-appflowy</loc>
+    <lastmod>2023-09-25T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/demystifying-appflowy-editors-codebase</loc>
+    <lastmod>2023-11-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/seed</loc>
+    <lastmod>2023-11-16T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-2nd-anniversary-and-2023-roundup</loc>
+    <lastmod>2023-12-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-open-source-software-community-drives-development</loc>
+    <lastmod>2024-11-11T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/looking-for-the-best-note-taking-app-appflowy</loc>
+    <lastmod>2024-11-19T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-kanban-in-project-management</loc>
+    <lastmod>2024-11-20T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-leverage-one-pagers-for-your-work</loc>
+    <lastmod>2024-11-20T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/team-productivity-tools-collaboration</loc>
+    <lastmod>2024-12-05T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/centralizing-knowledge-base-wiki-business</loc>
+    <lastmod>2024-12-06T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/self-hosted-appflowy</loc>
+    <lastmod>2024-12-07T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/use-kanban-in-team-project-management</loc>
+    <lastmod>2024-12-08T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/smart-note-taking-with-appflowy-ai</loc>
+    <lastmod>2024-12-09T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/optimize-workflows-customizable-template</loc>
+    <lastmod>2024-12-10T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/database-task-management-project-tracking</loc>
+    <lastmod>2024-12-11T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/5-Effective-Task-Management-Strategies-for-Mobile-Workspaces</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Benefits-of-Open-Source-Software-for-Businesses</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Best-Offline-Project-Management-Software-That-Gets-Work-Done</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Build-Stronger-Teams-with-the-Right-Shared-Workspace</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Self-Hosted-Collaboration-Software-Reduce-Costs</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Knowledge-Hub-Ideas-to-Centralize-Team-Information</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Transform-Your-Business-Using-a-Shared-Online-Workspace</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Data-Ownership-is-Critical-to-Protect-Your-Business</loc>
+    <lastmod>2025-02-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Best-Practices-on-How-to-Protect-Business-Data-Securely</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Best-Team-Knowledge-Sharing-Tools-for-Smarter-Workflows</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Create-an-Open-Source-Workspace-with-Easy-Server-Setup</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Online-Team-Collaboration-Software-Enhances-Teamwork</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Remote-Project-Management-Tools-for-Teams-on-the-Go</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Using-Open-Source-Customization-to-Organize-Team-Projects</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Privacy-Matters-in-Online-Workspace-Software</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Use-Collaborative-Writing-Tools-for-Business-Documents</loc>
+    <lastmod>2025-03-30T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/5-Advantages-of-Open-Source-Software-for-Project-Workflows</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/7-Key-Features-in-Collaboration-Software-for-Team-Success</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Achieve-Open-Source-Team-Communication-With-the-Right-Tools</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Best-Open-Source-Content-Creation-Tools-for-Teams</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Boost-Team-Productivity-by-Syncing-Devices-Seamlessly</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-AI-Workflow-Automation-Simplifies-Team-Tasks</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Open-Source-Database-Reporting-Tools-Track-Progress</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Open-Source-Helps-Cross-Functional-Team-Collaboration</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Open-Source-Software-in-Business-Supports-Hybrid-Teams</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Improve-Open-Source-UI-With-Custom-Features-and-Tools</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Open-Source-for-Beginners-A-Guide-to-Custom-Workspaces</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Proprietary-vs-Open-Source-Which-Is-More-Secure-for-Teams</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Streamline-Work-with-an-Open-Source-Collaboration-Platform</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Use-The-Best-App-for-Delegating-Tasks-with-AI-Features</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Vendor-Lock-In-Risk-Mitigation-with-Open-Source-Tools</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Work-Anywhere-with-Offline-Data-Storage-Solutions</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/AppFlowy_is_now_right_in_your_browser</loc>
+    <lastmod>2025-04-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-is-now-on-zapier</loc>
+    <lastmod>2025-04-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy_local_ai_ollama</loc>
+    <lastmod>2025-04-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-ollama-deepseek-improves-dev-team-productivity</loc>
+    <lastmod>2025-04-14T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/the-top-ai-note-taking-tools-for-collaboration-in-2025</loc>
+    <lastmod>2025-04-14T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/0.8.9-link-ai-gemma-gpt-4.1</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Ask-AI-Helps-Developers-Debug-Faster</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Internal-Wiki-Software-Helps-Your-Business-Scale</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Process-Documentation-Made-Simple-for-Growing-Businesses</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Simplify-Work-with-a-Marketing-Campaign-Management-Template</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/The-7-Knowledge-Management-System-Benefits-You-Need</loc>
+    <lastmod>2025-04-01T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Every-Team-Needs-a-Bug-Tracking-Tool</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-You-Need-to-Create-a-Company-Knowledge-Base</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-a-Self-Hosted-Note-Taking-App-is-a-Smarter-Choice</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-the-Best-Task-Management-System-is-Self-Hosted</loc>
+    <lastmod>2025-04-21T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://appflowy.com/blog/Free-AI-Image-Generator-How-IT-Developers-and-Managers-Can-Save-Time-and-Boost-Creativity</loc
+    >
+    <lastmod>2025-05-17T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/5-Workflow-Templates-That-Help-Remote-Teams-Stay-on-Track</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/AI-Workspace-Search-Custom-Prompt-Library</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Build-a-Digital-Workflow-for-Your-Team-With-AppFlowy</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Building-A-Content-Calendar-Without-Expensive-Software</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Creating-a-Project-Management-Roadmap-That-Teams-Actually-Use</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Do-You-Struggle-Taking-Meeting-Notes-Try-This-Easy-Fix</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-an-AI-Humanizer-Makes-Machine-Generated-Content-Sound-Natural</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Tired-of-Productivity-Stacks-Use-This-Open-Source-App</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Using-Workspace-Management-Software-to-Build-Your-Own-System</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Teams-Are-Switching-to-This-Notion-App-Alternative</loc>
+    <lastmod>2025-06-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/5-Shocking-Local-AI-Secrets-Big-Tech-Doesn't-Want-You-to-Know</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Building-Your-Own-Custom-Prompt-to-Power-Your-AI-Workflow</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Building-a-Knowledge-Management-System-as-a-Second-Brain</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Creating-a-Project-Documentation-that-Teams-Actually-Use</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Digital-Minimalism-Transforms-Your-Workflow-Efficiency</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-a-Smart-Search-Feature-Saves-You-Hours-a-Week</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Why-Team-Collaboration-Open-Source-Tools-Are-Winning-at-Work</loc>
+    <lastmod>2025-06-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/A-Simple-Way-to-Build-a-Workspace-Powered-by-Local-AI</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/AppFlowy-updates-Private-page-sharing-guest-editors-and-faster-syncing</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Complete-Guide-to-Data-Sovereignty-for-Growing-Businesses</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-Free-Tools-Use-Data-Monetization-to-Profit-from-You</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-to-Get-More-Out-of-Writing-With-AI-in-Your-Workspace</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/How-to-Pick-From-the-Types-of-AI-Models-For-Work</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/Optimizing-Cross-Functional-Teamwork-for-Project-Success</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/The-Complete-Guide-to-Self-Hosting-for-Teams-and-Individuals</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/The-Work-Efficiency-Guide-to-Choosing-Better-Business-Tools</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/What-Are-The-Best-AI-powered-OneNote-Alternatives-in-2025</loc>
+    <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/5-powerful-realities-of-gpt-oss-open-weight-ai</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/an-executives-guide-to-cross-functional-project-management</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/appflowy-updates-web-real-time-editing-mentions-gpt-5-and-more</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/building-a-smart-workspace-with-workflow-ai</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/building-internal-documentation-systems-that-teams-use</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/easy-summarizing-and-note-taking-strategies-for-work</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-a-unified-platform-solves-the-tool-sprawl-problem</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-to-master-remote-collaboration-for-your-virtual-team</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/how-workspace-design-and-productivity-go-together</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/blog/startup-project-management-tips-for-teams-that-scale-fast</loc>
+    <lastmod>2025-08-29T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/project-management</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/startups</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/education</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/marketing</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/management</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/human-resources</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/sales-crm</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/team-meetings</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/ai-powered</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/wiki</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/kanban</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/product-design</loc>
+    <lastmod>2026-09-18T10:34:36.464Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/68154112-2410-4e04-b9be-a23c6bd7c4de</loc>
+    <lastmod>2026-08-30T13:21:26.198Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/13a84186-588d-4eb9-b62c-c06222a72c4f</loc>
+    <lastmod>2026-08-30T09:00:25.828Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/20e79978-46a2-433f-b580-c7255f712685</loc>
+    <lastmod>2026-08-12T07:17:24.318Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/kanban/cf951ee9-2fa0-4810-aef2-722ec143116e</loc>
+    <lastmod>2026-08-25T08:17:18.267Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/708b487d-da38-400b-be35-25f977b43406</loc>
+    <lastmod>2026-08-25T08:00:58.688Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/51b33027-6f64-4f85-8711-3b70b18c9c5c</loc>
+    <lastmod>2026-08-25T06:20:11.068Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/kanban/223f4605-0cf2-4f8f-8e12-d1f3b93704b8</loc>
+    <lastmod>2026-08-18T06:19:50.908Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/add69abe-01b4-45fa-9a0b-66d6282f24de</loc>
+    <lastmod>2026-08-18T06:03:10.547Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/453654f3-6abe-43c6-a542-58e3d37982d8</loc>
+    <lastmod>2026-09-08T13:35:20.067Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/894646b1-46b5-4a75-a357-c3fa190e1178</loc>
+    <lastmod>2025-12-03T09:12:23.309Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/1a9831c5-3b1e-49b5-a0b7-ee1549530855</loc>
+    <lastmod>2025-12-03T09:13:59.677Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/c2d21591-e8ee-4552-8d53-abdc68c26617</loc>
+    <lastmod>2025-12-03T12:22:07.867Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/ai-powered/53dab483-f994-439c-9ad3-6a1557003469</loc>
+    <lastmod>2025-12-03T12:55:48.358Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/kanban/d9085311-1d32-426f-95d4-1e2db3b64fbe</loc>
+    <lastmod>2025-06-08T07:57:29.022Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/04c8ff1b-21cc-4ce7-8cb6-62b2620180c8</loc>
+    <lastmod>2025-12-03T13:09:22.277Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/0df80254-5a3d-42da-ba3d-f74541e2a5bd</loc>
+    <lastmod>2025-12-03T13:08:05.999Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/9b7da771-d4b9-45dc-938a-830922085017</loc>
+    <lastmod>2024-08-25T11:44:15.787Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/bd8ddc29-3c0a-40bb-9b08-7ed60eafa1cd</loc>
+    <lastmod>2026-09-08T13:18:16.528Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/7baa7b71-1db2-49e3-8f29-725717e5451d</loc>
+    <lastmod>2026-08-30T13:09:00.517Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/60b2f7ac-40e3-40e7-a9a2-54a92c599d31</loc>
+    <lastmod>2026-08-18T06:16:49.529Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/1d6ec635-bf63-4f8b-b364-936458d42242</loc>
+    <lastmod>2025-12-03T11:09:42.160Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/engineering/56eb2dd5-cb2e-4f59-8b7e-87576cea83e8</loc>
+    <lastmod>2025-12-03T12:27:41.459Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/startups/8e0faeca-dfd4-4e08-9b0e-c2fcca0b31b0</loc>
+    <lastmod>2026-09-08T13:30:50.371Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/9bee6e94-735c-406d-a40a-1ef9314ed87c</loc>
+    <lastmod>2025-12-03T11:19:11.396Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/marketing/59a940e2-71ac-435e-a42f-9114f8dea7a5</loc>
+    <lastmod>2025-12-03T11:20:18.481Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/marketing/4f3a86ee-637f-4d77-b6ad-3c5692fdeb75</loc>
+    <lastmod>2025-12-03T13:01:42.241Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/human-resources/20fc177e-e681-4d06-aaf3-12ac092ab729</loc>
+    <lastmod>2025-12-03T13:17:20.691Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/99cfce08-4e21-49f6-9d00-e5648f95bd23</loc>
+    <lastmod>2025-12-03T13:16:10.224Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/9a2501d5-5107-4509-9a56-a8647c48e059</loc>
+    <lastmod>2025-12-03T13:11:47.819Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/kanban/4c488d3f-0aa2-4da8-99a5-9198afdeb97c</loc>
+    <lastmod>2026-09-08T13:27:18.227Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/54f9981f-b467-42ed-91f7-f4baa829fe14</loc>
+    <lastmod>2025-12-03T12:39:56.781Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/management/bae3fd41-eab3-4961-b121-278db8951ff9</loc>
+    <lastmod>2025-12-03T12:38:20.907Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/human-resources/dc7c1ac2-ae2f-4994-8fff-00b7fc25b45d</loc>
+    <lastmod>2025-12-03T12:37:40.326Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/9f22b604-f44d-4058-aa41-6e368292358d</loc>
+    <lastmod>2025-12-03T12:32:02.596Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/education/e5c05ab8-9401-43c2-beba-ad2d02758a3b</loc>
+    <lastmod>2025-12-03T12:52:12.658Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/706323c0-f8bf-49be-b73b-059b10f7ac96</loc>
+    <lastmod>2025-12-03T12:47:39.726Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/education/ca2db846-b99c-4799-9811-aeaeed39ec37</loc>
+    <lastmod>2025-12-03T12:50:25.716Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/education/933a4486-7b84-4f77-8acb-ac08f322be9d</loc>
+    <lastmod>2025-12-03T12:49:30.074Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/database/6f3a0877-5372-4ecc-a68b-60457f2c8e9a</loc>
+    <lastmod>2025-12-03T12:48:55.729Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/ad37dc78-a311-401b-a8ab-a94c8847c853</loc>
+    <lastmod>2025-12-03T12:53:46.863Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/marketing/1e49f61d-d81c-4630-97c0-bd3799c82987</loc>
+    <lastmod>2025-12-03T12:58:47.876Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/marketing/d2a89475-13cc-4d9d-bff6-eb5bf10b32fa</loc>
+    <lastmod>2025-12-03T12:57:39.837Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/human-resources/17b35848-b34f-43a9-a945-0efecc384e7f</loc>
+    <lastmod>2025-12-03T13:17:39.598Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/docs/99db25ce-6aaf-4171-a262-23ff34ccbcb8</loc>
+    <lastmod>2025-12-03T13:18:47.719Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/sales-crm/b95c284d-ecca-4769-9e8b-cdac32fe167d</loc>
+    <lastmod>2026-01-09T02:05:51.425Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://appflowy.com/templates/product-design/bb4839d1-5379-4947-8cf2-12fa3a7a69a6</loc>
+    <lastmod>2025-12-03T13:22:36.757Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

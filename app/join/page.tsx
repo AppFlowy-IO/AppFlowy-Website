@@ -10,6 +10,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    title: 'Careers: Remote-Friendly Open Source Jobs | AppFlowy',
+    description:
+      'Explore remote-friendly opportunities at AppFlowy, contribute to open source, and join the mission to make secure workplace tools fit for everyone.',
     alternates: {
       canonical: `${site_url}/join`,
     },
@@ -19,9 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
 function Page() {
   return (
     <div className={'join-page'}>
-      <div className={'title'}>
+      <h1 className={'title'}>
         {joinPageConfig.title}
-        <div className={'line'}>
+        <span className={'line'}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
@@ -36,9 +39,9 @@ function Page() {
               strokeLinecap="square"
             />
           </svg>
-        </div>
-      </div>
-      <div className={'desc'}>{joinPageConfig.subtitle}</div>
+        </span>
+      </h1>
+      <p className={'desc'}>{joinPageConfig.subtitle}</p>
       <Link href={'/join#opening'}>
         <div className={'download-btn'}>Open roles</div>
       </Link>
@@ -65,12 +68,12 @@ function Page() {
           ))}
         </div>
       </div>
-      <div
+      <h2
         className={'title opening'}
         id={'opening'}
       >
         {joinPageConfig.currentJobTitle}
-      </div>
+      </h2>
       <div className={'jobs'}>
         {joinPageConfig.jobs.length > 0 ? (
           joinPageConfig.jobs.map((item: { title: string; link: string }) => (
