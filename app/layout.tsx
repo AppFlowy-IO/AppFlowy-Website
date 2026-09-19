@@ -150,12 +150,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           name="robots"
           content="noindex,nofollow"
         />}
+      </head>
+      <body id={'body'}>
+        {/*
+          Rendered inside <body>, not <head>. React hydrates a non-hoistable element
+          like this <script> by position, so anything that injects a script into <head>
+          before hydration (Cypress does exactly that) gets claimed in its place and the
+          root fails to hydrate. JSON-LD is valid anywhere in the document, and every
+          other page in the app renders SeoData from the page body for the same reason.
+        */}
         <SeoData
           id="schema-org"
           data={generateListSchema()}
         />
-      </head>
-      <body id={'body'}>
         <ChunkLoadErrorBoundary>
           <App
             ua={ua}
