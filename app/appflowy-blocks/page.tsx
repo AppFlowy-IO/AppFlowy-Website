@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       'Reliable, customizable standalone building blocks from AppFlowy, including AppFlowy Editor and Kanban Board, for developers building their own applications.',
     alternates: {
-      canonical: `${site_url}/appflowy-about`,
+      canonical: `${site_url}/appflowy-blocks`,
     },
   };
 }
