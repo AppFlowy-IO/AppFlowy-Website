@@ -15,6 +15,9 @@ jobs:
 
     env:
       NODE_ENV: test
+      # Authenticate the app's GitHub API calls (releases, stars) so the shared runner IP
+      # does not hit the 60 req/hour unauthenticated rate limit, which broke the banner e2e test.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout source code

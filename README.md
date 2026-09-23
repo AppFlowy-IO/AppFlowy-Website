@@ -54,5 +54,10 @@ pnpm run test
 pnpm run test:headless
 ```
 
+The site fetches release and star data from the GitHub API at request time. Unauthenticated requests are limited to
+60 per hour per IP, which is easy to exhaust in CI or on shared networks and causes the "What's New" banner test to fail.
+Set `GITHUB_TOKEN` in the server's environment to authenticate those requests and raise the limit (the Test workflow
+passes the built-in Actions token automatically).
+
 Feel free to update this README with more details as the project evolves. If you have any questions or need further
 assistance, please don't hesitate to reach out. Happy coding!

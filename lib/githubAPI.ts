@@ -41,25 +41,40 @@ async function fetchAPI(url: string) {
     return data;
   }
 
-  try {
-    // Check base cache, if exist return base cache data and update cache in background
-    if (baseCache.get(url)) {
-      void asyncUpdateCache(url);
-      return baseCache.get(url);
-    }
+  // Check base cache, if exist return base cache data and update cache in background
+  if (baseCache.get(url)) {
+    void asyncUpdateCache(url).catch((e) => console.error(e));
+    return baseCache.get(url);
+  }
 
-    // If not exist in base cache, fetch data and update cache
-    return asyncUpdateCache(url);
+  // If not exist in base cache, fetch data and update cache
+  try {
+    return await asyncUpdateCache(url);
   } catch (e) {
     console.error(e);
+    throw e;
   }
+}
+
+function getGitHubHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  // Unauthenticated requests are limited to 60/hour per IP, which shared CI runners
+  // exhaust quickly. A token (e.g. GitHub Actions' built-in GITHUB_TOKEN) raises the limit.
+  const token = process.env.GITHUB_TOKEN;
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
 }
 
 async function asyncUpdateCache(url: string) {
   const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: getGitHubHeaders(),
     next: {
       revalidate: ttl,
     },
