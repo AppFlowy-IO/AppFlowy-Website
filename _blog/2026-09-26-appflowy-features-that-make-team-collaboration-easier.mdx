@@ -4,7 +4,7 @@ description: Real-time editing, inline comments, version history, and user menti
 author: Mayur Mahajan
 author_image_url: /images/blog/authors/MayurSMahajan.png
 author_url: https://github.com/MayurSMahajan
-image: /images/blog/appflowy-features-that-make-team-collaboration-easier/cover.png
+image: /images/blog/appflowy-features-that-make-team-collaboration-easier/pinned-cover.png
 thumb: /images/blog/appflowy-features-that-make-team-collaboration-easier/cover.png
 tags:
   - Collaboration
@@ -40,12 +40,12 @@ This blog post explains how each feature works and shares practical ways your te
 
 ## AppFlowy collaboration features at a glance
 
-| Feature | What it does | Where it works | Best for |
-| --- | --- | --- | --- |
-| Real-time collaborative editing | Lets multiple users edit the same page at the same time | Documents, boards, and databases | Live reviews, shared planning, testing sessions |
-| Inline comments | Adds threaded comments to specific blocks | Documents and database row pages | Feedback, discussions, decision records |
-| Version history | Automatically saves page states you can preview and restore | Documents | Safe revisions, tracking changes |
-| User mentions | Notifies members or guests by email and push notification | Documents, boards, databases, and inline comments | Handoffs, questions, requesting approval |
+| Feature                         | What it does                                                | Where it works                                    | Best for                                        |
+| ------------------------------- | ----------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| Real-time collaborative editing | Lets multiple users edit the same page at the same time     | Documents, boards, and databases                  | Live reviews, shared planning, testing sessions |
+| Inline comments                 | Adds threaded comments to specific blocks                   | Documents and database row pages                  | Feedback, discussions, decision records         |
+| Version history                 | Automatically saves page states you can preview and restore | Documents                                         | Safe revisions, tracking changes                |
+| User mentions                   | Notifies members or guests by email and push notification   | Documents, boards, databases, and inline comments | Handoffs, questions, requesting approval        |
 
 ## 1. Real-time collaborative editing
 
@@ -59,9 +59,9 @@ AppFlowy's real-time editing is built on CRDTs (conflict-free replicated data ty
 
 ### How teams use real-time collaborative editing in AppFlowy
 
-* **Writing and reviewing together.** One person drafts a section while another reviews and edits a different part of the same page, which shortens the back-and-forth of sending drafts.
-* **Updating a shared board during development.** Engineers can move tasks and update statuses on one board as work progresses, so everyone sees the current state without asking.
-* **Tracking issues during a testing session.** Testers can log bugs in the same database at the same time, making it easier to spot duplicates and see coverage as the session runs.
+- **Writing and reviewing together.** One person drafts a section while another reviews and edits a different part of the same page, which shortens the back-and-forth of sending drafts.
+- **Updating a shared board during development.** Engineers can move tasks and update statuses on one board as work progresses, so everyone sees the current state without asking.
+- **Tracking issues during a testing session.** Testers can log bugs in the same database at the same time, making it easier to spot duplicates and see coverage as the session runs.
 
 ### Try this: a shared review session
 
@@ -69,7 +69,10 @@ Instead of a review meeting where one person shares their screen and everyone el
 
 ## 2. Inline comments
 
-<Img src="/images/blog/appflowy-features-that-make-team-collaboration-easier/comment-panel.webp" alt="AppFlowy inline comments side panel with Open, Resolved, and All tabs" />
+<Img
+  src='/images/blog/appflowy-features-that-make-team-collaboration-easier/comment-panel.webp'
+  alt='AppFlowy inline comments side panel with Open, Resolved, and All tabs'
+/>
 
 ### What are inline comments in AppFlowy?
 
@@ -95,7 +98,10 @@ If your team tracks issues in an AppFlowy database, hold the discussion about ea
 
 ## 3. Version history
 
-<Img src="/images/blog/appflowy-features-that-make-team-collaboration-easier/version-history.webp" alt="AppFlowy version history panel showing earlier versions of a page" />
+<Img
+  src='/images/blog/appflowy-features-that-make-team-collaboration-easier/version-history.webp'
+  alt='AppFlowy version history panel showing earlier versions of a page'
+/>
 
 ### What is version history in AppFlowy?
 
@@ -131,10 +137,10 @@ Because guest editors can be mentioned too, user mentions work well for client p
 
 Here's how the four features might work together during a typical week:
 
-* **Monday:** The product manager drafts the PRD, then adds an inline comment on the API section and mentions the lead engineer with a question about feasibility.
-* **Tuesday:** The engineer receives a notification, replies in the comment thread, and suggests a change. The product manager and designer then update the user flow section together in real time.
-* **Wednesday:** As questions are answered, the team resolves the related comments, building a record of the decisions made.
-* **Thursday:** The team realizes a section removed on Tuesday is still needed. The product manager opens version history, finds the earlier version, and restores it.
+- **Monday:** The product manager drafts the PRD, then adds an inline comment on the API section and mentions the lead engineer with a question about feasibility.
+- **Tuesday:** The engineer receives a notification, replies in the comment thread, and suggests a change. The product manager and designer then update the user flow section together in real time.
+- **Wednesday:** As questions are answered, the team resolves the related comments, building a record of the decisions made.
+- **Thursday:** The team realizes a section removed on Tuesday is still needed. The product manager opens version history, finds the earlier version, and restores it.
 
 The team never needed to leave AppFlowy, and the full context of the project is kept alongside the work.
 
@@ -167,10 +173,6 @@ Yes. Inline comments are supported on individual database row pages, so discussi
 ### Can I restore an older version of a page in AppFlowy?
 
 Yes. AppFlowy's version history automatically saves changes to your pages. You can browse and preview earlier versions in the version history panel and restore any of them with one click.
-
-### Does version history work for AppFlowy databases?
-
-Version history is not yet supported for AppFlowy databases as of release v0.14.2, but it is on the roadmap and expected to be released soon.
 
 ### Do I need to turn on version history in AppFlowy?
 
