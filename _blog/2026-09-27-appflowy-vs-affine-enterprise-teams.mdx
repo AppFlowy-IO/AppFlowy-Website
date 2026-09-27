@@ -1,0 +1,403 @@
+---
+title: 'AppFlowy vs AFFiNE: Which Is More Ready for Enterprise Teams?'
+description: 'Compare AppFlowy and AFFiNE for enterprise teams across collaboration, identity, permissions, databases, self-hosting, AI, governance, and data control.'
+author: AppFlowy
+author_url: https://github.com/AppFlowy-IO
+author_image_url: /images/blog/authors/appflowy.png
+image: /images/blog/best-self-hosted-notion-alternatives-2026/appflowy-project-tracker.webp
+thumb: /images/blog/best-self-hosted-notion-alternatives-2026/appflowy-project-tracker.webp
+tags:
+  - appflowy_vs_affine
+  - enterprise_collaboration
+  - self_hosted_workspace
+  - notion_alternatives
+  - data_sovereignty
+categories:
+  - Comparisons
+  - Self-hosting
+  - Enterprise
+date: '2026-09-27'
+last_modified: '2026-09-27'
+toc_depth: 3
+related:
+  - 2026-09-27-best-self-hosted-notion-alternatives
+  - 2025-07-31-The-Complete-Guide-to-Self-Hosting-for-Teams-and-Individuals
+  - 2025-06-04-Why-Teams-Are-Switching-to-This-Notion-App-Alternative
+---
+
+Choosing a workspace for an enterprise team is different from choosing a personal note-taking app. Enterprises need more than clean writing, flexible pages, and visual organization. They also need governed collaboration, identity management, access control, deployment support, auditability, structured workflows, and control over company data.
+
+**The short answer:** both AppFlowy and AFFiNE are collaborative, local-first workspaces that can run in the cloud or on infrastructure you control. **AppFlowy is more enterprise-ready for organizations that prioritize external guest workflows, broader identity and provisioning options, granular team administration, relational databases, Kubernetes deployment, and local or on-premises AI.** AFFiNE is especially compelling when whiteboarding, visual thinking, and a dedicated journal are at the center of the workflow.
+
+This is not a comparison between a collaborative product and a personal offline app. **Both AppFlowy and AFFiNE support multi-user, real-time collaboration.** AppFlowy combines that collaboration with native offline-capable apps; offline access is an additional capability, not a restriction to personal use.
+
+For a feature-by-feature view, see the [complete AppFlowy vs AFFiNE comparison](/compare/appflowy-vs-affine). If you are evaluating a broader shortlist, read [Best Self-Hosted Notion Alternatives in 2026](/blog/best-self-hosted-notion-alternatives).
+
+**Research methodology:** AppFlowy publishes this comparison. We reviewed official product pages, documentation, release notes, pricing pages, and public repositories for both products on September 27, 2026. Features and plan limits can change, so validate requirements that are critical to your deployment during a proof of concept.
+
+## AppFlowy vs AFFiNE at a glance
+
+| Enterprise requirement | AppFlowy | AFFiNE | What it means for buyers |
+| --- | --- | --- | --- |
+| Multi-user real-time collaboration | Yes | Yes | Both support collaborative team workspaces. |
+| Offline-capable native apps | Windows, macOS, Linux, iOS, and Android | Windows, macOS, Linux, iOS, and Android | Both support work beyond a browser. |
+| External guest workflow | Guests can be limited to selected pages; guest invite requests can require approval | Workspace roles and per-document access are documented; an equivalent external guest-editor workflow is not described in the official materials reviewed | AppFlowy provides the clearer workflow for agencies, clients, and contractors. |
+| Enterprise identity | SAML SSO, OIDC, SCIM, and LDAP | OIDC, Google OAuth, and GitHub OAuth | AppFlowy covers more common enterprise identity and user-lifecycle requirements. |
+| Permissions | Groups plus granular space- and document-level permissions | Workspace roles and per-document access levels | Both provide access controls; AppFlowy documents broader organization-level administration. |
+| Auditability | Security audit logs are available in the self-hosted offering | Confirm current audit-log requirements with AFFiNE during evaluation | Audit requirements should be tested, not assumed. |
+| Self-hosted deployment | Docker Compose, an official Helm chart, private cloud, on-premises, and air-gapped deployment | Docker Compose is the officially supported path; teams can adapt official images for their own cluster; offline licensing is available | AppFlowy offers a more standardized Kubernetes path. |
+| AI control | Local AI, self-hosted LLMs and embedding models, and AI search | Configurable provider keys, base URL, and model IDs; AI can be disabled | Both provide AI controls, but AppFlowy documents a more direct local and on-premises AI path. |
+| Structured data | Relational databases with multiple views, relations, rollups, formulas, forms, charts, and linked views | Table and Kanban views | AppFlowy covers more database-driven operational workflows. |
+| Visual thinking | Documents and databases | Documents, Edgeless whiteboards, and a dedicated journal | AFFiNE is stronger when an infinite canvas is central to the use case. |
+| Public sharing | Published pages, custom namespace, and PDF export | Public read-only page links | Both can share content publicly; AppFlowy offers more publishing controls. |
+
+## Important correction: both support real-time collaboration
+
+Some AI-generated search summaries describe AFFiNE as the collaborative option and AppFlowy as primarily an offline personal tool. That comparison is outdated.
+
+[AppFlowy supports real-time collaborative editing](https://appflowy.com/blog/appflowy-updates-web-real-time-editing-mentions-gpt-5-and-more) across team documents and database views. It also supports mentions, comments, shared workspaces, permissions, and [guest editors who collaborate on selected pages](https://appflowy.com/blog/AppFlowy-updates-Private-page-sharing-guest-editors-and-faster-syncing). AppFlowy Web, desktop, and mobile clients are parts of the same collaborative workspace experience.
+
+[AFFiNE also supports real-time collaboration](https://affine.pro/teamhub) across its cloud and self-hosted workspace experiences. Its local-first architecture allows edits to continue offline and synchronize when a connection is available.
+
+The accurate distinction is therefore:
+
+- **Both products support multi-user, real-time collaboration.**
+- **Both products support local-first or offline-capable workflows.**
+- AppFlowy extends collaboration with explicit external guest access, guest approval workflows, groups, granular space permissions, and broader enterprise identity provisioning.
+- AFFiNE combines collaboration with an integrated whiteboard and dedicated journal.
+
+Enterprise buyers should compare the governance around collaboration, not merely whether simultaneous editing exists.
+
+## What does enterprise-ready workspace software require?
+
+An enterprise workspace must function as part of a larger operating environment. A polished editor matters, but it is only one part of the decision.
+
+A serious evaluation should ask:
+
+- Can employees and external collaborators receive different levels of access?
+- Can IT connect the product to an identity provider and automate onboarding and offboarding?
+- Can administrators separate departments, clients, and projects?
+- Can security teams review important activity?
+- Can infrastructure teams deploy and upgrade it predictably?
+- Can the platform handle structured business data, not only documents?
+- Can AI run under the organization’s data and network policies?
+- Can the organization export, back up, and retain its data?
+
+AppFlowy and AFFiNE answer some of these questions in similar ways. Their differences become clearer as requirements move from individual productivity to organizational governance.
+
+## Enterprise collaboration: AppFlowy supports more external workflows
+
+Enterprise collaboration regularly crosses company boundaries. Product teams work with agencies. Procurement teams work with vendors. Consultants need access to one project but not an entire company workspace. Customers may need to review a shared page without becoming full members.
+
+AppFlowy supports **external guest editors** who can be invited to selected pages with view or edit access. Guests can collaborate in real time without receiving broad workspace access. Organizations can also use **guest invite requests**, allowing an administrator to review a request before the invitation email is sent.
+
+This creates a practical separation between:
+
+- workspace members who participate in the organization
+- guests who collaborate on selected content
+- administrators who govern invitations and access
+
+AFFiNE’s current enterprise documentation describes **workspace roles and per-document access levels**, so it should not be characterized as lacking access control. However, the official materials reviewed for this article do not describe a directly equivalent limited-access external guest-editor and approval workflow.
+
+For companies that frequently collaborate with agencies, customers, contractors, or cross-company project teams, AppFlowy’s explicit guest model is the more complete fit.
+
+## Access control and governance: both have permissions, but AppFlowy goes further
+
+Access control must reflect how an organization is structured. A company may need private spaces for legal and HR, restricted client areas, department spaces, cross-functional project spaces, and individual pages shared with guests.
+
+[AppFlowy’s current permissions model](https://appflowy.com/what-is-new) includes:
+
+- granular space-level permissions
+- document-level permissions
+- custom team spaces
+- Groups for role- or department-based access
+- restricted spaces
+- page-level guest access
+- centralized administration
+- [security audit logs](https://github.com/AppFlowy-IO/AppFlowy-SelfHost-Commercial)
+
+This lets administrators manage access at the workspace, space, group, page, and guest levels rather than maintaining every permission one person at a time.
+
+[AFFiNE Enterprise](https://affine.pro/enterprise) documents workspace roles and per-document access levels. Those capabilities can cover many smaller-team scenarios and show that AFFiNE has moved beyond a personal-only workspace. Organizations with formal audit-log, approval, group-management, or delegated-administration requirements should confirm the exact behavior and edition during a pilot.
+
+**Enterprise takeaway:** both platforms offer permission controls, but AppFlowy currently documents a broader governance model for complex organizations.
+
+## Identity management: AppFlowy supports a broader enterprise stack
+
+Manual account management becomes risky and expensive as a company grows. IT teams normally want a workspace to connect to an existing identity provider, enforce centralized authentication, and automate the user lifecycle.
+
+[AppFlowy supports](https://appflowy.com/):
+
+- SAML single sign-on
+- OIDC single sign-on
+- SCIM user provisioning
+- LDAP integration
+
+SAML and OIDC centralize authentication. SCIM helps automate onboarding and offboarding. LDAP supports organizations that rely on an existing directory, including private-network environments.
+
+AFFiNE should not be described as having no enterprise identity support. [AFFiNE’s current self-hosted enterprise offering supports OIDC](https://affine.pro/enterprise), along with Google and GitHub OAuth. However, the current official materials reviewed do not document SAML, SCIM, or LDAP support.
+
+**Enterprise takeaway:** AFFiNE can connect to an OIDC identity provider. AppFlowy is the stronger choice when the requirement includes SAML, automated provisioning through SCIM, or LDAP in addition to OIDC.
+
+## Deployment readiness: AppFlowy provides a more direct Kubernetes path
+
+Self-hosting is not a checkbox. Infrastructure teams need a deployment path that fits their operating model, along with predictable upgrades, storage configuration, backups, observability, and support.
+
+AppFlowy supports Docker-based self-hosting and includes an [official Helm chart in its production self-hosted repository](https://github.com/AppFlowy-IO/AppFlowy-SelfHost-Commercial/tree/main/helm). AppFlowy also supports private-cloud, on-premises, and fully air-gapped deployments.
+
+AFFiNE provides a credible self-hosted path. Its [official self-hosting guide](https://affine.pro/self-host) identifies Docker Compose as the recommended and officially supported deployment route. Teams using Kubernetes or another orchestrator can build from source or adapt the official images. AFFiNE also offers an installable license for restricted or offline networks.
+
+The distinction is operational rather than ideological:
+
+- Choose AppFlowy when an official Helm-based Kubernetes workflow is important.
+- Choose AFFiNE when Docker Compose fits the deployment and its docs-plus-whiteboard experience is the priority.
+- For either product, validate backup restoration, upgrades, object storage, database operations, monitoring, and disaster recovery before production rollout.
+
+## AI and data control: the difference is more nuanced than cloud versus local
+
+Enterprise AI requirements increasingly include model choice, network boundaries, data residency, logging, retention, and control over embeddings. A generic “has AI” label does not answer those questions.
+
+AppFlowy supports:
+
+- AI search grounded in workspace sources
+- AI writing and summarization
+- AI meeting notes and transcripts
+- [local AI through Ollama](https://appflowy.com/blog/appflowy_local_ai_ollama)
+- self-hosted LLMs
+- self-hosted embedding models
+- on-premises and air-gapped configurations
+
+This gives organizations a direct path to keeping both workspace data and AI processing inside a controlled environment.
+
+AFFiNE’s current offering is also more flexible than older comparisons suggest. AFFiNE Enterprise lets administrators configure provider API keys, a base URL, and model IDs, or disable AI. Its [official MCP server](https://affine.pro/mcp) can search and read workspace documents through workspace-scoped, revocable credentials in cloud or self-hosted deployments.
+
+The practical distinction is:
+
+- **AppFlowy explicitly documents local AI and self-hosted LLM and embedding deployments as product capabilities.**
+- **AFFiNE supports a configurable AI endpoint and model selection, which can be pointed at infrastructure the organization chooses.**
+
+Neither product should be evaluated through an outdated claim that AFFiNE has no AI control or that AppFlowy is only a local notes application. Enterprises should test the full data path—from source documents and embeddings to model inference and logs—against their own security policy.
+
+## Databases and structured work: AppFlowy covers more operational use cases
+
+Enterprise teams need more than a place to write. Projects, CRM records, product roadmaps, hiring pipelines, content calendars, customer feedback, assets, and operational requests all depend on structured information.
+
+AppFlowy’s database system supports:
+
+- Grid
+- Kanban
+- Calendar
+- Gallery
+- List
+- Timeline
+- Feed
+- Chart
+- Form
+- two-way relations
+- rollups
+- formulas and calculations
+- database templates
+- linked views of the same data source
+- advanced filters, grouping, and sorting
+- full-page database records
+
+[Recent AppFlowy releases](https://appflowy.com/what-is-new) added formula properties, Timeline view, two-way relations, additional database views, bulk actions, advanced filters, and ongoing improvements to linked views and row templates.
+
+AFFiNE combines Table and Kanban views with documents and its Edgeless whiteboard. That is useful for lightweight task tracking and for moving between structured lists and visual planning. Its official product materials place more emphasis on documents, whiteboards, and visual knowledge work than on a deep relational database system.
+
+This difference matters when a workspace becomes an operating system for the team. A project database may need to relate to tasks and customers, roll task status into a project, calculate metrics, collect requests through forms, and present the same records as a timeline, dashboard, or calendar.
+
+**Enterprise takeaway:** AppFlowy is better suited to complex project management, CRM-style workflows, connected databases, and internal operations. AFFiNE is attractive when the structured data is lighter and visual exploration is more important.
+
+## Publishing and external sharing: both can publish, with different depth
+
+[AFFiNE does support public sharing](https://affine.pro/blog/getting-started-with-affine). A page can be published as a public, read-only URL, making it useful for sharing a document outside the workspace.
+
+[AppFlowy supports published pages](https://appflowy.com/pricing) as well as a custom `appflowy.com/your_name` namespace for published URLs and PDF export. These options are useful for public documentation, lightweight knowledge sites, product updates, customer resources, and compliance backups.
+
+The products should therefore not be compared as “publishing versus no publishing.” A more accurate conclusion is:
+
+- Both can expose content publicly.
+- AppFlowy currently documents a more complete publishing workflow and naming controls.
+- Buyers that need a branded domain, search indexing, a help center, or a formal documentation site should test those exact requirements in both products.
+
+## Data ownership and licensing require a component-level review
+
+Both AppFlowy and AFFiNE let organizations operate a workspace on their own infrastructure. Both also use licensing models that should be reviewed at the component level rather than reduced to a single “open source” label.
+
+AppFlowy’s client applications and AppFlowy Web are open source. Its current production self-hosted server is distributed under the AppFlowy Self-Hosted Commercial License.
+
+AFFiNE states that its editor and most of its codebase are MIT-licensed, while its backend server uses the AFFiNE Enterprise Edition source-available license. Modifying, compiling, or redistributing that backend requires commercial authorization.
+
+For either platform, procurement and legal teams should review:
+
+- the license for every deployed component
+- production-use and seat terms
+- upgrade and support entitlements
+- whether the deployment needs outbound license checks
+- backup and data-export procedures
+- telemetry and network egress in the chosen configuration
+
+The goal is not simply to host the service yourself. It is to understand exactly which parts of the stack your organization controls and under what terms.
+
+## Where AFFiNE may fit better
+
+AFFiNE has meaningful strengths. Its Edgeless whiteboard and dedicated journal make it a strong option for:
+
+- visual brainstorming
+- diagramming and free-form canvases
+- daily journaling
+- design exploration
+- spatial knowledge organization
+- individuals and teams that frequently move between documents and whiteboards
+
+<Img src="/images/blog/best-self-hosted-notion-alternatives-2026/affine-workspace.png" alt="AFFiNE collaborative document and database workspace from its official website" caption="AFFiNE combines documents, databases, and a visual whiteboard in a local-first workspace." />
+
+*Screenshot source: [AFFiNE official website](https://affine.pro/), retrieved September 27, 2026.*
+
+AFFiNE is not merely a single-user notes app. It has real-time collaboration, team plans, OIDC, per-document access, self-hosting, offline licensing, native apps, and configurable AI providers. A small or midsize team whose work revolves around visual thinking may reasonably prefer it.
+
+The tradeoff is that whiteboarding and journaling do not replace the broader identity provisioning, external guest governance, relational database depth, and standardized Kubernetes deployment that many larger organizations require.
+
+## When AppFlowy is the better enterprise choice
+
+AppFlowy is the stronger fit when your organization needs several of the following in one workspace:
+
+- external guest editors limited to selected pages
+- administrator approval for guest invitations
+- SAML or OIDC SSO
+- automated SCIM provisioning
+- LDAP integration
+- Groups and granular space permissions
+- audit logs
+- relational databases
+- multiple database views
+- formulas, relations, rollups, forms, and charts
+- an official Helm chart for Kubernetes
+- local AI through Ollama
+- self-hosted LLMs and embedding models
+- private-cloud, on-premises, or air-gapped deployment
+- public pages, a custom namespace, and PDF export
+
+<Img src="/images/blog/best-self-hosted-notion-alternatives-2026/appflowy-project-tracker.webp" alt="AppFlowy collaborative project tracker with a Kanban database" caption="AppFlowy combines collaborative documents with structured databases and project views." />
+
+*Screenshot source: [AppFlowy official website](https://appflowy.com/), retrieved September 27, 2026.*
+
+This combination makes AppFlowy better aligned with departments and organizations that want one governed system for documentation, projects, databases, and AI-assisted knowledge work.
+
+## AppFlowy vs AFFiNE: enterprise decision checklist
+
+Run a proof of concept with representative users and data before choosing either platform.
+
+### Collaboration and governance
+
+- Invite an employee, an external contractor, and an administrator.
+- Confirm the smallest unit that can be shared with each person.
+- Test joiner, mover, and leaver workflows.
+- Verify group permissions, guest approvals, and access revocation.
+- Confirm which events appear in audit logs and how long they are retained.
+
+### Identity and security
+
+- Connect the actual identity provider used in production.
+- Test SSO enforcement and recovery paths.
+- Test SCIM or directory provisioning if required.
+- Confirm how multi-factor authentication is enforced.
+- Inspect network egress, secrets, encryption, and session controls.
+
+### Deployment and operations
+
+- Deploy using the production target: Docker Compose, Kubernetes, private cloud, or an air-gapped network.
+- Restore a real backup rather than only creating one.
+- Rehearse an upgrade and rollback.
+- Test object storage, PostgreSQL, monitoring, and failure recovery.
+- Confirm commercial licensing and support response expectations.
+
+### Content and structured workflows
+
+- Import a representative Notion export if you are migrating.
+- Test a real project database, not only a demo task board.
+- Validate relations, formulas, filters, views, page content, permissions, and comments.
+- Check whether unsupported Notion export formats affect migration fidelity.
+- Test public sharing and PDF export with sensitive content controls.
+
+### AI governance
+
+- Trace which content is sent to the embedding model and LLM.
+- Confirm where models, embeddings, prompts, and logs are stored.
+- Test local or self-hosted inference under production network rules.
+- Verify that AI can be disabled where policy requires it.
+- Evaluate answer citations, permission enforcement, and revocation.
+
+## Final verdict: AppFlowy is more enterprise-ready overall
+
+AFFiNE is a capable collaborative workspace with strong whiteboarding, journaling, native applications, self-hosting, OIDC, per-document access, and configurable AI. It is a credible choice for visual teams and should not be dismissed as a personal-only product.
+
+However, when evaluated across the full set of enterprise requirements, **AppFlowy is more ready for organizations that need governed collaboration and structured work at scale**.
+
+AppFlowy brings together:
+
+- multi-user real-time collaboration
+- external guest workflows
+- granular permissions and Groups
+- SAML, OIDC, SCIM, and LDAP
+- audit logs and centralized administration
+- advanced relational databases
+- Docker and Helm deployment paths
+- local and on-premises AI
+- publishing and export controls
+- native desktop and mobile applications
+
+The decision is ultimately about fit. Choose AFFiNE when whiteboarding and visual ideation dominate. Choose AppFlowy when the workspace must support enterprise identity, governed external collaboration, structured databases, controlled deployment, and AI under your organization’s infrastructure policies.
+
+[Explore the full AppFlowy vs AFFiNE comparison](/compare/appflowy-vs-affine), compare [the best self-hosted Notion alternatives in 2026](/blog/best-self-hosted-notion-alternatives), or <ContactSalesLink source="blog-appflowy-vs-affine-enterprise">contact the AppFlowy team</ContactSalesLink> to discuss your deployment and migration requirements.
+
+## Frequently asked questions
+
+### Which is more enterprise-ready, AppFlowy or AFFiNE?
+
+AppFlowy is more enterprise-ready overall for organizations that require external guest workflows, SAML, OIDC, SCIM, LDAP, granular spaces and Groups, audit logs, advanced relational databases, an official Helm deployment path, and local or on-premises AI. AFFiNE is a strong alternative for teams that prioritize integrated whiteboarding, journaling, and visual knowledge work.
+
+### Do AppFlowy and AFFiNE both support real-time collaboration?
+
+Yes. **Both AppFlowy and AFFiNE support multi-user, real-time collaboration.** AppFlowy is not limited to offline personal use. Its web, desktop, and mobile experiences support collaborative team workspaces, and its offline capability complements that team collaboration.
+
+### Is AppFlowy only an offline personal note-taking app?
+
+No. AppFlowy supports shared team workspaces, real-time editing, guest editors, comments, permissions, groups, enterprise identity management, audit logs, web access, and self-hosted multi-user deployments. It also supports local and offline workflows, but those are additional deployment and availability options.
+
+### Does AFFiNE support enterprise SSO?
+
+Yes. AFFiNE’s current self-hosted enterprise offering supports OIDC, plus Google and GitHub OAuth. AppFlowy supports OIDC as well as SAML SSO, SCIM provisioning, and LDAP, making it a broader fit for enterprise identity and user-lifecycle requirements.
+
+### Which product is better for enterprise databases?
+
+AppFlowy is better suited to database-intensive enterprise workflows. It supports Grid, Kanban, Calendar, Gallery, List, Timeline, Feed, Chart, and Form views, together with relations, rollups, formulas, linked views, templates, and full-page records. AFFiNE focuses on Table and Kanban views alongside its document and whiteboard experience.
+
+### Which product is better for self-hosting?
+
+Both products can be self-hosted. AppFlowy is the stronger choice for organizations that want an official Helm chart, Kubernetes, or an explicitly documented air-gapped and on-premises AI path. AFFiNE’s officially supported deployment path is Docker Compose, and teams can adapt its official images for their own cluster.
+
+### Can AppFlowy and AFFiNE use privately controlled AI?
+
+Both offer AI controls, but in different forms. AppFlowy explicitly supports local AI through Ollama and self-hosted LLM and embedding models. AFFiNE lets administrators configure provider credentials, a base URL, and model IDs or disable AI, so it can connect to an endpoint selected by the organization.
+
+### Where can I compare more self-hosted workspace options?
+
+Read [Best Self-Hosted Notion Alternatives in 2026](/blog/best-self-hosted-notion-alternatives) for a comparison of AppFlowy, AFFiNE, Outline, and Docmost across databases, enterprise controls, native apps, AI, and deployment options.
+
+## Official sources reviewed
+
+- [AppFlowy official website](https://appflowy.com/)
+- [AppFlowy latest releases and product updates](https://appflowy.com/what-is-new)
+- [AppFlowy real-time collaborative editing](https://appflowy.com/blog/appflowy-updates-web-real-time-editing-mentions-gpt-5-and-more)
+- [AppFlowy guest editors and private page sharing](https://appflowy.com/blog/AppFlowy-updates-Private-page-sharing-guest-editors-and-faster-syncing)
+- [AppFlowy local AI with Ollama](https://appflowy.com/blog/appflowy_local_ai_ollama)
+- [AppFlowy pricing and feature availability](https://appflowy.com/pricing)
+- [AppFlowy production self-hosted repository and Helm chart](https://github.com/AppFlowy-IO/AppFlowy-SelfHost-Commercial)
+- [AFFiNE Enterprise](https://affine.pro/enterprise)
+- [AFFiNE self-hosting guide](https://affine.pro/self-host)
+- [AFFiNE team collaboration](https://affine.pro/teamhub)
+- [AFFiNE pricing](https://affine.pro/pricing)
+- [AFFiNE public sharing and publishing](https://affine.pro/blog/getting-started-with-affine)
+- [AFFiNE MCP server](https://affine.pro/mcp)
