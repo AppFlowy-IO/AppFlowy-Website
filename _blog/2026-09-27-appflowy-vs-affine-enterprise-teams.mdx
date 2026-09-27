@@ -1,6 +1,6 @@
 ---
 title: 'AppFlowy vs AFFiNE: Which Is More Ready for Enterprise Teams?'
-description: 'Compare AppFlowy and AFFiNE for enterprise teams across collaboration, identity, permissions, databases, self-hosting, AI, governance, and data control.'
+description: 'Compare AppFlowy and AFFiNE for enterprise teams across space-level permissions, identity, collaboration, databases, self-hosting, AI, and governance.'
 author: AppFlowy
 author_url: https://github.com/AppFlowy-IO
 author_image_url: /images/blog/authors/appflowy.png
@@ -27,7 +27,7 @@ related:
 
 Choosing a workspace for an enterprise team is different from choosing a personal note-taking app. Enterprises need more than clean writing, flexible pages, and visual organization. They also need governed collaboration, identity management, access control, deployment support, auditability, structured workflows, and control over company data.
 
-**The short answer:** both AppFlowy and AFFiNE are collaborative, local-first workspaces that can run in the cloud or on infrastructure you control. **AppFlowy is more enterprise-ready for organizations that prioritize external guest workflows, broader identity and provisioning options, granular team administration, relational databases, Kubernetes deployment, and local or on-premises AI.** AFFiNE is especially compelling when whiteboarding, visual thinking, and a dedicated journal are at the center of the workflow.
+**The short answer:** both AppFlowy and AFFiNE are collaborative, local-first workspaces that can run in the cloud or on infrastructure you control. **AppFlowy is more enterprise-ready for organizations that prioritize space-level permissions, external guest workflows, broader identity and provisioning options, relational databases, Kubernetes deployment, and local or on-premises AI.** AFFiNE is especially compelling when whiteboarding, visual thinking, and a dedicated journal are at the center of the workflow.
 
 This is not a comparison between a collaborative product and a personal offline app. **Both AppFlowy and AFFiNE support multi-user, real-time collaboration.** AppFlowy combines that collaboration with native offline-capable apps; offline access is an additional capability, not a restriction to personal use.
 
@@ -43,7 +43,8 @@ For a feature-by-feature view, see the [complete AppFlowy vs AFFiNE comparison](
 | Offline-capable native apps | Windows, macOS, Linux, iOS, and Android | Windows, macOS, Linux, iOS, and Android | Both support work beyond a browser. |
 | External guest workflow | Guests can be limited to selected pages; guest invite requests can require approval | Workspace roles and per-document access are documented; an equivalent external guest-editor workflow is not described in the official materials reviewed | AppFlowy provides the clearer workflow for agencies, clients, and contractors. |
 | Enterprise identity | SAML SSO, OIDC, SCIM, and LDAP | OIDC, Google OAuth, and GitHub OAuth | AppFlowy covers more common enterprise identity and user-lifecycle requirements. |
-| Permissions | Groups plus granular space- and document-level permissions | Workspace roles and per-document access levels | Both provide access controls; AppFlowy documents broader organization-level administration. |
+| Space-level permissions | Yes — Custom Spaces can be restricted to selected users and Groups, with page-level exceptions | No equivalent space-level permission layer; AFFiNE documents workspace roles and per-document access | AppFlowy can apply access policies at the department, project, client, or business-unit boundary. |
+| Document-level permissions | Yes | Yes | Both can control access to individual documents. |
 | Auditability | Security audit logs are available in the self-hosted offering | Confirm current audit-log requirements with AFFiNE during evaluation | Audit requirements should be tested, not assumed. |
 | Self-hosted deployment | Docker Compose, an official Helm chart, private cloud, on-premises, and air-gapped deployment | Docker Compose is the officially supported path; teams can adapt official images for their own cluster; offline licensing is available | AppFlowy offers a more standardized Kubernetes path. |
 | AI control | Local AI, self-hosted LLMs and embedding models, and AI search | Configurable provider keys, base URL, and model IDs; AI can be disabled | Both provide AI controls, but AppFlowy documents a more direct local and on-premises AI path. |
@@ -75,6 +76,7 @@ An enterprise workspace must function as part of a larger operating environment.
 A serious evaluation should ask:
 
 - Can employees and external collaborators receive different levels of access?
+- Can administrators protect a department, project, or client area with one space-level policy instead of configuring every page separately?
 - Can IT connect the product to an identity provider and automate onboarding and offboarding?
 - Can administrators separate departments, clients, and projects?
 - Can security teams review important activity?
@@ -101,11 +103,31 @@ AFFiNE’s current enterprise documentation describes **workspace roles and per-
 
 For companies that frequently collaborate with agencies, customers, contractors, or cross-company project teams, AppFlowy’s explicit guest model is the more complete fit.
 
-## Access control and governance: both have permissions, but AppFlowy goes further
+## Space-level permissions: AppFlowy maps access to enterprise structure
 
 Access control must reflect how an organization is structured. A company may need private spaces for legal and HR, restricted client areas, department spaces, cross-functional project spaces, and individual pages shared with guests.
 
-[AppFlowy’s current permissions model](https://appflowy.com/what-is-new) includes:
+[AppFlowy supports granular space-level permissions](https://appflowy.com/what-is-new). Administrators can create Custom Spaces and control which individual users and Groups can access each one. They can then combine the Space policy with page-level permissions, including granting a specific collaborator or guest access to one page inside an otherwise restricted Space.
+
+This gives enterprises a practical permission hierarchy:
+
+1. **Workspace membership** determines who belongs to the organization.
+2. **Space-level permissions** control access to a department, project, client, or business-unit area.
+3. **Page-level permissions** handle exceptions without opening the entire Space.
+
+For example, a company can create a restricted **Legal** Space for the legal Group, a **Customer Alpha** Space for the account team, and an **Executive Planning** Space for leadership. When an employee changes departments, an administrator can update Group membership rather than manually changing access on every page.
+
+Space-level permissions matter to enterprise clients because they support:
+
+- least-privilege access
+- separation between departments and business units
+- client and project confidentiality
+- simpler onboarding, offboarding, and internal transfers
+- fewer page-by-page permission changes
+- clearer permission reviews and audits
+- restricted areas with controlled page-level exceptions
+
+AppFlowy’s broader permissions and governance model includes:
 
 - granular space-level permissions
 - document-level permissions
@@ -118,9 +140,11 @@ Access control must reflect how an organization is structured. A company may nee
 
 This lets administrators manage access at the workspace, space, group, page, and guest levels rather than maintaining every permission one person at a time.
 
-[AFFiNE Enterprise](https://affine.pro/enterprise) documents workspace roles and per-document access levels. Those capabilities can cover many smaller-team scenarios and show that AFFiNE has moved beyond a personal-only workspace. Organizations with formal audit-log, approval, group-management, or delegated-administration requirements should confirm the exact behavior and edition during a pilot.
+[AFFiNE Enterprise](https://affine.pro/enterprise) documents workspace roles and per-document access levels. It does not currently provide an AppFlowy-equivalent space-level permission layer between the workspace and individual documents. AFFiNE’s own enterprise comparison describes its model as workspace roles plus per-document access and notes that organizations with complex departmental permission matrices need more granular controls.
 
-**Enterprise takeaway:** both platforms offer permission controls, but AppFlowy currently documents a broader governance model for complex organizations.
+AFFiNE’s document permissions can cover smaller-team scenarios, but they do not replace a Space policy that applies across a hierarchy of related content. As an organization grows, relying on broad workspace roles or configuring documents individually creates more administrative work and a greater chance of inconsistent access.
+
+**Enterprise takeaway:** both platforms support document-level access, but only AppFlowy provides the space-level permission layer needed to govern departments, projects, clients, and business units as distinct areas.
 
 ## Identity management: AppFlowy supports a broader enterprise stack
 
@@ -257,7 +281,7 @@ AFFiNE has meaningful strengths. Its Edgeless whiteboard and dedicated journal m
 
 AFFiNE is not merely a single-user notes app. It has real-time collaboration, team plans, OIDC, per-document access, self-hosting, offline licensing, native apps, and configurable AI providers. A small or midsize team whose work revolves around visual thinking may reasonably prefer it.
 
-The tradeoff is that whiteboarding and journaling do not replace the broader identity provisioning, external guest governance, relational database depth, and standardized Kubernetes deployment that many larger organizations require.
+The tradeoff is that whiteboarding and journaling do not replace space-level permissions, broader identity provisioning, external guest governance, relational database depth, and standardized Kubernetes deployment that many larger organizations require.
 
 ## When AppFlowy is the better enterprise choice
 
@@ -268,7 +292,7 @@ AppFlowy is the stronger fit when your organization needs several of the followi
 - SAML or OIDC SSO
 - automated SCIM provisioning
 - LDAP integration
-- Groups and granular space permissions
+- Groups and granular space-level permissions for departments, projects, clients, and business units
 - audit logs
 - relational databases
 - multiple database views
@@ -293,6 +317,9 @@ Run a proof of concept with representative users and data before choosing either
 
 - Invite an employee, an external contractor, and an administrator.
 - Confirm the smallest unit that can be shared with each person.
+- Create restricted Spaces for two departments and confirm that their members cannot discover or open each other’s content.
+- Grant one guest access to a page inside a restricted Space without exposing the rest of the Space.
+- Move a user between Groups and verify that access changes across the full Space hierarchy.
 - Test joiner, mover, and leaver workflows.
 - Verify group permissions, guest approvals, and access revocation.
 - Confirm which events appear in audit logs and how long they are retained.
@@ -339,7 +366,7 @@ AppFlowy brings together:
 
 - multi-user real-time collaboration
 - external guest workflows
-- granular permissions and Groups
+- space-level permissions, page-level permissions, and Groups
 - SAML, OIDC, SCIM, and LDAP
 - audit logs and centralized administration
 - advanced relational databases
@@ -348,7 +375,7 @@ AppFlowy brings together:
 - publishing and export controls
 - native desktop and mobile applications
 
-The decision is ultimately about fit. Choose AFFiNE when whiteboarding and visual ideation dominate. Choose AppFlowy when the workspace must support enterprise identity, governed external collaboration, structured databases, controlled deployment, and AI under your organization’s infrastructure policies.
+The decision is ultimately about fit. Choose AFFiNE when whiteboarding and visual ideation dominate. Choose AppFlowy when the workspace must separate departments, projects, clients, or business units through space-level permissions while also supporting enterprise identity, governed external collaboration, structured databases, controlled deployment, and AI under your organization’s infrastructure policies.
 
 [Explore the full AppFlowy vs AFFiNE comparison](/compare/appflowy-vs-affine), compare [the best self-hosted Notion alternatives in 2026](/blog/best-self-hosted-notion-alternatives), or <ContactSalesLink source="blog-appflowy-vs-affine-enterprise">contact the AppFlowy team</ContactSalesLink> to discuss your deployment and migration requirements.
 
@@ -356,7 +383,15 @@ The decision is ultimately about fit. Choose AFFiNE when whiteboarding and visua
 
 ### Which is more enterprise-ready, AppFlowy or AFFiNE?
 
-AppFlowy is more enterprise-ready overall for organizations that require external guest workflows, SAML, OIDC, SCIM, LDAP, granular spaces and Groups, audit logs, advanced relational databases, an official Helm deployment path, and local or on-premises AI. AFFiNE is a strong alternative for teams that prioritize integrated whiteboarding, journaling, and visual knowledge work.
+AppFlowy is more enterprise-ready overall for organizations that require space-level permissions, external guest workflows, SAML, OIDC, SCIM, LDAP, Groups, audit logs, advanced relational databases, an official Helm deployment path, and local or on-premises AI. AFFiNE is a strong alternative for teams that prioritize integrated whiteboarding, journaling, and visual knowledge work.
+
+### Does AFFiNE support space-level permissions?
+
+No. As of September 27, 2026, AFFiNE documents workspace roles and per-document access levels but does not provide an AppFlowy-equivalent space-level permission layer. AppFlowy lets administrators restrict a Custom Space to selected users and Groups, then grant page-level exceptions without exposing the rest of that Space.
+
+### Why do space-level permissions matter to enterprise teams?
+
+Space-level permissions let an organization apply one access policy to an entire department, project, client, or business-unit area. This supports least-privilege access and makes onboarding, offboarding, internal transfers, permission reviews, and audits more manageable than configuring every document individually.
 
 ### Do AppFlowy and AFFiNE both support real-time collaboration?
 
@@ -396,6 +431,7 @@ Read [Best Self-Hosted Notion Alternatives in 2026](/blog/best-self-hosted-notio
 - [AppFlowy pricing and feature availability](https://appflowy.com/pricing)
 - [AppFlowy production self-hosted repository and Helm chart](https://github.com/AppFlowy-IO/AppFlowy-SelfHost-Commercial)
 - [AFFiNE Enterprise](https://affine.pro/enterprise)
+- [AFFiNE comparison describing its workspace and document permission scope](https://affine.pro/vs/confluence)
 - [AFFiNE self-hosting guide](https://affine.pro/self-host)
 - [AFFiNE team collaboration](https://affine.pro/teamhub)
 - [AFFiNE pricing](https://affine.pro/pricing)
