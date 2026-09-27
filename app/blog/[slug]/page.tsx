@@ -54,6 +54,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: post.tags.join(', '),
     category: post.categories.join(', '),
     creator: post.author,
+    robots: post.archived
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
     alternates: {
       canonical: `${site_url}/blog/${params.slug}`,
     },
@@ -61,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = getAllPosts({ includeArchived: true });
 
   return posts.map((post) => ({
     slug: post.slug,
