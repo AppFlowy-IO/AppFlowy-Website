@@ -69,6 +69,7 @@ export default function DrawerNavbar({ onClose, onContactSales, onExited, active
         .map((group) => {
           if (group.key === 'resources-group-1') {
             const orderedKeys = ['menu.updates', 'menu.templates', 'menu.newsletter'];
+
             return {
               ...group,
               children: orderedKeys

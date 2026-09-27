@@ -4,11 +4,18 @@ import { useDownload } from '@/lib/hooks/use-download';
 import { useClient } from '@/lib/hooks/use-client';
 
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
-import HeroDesc from '@/components/shared/hero-desc';
+import { Button } from '@/components/ui/button';
 
 function DownloadOsBtn() {
   const { downloadOS } = useDownload();
   const { os, isLinux } = useClient();
+
+  // OSes we ship a build for; anything else (or an undetected OS) is sent to the full platform list.
+  const hasOsDownload = useMemo(() => {
+    const osName = os?.name?.toLowerCase().replaceAll(' ', '');
+
+    return ['macos', 'windows', 'linux', 'ios', 'android'].includes(osName ?? '');
+  }, [os]);
 
   const name = useMemo(() => {
     if (!os) return '';
@@ -17,36 +24,36 @@ function DownloadOsBtn() {
     return os.name;
   }, [os]);
 
-  return (
-    <>
-      <div className={'title'}>
-        AppFlowy for{' '}
-        <span className={'primary-word'}>
-          {name}
-          <div className={'primary-line max-sm:mb-[6px]'}>
-            <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 201 12' fill='none'>
-              <path
-                d='M1.99996 8.04368C14.124 5.85871 42.0022 1.7559 56.5232 2.82442C71.0443 3.89293 56.3004 8.03543 47.1133 9.97311C83.0533 5.91677 163.8 -1.20142 199.266 2.77653'
-                stroke='currentColor'
-                strokeWidth='3'
-                strokeLinecap='square'
-              />
-            </svg>
-          </div>
-        </span>
-      </div>
-      <div className={'download z-[2]'}>
-        {isLinux ? (
-          <LinuxBtnGroup title={'DOWNLOAD'} />
-        ) : (
-          <button onClick={downloadOS} className={'download-btn'}>
-            {'DOWNLOAD'}
-          </button>
-        )}
+  const scrollToAllPlatforms = () => {
+    document.getElementById('across')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
 
-        <HeroDesc />
+  return (
+    <div className={'flex flex-col items-center justify-center gap-10 text-center'}>
+      <div className={'flex flex-col items-center justify-center gap-3 text-center'}>
+        <h1 className='text-style-h1 font-bold'>Download AppFlowy <br></br>for desktop and mobile</h1>
+        <p className='text-style-h5 text-text-tertiary'>Get the native AppFlowy experience wherever you work.</p>
       </div>
-    </>
+      <div className={'download z-[2] flex flex-col items-center justify-center gap-5 text-center'}>
+        {isLinux ? (
+          <LinuxBtnGroup title={'Download'} />
+        ) : (
+          <Button onClick={hasOsDownload ? downloadOS : scrollToAllPlatforms} size={'xl'}
+            className={'min-w-[180px] rounded-lg bg-night-blue text-white transition-colors text-base leading-[150%] hover:bg-night-blue/90 max-sm:w-full'}>
+            {hasOsDownload ? `Download ${name} app` : 'Download AppFlowy'}
+          </Button>
+        )}
+        <a
+          href="#across"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToAllPlatforms();
+          }}
+          className='text-base text-text-tertiary hover:text-text-primary transition-colors duration-[280ms] flex items-center justify-center gap-2'>
+          View all platforms
+        </a>
+      </div>
+    </div>
   );
 }
 
