@@ -26,13 +26,12 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostData(params.slug);
-  const metadataTitle = post.seo_title || post.title;
 
   return {
-    title: metadataTitle,
+    title: `${post.title}`,
     description: post.description.slice(0, 160),
     openGraph: {
-      title: metadataTitle,
+      title: `${post.title}`,
       description: post.description,
       url: `${site_url}/blog/${params.slug}`,
       type: 'article',

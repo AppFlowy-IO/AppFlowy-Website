@@ -14,7 +14,6 @@ export interface PostData {
   slug: string;
   pinned: number;
   title: string;
-  seo_title?: string;
   description: string;
   author: string;
   author_title: string;
@@ -139,7 +138,6 @@ export function getAllPostsMetadata(): PostMetadata[] {
         unpublished: data.unpublished || false,
         pinned: data.pinned || 0,
         title: data.title,
-        seo_title: data.seo_title,
         description: data.description,
         author: data.author,
         author_title: data.author_title,
@@ -232,7 +230,6 @@ export function getPostByFilename(fileName: string): PostData {
     unpublished: data.unpublished || false,
     pinned: data.pinned || 0,
     title: data.title,
-    seo_title: data.seo_title,
     description: data.description,
     author: data.author,
     author_title: data.author_title,
