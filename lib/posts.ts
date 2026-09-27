@@ -245,15 +245,16 @@ export function getPostByFilename(fileName: string): PostData {
     video_url: data.video_url,
     og_image: data.image,
     thumb_image: data.thumb,
-    reading_time: generateReadingTime(content),
+    reading_time: data.reading_time ?? generateReadingTime(content),
     last_modified: data.last_modified || data.date,
     featured: data.featured || false,
 
     toc: tocResult
       ? unified()
-        .use(remarkStringify)
-        // eslint-disable-next-line
-        .stringify(tocResult as any).replaceAll('**', '')
+          .use(remarkStringify)
+          // eslint-disable-next-line
+          .stringify(tocResult as any)
+          .replaceAll('**', '')
       : '',
     comments: data.comments !== undefined ? data.comments : true,
     canonical_url: data.canonical_url,

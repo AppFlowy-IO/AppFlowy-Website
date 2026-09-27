@@ -51,18 +51,28 @@ function Outline({ post }: { post: PostData }) {
     };
   }, [isMobile]);
   return (
-    <div ref={containerRef} style={{
-      minHeight: outlineRef.current?.getBoundingClientRect().height,
-    }} className="relative col-span-12 mb-10 overflow-hidden lg:col-span-4 xl:col-start-9">
+    <div
+      ref={containerRef}
+      style={{
+        minHeight: outlineRef.current?.getBoundingClientRect().height,
+      }}
+      className='relative col-span-12 mb-10 overflow-hidden lg:col-span-4 xl:col-start-9'
+    >
       <div ref={outlineRef} className={'flex w-full flex-col gap-[30px] max-md:gap-4'}>
-        <div className={cn('prose-toc hidden w-full gap-2 rounded-[10px] bg-[#EEEEFD] p-10 max-xl:p-4 lg:block')}>
-          <h2 className="mb-4 text-[24px] font-semibold leading-[31px]">Table of Contents</h2>
+        <nav
+          aria-label='Table of contents'
+          tabIndex={0}
+          className={cn(
+            'prose-toc hidden max-h-[calc(100dvh-108px)] w-full gap-2 overflow-y-auto overscroll-contain rounded-[10px] bg-[#EEEEFD] p-10 [scrollbar-gutter:stable] max-xl:p-4 lg:block'
+          )}
+        >
+          <h2 className='mb-4 text-[24px] font-semibold leading-[31px]'>Table of Contents</h2>
           <ReactMarkdown>{post.toc}</ReactMarkdown>
-        </div>
+        </nav>
         {post.tags && (
-          <div className="flex w-full flex-wrap gap-2">
+          <div className='flex w-full flex-wrap gap-2'>
             {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
+              <Badge key={tag} variant='outline'>
                 {tag}
               </Badge>
             ))}
@@ -70,10 +80,9 @@ function Outline({ post }: { post: PostData }) {
         )}
         <div className={'flex w-full items-center gap-5'}>
           <span className={'text-black opacity-50'}>Share</span>
-          <Share content={'Check out this article! '}/>
+          <Share content={'Check out this article! '} />
         </div>
       </div>
-
     </div>
   );
 }
