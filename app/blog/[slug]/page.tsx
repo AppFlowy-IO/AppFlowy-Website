@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
       : undefined,
     alternates: {
-      canonical: `${site_url}/blog/${params.slug}`,
+      canonical: post.canonical_url || `${site_url}/blog/${params.slug}`,
     },
   };
 }
