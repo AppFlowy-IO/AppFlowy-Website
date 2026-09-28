@@ -27,6 +27,10 @@ const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostData(params.slug);
 
+  if (post.unpublished) {
+    notFound();
+  }
+
   return {
     title: `${post.title}`,
     description: post.description.slice(0, 160),
@@ -54,6 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: post.tags.join(', '),
     category: post.categories.join(', '),
     creator: post.author,
+    robots: post.archived
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
     alternates: {
       canonical: `${site_url}/blog/${params.slug}`,
     },
@@ -61,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = getAllPosts({ includeArchived: true });
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -112,16 +122,23 @@ function generateListSchema(slug: string, post: PostData, siteUrl: string) {
 }
 
 async function getData(slug: string) {
-  try {
-    const post = await getPostData(slug);
-    const relatedPosts = await getRelatedPosts(post);
+  let post: PostData;
 
-    return { post, relatedPosts };
+  try {
+    post = await getPostData(slug);
   } catch(error) {
     console.error(`[getData] Failed to get data for slug: "${slug}"`);
     console.error(`[getData] Error:`, error);
     notFound();
   }
+
+  if (post.unpublished) {
+    notFound();
+  }
+
+  const relatedPosts = await getRelatedPosts(post);
+
+  return { post, relatedPosts };
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {

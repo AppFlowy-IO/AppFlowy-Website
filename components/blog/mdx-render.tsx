@@ -9,6 +9,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image, { ImageProps } from './mdx-image';
 import { HTMLAttributes } from 'react';
 import Admonition from './admonition';
+import ContactSalesLink from './contact-sales-link';
 import Heading, { HeadingProps } from './heading';
 import MDXTable from './mdx-table';
 import remarkGfm from 'remark-gfm';
@@ -28,6 +29,7 @@ const components = {
   td: MDXTable.Cell,
   p: (props: HTMLAttributes<HTMLParagraphElement>) => <div {...props} className={cn(props.className, 'my-3')} />,
   Admonition,
+  ContactSalesLink,
   h1: (props: HeadingProps) => <Heading level={1} {...props} />,
   h2: (props: HeadingProps) => <Heading level={2} {...props} />,
   h3: (props: HeadingProps) => <Heading level={3} {...props} />,
