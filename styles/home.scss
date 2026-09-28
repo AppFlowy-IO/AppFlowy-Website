@@ -616,41 +616,6 @@
 
 }
 
-.mobile {
-  @apply flex flex-col w-full items-center relative;
-  @apply bg-[#F4F7FF];
-  > .bg {
-    @apply absolute w-full h-full left-[-50%] bg-[#EAE6FF] opacity-50 transform translate-z-0 blur-[150px];
-  }
-
-  > div:not(.bg) {
-    z-index: 10;
-  }
-
-  > .title {
-    @apply max-w-[734px] relative text-[74px] font-medium text-center mb-[20px] leading-[115%] mt-[180px] tracking-[-4px];
-    @apply max-sm:mt-[80px] max-sm:text-[30px] max-sm:leading-[115%] max-sm:tracking-[-0.9px] max-sm:px-[20px];
-    white-space: break-spaces;
-
-  }
-
-  > .desc {
-    @apply text-center mb-[60px] font-medium text-primary max-sm:mb-[30px];
-  }
-
-  > .btn-group {
-    @apply flex gap-[20px] items-center justify-center;
-    > button {
-      @apply w-[188px] h-[66px] text-[16px] font-medium p-0 flex items-center justify-center;
-    }
-  }
-
-  .mobile-images {
-    @apply mt-[60px];
-  }
-
-}
-
 @media not all and (min-width: 640px) {
   .product-showcase {
     transform: translate3d(0, 0, 0);

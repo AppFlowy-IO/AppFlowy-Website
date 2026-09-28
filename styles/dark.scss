@@ -182,94 +182,6 @@
       }
     }
   }
-  .download-page {
-    background: var(--color-night-blue);
-
-    .desc {
-      @apply text-gray-400;
-    }
-
-    .download-os {
-      .ellipse {
-        @apply opacity-[40%];
-      }
-
-      > img {
-        @apply max-sm:pl-[20px];
-      }
-    }
-
-    .download-mobile {
-      > .image {
-
-        .ellipse {
-          @apply opacity-[20%];
-        }
-      }
-
-      > .notes-tasks-projects {
-        @apply relative mx-0;
-        @apply max-sm:mb-[60px] max-sm:mx-0;
-
-        .ellipse {
-          @apply opacity-[50%];
-        }
-      }
-    }
-
-    .across {
-      @apply max-sm:bg-night-blue;
-      .across-download {
-        .across-download-item {
-          @apply bg-dark-card;
-          .bg {
-            @apply bg-[#8A5EB7];
-          }
-
-          .across-download-item-desc {
-
-            .download-extension-link {
-              @apply text-lavender-purple;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .download-mobile {
-    background: var(--color-night-blue);
-  }
-
-  .download-progress-page {
-    background: var(--color-night-blue);
-    color: #F7F8F8;
-
-    .panel {
-      &.panel-1 {
-        .image {
-          .ellipse {
-            @apply bg-[#8A5EB733];
-          }
-        }
-      }
-
-      &.panel-2 {
-        .image {
-          .ellipse {
-            @apply bg-[#8A5EB733];
-          }
-        }
-      }
-
-      &.panel-3 {
-        .title {
-          @apply text-[#F7F8F8];
-        }
-      }
-    }
-  }
-
   .support-ai {
     background: linear-gradient(197deg, rgba(138, 94, 183, 0.54) -100.62%, #000212 79.17%);
 
@@ -337,12 +249,6 @@
     }
   }
 
-  .mobile {
-    @apply bg-night-blue;
-    > .bg {
-      @apply bg-lavender-purple opacity-20 blur-[250px];
-    }
-  }
   .home-page {
     background: var(--color-night-blue);
   }
