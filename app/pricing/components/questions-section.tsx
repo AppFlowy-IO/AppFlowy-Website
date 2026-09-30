@@ -22,10 +22,10 @@ const cardData = [
   {
     id: 2,
     image: affiliateImage,
-    title: 'Affiliate programs',
-    action: 'Coming soon',
-    link: null,
-    alt: 'Affiliate'
+    title: 'Partner program',
+    action: 'Learn more',
+    link: 'https://appflowy.com/docs/appflowy-partner-program',
+    alt: 'Partner program'
   },
   {
     id: 3,

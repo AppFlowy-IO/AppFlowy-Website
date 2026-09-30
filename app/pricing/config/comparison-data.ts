@@ -1,6 +1,7 @@
 export interface ComparisonPlan {
   id: string;
   name: string;
+  description?: string;
   price: {
     amount: string;
     period: string;
@@ -8,7 +9,8 @@ export interface ComparisonPlan {
   billingInfo?: string;
   cta: {
     text: string;
-    variant: 'upgrade' | 'contact';
+    variant: 'upgrade' | 'contact' | 'link';
+    href?: string;
   };
 }
 

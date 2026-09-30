@@ -1,27 +1,30 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import * as Select from '@radix-ui/react-select';
-import { comparisonPlans, comparisonFeatureGroups, ComparisonPlan } from '../config/comparison-data';
+import type { ComparisonFeatureGroup, ComparisonPlan } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 import { usePricingState } from './pricing-state-context';
 
-export function MobileComparisonTable() {
-  const [selectedPlan, setSelectedPlan] = useState<ComparisonPlan>(comparisonPlans[0]);
+interface MobileComparisonTableProps {
+  plans: ComparisonPlan[];
+  featureGroups: ComparisonFeatureGroup[];
+}
+
+export function MobileComparisonTable({ plans, featureGroups }: MobileComparisonTableProps) {
+  const [selectedPlanId, setSelectedPlanId] = useState(plans[0].id);
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
   const [openTooltips, setOpenTooltips] = useState<Set<string>>(new Set());
+  const selectedPlan = plans.find((plan) => plan.id === selectedPlanId) ?? plans[0];
 
   const handlePlanChange = (planId: string) => {
-    const plan = comparisonPlans.find((p) => p.id === planId);
-
-    if (plan) {
-      setSelectedPlan(plan);
-    }
+    setSelectedPlanId(planId);
   };
 
   const handleUpgradeClick = () => {
@@ -73,7 +76,7 @@ export function MobileComparisonTable() {
           <Select.Portal>
             <Select.Content className='z-50 min-w-[200px] rounded-lg border border-gray-200 bg-white shadow-lg'>
               <Select.Viewport className='p-1'>
-                {comparisonPlans.map((plan) => (
+                {plans.map((plan) => (
                   <Select.Item
                     key={plan.id}
                     value={plan.id}
@@ -141,7 +144,20 @@ export function MobileComparisonTable() {
             </div>
           )}
 
-          {selectedPlan.id !== 'free' && (
+          {selectedPlan.description && (
+            <p className='mb-4 text-sm leading-5 text-[#6F748C]' style={{ fontFamily: '"SF Pro Text"' }}>
+              {selectedPlan.description}
+            </p>
+          )}
+
+          {selectedPlan.cta.variant === 'link' && selectedPlan.cta.href ? (
+            <Link
+              href={selectedPlan.cta.href}
+              className='block w-full rounded-lg bg-[#9327FF] px-6 py-3 font-medium text-white transition-colors hover:bg-[#7A1FD9]'
+            >
+              {selectedPlan.cta.text}
+            </Link>
+          ) : selectedPlan.id !== 'free' ? (
             <button
               onClick={
                 selectedPlan.cta.variant === 'upgrade'
@@ -158,17 +174,20 @@ export function MobileComparisonTable() {
             >
               {selectedPlan.cta.text}
             </button>
-          )}
+          ) : null}
         </div>
       </div>
 
       {/* Features by Group */}
       <div className='space-y-6'>
-        {comparisonFeatureGroups.map((group) => (
+        {featureGroups.map((group) => (
           <div key={group.id} className='overflow-hidden rounded-lg border border-gray-200 bg-white'>
             {/* Group Title */}
             <div className='border-b border-gray-200 bg-gray-50 px-4 py-3'>
-              <h4 className='text-lg font-medium leading-[24px] text-[#21232A]' style={{ fontFamily: '"SF Pro Text"' }}>
+              <h4
+                className='break-words text-lg font-medium leading-[24px] text-[#21232A]'
+                style={{ fontFamily: '"SF Pro Text"' }}
+              >
                 {group.title}
               </h4>
             </div>
@@ -176,8 +195,8 @@ export function MobileComparisonTable() {
             {/* Features */}
             <div className='divide-y divide-gray-100'>
               {group.features.map((feature) => (
-                <div key={feature.id} className='flex items-center justify-between px-4 py-3'>
-                  <div className='flex flex-1 items-center'>
+                <div key={feature.id} className='flex items-start justify-between gap-4 px-4 py-3'>
+                  <div className='flex min-w-0 flex-1 items-center'>
                     <span
                       className='text-sm font-normal leading-5 text-[#21232A]'
                       style={{ fontFamily: '"SF Pro Text"' }}
@@ -220,15 +239,22 @@ export function MobileComparisonTable() {
                     )}
                   </div>
 
-                  <div className='ml-4 flex-shrink-0'>
+                  <div className='min-w-0 max-w-[55%] text-right'>
                     {typeof feature.support[selectedPlan.id] === 'string' ? (
-                      <span className='text-sm font-medium text-[#21232A]' style={{ fontFamily: '"SF Pro Text"' }}>
+                      <span
+                        className='block break-words text-right text-sm font-medium leading-5 text-[#21232A]'
+                        style={{ fontFamily: '"SF Pro Text"' }}
+                      >
                         {feature.support[selectedPlan.id]}
                       </span>
                     ) : feature.support[selectedPlan.id] === true ? (
-                      <SupportedIcon />
+                      <div className='flex justify-end'>
+                        <SupportedIcon />
+                      </div>
                     ) : (
-                      <NotSupportedIcon />
+                      <div className='flex justify-end pt-2'>
+                        <NotSupportedIcon />
+                      </div>
                     )}
                   </div>
                 </div>

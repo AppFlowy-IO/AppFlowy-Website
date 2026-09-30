@@ -5,7 +5,6 @@ import card2 from '/assets/images/pricing/card-2.svg';
 import card3 from '/assets/images/pricing/card-3.svg';
 import card4 from '/assets/images/pricing/card-4.svg';
 import ScrollIcons from '@/components/shared/scroll-icons';
-import { AiPricing } from './ai-pricing';
 
 const aiFeatures = [
   {
@@ -16,9 +15,10 @@ const aiFeatures = [
   },
   {
     id: 2,
-    title: 'Summarize contents, make it longer or shorter',
+    title: 'AI meeting notes',
+    description: 'automatically captured and enhanced',
     image: card2,
-    alt: 'Summarize contents'
+    alt: 'AI meeting notes automatically captured and enhanced'
   },
   {
     id: 3,
@@ -28,9 +28,10 @@ const aiFeatures = [
   },
   {
     id: 4,
-    title: 'Get instant answers to your questions',
+    title: 'AI search',
+    description: 'get answers with traceable sources',
     image: card4,
-    alt: 'Get instant answers'
+    alt: 'AI search with answers from traceable sources'
   }
 ];
 
@@ -63,15 +64,13 @@ export function AiPowerSection() {
                     />
                   </div>
                   <h4 className='mt-6 w-full px-6 text-center font-inter text-2xl font-medium leading-[120%] tracking-[-0.24px] text-[#101012]'>
-                    {feature.title}
+                    <span className='block'>{feature.title}</span>
+                    {feature.description && <span className='block'>{feature.description}</span>}
                   </h4>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* AI Pricing */}
-          <AiPricing />
         </div>
       </div>
       <div className={'w-full bg-white pt-[100px]'}>

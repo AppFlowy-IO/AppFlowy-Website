@@ -1,17 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { comparisonPlans, comparisonFeatureGroups } from '../config/comparison-data';
+import type { ComparisonFeatureGroup, ComparisonPlan } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 import { usePricingState } from './pricing-state-context';
 
-export function DesktopComparisonTable() {
+interface DesktopComparisonTableProps {
+  plans: ComparisonPlan[];
+  featureGroups: ComparisonFeatureGroup[];
+}
+
+export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparisonTableProps) {
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
+  const ctaWidthClassName = deploymentMode === 'cloud' ? 'mx-auto w-[calc(100%_-_16px)]' : 'w-full';
 
   const handleUpgradeClick = () => {
     setIsUpgradeDialogOpen(true);
@@ -25,7 +32,17 @@ export function DesktopComparisonTable() {
     <div className='w-full bg-white pt-6'>
       <div className='w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[170px]'>
         <div className='custom-scrollbar mx-auto w-full max-w-[1100px] overflow-x-auto'>
-          <table className='w-full min-w-[800px]'>
+          <table
+            className='w-full table-fixed'
+            style={{ minWidth: `${270 + plans.length * 148}px` }}
+          >
+            <colgroup>
+              <col style={{ width: '270px' }} />
+              {plans.map((plan) => (
+                <col key={plan.id} />
+              ))}
+            </colgroup>
+
             {/* Table Header - Plans */}
             <thead>
               <tr>
@@ -33,7 +50,7 @@ export function DesktopComparisonTable() {
                 <th className='p-4 text-left'></th>
 
                 {/* Plan columns */}
-                {comparisonPlans.map((plan) => (
+                {plans.map((plan) => (
                   <th key={plan.id} className='min-w-[148px] px-2 py-4 text-center'>
                     <div className='flex w-full flex-col items-center'>
                       {/* Plan Name */}
@@ -80,25 +97,43 @@ export function DesktopComparisonTable() {
                         {plan.billingInfo || 'placeholder'}
                       </div>
 
-                      {/* CTA Button */}
-                      <div className='mt-4 w-full'>
-                        <button
-                          onClick={
-                            plan.cta.variant === 'upgrade'
-                              ? handleUpgradeClick
-                              : plan.cta.variant === 'contact'
-                              ? handleContactClick
-                              : undefined
-                          }
-                          className={`flex w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] font-normal transition-colors ${
-                            plan.cta.variant === 'contact'
-                              ? 'border border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white'
-                              : 'bg-[#9327FF] text-white hover:bg-[#7A1FD9]'
-                          } ${plan.id === 'free' ? 'invisible' : ''}`}
-                          style={{ padding: '6px 12px' }}
+                      {plan.description && (
+                        <div
+                          className='mt-2 min-h-10 text-center text-xs font-normal leading-[18px] text-[#6F748C]'
+                          style={{ fontFamily: '"SF Pro Text"' }}
                         >
-                          {plan.cta.text}
-                        </button>
+                          {plan.description}
+                        </div>
+                      )}
+
+                      {/* CTA Button */}
+                      <div className={`mt-4 ${ctaWidthClassName}`}>
+                        {plan.cta.variant === 'link' && plan.cta.href ? (
+                          <Link
+                            href={plan.cta.href}
+                            className='flex w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] bg-[#9327FF] px-3 py-1.5 font-normal text-white transition-colors hover:bg-[#7A1FD9]'
+                          >
+                            {plan.cta.text}
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={
+                              plan.cta.variant === 'upgrade'
+                                ? handleUpgradeClick
+                                : plan.cta.variant === 'contact'
+                                ? handleContactClick
+                                : undefined
+                            }
+                            className={`flex w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] font-normal transition-colors ${
+                              plan.cta.variant === 'contact'
+                                ? 'border border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white'
+                                : 'bg-[#9327FF] text-white hover:bg-[#7A1FD9]'
+                            } ${plan.id === 'free' ? 'invisible' : ''}`}
+                            style={{ padding: '6px 12px' }}
+                          >
+                            {plan.cta.text}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </th>
@@ -108,7 +143,7 @@ export function DesktopComparisonTable() {
 
             {/* Table Body - Feature Groups */}
             <tbody>
-              {comparisonFeatureGroups.map((group) => (
+              {featureGroups.map((group) => (
                 <React.Fragment key={group.id}>
                   {/* Group Title Row */}
                   <tr>
@@ -121,7 +156,7 @@ export function DesktopComparisonTable() {
                       </h3>
                     </td>
                     {/* Empty cells for plan columns */}
-                    {comparisonPlans.map((plan) => (
+                    {plans.map((plan) => (
                       <td key={plan.id} className='px-2 pb-2 pt-6'></td>
                     ))}
                   </tr>
@@ -161,7 +196,7 @@ export function DesktopComparisonTable() {
                         </td>
 
                         {/* Support Status for each plan */}
-                        {comparisonPlans.map((plan) => (
+                        {plans.map((plan) => (
                           <td key={plan.id} className='px-2 py-2 text-center'>
                             <div className='flex h-full items-center justify-center self-stretch'>
                               {typeof feature.support[plan.id] === 'string' ? (
