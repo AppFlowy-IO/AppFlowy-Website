@@ -9,6 +9,7 @@ function DropdownBtn({
   extensionOptions,
   onClick,
   disabled,
+  popoverClassName,
 }: {
   title: React.ReactNode;
   extension?: string;
@@ -17,6 +18,7 @@ function DropdownBtn({
     value: string;
   }[];
   disabled?: boolean;
+  popoverClassName?: string;
   onClick?: (option: string) => void;
 }) {
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
@@ -74,7 +76,7 @@ function DropdownBtn({
         }}
         slotProps={{
           paper: {
-            className: `dropdown-btn__popover-paper`,
+            className: `dropdown-btn__popover-paper ${popoverClassName ?? ''}`,
             style: {
               width: ref.current?.clientWidth,
             },
