@@ -31,6 +31,7 @@ jobs:
         run: |
           npm install -g pnpm@${{ env.PNPM_VERSION }}
           pnpm install
+          pnpm cypress install
       - name: Verify SEO publishing assets
         run: |
           pnpm run check-blog-taxonomy
