@@ -1,0 +1,19 @@
+name: Production SEO health check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * *'
+
+jobs:
+  check-production-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.0'
+      - name: Check production indexing and canonicals
+        run: node scripts/check-deployed-seo.js

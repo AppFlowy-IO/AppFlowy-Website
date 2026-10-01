@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function TemplateItem({ template, category }: { template: TemplateSummary; category: TemplateCategory }) {
+  const templateHref = `/templates/${slugify(category.name)}/${template.view_id}`;
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
     const origin = url.origin;
@@ -30,13 +31,14 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
   return (
     <>
       <Link
-        href={`/templates/${slugify(category.name)}/${template.view_id}`}
+        aria-label={`View ${template.name} template`}
+        href={templateHref}
         className={'template-preview relative overflow-hidden'}
         style={{
           backgroundColor: category?.bg_color,
         }}
       >
-        <iframe loading={'lazy'} src={iframeUrl} />
+        <iframe loading='lazy' src={iframeUrl} title={`${template.name} template preview`} />
 
         <div className={'iframe-shadow'} />
       </Link>
@@ -44,7 +46,9 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
         <div className={'template-creator'}>
           <CreatorAvatar src={template.creator.avatar_url} name={template.creator.name} />
           <div className={'right-info'}>
-            <div className={'template-name'}>{template.name}</div>
+            <div className={'template-name'}>
+              <Link href={templateHref}>{template.name}</Link>
+            </div>
             <div className={'creator-name'}>by {template.creator.name}</div>
           </div>
         </div>

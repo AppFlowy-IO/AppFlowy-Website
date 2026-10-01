@@ -255,7 +255,10 @@ function generateListSchema() {
     })),
   };
 
-  const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'AppFlowy vs Confluence', path: '/compare/appflowy-vs-confluence' }]);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'AppFlowy alternatives', path: '/blog/alternatives' },
+    { name: 'AppFlowy vs Confluence', path: '/compare/appflowy-vs-confluence' },
+  ]);
 
   return {
     "@context": "https://schema.org",

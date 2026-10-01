@@ -7,6 +7,8 @@ import { toc } from 'mdast-util-toc';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
+import { normalizeBlogCategories, normalizeBlogTags } from '@/lib/blog-taxonomy';
+import { BlogTopicSlug, getTopicsForPost } from '@/lib/blog-topics';
 
 const processor = unified().use(remarkParse);
 
@@ -14,13 +16,16 @@ export interface PostData {
   slug: string;
   pinned: number;
   title: string;
+  seo_title?: string;
   description: string;
+  seo_description?: string;
   author: string;
   author_title: string;
   author_url: string;
   author_image_url: string;
   categories: string[];
   tags: string[];
+  topics: BlogTopicSlug[];
   date: string;
   content: string;
   video_url?: string;
@@ -41,7 +46,7 @@ export interface PostData {
 }
 
 // Metadata-only type (excludes heavy fields)
-export type PostMetadata = Omit<PostData, 'content' | 'toc' | 'word_count' | 'reading_time'>;
+export type PostMetadata = Omit<PostData, 'content' | 'toc' | 'word_count'>;
 
 const postsDirectory = path.join(process.cwd(), '_blog');
 
@@ -59,6 +64,19 @@ const getSlugFromFilename = (fileName: string) => {
 };
 
 const isMdxFile = (fileName: string) => fileName.endsWith('.mdx');
+
+/**
+ * gray-matter parses unquoted YAML dates as Date objects. Normalize them before
+ * returning post data so Server Components only pass the string shape promised
+ * by PostData to Client Components.
+ */
+function normalizePostDate(value: unknown): string {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return typeof value === 'string' ? value : '';
+}
 
 function ensureCacheFresh(): string[] {
   const fileNames = fs.readdirSync(postsDirectory).filter(isMdxFile).sort();
@@ -130,7 +148,8 @@ export function getAllPostsMetadata(): PostMetadata[] {
       const slug = getSlugFromFilename(fileName);
 
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents); // Only parse frontmatter, skip content!
+      const { data, content } = matter(fileContents); // Skip AST and TOC parsing.
+      const date = normalizePostDate(data.date);
 
       return {
         slug,
@@ -138,18 +157,22 @@ export function getAllPostsMetadata(): PostMetadata[] {
         archived: data.archived || false,
         pinned: data.pinned || 0,
         title: data.title,
+        seo_title: data.seo_title,
         description: data.description,
+        seo_description: data.seo_description,
         author: data.author,
         author_title: data.author_title,
         author_url: data.author_url,
         author_image_url: data.author_image_url,
-        categories: data.categories || [],
-        tags: data.tags || [],
-        date: data.date,
+        categories: normalizeBlogCategories(data.categories),
+        tags: normalizeBlogTags(data.tags),
+        topics: Array.isArray(data.topics) ? data.topics : [],
+        date,
         video_url: data.video_url,
         og_image: data.image,
         thumb_image: data.thumb,
-        last_modified: data.last_modified || data.date,
+        reading_time: data.reading_time ?? generateReadingTime(content),
+        last_modified: normalizePostDate(data.last_modified) || date,
         featured: data.featured || false,
         comments: data.comments !== undefined ? data.comments : true,
         canonical_url: data.canonical_url,
@@ -195,7 +218,7 @@ export async function getPostData(slug: string): Promise<PostData> {
 export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
   const relatedPosts = post.related_posts || [];
 
-  const posts = await Promise.all(
+  const explicitPosts = await Promise.all(
     relatedPosts.map(async (slug) => {
       try {
         return await getPostData(slug);
@@ -207,7 +230,44 @@ export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
     })
   );
 
-  return posts.filter((item) => item !== null && !item.unpublished && !item.archived) as PostData[];
+  const publishedExplicitPosts = explicitPosts.filter(
+    (item) => item !== null && !item.unpublished && !item.archived
+  ) as PostData[];
+
+  // Preserve editorial choices. When a post has fewer than three explicit
+  // recommendations, fill the remaining positions with the strongest topical
+  // matches so every guide participates in the site's internal-link graph.
+  if (publishedExplicitPosts.length >= 3) return publishedExplicitPosts;
+
+  const selectedSlugs = new Set([post.slug, ...publishedExplicitPosts.map((item) => item.slug)]);
+  const postTopicSlugs = new Set(getTopicsForPost(post).map((topic) => topic.slug));
+  const postCategories = new Set(post.categories);
+  const postTags = new Set(post.tags);
+  const broadCategories = new Set(['Using AppFlowy', 'Open source', 'Product']);
+
+  const candidates = getAllPostsMetadata()
+    .filter((candidate) => !selectedSlugs.has(candidate.slug))
+    .map((candidate) => {
+      const sharedTopics = getTopicsForPost(candidate).filter((topic) => postTopicSlugs.has(topic.slug)).length;
+      const sharedCategoryScore = candidate.categories.reduce((score, category) => {
+        if (!postCategories.has(category)) return score;
+
+        return score + (broadCategories.has(category) ? 1 : 3);
+      }, 0);
+      const sharedTags = candidate.tags.filter((tag) => postTags.has(tag)).length;
+
+      return {
+        candidate,
+        score: sharedTopics * 8 + sharedCategoryScore + sharedTags,
+      };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score || new Date(b.candidate.date).getTime() - new Date(a.candidate.date).getTime())
+    .slice(0, 3 - publishedExplicitPosts.length);
+
+  const automaticPosts = await Promise.all(candidates.map(({ candidate }) => getPostData(candidate.slug)));
+
+  return [...publishedExplicitPosts, ...automaticPosts];
 }
 
 export function getPostByFilename(fileName: string): PostData {
@@ -220,6 +280,7 @@ export function getPostByFilename(fileName: string): PostData {
 
   const { data, content } = matter(fileContents);
   const tree = processor.parse(content);
+  const date = normalizePostDate(data.date);
 
   const tocResult = toc(tree, {
     maxDepth: data.toc_depth ? data.toc_depth : 2,
@@ -231,14 +292,17 @@ export function getPostByFilename(fileName: string): PostData {
     archived: data.archived || false,
     pinned: data.pinned || 0,
     title: data.title,
+    seo_title: data.seo_title,
     description: data.description,
+    seo_description: data.seo_description,
     author: data.author,
     author_title: data.author_title,
     author_url: data.author_url,
     author_image_url: data.author_image_url,
-    categories: data.categories || [],
-    tags: data.tags || [],
-    date: data.date,
+    categories: normalizeBlogCategories(data.categories),
+    tags: normalizeBlogTags(data.tags),
+    topics: Array.isArray(data.topics) ? data.topics : [],
+    date,
     content,
     word_count: content.split(/\s+/gu).length,
 
@@ -247,7 +311,7 @@ export function getPostByFilename(fileName: string): PostData {
     og_image: data.image,
     thumb_image: data.thumb,
     reading_time: data.reading_time ?? generateReadingTime(content),
-    last_modified: data.last_modified || data.date,
+    last_modified: normalizePostDate(data.last_modified) || date,
     featured: data.featured || false,
 
     toc: tocResult

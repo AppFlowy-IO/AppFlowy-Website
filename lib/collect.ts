@@ -20,6 +20,7 @@ export enum EventName {
   downloadAndroidModalOkBtn = 'download_android_modal_ok_btn',
   downloadAndroidModalCancelBtn = 'download_android_modal_cancel_btn',
   downloadBrowserBtn = 'download_browser_btn',
+  templateUseInAppFlowyBtn = 'template_use_in_appflowy_btn',
 }
 
 export interface DownloadParams extends BaseParams {
@@ -63,6 +64,15 @@ export function collectEvent(
   eventName: EventName.switchMode | EventName.themeView,
   params: {
     mode: 'light' | 'dark';
+  }
+): void;
+export function collectEvent(
+  eventName: EventName.templateUseInAppFlowyBtn,
+  params: {
+    placement: 'hero' | 'content' | 'footer';
+    template_id: string;
+    template_name: string;
+    type: 'click';
   }
 ): void;
 export function collectEvent(eventName: EventName.download, params: DownloadParams): void;

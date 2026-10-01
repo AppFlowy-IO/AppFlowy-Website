@@ -13,6 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: `${site_url}/download`,
     },
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 

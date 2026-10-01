@@ -15,16 +15,30 @@ export const viewport: Viewport = {
 
 const metaTitle = 'Self-Hosted AI Workspace for Enterprise Teams | AppFlowy';
 const metaDescription =
-  'AppFlowy is the AI collaborative workspace where you achieve more without losing control of your data';
-const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+  'AppFlowy is a self-hosted AI workspace for enterprise teams to manage projects, wikis, and data with private AI, flexible databases, and full data control.';
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL || 'https://appflowy.com';
+const isNonProduction =
+  process.env.ENVIRONMENT === 'test' ||
+  process.env.ENVIRONMENT === 'development' ||
+  process.env.VERCEL_ENV === 'preview' ||
+  process.env.NODE_ENV !== 'production';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site_url || 'http://localhost:3000'),
+  metadataBase: new URL(site_url),
   title: metaTitle,
   description: metaDescription,
   alternates: {
     canonical: site_url,
   },
+  robots: isNonProduction
+    ? {
+        index: false,
+        follow: false,
+      }
+    : {
+        index: true,
+        follow: true,
+      },
   icons: [
     {
       rel: 'icon',
@@ -47,6 +61,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: metaTitle,
+    description: metaDescription,
+    images: [OpenGraph.src],
+  },
 };
 
 function generateListSchema() {
@@ -57,7 +77,7 @@ function generateListSchema() {
     alternateName: ['AppFlowy IO', 'AppFlowy.io'],
     description: metaDescription,
     url: site_url,
-    logo: `${site_url}/images/og-image.png`,
+    logo: `${site_url}/appflowy-rss-logo.png`,
     image: `${site_url}/images/og-image.png`,
     foundingDate: '2021',
     foundingLocation: {
@@ -76,7 +96,7 @@ function generateListSchema() {
       'https://discord.gg/9Q2xaN37tV',
       'https://www.youtube.com/@appflowyhq',
       'https://www.linkedin.com/company/appflowy',
-      'https://www.reddit.com/r/AppFlowy'
+      'https://www.reddit.com/r/AppFlowy',
     ],
   };
 
@@ -123,14 +143,6 @@ function generateListSchema() {
     name: 'AppFlowy',
     description: metaDescription,
     url: site_url,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${site_url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 
   return {
@@ -144,13 +156,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gitData = await getGitData();
 
   return (
-    <html lang="en">
-      <head>
-        {process.env.ENVIRONMENT !== 'production' && <meta
-          name="robots"
-          content="noindex,nofollow"
-        />}
-      </head>
+    <html lang='en'>
       <body id={'body'}>
         {/*
           Rendered inside <body>, not <head>. React hydrates a non-hoistable element
@@ -159,15 +165,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           root fails to hydrate. JSON-LD is valid anywhere in the document, and every
           other page in the app renders SeoData from the page body for the same reason.
         */}
-        <SeoData
-          id="schema-org"
-          data={generateListSchema()}
-        />
+        <SeoData id='schema-org' data={generateListSchema()} />
         <ChunkLoadErrorBoundary>
-          <App
-            ua={ua}
-            gitData={gitData}
-          >
+          <App ua={ua} gitData={gitData}>
             {children}
           </App>
         </ChunkLoadErrorBoundary>

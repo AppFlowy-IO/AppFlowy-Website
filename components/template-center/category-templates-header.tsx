@@ -1,6 +1,7 @@
 'use client';
 
 import { useTemplatesContext } from '@/components/template-center/templates-context';
+import Breadcrumbs from '@/components/shared/breadcrumbs';
 import { TemplateCategory } from '@/lib/interface';
 import React, { useMemo } from 'react';
 
@@ -23,6 +24,16 @@ function CategoryTemplatesHeader({ category }: { category?: TemplateCategory }) 
 
   return (
     <div className={'header'}>
+      {category ? (
+        <Breadcrumbs
+          className='mb-8'
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Templates', href: '/templates' },
+            { label: `${category.name} templates` },
+          ]}
+        />
+      ) : null}
       <h1 className={'title'}>{title}</h1>
       <div className={'description'}>{desc}</div>
     </div>
