@@ -18,7 +18,7 @@ $font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
 }
 
 .version-divider {
-  @apply my-[60px] h-px w-full bg-primary-10;
+  @apply my-[60px] h-px w-full bg-[#E6E6E6];
 }
 
 .version-panel {
@@ -27,8 +27,8 @@ $font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
 
   .version-meta {
     @apply flex flex-shrink-0 flex-col;
-    @apply max-sm:w-full;
     width: clamp(260px, 28vw, 420px);
+    @apply max-sm:w-full;
 
     .version-title {
       @apply mb-[16px] font-semibold tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
