@@ -27,11 +27,11 @@ function LinuxBtnGroup({ title }: { title: string }) {
         value: 'tar.gz',
       },
       {
-        label: 'Flatpak',
+        label: '.Flatpak',
         value: 'Flatpak',
       },
       {
-        label: 'Snap',
+        label: '.Snap',
         value: 'Snap',
       },
     ];
@@ -43,6 +43,7 @@ function LinuxBtnGroup({ title }: { title: string }) {
         title={title}
         extension={'AppImage'}
         extensionOptions={linuxOptions}
+        popoverClassName={'linux-download-popover'}
         onClick={(extension: string) => {
           if (extension === 'AppImage') downloadLinux86AppImage();
           if (extension === 'deb') downloadLinux86Deb();
