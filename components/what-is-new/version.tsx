@@ -35,7 +35,7 @@ function Version({ version }: { version: IVersion }) {
         <div className={'version-tags'}>
           <span className={'tag tag-version'}>v{version.version}</span>
           {version.content.map((section) => (
-            <span key={section.type} className={'tag tag-type'}>
+            <span key={section.type} className={`tag tag-type tag-${section.type}`}>
               {tagLabels[section.type] || section.name}
             </span>
           ))}
