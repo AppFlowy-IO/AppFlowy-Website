@@ -1,4 +1,6 @@
 import CategoryTemplatesHeader from '@/components/template-center/category-templates-header';
+import CategoryGuides from '@/components/template-center/category-guides';
+import SeoData from '@/components/layout/seo-data';
 import Sidebar from '@/components/template-center/sidebar';
 import TemplateList from '@/components/template-center/template-list';
 import { TemplatesProvider } from '@/components/template-center/templates-context';
@@ -11,8 +13,9 @@ import Community from '@/components/template-center/community';
 import '@/styles/template.scss';
 import { Metadata } from 'next';
 import OpenGraphImage from '../../../public/images/og-image.png';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
-const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL || 'https://appflowy.com';
 
 interface Props {
   params: { category_name: string };
@@ -82,6 +85,24 @@ async function Page({ params }: { params: { category_name: string } }) {
 
   return (
     <div className={'template-center'}>
+      <SeoData
+        id={`template-category-${name}-ld-json`}
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'CollectionPage',
+              name: `${data.category.name} templates`,
+              description: data.category.description,
+              url: `${site_url}/templates/${slugify(data.category.name)}`,
+            },
+            generateBreadcrumbSchema([
+              { name: 'Templates', path: '/templates' },
+              { name: `${data.category.name} templates`, path: `/templates/${slugify(data.category.name)}` },
+            ]),
+          ],
+        }}
+      />
       <div className={'main'}>
         <TemplatesProvider
           selectedCategoryId={data.category.id}
@@ -93,6 +114,7 @@ async function Page({ params }: { params: { category_name: string } }) {
             <Sidebar />
             <TemplateList />
           </div>
+          <CategoryGuides categorySlugs={[name]} />
         </TemplatesProvider>
       </div>
       <Community />

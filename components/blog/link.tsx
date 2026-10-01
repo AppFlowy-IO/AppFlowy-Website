@@ -1,26 +1,43 @@
-'use client';
 import { cn } from '@/lib/utils';
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import NextLink from 'next/link';
+import React, { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 
-function Link ({
-  children,
-  ...props
-}: PropsWithChildren<HTMLAttributes<HTMLAnchorElement>> & {
-  children: React.ReactNode;
-}) {
+type LinkProps = PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>;
+
+function Link({ children, className, href, rel, target, ...props }: LinkProps) {
+  const linkClassName = cn(
+    'decoration-muted cursor-pointer overflow-hidden break-after-all break-words text-black underline opacity-70 hover:opacity-100',
+    className
+  );
+
+  if (!href) {
+    return (
+      <a className={linkClassName} {...props}>
+        {children}
+      </a>
+    );
+  }
+
+  if (href.startsWith('/')) {
+    return (
+      <NextLink className={linkClassName} href={href} {...props}>
+        {children}
+      </NextLink>
+    );
+  }
+
+  const opensNewTab = /^https?:\/\//i.test(href);
+
   return (
-    <span
-      onClick={() => {
-        if ('href' in props) {
-          const href = props.href as string;
-
-          window.open(href, '_blank');
-        }
-      }}
-      className={cn('decoration-muted overflow-hidden break-after-all break-words cursor-pointer text-black underline opacity-70 hover:opacity-100')}
+    <a
+      className={linkClassName}
+      href={href}
+      rel={rel || (opensNewTab ? 'noopener noreferrer' : undefined)}
+      target={target || (opensNewTab ? '_blank' : undefined)}
+      {...props}
     >
       {children}
-    </span>
+    </a>
   );
 }
 
