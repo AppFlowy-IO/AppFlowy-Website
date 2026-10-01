@@ -1,7 +1,7 @@
 .vs-notion-page {
   @apply min-h-screen w-screen bg-white;
 
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-sans);
 
   .af-container {
     @apply flex w-full justify-center;
