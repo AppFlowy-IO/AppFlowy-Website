@@ -111,7 +111,7 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                         {plan.cta.variant === 'link' && plan.cta.href ? (
                           <Link
                             href={plan.cta.href}
-                            className='flex w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] bg-[#9327FF] px-3 py-1.5 font-normal text-white transition-colors hover:bg-[#7A1FD9]'
+                            className='flex h-11 w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] bg-[#9327FF] px-3 py-0 font-normal text-white transition-colors hover:bg-[#7A1FD9]'
                           >
                             {plan.cta.text}
                           </Link>
@@ -124,7 +124,7 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                                 ? handleContactClick
                                 : undefined
                             }
-                            className={`flex w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] font-normal transition-colors ${
+                            className={`flex h-11 w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] font-normal transition-colors ${
                               plan.cta.variant === 'contact'
                                 ? 'border border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white'
                                 : 'bg-[#9327FF] text-white hover:bg-[#7A1FD9]'
