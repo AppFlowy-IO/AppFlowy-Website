@@ -195,6 +195,8 @@ function MobileFeatureCard({ tab }: { tab: Tab }) {
                 width={tab.image.width}
                 height={tab.image.height}
                 alt={`${tab.label} illustration`}
+                loading="lazy"
+                decoding="async"
                 style={{ scale: tab.mobileScale ? tab.mobileScale : 1.05, ...mobileIllustrationFadeStyle }}
             />
         </div>
