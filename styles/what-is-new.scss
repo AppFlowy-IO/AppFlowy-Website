@@ -18,7 +18,7 @@ $font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
 }
 
 .version-divider {
-  @apply my-[60px] h-px w-full bg-primary-10;
+  @apply my-[60px] h-px w-full bg-[#E6E6E6];
 }
 
 .version-panel {
@@ -27,8 +27,8 @@ $font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
 
   .version-meta {
     @apply flex flex-shrink-0 flex-col;
-    @apply max-sm:w-full;
     width: clamp(260px, 28vw, 420px);
+    @apply max-sm:w-full;
 
     .version-title {
       @apply mb-[16px] font-semibold tracking-[-0.6px] text-text-primary transition-colors hover:text-primary;
@@ -47,16 +47,33 @@ $font-fluid-body: clamp(14px, 13.3px + 0.19vw, 16px);
 
       .tag {
         @apply inline-flex items-center rounded-[8px] px-[12px] py-[4px] font-medium;
-        font-size: $font-fluid-body;
+        font-size: 12px;
         line-height: 1.5;
       }
 
       .tag-version {
-        @apply bg-primary-10 text-primary;
+        background-color: rgba(133, 76, 255, 0.1);
+        color: #854cff;
       }
 
       .tag-type {
-        @apply bg-light-blue-gray text-lake-blue;
+        background-color: rgba(58, 124, 227, 0.1);
+        color: #3a7ce3;
+      }
+
+      .tag-new-features {
+        background-color: rgba(204, 78, 162, 0.1);
+        color: #cc4ea2;
+      }
+
+      .tag-improvements {
+        background-color: rgba(58, 124, 227, 0.1);
+        color: #3a7ce3;
+      }
+
+      .tag-bug-fixes {
+        background-color: rgba(81, 167, 138, 0.1);
+        color: #51a78a;
       }
     }
   }
