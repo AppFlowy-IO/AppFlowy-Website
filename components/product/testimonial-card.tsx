@@ -185,9 +185,17 @@ export function TestimonialSection() {
         </div>
 
         <div className='hidden w-full flex-col gap-6 max-sm:flex'>
+          {/*
+            Deliberately no `scroll-smooth`. A mandatory snap container with a
+            smooth scroll-behavior makes Chrome run an animated snap as the cards
+            settle, and a scroll finalises LCP — so the snap lands before any LCP
+            candidate is reported and the page emits none at all. PageSpeed then
+            fails the whole mobile run with NO_LCP. The arrow buttons still
+            animate: scrollByCard passes `behavior: 'smooth'` explicitly.
+          */}
           <div
             ref={carouselTrackRef}
-            className='flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+            className='flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
             aria-label='Testimonial cards'
           >
             {sectionTestimonials.map((testimonial, index) => (

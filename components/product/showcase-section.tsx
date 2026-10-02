@@ -160,12 +160,21 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                 {previousTab ? <TitleBlock tab={previousTab} className="title--leave" hidden /> : null}
             </div>
             <div className="relative z-[1] flex-1 w-full min-h-0 flex items-end justify-center overflow-visible max-[760px]:mt-4">
+                {/*
+                    `loading="lazy"` is what keeps this out of the document's preload
+                    list: React preloads every <img> it renders on the server unless the
+                    tag opts out, so an eager illustration here lands in <head> ahead of
+                    the hero and competes with it for bandwidth. This preview is below
+                    the fold at every breakpoint, and hidden outright under 760px.
+                */}
                 <img
                     className={`${illustrationBaseClass} ${illustrationSizeClass(activeTab.id)} ${previousTab ? "feature-illustration--enter" : ""}`}
                     src={activeTab.image.src}
                     width={activeTab.image.width}
                     height={activeTab.image.height}
                     alt={`${activeTab.label} illustration`}
+                    loading="lazy"
+                    decoding="async"
                     style={illustrationStyle(activeTab.image, illustrationFadeStyle)}
                 />
                 {previousTab ? (

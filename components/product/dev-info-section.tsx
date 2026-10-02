@@ -61,12 +61,17 @@ type Panel = {
 
 /**
  * Panel artwork. Both the desktop grid and the mobile carousel stay mounted at every breakpoint
- * (the inactive one is only `display: none`), and browsers fetch an `<img src>` even when it is
- * hidden. So a panel with a mobile-specific crop renders a `<picture>`: the browser resolves the
- * media query itself and downloads exactly one file per viewport. The 500px source breakpoint is
- * independent of the 900px layout breakpoint (grid vs. carousel) — the mobile crop only kicks in
- * below 500px, even while the carousel layout is already active. Images are served unoptimized
- * (`images.unoptimized` in next.config), so dropping `next/image` here costs nothing.
+ * (the inactive one is only `display: none`). A panel with a mobile-specific crop renders a
+ * `<picture>`: the browser resolves the media query itself and downloads exactly one file per
+ * viewport. The 500px source breakpoint is independent of the 900px layout breakpoint (grid vs.
+ * carousel) — the mobile crop only kicks in below 500px, even while the carousel layout is
+ * already active. Images are served unoptimized (`images.unoptimized` in next.config), so
+ * dropping `next/image` here costs nothing.
+ *
+ * Every panel loads lazily. React preloads each <img> it renders on the server unless the tag
+ * opts out, so loading these eagerly put four below-the-fold illustrations into <head> ahead of
+ * the hero — on a phone they competed with the LCP image for the whole first second. Lazy also
+ * means a `display: none` panel fetches nothing until it is actually shown.
  */
 function PanelImage({ panel, sizes }: { panel: Panel; sizes: string }) {
   if (panel.mobileImage) {
@@ -74,7 +79,8 @@ function PanelImage({ panel, sizes }: { panel: Panel; sizes: string }) {
       <picture>
         <source media='(min-width: 500px)' srcSet={panel.image.src} />
         <img
-          loading={'eager'}
+          loading={'lazy'}
+          decoding={'async'}
           className='absolute inset-0 h-full w-full object-cover'
           src={panel.mobileImage.src}
           alt={panel.title1}
@@ -85,7 +91,7 @@ function PanelImage({ panel, sizes }: { panel: Panel; sizes: string }) {
 
   return (
     <Image
-      loading={'eager'}
+      loading={'lazy'}
       fill
       sizes={sizes}
       className='object-cover'
