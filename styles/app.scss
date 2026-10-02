@@ -1,7 +1,5 @@
-@import 'font.scss';
-
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-sans);
 }
 
 .appflowy-app {
@@ -609,7 +607,7 @@ body {
 }
 
 .MuiTab-root {
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--font-family-sans) !important;
 }
 
 .gradient-text {

@@ -1,7 +1,7 @@
 .product-page {
   @apply min-h-screen w-screen bg-white;
 
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-sans);
 
   .af-container {
     @apply flex w-full justify-center;
@@ -89,18 +89,6 @@
     &__mobile {
       @apply hidden w-full flex-col gap-6;
       @apply max-sm:flex;
-    }
-
-    &__mobile-track {
-      @apply flex w-full gap-4 overflow-x-auto pb-2 pt-2;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
 
     &__mobile-controls {

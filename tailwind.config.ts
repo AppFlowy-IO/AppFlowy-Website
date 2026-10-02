@@ -8,8 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
       },
       fontSize: {
         h1: ['56px', { lineHeight: '68px' }],

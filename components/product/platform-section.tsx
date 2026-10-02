@@ -217,9 +217,16 @@ export default function PlatformSection() {
         </div>
 
         <div className="flex flex-col gap-5">
+          {/*
+            Deliberately no `scroll-smooth` — same reason as the testimonial
+            carousel: a mandatory snap container with a smooth scroll-behavior
+            animates a snap as the cards settle, and that scroll finalises LCP
+            before a candidate is reported. scrollByCard passes
+            `behavior: 'smooth'` explicitly, so the arrows still glide.
+          */}
           <div
             ref={trackRef}
-            className="flex snap-x snap-mandatory scroll-smooth gap-7 overflow-x-auto py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-7 overflow-x-auto py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="Platform cards"
           >
             {loopCards.map((card, index) => (
