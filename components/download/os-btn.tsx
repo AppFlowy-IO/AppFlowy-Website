@@ -49,7 +49,7 @@ function DownloadOsBtn() {
             e.preventDefault();
             scrollToAllPlatforms();
           }}
-          className='text-base text-text-tertiary hover:text-text-primary transition-colors duration-[280ms] flex items-center justify-center gap-2'>
+          className='text-base text-text-tertiary hover:text-text-primary transition-colors duration-300 flex items-center justify-center gap-2'>
           View all platforms
         </a>
       </div>
