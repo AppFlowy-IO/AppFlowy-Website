@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Cursor from './cursor';
 import { IllustrationProps } from './types';
+import { useImagesReady } from './use-images-ready';
 
 // Footprint of the "Refine AI meeting..." card inside the base image,
 // expressed as a percentage of the frame so it holds at any render size.
@@ -113,6 +114,11 @@ const SMALL_CARD_TIMING = keyframeTiming([
 ]);
 
 function ProjectTrackingIllu({ className, priority = false }: IllustrationProps) {
+  // Nothing plays until the base and both card images have painted — see
+  // useImagesReady. The base itself stays visible throughout (it's the LCP
+  // image); only the overlays wait.
+  const { ready, settle } = useImagesReady(3);
+
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1392]'}>
@@ -121,11 +127,13 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
           // Slide only, no fade: an opacity-0 start would hide the base image
           // from LCP until the entrance finished.
           initial={{ y: 24 }}
-          animate={{ y: 0 }}
+          animate={ready ? { y: 0 } : undefined}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <Image
             src={ProjectTrackerBase}
+            onLoad={settle}
+            onError={settle}
             alt={'Project tracking'}
             fill
             priority={priority}
@@ -147,17 +155,22 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
               top: `${CARD_SLOT.top}%`,
               width: `${CARD_SLOT.width}%`,
               height: `${CARD_SLOT.height}%`,
+              // Hidden, not faded: the base already shows these cards, so they
+              // just switch on once it has painted beneath them.
+              visibility: ready ? 'visible' : 'hidden',
             }}
             initial={{ scale: 1, rotate: 0, filter: BASE_SHADOW }}
-            animate={{
+            animate={ready ? {
               scale: [1, 1.08, 1.08, 1],
               rotate: [0, 2, 2, 0],
               filter: [BASE_SHADOW, LIFT_SHADOW, LIFT_SHADOW, BASE_SHADOW],
-            }}
+            } : undefined}
             transition={{ type: 'tween', ease: 'easeOut', ...CARD_TIMING }}
           >
             <Image
               src={BigCard}
+              onLoad={settle}
+              onError={settle}
               alt={''}
               fill
               className={'object-contain'}
@@ -174,17 +187,22 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
               top: `${SMALL_CARD_SLOT.top}%`,
               width: `${SMALL_CARD_SLOT.width}%`,
               height: `${SMALL_CARD_SLOT.height}%`,
+              // Hidden, not faded: the base already shows these cards, so they
+              // just switch on once it has painted beneath them.
+              visibility: ready ? 'visible' : 'hidden',
             }}
             initial={{ scale: 1, rotate: 0, filter: BASE_SHADOW }}
-            animate={{
+            animate={ready ? {
               scale: [1, 1.06, 1.06, 1],
               rotate: [0, 2, 2, 0],
               filter: [BASE_SHADOW, LIFT_SHADOW, LIFT_SHADOW, BASE_SHADOW],
-            }}
+            } : undefined}
             transition={{ type: 'tween', ease: 'easeOut', ...SMALL_CARD_TIMING }}
           >
             <Image
               src={SmallCard}
+              onLoad={settle}
+              onError={settle}
               alt={''}
               fill
               className={'object-contain'}
@@ -205,7 +223,7 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
             x: `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
             y: `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
           }}
-          animate={{
+          animate={ready ? {
             opacity: 1,
             x: [
               `${MATHIEU.spawn.left - MATHIEU.dest.left}%`,
@@ -221,7 +239,7 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
               '0%',
               `${MATHIEU.spawn.top - MATHIEU.dest.top}%`,
             ],
-          }}
+          } : undefined}
           transition={{
             opacity: { delay: CURSORS_APPEAR, duration: 0.4, ease: 'easeOut' },
             x: { type: 'tween', ease: 'easeInOut', ...MATHIEU_TIMING },
@@ -251,7 +269,7 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
             x: `${OLIVIA.spawn.left - OLIVIA.dest.left}%`,
             y: `${OLIVIA.spawn.top - OLIVIA.dest.top}%`,
           }}
-          animate={{
+          animate={ready ? {
             opacity: 1,
             x: [
               `${OLIVIA.spawn.left - OLIVIA.dest.left}%`,
@@ -267,7 +285,7 @@ function ProjectTrackingIllu({ className, priority = false }: IllustrationProps)
               '0%',
               `${OLIVIA.spawn.top - OLIVIA.dest.top}%`,
             ],
-          }}
+          } : undefined}
           transition={{
             opacity: { delay: CURSORS_APPEAR, duration: 0.4, ease: 'easeOut' },
             x: { type: 'tween', ease: 'easeInOut', ...OLIVIA_TIMING },

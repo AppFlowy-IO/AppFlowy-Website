@@ -6,6 +6,7 @@ import BacklogMenu2 from '@/assets/images/illustrations/backlog-menu-2.webp';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IllustrationProps } from './types';
+import { useImagesReady } from './use-images-ready';
 
 // DecoyReveal: backlog-illu-base.webp already has the table fully drawn in
 // alongside the page chrome. Instead of a separate overlay image, we hide
@@ -46,17 +47,22 @@ const MENU_STAGGER = 0.2;
 const MENU_FADE_DURATION = 0.5;
 
 function BacklogIllu({ className }: IllustrationProps) {
+  // Nothing plays until every image below has painted — see useImagesReady.
+  const { ready, settle } = useImagesReady(3);
+
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1392] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: BASE_SLIDE_DURATION, ease: 'easeIn' }}
         >
           <Image
             src={BacklogBase}
+            onLoad={settle}
+            onError={settle}
             alt={'Backlog'}
             fill
             sizes={'(max-width: 1280px) 100vw, 1280px'}
@@ -72,7 +78,7 @@ function BacklogIllu({ className }: IllustrationProps) {
             <motion.div
               className={'absolute inset-x-0 bottom-0 bg-white'}
               initial={{ height: '100%' }}
-              animate={{ height: '0%' }}
+              animate={ready ? { height: '0%' } : undefined}
               transition={{ duration: TABLE_REVEAL_DURATION, delay: TABLE_REVEAL_START, ease: 'easeInOut' }}
             />
           </div>
@@ -86,11 +92,13 @@ function BacklogIllu({ className }: IllustrationProps) {
             className={'absolute'}
             style={{ right: `${MENU_1_SLOT.right}%`, top: `${MENU_1_SLOT.top}%`, width: `${MENU_WIDTH}%` }}
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: MENU_FADE_DURATION, delay: MENU_START + MENU_STAGGER, ease: 'easeOut' }}
           >
             <Image
               src={BacklogMenu1}
+              onLoad={settle}
+              onError={settle}
               alt={'Hidden properties'}
               className={'h-auto w-full'}
             />
@@ -100,11 +108,13 @@ function BacklogIllu({ className }: IllustrationProps) {
             className={'absolute'}
             style={{ right: `${MENU_2_SLOT.right}%`, top: `${MENU_2_SLOT.top}%`, width: `${MENU_WIDTH}%` }}
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: MENU_FADE_DURATION, delay: MENU_START, ease: 'easeOut' }}
           >
             <Image
               src={BacklogMenu2}
+              onLoad={settle}
+              onError={settle}
               alt={'Visible properties'}
               className={'h-auto w-full'}
             />

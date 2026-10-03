@@ -4,6 +4,7 @@ import WeeklyBriefBase from '@/assets/images/illustrations/weekly-brief-illu-bas
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IllustrationProps } from './types';
+import { useImagesReady } from './use-images-ready';
 
 // DecoyReveal: weekly-brief-illu-base.webp already has everything fully
 // drawn in — the page content list and the whole AI Briefing panel. Instead
@@ -77,17 +78,22 @@ const INPUT_REVEAL_START = AI_REPLY_REVEAL_START;
 const INPUT_REVEAL_DURATION = 0.4;
 
 function WeeklyBriefIllu({ className }: IllustrationProps) {
+  // Nothing plays until every image below has painted — see useImagesReady.
+  const { ready, settle } = useImagesReady(1);
+
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1480] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: BASE_SLIDE_DURATION, ease: 'easeIn' }}
         >
           <Image
             src={WeeklyBriefBase}
+            onLoad={settle}
+            onError={settle}
             alt={'Weekly brief'}
             fill
             sizes={'(max-width: 1280px) 100vw, 1280px'}
@@ -103,7 +109,7 @@ function WeeklyBriefIllu({ className }: IllustrationProps) {
             <motion.div
               className={'absolute inset-x-0 bottom-0 bg-white'}
               initial={{ height: '100%' }}
-              animate={{ height: '0%' }}
+              animate={ready ? { height: '0%' } : undefined}
               transition={{ duration: LEFT_REVEAL_DURATION, delay: LEFT_REVEAL_START, ease: 'easeInOut' }}
             />
           </div>
@@ -117,7 +123,7 @@ function WeeklyBriefIllu({ className }: IllustrationProps) {
             className={'absolute bg-white'}
             style={{ left: `${WINDOW_LEFT}%`, top: `${WINDOW_TOP}%`, width: `${WINDOW_WIDTH}%`, height: `${WINDOW_HEIGHT}%` }}
             initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
+            animate={ready ? { opacity: 0 } : undefined}
             transition={{ duration: WINDOW_REVEAL_DURATION, delay: WINDOW_REVEAL_START, ease: 'easeOut' }}
           />
 
@@ -126,7 +132,7 @@ function WeeklyBriefIllu({ className }: IllustrationProps) {
             className={'absolute bg-white'}
             style={{ left: `${USER_MESSAGE_LEFT}%`, top: `${USER_MESSAGE_TOP}%`, width: `${USER_MESSAGE_WIDTH}%`, height: `${USER_MESSAGE_HEIGHT}%` }}
             initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
+            animate={ready ? { opacity: 0 } : undefined}
             transition={{ duration: USER_MESSAGE_REVEAL_DURATION, delay: USER_MESSAGE_REVEAL_START, ease: 'easeOut' }}
           />
 
@@ -140,7 +146,7 @@ function WeeklyBriefIllu({ className }: IllustrationProps) {
             <motion.div
               className={'absolute inset-x-0 bottom-0 bg-white'}
               initial={{ height: '100%' }}
-              animate={{ height: '0%' }}
+              animate={ready ? { height: '0%' } : undefined}
               transition={{ duration: AI_REPLY_REVEAL_DURATION, delay: AI_REPLY_REVEAL_START, ease: 'easeInOut' }}
             />
           </div>
@@ -150,7 +156,7 @@ function WeeklyBriefIllu({ className }: IllustrationProps) {
             className={'absolute bg-white'}
             style={{ left: `${INPUT_LEFT}%`, top: `${INPUT_TOP}%`, width: `${INPUT_WIDTH}%`, height: `${INPUT_HEIGHT}%` }}
             initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
+            animate={ready ? { opacity: 0 } : undefined}
             transition={{ duration: INPUT_REVEAL_DURATION, delay: INPUT_REVEAL_START, ease: 'easeOut' }}
           />
         </motion.div>

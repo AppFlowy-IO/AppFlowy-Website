@@ -4,6 +4,7 @@ import ReleaseBase from '@/assets/images/illustrations/release-illu-base-2.webp'
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IllustrationProps } from './types';
+import { useImagesReady } from './use-images-ready';
 
 // DecoyReveal: release-illu-base-2.png already has everything fully drawn
 // in — the graph, the pie, and the AI summary. Instead of exporting each of
@@ -49,17 +50,22 @@ const REVEAL_DURATION = 1;
 const HEADER_REVEAL_DURATION = 0.45;
 
 function ReleaseReviewIllu({ className }: IllustrationProps) {
+  // Nothing plays until every image below has painted — see useImagesReady.
+  const { ready, settle } = useImagesReady(1);
+
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1480] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: BASE_SLIDE_DURATION, ease: 'easeIn' }}
         >
           <Image
             src={ReleaseBase}
+            onLoad={settle}
+            onError={settle}
             alt={'Release review'}
             fill
             sizes={'(max-width: 1280px) 100vw, 1280px'}
@@ -76,14 +82,14 @@ function ReleaseReviewIllu({ className }: IllustrationProps) {
               className={'absolute inset-x-0 top-0 bg-white'}
               style={{ height: `${GRAPH_HEADER_HEIGHT}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: HEADER_REVEAL_DURATION, delay: REVEAL_START, ease: 'easeOut' }}
             />
             <motion.div
               className={'absolute right-0 bg-white'}
               style={{ top: `${GRAPH_HEADER_HEIGHT}%`, height: `${100 - GRAPH_HEADER_HEIGHT}%` }}
               initial={{ width: '100%' }}
-              animate={{ width: '0%' }}
+              animate={ready ? { width: '0%' } : undefined}
               transition={{ duration: REVEAL_DURATION, delay: REVEAL_START, ease: 'easeInOut' }}
             />
           </div>
@@ -99,14 +105,14 @@ function ReleaseReviewIllu({ className }: IllustrationProps) {
               className={'absolute inset-x-0 top-0 bg-white'}
               style={{ height: `${PIE_HEADER_HEIGHT}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: HEADER_REVEAL_DURATION, delay: REVEAL_START, ease: 'easeOut' }}
             />
             <motion.div
               className={'absolute inset-x-0 bg-white'}
               style={{ top: `${PIE_HEADER_HEIGHT}%`, height: `${100 - PIE_HEADER_HEIGHT}%` }}
               initial={{ clipPath: 'circle(100% at 50% 50%)' }}
-              animate={{ clipPath: 'circle(0% at 50% 50%)' }}
+              animate={ready ? { clipPath: 'circle(0% at 50% 50%)' } : undefined}
               transition={{ duration: REVEAL_DURATION, delay: REVEAL_START, ease: 'easeInOut' }}
             />
           </div>
@@ -120,7 +126,7 @@ function ReleaseReviewIllu({ className }: IllustrationProps) {
             <motion.div
               className={'absolute inset-x-0 bottom-0 bg-white'}
               initial={{ height: '100%' }}
-              animate={{ height: '0%' }}
+              animate={ready ? { height: '0%' } : undefined}
               transition={{ duration: REVEAL_DURATION, delay: REVEAL_START, ease: 'easeInOut' }}
             />
           </div>

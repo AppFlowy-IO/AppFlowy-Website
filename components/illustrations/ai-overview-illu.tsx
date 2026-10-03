@@ -5,6 +5,7 @@ import AiOverviewOverlay from '@/assets/images/illustrations/ai-overview-illu-ov
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IllustrationProps } from './types';
+import { useImagesReady } from './use-images-ready';
 
 // DecoyReveal: ai-overview-illu-overlay.webp already has the whole card
 // fully drawn in — heading, properties, comments, and objective. Instead of
@@ -59,17 +60,22 @@ const DIVIDER_2_START = CONTENT_START + CONTENT_STAGGER * 4;
 const OBJECTIVE_START = CONTENT_START + CONTENT_STAGGER * 5;
 
 function AiOverviewIllu({ className }: IllustrationProps) {
+  // Nothing plays until every image below has painted — see useImagesReady.
+  const { ready, settle } = useImagesReady(2);
+
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1392] overflow-hidden'}>
         <motion.div
           className={'absolute inset-0'}
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: BASE_SLIDE_DURATION, ease: 'easeIn' }}
         >
           <Image
             src={AiOverviewBase}
+            onLoad={settle}
+            onError={settle}
             alt={'AI overview'}
             fill
             sizes={'(max-width: 1280px) 100vw, 1280px'}
@@ -85,11 +91,13 @@ function AiOverviewIllu({ className }: IllustrationProps) {
           <motion.div
             className={'absolute inset-0'}
             initial={{ opacity: 0, y: OVERLAY_SLIDE_DISTANCE }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ type: 'tween', duration: OVERLAY_SLIDE_DURATION, delay: OVERLAY_SLIDE_START, ease: 'easeOut' }}
           >
             <Image
               src={AiOverviewOverlay}
+              onLoad={settle}
+              onError={settle}
               alt={'AI Overview requirements'}
               fill
               className={'object-contain'}
@@ -100,7 +108,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${CONTENT_LEFT}%`, top: `${HEADING_SLOT.top}%`, width: `${CONTENT_WIDTH}%`, height: `${HEADING_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: HEADING_START, ease: 'easeOut' }}
             />
 
@@ -109,7 +117,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${CONTENT_LEFT}%`, top: `${PROPERTIES_SLOT.top}%`, width: `${CONTENT_WIDTH}%`, height: `${PROPERTIES_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: PROPERTIES_START, ease: 'easeOut' }}
             />
 
@@ -118,7 +126,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${DIVIDER_LEFT}%`, top: `${DIVIDER_1_SLOT.top}%`, width: `${DIVIDER_WIDTH}%`, height: `${DIVIDER_1_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: DIVIDER_1_START, ease: 'easeOut' }}
             />
 
@@ -127,7 +135,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${CONTENT_LEFT}%`, top: `${COMMENTS_SLOT.top}%`, width: `${CONTENT_WIDTH}%`, height: `${COMMENTS_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: COMMENTS_START, ease: 'easeOut' }}
             />
 
@@ -136,7 +144,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${DIVIDER_LEFT}%`, top: `${DIVIDER_2_SLOT.top}%`, width: `${DIVIDER_WIDTH}%`, height: `${DIVIDER_2_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: DIVIDER_2_START, ease: 'easeOut' }}
             />
 
@@ -145,7 +153,7 @@ function AiOverviewIllu({ className }: IllustrationProps) {
               className={'absolute bg-white'}
               style={{ left: `${CONTENT_LEFT}%`, top: `${OBJECTIVE_SLOT.top}%`, width: `${CONTENT_WIDTH}%`, height: `${OBJECTIVE_SLOT.height}%` }}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={ready ? { opacity: 0 } : undefined}
               transition={{ duration: CONTENT_FADE_DURATION, delay: OBJECTIVE_START, ease: 'easeOut' }}
             />
           </motion.div>
