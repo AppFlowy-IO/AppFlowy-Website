@@ -79,6 +79,15 @@ date: '2024-01-01'
 # Must use single quotes
 # Must be valid date format
 
+# Whether to archive the article (optional)
+archived: false
+# Archived articles keep their direct URL but are hidden from listings, RSS,
+# related posts, and the sitemap, and receive noindex metadata.
+
+# Whether to unpublish the article (optional)
+unpublished: false
+# Unpublished articles are removed from publishing surfaces and return 404.
+
 # Whether to pin the article to the top of the list(optional)
 pinned: 
 # 1 = Pin to top of list with larger thumbnail

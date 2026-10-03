@@ -11,19 +11,19 @@ const cloudFAQs = [
     id: 'cloud-1',
     question: 'How is pricing calculated for the paid plans?',
     answer:
-      "Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Free workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\nA Pro workspace with only you: $12.50 per month / $120 per year\nA Pro workspace with five members (including you): $12.50 × 5 = $62.50 per month or $120 × 5 = $600 per year\n\nGuest editors available in Pro are free of charge.",
+      "Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Personal workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\nA Pro workspace with only you: $16 per month billed annually ($192/year), or $20 billed monthly\nA Pro workspace with five members (including you): $16 × 5 = $80 per month billed annually ($960/year), or $20 × 5 = $100 billed monthly\n\nGuest editors available in Pro are free of charge.",
   },
   {
     id: 'cloud-2',
     question: 'How do I cancel my paid plan?',
     answer:
-      'Your AppFlowy subscription, annual or monthly, will automatically renew until you cancel it. You can cancel your subscription by going to Settings in the left-hand sidebar on a desktop computer, then selecting Billing, then Change plan, then click Downgrade under the Free plan column. After cancellation, your workspace will immediately move to the Free plan, and any usage above the free limits may be restricted.',
+      'Your AppFlowy subscription, annual or monthly, will automatically renew until you cancel it. You can cancel your subscription by going to Settings in the left-hand sidebar on a desktop computer, then selecting Billing, then Change plan, then click Downgrade under the Personal plan column. After cancellation, your workspace will immediately move to the Personal plan, and any usage above the free limits may be restricted.',
   },
   {
     id: 'cloud-3',
     question: 'How does adding and removing members work?',
     answer:
-      'If you added members, your account will be charged a prorated amount based on the percentage of the billing cycle left when a user was added. If you removed members, you will not receive credit but instead will still have use of that seat for a different user for the remainder of the billing period.\n\nNote: After cancellation, your workspace will immediately move to the Free plan, and any usage above the free limits may be restricted.',
+      'If you added members, your account will be charged a prorated amount based on the percentage of the billing cycle left when a user was added. If you removed members, you will not receive credit but instead will still have use of that seat for a different user for the remainder of the billing period.\n\nNote: After cancellation, your workspace will immediately move to the Personal plan, and any usage above the free limits may be restricted.',
   },
   {
     id: 'cloud-4',

@@ -5,12 +5,24 @@ import { motion } from 'framer-motion';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { DesktopComparisonTable } from './desktop-comparison-table';
 import { MobileComparisonTable } from './mobile-comparison-table';
+import {
+  comparisonFeatureGroups,
+  comparisonPlans,
+  type ComparisonFeatureGroup,
+  type ComparisonPlan,
+} from '../config/comparison-data';
 
 interface ComparisonTableProps {
   show: boolean;
+  plans?: ComparisonPlan[];
+  featureGroups?: ComparisonFeatureGroup[];
 }
 
-export function ComparisonTable({ show }: ComparisonTableProps) {
+export function ComparisonTable({
+  show,
+  plans = comparisonPlans,
+  featureGroups = comparisonFeatureGroups,
+}: ComparisonTableProps) {
   if (!show) {
     return null;
   }
@@ -33,11 +45,11 @@ export function ComparisonTable({ show }: ComparisonTableProps) {
 
         {/* Responsive Table Display */}
         <div className='hidden md:block'>
-          <DesktopComparisonTable />
+          <DesktopComparisonTable plans={plans} featureGroups={featureGroups} />
         </div>
 
         <div className='block md:hidden'>
-          <MobileComparisonTable />
+          <MobileComparisonTable plans={plans} featureGroups={featureGroups} />
         </div>
       </motion.div>
     </Tooltip.Provider>

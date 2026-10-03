@@ -37,6 +37,7 @@ export interface PostData {
   related_posts?: string[];
   word_count?: number;
   unpublished?: boolean;
+  archived?: boolean;
 }
 
 // Metadata-only type (excludes heavy fields)
@@ -98,19 +99,17 @@ function ensureCacheFresh(): string[] {
  * Get all blog posts with full content.
  * Results are cached and invalidated when the underlying MDX files change.
  */
-export function getAllPosts(): PostData[] {
+export function getAllPosts({ includeArchived = false }: { includeArchived?: boolean } = {}): PostData[] {
   const fileNames = ensureCacheFresh();
 
-  if (cachedPosts) {
-    return cachedPosts;
+  if (!cachedPosts) {
+    cachedPosts = fileNames
+      .map(getPostByFilename)
+      .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+      .filter((item) => !item.unpublished);
   }
 
-  cachedPosts = fileNames
-    .map(getPostByFilename)
-    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
-    .filter((item) => !item.unpublished);
-
-  return cachedPosts;
+  return includeArchived ? cachedPosts : cachedPosts.filter((item) => !item.archived);
 }
 
 /**
@@ -136,6 +135,7 @@ export function getAllPostsMetadata(): PostMetadata[] {
       return {
         slug,
         unpublished: data.unpublished || false,
+        archived: data.archived || false,
         pinned: data.pinned || 0,
         title: data.title,
         description: data.description,
@@ -159,7 +159,7 @@ export function getAllPostsMetadata(): PostMetadata[] {
       };
     })
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
-    .filter((item) => !item.unpublished);
+    .filter((item) => !item.unpublished && !item.archived);
 
   return cachedMetadata;
 }
@@ -207,7 +207,7 @@ export async function getRelatedPosts(post: PostData): Promise<PostData[]> {
     })
   );
 
-  return posts.filter((item) => item !== null && !item.unpublished) as PostData[];
+  return posts.filter((item) => item !== null && !item.unpublished && !item.archived) as PostData[];
 }
 
 export function getPostByFilename(fileName: string): PostData {
@@ -228,6 +228,7 @@ export function getPostByFilename(fileName: string): PostData {
   return {
     slug,
     unpublished: data.unpublished || false,
+    archived: data.archived || false,
     pinned: data.pinned || 0,
     title: data.title,
     description: data.description,
@@ -245,15 +246,16 @@ export function getPostByFilename(fileName: string): PostData {
     video_url: data.video_url,
     og_image: data.image,
     thumb_image: data.thumb,
-    reading_time: generateReadingTime(content),
+    reading_time: data.reading_time ?? generateReadingTime(content),
     last_modified: data.last_modified || data.date,
     featured: data.featured || false,
 
     toc: tocResult
       ? unified()
-        .use(remarkStringify)
-        // eslint-disable-next-line
-        .stringify(tocResult as any).replaceAll('**', '')
+          .use(remarkStringify)
+          // eslint-disable-next-line
+          .stringify(tocResult as any)
+          .replaceAll('**', '')
       : '',
     comments: data.comments !== undefined ? data.comments : true,
     canonical_url: data.canonical_url,

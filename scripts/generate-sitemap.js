@@ -64,7 +64,7 @@ const getStaticRoutes = () => {
 /**
  * Blog posts, read from the local `_blog/*.mdx` files.
  *
- * The slug rule and the `unpublished` filter mirror lib/posts.ts — keep them in
+ * The slug rule and the `unpublished` / `archived` filters mirror lib/posts.ts — keep them in
  * sync, or the sitemap will advertise URLs that 404.
  */
 const getBlogRoutes = () => {
@@ -83,11 +83,12 @@ const getBlogRoutes = () => {
         path: `blog/${rest.join('-')}`,
         lastmod: data.last_modified || data.date,
         unpublished: Boolean(data.unpublished),
+        archived: Boolean(data.archived),
         priority: '0.7',
         changefreq: 'monthly',
       };
     })
-    .filter((post) => !post.unpublished);
+    .filter((post) => !post.unpublished && !post.archived);
 };
 
 // Mirrors slugify() in components/template-center/utils.ts.

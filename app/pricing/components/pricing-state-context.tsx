@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { DeploymentMode } from './pricing-tabs';
-import { BillingCycle } from './billing-switch';
+import type { BillingCycle } from './billing-switch';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 
 interface PricingState {

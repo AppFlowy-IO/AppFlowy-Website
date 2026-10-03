@@ -1,22 +1,19 @@
 'use client';
 
 import { useDownload } from '@/lib/hooks/use-download';
+import { useClient } from '@/lib/hooks/use-client';
+import { getDownloadSteps, getOsFromName } from '@/components/download/download-steps';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash-es/debounce';
 import { download } from '@/lib/download';
-import { useRouter } from 'next/navigation';
-import img1 from '@/assets/images/download/downloading-img-1.png';
-import img2 from '@/assets/images/download/downloading-img-2.svg';
-import darkImg1 from '@/assets/images/download/dark/downloading-img-1.png';
-import darkImg2 from '@/assets/images/download/dark/downloading-img-2.svg';
 import Image from 'next/image';
-import { useDarkContext } from '@/lib/hooks/use-dark-context';
 import { Storage } from '@/lib/storage';
-import MobileDownloadBtns from '@/components/shared/mobile-download-btns';
+import MobileAppBanner from '@/components/shared/mobile-app-banner';
 
 function Downloading() {
-  const dark = useDarkContext();
   const { getOsDownloadLink } = useDownload();
+  const { os } = useClient();
+  const steps = useMemo(() => getDownloadSteps(getOsFromName(os?.name)), [os]);
 
   const downloadPackage = useCallback((downloadUrl: string) => {
     Storage.set('download_url', '');
@@ -40,116 +37,47 @@ function Downloading() {
     debounceDownload(downloadUrl);
   }, [debounceDownload, getOsDownloadLink]);
 
-  const router = useRouter();
-
-  const gotoDownload = (tag: string) => {
-    router.push(`/download#${tag}`);
-  };
-
   return (
     <>
-      <div className={'panel panel-1'}>
-        <div className={'thanks-download'}>
-          <div className={'thanks-download_title'}>
+      <section className={'flex w-full justify-center px-8 pt-[180px] max-sm:px-4 max-sm:pt-[140px]'}>
+        <div className={'flex w-full max-w-[1280px] flex-col items-center'}>
+          <h1 className={'text-style-h1 text-center font-bold tracking-[-0.04em] text-text-primary'}>
             Thanks for downloading
-            <div className={'icon'}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 29 41' fill='none'>
-                <path
-                  d='M22.2817 2.22606C22.4065 1.68505 22.0692 1.14527 21.5282 1.02043C20.9872 0.895579 20.4474 1.23294 20.3226 1.77394L22.2817 2.22606ZM2 16.0745L2.16527 15.0828C1.65473 14.9977 1.16302 15.3142 1.02898 15.8141C0.894937 16.314 1.16238 16.834 1.64701 17.0158L2 16.0745ZM8.83617 39.8L7.84707 39.6202C7.75164 40.145 8.08275 40.653 8.60145 40.7775C9.12014 40.9021 9.64581 40.5998 9.79909 40.0889L8.83617 39.8ZM27.7362 24.5191V25.5245C28.2154 25.5245 28.628 25.1862 28.722 24.7163C28.8159 24.2464 28.5652 23.7755 28.1228 23.5912L27.7362 24.5191ZM20.3226 1.77394C19.688 4.52386 17.9796 9.12847 15.3636 11.7445L16.7853 13.1662C19.7991 10.1524 21.6171 5.10592 22.2817 2.22606L20.3226 1.77394ZM15.3636 11.7445C14.0105 13.0976 11.8882 14.1375 9.46201 14.7348C7.04698 15.3293 4.42982 15.4603 2.16527 15.0828L1.83473 17.0661C4.39571 17.4929 7.28982 17.3402 9.94266 16.6871C12.5843 16.0368 15.0865 14.865 16.7853 13.1662L15.3636 11.7445ZM1.64701 17.0158C4.49748 18.0847 7.05028 20.9226 8.27166 25.1975L10.2049 24.6451C8.8527 19.9123 5.93656 16.477 2.35299 15.1332L1.64701 17.0158ZM8.27166 25.1975C9.48421 29.4414 8.65748 35.1629 7.84707 39.6202L9.82527 39.9798C10.6234 35.5903 11.566 29.4088 10.2049 24.6451L8.27166 25.1975ZM9.79909 40.0889C10.1567 38.8969 11.5149 36.2639 13.2704 33.6441C14.1376 32.3499 15.0795 31.0924 16.0103 30.0491C16.9541 28.9912 17.833 28.2146 18.5665 27.8145L17.6037 26.0493C16.5679 26.6144 15.5065 27.5937 14.51 28.7106C13.5005 29.8421 12.5022 31.1784 11.6 32.5249C9.81675 35.1863 8.31991 38.0223 7.87325 39.5111L9.79909 40.0889ZM18.5665 27.8145C21.9236 25.9833 25.046 25.5245 27.7362 25.5245V23.5138C24.7965 23.5138 21.3241 24.0201 17.6037 26.0493L18.5665 27.8145ZM28.1228 23.5912C27.4657 23.3174 26.2751 22.5346 25.0645 21.4639C23.8585 20.3973 22.7612 19.1574 22.2013 18.0376L20.4029 18.9368C21.1298 20.3906 22.4453 21.8316 23.7325 22.97C25.0151 24.1044 26.3981 25.0507 27.3495 25.4471L28.1228 23.5912ZM22.2013 18.0376C21.96 17.5549 21.7391 16.6722 21.5874 15.4379C21.4393 14.2326 21.3676 12.786 21.3725 11.2421C21.3824 8.14656 21.7 4.7467 22.2817 2.22606L20.3226 1.77394C19.6979 4.48096 19.3721 8.03791 19.3619 11.2357C19.3567 12.8385 19.4308 14.3726 19.5918 15.6831C19.7493 16.9646 20.0009 18.1327 20.4029 18.9368L22.2013 18.0376Z'
-                  fill='#9327FF'
-                />
-              </svg>
-            </div>
-          </div>
-          <div className={'thanks-download_step'}>
-            <div className={'line'} />
-            <div className={'step step-1'}>
-              Your download will begin automatically
-              <br />
-              {`If it doesn’t, you can`}
-              <span
-                onClick={() => {
-                  const downloadUrl = Storage.get('manually_download_url');
+          </h1>
+          <p className={'mt-4 text-center text-[20px] leading-[1.5] tracking-[-0.02em] text-text-secondary max-sm:text-[16px]'}>
+            {`Your download should start automatically. If it doesn't, `}
+            <button
+              type={'button'}
+              onClick={() => downloadPackage(Storage.get('manually_download_url'))}
+              className={'text-primary underline underline-offset-4'}
+            >
+              click here to download manually
+            </button>
+            .
+          </p>
 
-                  downloadPackage(downloadUrl);
-                }}
-                className={'highlight ml-1 underline'}
-              >
-                download AppFlowy manually.
-              </span>
-            </div>
-            <div className={'step step-2'}>
-              Once its downloaded, open the file by double-clicking it in your downloads folder
-            </div>
-            <div className={'step step-3'}>Follow the instructions to install AppFlowy to your computer</div>
-          </div>
+          <ol className={'mt-20 grid w-full grid-cols-1 gap-5 max-sm:mt-12 max-sm:gap-10 md:grid-cols-3'}>
+            {steps.map((step) => (
+              <li key={step.title} className={'flex flex-col'}>
+                {step.image ? (
+                  <Image
+                    src={step.image}
+                    alt={''}
+                    className={'mb-6 h-auto w-full rounded-[16px]'}
+                    sizes={'(min-width: 768px) 33vw, 100vw'}
+                    priority={true}
+                  />
+                ) : null}
+                <h2 className={'text-[18px] font-semibold leading-[1.4] tracking-[-0.02em] text-text-primary'}>
+                  {step.title}
+                </h2>
+                <p className={'mt-1 text-[15px] leading-[1.5] text-text-secondary'}>{step.description}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-        <div className={'image relative'}>
-          <div className={'ellipse'} />
-          <Image className={'relative'} src={dark ? darkImg1.src : img1.src} alt={''} width={901} height={481} />
-        </div>
-      </div>
-      <div className={'panel panel-2'}>
-        <div className={'image relative'}>
-          <div className={'ellipse'} />
-          <Image className={'relative'} src={dark ? darkImg2.src : img2.src} alt={''} width={500} height={510} />
-        </div>
-        <div className={'download-mobile-container'}>
-          <div className={'download-mobile-container_title'}>
-            <span className={'max-sm:mr-1'}>AppFlowy for </span>
-            <span>iOS and Android</span>
-          </div>
-          <div className={'download-mobile-container_desc max-sm:px-[60px]'}>
-            <div>Intuitive and seamlessly transition from laptop to phone.</div>
-          </div>
-
-          <MobileDownloadBtns />
-        </div>
-      </div>
-      <div className={'panel panel-3'}>
-        <div className={'title'}>
-          We also offer other{' '}
-          <span className={'primary-word'}>
-            download
-            <span className={'primary-circle'}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 120 50' fill='none'>
-                <path
-                  d='M1 14.908C89.5233 -9.28207 115.958 5.78783 118.323 17.637C121.227 32.1915 87.9728 46.4447 55.184 48.4502C22.3953 50.4556 5.53125 44.5355 4.86451 36.0085C2.47924 26.0962 14.4958 16.3863 48.7547 11.7745'
-                  stroke='currentColor'
-                  strokeWidth='2.16'
-                />
-              </svg>
-            </span>
-          </span>{' '}
-          options for{' '}
-          <span
-            onClick={() => {
-              gotoDownload('Windows');
-            }}
-            className={'highlight ml-1 underline'}
-          >
-            Windows
-          </span>
-          ,
-          <span
-            onClick={() => {
-              gotoDownload('macOS');
-            }}
-            className={'highlight ml-1 underline'}
-          >
-            macOS
-          </span>
-          , and
-          <span
-            onClick={() => {
-              gotoDownload('Linux');
-            }}
-            className={'highlight ml-1 underline'}
-          >
-            Linux
-          </span>
-        </div>
-      </div>
+      </section>
+      <MobileAppBanner className={'bg-transparent pt-[200px] pb-[160px] max-sm:py-[80px]'} />
     </>
   );
 }

@@ -80,8 +80,8 @@ function generatePricingSchema(siteUrl: string) {
       offers: [
         {
           '@type': 'Offer',
-          name: 'Free Plan',
-          description: 'For individuals and small groups to organize everything',
+          name: 'Personal Plan',
+          description: 'For personal productivity',
           price: '0',
           priceCurrency: 'USD',
           priceSpecification: {
@@ -93,24 +93,41 @@ function generatePricingSchema(siteUrl: string) {
           eligibleQuantity: {
             '@type': 'QuantitativeValue',
             value: 1,
-            unitText: 'user',
+            unitText: 'workspace owner',
           },
         },
         {
           '@type': 'Offer',
-          name: 'Pro Plan',
-          description: 'For small teams to manage projects and team knowledge',
-          price: '10',
+          name: 'Pro Plan (Annual billing)',
+          description: 'For professional work and teams',
+          price: '16',
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '10',
+            price: '16',
             priceCurrency: 'USD',
             billingIncrement: 'month',
           },
           eligibleQuantity: {
             '@type': 'QuantitativeValue',
-            unitText: 'user per month',
+            unitText: 'member per month, billed annually',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Pro Plan (Monthly billing)',
+          description: 'For professional work and teams',
+          price: '20',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '20',
+            priceCurrency: 'USD',
+            billingIncrement: 'month',
+          },
+          eligibleQuantity: {
+            '@type': 'QuantitativeValue',
+            unitText: 'member per month, billed monthly',
           },
         },
         {

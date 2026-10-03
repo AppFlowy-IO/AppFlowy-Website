@@ -18,6 +18,10 @@ const AUTOPLAY_ENABLED = true;
 function MainProducts() {
   const [value, setValue] = React.useState('project-tracking');
   const [previousValue, setPreviousValue] = React.useState<string | null>(null);
+  // The first slide is the hero's LCP candidate, so it gets preloaded with
+  // fetchpriority="high". Once the carousel moves on, later slides only need
+  // to skip lazy loading.
+  const [isFirstSlide, setIsFirstSlide] = React.useState(true);
   const transitionTimer = useRef<number | null>(null);
   const previousValueRef = useRef(value);
   const { isClient } = useClient();
@@ -101,6 +105,8 @@ function MainProducts() {
 
     if (leavingValue === value) return;
 
+    setIsFirstSlide(false);
+
     if (transitionTimer.current) {
       window.clearTimeout(transitionTimer.current);
     }
@@ -132,11 +138,19 @@ function MainProducts() {
       ref={ref}
       className={'main-product'}
     >
-      {renderStaticHero ? (
-        <div
-          className={'main-product__static ai-image relative w-full max-w-[1280px] overflow-hidden'}
-          style={{ aspectRatio: 2560 / 1392 }}
-        >
+      <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
+        <Image
+          key={activeImage.value}
+          src={activeImage.src}
+          loading={'eager'}
+          priority={isFirstSlide}
+          fetchPriority={isFirstSlide ? 'high' : 'auto'}
+          className={`visual-image ${previousImage ? 'feature-illustration--enter' : ''}`}
+          alt={activeImage.alt}
+          width={1280}
+          height={696}
+        />
+        {previousImage ? (
           <Image
             src={ProjectTrackerBase}
             alt={'Project Tracker'}
