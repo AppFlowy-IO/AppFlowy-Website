@@ -10,20 +10,17 @@ import { useAutoPlay } from '@/lib/hooks/use-auto-play';
 import { useClient } from '@/lib/hooks/use-client';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import 'styles/showcase.scss';
 
 const AUTOPLAY_ENABLED = true;
 
 function MainProducts() {
   const [value, setValue] = React.useState('project-tracking');
-  const [previousValue, setPreviousValue] = React.useState<string | null>(null);
   // The first slide is the hero's LCP candidate, so it gets preloaded with
   // fetchpriority="high". Once the carousel moves on, later slides only need
   // to skip lazy loading.
   const [isFirstSlide, setIsFirstSlide] = React.useState(true);
-  const transitionTimer = useRef<number | null>(null);
-  const previousValueRef = useRef(value);
   const { isClient } = useClient();
 
   useEffect(() => {
@@ -96,65 +93,32 @@ function MainProducts() {
     }
   }, [inView, renderStaticHero, start, stop]);
 
-  // Drives the crossfade for every value change, reusing the illustration
-  // enter/leave animation from the product showcase section.
   useEffect(() => {
-    const leavingValue = previousValueRef.current;
-
-    previousValueRef.current = value;
-
-    if (leavingValue === value) return;
-
-    setIsFirstSlide(false);
-
-    if (transitionTimer.current) {
-      window.clearTimeout(transitionTimer.current);
+    if (value !== illustrationOptions[0].value) {
+      setIsFirstSlide(false);
     }
-
-    setPreviousValue(leavingValue);
-    transitionTimer.current = window.setTimeout(() => {
-      setPreviousValue(null);
-      transitionTimer.current = null;
-    }, 850);
-  }, [value]);
-
-  useEffect(() => {
-    return () => {
-      if (transitionTimer.current) {
-        window.clearTimeout(transitionTimer.current);
-      }
-    };
-  }, []);
+  }, [value, illustrationOptions]);
 
   const activeIllustration =
     illustrationOptions.find((illustration) => illustration.value === value) ?? illustrationOptions[0];
-  const previousIllustration = illustrationOptions.find((illustration) => illustration.value === previousValue) ?? null;
 
   const ActiveIllustration = activeIllustration.Illustration;
-  const PreviousIllustration = previousIllustration?.Illustration;
 
   return (
     <div
       ref={ref}
       className={'main-product'}
     >
-      <div className={'ai-image relative aspect-[1280/696] w-full max-w-[1280px] overflow-hidden'}>
-        <Image
-          key={activeImage.value}
-          src={activeImage.src}
-          loading={'eager'}
-          priority={isFirstSlide}
-          fetchPriority={isFirstSlide ? 'high' : 'auto'}
-          className={`visual-image ${previousImage ? 'feature-illustration--enter' : ''}`}
-          alt={activeImage.alt}
-          width={1280}
-          height={696}
-        />
-        {previousImage ? (
+      {renderStaticHero ? (
+        <div
+          className={'main-product__static ai-image relative w-full max-w-[1280px] overflow-hidden'}
+          style={{ aspectRatio: 2560 / 1392 }}
+        >
           <Image
             src={ProjectTrackerBase}
             alt={'Project Tracker'}
             fill
+            priority
             sizes={'(max-width: 1280px) 100vw, 1280px'}
             className={'object-contain'}
           />
@@ -167,16 +131,9 @@ function MainProducts() {
         >
           <ActiveIllustration
             key={activeIllustration.value}
-            className={`visual-image ${previousIllustration ? 'feature-illustration--enter' : ''}`}
+            priority={isFirstSlide}
+            className={'visual-image'}
           />
-          {PreviousIllustration ? (
-            <div aria-hidden={'true'}>
-              <PreviousIllustration
-                key={`${previousIllustration.value}-leaving`}
-                className={'visual-image feature-illustration--leave'}
-              />
-            </div>
-          ) : null}
         </div>
       ) : null}
     </div>

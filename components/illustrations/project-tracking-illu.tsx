@@ -112,20 +112,23 @@ const SMALL_CARD_TIMING = keyframeTiming([
   MATHIEU_LEAVE_START + SMALL_CARD_SETTLE_DURATION,
 ]);
 
-function ProjectTrackingIllu({ className }: IllustrationProps) {
+function ProjectTrackingIllu({ className, priority = false }: IllustrationProps) {
   return (
     <div className={className}>
       <div className={'relative w-full aspect-[2560/1392]'}>
         <motion.div
           className={'absolute inset-0'}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          // Slide only, no fade: an opacity-0 start would hide the base image
+          // from LCP until the entrance finished.
+          initial={{ y: 24 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <Image
             src={ProjectTrackerBase}
             alt={'Project tracking'}
             fill
+            priority={priority}
             sizes={'(max-width: 1280px) 100vw, 1280px'}
             className={'object-contain'}
           />
