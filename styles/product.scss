@@ -94,10 +94,6 @@
       }
     }
 
-    .main-product__static {
-      display: none;
-    }
-
     // Aspect-ratio is a plain inline style (not Framer Motion) so it's present
     // in the server-rendered HTML and reserves height before hydration —
     // this transition is what makes switching illustrations still animate.

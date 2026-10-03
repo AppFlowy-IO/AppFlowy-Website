@@ -17,10 +17,6 @@ const AUTOPLAY_ENABLED = true;
 
 function MainProducts() {
   const [value, setValue] = React.useState('project-tracking');
-  // The first slide is the hero's LCP candidate, so it gets preloaded with
-  // fetchpriority="high". Once the carousel moves on, later slides only need
-  // to skip lazy loading.
-  const [isFirstSlide, setIsFirstSlide] = React.useState(true);
   const { isClient } = useClient();
 
   useEffect(() => {
@@ -54,9 +50,9 @@ function MainProducts() {
   // instant it crosses the viewport edge.
   const inView = useInView(ref, { margin: '800px 0px 800px 0px' });
 
-  // Starts unresolved so the server and first client render match. CSS handles
-  // the first paint, then React unmounts the unused hero once the preference is
-  // known.
+  // Starts unresolved so the server and first client render only the base image.
+  // Once the preference is known, normal-motion users get the animated scene;
+  // reduced-motion users keep the base image.
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState<boolean | null>(null);
 
   useEffect(() => {
@@ -72,7 +68,7 @@ function MainProducts() {
   }, []);
 
   const renderStaticHero = prefersReducedMotion !== false;
-  const renderAnimatedHero = prefersReducedMotion !== true;
+  const renderAnimatedHero = prefersReducedMotion === false;
 
   const { start, stop } = useAutoPlay({
     options: illustrationOptions,
@@ -92,12 +88,6 @@ function MainProducts() {
       start();
     }
   }, [inView, renderStaticHero, start, stop]);
-
-  useEffect(() => {
-    if (value !== illustrationOptions[0].value) {
-      setIsFirstSlide(false);
-    }
-  }, [value, illustrationOptions]);
 
   const activeIllustration =
     illustrationOptions.find((illustration) => illustration.value === value) ?? illustrationOptions[0];
@@ -131,7 +121,7 @@ function MainProducts() {
         >
           <ActiveIllustration
             key={activeIllustration.value}
-            priority={isFirstSlide}
+            priority={false}
             className={'visual-image'}
           />
         </div>
