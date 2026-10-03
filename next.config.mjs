@@ -114,7 +114,7 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7,
     unoptimized: true,
   },
-  async headers () {
+  async headers() {
     return [
       {
         // Apply these headers to all routes in your application.
