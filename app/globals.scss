@@ -28,7 +28,7 @@
 }
 
 :root {
-  --font-family-sans: 'Inter', sans-serif;
+  --font-family-sans: var(--font-inter), sans-serif;
   --font-size-h1: clamp(28px, 5.25vw, 56px);
   --line-height-h1: clamp(36px, 6vw, 68px);
   --font-size-h2: clamp(24px, 4.75vw, 40px);

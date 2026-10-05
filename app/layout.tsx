@@ -1,4 +1,5 @@
 import './globals.scss';
+import { Inter } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 import Favicon from '../public/appflowy.ico';
 import OpenGraph from '../public/images/og-image.png';
@@ -12,6 +13,15 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
 };
+
+// Self-hosted by Next at build time, so there is no fonts.gstatic.com connection
+// to discover after the CSS parses. Inter ships as a variable font covering 100-900,
+// so no explicit weight list is needed.
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 const metaTitle = 'Self-Hosted AI Workspace for Enterprise Teams | AppFlowy';
 const metaDescription =
@@ -156,7 +166,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gitData = await getGitData();
 
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      className={inter.variable}
+    >
       <body id={'body'}>
         {/*
           Rendered inside <body>, not <head>. React hydrates a non-hoistable element
