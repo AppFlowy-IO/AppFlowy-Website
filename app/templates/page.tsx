@@ -1,4 +1,4 @@
-import Community from '@/components/template-center/community';
+import GetStart from '@/components/product/get-start';
 import HomeListHeader from '@/components/template-center/home-list-header';
 import Sidebar from '@/components/template-center/sidebar';
 import TemplateList from '@/components/template-center/template-list';
@@ -52,7 +52,9 @@ async function Page() {
           </div>
         </TemplatesProvider>
       </div>
-      <Community />
+      <div className='template-get-started'>
+        <GetStart />
+      </div>
     </div>
   );
 }
