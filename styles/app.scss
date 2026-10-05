@@ -745,24 +745,40 @@ next-image--dynamic-fill {
 
 .prose-toc {
   ul {
-    @apply flex flex-col gap-2 pl-4;
+    @apply m-0 flex list-none flex-col p-0;
   }
 
   > ul {
-    @apply pl-0;
+    border-left: 1px solid #e6e6e6;
   }
 
   li {
-    @apply text-base font-medium;
+    @apply relative m-0 text-base font-medium leading-6 text-[#140F28];
 
     > a,
     > p {
-      @apply hover:text-primary;
+      @apply m-0 block px-4 py-3 no-underline transition-colors hover:text-primary;
     }
 
     > ul {
-      @apply pt-2;
+      @apply ml-4;
+
+      a,
+      p {
+        @apply py-2 text-sm leading-5 text-[#5A5A5A];
+      }
     }
+  }
+
+  > ul > li:first-child::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 10px;
+    width: 4px;
+    height: 28px;
+    border-radius: 999px;
+    background: #854cff;
   }
 }
 
@@ -786,6 +802,19 @@ next-image--dynamic-fill {
       g {
         opacity: 1;
       }
+    }
+  }
+}
+
+.share.share-compact {
+  @apply gap-3;
+
+  button,
+  .share-btn {
+    @apply h-[40px] w-[40px];
+
+    svg {
+      @apply h-[20px] w-[20px];
     }
   }
 }

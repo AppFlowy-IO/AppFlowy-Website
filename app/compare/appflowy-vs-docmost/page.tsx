@@ -250,7 +250,10 @@ function generateListSchema() {
         })),
     };
 
-    const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'AppFlowy vs Docmost', path: '/compare/appflowy-vs-docmost' }]);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'AppFlowy alternatives', path: '/blog/alternatives' },
+        { name: 'AppFlowy vs Docmost', path: '/compare/appflowy-vs-docmost' },
+    ]);
 
     return {
         '@context': 'https://schema.org',

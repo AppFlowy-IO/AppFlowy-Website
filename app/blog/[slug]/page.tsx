@@ -1,28 +1,51 @@
 import Article from '@/components/blog/article';
+import ArticleKeepExploring from '@/components/blog/article-keep-exploring';
 import Outline from '@/components/blog/outline';
-import RelatedPosts from '@/components/blog/related-posts';
-import Subscriber from '@/components/blog/subscriber';
-import Circle from '@/components/icons/Circle';
+import Breadcrumbs from '@/components/shared/breadcrumbs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllPosts, PostData, getPostData, getRelatedPosts } from '@/lib/posts';
-import { cn, colorArrayTint, formatDate, stringToColor } from '@/lib/utils';
-import { TimerIcon, ArrowLeftIcon } from '@radix-ui/react-icons';
-import Image from '@/components/blog/mdx-image';
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import SeoData from '@/components/layout/seo-data';
 import { generateBreadcrumbSchema } from '@/lib/schema';
-import React from 'react';
+import { getPrimaryTopicForPost, getTopicsForPost } from '@/lib/blog-topics';
 import { notFound } from 'next/navigation';
 
 interface Props {
   params: { slug: string };
 }
 
-const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL || 'https://appflowy.com';
+const longDateFormatter = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'long',
+  timeZone: 'UTC',
+  year: 'numeric',
+});
+
+function formatPublishedDate(value: string) {
+  const date = new Date(value);
+
+  return Number.isNaN(date.getTime()) ? value : longDateFormatter.format(date);
+}
+
+function absoluteUrl(value: string | undefined, fallback: string) {
+  if (!value) return fallback;
+
+  return value.startsWith('http://') || value.startsWith('https://') ? value : `${site_url}${value}`;
+}
+
+function getAuthor(post: PostData) {
+  const isAppFlowy = ['appflowy', 'appflowy team', 'the appflowy team'].includes(post.author.trim().toLowerCase());
+
+  return {
+    '@type': isAppFlowy ? 'Organization' : 'Person',
+    name: post.author,
+    url: isAppFlowy ? site_url : post.author_url || site_url,
+  };
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostData(params.slug);
@@ -31,30 +54,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound();
   }
 
+  const canonicalUrl = post.canonical_url || `${site_url}/blog/${params.slug}`;
+  const metadataTitle = post.seo_title || post.title;
+  const metadataDescription = post.seo_description || post.description;
+  const socialImage = absoluteUrl(post.og_image || post.thumb_image, `${site_url}/images/og-image.png`);
+  const author = getAuthor(post);
+
   return {
-    title: `${post.title}`,
-    description: post.description.slice(0, 160),
+    title: metadataTitle,
+    description: metadataDescription,
     openGraph: {
-      title: `${post.title}`,
-      description: post.description,
-      url: `${site_url}/blog/${params.slug}`,
+      title: metadataTitle,
+      description: metadataDescription,
+      url: canonicalUrl,
       type: 'article',
       publishedTime: post.date,
-      authors: [post.author],
+      modifiedTime: post.last_modified || post.date,
+      authors: [author.url],
       tags: post.tags,
       siteName: 'AppFlowy Blog | In the Flow',
       images: [
         {
-          url:
-            (post.thumb_image?.startsWith('http') ? post.thumb_image : `${site_url}${post.thumb_image}`) ||
-            `${site_url}/blog-og-image.png`,
-          width: 640,
-          height: 385,
+          url: socialImage,
           alt: post.title,
         },
       ],
     },
-    authors: [{ name: post.author }],
+    twitter: {
+      card: 'summary_large_image',
+      title: metadataTitle,
+      description: metadataDescription,
+      images: [socialImage],
+    },
+    authors: [{ name: post.author, url: author.url }],
     keywords: post.tags.join(', '),
     category: post.categories.join(', '),
     creator: post.author,
@@ -65,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
       : undefined,
     alternates: {
-      canonical: post.canonical_url || `${site_url}/blog/${params.slug}`,
+      canonical: canonicalUrl,
     },
   };
 }
@@ -79,32 +111,42 @@ export async function generateStaticParams() {
 }
 
 function generateListSchema(slug: string, post: PostData, siteUrl: string) {
+  const primaryTopic = getPrimaryTopicForPost(post);
+  const articleUrl = post.canonical_url || `${siteUrl}/blog/${slug}`;
+  const imageUrl = absoluteUrl(post.og_image || post.thumb_image, `${siteUrl}/images/og-image.png`);
+  const author = getAuthor(post);
   const blogPostingSchema = {
     '@type': 'BlogPosting',
+    '@id': `${articleUrl}#article`,
+    url: articleUrl,
     headline: post.title,
-    image: post.og_image || `${siteUrl}/blog-og-image.png`,
-    video: post.video_url || '',
+    image: [imageUrl],
     datePublished: post.date,
     dateModified: post.last_modified || post.date,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-    },
+    author,
     publisher: {
       '@type': 'Organization',
       name: 'AppFlowy',
+      url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/appflowy.ico`,
+        url: `${siteUrl}/appflowy-rss-logo.png`,
+        width: 704,
+        height: 248,
       },
     },
-    description: post.description,
+    description: post.seo_description || post.description,
     keywords: post.tags?.join(', '),
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${siteUrl}/blog/${slug}`,
+      '@id': articleUrl,
     },
-    articleBody: post.content,
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${siteUrl}/blog#blog`,
+      name: 'AppFlowy Blog | In the Flow',
+      url: `${siteUrl}/blog`,
+    },
     wordCount: post.word_count,
     articleSection: post.categories.join(', '),
   };
@@ -115,6 +157,7 @@ function generateListSchema(slug: string, post: PostData, siteUrl: string) {
       blogPostingSchema,
       generateBreadcrumbSchema([
         { name: 'Blog', path: '/blog' },
+        ...(primaryTopic ? [{ name: primaryTopic.name, path: `/blog/${primaryTopic.slug}` }] : []),
         { name: post.title, path: `/blog/${slug}` },
       ]),
     ],
@@ -126,7 +169,7 @@ async function getData(slug: string) {
 
   try {
     post = await getPostData(slug);
-  } catch(error) {
+  } catch (error) {
     console.error(`[getData] Failed to get data for slug: "${slug}"`);
     console.error(`[getData] Error:`, error);
     notFound();
@@ -143,147 +186,102 @@ async function getData(slug: string) {
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const { post, relatedPosts } = await getData(params.slug);
+  const primaryTopic = getPrimaryTopicForPost(post);
+  const postTopics = getTopicsForPost(post);
+  const publishedDate = formatPublishedDate(post.date);
 
   return (
     <>
-      <div
-        className={cn(
-          'relative flex flex-col items-center gap-[40px] overflow-hidden bg-white px-[100px] max-sm:gap-5',
-          'pb-[170px] pt-[170px]',
-          'max-xl:px-14',
-          'max-md:px-8 max-md:pb-[150px]',
-          'max-sm:px-6 max-sm:pb-[100px]',
-        )}
-      >
-        <Link
-          href={'/blog'}
-          className={
-            'hover:text-primary absolute left-[56px] top-[160px] flex cursor-pointer select-none items-center gap-2 py-2 text-base max-xl:top-[120px] max-md:left-0 max-md:top-[100px] max-md:w-full max-md:justify-start max-sm:px-6'
-          }
-        >
-          <ArrowLeftIcon />
-          Back
-        </Link>
-        <div
-          className={'grid w-full max-w-[1100px] grid-cols-12 gap-10 overflow-hidden max-xl:gap-3 lg:gap-16 xl:gap-8'}
-        >
-          <div
-            className={
-              'blog-container col-span-12 flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 '
-            }
-          >
-            <CardHeader className="blog-header flex w-full flex-col gap-5 p-0">
-              <div className="flex w-full flex-col justify-start gap-5">
-                {post.categories && (
-                  <div className="flex w-full flex-wrap gap-2  max-sm:justify-center">
-                    {post.categories.map((tag) => (
-                      <Badge
-                        style={{
-                          borderColor: 'transparent',
-                          background: stringToColor(tag, colorArrayTint),
-                        }}
-                        key={tag}
-                        variant="outline"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-                <CardTitle
-                  className={cn(
-                    'whitespace-pre-wrap break-words text-left font-medium',
-                    'text-4xl !leading-[120%] sm:text-5xl md:text-6xl lg:text-[58px]',
-                    'leading-tight',
-                    'max-sm:text-center',
-                  )}
-                >
-                  {post.title}
-                </CardTitle>
-              </div>
-              <div className="flex flex-col gap-6 text-sm text-gray-600">
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 max-sm:justify-center">
-                  <Link
-                    href={post.author_url}
-                    className="flex max-w-[200px]  items-center gap-3 truncate max-sm:mb-4 max-sm:w-full max-sm:max-w-full max-sm:justify-center"
-                  >
-                    <Avatar className="h-10 w-10 border">
-                      <AvatarImage
-                        src={post.author_image_url}
-                        alt={post.author}
-                      />
-                      <AvatarFallback>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <span className="font-medium">{post.author}</span>
-                  </Link>
-                  <div className={'max-sm:hidden'}>
-                    <Circle />
-                  </div>
+      <main className='bg-white pt-[104px] text-[#140F28]'>
+        <header className='px-6'>
+          <div className='mx-auto w-full max-w-[1040px] pb-16 pt-10 sm:pb-20 sm:pt-12'>
+            <Breadcrumbs
+              className='mb-8'
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Blog', href: '/blog' },
+                ...(primaryTopic ? [{ label: primaryTopic.name, href: `/blog/${primaryTopic.slug}` }] : []),
+                { label: post.title },
+              ]}
+            />
 
-                  <div className="flex items-center">
-                    <time
-                      className={''}
-                      dateTime={post.date}
+            {post.categories?.length ? (
+              <div className='flex flex-wrap gap-2'>
+                {post.categories.map((category) => {
+                  const topic = postTopics.find((item) => item.categoryNames.includes(category));
+                  const categoryClassName =
+                    'inline-flex rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-base font-medium leading-6 text-[#854CFF] transition-colors';
+
+                  return topic ? (
+                    <Link
+                      aria-label={`Browse ${topic.name} guides`}
+                      className={`${categoryClassName} hover:bg-[rgba(133,76,255,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2`}
+                      href={`/blog/${topic.slug}`}
+                      key={category}
                     >
-                      {formatDate(new Date(post.date))}
-                    </time>
-                  </div>
-                  <div>
-                    <Circle />
-                  </div>
-
-                  <div className="flex items-center">
-                    <TimerIcon className="text-primary mr-2 h-4 w-4" />
-                    <span>{post.reading_time} min read</span>
-                  </div>
-                </div>
+                      {category}
+                    </Link>
+                  ) : (
+                    <span className={categoryClassName} key={category}>
+                      {category}
+                    </span>
+                  );
+                })}
               </div>
-            </CardHeader>
-          </div>
-        </div>
-        <div
-          className={'grid w-full max-w-[1100px] grid-cols-12 gap-10 overflow-hidden max-xl:gap-3 lg:gap-16 xl:gap-8'}
-        >
-          <div
-            className={
-              'blog-container col-span-12 mb-[70px] flex max-w-full flex-1 flex-grow flex-col overflow-hidden overflow-x-hidden max-md:mb-6 lg:col-span-8 xl:col-span-8'
-            }
-          >
-            {post.cover_image && (
-              <Image
-                fill
-                loading={'eager'}
-                className={cn('blog-cover m-0 rounded-[10px] object-cover', 'rounded-md border', 'wide')}
-                zoomable={true}
-                src={post.cover_image}
-                alt={post.title}
-              />
-            )}
+            ) : null}
 
-            {post.content && <Article content={post.content} />}
-          </div>
+            <h1 className='mt-3 max-w-[1040px] break-words text-[36px] font-bold leading-[44px] tracking-[-0.02em] text-[#140F28] sm:text-[44px] sm:leading-[52px] lg:text-[56px] lg:leading-[68px]'>
+              {post.title}
+            </h1>
 
-          {/* Table of Contents */}
-          <Outline post={post} />
-        </div>
-        <div
-          className={
-            'flex w-full max-w-[1100px] items-center justify-center rounded-[8px] bg-[#EEEEFD] pb-[50px] pt-[110px] max-md:pb-[30px] max-md:pt-[60px]'
-          }
-        >
-          <Subscriber />
-        </div>
-        {relatedPosts.length > 0 && (
-          <div className={'w-full max-w-[1100px] py-[110px] max-md:py-[50px]'}>
-            <RelatedPosts relatedPosts={relatedPosts} />
+            <div className='mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-5 text-[#AAAAAA]'>
+              <Link
+                className='flex min-w-0 items-center gap-2 font-medium text-[#140F28] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2'
+                href={post.author_url || '/blog'}
+              >
+                <Avatar className='h-6 w-6 border border-[#E6E6E6]'>
+                  <AvatarImage src={post.author_image_url} alt='' />
+                  <AvatarFallback className='text-[10px]'>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
+                <span className='truncate'>{post.author}</span>
+              </Link>
+              <span aria-hidden='true'>•</span>
+              <time dateTime={post.date}>{publishedDate}</time>
+              <span aria-hidden='true'>•</span>
+              <span>{post.reading_time || 1} min read</span>
+            </div>
           </div>
-        )}
-      </div>
+        </header>
 
-      <SeoData
-        id="ld-json"
-        data={generateListSchema(params.slug, post, site_url)}
-      />
+        <section className='px-6 pb-20' aria-label='Article content'>
+          <div className='mx-auto grid w-full max-w-[1040px] gap-12 lg:grid-cols-[minmax(0,680px)_320px] lg:gap-10'>
+            <div className='min-w-0'>
+              {post.cover_image ? (
+                <div className='relative mb-7 h-[220px] w-full overflow-hidden rounded-xl bg-[#F5F5FA] sm:h-[280px]'>
+                  <Image
+                    alt={post.title}
+                    className='object-cover'
+                    fill
+                    priority
+                    sizes='(max-width: 1023px) calc(100vw - 48px), 680px'
+                    src={post.cover_image}
+                  />
+                </div>
+              ) : null}
+
+              {post.content ? <Article content={post.content} /> : null}
+            </div>
+
+            <Outline post={post} />
+          </div>
+        </section>
+
+        <section className='border-t border-[#E6E6E6] px-6 py-10 sm:py-12' aria-label='Related resources'>
+          <ArticleKeepExploring post={post} relatedPosts={relatedPosts} />
+        </section>
+      </main>
+
+      <SeoData id='ld-json' data={generateListSchema(params.slug, post, site_url)} />
     </>
   );
 }

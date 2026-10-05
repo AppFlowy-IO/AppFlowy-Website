@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.34.1",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/validate-blog-taxonomy.js && node scripts/generate-sitemap.js && node scripts/validate-seo-publishing.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --quiet",
@@ -12,7 +13,11 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "test": "NODE_ENV=test cypress open",
     "test:headless": "NODE_ENV=test cypress run --browser chrome",
+    "check-blog-taxonomy": "node scripts/validate-blog-taxonomy.js",
+    "check-seo-publishing": "node scripts/validate-seo-publishing.js",
+    "check-seo:production": "node scripts/check-deployed-seo.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-sitemap:cached": "node scripts/generate-sitemap.js --reuse-existing-templates",
     "generate-sprite": "node scripts/generate-sprite.js"
   },
   "devDependencies": {

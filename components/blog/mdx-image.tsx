@@ -1,8 +1,6 @@
 'use client';
 
 import 'react-medium-image-zoom/dist/styles.css';
-import { useIsomorphicLayoutEffect, useWindowSize } from 'react-use';
-import { useEffect, useState } from 'react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import { cn } from '@/lib/utils';
 import Zoom from 'react-medium-image-zoom';
@@ -22,31 +20,6 @@ const ZoomContent = ({ img }: { img: React.ReactElement | null }) => {
     </figure>
   );
 };
-
-const twBreakpointMap = {
-  sm: 639,
-  md: 767,
-  lg: 1023,
-  xl: 1027,
-  '2xl': 1535,
-};
-
-export function useBreakpoint(breakpoint: number | keyof typeof twBreakpointMap = 'lg') {
-  const [isBreakpoint, setIsBreakpoint] = useState(false);
-  const { width } = useWindowSize();
-
-  const _breakpoint = typeof breakpoint === 'string' ? twBreakpointMap[breakpoint] : breakpoint;
-
-  useIsomorphicLayoutEffect(() => {
-    if (width <= _breakpoint) {
-      setIsBreakpoint(true);
-    } else {
-      setIsBreakpoint(false);
-    }
-  }, [width]);
-
-  return isBreakpoint;
-}
 
 export interface StaticImageData {
   src: string;
@@ -73,30 +46,32 @@ export interface ImageProps extends Omit<NextImageProps, 'src'> {
  * - captionAlign: {'left' | 'center' | 'right'} (optional) to align the caption
  * - containerClassName: {string} (optional) to style the parent <figure> container
  */
-const Image = ({ src, alt = '', zoomable, ...props }: ImageProps) => {
-  const [mounted, setMounted] = useState(false);
-  const isLessThanLgBreakpoint = useBreakpoint();
-
-  const Component = zoomable ? Zoom : 'span';
+const Image = ({
+  src,
+  alt = '',
+  zoomable,
+  caption,
+  captionAlign,
+  containerClassName,
+  className,
+  style,
+  ...imageProps
+}: ImageProps) => {
   const sizes = zoomable
-    ? '(max-width: 768px) 200vw, (max-width: 1200px) 120vw, 200vw'
-    : '(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 33vw';
-  const source = src;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+    ? '(max-width: 768px) calc(100vw - 48px), (max-width: 1200px) 66vw, 733px'
+    : '(max-width: 768px) calc(100vw - 48px), (max-width: 1200px) 66vw, 33vw';
+  const image = <NextImage alt={alt} src={src} sizes={sizes} className={className} style={style} {...imageProps} />;
 
   return (
-    <figure className={cn('next-image--dynamic-fill', props.containerClassName)}>
-      <Component
-        {...(zoomable ? { ZoomContent: ZoomContent, zoomMargin: isLessThanLgBreakpoint ? 20 : 80 } : undefined)}
-      >
-        <NextImage alt={alt} src={source} sizes={sizes} className={props.className} style={props.style} {...props} />
-      </Component>
-      {props.caption && <figcaption className={cn(getCaptionAlign(props.captionAlign))}>{props.caption}</figcaption>}
+    <figure className={cn('next-image--dynamic-fill', containerClassName)}>
+      {zoomable ? (
+        <Zoom ZoomContent={ZoomContent} zoomMargin={40}>
+          {image}
+        </Zoom>
+      ) : (
+        <span>{image}</span>
+      )}
+      {caption ? <figcaption className={cn(getCaptionAlign(captionAlign))}>{caption}</figcaption> : null}
     </figure>
   );
 };

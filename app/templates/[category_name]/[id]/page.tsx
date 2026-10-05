@@ -1,27 +1,19 @@
-import Article from '@/components/blog/article';
-import Facebook from '@/components/icons/facebook';
-import Instagram from '@/components/icons/instagram';
-import LinkedInIcon from '@/components/icons/linked-in-icon';
-import Tiktok from '@/components/icons/tiktok';
-import Twitter from '@/components/icons/twitter';
-import Website from '@/components/icons/website';
-import Youtube from '@/components/icons/youtube';
-import Share from '@/components/shared/share-group';
-import Community from '@/components/template-center/community';
-import { CategoryIcon } from '@/components/template-center/icons';
-import RelatedTemplates from '@/components/template-center/template/related-templates';
+import SeoData from '@/components/layout/seo-data';
+import TemplateDetails from '@/components/template-center/template/template-details';
+import { getTemplateLabel } from '@/components/template-center/template/template-content';
+import { getUseTemplateUrl } from '@/components/template-center/template/template-links';
 import TemplateSection from '@/components/template-center/template/template-section';
 import { canonicalTemplatePath, slugify } from '@/components/template-center/utils';
 import { parseAbout } from '@/lib/template-about';
 import { getTemplateById } from '@/lib/templateAPI';
-import Link from 'next/link';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 import React from 'react';
 import '@/styles/template.scss';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import OpenGraphImage from '../../../../public/images/og-image.png';
 
-const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
+const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL || 'https://appflowy.com';
 
 interface Props {
   params: { id: string; category_name: string };
@@ -39,9 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  // Many template names already end in "Template"; don't stutter.
-  const title = /template/i.test(template.name) ? `${template.name} | AppFlowy` : `${template.name} Template | AppFlowy`;
-  const description = template.description.slice(0, 160);
+  const templateLabel = getTemplateLabel(template.name);
+  const title = `Free ${templateLabel} | AppFlowy`;
+  const description = `Use the free ${templateLabel} in AppFlowy. ${template.description}`.slice(0, 160);
 
   // Canonicalize to a single category path so the copies of this template under
   // its other categories consolidate instead of competing.
@@ -56,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: canonicalUrl,
-      type: 'article',
+      type: 'website',
       siteName: 'AppFlowy',
       images: [
         {
@@ -98,58 +90,15 @@ async function Page({ params }: { params: { id: string; category_name: string } 
   }
 
   const about = parseAbout(data.about);
+  const canonicalPath =
+    canonicalTemplatePath(data.categories, params.id) ?? `/templates/${params.category_name}/${params.id}`;
+  const canonicalUrl = `${site_url}${canonicalPath}`;
 
   return (
     <div className={'template-center'}>
-      <TemplateSection template={data} categoryName={params.category_name} />
-      <div
-        className={
-          'flex w-full flex-col items-center gap-[70px] bg-white  px-[170px] py-[110px] max-lg:gap-[10vh] max-lg:px-[8vw]  max-lg:py-[10vh]'
-        }
-      >
-        <div className={'flex w-[1100px] min-w-0 max-w-full gap-[100px] max-md:flex-col max-md:gap-10 '}>
-          <div className={'template-about'}>
-            <div className={'title'}>About this template</div>
-            <Article content={about.content} />
-          </div>
-          <div className={'template-extra'}>
-            <div className={'categories'}>
-              <div className={'title'}>Category</div>
-              {data.categories.map((category) => (
-                <Link
-                  href={`/templates/${slugify(category.name)}`}
-                  style={{
-                    backgroundColor: category.bg_color,
-                  }}
-                  key={category.id}
-                  className={'category'}
-                >
-                  <span>
-                    <CategoryIcon icon={category.icon} />
-                  </span>
-                  {category.name}
-                </Link>
-              ))}
-            </div>
-            <div className={'flex flex-col'}>
-              <div className={'title'}>Share</div>
-              <Share content={'Check out this template!'} />
-            </div>
-            <div className={'flex flex-col'}>
-              <div className={'title'}>About the creator</div>
-              <div className={'creator'}>
-                {data.creator.account_links?.map((link) => (
-                  <Link href={link.url} key={link.link_type}>
-                    <button>{accountLinkIcon(link.link_type)}</button>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <RelatedTemplates templates={data.related_templates} />
-      </div>
-      <Community />
+      <SeoData id='template-ld-json' data={generateTemplateSchema(data, canonicalUrl)} />
+      <TemplateSection template={data} />
+      <TemplateDetails template={data} aboutContent={about.content} />
     </div>
   );
 }
@@ -165,21 +114,46 @@ async function getData(id: string) {
   return data;
 }
 
-function accountLinkIcon(type: string) {
-  switch (type) {
-    case 'youtube':
-      return <Youtube />;
-    case 'twitter':
-      return <Twitter />;
-    case 'tiktok':
-      return <Tiktok />;
-    case 'facebook':
-      return <Facebook />;
-    case 'instagram':
-      return <Instagram />;
-    case 'linkedin':
-      return <LinkedInIcon />;
-    default:
-      return <Website />;
-  }
+function generateTemplateSchema(template: Awaited<ReturnType<typeof getData>>, canonicalUrl: string) {
+  const canonicalCategory = [...template.categories].sort((a, b) => a.name.localeCompare(b.name))[0];
+  const canonicalPath = new URL(canonicalUrl).pathname;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CreativeWork',
+        name: template.name,
+        description: template.description,
+        url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        inLanguage: 'en',
+        isAccessibleForFree: true,
+        ...(template.publish_info?.publish_timestamp ? { datePublished: template.publish_info.publish_timestamp } : {}),
+        image: `${site_url}${OpenGraphImage.src}`,
+        creator: {
+          '@type': template.creator.name === 'AppFlowy' ? 'Organization' : 'Person',
+          name: template.creator.name,
+        },
+        keywords: template.categories.map((category) => category.name).join(', '),
+        potentialAction: {
+          '@type': 'UseAction',
+          name: 'Use in AppFlowy',
+          target: getUseTemplateUrl(template),
+        },
+      },
+      generateBreadcrumbSchema([
+        { name: 'Templates', path: '/templates' },
+        ...(canonicalCategory
+          ? [
+              {
+                name: `${canonicalCategory.name} templates`,
+                path: `/templates/${slugify(canonicalCategory.name)}`,
+              },
+            ]
+          : []),
+        { name: template.name, path: canonicalPath },
+      ]),
+    ],
+  };
 }

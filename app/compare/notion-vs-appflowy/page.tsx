@@ -196,7 +196,10 @@ function generateListSchema() {
     })),
   };
 
-  const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Notion vs AppFlowy', path: '/compare/notion-vs-appflowy' }]);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'AppFlowy alternatives', path: '/blog/alternatives' },
+    { name: 'Notion vs AppFlowy', path: '/compare/notion-vs-appflowy' },
+  ]);
 
   return {
     "@context": "https://schema.org",

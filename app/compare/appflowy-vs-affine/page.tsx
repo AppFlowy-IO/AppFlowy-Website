@@ -213,7 +213,10 @@ function generateListSchema() {
         })),
     };
 
-    const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'AppFlowy vs. AFFiNE', path: '/compare/appflowy-vs-affine' }]);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'AppFlowy alternatives', path: '/blog/alternatives' },
+        { name: 'AppFlowy vs. AFFiNE', path: '/compare/appflowy-vs-affine' },
+    ]);
 
     return {
         "@context": "https://schema.org",

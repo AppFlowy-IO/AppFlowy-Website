@@ -34,13 +34,13 @@ YYYY-MM-DD-title.mdx
 ```yaml
 ---
 # Article title
-title: 'Announcing AppFlowy $6.4M Seed Funding'    # Article title
+title: 'Announcing AppFlowy $6.4M Seed Funding' # Article title
 
 # Article description - Recommended 150-160 characters, used for SEO and previews
 description: Article description (150-160 characters)
 
 # Author information
-author: Author Name                                 # Author's name
+author: Author Name # Author's name
 
 # Path to author's avatar image
 author_image_url: /images/blog/authors/avatar.png
@@ -65,19 +65,34 @@ thumb: /images/blog/posts/thumbnail.png
 # Location: /public/images/blog/posts/
 
 # Topics
-categories: # Broad categories
-  - Category 1                                    # General topics (e.g., "Frontend", "DevOps")
-  - Category 2                                    # Max 2-3 categories recommended
+categories: # Use canonical broad categories listed below
+  - Project management # Max 2-3 categories recommended
+  - Open source
+
+# Indexable topic hubs. Every published article must declare one or two.
+topics:
+  - project-management
+  - open-source-engineering
 
 # Article classification
-tags: # Technical tags for filtering
-  - Technical Tag 1                               # Be specific (e.g., "React", "TypeScript")
-  - Technical Tag 2                               # Max 4-5 tags recommended
+tags: # Specific search phrases; normalized for case, underscores, and spacing
+  - project tracker
+  - connected databases # Max 4-5 tags recommended
 
 # Publication date - ISO format (YYYY-MM-DD)
 date: '2024-01-01'
 # Must use single quotes
 # Must be valid date format
+
+# Last substantive content update (optional)
+last_modified: '2024-02-15'
+# Add or change this only when the article itself receives a meaningful update.
+# When omitted, the sitemap correctly falls back to the publication date.
+
+# Search-result overrides (optional)
+seo_title: Concise search title of 60 characters or fewer
+seo_description: Search description between 120 and 160 characters
+# Use these when the editorial title or card description should remain longer.
 
 # Whether to archive the article (optional)
 archived: false
@@ -89,10 +104,10 @@ unpublished: false
 # Unpublished articles are removed from publishing surfaces and return 404.
 
 # Whether to pin the article to the top of the list(optional)
-pinned: 
+pinned:
 # 1 = Pin to top of list with larger thumbnail
 # 2 = Pin to top of list with smaller thumbnail
-# 3 = Pin to top of list with smaller thumbnail                      
+# 3 = Pin to top of list with smaller thumbnail
 
 # Table of Contents heading depth
 toc_depth: 3
@@ -106,8 +121,34 @@ related:
   - 2023-08-03-dont-try-to-load-code-dynamically-in-your-flutter-app-its-terrible
   - 2022-12-12-how-we-built-a-highly-customizable-rich-text-editor-for-flutter
 ---
-
 ```
+
+Canonical categories are: `Announcement`, `Company`, `Comparisons`, `Developers`, `Enterprise`,
+`Knowledge management`, `Open source`, `Private AI`, `Product`, `Productivity`, `Project management`,
+`Self-hosting`, and `Using AppFlowy`.
+
+`pnpm run build` validates the blog taxonomy and regenerates `public/sitemap.xml` before Next.js builds. A publishing
+build fails if a post introduces a non-canonical category or if the template API cannot be included in the sitemap.
+For local work without network access, `pnpm run generate-sitemap:cached` preserves the existing template URLs while
+regenerating static and blog routes. Publishing builds always fetch fresh template data.
+
+Before opening a pull request, run `pnpm run check-blog-taxonomy`, `pnpm run generate-sitemap:cached`, and
+`pnpm run check-seo-publishing`, then commit the regenerated sitemap with the article. CI repeats these checks and fails
+when `public/sitemap.xml` is stale, a published article or topic hub is missing, an archived article is indexed, or a
+curated contextual link points to a URL outside the sitemap. Sitemap entries use article or template publication
+timestamps when available and omit invented modification dates for pages without a trustworthy timestamp.
+
+Every published guide should use canonical categories, specific search-oriented tags, and one or two explicit `topics`.
+The supported hub slugs are `project-management`, `self-hosting`, `knowledge-management`, `private-ai`, `alternatives`,
+`product-updates`, and `open-source-engineering`. Topic assignments connect each guide to comparisons and templates
+without relying on fuzzy title matching. Use descriptive link text in article content, and add explicit `related` slugs
+when editorially important articles should appear together.
+
+The blog archive uses crawlable pages at `/blog/page/2` and later instead of hiding older articles behind a button.
+Sitemap generation adds those page URLs automatically and publishes only trustworthy `lastmod` values. After a
+production deployment, run `pnpm run check-seo:production` to verify that representative pages remain indexable, expose
+the expected canonicals, and include server-rendered pagination and article media. Set `SEO_AUDIT_BASE_URL` to test a
+different production domain.
 
 ### 2. Markdown Content
 
@@ -236,19 +277,15 @@ our [newsletter](https://appflowy.io/subscribe-newsletter?ref=blog.appflowy.io).
 ### 4. Admonitions (Alerts) Usage
 
 ```markdown
-
 <Admonition type='info' content="This article describes the technical design of
 the [AppFlowy Editor](https://pub.dev/packages/appflowy_editor?ref=blog.appflowy.io).
 " />
-
 ```
 
 ### 5. Caption Usage
 
 ```markdown
-
 <Img src="/images/blog/tech-design-flutter-rust/img.png" alt="UI and Data Components" />
 
 <Caption content="A highly customizable rich-text editor for Flutter" />
-
 ```

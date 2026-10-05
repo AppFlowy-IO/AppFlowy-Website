@@ -4,6 +4,16 @@ const prettier = require('prettier');
 const matter = require('gray-matter');
 
 const SITE_URL = 'https://appflowy.com';
+const BLOG_PAGE_SIZE = 12;
+const BLOG_TOPIC_SLUGS = [
+  'alternatives',
+  'knowledge-management',
+  'open-source-engineering',
+  'private-ai',
+  'product-updates',
+  'project-management',
+  'self-hosting',
+];
 
 // Same default as lib/templateAPI.ts. The sitemap describes production, so only
 // override this when pointing the script at a different template backend.
@@ -11,20 +21,11 @@ const API_BASE_URL = process.env.SITEMAP_API_BASE_URL || 'https://beta.appflowy.
 
 const TEMPLATE_API = `${API_BASE_URL}/api/template-center`;
 
-/**
- * Per-route crawl budget overrides for static routes.
- *
- * Keys are route paths without a leading slash, exactly as getStaticRoutes()
- * builds them. Anything not listed here keeps the STATIC_ROUTE_DEFAULTS below.
- * These pages are intentionally kept crawlable but low priority, so a re-run of
- * this script must not promote them back to 1.0.
- */
-const STATIC_ROUTE_OVERRIDES = {
-  'invitation/expired': { priority: '0.3' },
-  downloaded: { priority: '0.7' },
-};
-
-const STATIC_ROUTE_DEFAULTS = { priority: '1.0', changefreq: 'weekly' };
+const EXCLUDED_STATIC_ROUTES = new Set([
+  // Utility and conversion pages should not compete with their canonical destinations.
+  'downloaded',
+  'invitation/expired',
+]);
 
 /**
  * Static routes: every `page.tsx` under `app/`.
@@ -50,9 +51,9 @@ const getStaticRoutes = () => {
         // config/, layout.tsx, route.ts) are not pages and must not become URLs.
         const pageRoute = route.replace(/\\/g, '/');
 
-        if (pageRoute.includes('[')) return;
+        if (pageRoute.includes('[') || EXCLUDED_STATIC_ROUTES.has(pageRoute)) return;
 
-        routes.push({ path: pageRoute, ...STATIC_ROUTE_DEFAULTS, ...STATIC_ROUTE_OVERRIDES[pageRoute] });
+        routes.push({ path: pageRoute });
       }
     });
   };
@@ -69,8 +70,7 @@ const getStaticRoutes = () => {
  */
 const getBlogRoutes = () => {
   const postsDirectory = path.join(process.cwd(), '_blog');
-
-  return fs
+  const posts = fs
     .readdirSync(postsDirectory)
     .filter((fileName) => fileName.endsWith('.mdx'))
     .map((fileName) => {
@@ -80,15 +80,58 @@ const getBlogRoutes = () => {
       const [, , , ...rest] = fileName.replace(/\.mdx$/, '').split('-');
 
       return {
+        slug: rest.join('-'),
         path: `blog/${rest.join('-')}`,
         lastmod: data.last_modified || data.date,
         unpublished: Boolean(data.unpublished),
         archived: Boolean(data.archived),
-        priority: '0.7',
-        changefreq: 'monthly',
+        pinned: Number(data.pinned) || 0,
+        date: data.date,
+        topics: Array.isArray(data.topics) ? data.topics : [],
       };
     })
-    .filter((post) => !post.unpublished && !post.archived);
+    .filter((post) => !post.unpublished && !post.archived)
+    .sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime());
+
+  const articleRoutes = posts.map(({ path, lastmod }) => ({ path, lastmod }));
+  const featuredPost = posts.filter((post) => post.pinned > 0).sort((a, b) => a.pinned - b.pinned)[0] || posts[0];
+  const archivePosts = featuredPost ? posts.filter((post) => post.slug !== featuredPost.slug) : posts;
+  const totalPages = Math.max(1, Math.ceil(archivePosts.length / BLOG_PAGE_SIZE));
+  const paginationRoutes = Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const page = index + 2;
+    const pagePosts = archivePosts.slice((page - 1) * BLOG_PAGE_SIZE, page * BLOG_PAGE_SIZE);
+
+    return {
+      path: `blog/page/${page}`,
+      lastmod: pagePosts.reduce((latest, post) => {
+        const value = new Date(post.lastmod).getTime();
+
+        return value > new Date(latest).getTime() ? post.lastmod : latest;
+      }, pagePosts[0]?.lastmod),
+    };
+  });
+  const latestPostDate = posts.reduce((latest, post) => {
+    const value = new Date(post.lastmod).getTime();
+
+    return value > new Date(latest).getTime() ? post.lastmod : latest;
+  }, posts[0]?.lastmod);
+  const collectionRoutes = [
+    { path: 'blog', lastmod: latestPostDate },
+    ...BLOG_TOPIC_SLUGS.map((topicSlug) => {
+      const topicPosts = posts.filter((post) => post.topics.includes(topicSlug));
+
+      return {
+        path: `blog/${topicSlug}`,
+        lastmod: topicPosts.reduce((latest, post) => {
+          const value = new Date(post.lastmod).getTime();
+
+          return value > new Date(latest).getTime() ? post.lastmod : latest;
+        }, topicPosts[0]?.lastmod),
+      };
+    }),
+  ];
+
+  return [...articleRoutes, ...paginationRoutes, ...collectionRoutes];
 };
 
 // Mirrors slugify() in components/template-center/utils.ts.
@@ -125,8 +168,6 @@ const getTemplateRoutes = async () => {
 
   const routes = categories.map((category) => ({
     path: `templates/${slugify(category.name)}`,
-    priority: '0.8',
-    changefreq: 'monthly',
   }));
 
   const templateLists = await Promise.all(
@@ -158,27 +199,107 @@ const getTemplateRoutes = async () => {
     routes.push({
       path: `templates/${slugify(canonicalCategory.name)}/${template.view_id}`,
       lastmod: template.publish_info && template.publish_info.publish_timestamp,
-      priority: '0.6',
-      changefreq: 'monthly',
     });
   });
 
   return routes;
 };
 
+/**
+ * Local development can run without access to the production template API.
+ * This explicit fallback preserves template entries from the last generated
+ * sitemap while static and blog routes are rebuilt from current source files.
+ * Production builds do not use it, so publishing still fails closed when fresh
+ * template data cannot be fetched.
+ */
+const getExistingTemplateRoutes = () => {
+  const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+
+  if (!fs.existsSync(sitemapPath)) {
+    throw new Error(`No existing sitemap found at ${sitemapPath}`);
+  }
+
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) || [];
+  const readElement = (block, name) => block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)<\\/${name}\\s*>`))?.[1].trim();
+
+  return urlBlocks.flatMap((block) => {
+    const location = readElement(block, 'loc');
+
+    if (!location) return [];
+
+    const url = new URL(location);
+    const pathSegments = url.pathname.split('/').filter(Boolean);
+
+    // The /templates index is a static route and is regenerated separately.
+    if (!url.pathname.startsWith('/templates/')) return [];
+
+    return [
+      {
+        path: url.pathname.replace(/^\//, ''),
+        // Category pages do not have a trustworthy modification timestamp.
+        // Preserve publish timestamps only for individual template pages.
+        lastmod: pathSegments.length > 2 ? readElement(block, 'lastmod') : undefined,
+      },
+    ];
+  });
+};
+
 const toIsoDate = (value) => {
   const date = value ? new Date(value) : null;
 
-  return date && !isNaN(date.getTime()) ? date.toISOString() : new Date().toISOString();
+  return date && !isNaN(date.getTime()) ? date.toISOString() : undefined;
 };
+
+const normalizeRoutes = (routes) => {
+  const routesByPath = new Map();
+
+  routes.forEach((route) => {
+    const normalizedPath = route.path.replace(/^\/+|\/+$/g, '');
+
+    const existingRoute = routesByPath.get(normalizedPath);
+
+    routesByPath.set(normalizedPath, {
+      ...existingRoute,
+      ...route,
+      path: normalizedPath,
+      lastmod: route.lastmod || existingRoute?.lastmod,
+    });
+  });
+
+  return [...routesByPath.values()].sort((first, second) => {
+    if (!first.path) return -1;
+    if (!second.path) return 1;
+
+    return first.path.localeCompare(second.path);
+  });
+};
+
+const escapeXml = (value) =>
+  String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 
 const generateSitemap = async () => {
   const skipTemplates = process.argv.includes('--skip-templates');
+  const reuseExistingTemplates = process.argv.includes('--reuse-existing-templates');
 
   let templateRoutes = [];
 
   if (skipTemplates) {
     console.warn('Skipping template URLs (--skip-templates).');
+  } else if (reuseExistingTemplates) {
+    try {
+      templateRoutes = getExistingTemplateRoutes();
+      console.warn(`Reusing ${templateRoutes.length} template URLs from public/sitemap.xml.`);
+    } catch (error) {
+      console.error(`Failed to reuse existing template URLs: ${error.message}`);
+      process.exitCode = 1;
+      return;
+    }
   } else {
     try {
       templateRoutes = await getTemplateRoutes();
@@ -186,7 +307,9 @@ const generateSitemap = async () => {
       // Writing a sitemap that silently drops every template URL is worse than
       // not writing one, so fail loudly instead of quietly shrinking the file.
       console.error(`Failed to fetch templates from ${TEMPLATE_API}: ${error.message}`);
-      console.error('Re-run with --skip-templates to write a sitemap without them.');
+      console.error(
+        'Re-run with --reuse-existing-templates to preserve cached template URLs, or --skip-templates to omit them.'
+      );
       process.exitCode = 1;
       return;
     }
@@ -194,25 +317,23 @@ const generateSitemap = async () => {
 
   const staticRoutes = getStaticRoutes();
   const blogRoutes = getBlogRoutes();
-  const routes = [...staticRoutes, ...blogRoutes, ...templateRoutes];
+  const routes = normalizeRoutes([...staticRoutes, ...blogRoutes, ...templateRoutes]);
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${routes
-      .map((route) => {
-        const normalizedPath = route.path.replace(/^\//, '');
+        .map((route) => {
+          const lastmod = toIsoDate(route.lastmod);
 
-        return `
+          return `
             <url>
-              <loc>${SITE_URL}/${normalizedPath}</loc>
-              <lastmod>${toIsoDate(route.lastmod)}</lastmod>
-              <changefreq>${route.changefreq}</changefreq>
-              <priority>${route.priority}</priority>
+              <loc>${escapeXml(`${SITE_URL}/${route.path}`)}</loc>
+              ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}
             </url>
           `;
-      })
-      .join('')}
+        })
+        .join('')}
     </urlset>
   `;
 
@@ -226,7 +347,7 @@ const generateSitemap = async () => {
 
   console.log(
     `Wrote public/sitemap.xml: ${routes.length} URLs ` +
-    `(${staticRoutes.length} static, ${blogRoutes.length} blog, ${templateRoutes.length} template).`
+      `(${staticRoutes.length} static, ${blogRoutes.length} blog, ${templateRoutes.length} template; deduplicated).`
   );
 };
 

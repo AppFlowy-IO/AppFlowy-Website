@@ -225,7 +225,10 @@ function generateListSchema() {
         })),
     };
 
-    const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'AppFlowy vs Outline', path: '/compare/appflowy-vs-outline' }]);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'AppFlowy alternatives', path: '/blog/alternatives' },
+        { name: 'AppFlowy vs Outline', path: '/compare/appflowy-vs-outline' },
+    ]);
 
     return {
         "@context": "https://schema.org",

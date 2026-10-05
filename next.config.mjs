@@ -37,6 +37,25 @@ const securityHeaders = [
     value: 'SAMEORIGIN',
   },
 ];
+const redirects = () => {
+  return [
+    {
+      source: '/blog/best-open-source-clickup-alternatives',
+      destination: '/blog/best-clickup-alternatives',
+      permanent: true,
+    },
+    {
+      source: '/blog/page/1',
+      destination: '/blog',
+      permanent: true,
+    },
+    {
+      source: '/blog/use-kanban-in-team-project-management',
+      destination: '/blog/appflowy-kanban-in-project-management',
+      permanent: true,
+    },
+  ];
+};
 const rewrites = () => {
   return [
     {
@@ -103,6 +122,7 @@ const nextConfig = {
 
   // Use the CDN in production and localhost for development.
   assetPrefix,
+  redirects,
   rewrites,
   images: {
     remotePatterns: [
@@ -114,7 +134,7 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7,
     unoptimized: true,
   },
-  async headers () {
+  async headers() {
     return [
       {
         // Apply these headers to all routes in your application.

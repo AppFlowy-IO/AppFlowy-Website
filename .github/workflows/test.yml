@@ -1,9 +1,9 @@
 name: Test
-on: [ pull_request ]
+on: [pull_request]
 
 env:
-  NODE_VERSION: "20.12.0"
-  PNPM_VERSION: "8.5.0"
+  NODE_VERSION: '20.12.0'
+  PNPM_VERSION: '10.34.1'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -31,6 +31,13 @@ jobs:
         run: |
           npm install -g pnpm@${{ env.PNPM_VERSION }}
           pnpm install
+          pnpm cypress install
+      - name: Verify SEO publishing assets
+        run: |
+          pnpm run check-blog-taxonomy
+          pnpm run generate-sitemap:cached
+          pnpm run check-seo-publishing
+          git diff --exit-code -- public/sitemap.xml
       - name: Build
         run: |
           NODE_ENV=test pnpm run build
@@ -41,4 +48,3 @@ jobs:
         run: |
           NODE_ENV=test pnpm run start &
           pnpm run test:headless
-
