@@ -60,8 +60,7 @@ docker-compose*
 # Supervisor config (no longer needed)
 supervisord.conf
 
-# Scripts (build-time only)
-scripts
+# Deployment scripts (keep scripts/ for the prebuild hook)
 deploy.sh
 
 # Cache
