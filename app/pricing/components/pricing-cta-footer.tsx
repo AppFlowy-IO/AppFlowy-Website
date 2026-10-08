@@ -97,7 +97,7 @@ export function PricingCtaFooter() {
   const { openContactDialog } = useContactDialog();
 
   return (
-    <section className='relative isolate w-full overflow-hidden bg-white px-5 pb-5 pt-20'>
+    <section className='relative isolate w-full overflow-hidden bg-white px-4 pb-4 pt-20 sm:px-6 sm:pb-6'>
       <div className='pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#F2F0FF] opacity-80 blur-[130px]' />
       <div className='relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center gap-10 text-center'>
         <div className='flex h-[84px] w-[84px] items-center justify-center rounded-[20px] border border-[#E6E6E6] bg-white p-4 shadow-[0_0_20px_rgba(73,87,240,0.08)]'>
@@ -128,7 +128,7 @@ export function PricingCtaFooter() {
         </div>
       </div>
 
-      <footer className='relative z-10 mx-auto mt-[120px] min-h-[433px] w-full max-w-[1400px] rounded-[20px] bg-black px-6 pb-10 pt-[60px] sm:px-10'>
+      <footer className='relative z-10 mt-[120px] min-h-[433px] w-full rounded-[16px] bg-black px-6 pb-10 pt-[60px] sm:rounded-[20px] sm:px-10'>
         <div className='grid min-h-[228px] grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-x-12'>
           <div className='col-span-2 flex flex-col gap-6 lg:col-span-1'>
             <div className='flex items-center gap-4 text-white'>
