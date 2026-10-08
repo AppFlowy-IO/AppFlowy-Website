@@ -67,7 +67,7 @@ export function AiPowerSection() {
               className='relative h-[240px] overflow-hidden rounded-2xl px-7 pt-7'
               style={{ backgroundColor: feature.background }}
             >
-              <h3 className='relative z-10 max-w-[320px] font-inter text-lg font-medium leading-7 text-[#140F28] sm:text-xl'>
+              <h3 className='relative z-10 w-full max-w-none font-inter text-lg font-medium leading-7 text-[#140F28] sm:text-xl'>
                 {feature.title}
                 {feature.description && <span className='block'>{feature.description}</span>}
               </h3>
