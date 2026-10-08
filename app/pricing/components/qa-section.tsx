@@ -11,7 +11,7 @@ const cloudFAQs = [
     id: 'cloud-1',
     question: 'How is pricing calculated for the paid plans?',
     answer:
-      "Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Personal workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\nA Pro workspace with only you: $12 per month billed annually ($144/year), or $16 billed monthly\nA Pro workspace with five members (including you): $12 × 5 = $60 per month billed annually ($720/year), or $16 × 5 = $80 billed monthly\n\nGuest editors available in Pro are free of charge.",
+      "Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Personal workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\nA Pro workspace with only you: $16 per month billed annually ($192/year), or $20 billed monthly\nA Pro workspace with five members (including you): $16 × 5 = $80 per month billed annually ($960/year), or $20 × 5 = $100 billed monthly\n\nGuest editors available in Pro are free of charge.",
   },
   {
     id: 'cloud-2',

@@ -32,7 +32,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
         <div className='flex items-center gap-3'>
           <div className='flex shrink-0 items-center justify-center rounded-[4px] bg-[rgba(141,66,203,0.1)] px-[6px] py-1'>
             <span className='whitespace-nowrap font-inter text-[10px] font-semibold leading-3 text-[#8D42CB]'>
-              Save 25%
+              Save 20%
             </span>
           </div>
           <button
