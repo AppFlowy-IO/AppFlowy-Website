@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
-import card1 from '@/assets/images/pricing/card-1.svg';
-import card2 from '@/assets/images/pricing/card-2.svg';
-import card3 from '@/assets/images/pricing/card-3.svg';
-import card4 from '@/assets/images/pricing/card-4.svg';
+import card1 from '@/assets/images/pricing/card-1.png';
+import card2 from '@/assets/images/pricing/card-2.png';
+import card3 from '@/assets/images/pricing/card-3.png';
+import card4 from '@/assets/images/pricing/card-4.png';
 
 const aiFeatures: {
   id: number;
@@ -74,9 +74,9 @@ export function AiPowerSection() {
               <Image
                 src={feature.image}
                 alt={feature.alt}
-                width={230}
-                height={240}
-                className='absolute -bottom-4 right-4 h-[190px] w-[210px] object-contain sm:h-[210px] sm:w-[230px]'
+                width={514}
+                height={640}
+                className='absolute -bottom-4 right-4 h-[230px] w-[230px] object-contain sm:h-[280px] sm:w-[280px]'
               />
             </article>
           ))}
