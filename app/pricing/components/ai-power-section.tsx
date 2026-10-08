@@ -1,50 +1,117 @@
 import React from 'react';
 import Image from 'next/image';
-import type { StaticImageData } from 'next/image';
-import card1 from '@/assets/images/pricing/card-1.png';
-import card2 from '@/assets/images/pricing/card-2.png';
-import card3 from '@/assets/images/pricing/card-3.png';
-import card4 from '@/assets/images/pricing/card-4.png';
 
 const aiFeatures: {
   id: number;
   title: string;
   description?: string;
-  image: StaticImageData;
-  alt: string;
   background: string;
 }[] = [
   {
     id: 1,
     title: 'Brainstorm new ideas and first drafts',
-    image: card1,
-    alt: 'AI brainstorming illustration',
     background: '#FEF6F5',
   },
   {
     id: 2,
     title: 'AI meeting notes',
     description: 'automatically captured and enhanced',
-    image: card2,
-    alt: 'AI meeting notes illustration',
-    background: '#F4F0FF',
+    background: '#F4EFFF',
   },
   {
     id: 3,
     title: 'Auto-fill columns',
-    image: card3,
-    alt: 'AI auto-fill columns illustration',
-    background: '#FFFBEA',
+    background: '#FEF9DD',
   },
   {
     id: 4,
     title: 'AI search',
     description: 'get answers with traceable sources',
-    image: card4,
-    alt: 'AI search illustration',
-    background: '#FFF8E9',
+    background: '#FDF5E7',
   },
 ];
+
+function AiFeatureArtwork({ id }: { id: number }) {
+  if (id === 1) {
+    return (
+      <div aria-hidden='true' className='pointer-events-none absolute inset-0'>
+        <Image
+          alt=''
+          src='/images/pricing/ai/brainstorm-checklist.png'
+          width={312}
+          height={163}
+          className='absolute left-[90px] top-[49px] max-w-none'
+        />
+        <Image
+          alt=''
+          src='/images/pricing/ai/brainstorm-note.png'
+          width={203}
+          height={96}
+          className='absolute left-0 top-[116px] max-w-none'
+        />
+        <Image
+          alt=''
+          src='/images/pricing/ai/brainstorm-sparkle.png'
+          width={36}
+          height={36}
+          className='absolute left-[70px] top-[97px] max-w-none'
+        />
+        <Image
+          alt=''
+          src='/images/pricing/ai/brainstorm-progress.png'
+          width={79}
+          height={79}
+          className='absolute left-[366px] top-[141px] max-w-none'
+        />
+      </div>
+    );
+  }
+
+  if (id === 2) {
+    return (
+      <div aria-hidden='true' className='pointer-events-none absolute inset-0'>
+        <Image
+          alt=''
+          src='/images/pricing/ai/meeting-notes.png'
+          width={345}
+          height={140}
+          className='absolute left-[28px] top-[72px] max-w-none'
+        />
+        <Image
+          alt=''
+          src='/images/pricing/ai/meeting-ai-overlay.png'
+          width={200}
+          height={72}
+          className='absolute left-[244px] top-[106px] max-w-none'
+        />
+      </div>
+    );
+  }
+
+  if (id === 3) {
+    return (
+      <Image
+        aria-hidden='true'
+        alt=''
+        src='/images/pricing/ai/autofill-table.png'
+        width={444}
+        height={157}
+        className='pointer-events-none absolute left-[28px] top-[83px] max-w-none'
+      />
+    );
+  }
+
+  return (
+    <Image
+      aria-hidden='true'
+      alt=''
+      src='/images/pricing/ai/search-answers.png'
+      width={360}
+      height={140}
+      className='pointer-events-none absolute left-[28px] top-[72px] max-w-none'
+    />
+  );
+}
 
 export function AiPowerSection() {
   return (
@@ -71,13 +138,7 @@ export function AiPowerSection() {
                 {feature.title}
                 {feature.description && <span className='block'>{feature.description}</span>}
               </h3>
-              <Image
-                src={feature.image}
-                alt={feature.alt}
-                width={514}
-                height={640}
-                className='absolute -bottom-4 right-4 h-[230px] w-[230px] object-contain sm:h-[280px] sm:w-[280px]'
-              />
+              <AiFeatureArtwork id={feature.id} />
             </article>
           ))}
         </div>
