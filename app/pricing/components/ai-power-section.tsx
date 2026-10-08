@@ -6,112 +6,45 @@ const aiFeatures: {
   title: string;
   description?: string;
   background: string;
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
 }[] = [
   {
     id: 1,
     title: 'Brainstorm new ideas and first drafts',
     background: '#FEF6F5',
+    image: '/images/pricing/ai/brainstorm.png',
+    imageWidth: 832,
+    imageHeight: 424,
   },
   {
     id: 2,
     title: 'AI meeting notes',
     description: 'automatically captured and enhanced',
     background: '#F4EFFF',
+    image: '/images/pricing/ai/meeting-notes.png',
+    imageWidth: 832,
+    imageHeight: 424,
   },
   {
     id: 3,
     title: 'Auto-fill columns',
     background: '#FEF9DD',
+    image: '/images/pricing/ai/autofill-columns.png',
+    imageWidth: 888,
+    imageHeight: 424,
   },
   {
     id: 4,
     title: 'AI search',
     description: 'get answers with traceable sources',
     background: '#FDF5E7',
+    image: '/images/pricing/ai/ai-search.png',
+    imageWidth: 832,
+    imageHeight: 424,
   },
 ];
-
-function AiFeatureArtwork({ id }: { id: number }) {
-  if (id === 1) {
-    return (
-      <div aria-hidden='true' className='pointer-events-none absolute inset-0'>
-        <Image
-          alt=''
-          src='/images/pricing/ai/brainstorm-checklist.png'
-          width={312}
-          height={163}
-          className='absolute left-[90px] top-[49px] max-w-none'
-        />
-        <Image
-          alt=''
-          src='/images/pricing/ai/brainstorm-note.png'
-          width={203}
-          height={96}
-          className='absolute left-0 top-[116px] max-w-none'
-        />
-        <Image
-          alt=''
-          src='/images/pricing/ai/brainstorm-sparkle.png'
-          width={36}
-          height={36}
-          className='absolute left-[70px] top-[97px] max-w-none'
-        />
-        <Image
-          alt=''
-          src='/images/pricing/ai/brainstorm-progress.png'
-          width={79}
-          height={79}
-          className='absolute left-[366px] top-[141px] max-w-none'
-        />
-      </div>
-    );
-  }
-
-  if (id === 2) {
-    return (
-      <div aria-hidden='true' className='pointer-events-none absolute inset-0'>
-        <Image
-          alt=''
-          src='/images/pricing/ai/meeting-notes.png'
-          width={345}
-          height={140}
-          className='absolute left-[28px] top-[72px] max-w-none'
-        />
-        <Image
-          alt=''
-          src='/images/pricing/ai/meeting-ai-overlay.png'
-          width={200}
-          height={72}
-          className='absolute left-[244px] top-[106px] max-w-none'
-        />
-      </div>
-    );
-  }
-
-  if (id === 3) {
-    return (
-      <Image
-        aria-hidden='true'
-        alt=''
-        src='/images/pricing/ai/autofill-table.png'
-        width={444}
-        height={157}
-        className='pointer-events-none absolute left-[28px] top-[83px] max-w-none'
-      />
-    );
-  }
-
-  return (
-    <Image
-      aria-hidden='true'
-      alt=''
-      src='/images/pricing/ai/search-answers.png'
-      width={360}
-      height={140}
-      className='pointer-events-none absolute left-[28px] top-[72px] max-w-none'
-    />
-  );
-}
 
 export function AiPowerSection() {
   return (
@@ -138,7 +71,16 @@ export function AiPowerSection() {
                 {feature.title}
                 {feature.description && <span className='block'>{feature.description}</span>}
               </h3>
-              <AiFeatureArtwork id={feature.id} />
+              <Image
+                aria-hidden='true'
+                alt=''
+                src={feature.image}
+                width={feature.imageWidth}
+                height={feature.imageHeight}
+                className={`pointer-events-none absolute left-7 top-7 h-auto max-w-none ${
+                  feature.id === 3 ? 'w-[calc(100%-28px)]' : 'w-[calc(100%-56px)]'
+                }`}
+              />
             </article>
           ))}
         </div>
