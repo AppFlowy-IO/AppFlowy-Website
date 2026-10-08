@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export type BillingCycle = 'yearly' | 'monthly';
 
@@ -28,88 +28,56 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className='mx-auto w-full max-w-[1100px]'>
-        <div className='relative flex items-center justify-center'>
-          {/* Left: Yearly Label with Save 20% Tag */}
-          <div
-            className='absolute right-1/2 flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-3 xl:gap-3'
-            style={{ marginRight: '34px' }}
-          >
-            <AnimatePresence>
-              {billingCycle === 'yearly' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                  className='flex items-center justify-center rounded-md bg-[rgba(200,154,250,0.20)] px-1.5 py-1 sm:px-2 sm:py-1 md:px-2 md:py-1 lg:px-2 lg:py-1 xl:px-2 xl:py-1'
-                >
-                  <span className='whitespace-nowrap font-inter text-xs font-medium leading-[150%] text-[#8427E0] sm:text-xs md:text-xs lg:text-xs xl:text-xs'>
-                    Save 25%
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <button
-              onClick={() => onBillingChange('yearly')}
-              className='touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            >
-              <span
-                className={`whitespace-nowrap font-inter text-sm font-medium leading-[160%] transition-all duration-200 sm:text-base md:text-base lg:text-base xl:text-base ${
-                  billingCycle === 'yearly' ? 'text-[#9327FF]' : 'text-[#101012] opacity-40'
-                }`}
-              >
-                Yearly
-              </span>
-            </button>
+      <div className='flex items-center justify-center gap-5'>
+        <div className='flex items-center gap-3'>
+          <div className='flex shrink-0 items-center justify-center rounded-[4px] bg-[rgba(141,66,203,0.1)] px-[6px] py-1'>
+            <span className='whitespace-nowrap font-inter text-[10px] font-semibold leading-3 text-[#8D42CB]'>
+              Save 25%
+            </span>
           </div>
-
-          {/* Center: Switch Component - Absolutely centered */}
           <button
-            onClick={toggleBilling}
-            className='relative z-10 flex-shrink-0 cursor-pointer touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
-            style={{ WebkitTapHighlightColor: 'transparent' }}
+            type='button'
+            aria-pressed={billingCycle === 'yearly'}
+            onClick={() => onBillingChange('yearly')}
+            className='touch-manipulation select-none whitespace-nowrap font-inter text-sm leading-5 transition-colors duration-200'
+            style={{
+              color: billingCycle === 'yearly' ? '#854CFF' : '#AAA',
+              fontWeight: billingCycle === 'yearly' ? 700 : 400,
+              WebkitTapHighlightColor: 'transparent',
+            }}
           >
-            <motion.div
-              className={`flex items-center rounded-full p-0.5 transition-colors duration-300 sm:p-0.5 md:p-0.5 lg:p-0.5 xl:p-0.5 ${
-                billingCycle === 'yearly' ? 'bg-[#8427E0]' : 'bg-[#000]'
-              }`}
-              style={{ width: '44px', height: '20px' }}
-            >
-              <motion.div
-                className='rounded-full bg-white'
-                style={{ width: '16px', height: '16px' }}
-                animate={{
-                  x: billingCycle === 'yearly' ? '2px' : '26px',
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 500,
-                  damping: 30,
-                }}
-              />
-            </motion.div>
+            Yearly
           </button>
-
-          {/* Right: Monthly Label */}
-          <div className='absolute left-1/2' style={{ marginLeft: '34px' }}>
-            <button
-              onClick={() => onBillingChange('monthly')}
-              className='touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            >
-              <span
-                className={`whitespace-nowrap font-inter text-sm font-medium leading-[160%] transition-all duration-200 sm:text-base md:text-base lg:text-base xl:text-base ${
-                  billingCycle === 'monthly' ? 'text-[#101012]' : 'text-[#101012] opacity-40'
-                }`}
-              >
-                Monthly
-              </span>
-            </button>
-          </div>
         </div>
+
+        <button
+          type='button'
+          aria-label={`Switch to ${billingCycle === 'yearly' ? 'monthly' : 'yearly'} billing`}
+          aria-pressed={billingCycle === 'monthly'}
+          onClick={toggleBilling}
+          className='flex h-5 w-11 shrink-0 touch-manipulation items-center rounded-full bg-[#854CFF] p-0.5'
+          style={{ WebkitTapHighlightColor: 'transparent' }}
+        >
+          <motion.span
+            className='block h-4 w-7 shrink-0 rounded-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]'
+            animate={{ x: billingCycle === 'yearly' ? 0 : 12 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          />
+        </button>
+
+        <button
+          type='button'
+          aria-pressed={billingCycle === 'monthly'}
+          onClick={() => onBillingChange('monthly')}
+          className='w-[108px] touch-manipulation select-none text-left font-inter text-sm leading-5 transition-colors duration-200'
+          style={{
+            color: billingCycle === 'monthly' ? '#854CFF' : '#AAA',
+            fontWeight: billingCycle === 'monthly' ? 700 : 400,
+            WebkitTapHighlightColor: 'transparent',
+          }}
+        >
+          Monthly
+        </button>
       </div>
     </motion.div>
   );
