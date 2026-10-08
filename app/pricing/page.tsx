@@ -100,11 +100,11 @@ function generatePricingSchema(siteUrl: string) {
           '@type': 'Offer',
           name: 'Pro Plan (Annual billing)',
           description: 'For professional work and teams',
-          price: '16',
+          price: '12',
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '16',
+            price: '12',
             priceCurrency: 'USD',
             billingIncrement: 'month',
           },
@@ -117,11 +117,11 @@ function generatePricingSchema(siteUrl: string) {
           '@type': 'Offer',
           name: 'Pro Plan (Monthly billing)',
           description: 'For professional work and teams',
-          price: '20',
+          price: '16',
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '20',
+            price: '16',
             priceCurrency: 'USD',
             billingIncrement: 'month',
           },
@@ -170,9 +170,9 @@ function PricingPage() {
         {/* Opaque so the global body gradient in globals.scss does not show through. */}
         <div className="pricing-page bg-white">
         {/* Pricing Hero - Main title and deployment selection with full-width background */}
-        <div className="w-full bg-[#F5F5FA] pt-[104px]">
+        <div className="w-full bg-[#F5F5FA] pt-[152px]">
           <PricingHeroContainer>
-            <h1 className="pricing-hero-title mb-10 sm:mb-12 md:mb-14 lg:mb-16 xl:mb-[60px]">
+            <h1 className="pricing-hero-title mx-auto mb-0 flex h-[136px] flex-col items-center justify-center">
               <div className="text-[#101012] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
                 Your work solution.
               </div>

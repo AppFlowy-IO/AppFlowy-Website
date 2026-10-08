@@ -2,16 +2,16 @@ import React from 'react';
 
 export function SupportedIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path d="M15.8181 6L7.81813 14L4.18176 10.3636" stroke="#21232A" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="none">
+      <path d="M15.8181 6L7.81813 14L4.18176 10.3636" stroke="#854CFF" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
 
 export function NotSupportedIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" viewBox="0 0 12 2" fill="none">
-      <path d="M1 1H11" stroke="#B5BBD3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="2" viewBox="0 0 16 2" fill="none">
+      <path d="M1 1H15" stroke="#AAA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }

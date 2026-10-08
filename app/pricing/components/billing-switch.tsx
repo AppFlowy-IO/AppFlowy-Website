@@ -12,7 +12,6 @@ interface BillingCycleSwitchProps {
 }
 
 export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: BillingCycleSwitchProps) {
-
   const toggleBilling = () => {
     onBillingChange(billingCycle === 'yearly' ? 'monthly' : 'yearly');
   };
@@ -23,7 +22,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
 
   return (
     <motion.div
-      className='mx-auto w-full max-w-screen-xl px-4 py-8 sm:px-6 sm:py-9 md:py-10 lg:px-8 lg:py-10 xl:py-10'
+      className='mx-auto w-full max-w-screen-xl px-4 pt-10 sm:px-6 lg:px-8'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -46,7 +45,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
                   className='flex items-center justify-center rounded-md bg-[rgba(200,154,250,0.20)] px-1.5 py-1 sm:px-2 sm:py-1 md:px-2 md:py-1 lg:px-2 lg:py-1 xl:px-2 xl:py-1'
                 >
                   <span className='whitespace-nowrap font-inter text-xs font-medium leading-[150%] text-[#8427E0] sm:text-xs md:text-xs lg:text-xs xl:text-xs'>
-                    Save 20%
+                    Save 25%
                   </span>
                 </motion.div>
               )}
@@ -54,7 +53,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
 
             <button
               onClick={() => onBillingChange('yearly')}
-              className='transition-all duration-200 hover:scale-105 active:scale-95 select-none touch-manipulation'
+              className='touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
               style={{ WebkitTapHighlightColor: 'transparent' }}
             >
               <span
@@ -70,20 +69,20 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
           {/* Center: Switch Component - Absolutely centered */}
           <button
             onClick={toggleBilling}
-            className='relative z-10 flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 select-none touch-manipulation'
+            className='relative z-10 flex-shrink-0 cursor-pointer touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             <motion.div
               className={`flex items-center rounded-full p-0.5 transition-colors duration-300 sm:p-0.5 md:p-0.5 lg:p-0.5 xl:p-0.5 ${
                 billingCycle === 'yearly' ? 'bg-[#8427E0]' : 'bg-[#000]'
               }`}
-              style={{ width: '44px', height: '26px' }}
+              style={{ width: '44px', height: '20px' }}
             >
               <motion.div
                 className='rounded-full bg-white'
-                style={{ width: '20px', height: '20px' }}
+                style={{ width: '16px', height: '16px' }}
                 animate={{
-                  x: billingCycle === 'yearly' ? '2px' : '18px',
+                  x: billingCycle === 'yearly' ? '2px' : '26px',
                 }}
                 transition={{
                   type: 'spring',
@@ -98,7 +97,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
           <div className='absolute left-1/2' style={{ marginLeft: '34px' }}>
             <button
               onClick={() => onBillingChange('monthly')}
-              className='transition-all duration-200 hover:scale-105 active:scale-95 select-none touch-manipulation'
+              className='touch-manipulation select-none transition-all duration-200 hover:scale-105 active:scale-95'
               style={{ WebkitTapHighlightColor: 'transparent' }}
             >
               <span
