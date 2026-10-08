@@ -30,7 +30,7 @@ export function ComparisonTable({
   return (
     <Tooltip.Provider delayDuration={300} skipDelayDuration={300}>
       <motion.div
-        className='mt-[120px] w-full'
+        className='w-full'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}

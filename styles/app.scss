@@ -26,6 +26,10 @@ body {
   @apply w-full;
 }
 
+.pricing-page-layout .appflowy-navbar {
+  @apply h-[68px] lg:h-[72px];
+}
+
 .appflowy-footer {
   // The page's last section (.get-started-section) is `position: relative`, so it paints in the
   // positioned-elements phase — above this footer, which is otherwise unpositioned.

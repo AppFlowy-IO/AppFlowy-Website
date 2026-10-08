@@ -1,80 +1,86 @@
 import React from 'react';
 import Image from 'next/image';
-import card1 from '/assets/images/pricing/card-1.svg';
-import card2 from '/assets/images/pricing/card-2.svg';
-import card3 from '/assets/images/pricing/card-3.svg';
-import card4 from '/assets/images/pricing/card-4.svg';
-import ScrollIcons from '@/components/shared/scroll-icons';
+import type { StaticImageData } from 'next/image';
+import card1 from '@/assets/images/pricing/card-1.svg';
+import card2 from '@/assets/images/pricing/card-2.svg';
+import card3 from '@/assets/images/pricing/card-3.svg';
+import card4 from '@/assets/images/pricing/card-4.svg';
 
-const aiFeatures = [
+const aiFeatures: {
+  id: number;
+  title: string;
+  description?: string;
+  image: StaticImageData;
+  alt: string;
+  background: string;
+}[] = [
   {
     id: 1,
     title: 'Brainstorm new ideas and first drafts',
     image: card1,
-    alt: 'Brainstorm new ideas'
+    alt: 'AI brainstorming illustration',
+    background: '#FEF6F5',
   },
   {
     id: 2,
     title: 'AI meeting notes',
     description: 'automatically captured and enhanced',
     image: card2,
-    alt: 'AI meeting notes automatically captured and enhanced'
+    alt: 'AI meeting notes illustration',
+    background: '#F4F0FF',
   },
   {
     id: 3,
     title: 'Auto-fill columns',
     image: card3,
-    alt: 'Auto-fill columns'
+    alt: 'AI auto-fill columns illustration',
+    background: '#FFFBEA',
   },
   {
     id: 4,
     title: 'AI search',
     description: 'get answers with traceable sources',
     image: card4,
-    alt: 'AI search with answers from traceable sources'
-  }
+    alt: 'AI search illustration',
+    background: '#FFF8E9',
+  },
 ];
-
-
 
 export function AiPowerSection() {
   return (
-    <section className='w-full bg-white py-[110px]'>
-      <div className='mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8'>
-        <div className='mx-auto w-full max-w-[1100px] text-center'>
-          <h2 className='font-inter text-3xl font-medium leading-[105%] tracking-[-0.03em] text-[#101012] sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]'>
-            <span className='text-[#8427E0]'>Unlock</span> unlimited AI power
+    <section className='relative isolate w-full overflow-hidden bg-white px-4 py-[120px] sm:px-6'>
+      <div className='pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6F4FF] opacity-80 blur-[110px]' />
+      <div className='mx-auto w-full max-w-[960px]'>
+        <div className='text-center'>
+          <h2 className='font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+            Unlock unlimited AI power
           </h2>
-          <h3 className='mt-5 text-center font-inter text-2xl font-medium leading-[120%] tracking-[-0.72px] text-[#101012]'>
+          <p className='mt-3 font-inter text-base font-medium leading-7 text-[#5A5A5A] sm:text-xl'>
             AppFlowy AI includes
-          </h3>
-
-          {/* AI Feature Cards */}
-          <div className='mt-[60px]'>
-            <div className='mx-auto grid w-full max-w-[1100px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
-              {aiFeatures.map((feature) => (
-                <div key={feature.id} className='flex flex-col items-center'>
-                  <div className='flex h-[320px] w-full flex-shrink-0 flex-col items-center justify-center gap-[25px] rounded-lg bg-gray-50 p-[40px]'>
-                    <Image
-                      src={feature.image}
-                      alt={feature.alt}
-                      width={257}
-                      height={320}
-                      className='max-h-full max-w-full object-contain'
-                    />
-                  </div>
-                  <h4 className='mt-6 w-full px-6 text-center font-inter text-2xl font-medium leading-[120%] tracking-[-0.24px] text-[#101012]'>
-                    <span className='block'>{feature.title}</span>
-                    {feature.description && <span className='block'>{feature.description}</span>}
-                  </h4>
-                </div>
-              ))}
-            </div>
-          </div>
+          </p>
         </div>
-      </div>
-      <div className={'w-full bg-white pt-[100px]'}>
-        <ScrollIcons />
+
+        <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2'>
+          {aiFeatures.map((feature) => (
+            <article
+              key={feature.id}
+              className='relative h-[240px] overflow-hidden rounded-2xl px-7 pt-7'
+              style={{ backgroundColor: feature.background }}
+            >
+              <h3 className='relative z-10 max-w-[320px] font-inter text-lg font-medium leading-7 text-[#140F28] sm:text-xl'>
+                {feature.title}
+                {feature.description && <span className='block'>{feature.description}</span>}
+              </h3>
+              <Image
+                src={feature.image}
+                alt={feature.alt}
+                width={230}
+                height={240}
+                className='absolute -bottom-4 right-4 h-[190px] w-[210px] object-contain sm:h-[210px] sm:w-[230px]'
+              />
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

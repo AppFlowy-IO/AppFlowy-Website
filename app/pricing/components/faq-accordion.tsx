@@ -18,23 +18,21 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
   };
 
   return (
-    <div className='w-full space-y-3'>
+    <div className='w-full space-y-2'>
       {items.map((item) => {
         const isExpanded = expandedItem === item.id;
 
         return (
           <div
             key={item.id}
-            className='w-full cursor-pointer select-none rounded-2xl bg-white px-5 py-5 shadow-[0_1px_2px_rgba(16,16,18,0.04)] transition-shadow duration-200 touch-manipulation hover:shadow-[0_4px_16px_rgba(16,16,18,0.06)] sm:px-6 sm:py-6'
+            className='w-full cursor-pointer touch-manipulation select-none rounded-xl bg-white px-6 py-4 transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(20,15,40,0.05)]'
             style={{ WebkitTapHighlightColor: 'transparent' }}
             onClick={() => toggleItem(item.id)}
           >
             {/* Question and Icon Row */}
-            <div className='flex w-full items-center justify-between gap-4'>
-              <h3 className='flex-1 font-inter text-base font-semibold leading-[130%] tracking-[-0.2px] text-[#101012] sm:text-lg md:text-xl'>
-                {item.question}
-              </h3>
-              <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[10px] bg-[#F5F5F7] sm:h-10 sm:w-10'>
+            <div className='min-h-12 flex w-full items-start justify-between gap-5'>
+              <h3 className='flex-1 pt-3 font-inter text-base font-medium leading-6 text-[#140F28]'>{item.question}</h3>
+              <div className='flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-[#F6F6FA]'>
                 {isExpanded ? <MinusIcon /> : <PlusIcon />}
               </div>
             </div>
@@ -52,7 +50,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                 ease: 'easeInOut',
               }}
             >
-              <div className='whitespace-pre-line pt-3 font-inter text-sm font-normal leading-[150%] text-[#58585A] sm:pt-4 sm:text-base'>
+              <div className='whitespace-pre-line pl-0 pt-5 font-inter text-sm font-normal leading-5 text-[#5A5A5A]'>
                 {item.answer}
               </div>
             </motion.div>
