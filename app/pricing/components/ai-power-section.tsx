@@ -69,7 +69,12 @@ export function AiPowerSection() {
             >
               <h3 className='relative z-10 w-full max-w-none font-inter text-lg font-medium leading-7 text-[#140F28] sm:text-xl'>
                 {feature.title}
-                {feature.description && <span className='block'>{feature.description}</span>}
+                {feature.description &&
+                  (feature.id === 4 ? (
+                    <> {feature.description}</>
+                  ) : (
+                    <span className='block'>{feature.description}</span>
+                  ))}
               </h3>
               <Image
                 aria-hidden='true'
