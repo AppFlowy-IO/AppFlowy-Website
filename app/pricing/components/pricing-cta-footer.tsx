@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import Discord from '@/components/icons/discord';
 import Github from '@/components/icons/github';
+import Logo from '@/components/icons/logo';
 import Reddit from '@/components/icons/reddit';
 import Twitter from '@/components/icons/twitter';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
@@ -76,7 +77,7 @@ const socialLinks = [
 ];
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
-  const className = 'text-sm leading-6 text-white/70 transition-colors hover:text-white';
+  const className = 'relative inline-flex items-center';
   return href.startsWith('http') || href.startsWith('mailto:') ? (
     <a
       className={className}
@@ -128,14 +129,13 @@ export function PricingCtaFooter() {
         </div>
       </div>
 
-      <footer className='relative z-10 mt-[120px] min-h-[433px] w-full rounded-[16px] bg-black px-6 pb-10 pt-[60px] sm:rounded-[20px] sm:px-10'>
-        <div className='grid min-h-[228px] grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-x-12'>
-          <div className='col-span-2 flex flex-col gap-6 lg:col-span-1'>
-            <div className='flex items-center gap-4 text-white'>
-              <Image src='/appflowy.svg' width={28} height={28} alt='' aria-hidden='true' />
-              <span className='font-inter text-2xl font-semibold leading-8'>appflowy</span>
+      <footer className='appflowy-footer mt-[120px] min-h-[433px] w-full rounded-[16px] bg-black p-10 pt-[60px] max-xl:px-[28px] max-lg:px-5 max-lg:pt-5 sm:rounded-[20px]'>
+        <div className='flex items-start justify-between gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
+          <div className='logo'>
+            <div className='image text-white'>
+              <Logo />
             </div>
-            <div className='flex items-center gap-6'>
+            <div aria-label='AppFlowy social links' className='social-links'>
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -153,14 +153,14 @@ export function PricingCtaFooter() {
 
           <nav
             aria-label='Footer'
-            className='col-span-2 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:col-span-1 lg:grid-cols-6 lg:gap-x-6'
+            className='grid min-w-0 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-xl:gap-x-[28px] max-md:w-full max-md:grid-cols-2 max-md:gap-x-[32px] max-md:gap-y-[36px] max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px] lg:grid-cols-[repeat(6,minmax(0,max-content))]'
           >
             {footerGroups.map((group) => (
               <div key={group.title} className='min-w-0'>
-                <h3 className='mb-5 font-inter text-base font-semibold leading-7 text-white'>{group.title}</h3>
+                <h3 className='group-name text-style-h5 mb-[22px] block font-semibold'>{group.title}</h3>
                 <ul className='flex flex-col gap-2'>
                   {group.links.map(([label, href]) => (
-                    <li key={label} className='whitespace-nowrap'>
+                    <li key={label} className='group-item text-style-body-standard'>
                       <FooterLink href={href}>{label}</FooterLink>
                     </li>
                   ))}
@@ -169,8 +169,10 @@ export function PricingCtaFooter() {
             ))}
           </nav>
         </div>
-        <div className='mt-10 border-t border-white/20 pt-9 text-sm leading-6 text-white/70'>
-          Copyright © 2026, AppFlowy
+        <div className='bottom mt-[48px] border-t pt-6 text-white/70'>
+          <div className='col'>
+            <div className='text-style-body-standard'>Copyright © 2026, AppFlowy</div>
+          </div>
         </div>
       </footer>
     </section>
