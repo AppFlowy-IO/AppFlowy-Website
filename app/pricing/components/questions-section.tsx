@@ -6,166 +6,76 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 import { usePricingState } from './pricing-state-context';
-import helpImage from '/assets/images/pricing/help.png';
-import affiliateImage from '/assets/images/pricing/affiliate.png';
-import contactImage from '/assets/images/pricing/contact.png';
 
-const cardData = [
+const cards = [
   {
-    id: 1,
-    image: helpImage,
     title: 'Help articles',
-    action: 'Learn more',
-    link: 'https://appflowy.com/guide/getting-started-with-appflowy',
-    alt: 'Help'
+    icon: '/images/pricing/support-help.svg',
+    href: 'https://appflowy.com/guide/getting-started-with-appflowy',
   },
   {
-    id: 2,
-    image: affiliateImage,
     title: 'Partner program',
-    action: 'Learn more',
-    link: 'https://appflowy.com/docs/appflowy-partner-program',
-    alt: 'Partner program'
+    icon: '/images/pricing/support-partner.svg',
+    href: 'https://appflowy.com/docs/appflowy-partner-program',
   },
   {
-    id: 3,
-    image: contactImage,
     title: 'Contact support',
-    action: 'Contact Us',
-    link: '/contact',
-    alt: 'Contact'
-  }
+    icon: '/images/pricing/support-contact.svg',
+    href: '/contact',
+    contact: true,
+  },
 ];
-
-function ActionIcon() {
-  return (
-    <div className="flex w-6 h-6 justify-center items-center gap-[10px] rounded-full bg-white">
-      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none">
-        <path d="M1.44995 0.950195H9.54995M9.54995 0.950195V9.0502M9.54995 0.950195L1.44995 9.0502" stroke="#8427E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </div>
-  );
-}
 
 export function QuestionsSection() {
   const searchParams = useSearchParams();
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
-
-  // Read through a ref so the deep-link effect below does not re-fire (and
-  // reopen the dialog) merely because the user switched deployment tabs.
   const deploymentModeRef = useRef(deploymentMode);
-
   deploymentModeRef.current = deploymentMode;
 
-  // 检测 URL 参数中的 action=contact
   useEffect(() => {
-    const action = searchParams.get('action');
-
-    if (action === 'contact') {
+    if (searchParams.get('action') === 'contact') {
       openContactDialog({ deploymentMode: deploymentModeRef.current });
     }
   }, [searchParams, openContactDialog]);
 
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    openContactDialog({ deploymentMode });
-  };
-
   return (
-    <section className="relative w-full bg-[#200E34] py-16 sm:py-20 md:py-24 lg:py-28 xl:py-[156px] overflow-hidden">
-      {/* Top Gradient Ellipse Overlay */}
-      <div 
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-3/4 opacity-30"
-        style={{
-          width: '100%',
-          height: '50%',
-          background: '#8A2CE7',
-          borderRadius: '2060px',
-          filter: 'blur(250px)',
-        }}
-      />
-      
-      {/* Bottom Gradient Ellipse Overlay */}
-      <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[80%] opacity-40"
-        style={{
-          width: '100%',
-          height: '50%',
-          background: '#8A2CE7',
-          borderRadius: '2060px',
-          filter: 'blur(200px)',
-        }}
-      />
-      
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto">
-        <div className="w-full max-w-[1100px] mx-auto text-center">
-          {/* Title with padding */}
-          <div className="px-6 sm:px-8 lg:px-12 xl:px-8">
-            <h2 className="text-white font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px] font-medium leading-[105%] tracking-[-1.68px]">
-              Have additional <span className="text-[#C89AFA]">questions?</span>
-            </h2>
-          </div>
-          
-          {/* Cards with padding */}
-          <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-28 xl:mt-[100px] px-6 sm:px-8 lg:px-12 xl:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {cardData.map((card) => (
-                <div key={card.id} className="flex p-[50px_40px] flex-col items-center flex-1 self-stretch rounded-[15px] border border-[rgba(255,255,255,0.2)]">
-                  {/* Image */}
-                  <div className="h-[120px] flex items-center justify-center">
-                    <Image 
-                      src={card.image}
-                      alt={card.alt}
-                      width={120}
-                      height={120}
-                      className="object-contain max-h-[120px]"
-                    />
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-white text-center font-inter text-2xl font-medium leading-[120%] tracking-[-0.24px] mt-[25px]">
-                    {card.title}
-                  </h3>
-                  
-                  {/* Action */}
-                  <div className="flex items-center gap-2 mt-[15px]">
-                    {card.id === 3 ? (
-                      <button 
-                        onClick={handleContactClick}
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity select-none touch-manipulation"
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        <span className="text-[#E0C4FF] font-inter text-base font-medium leading-[150%]">
-                          {card.action}
-                        </span>
-                        <ActionIcon />
-                      </button>
-                    ) : card.link ? (
-                      <Link 
-                        href={card.link}
-                        className="flex items-center gap-2 hover:opacity-80 transition-opacity select-none touch-manipulation"
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                        {...(card.link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        <span className="text-[#E0C4FF] font-inter text-base font-medium leading-[150%]">
-                          {card.action}
-                        </span>
-                        <ActionIcon />
-                      </Link>
-                    ) : (
-                      <div className="flex items-center gap-2 opacity-60 cursor-not-allowed">
-                        <span className="text-[#E0C4FF] font-inter text-base font-medium leading-[150%]">
-                          {card.action}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section className='relative isolate w-full overflow-hidden bg-white px-4 py-[120px] sm:px-6'>
+      <div className='pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6F4FF] opacity-80 blur-[110px]' />
+      <div className='mx-auto w-full max-w-[960px]'>
+        <h2 className='text-center font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+          Have additional questions?
+        </h2>
+        <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+          {cards.map((card) => (
+            <article
+              key={card.title}
+              className='flex min-h-[236px] flex-col rounded-2xl bg-white p-7 shadow-[0_4px_24px_rgba(20,15,40,0.04)]'
+            >
+              <div className='flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(133,76,255,0.08)]'>
+                <Image src={card.icon} alt='' aria-hidden='true' width={24} height={24} />
+              </div>
+              <h3 className='mt-[60px] font-inter text-xl font-medium leading-7 text-[#140F28]'>{card.title}</h3>
+              {card.contact ? (
+                <button
+                  type='button'
+                  onClick={() => openContactDialog({ deploymentMode })}
+                  className='mt-3 w-fit font-inter text-base leading-6 text-[#5A5A5A] hover:text-[#8427E0]'
+                >
+                  Learn more <span aria-hidden='true'>→</span>
+                </button>
+              ) : (
+                <Link
+                  href={card.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='mt-3 w-fit font-inter text-base leading-6 text-[#5A5A5A] hover:text-[#8427E0]'
+                >
+                  Learn more <span aria-hidden='true'>→</span>
+                </Link>
+              )}
+            </article>
+          ))}
         </div>
       </div>
     </section>

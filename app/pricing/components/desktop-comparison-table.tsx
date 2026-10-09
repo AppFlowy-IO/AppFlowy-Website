@@ -18,7 +18,10 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
-  const ctaWidthClassName = deploymentMode === 'cloud' ? 'mx-auto w-[calc(100%_-_16px)]' : 'w-full';
+  const isCloud = deploymentMode === 'cloud';
+  const featureColumnWidth = isCloud ? 360 : 240;
+  const headerHeight = isCloud ? 156 : 136;
+  const ctaWidthClassName = 'mx-auto w-[calc(100%_-_8px)]';
 
   const handleUpgradeClick = () => {
     setIsUpgradeDialogOpen(true);
@@ -29,15 +32,12 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
   };
 
   return (
-    <div className='w-full bg-white pt-6'>
-      <div className='w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[170px]'>
-        <div className='custom-scrollbar mx-auto w-full max-w-[1100px] overflow-x-auto'>
-          <table
-            className='w-full table-fixed'
-            style={{ minWidth: `${270 + plans.length * 148}px` }}
-          >
+    <div className='w-full bg-white pb-[120px] pt-[80px]'>
+      <div className='w-full px-4 sm:px-6 lg:px-8'>
+        <div className='custom-scrollbar mx-auto w-full max-w-[960px] overflow-x-auto'>
+          <table className='w-full table-fixed border-collapse font-inter' style={{ minWidth: '960px' }}>
             <colgroup>
-              <col style={{ width: '270px' }} />
+              <col style={{ width: `${featureColumnWidth}px` }} />
               {plans.map((plan) => (
                 <col key={plan.id} />
               ))}
@@ -45,65 +45,42 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
 
             {/* Table Header - Plans */}
             <thead>
-              <tr>
+              <tr style={{ height: `${headerHeight}px` }}>
                 {/* Empty cell for feature column */}
-                <th className='p-4 text-left'></th>
+                <th className='p-0 text-left'></th>
 
                 {/* Plan columns */}
                 {plans.map((plan) => (
-                  <th key={plan.id} className='min-w-[148px] px-2 py-4 text-center'>
-                    <div className='flex w-full flex-col items-center'>
+                  <th key={plan.id} className='px-2 py-0 text-center align-top'>
+                    <div className='flex w-full flex-col items-center gap-1'>
                       {/* Plan Name */}
-                      <div
-                        className='text-center text-base font-bold leading-[22px] text-[#21232A]'
-                        style={{ fontFamily: '"SF Pro Text"' }}
-                      >
-                        {plan.name}
-                      </div>
+                      <div className='text-center text-base font-bold leading-6 text-[#21232A]'>{plan.name}</div>
 
                       {/* Price */}
-                      <div className='text-center text-[#21232A]'>
+                      <div className='text-center leading-5 text-[#21232A]'>
                         {plan.price.period ? (
                           <div>
-                            <span
-                              className='text-base font-semibold leading-[22px]'
-                              style={{ fontFamily: '"SF Pro Text"' }}
-                            >
-                              {plan.price.amount}
-                            </span>
+                            <span className='text-sm font-bold leading-5'>{plan.price.amount}</span>
                             {plan.price.period && (
-                              <span
-                                className='ml-1 text-sm font-normal leading-[20px]'
-                                style={{ fontFamily: '"SF Pro Text"' }}
-                              >
-                                / {plan.price.period}
-                              </span>
+                              <span className='ml-1 text-sm font-normal leading-5'>/ {plan.price.period}</span>
                             )}
                           </div>
                         ) : (
-                          <span className='text-base font-normal leading-[22px]' style={{ fontFamily: '"SF Pro Text"' }}>
-                            {plan.price.amount}
-                          </span>
+                          <span className='text-sm font-normal leading-5'>{plan.price.amount}</span>
                         )}
                       </div>
 
                       {/* Billing Info */}
                       <div
-                        className={`text-center text-xs font-normal leading-[18px] tracking-[0.1px] text-[#6F748C] ${
+                        className={`text-center text-sm font-normal leading-5 text-[#AAA] ${
                           !plan.billingInfo ? 'invisible' : ''
                         }`}
-                        style={{ fontFamily: '"SF Pro Text"' }}
                       >
                         {plan.billingInfo || 'placeholder'}
                       </div>
 
                       {plan.description && (
-                        <div
-                          className='mt-2 min-h-10 text-center text-xs font-normal leading-[18px] text-[#6F748C]'
-                          style={{ fontFamily: '"SF Pro Text"' }}
-                        >
-                          {plan.description}
-                        </div>
+                        <div className='text-center text-sm font-normal leading-5 text-[#AAA]'>{plan.description}</div>
                       )}
 
                       {/* CTA Button */}
@@ -111,7 +88,7 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                         {plan.cta.variant === 'link' && plan.cta.href ? (
                           <Link
                             href={plan.cta.href}
-                            className='flex h-11 w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] bg-[#9327FF] px-3 py-0 font-normal text-white transition-colors hover:bg-[#7A1FD9]'
+                            className='flex h-10 w-full min-w-[76px] items-center justify-center self-stretch rounded-lg bg-[#140F28] px-4 py-2 font-medium text-white transition-colors hover:bg-[#29213D]'
                           >
                             {plan.cta.text}
                           </Link>
@@ -124,12 +101,12 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                                 ? handleContactClick
                                 : undefined
                             }
-                            className={`flex h-11 w-full min-w-[76px] items-center justify-center self-stretch rounded-[8px] font-normal transition-colors ${
+                            className={`flex h-10 w-full min-w-[76px] items-center justify-center self-stretch rounded-lg font-medium transition-colors ${
                               plan.cta.variant === 'contact'
-                                ? 'border border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white'
-                                : 'bg-[#9327FF] text-white hover:bg-[#7A1FD9]'
+                                ? 'border border-[#854CFF] text-[#854CFF] hover:bg-[#854CFF] hover:text-white'
+                                : 'bg-[#140F28] text-white hover:bg-[#29213D]'
                             } ${plan.id === 'free' ? 'invisible' : ''}`}
-                            style={{ padding: '6px 12px' }}
+                            style={{ padding: '8px 16px' }}
                           >
                             {plan.cta.text}
                           </button>
@@ -143,35 +120,30 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
 
             {/* Table Body - Feature Groups */}
             <tbody>
+              <tr aria-hidden='true'>
+                <td colSpan={plans.length + 1} className='h-10 border-0 p-0' />
+              </tr>
               {featureGroups.map((group) => (
                 <React.Fragment key={group.id}>
                   {/* Group Title Row */}
-                  <tr>
-                    <td className='px-4 pb-2 pt-6 text-left'>
-                      <h3
-                        className='text-xl font-medium leading-[28px] text-[#21232A]'
-                        style={{ fontFamily: '"SF Pro Text"' }}
-                      >
-                        {group.title}
-                      </h3>
+                  <tr className='h-12'>
+                    <td className='border-b border-[#E6E6E6] px-2 py-2 text-left'>
+                      <h3 className='text-xl font-semibold leading-7 text-[#21232A]'>{group.title}</h3>
                     </td>
                     {/* Empty cells for plan columns */}
                     {plans.map((plan) => (
-                      <td key={plan.id} className='px-2 pb-2 pt-6'></td>
+                      <td key={plan.id} className='border-b border-[#E6E6E6]'></td>
                     ))}
                   </tr>
 
                   {/* Group Features */}
                   {group.features.map((feature) => {
                     return (
-                      <tr key={feature.id} className='h-8'>
+                      <tr key={feature.id} className='h-12'>
                         {/* Feature Name */}
-                        <td className='min-w-[270px] p-2'>
-                          <div className='flex h-full items-center justify-start self-stretch px-2'>
-                            <span
-                              className='text-left text-sm font-normal leading-5 text-[#21232A]'
-                              style={{ fontFamily: '"SF Pro Text"' }}
-                            >
+                        <td className='border-b border-[#E6E6E6] px-2 py-3'>
+                          <div className='flex h-full items-center justify-start self-stretch'>
+                            <span className='text-left text-sm font-normal leading-5 text-[#21232A]'>
                               {feature.name}
                             </span>
                             {feature.tooltip && (
@@ -197,13 +169,10 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
 
                         {/* Support Status for each plan */}
                         {plans.map((plan) => (
-                          <td key={plan.id} className='px-2 py-2 text-center'>
+                          <td key={plan.id} className='border-b border-[#E6E6E6] px-2 py-3 text-center'>
                             <div className='flex h-full items-center justify-center self-stretch'>
                               {typeof feature.support[plan.id] === 'string' ? (
-                                <span
-                                  className='text-sm font-normal leading-5 text-[#21232A]'
-                                  style={{ fontFamily: '"SF Pro Text"' }}
-                                >
+                                <span className='text-sm font-normal leading-6 text-[#21232A]'>
                                   {feature.support[plan.id]}
                                 </span>
                               ) : feature.support[plan.id] === true ? (
@@ -217,6 +186,11 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                       </tr>
                     );
                   })}
+                  {group.id !== featureGroups[featureGroups.length - 1]?.id && (
+                    <tr aria-hidden='true'>
+                      <td colSpan={plans.length + 1} className='h-10 border-0 p-0' />
+                    </tr>
+                  )}
                 </React.Fragment>
               ))}
             </tbody>
@@ -225,7 +199,6 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
       </div>
 
       <UpgradeDialog isOpen={isUpgradeDialogOpen} onClose={() => setIsUpgradeDialogOpen(false)} />
-
     </div>
   );
 }

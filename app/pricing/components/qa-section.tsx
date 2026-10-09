@@ -120,28 +120,16 @@ export function QASection() {
   const currentFAQs = deploymentMode === 'cloud' ? cloudFAQs : selfHostedFAQs;
 
   return (
-    <section className="w-full bg-[#F5F5FA] py-16 sm:py-20 md:py-24 lg:py-28 xl:py-[156px]">
-      <div className="w-full max-w-screen-xl mx-auto">
-        <div className="w-full max-w-[1100px] mx-auto text-center">
-          {/* Title with padding */}
-          <div className="px-6 sm:px-8 lg:px-12 xl:px-8">
-            <h2 className="text-[#101012] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
-              Questions & <span className="text-[#8427E0]">Answers</span>
-            </h2>
-          </div>
-
-          {/* Deployment Tabs - no horizontal padding */}
-          <div className="mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-[60px] flex justify-center">
-            <DeploymentTabs
-              deploymentMode={deploymentMode}
-              onDeploymentChange={setDeploymentMode}
-            />
-          </div>
-
-          {/* FAQ Accordion with padding */}
-          <div className="mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-[60px] text-left px-6 sm:px-8 lg:px-12 xl:px-8">
-            <FAQAccordion items={currentFAQs} />
-          </div>
+    <section className='relative isolate w-full overflow-hidden bg-gradient-to-b from-white via-[#FAFAFF] to-[#F6F6FF] px-4 py-[120px] sm:px-6'>
+      <div className='mx-auto w-full max-w-[960px]'>
+        <h2 className='text-center font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+          Questions &amp; answers
+        </h2>
+        <div className='mt-10 flex justify-center'>
+          <DeploymentTabs deploymentMode={deploymentMode} onDeploymentChange={setDeploymentMode} />
+        </div>
+        <div className='mt-5 text-left'>
+          <FAQAccordion items={currentFAQs} />
         </div>
       </div>
     </section>

@@ -65,13 +65,13 @@ export const pricingPlans: PricingPlan[] = [
     popular: true,
     pricing: {
       yearly: {
-        price: 'US$10',
+        price: 'US$16',
         period: 'per user per month',
         billingInfo: 'billed annually',
-        originalPrice: '$12.5'
+        originalPrice: '$20'
       },
       monthly: {
-        price: 'US$12.5',
+        price: 'US$20',
         period: 'per user per month',
         billingInfo: 'billed monthly'
       }

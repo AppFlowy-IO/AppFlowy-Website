@@ -9,6 +9,7 @@ function Banner() {
   const { show, onClickLearnMore, version } = useBanner();
   const pathname = usePathname();
   const router = useRouter();
+  const isPricingPage = pathname === '/pricing';
 
   const progress = ['downloading', 'downloaded'].some((path) => pathname.includes(path)) ? null : (
     <NextTopLoader showSpinner={false} color={'#8427E0'} />
@@ -27,12 +28,13 @@ function Banner() {
   }, [pathname, router]);
 
   return (
-    <div className={'translate-z-0 transform'}>
+    <div className={'transform translate-z-0'}>
       <div
         className={`banner`}
         style={{
-          height: show ? 36 : 0,
-          opacity: show ? 1 : 0,
+          height: show && !isPricingPage ? 36 : 0,
+          opacity: show && !isPricingPage ? 1 : 0,
+          display: isPricingPage ? 'none' : undefined,
         }}
       >
         <span>

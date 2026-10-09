@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import React from 'react';
+import Image from 'next/image';
 import SeoData from '@/components/layout/seo-data';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import { PricingHeroContainer } from './components/pricing-hero-container';
@@ -7,7 +8,8 @@ import { AiPowerSection } from './components/ai-power-section';
 import { QuestionsSection } from './components/questions-section';
 import { QASection } from './components/qa-section';
 import { PricingStateProvider } from './components/pricing-state-context';
-import GetStart from '@/components/product/get-start';
+import { TrustedBrandsSection } from './components/trusted-brands-section';
+import { PricingCtaFooter } from './components/pricing-cta-footer';
 import OpenGraphImage from '../../public/images/og-image.png';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
@@ -53,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'notion alternative pricing',
       'free workspace tool',
       'enterprise workspace',
-      'unlimited storage workspace'
+      'unlimited storage workspace',
     ].join(', '),
     category: 'Software as a Service',
     authors: [{ name: 'AppFlowy Team' }],
@@ -162,39 +164,34 @@ function PricingPage() {
 
   return (
     <>
-      <SeoData
-        id="pricing-ld-json"
-        data={pricingSchema}
-      />
+      <SeoData id='pricing-ld-json' data={pricingSchema} />
       <PricingStateProvider>
         {/* Opaque so the global body gradient in globals.scss does not show through. */}
-        <div className="pricing-page bg-white">
-        {/* Pricing Hero - Main title and deployment selection with full-width background */}
-        <div className="w-full bg-[#F5F5FA] pt-[104px]">
+        <div className='pricing-page bg-white pt-[68px] lg:pt-[72px]'>
           <PricingHeroContainer>
-            <h1 className="pricing-hero-title mb-10 sm:mb-12 md:mb-14 lg:mb-16 xl:mb-[60px]">
-              <div className="text-[#101012] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
-                Your work solution.
+            <h1 className='pricing-hero-title mx-auto mb-0 flex h-[88px] flex-col items-center justify-center sm:h-[136px]'>
+              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
+                Your work solution
               </div>
-              <div className="text-[#8427E0] leading-[105%] tracking-[-0.03em] font-medium font-inter text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]">
-                Start free.
+              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
+                Start free
               </div>
             </h1>
-            
+            <Image
+              src='/images/pricing/hero-underline.svg'
+              alt=''
+              aria-hidden='true'
+              width={280}
+              height={10}
+              className='pointer-events-none absolute left-1/2 top-[155px] z-10 hidden h-[10px] w-[280px] -translate-x-1/2 sm:top-[211px] sm:block'
+            />
           </PricingHeroContainer>
-        </div>
 
-        {/* Section 2 - AI Power */}
-        <AiPowerSection />
-
-        {/* Section 3 - Questions */}
-        <QuestionsSection />
-
-        {/* Section 4 - Q&A */}
-        <QASection />
-
-        {/* Section 5 - Get Started */}
-        <GetStart showGlow={false} />
+          <AiPowerSection />
+          <TrustedBrandsSection />
+          <QuestionsSection />
+          <QASection />
+          <PricingCtaFooter />
         </div>
       </PricingStateProvider>
     </>

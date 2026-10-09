@@ -51,12 +51,13 @@ export default function App({
       },
       modalProps,
     }),
-    [openModal, modalProps],
+    [openModal, modalProps]
   );
 
   const pathname = usePathname();
 
   const isSinglePage = pathname.includes('invitation');
+  const isPricingPage = pathname === '/pricing';
 
   return (
     <>
@@ -71,15 +72,15 @@ export default function App({
                       <main>{children}</main>
                     </div>
                   ) : (
-                    <div className={'appflowy-app'}>
+                    <div className={`appflowy-app ${isPricingPage ? 'pricing-page-layout' : ''}`}>
                       <Header />
 
                       <main>{children}</main>
-                      <Footer />
+                      {!isPricingPage && <Footer />}
                       {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
                         <>
                           <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-                          <Script id="google-analytics">
+                          <Script id='google-analytics'>
                             {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -105,8 +106,8 @@ export default function App({
         </UAContext.Provider>
         <Toaster />
         <SonnerToaster
-          position="top-right"
-          theme="light"
+          position='top-right'
+          theme='light'
           toastOptions={{
             style: {
               background: 'white',

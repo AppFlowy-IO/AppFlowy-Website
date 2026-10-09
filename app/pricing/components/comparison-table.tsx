@@ -36,13 +36,6 @@ export function ComparisonTable({
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Compare plans title */}
-        <div className='mx-auto w-full max-w-screen-xl px-4 py-10 text-center sm:px-6 lg:px-8'>
-          <div className='mx-auto w-full max-w-[1100px]'>
-            <h2 className='font-inter text-2xl font-medium text-[#101012]'>Compare plans</h2>
-          </div>
-        </div>
-
         {/* Responsive Table Display */}
         <div className='hidden md:block'>
           <DesktopComparisonTable plans={plans} featureGroups={featureGroups} />
