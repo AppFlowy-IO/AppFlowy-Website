@@ -32,6 +32,8 @@ jobs:
           npm install -g pnpm@${{ env.PNPM_VERSION }}
           pnpm install
           pnpm cypress install
+      - name: Test template canonical URLs
+        run: pnpm run test:templates
       - name: Verify SEO publishing assets
         run: |
           pnpm run check-blog-taxonomy
