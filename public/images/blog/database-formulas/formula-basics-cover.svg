@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Database formulas">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F5EEFF"/><stop offset="1" stop-color="#EAF8FF"/></linearGradient></defs>
+<rect width="1200" height="720" fill="url(#bg)"/>
+<circle cx="1100" cy="50" r="260" fill="#E7D5FF" opacity=".7"/>
+<circle cx="50" cy="750" r="270" fill="#D7F3FA" opacity=".8"/>
+<rect x="190" y="150" width="820" height="420" rx="28" fill="white" stroke="#E3D9F4"/>
+<rect x="224" y="183" width="40" height="40" rx="12" fill="#854CFF"/>
+<text x="244" y="213" text-anchor="middle" font-family="Georgia,serif" font-size="33" font-style="italic" fill="white">ƒ</text>
+<text x="280" y="210" font-family="Arial,sans-serif" font-size="21" font-weight="700" letter-spacing="1.6" fill="#655180">APPFLOWY FORMULAS</text>
+<text x="224" y="302" font-family="Arial,sans-serif" font-size="54" font-weight="700" letter-spacing="-1.5" fill="#140F28">Database formulas</text>
+<text x="224" y="346" font-family="Arial,sans-serif" font-size="27" fill="#625A72">From inputs to answers</text>
+<rect x="224" y="388" width="752" height="144" rx="18" fill="#F5F1FC"/>
+<text x="248" y="429" font-family="Arial,sans-serif" font-size="23" fill="#655180">Budget − Spent = Remaining</text>
+<text x="248" y="500" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#7438E0">3,500</text>
+<text x="950" y="499" text-anchor="end" font-family="Arial,sans-serif" font-size="20" fill="#655180">Try the template ↗</text>
+</svg>
