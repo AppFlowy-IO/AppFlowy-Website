@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import * as Select from '@radix-ui/react-select';
-import type { ComparisonFeatureGroup, ComparisonPlan } from '../config/comparison-data';
+import type { ComparisonFeature, ComparisonFeatureGroup, ComparisonPlan } from '../config/comparison-data';
 import { SupportedIcon, NotSupportedIcon, TooltipIcon } from './table-icons';
 import { UpgradeDialog } from './upgrade-dialog';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
@@ -15,257 +14,224 @@ interface MobileComparisonTableProps {
   featureGroups: ComparisonFeatureGroup[];
 }
 
+function PlanAction({
+  plan,
+  onUpgrade,
+  onContact,
+}: {
+  plan: ComparisonPlan;
+  onUpgrade: () => void;
+  onContact: () => void;
+}) {
+  if (plan.id === 'free') {
+    return <div aria-hidden='true' className='mt-5 h-10' />;
+  }
+
+  const className = `flex h-10 w-full items-center justify-center rounded-lg px-4 py-2 font-inter text-base font-medium leading-6 ${
+    plan.cta.variant === 'contact'
+      ? 'border border-[#854CFF] bg-white text-[#854CFF]'
+      : 'bg-[#140F28] text-white'
+  }`;
+
+  return (
+    <div className='mt-5 h-10 px-1'>
+      {plan.cta.variant === 'link' && plan.cta.href ? (
+        <Link href={plan.cta.href} className={className}>
+          {plan.cta.text}
+        </Link>
+      ) : (
+        <button type='button' onClick={plan.cta.variant === 'contact' ? onContact : onUpgrade} className={className}>
+          {plan.cta.text}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function FeatureName({
+  feature,
+  isTooltipOpen,
+  onTooltipToggle,
+  onTooltipClose,
+}: {
+  feature: ComparisonFeature;
+  isTooltipOpen: boolean;
+  onTooltipToggle: () => void;
+  onTooltipClose: () => void;
+}) {
+  return (
+    <div className='sticky left-0 z-10 flex h-12 min-w-0 items-center border-b border-[#E6E6E6] bg-white px-2 py-3'>
+      <span className='whitespace-nowrap font-inter text-sm font-normal leading-5 text-[#21232A]'>{feature.name}</span>
+      {feature.tooltip && (
+        <Tooltip.Root
+          open={isTooltipOpen}
+          onOpenChange={(open) => {
+            if (!open) onTooltipClose();
+          }}
+        >
+          <Tooltip.Trigger asChild>
+            <button
+              type='button'
+              aria-label={`More information about ${feature.name}`}
+              onClick={onTooltipToggle}
+              className='inline-flex h-6 w-6 shrink-0 cursor-help items-center justify-center'
+            >
+              <TooltipIcon />
+            </button>
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content
+              className='z-50 max-w-xs whitespace-pre-wrap break-words rounded-md bg-gray-900 px-3 py-2 text-sm text-white'
+              sideOffset={5}
+            >
+              {feature.tooltip}
+              <Tooltip.Arrow className='fill-gray-900' />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      )}
+    </div>
+  );
+}
+
+function PlanSupport({ feature, plan }: { feature: ComparisonFeature; plan: ComparisonPlan }) {
+  const value = feature.support[plan.id];
+
+  return (
+    <div className='flex h-12 min-w-0 items-center justify-center border-b border-[#E6E6E6] px-2 py-3 text-center'>
+      {typeof value === 'string' ? (
+        <span className='whitespace-nowrap font-inter text-sm font-normal leading-6 text-[#21232A]'>{value}</span>
+      ) : value ? (
+        <SupportedIcon />
+      ) : (
+        <NotSupportedIcon />
+      )}
+    </div>
+  );
+}
+
 export function MobileComparisonTable({ plans, featureGroups }: MobileComparisonTableProps) {
-  const [selectedPlanId, setSelectedPlanId] = useState(plans[0].id);
   const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false);
+  const [openTooltips, setOpenTooltips] = useState<Set<string>>(new Set());
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
-  const [openTooltips, setOpenTooltips] = useState<Set<string>>(new Set());
-  const selectedPlan = plans.find((plan) => plan.id === selectedPlanId) ?? plans[0];
+  const isCloud = deploymentMode === 'cloud';
+  const featureColumnWidth = 240;
+  const planColumnWidth = isCloud ? 280 : 180;
+  const planHeaderHeight = isCloud ? 156 : 136;
+  const columns = `${featureColumnWidth}px repeat(${plans.length}, ${planColumnWidth}px)`;
+  const tableWidth = featureColumnWidth + plans.length * planColumnWidth;
 
-  const handlePlanChange = (planId: string) => {
-    setSelectedPlanId(planId);
+  const toggleTooltip = (featureId: string) => {
+    setOpenTooltips((current) => {
+      const next = new Set(current);
+
+      if (next.has(featureId)) next.delete(featureId);
+      else next.add(featureId);
+
+      return next;
+    });
   };
 
-  const handleUpgradeClick = () => {
-    setIsUpgradeDialogOpen(true);
+  const closeTooltip = (featureId: string) => {
+    setOpenTooltips((current) => {
+      const next = new Set(current);
+      next.delete(featureId);
+      return next;
+    });
   };
 
   const handleContactClick = () => {
     openContactDialog({ deploymentMode });
   };
 
-  const handleTooltipToggle = (featureId: string) => {
-    setOpenTooltips((prev) => {
-      const newSet = new Set(prev);
-
-      if (newSet.has(featureId)) {
-        newSet.delete(featureId);
-      } else {
-        newSet.add(featureId);
-      }
-
-      return newSet;
-    });
-  };
-
   return (
-    <div className='w-full bg-white px-4 pt-6'>
-      {/* Plan Selector */}
-      <div className='mb-6'>
-        <Select.Root value={selectedPlan.id} onValueChange={handlePlanChange}>
-          <Select.Trigger className='flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-3 text-left focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[#9327FF]'>
-            <Select.Value>
-              <span className='font-medium text-[#21232A]' style={{ fontFamily: '"SF Pro Text"' }}>
-                {selectedPlan.name} Plan
-              </span>
-            </Select.Value>
-            <Select.Icon className='ml-2'>
-              <svg width='12' height='8' viewBox='0 0 12 8' fill='none'>
-                <path
-                  d='M1 1.5L6 6.5L11 1.5'
-                  stroke='#6B7280'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+    <section className='w-full bg-white py-20 pl-4'>
+      <div
+        role='region'
+        aria-label='Plan comparison. Scroll horizontally to compare plans.'
+        tabIndex={0}
+        className='mobile-comparison-scroll w-full overflow-x-auto overscroll-x-contain'
+      >
+        {/* Keep the trailing gutter inside the scrollable content. */}
+        <div className='box-content w-max pr-4' style={{ width: tableWidth }}>
+          <div className='grid' style={{ gridTemplateColumns: columns }}>
+            <div aria-hidden='true' className='sticky left-0 z-20 bg-white' />
+            {plans.map((plan) => (
+              <div
+                key={plan.id}
+                className='flex flex-col items-center text-center'
+                style={{ height: planHeaderHeight }}
+              >
+                <div
+                  className='flex w-full flex-col items-center gap-1 overflow-hidden font-inter text-[#21232A]'
+                  style={{ height: planHeaderHeight - 60 }}
+                >
+                  <h3 className='w-full text-base font-bold leading-6'>{plan.name}</h3>
+                  <p className='w-full text-sm leading-5'>
+                    <span className='font-bold'>{plan.price.amount}</span>
+                    {plan.price.period && <span className='font-normal'> / {plan.price.period}</span>}
+                  </p>
+                  {plan.billingInfo && (
+                    <p className='w-full text-sm leading-5 text-[#AAA]'>{plan.billingInfo}</p>
+                  )}
+                  {plan.description && <p className='w-full text-sm leading-5 text-[#AAA]'>{plan.description}</p>}
+                </div>
+                <PlanAction
+                  plan={plan}
+                  onUpgrade={() => setIsUpgradeDialogOpen(true)}
+                  onContact={handleContactClick}
                 />
-              </svg>
-            </Select.Icon>
-          </Select.Trigger>
-
-          <Select.Portal>
-            <Select.Content className='z-50 min-w-[200px] rounded-lg border border-gray-200 bg-white shadow-lg'>
-              <Select.Viewport className='p-1'>
-                {plans.map((plan) => (
-                  <Select.Item
-                    key={plan.id}
-                    value={plan.id}
-                    className='flex cursor-pointer items-center rounded-md px-3 py-2 text-sm hover:bg-gray-50 focus:bg-[#9327FF] focus:text-white focus:outline-none data-[highlighted]:bg-[#9327FF] data-[highlighted]:text-white'
-                  >
-                    <Select.ItemText>
-                      <div className='flex flex-col'>
-                        <span className='font-medium' style={{ fontFamily: '"SF Pro Text"' }}>
-                          {plan.name}
-                        </span>
-                        <span className='text-xs opacity-70' style={{ fontFamily: '"SF Pro Text"' }}>
-                          {plan.price.amount}
-                          {plan.price.period && ` / ${plan.price.period}`}
-                        </span>
-                      </div>
-                    </Select.ItemText>
-                    <Select.ItemIndicator className='ml-auto'>
-                      <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
-                        <path
-                          d='M13.5 4.5L6 12L2.5 8.5'
-                          stroke='currentColor'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                    </Select.ItemIndicator>
-                  </Select.Item>
-                ))}
-              </Select.Viewport>
-            </Select.Content>
-          </Select.Portal>
-        </Select.Root>
-      </div>
-
-      {/* Selected Plan Details */}
-      <div className='mb-6 w-full rounded-lg bg-gray-50 p-4'>
-        <div className='w-full text-center'>
-          <h3 className='mb-2 text-xl font-bold leading-[24px] text-[#21232A]' style={{ fontFamily: '"SF Pro Text"' }}>
-            {selectedPlan.name}
-          </h3>
-
-          <div className='mb-2 text-[#21232A]'>
-            {selectedPlan.price.period ? (
-              <div>
-                <span className='text-2xl font-semibold' style={{ fontFamily: '"SF Pro Text"' }}>
-                  {selectedPlan.price.amount}
-                </span>
-                {selectedPlan.price.period && (
-                  <span className='ml-1 text-base font-normal' style={{ fontFamily: '"SF Pro Text"' }}>
-                    / {selectedPlan.price.period}
-                  </span>
-                )}
               </div>
-            ) : (
-              <span className='text-2xl font-normal' style={{ fontFamily: '"SF Pro Text"' }}>
-                {selectedPlan.price.amount}
-              </span>
-            )}
+            ))}
           </div>
 
-          {selectedPlan.billingInfo && (
-            <div className='mb-4 text-sm text-[#6F748C]' style={{ fontFamily: '"SF Pro Text"' }}>
-              {selectedPlan.billingInfo}
-            </div>
-          )}
+          <div className='mt-10 space-y-10'>
+            {featureGroups.map((group, groupIndex) => {
+              const categoryHeaderHeight = isCloud && groupIndex === 0 ? 76 : 48;
 
-          {selectedPlan.description && (
-            <p className='mb-4 text-sm leading-5 text-[#6F748C]' style={{ fontFamily: '"SF Pro Text"' }}>
-              {selectedPlan.description}
-            </p>
-          )}
-
-          {selectedPlan.cta.variant === 'link' && selectedPlan.cta.href ? (
-            <Link
-              href={selectedPlan.cta.href}
-              className='block w-full rounded-lg bg-[#9327FF] px-6 py-3 font-medium text-white transition-colors hover:bg-[#7A1FD9]'
-            >
-              {selectedPlan.cta.text}
-            </Link>
-          ) : selectedPlan.id !== 'free' ? (
-            <button
-              onClick={
-                selectedPlan.cta.variant === 'upgrade'
-                  ? handleUpgradeClick
-                  : selectedPlan.cta.variant === 'contact'
-                  ? handleContactClick
-                  : undefined
-              }
-              className={`w-full rounded-lg px-6 py-3 font-medium transition-colors ${
-                selectedPlan.cta.variant === 'contact'
-                  ? 'border-2 border-[#9327FF] text-[#9327FF] hover:bg-[#9327FF] hover:text-white'
-                  : 'bg-[#9327FF] text-white hover:bg-[#7A1FD9]'
-              }`}
-            >
-              {selectedPlan.cta.text}
-            </button>
-          ) : null}
+              return (
+                <div key={group.id}>
+                  <div className='grid' style={{ gridTemplateColumns: columns }}>
+                    <div
+                      className={`sticky left-0 z-10 flex border-b border-[#E6E6E6] bg-white px-2 ${
+                        categoryHeaderHeight === 76 ? 'items-start pt-[10px]' : 'items-center py-[10px]'
+                      }`}
+                      style={{ height: categoryHeaderHeight }}
+                    >
+                      <h3 className='font-inter text-xl font-semibold leading-7 text-[#21232A]'>
+                        {group.title}
+                      </h3>
+                    </div>
+                    {plans.map((plan) => (
+                      <div
+                        key={plan.id}
+                        aria-hidden='true'
+                        className='border-b border-[#E6E6E6]'
+                        style={{ height: categoryHeaderHeight }}
+                      />
+                    ))}
+                  </div>
+                  {group.features.map((feature) => (
+                    <div key={feature.id} className='grid' style={{ gridTemplateColumns: columns }}>
+                      <FeatureName
+                        feature={feature}
+                        isTooltipOpen={openTooltips.has(feature.id)}
+                        onTooltipToggle={() => toggleTooltip(feature.id)}
+                        onTooltipClose={() => closeTooltip(feature.id)}
+                      />
+                      {plans.map((plan) => (
+                        <PlanSupport key={plan.id} feature={feature} plan={plan} />
+                      ))}
+                    </div>
+                  ))}
+                  </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-
-      {/* Features by Group */}
-      <div className='space-y-6'>
-        {featureGroups.map((group) => (
-          <div key={group.id} className='overflow-hidden rounded-lg border border-gray-200 bg-white'>
-            {/* Group Title */}
-            <div className='border-b border-gray-200 bg-gray-50 px-4 py-3'>
-              <h4
-                className='break-words text-lg font-medium leading-[24px] text-[#21232A]'
-                style={{ fontFamily: '"SF Pro Text"' }}
-              >
-                {group.title}
-              </h4>
-            </div>
-
-            {/* Features */}
-            <div className='divide-y divide-gray-100'>
-              {group.features.map((feature) => (
-                <div key={feature.id} className='flex items-start justify-between gap-4 px-4 py-3'>
-                  <div className='flex min-w-0 flex-1 items-center'>
-                    <span
-                      className='text-sm font-normal leading-5 text-[#21232A]'
-                      style={{ fontFamily: '"SF Pro Text"' }}
-                    >
-                      {feature.name}
-                    </span>
-                    {feature.tooltip && (
-                      <Tooltip.Root
-                        open={openTooltips.has(feature.id)}
-                        onOpenChange={(open) => {
-                          if (!open) {
-                            setOpenTooltips((prev) => {
-                              const newSet = new Set(prev);
-
-                              newSet.delete(feature.id);
-
-                              return newSet;
-                            });
-                          }
-                        }}
-                      >
-                        <Tooltip.Trigger asChild>
-                          <div
-                            className='ml-2 flex-shrink-0 cursor-help'
-                            onClick={() => handleTooltipToggle(feature.id)}
-                          >
-                            <TooltipIcon />
-                          </div>
-                        </Tooltip.Trigger>
-                        <Tooltip.Portal>
-                          <Tooltip.Content
-                            className='z-50 max-w-xs whitespace-pre-wrap break-words rounded-md bg-gray-900 px-3 py-2 text-sm text-white'
-                            sideOffset={5}
-                          >
-                            {feature.tooltip}
-                            <Tooltip.Arrow className='fill-gray-900' />
-                          </Tooltip.Content>
-                        </Tooltip.Portal>
-                      </Tooltip.Root>
-                    )}
-                  </div>
-
-                  <div className='min-w-0 max-w-[55%] text-right'>
-                    {typeof feature.support[selectedPlan.id] === 'string' ? (
-                      <span
-                        className='block break-words text-right text-sm font-medium leading-5 text-[#21232A]'
-                        style={{ fontFamily: '"SF Pro Text"' }}
-                      >
-                        {feature.support[selectedPlan.id]}
-                      </span>
-                    ) : feature.support[selectedPlan.id] === true ? (
-                      <div className='flex justify-end'>
-                        <SupportedIcon />
-                      </div>
-                    ) : (
-                      <div className='flex justify-end pt-2'>
-                        <NotSupportedIcon />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
       <UpgradeDialog isOpen={isUpgradeDialogOpen} onClose={() => setIsUpgradeDialogOpen(false)} />
-
-    </div>
+    </section>
   );
 }

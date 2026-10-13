@@ -167,15 +167,15 @@ function PricingPage() {
       <SeoData id='pricing-ld-json' data={pricingSchema} />
       <PricingStateProvider>
         {/* Opaque so the global body gradient in globals.scss does not show through. */}
-        <div className='pricing-page bg-white pt-[68px] lg:pt-[72px]'>
+        <div className='pricing-page bg-white pt-[72px]'>
           <PricingHeroContainer>
-            <h1 className='pricing-hero-title mx-auto mb-0 flex h-[88px] flex-col items-center justify-center sm:h-[136px]'>
-              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
-                Your work solution
-              </div>
-              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
-                Start free
-              </div>
+            <h1 className='pricing-hero-title mx-auto mb-0 flex h-[72px] flex-col items-center justify-center sm:h-[136px]'>
+              <span className='w-full font-inter text-[28px] font-bold leading-9 tracking-[-0.03em] text-[#140F28] sm:hidden'>
+                Your work solution Start free
+              </span>
+              <span className='hidden font-inter text-[44px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:block lg:text-[56px]'>
+                Your work solution<br />Start free
+              </span>
             </h1>
             <Image
               src='/images/pricing/hero-underline.svg'

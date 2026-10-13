@@ -120,9 +120,9 @@ export function QASection() {
   const currentFAQs = deploymentMode === 'cloud' ? cloudFAQs : selfHostedFAQs;
 
   return (
-    <section className='relative isolate w-full overflow-hidden bg-gradient-to-b from-white via-[#FAFAFF] to-[#F6F6FF] px-4 py-[120px] sm:px-6'>
+    <section className='relative isolate w-full overflow-hidden bg-gradient-to-b from-white via-[#FAFAFF] to-[#F6F6FF] px-4 py-20 md:py-[120px] sm:px-6'>
       <div className='mx-auto w-full max-w-[960px]'>
-        <h2 className='text-center font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+        <h2 className='text-center font-inter text-[28px] font-bold leading-9 tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
           Questions &amp; answers
         </h2>
         <div className='mt-10 flex justify-center'>

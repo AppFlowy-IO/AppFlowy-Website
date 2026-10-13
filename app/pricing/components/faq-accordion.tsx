@@ -25,21 +25,25 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
         return (
           <div
             key={item.id}
-            className='w-full cursor-pointer touch-manipulation select-none rounded-xl bg-white px-6 py-4 transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(20,15,40,0.05)]'
+            className='w-full cursor-pointer touch-manipulation select-none rounded-xl bg-white pl-6 pr-4 py-4 transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(20,15,40,0.05)]'
             style={{ WebkitTapHighlightColor: 'transparent' }}
             onClick={() => toggleItem(item.id)}
           >
             {/* Question and Icon Row */}
-            <div className='min-h-12 flex w-full items-start justify-between gap-5'>
-              <h3 className='flex-1 pt-3 font-inter text-base font-medium leading-6 text-[#140F28]'>{item.question}</h3>
-              <div className='flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-[#F6F6FA]'>
-                {isExpanded ? <MinusIcon /> : <PlusIcon />}
+            <div className='min-h-12 flex w-full items-center justify-between gap-5'>
+              <h3 className='m-0 flex-1 font-inter text-base font-medium leading-6 text-[#140F28]'>{item.question}</h3>
+              <div
+                className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg ${
+                  isExpanded ? 'bg-[#F2ECFF]' : 'bg-[#F6F6FA]'
+                }`}
+              >
+                {isExpanded ? <MinusIcon isHovered /> : <PlusIcon />}
               </div>
             </div>
 
             {/* Answer */}
             <motion.div
-              className='w-full overflow-hidden'
+              className='w-[calc(100%-68px)] overflow-hidden'
               initial={false}
               animate={{
                 height: isExpanded ? 'auto' : 0,

@@ -22,7 +22,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
 
   return (
     <motion.div
-      className='mx-auto w-full max-w-screen-xl px-4 pt-10 sm:px-6 lg:px-8'
+      className='mx-auto w-full max-w-screen-xl px-4 pt-5 sm:px-6 md:pt-10 lg:px-8'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
