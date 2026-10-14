@@ -13,6 +13,7 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "test": "NODE_ENV=test cypress open",
     "test:headless": "NODE_ENV=test cypress run --browser chrome",
+    "test:templates": "node --test scripts/tests/template-canonical.test.cjs",
     "check-blog-taxonomy": "node scripts/validate-blog-taxonomy.js",
     "check-seo-publishing": "node scripts/validate-seo-publishing.js",
     "check-seo:production": "node scripts/check-deployed-seo.js",
