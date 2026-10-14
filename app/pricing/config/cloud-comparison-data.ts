@@ -25,7 +25,7 @@ export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, Comparison
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: '$16',
+        amount: '$12',
         period: 'member / month',
       },
       billingInfo: 'billed annually',
@@ -43,7 +43,7 @@ export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, Comparison
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: '$20',
+        amount: '$16',
         period: 'member / month',
       },
       billingInfo: 'billed monthly',
