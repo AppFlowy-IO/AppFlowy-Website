@@ -116,9 +116,9 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
   const isCloud = deploymentMode === 'cloud';
-  // Leave room for a complete plan beside the sticky labels, including the end gutter.
-  const featureColumnWidth = 'clamp(128px, 42vw, 176px)';
-  const planColumnWidth = `min(${isCloud ? 280 : 180}px, calc(100vw - 32px - ${featureColumnWidth}))`;
+  // Use the available container width so scrollbars cannot push a plan behind the sticky labels.
+  const featureColumnWidth = 'clamp(128px, 42cqw, 176px)';
+  const planColumnWidth = `min(${isCloud ? 280 : 180}px, calc(100cqw - 16px - ${featureColumnWidth}))`;
   const planHeaderHeight = isCloud ? 196 : 156;
   const columns = `${featureColumnWidth} repeat(${plans.length}, ${planColumnWidth})`;
   const tableWidth = `calc(${featureColumnWidth} + ${plans.length} * ${planColumnWidth})`;
@@ -154,6 +154,7 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
         aria-label='Plan comparison. Scroll horizontally to compare plans.'
         tabIndex={0}
         className='mobile-comparison-scroll w-full overflow-x-auto overscroll-x-contain'
+        style={{ containerType: 'inline-size' }}
       >
         {/* Keep the trailing gutter inside the scrollable content. */}
         <div className='box-content w-max pr-4' style={{ width: tableWidth }}>
