@@ -5,8 +5,10 @@ import { useSearchParams } from 'next/navigation';
 import { DeploymentMode } from './pricing-tabs';
 import type { BillingCycle } from './billing-switch';
 import { useContactDialog } from '@/components/shared/contact-dialog-provider';
+import type { CloudProPricing } from '../lib/cloud-pricing';
 
 interface PricingState {
+  cloudProPricing: CloudProPricing;
   deploymentMode: DeploymentMode;
   setDeploymentMode: (mode: DeploymentMode) => void;
   billingCycle: BillingCycle;
@@ -27,9 +29,10 @@ export function usePricingState() {
 
 interface PricingStateProviderProps {
   children: ReactNode;
+  cloudProPricing: CloudProPricing;
 }
 
-export function PricingStateProvider({ children }: PricingStateProviderProps) {
+export function PricingStateProvider({ children, cloudProPricing }: PricingStateProviderProps) {
   const searchParams = useSearchParams();
   
   // Initialize deployment mode based on source parameter
@@ -63,6 +66,7 @@ export function PricingStateProvider({ children }: PricingStateProviderProps) {
   }, [setDefaultDeploymentMode]);
 
   const value: PricingState = {
+    cloudProPricing,
     deploymentMode,
     setDeploymentMode,
     billingCycle,

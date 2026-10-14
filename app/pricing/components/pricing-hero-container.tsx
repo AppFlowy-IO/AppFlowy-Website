@@ -5,14 +5,16 @@ import { DeploymentTabs } from './pricing-tabs';
 import { BillingCycleSwitch } from './billing-switch';
 import { ComparisonTable } from './comparison-table';
 import { usePricingState } from './pricing-state-context';
-import { cloudComparisonFeatureGroups, cloudComparisonPlansByBillingCycle } from '../config/cloud-comparison-data';
+import { cloudComparisonFeatureGroups, getCloudComparisonPlans } from '../config/cloud-comparison-data';
+import { annualSavingsPercent } from '../lib/cloud-pricing';
 
 interface PricingHeroContainerProps {
   children: React.ReactNode;
 }
 
 export function PricingHeroContainer({ children }: PricingHeroContainerProps) {
-  const { billingCycle, deploymentMode, setBillingCycle, setDeploymentMode } = usePricingState();
+  const { billingCycle, deploymentMode, setBillingCycle, setDeploymentMode, cloudProPricing } = usePricingState();
+  const cloudPlans = getCloudComparisonPlans(cloudProPricing);
 
   return (
     <>
@@ -30,13 +32,14 @@ export function PricingHeroContainer({ children }: PricingHeroContainerProps) {
             billingCycle={billingCycle}
             onBillingChange={setBillingCycle}
             show={deploymentMode === 'cloud'}
+            annualDiscountPercent={annualSavingsPercent(cloudProPricing)}
           />
         </div>
       </section>
       <ComparisonTable
         key={deploymentMode}
         show={true}
-        plans={deploymentMode === 'cloud' ? cloudComparisonPlansByBillingCycle[billingCycle] : undefined}
+        plans={deploymentMode === 'cloud' ? cloudPlans[billingCycle] : undefined}
         featureGroups={deploymentMode === 'cloud' ? cloudComparisonFeatureGroups : undefined}
       />
     </>

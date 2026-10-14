@@ -1,6 +1,7 @@
 import type { ComparisonFeatureGroup, ComparisonPlan } from './comparison-data';
 import type { BillingCycle } from '../components/billing-switch';
 import { webApplicationUrl } from '@/lib/web-application';
+import { CloudProPricing, formatPrice } from '../lib/cloud-pricing';
 
 const personalPlan: ComparisonPlan = {
   id: 'personal',
@@ -17,7 +18,7 @@ const personalPlan: ComparisonPlan = {
   },
 };
 
-export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, ComparisonPlan[]> = {
+export const getCloudComparisonPlans = (pricing: CloudProPricing): Record<BillingCycle, ComparisonPlan[]> => ({
   yearly: [
     personalPlan,
     {
@@ -25,7 +26,7 @@ export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, Comparison
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: '$12',
+        amount: formatPrice(pricing.yearlyCents / 12),
         period: 'member / month',
       },
       billingInfo: 'billed annually',
@@ -43,7 +44,7 @@ export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, Comparison
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: '$16',
+        amount: formatPrice(pricing.monthlyCents),
         period: 'member / month',
       },
       billingInfo: 'billed monthly',
@@ -54,7 +55,7 @@ export const cloudComparisonPlansByBillingCycle: Record<BillingCycle, Comparison
       },
     },
   ],
-};
+});
 
 export const cloudComparisonFeatureGroups: ComparisonFeatureGroup[] = [
   {

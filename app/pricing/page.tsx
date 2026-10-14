@@ -11,6 +11,10 @@ import { PricingStateProvider } from './components/pricing-state-context';
 import { TrustedBrandsSection } from './components/trusted-brands-section';
 import { PricingCtaFooter } from './components/pricing-cta-footer';
 import OpenGraphImage from '../../public/images/og-image.png';
+import { getCloudProPricing } from './lib/billing-pricing';
+import { CloudProPricing, priceAmount } from './lib/cloud-pricing';
+
+export const revalidate = 300;
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 const title = 'AppFlowy Pricing - Cloud & Self-hosted Plans';
@@ -65,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Generate structured data for pricing page
-function generatePricingSchema(siteUrl: string) {
+function generatePricingSchema(siteUrl: string, pricing: CloudProPricing) {
   const webPageSchema = {
     '@type': 'WebPage',
     name: title,
@@ -102,11 +106,11 @@ function generatePricingSchema(siteUrl: string) {
           '@type': 'Offer',
           name: 'Pro Plan (Annual billing)',
           description: 'For professional work and teams',
-          price: '12',
+          price: priceAmount(pricing.yearlyCents / 12),
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '12',
+            price: priceAmount(pricing.yearlyCents / 12),
             priceCurrency: 'USD',
             billingIncrement: 'month',
           },
@@ -119,11 +123,11 @@ function generatePricingSchema(siteUrl: string) {
           '@type': 'Offer',
           name: 'Pro Plan (Monthly billing)',
           description: 'For professional work and teams',
-          price: '16',
+          price: priceAmount(pricing.monthlyCents),
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '16',
+            price: priceAmount(pricing.monthlyCents),
             priceCurrency: 'USD',
             billingIncrement: 'month',
           },
@@ -159,13 +163,14 @@ function generatePricingSchema(siteUrl: string) {
   };
 }
 
-function PricingPage() {
-  const pricingSchema = generatePricingSchema(site_url);
+async function PricingPage() {
+  const cloudProPricing = await getCloudProPricing();
+  const pricingSchema = generatePricingSchema(site_url, cloudProPricing);
 
   return (
     <>
       <SeoData id='pricing-ld-json' data={pricingSchema} />
-      <PricingStateProvider>
+      <PricingStateProvider cloudProPricing={cloudProPricing}>
         {/* Opaque so the global body gradient in globals.scss does not show through. */}
         <div className='pricing-page bg-white pt-[72px]'>
           <PricingHeroContainer>
