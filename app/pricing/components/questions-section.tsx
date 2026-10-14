@@ -40,10 +40,10 @@ export function QuestionsSection() {
   }, [searchParams, openContactDialog]);
 
   return (
-    <section className='relative isolate w-full overflow-hidden bg-white px-4 py-[120px] sm:px-6'>
+    <section className='relative isolate w-full overflow-hidden bg-white px-4 py-20 md:py-[120px] sm:px-6'>
       <div className='pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6F4FF] opacity-80 blur-[110px]' />
       <div className='mx-auto w-full max-w-[960px]'>
-        <h2 className='text-center font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+        <h2 className='flex h-[72px] items-center justify-center text-center font-inter text-[28px] font-bold leading-9 tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
           Have additional questions?
         </h2>
         <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>

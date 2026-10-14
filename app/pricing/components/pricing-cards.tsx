@@ -3,15 +3,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BillingCycle } from './billing-switch';
-import { pricingPlans, getPlanPricing } from '../config/pricing-plans';
+import { getPricingPlans, getPlanPricing } from '../config/pricing-plans';
+import type { CloudProPricing } from '../lib/cloud-pricing';
 import { CheckIcon } from './check-icon';
 
 interface PricingCardsProps {
   billingCycle: BillingCycle;
   show: boolean;
+  cloudProPricing: CloudProPricing;
 }
 
-export function PricingCards({ billingCycle, show }: PricingCardsProps) {
+export function PricingCards({ billingCycle, show, cloudProPricing }: PricingCardsProps) {
   if (!show) {
     return null;
   }
@@ -26,7 +28,7 @@ export function PricingCards({ billingCycle, show }: PricingCardsProps) {
     >
       <div className='mx-auto w-full max-w-[1100px]'>
         <div className='grid grid-cols-1 md:grid-cols-2' style={{ gap: 'clamp(16px, 1.67vw, 24px)' }}>
-          {pricingPlans.map((plan) => {
+          {getPricingPlans(cloudProPricing).map((plan) => {
             const pricing = getPlanPricing(plan, billingCycle);
             const isPro = plan.id === 'pro';
 

@@ -5,12 +5,14 @@ import { DeploymentTabs, DeploymentMode } from './pricing-tabs';
 import { BillingCycleSwitch, BillingCycle } from './billing-switch';
 import { PricingCards } from './pricing-cards';
 import { ComparisonTable } from './comparison-table';
+import { CloudProPricing, annualSavingsPercent } from '../lib/cloud-pricing';
 
 interface PricingStateProviderProps {
   onDeploymentChange?: (mode: DeploymentMode) => void;
+  cloudProPricing: CloudProPricing;
 }
 
-export function PricingStateProvider({ onDeploymentChange }: PricingStateProviderProps) {
+export function PricingStateProvider({ onDeploymentChange, cloudProPricing }: PricingStateProviderProps) {
   const [deploymentMode, setDeploymentMode] = useState<DeploymentMode>('cloud');
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('yearly');
   
@@ -38,10 +40,12 @@ export function PricingStateProvider({ onDeploymentChange }: PricingStateProvide
             billingCycle={billingCycle}
             onBillingChange={setBillingCycle}
             show={showBillingCycle}
+            annualDiscountPercent={annualSavingsPercent(cloudProPricing)}
           />
 
           {/* Pricing Cards - Only visible for Cloud */}
           <PricingCards
+            cloudProPricing={cloudProPricing}
             billingCycle={billingCycle}
             show={showBillingCycle}
           />
