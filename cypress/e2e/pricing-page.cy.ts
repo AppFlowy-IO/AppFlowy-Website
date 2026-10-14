@@ -45,6 +45,8 @@ describe('Pricing page interactions', () => {
   it('preserves the expanded FAQ across billing changes and resets it for a new deployment', () => {
     cy.viewport(1440, 900);
     cy.visit('/pricing');
+    // The billing switch fades in after hydration; SSR FAQ text alone is not yet interactive.
+    cy.contains('button', /^Monthly$/).should('be.visible');
     cy.contains('h3', 'How do I cancel my paid plan?').click();
     cy.contains('h3', 'How do I cancel my paid plan?').parent().next().should('have.css', 'opacity', '1');
     cy.contains('button', /^Monthly$/).click();
