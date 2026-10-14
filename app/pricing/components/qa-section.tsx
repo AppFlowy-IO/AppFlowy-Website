@@ -99,7 +99,7 @@ export function QASection() {
           <DeploymentTabs deploymentMode={deploymentMode} onDeploymentChange={setDeploymentMode} />
         </div>
         <div className='mt-5 text-left'>
-          <FAQAccordion items={currentFAQs} />
+          <FAQAccordion key={deploymentMode} items={currentFAQs} />
         </div>
       </div>
     </section>

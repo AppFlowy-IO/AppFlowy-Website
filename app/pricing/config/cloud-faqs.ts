@@ -1,20 +1,23 @@
 import { CloudProPricing, annualSavingsPercent, formatPrice } from '../lib/cloud-pricing';
 
-export function getCloudFAQs(pricing: CloudProPricing) {
-  const monthly = formatPrice(pricing.monthlyCents);
-  const annualMonthly = formatPrice(pricing.yearlyCents / 12);
-  const annualTotal = formatPrice(pricing.yearlyCents);
-  const savings = annualSavingsPercent(pricing);
+export function getCloudFAQs(pricing: CloudProPricing | null) {
+  const monthly = pricing ? formatPrice(pricing.monthlyCents) : '';
+  const annualMonthly = pricing ? formatPrice(pricing.yearlyCents / 12) : '';
+  const annualTotal = pricing ? formatPrice(pricing.yearlyCents) : '';
+  const savings = pricing ? annualSavingsPercent(pricing) : 0;
+  const examples = pricing
+    ? `A Pro workspace with only you: ${annualMonthly} per month billed annually (${annualTotal}/year), or ${monthly} billed monthly\nA Pro workspace with five members (including you): ${annualMonthly} × 5 = ${formatPrice(
+        (pricing.yearlyCents * 5) / 12
+      )} per month billed annually (${formatPrice(pricing.yearlyCents * 5)}/year), or ${monthly} × 5 = ${formatPrice(
+        pricing.monthlyCents * 5
+      )} billed monthly`
+    : 'Cloud Pro prices are temporarily unavailable. Please refresh to see current rates.';
 
   return [
     {
       id: 'cloud-1',
       question: 'How is pricing calculated for the paid plans?',
-      answer: `Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Personal workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\nA Pro workspace with only you: ${annualMonthly} per month billed annually (${annualTotal}/year), or ${monthly} billed monthly\nA Pro workspace with five members (including you): ${annualMonthly} × 5 = ${formatPrice(
-        (pricing.yearlyCents * 5) / 12
-      )} per month billed annually (${formatPrice(pricing.yearlyCents * 5)}/year), or ${monthly} × 5 = ${formatPrice(
-        pricing.monthlyCents * 5
-      )} billed monthly\n\nGuest editors available in Pro are free of charge.`,
+      answer: `Each workspace is tied to a specific plan. For example, you can have two Pro workspaces and three Personal workspaces simultaneously. If one Pro workspace has one member and another has five members, you'll need to make separate payments for each workspace. Each Pro workspace is charged per member.\n\n${examples}\n\nGuest editors available in Pro are free of charge.`,
     },
     {
       id: 'cloud-2',
@@ -36,7 +39,11 @@ export function getCloudFAQs(pricing: CloudProPricing) {
     {
       id: 'cloud-5',
       question: 'How do I change my subscription between monthly and annual billing?',
-      answer: `You can change your billing period by going to Settings → Billing → Edit period. Pro costs ${monthly} per member per month when billed monthly, or ${annualMonthly} per member per month when billed annually (${annualTotal} per member per year).${
+      answer: `You can change your billing period by going to Settings → Billing → Edit period.${
+        pricing
+          ? ` Pro costs ${monthly} per member per month when billed monthly, or ${annualMonthly} per member per month when billed annually (${annualTotal} per member per year).`
+          : ''
+      }${
         savings > 0 ? ` Annual billing saves ${savings}% compared with monthly billing.` : ''
       }`,
     },

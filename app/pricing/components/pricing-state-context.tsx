@@ -8,7 +8,7 @@ import { useContactDialog } from '@/components/shared/contact-dialog-provider';
 import type { CloudProPricing } from '../lib/cloud-pricing';
 
 interface PricingState {
-  cloudProPricing: CloudProPricing;
+  cloudProPricing: CloudProPricing | null;
   deploymentMode: DeploymentMode;
   setDeploymentMode: (mode: DeploymentMode) => void;
   billingCycle: BillingCycle;
@@ -29,7 +29,7 @@ export function usePricingState() {
 
 interface PricingStateProviderProps {
   children: ReactNode;
-  cloudProPricing: CloudProPricing;
+  cloudProPricing: CloudProPricing | null;
 }
 
 export function PricingStateProvider({ children, cloudProPricing }: PricingStateProviderProps) {

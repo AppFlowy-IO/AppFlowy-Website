@@ -57,3 +57,29 @@ export function annualSavingsPercent(pricing: CloudProPricing): number {
 
   return Math.max(0, Math.floor(((monthlyTotal - pricing.yearlyCents) * 100) / monthlyTotal));
 }
+
+/** Publish Pro offers only when the catalog supplies validated amounts. */
+export function getCloudProOffers(pricing: CloudProPricing | null) {
+  if (!pricing) return [];
+
+  return [
+    { name: 'Annual', cents: pricing.yearlyCents / 12, unitText: 'member per month, billed annually' },
+    { name: 'Monthly', cents: pricing.monthlyCents, unitText: 'member per month, billed monthly' },
+  ].map(({ name, cents, unitText }) => ({
+    '@type': 'Offer',
+    name: `Pro Plan (${name} billing)`,
+    description: 'For professional work and teams',
+    price: priceAmount(cents),
+    priceCurrency: pricing.currency,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: priceAmount(cents),
+      priceCurrency: pricing.currency,
+      billingIncrement: 'month',
+    },
+    eligibleQuantity: {
+      '@type': 'QuantitativeValue',
+      unitText,
+    },
+  }));
+}

@@ -36,8 +36,11 @@ only the monthly equivalent is divided by twelve. Self-hosted prices remain loca
 
 Next.js caches the validated catalog and refreshes it after 300 seconds, on incoming
 requests. Failed requests or invalid catalogs leave the last valid prices available
-while refreshes retry. An uncached render requires a valid billing response; there
-are no hard-coded replacement prices. Deploy billing first when rolling out new rates.
+while refreshes retry. If the first request fails with no cached catalog, the page
+still renders Personal and self-hosted plans and shows Cloud Pro pricing as unavailable.
+Pro amounts, savings, and structured offers are omitted until billing recovers;
+the next request retries instead of caching the unavailable state. There are no
+hard-coded replacement prices. Deploy billing first when rolling out new rates.
 
 ## Deploy
 

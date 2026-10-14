@@ -22,8 +22,15 @@ const getCachedCloudProPricing = unstable_cache(
   { revalidate: 300 },
 );
 
-export function getCloudProPricing(): Promise<CloudProPricing> {
+export async function getCloudProPricing(): Promise<CloudProPricing | null> {
   const baseUrl = process.env.BILLING_API_BASE_URL || 'https://beta.appflowy.cloud';
 
-  return getCachedCloudProPricing(baseUrl.replace(/\/$/, ''));
+  try {
+    return await getCachedCloudProPricing(baseUrl.replace(/\/$/, ''));
+  } catch (error) {
+    // Handle cold-cache failures outside the cache so the next request can retry.
+    console.error('Cloud Pro pricing is temporarily unavailable', error);
+
+    return null;
+  }
 }

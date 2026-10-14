@@ -12,7 +12,7 @@ import { TrustedBrandsSection } from './components/trusted-brands-section';
 import { PricingCtaFooter } from './components/pricing-cta-footer';
 import OpenGraphImage from '../../public/images/og-image.png';
 import { getCloudProPricing } from './lib/billing-pricing';
-import { CloudProPricing, priceAmount } from './lib/cloud-pricing';
+import { CloudProPricing, getCloudProOffers } from './lib/cloud-pricing';
 
 export const revalidate = 300;
 
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Generate structured data for pricing page
-function generatePricingSchema(siteUrl: string, pricing: CloudProPricing) {
+function generatePricingSchema(siteUrl: string, pricing: CloudProPricing | null) {
   const webPageSchema = {
     '@type': 'WebPage',
     name: title,
@@ -102,40 +102,7 @@ function generatePricingSchema(siteUrl: string, pricing: CloudProPricing) {
             unitText: 'workspace owner',
           },
         },
-        {
-          '@type': 'Offer',
-          name: 'Pro Plan (Annual billing)',
-          description: 'For professional work and teams',
-          price: priceAmount(pricing.yearlyCents / 12),
-          priceCurrency: 'USD',
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            price: priceAmount(pricing.yearlyCents / 12),
-            priceCurrency: 'USD',
-            billingIncrement: 'month',
-          },
-          eligibleQuantity: {
-            '@type': 'QuantitativeValue',
-            unitText: 'member per month, billed annually',
-          },
-        },
-        {
-          '@type': 'Offer',
-          name: 'Pro Plan (Monthly billing)',
-          description: 'For professional work and teams',
-          price: priceAmount(pricing.monthlyCents),
-          priceCurrency: 'USD',
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            price: priceAmount(pricing.monthlyCents),
-            priceCurrency: 'USD',
-            billingIncrement: 'month',
-          },
-          eligibleQuantity: {
-            '@type': 'QuantitativeValue',
-            unitText: 'member per month, billed monthly',
-          },
-        },
+        ...getCloudProOffers(pricing),
         {
           '@type': 'Offer',
           name: 'Self-hosted Plans',

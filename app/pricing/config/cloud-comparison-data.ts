@@ -18,7 +18,7 @@ const personalPlan: ComparisonPlan = {
   },
 };
 
-export const getCloudComparisonPlans = (pricing: CloudProPricing): Record<BillingCycle, ComparisonPlan[]> => ({
+export const getCloudComparisonPlans = (pricing: CloudProPricing | null): Record<BillingCycle, ComparisonPlan[]> => ({
   yearly: [
     personalPlan,
     {
@@ -26,10 +26,10 @@ export const getCloudComparisonPlans = (pricing: CloudProPricing): Record<Billin
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: formatPrice(pricing.yearlyCents / 12),
-        period: 'member / month',
+        amount: pricing ? formatPrice(pricing.yearlyCents / 12) : 'Unavailable',
+        period: pricing ? 'member / month' : '',
       },
-      billingInfo: 'billed annually',
+      billingInfo: pricing ? 'billed annually' : undefined,
       cta: {
         text: 'Get started',
         variant: 'link',
@@ -44,10 +44,10 @@ export const getCloudComparisonPlans = (pricing: CloudProPricing): Record<Billin
       name: 'Pro',
       description: 'for professional work and teams',
       price: {
-        amount: formatPrice(pricing.monthlyCents),
-        period: 'member / month',
+        amount: pricing ? formatPrice(pricing.monthlyCents) : 'Unavailable',
+        period: pricing ? 'member / month' : '',
       },
-      billingInfo: 'billed monthly',
+      billingInfo: pricing ? 'billed monthly' : undefined,
       cta: {
         text: 'Get started',
         variant: 'link',

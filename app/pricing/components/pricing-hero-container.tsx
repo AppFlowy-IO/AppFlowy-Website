@@ -31,9 +31,14 @@ export function PricingHeroContainer({ children }: PricingHeroContainerProps) {
           <BillingCycleSwitch
             billingCycle={billingCycle}
             onBillingChange={setBillingCycle}
-            show={deploymentMode === 'cloud'}
-            annualDiscountPercent={annualSavingsPercent(cloudProPricing)}
+            show={deploymentMode === 'cloud' && cloudProPricing !== null}
+            annualDiscountPercent={cloudProPricing ? annualSavingsPercent(cloudProPricing) : 0}
           />
+          {deploymentMode === 'cloud' && !cloudProPricing && (
+            <p role='status' className='mx-auto mt-5 max-w-xl text-center text-sm text-[#5A5A5A]'>
+              Cloud pricing is temporarily unavailable. Please refresh to try again.
+            </p>
+          )}
         </div>
       </section>
       <ComparisonTable

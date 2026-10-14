@@ -34,7 +34,7 @@ function PlanAction({
   }`;
 
   return (
-    <div className='mt-5 h-10 px-1'>
+    <div className='mt-5 h-10 w-full px-1'>
       {plan.cta.variant === 'link' && plan.cta.href ? (
         <Link href={plan.cta.href} className={className}>
           {plan.cta.text}
@@ -60,8 +60,8 @@ function FeatureName({
   onTooltipClose: () => void;
 }) {
   return (
-    <div className='sticky left-0 z-10 flex h-12 min-w-0 items-center border-b border-[#E6E6E6] bg-white px-2 py-3'>
-      <span className='whitespace-nowrap font-inter text-sm font-normal leading-5 text-[#21232A]'>{feature.name}</span>
+    <div className='sticky left-0 z-10 flex min-h-[72px] min-w-0 items-center border-b border-[#E6E6E6] bg-white px-2 py-3'>
+      <span className='min-w-0 font-inter text-sm font-normal leading-5 text-[#21232A]'>{feature.name}</span>
       {feature.tooltip && (
         <Tooltip.Root
           open={isTooltipOpen}
@@ -98,9 +98,9 @@ function PlanSupport({ feature, plan }: { feature: ComparisonFeature; plan: Comp
   const value = feature.support[plan.id];
 
   return (
-    <div className='flex h-12 min-w-0 items-center justify-center border-b border-[#E6E6E6] px-2 py-3 text-center'>
+    <div className='flex min-h-[72px] min-w-0 items-center justify-center border-b border-[#E6E6E6] px-2 py-3 text-center'>
       {typeof value === 'string' ? (
-        <span className='whitespace-nowrap font-inter text-sm font-normal leading-6 text-[#21232A]'>{value}</span>
+        <span className='font-inter text-sm font-normal leading-6 text-[#21232A]'>{value}</span>
       ) : value ? (
         <SupportedIcon />
       ) : (
@@ -116,11 +116,12 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
   const isCloud = deploymentMode === 'cloud';
-  const featureColumnWidth = 240;
-  const planColumnWidth = isCloud ? 280 : 180;
-  const planHeaderHeight = isCloud ? 156 : 136;
-  const columns = `${featureColumnWidth}px repeat(${plans.length}, ${planColumnWidth}px)`;
-  const tableWidth = featureColumnWidth + plans.length * planColumnWidth;
+  // Leave room for a complete plan beside the sticky labels, including the end gutter.
+  const featureColumnWidth = 'clamp(128px, 42vw, 176px)';
+  const planColumnWidth = `min(${isCloud ? 280 : 180}px, calc(100vw - 32px - ${featureColumnWidth}))`;
+  const planHeaderHeight = isCloud ? 196 : 156;
+  const columns = `${featureColumnWidth} repeat(${plans.length}, ${planColumnWidth})`;
+  const tableWidth = `calc(${featureColumnWidth} + ${plans.length} * ${planColumnWidth})`;
 
   const toggleTooltip = (featureId: string) => {
     setOpenTooltips((current) => {
@@ -137,6 +138,7 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
     setOpenTooltips((current) => {
       const next = new Set(current);
       next.delete(featureId);
+
       return next;
     });
   };
@@ -160,17 +162,16 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
             {plans.map((plan) => (
               <div
                 key={plan.id}
-                className='flex flex-col items-center text-center'
-                style={{ height: planHeaderHeight }}
+                className='flex flex-col items-center px-2 text-center'
+                style={{ minHeight: planHeaderHeight }}
               >
                 <div
-                  className='flex w-full flex-col items-center gap-1 overflow-hidden font-inter text-[#21232A]'
-                  style={{ height: planHeaderHeight - 60 }}
+                  className='flex w-full flex-1 flex-col items-center gap-1 font-inter text-[#21232A]'
                 >
                   <h3 className='w-full text-base font-bold leading-6'>{plan.name}</h3>
                   <p className='w-full text-sm leading-5'>
                     <span className='font-bold'>{plan.price.amount}</span>
-                    {plan.price.period && <span className='font-normal'> / {plan.price.period}</span>}
+                    {plan.price.period && <span className='block font-normal'>{plan.price.period}</span>}
                   </p>
                   {plan.billingInfo && (
                     <p className='w-full text-sm leading-5 text-[#AAA]'>{plan.billingInfo}</p>
@@ -197,7 +198,7 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
                       className={`sticky left-0 z-10 flex border-b border-[#E6E6E6] bg-white px-2 ${
                         categoryHeaderHeight === 76 ? 'items-start pt-[10px]' : 'items-center py-[10px]'
                       }`}
-                      style={{ height: categoryHeaderHeight }}
+                      style={{ minHeight: categoryHeaderHeight }}
                     >
                       <h3 className='font-inter text-xl font-semibold leading-7 text-[#21232A]'>
                         {group.title}
@@ -208,7 +209,7 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
                         key={plan.id}
                         aria-hidden='true'
                         className='border-b border-[#E6E6E6]'
-                        style={{ height: categoryHeaderHeight }}
+                        style={{ minHeight: categoryHeaderHeight }}
                       />
                     ))}
                   </div>
@@ -225,7 +226,7 @@ export function MobileComparisonTable({ plans, featureGroups }: MobileComparison
                       ))}
                     </div>
                   ))}
-                  </div>
+                </div>
               );
             })}
           </div>

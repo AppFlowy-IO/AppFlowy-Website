@@ -1,6 +1,6 @@
 import { getCloudFAQs } from '../../app/pricing/config/cloud-faqs';
 import { getPricingPlans } from '../../app/pricing/config/pricing-plans';
-import { annualSavingsPercent, parseCloudProPricing } from '../../app/pricing/lib/cloud-pricing';
+import { annualSavingsPercent, getCloudProOffers, parseCloudProPricing } from '../../app/pricing/lib/cloud-pricing';
 
 const catalog = (monthly: unknown, yearly: unknown) => ({
   code: 0,
@@ -69,6 +69,10 @@ describe('Cloud pricing from billing', () => {
       expect(faqs[0].answer).to.include(`${rates.fiveAnnual}/year`);
       expect(faqs[0].answer).to.include(`${rates.fiveMonthly} billed monthly`);
       expect(faqs[4].answer).to.include(`${rates.savings}%`);
+      expect(getCloudProOffers(pricing).map((offer) => offer.price)).to.deep.equal([
+        rates.annualLabel.slice(1),
+        rates.monthlyLabel.slice(1),
+      ]);
     });
   }
 
@@ -104,5 +108,13 @@ describe('Cloud pricing from billing', () => {
 
     expect(annualSavingsPercent(pricing)).to.equal(0);
     expect(getCloudFAQs(pricing)[4].answer).not.to.include('Annual billing saves');
+  });
+
+  it('omits invented prices and structured offers when the catalog is unavailable', () => {
+    const faqs = getCloudFAQs(null);
+
+    expect(faqs[0].answer).to.include('temporarily unavailable');
+    expect(faqs.map((faq) => faq.answer).join(' ')).not.to.match(/\$|saves \d+%/);
+    expect(getCloudProOffers(null)).to.deep.equal([]);
   });
 });

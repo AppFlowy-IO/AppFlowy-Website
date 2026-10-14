@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FAQAccordionProps } from '@/lib/faq';
 import MinusIcon from '@/components/icons/minus-icon';
@@ -8,10 +8,6 @@ import PlusIcon from '@/components/icons/plus-icon';
 
 export function FAQAccordion({ items }: FAQAccordionProps) {
   const [expandedItem, setExpandedItem] = useState<string>(items[0]?.id || '');
-
-  useEffect(() => {
-    setExpandedItem(items[0]?.id || '');
-  }, [items]);
 
   const toggleItem = (itemId: string) => {
     setExpandedItem((prev) => (prev === itemId ? '' : itemId));
