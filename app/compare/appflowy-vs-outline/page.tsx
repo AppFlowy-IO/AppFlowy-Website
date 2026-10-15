@@ -1,3 +1,4 @@
+import { RelatedComparisons } from '../components/related-comparisons';
 import GetStart from '@/components/product/get-start';
 import OutlineImage from '@/assets/images/vs-notion/outline.svg';
 import { Metadata } from 'next';
@@ -412,6 +413,7 @@ function Page() {
                     <QASection items={vsOutlineFAQs} />
                 </div>
 
+                <RelatedComparisons currentSlug='appflowy-vs-outline' />
                 <GetStart />
             </div>
         </>

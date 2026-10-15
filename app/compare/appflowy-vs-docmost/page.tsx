@@ -1,3 +1,4 @@
+import { RelatedComparisons } from '../components/related-comparisons';
 import GetStart from '@/components/product/get-start';
 import DocmostImage from '@/assets/images/vs-notion/docmost.svg';
 import { Metadata } from 'next';
@@ -438,6 +439,7 @@ function Page() {
                     <QASection items={vsDocmostFAQs} />
                 </div>
 
+                <RelatedComparisons currentSlug='appflowy-vs-docmost' />
                 <GetStart />
             </div>
         </>
