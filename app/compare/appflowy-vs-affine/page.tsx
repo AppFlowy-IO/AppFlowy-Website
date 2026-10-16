@@ -1,3 +1,4 @@
+import { RelatedComparisons } from '../components/related-comparisons';
 import GetStart from '@/components/product/get-start';
 import AFFiNEImage from '@/assets/images/vs-notion/affine.svg';
 import { Metadata } from 'next';
@@ -403,6 +404,7 @@ function Page() {
                     <QASection items={vsAFFiNEFAQs} />
                 </div>
 
+                <RelatedComparisons currentSlug='appflowy-vs-affine' />
                 <GetStart />
             </div>
         </>

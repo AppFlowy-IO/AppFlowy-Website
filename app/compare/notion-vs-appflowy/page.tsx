@@ -1,3 +1,4 @@
+import { RelatedComparisons } from '../components/related-comparisons';
 import GetStart from '@/components/product/get-start';
 import ImportLink from '../components/import-link';
 import NotionImage from '@/assets/images/vs-notion/notion.svg';
@@ -236,7 +237,7 @@ const points = [
   {
     text: 'Offline workspace',
     appflowy: true,
-    competitor: false,
+    competitor: 'Limited',
   },
   {
     text: 'Native desktop & mobile apps',
@@ -364,6 +365,7 @@ function Page() {
           <QASection items={vsNotionFAQs} />
         </div>
 
+        <RelatedComparisons currentSlug='notion-vs-appflowy' />
         <GetStart />
       </div>
     </>
