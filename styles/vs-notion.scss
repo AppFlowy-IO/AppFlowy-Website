@@ -1,5 +1,13 @@
 .vs-notion-page {
-  @apply min-h-screen w-screen bg-white;
+  @apply relative isolate min-h-screen w-screen bg-white;
+
+  // Keep the comparison glow behind content and let it fade between sections.
+  // Clip only horizontally so the oversized assets cannot create a scrollbar.
+  overflow-x: clip;
+
+  .get-started-section {
+    background-color: transparent;
+  }
 
   font-family: var(--font-family-sans);
 

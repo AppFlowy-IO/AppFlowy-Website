@@ -1,17 +1,7 @@
 import React from 'react';
 
 export function SparkleIcon() {
-    return (
-        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 24 24' fill='none' color='#5317D5'>
-            <path
-                d='M12 3L13.7 9.3L20 11L13.7 12.7L12 19L10.3 12.7L4 11L10.3 9.3L12 3Z'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-            />
-        </svg>
-    );
+    return <img src='/images/compare/ai-sparkle.svg' alt='' aria-hidden='true' width={28} height={28} className='shrink-0' />;
 }
 
 export function DatabaseIcon() {

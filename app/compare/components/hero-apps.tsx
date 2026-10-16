@@ -1,42 +1,23 @@
+import NotionTertiaryImage from '@/assets/images/vs-notion/notion-tertiary.svg';
+import ConfluenceTertiaryImage from '@/assets/images/vs-notion/confluence-tertiary.svg';
+import AFFiNETertiaryImage from '@/assets/images/vs-notion/affine-tertiary.svg';
+import DocmostTertiaryImage from '@/assets/images/vs-notion/docmost-tertiary.svg';
+import OutlineTertiaryImage from '@/assets/images/vs-notion/outline-tertiary.svg';
 import AppFlowyImage from '@/assets/images/vs-notion/appflowy.svg';
-import Breadcrumbs from '@/components/shared/breadcrumbs';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import React from 'react';
+
+const competitorHeroImages: Record<string, StaticImageData> = {
+  Notion: NotionTertiaryImage,
+  Confluence: ConfluenceTertiaryImage,
+  AFFiNE: AFFiNETertiaryImage,
+  Docmost: DocmostTertiaryImage,
+  Outline: OutlineTertiaryImage,
+};
 
 interface HeroAppsProps {
   competitorName: string;
   competitorImage: StaticImageData;
-}
-
-const knowledgeCompetitors = new Set(['Confluence', 'Docmost', 'Outline']);
-
-function getRelatedResources(competitorName: string) {
-  const workflowLink = knowledgeCompetitors.has(competitorName)
-    ? {
-        href: '/blog/knowledge-management',
-        label: 'Explore knowledge management guides',
-      }
-    : {
-        href: '/blog/project-management',
-        label: 'Explore flexible project management guides',
-      };
-
-  return [
-    {
-      href: '/blog/alternatives',
-      label: `Compare more ${competitorName} alternatives`,
-    },
-    workflowLink,
-    {
-      href: '/blog/self-hosting',
-      label: 'Review self-hosting and data ownership guides',
-    },
-    {
-      href: '/templates',
-      label: 'Try AppFlowy workflows with free templates',
-    },
-  ];
 }
 
 function AppLogo({
@@ -62,7 +43,7 @@ function AppLogo({
           alt={name}
           width={52}
           height={52}
-          className={`h-13 w-13 object-contain ${highlighted ? '' : 'opacity-75 grayscale'} max-md:h-10 max-md:w-10`}
+          className='h-13 w-13 object-contain max-md:h-10 max-md:w-10'
         />
       </span>
       <span
@@ -77,36 +58,13 @@ function AppLogo({
 }
 
 export function HeroApps({ competitorName, competitorImage }: HeroAppsProps) {
-  const relatedResources = getRelatedResources(competitorName);
-
   return (
     <div className='relative z-[1] flex w-full flex-col gap-8'>
-      <Breadcrumbs
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'AppFlowy alternatives', href: '/blog/alternatives' },
-          { label: `AppFlowy vs ${competitorName}` },
-        ]}
-      />
-      <div className='flex items-end justify-center gap-6 sm:gap-8'>
+      <div className='flex items-center justify-center gap-6 sm:gap-8'>
         <AppLogo image={AppFlowyImage} name='AppFlowy' highlighted isLabelAtEnd />
-        <span className='pb-2 text-xl font-semibold text-text-primary sm:text-2xl'>vs</span>
-        <AppLogo image={competitorImage} name={competitorName} />
+        <span className='text-xl font-semibold text-text-primary sm:text-[28px] sm:leading-9'>vs</span>
+        <AppLogo image={competitorHeroImages[competitorName] || competitorImage} name={competitorName} />
       </div>
-      <nav
-        aria-label={`Related ${competitorName} alternative resources`}
-        className='flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm'
-      >
-        {relatedResources.map((resource) => (
-          <Link
-            className='font-medium text-[#5D606B] underline decoration-[#CFC2EC] underline-offset-4 transition-colors hover:text-primary'
-            href={resource.href}
-            key={resource.href}
-          >
-            {resource.label}
-          </Link>
-        ))}
-      </nav>
     </div>
   );
 }

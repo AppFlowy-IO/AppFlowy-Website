@@ -1,0 +1,37 @@
+{
+  "workspaceId": "fe17e5ce-30f1-4381-90a1-ab583d62cfb6",
+  "spaceId": "1c175cfb-f447-443d-a0fd-3c327a986a39",
+  "hubUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/2d1caf22-6664-4d54-be18-79e78c403dc4",
+  "templates": [
+    {
+      "name": "Deadline Tracker with Formulas",
+      "workspaceUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/5277ef3b-c659-44c7-b998-68b0c452fed5",
+      "publicUrl": "https://appflowy.com/5fca8c8a-8126-428e-bb5e-0efeef22ab56/formula-deadline-tracker",
+      "duplicateEnabled": true
+    },
+    {
+      "name": "Sprint Progress with Formulas",
+      "workspaceUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/f8381000-0149-42a1-865d-c999320402a7",
+      "publicUrl": "https://appflowy.com/5fca8c8a-8126-428e-bb5e-0efeef22ab56/formula-sprint-progress",
+      "duplicateEnabled": true
+    },
+    {
+      "name": "Project Budget with Formulas",
+      "workspaceUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/b80742e5-53ed-4aad-830b-d305d94b56d0",
+      "publicUrl": "https://appflowy.com/5fca8c8a-8126-428e-bb5e-0efeef22ab56/formula-project-budget",
+      "duplicateEnabled": true
+    },
+    {
+      "name": "RICE Prioritization with Formulas",
+      "workspaceUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/6224d2a9-3125-4b0a-a059-cb2dba37e97d",
+      "publicUrl": "https://appflowy.com/5fca8c8a-8126-428e-bb5e-0efeef22ab56/formula-rice-prioritization",
+      "duplicateEnabled": true
+    },
+    {
+      "name": "Content Calendar with Formulas",
+      "workspaceUrl": "https://appflowy.com/app/fe17e5ce-30f1-4381-90a1-ab583d62cfb6/4cd910d3-fef0-4a1c-91b0-5014528cac92",
+      "publicUrl": "https://appflowy.com/5fca8c8a-8126-428e-bb5e-0efeef22ab56/formula-content-calendar",
+      "duplicateEnabled": true
+    }
+  ]
+}
