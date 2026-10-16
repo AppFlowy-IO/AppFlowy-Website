@@ -23,6 +23,25 @@ load Inter, a custom Google Font.
 - `lib/config/home.tsx` - Home page content
 - `lib/config/pages.tsx` - Other pages content
 
+### Cloud pricing
+
+`/pricing` reads Cloud Pro prices on the server from the public
+`https://beta.appflowy.cloud/billing/api/v1/pricing` catalog. Set the server-only
+`BILLING_API_BASE_URL` to use a different billing deployment. No Stripe credentials
+or browser CORS configuration are needed.
+
+Comparison tables, pricing cards, annual savings, FAQ examples, and JSON-LD all use
+the same response. The API's yearly amount is the full annual charge in cents;
+only the monthly equivalent is divided by twelve. Self-hosted prices remain local.
+
+Next.js caches the validated catalog and refreshes it after 300 seconds, on incoming
+requests. Failed requests or invalid catalogs leave the last valid prices available
+while refreshes retry. If the first request fails with no cached catalog, the page
+still renders Personal and self-hosted plans and shows Cloud Pro pricing as unavailable.
+Pro amounts, savings, and structured offers are omitted until billing recovers;
+the next request retries instead of caching the unavailable state. There are no
+hard-coded replacement prices. Deploy billing first when rolling out new rates.
+
 ## Deploy
 
 ### Automatic Testing Environment Deployment

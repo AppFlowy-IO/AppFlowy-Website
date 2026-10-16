@@ -177,10 +177,9 @@ export default function BlogIndexPage({ currentPage }: { currentPage: number }) 
               Blog
             </span>
           </div>
-          <p className='text-[20px] font-medium leading-7 text-[#5A5A5A] max-sm:text-base max-sm:leading-6'>
+          <p className='text-base font-normal leading-6 text-[#5A5A5A]'>
             {blogDescription}
           </p>
-          {currentPage > 1 ? <p className='text-sm font-medium text-[#854CFF]'>Page {currentPage}</p> : null}
         </header>
 
         {currentPage === 1 && featuredPost ? <FeaturedPost post={featuredPost} /> : null}

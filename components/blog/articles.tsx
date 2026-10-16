@@ -2,20 +2,20 @@
 
 import BlogPostCard from '@/components/blog/blog-post-card';
 import { BLOG_PAGE_SIZE, getBlogPageHref } from '@/lib/blog-pagination';
-import { BLOG_TOPICS } from '@/lib/blog-topics';
+import TopicFilterChips from '@/components/blog/topic-filter-chips';
 import type { PostMetadata } from '@/lib/posts';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import React, { useDeferredValue, useMemo, useState } from 'react';
+import React, { useDeferredValue, useMemo, useRef, useState } from 'react';
 
 type SortOrder = 'latest' | 'oldest' | 'popular';
 
 const CATEGORY_FILTERS = [
-  { label: 'All categories', value: '' },
+  { label: 'All', value: '' },
   { label: 'Open source', value: 'Open source' },
   { label: 'Using AppFlowy', value: 'Using AppFlowy' },
   { label: 'Product', value: 'Product' },
-  { label: 'Developers', value: 'Developers' },
+  { label: 'Developer', value: 'Developers' },
 ] as const;
 
 const SORT_OPTIONS: Array<{ label: string; value: SortOrder }> = [
@@ -42,32 +42,35 @@ function getPostTags(post: PostMetadata) {
 
 function SearchIcon() {
   return (
-    <svg aria-hidden='true' className='h-6 w-6 shrink-0' fill='none' viewBox='0 0 24 24'>
-      <circle cx='10.5' cy='10.5' r='7.5' stroke='#AAAAAA' strokeWidth='1.8' />
-      <path d='M16 16L21 21' stroke='#AAAAAA' strokeLinecap='round' strokeWidth='1.8' />
-    </svg>
+    <span
+      aria-hidden='true'
+      className='h-6 w-6 shrink-0 bg-current'
+      style={{
+        mask: 'url(/images/blog/icons/search.svg) center / 24px 24px no-repeat',
+        WebkitMask: 'url(/images/blog/icons/search.svg) center / 24px 24px no-repeat',
+      }}
+    />
   );
 }
 
 function FilterIcon() {
   return (
     <svg aria-hidden='true' className='h-6 w-6' fill='none' viewBox='0 0 24 24'>
-      <path d='M3 6H21M6 12H18M9 18H15' stroke='#140F28' strokeLinecap='round' strokeWidth='2' />
+      <path d='M3 6H21M6 12H18M9 18H15' stroke='currentColor' strokeLinecap='round' strokeWidth='2' />
     </svg>
   );
 }
 
 function CheckIcon() {
   return (
-    <svg aria-hidden='true' className='h-6 w-6 text-[#854CFF]' fill='none' viewBox='0 0 24 24'>
-      <path
-        d='M5 12.5L9.5 17L19 7.5'
-        stroke='currentColor'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth='2'
-      />
-    </svg>
+    <img
+      alt=''
+      aria-hidden='true'
+      className='shrink-0'
+      src='/images/blog/icons/topic-check.svg'
+      width={24}
+      height={24}
+    />
   );
 }
 
@@ -83,12 +86,14 @@ interface ArticlesProps {
 }
 
 function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) {
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortOrder, setSortOrder] = useState<SortOrder>('latest');
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(BLOG_PAGE_SIZE);
   const deferredSearchValue = useDeferredValue(searchValue.trim().toLowerCase());
+  const hasActiveFilters = selectedCategory !== '' || sortOrder !== 'latest';
   const isDefaultView = !searchValue.trim() && !selectedCategory && sortOrder === 'latest';
 
   const postResult = useMemo(() => {
@@ -152,32 +157,22 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
 
   return (
     <section aria-label='Blog articles' className='w-full bg-white pb-20'>
-      <div className='mx-auto flex w-full max-w-[1120px] items-center justify-between gap-6 max-xl:px-6 max-md:flex-col max-md:items-stretch'>
-        <nav aria-label='Browse articles by topic' className='flex min-w-0 items-center gap-2 overflow-x-auto pb-1'>
-          <Link
-            aria-current='page'
-            className='shrink-0 rounded-full border border-[#854CFF] bg-[rgba(133,76,255,0.1)] px-4 py-2 text-sm font-medium leading-5 text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2'
-            href='/blog'
-          >
-            All
-          </Link>
-          {BLOG_TOPICS.map((topic) => (
-            <Link
-              className='shrink-0 rounded-full border border-[#E6E6E6] bg-white px-4 py-2 text-sm font-medium leading-5 text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2'
-              href={`/blog/${topic.slug}`}
-              key={topic.slug}
-            >
-              {topic.name}
-            </Link>
-          ))}
-        </nav>
+      <div className='mx-auto flex w-full max-w-[1120px] items-center justify-between gap-x-20 gap-y-5 max-xl:px-6 max-md:flex-col max-md:items-stretch max-md:px-4'>
+        <TopicFilterChips />
 
         <div className='flex shrink-0 items-center gap-2 max-md:w-full'>
-          <label className='flex h-12 w-[280px] items-center gap-3 rounded-lg border border-[#E6E6E6] bg-white px-5 max-md:w-full'>
-            <span className='sr-only'>Search articles</span>
+          <div
+            className={cn(
+              'flex h-12 w-[280px] items-center gap-3 rounded-lg border bg-white px-5 transition-colors focus-within:border-[#854CFF] focus-within:text-[#854CFF] max-md:w-0 max-md:min-w-0 max-md:flex-1',
+              searchValue ? 'border-[#854CFF] text-[#854CFF]' : 'border-[#E6E6E6] text-[#AAAAAA]'
+            )}
+            onClick={() => searchInputRef.current?.focus()}
+          >
             <SearchIcon />
             <input
-              className='min-w-0 flex-1 bg-transparent text-base font-medium leading-6 text-[#140F28] outline-none placeholder:text-[#AAAAAA]'
+              aria-label='Search articles'
+              ref={searchInputRef}
+              className='min-w-0 flex-1 appearance-none bg-transparent text-base font-medium leading-6 text-[#140F28] outline-none placeholder:text-[#AAAAAA] [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden'
               onChange={(event) => {
                 setSearchValue(event.target.value);
                 setVisibleCount(BLOG_PAGE_SIZE);
@@ -186,42 +181,55 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
               type='search'
               value={searchValue}
             />
-          </label>
+            {searchValue ? (
+              <button
+                aria-label='Clear search'
+                className='flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#AAAAAA] transition-colors hover:text-[#140F28] focus-visible:text-[#140F28] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
+                onClick={() => {
+                  setSearchValue('');
+                  setVisibleCount(BLOG_PAGE_SIZE);
+                  searchInputRef.current?.focus();
+                }}
+                type='button'
+              >
+                <span
+                  aria-hidden='true'
+                  className='h-6 w-6 bg-current'
+                  style={{
+                    mask: 'url(/images/blog/icons/search-clear.svg) center / 24px 24px no-repeat',
+                    WebkitMask: 'url(/images/blog/icons/search-clear.svg) center / 24px 24px no-repeat',
+                  }}
+                />
+              </button>
+            ) : null}
+          </div>
 
           <div className='relative'>
             <button
               aria-controls='blog-filter-panel'
               aria-expanded={filterMenuOpen}
-              aria-label={
-                selectedCategory
-                  ? `Filter and sort articles. Category filter: ${selectedCategory}`
-                  : 'Filter and sort articles'
-              }
+              aria-label={`Filter and sort articles. Category: ${selectedCategory || 'All'}. Sort: ${SORT_OPTIONS.find((option) => option.value === sortOrder)?.label}.`}
               className={cn(
-                'relative flex h-12 w-12 items-center justify-center rounded-lg border bg-white transition-colors hover:border-[#B9A1EB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]',
-                selectedCategory ? 'border-[#854CFF]' : 'border-[#E6E6E6]'
+                'relative flex h-12 w-12 items-center justify-center rounded-lg border transition-colors hover:border-[#854CFF] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]',
+                hasActiveFilters
+                  ? 'border-[#854CFF] bg-[rgba(133,76,255,0.1)] text-[#854CFF]'
+                  : 'border-[#E6E6E6] bg-white text-[#140F28]'
               )}
               onClick={() => setFilterMenuOpen((open) => !open)}
               type='button'
             >
               <FilterIcon />
-              {selectedCategory ? (
-                <span
-                  aria-hidden='true'
-                  className='absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-[#854CFF] ring-2 ring-white'
-                />
-              ) : null}
             </button>
 
             {filterMenuOpen ? (
               <div
                 aria-label='Article filters and sort order'
-                className='absolute right-0 top-[54px] z-20 w-[300px] rounded-2xl border border-[#E6E6E6] bg-white p-4 shadow-[0_8px_24px_rgba(20,15,40,0.12)]'
+                className='absolute right-0 top-[54px] z-20 w-[320px] max-w-[calc(100vw-32px)] rounded-2xl bg-white p-3 shadow-[0_0_6px_rgba(0,0,0,0.12)]'
                 id='blog-filter-panel'
               >
-                <fieldset>
-                  <legend className='text-sm font-semibold leading-5 text-[#140F28]'>Filter by category</legend>
-                  <div className='mt-3 flex flex-wrap gap-2'>
+                <fieldset className='min-w-0'>
+                  <legend className='w-full px-4 py-3 text-sm font-normal leading-5 text-[#AAAAAA]'>Filter by category</legend>
+                  <div className='flex flex-wrap gap-2 p-2'>
                     {CATEGORY_FILTERS.map((category) => {
                       const active = selectedCategory === category.value;
 
@@ -229,7 +237,8 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
                         <button
                           aria-pressed={active}
                           className={cn(
-                            'rounded-full border px-3 py-1.5 text-sm font-medium leading-5 transition-colors',
+                            'inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium leading-5 transition-colors',
+                            category.value === '' && 'w-20',
                             active
                               ? 'border-[#854CFF] bg-[rgba(133,76,255,0.1)] text-[#854CFF]'
                               : 'border-[#E6E6E6] bg-white text-[#140F28] hover:border-[#B9A1EB] hover:text-[#854CFF]'
@@ -245,9 +254,9 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
                   </div>
                 </fieldset>
 
-                <fieldset className='mt-5 border-t border-[#E6E6E6] pt-4'>
-                  <legend className='px-0 text-sm font-semibold leading-5 text-[#140F28]'>Sort articles</legend>
-                  <div className='mt-2'>
+                <fieldset className='min-w-0'>
+                  <legend className='w-full px-4 py-3 text-sm font-normal leading-5 text-[#AAAAAA]'>Sort articles</legend>
+                  <div>
                     {SORT_OPTIONS.map((option) => {
                       const selected = sortOrder === option.value;
 
@@ -255,7 +264,7 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
                         <button
                           aria-pressed={selected}
                           className={cn(
-                            'flex h-10 w-full items-center justify-between rounded-lg px-3 text-left text-sm font-medium leading-5 text-[#140F28] transition-colors hover:bg-[rgba(20,15,40,0.04)]',
+                            'flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-base font-medium leading-6 text-[#140F28] transition-colors hover:bg-[rgba(20,15,40,0.04)]',
                             selected && 'bg-[rgba(20,15,40,0.04)]'
                           )}
                           key={option.value}
@@ -286,7 +295,7 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
               <h2 className='text-[20px] font-medium leading-7 text-[#AAAAAA]' id={`blog-year-${year}`}>
                 {year}
               </h2>
-              <div className='mt-6 grid grid-cols-3 gap-x-5 gap-y-5 max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-y-10'>
+              <div className='mt-6 grid grid-cols-3 gap-x-5 gap-y-20 max-lg:grid-cols-2 max-sm:grid-cols-1'>
                 {yearPosts.map((post) => (
                   <BlogPostCard key={post.slug} post={post} />
                 ))}
@@ -315,19 +324,19 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
       {isDefaultView && totalPages > 1 ? (
         <nav
           aria-label='Blog pagination'
-          className='mx-auto flex w-full max-w-[1120px] items-center justify-center gap-2 px-6 py-10'
+          className='mx-auto flex w-full max-w-[1120px] items-center justify-center gap-2 px-6 py-10 max-sm:justify-between max-sm:px-4'
         >
           {currentPage > 1 ? (
             <Link
               aria-label='Previous blog page'
-              className='rounded-lg border border-[#E6E6E6] bg-white px-4 py-2 text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
+              className='flex h-10 w-[96px] shrink-0 items-center justify-center rounded-lg border border-[#E6E6E6] bg-white text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
               href={getBlogPageHref(currentPage - 1)}
               rel='prev'
             >
               Previous
             </Link>
           ) : (
-            <span aria-disabled='true' className='rounded-lg border border-[#E6E6E6] px-4 py-2 text-sm text-[#AAAAAA]'>
+            <span aria-disabled='true' className='flex h-10 w-[96px] shrink-0 items-center justify-center rounded-lg border border-[#E6E6E6] text-sm text-[#AAAAAA]'>
               Previous
             </span>
           )}
@@ -337,7 +346,7 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
               page === currentPage ? (
                 <span
                   aria-current='page'
-                  className='min-w-10 flex h-10 items-center justify-center rounded-lg border border-[#854CFF] bg-[rgba(133,76,255,0.1)] px-3 text-sm font-medium text-[#854CFF]'
+                  className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#854CFF] bg-[rgba(133,76,255,0.1)] text-sm font-medium text-[#854CFF]'
                   key={page}
                 >
                   {page}
@@ -345,7 +354,7 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
               ) : (
                 <Link
                   aria-label={`Blog page ${page}`}
-                  className='min-w-10 flex h-10 items-center justify-center rounded-lg border border-[#E6E6E6] bg-white px-3 text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
+                  className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E6E6E6] bg-white text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
                   href={getBlogPageHref(page)}
                   key={page}
                 >
@@ -356,20 +365,20 @@ function Articles({ posts, pagePosts, currentPage, totalPages }: ArticlesProps) 
           </div>
 
           <span className='px-2 text-sm text-[#5A5A5A] sm:hidden'>
-            Page {currentPage} of {totalPages}
+            {currentPage} of {totalPages}
           </span>
 
           {currentPage < totalPages ? (
             <Link
               aria-label='Next blog page'
-              className='rounded-lg border border-[#E6E6E6] bg-white px-4 py-2 text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
+              className='flex h-10 w-[96px] shrink-0 items-center justify-center rounded-lg border border-[#E6E6E6] bg-white text-sm font-medium text-[#140F28] transition-colors hover:border-[#B9A1EB] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF]'
               href={getBlogPageHref(currentPage + 1)}
               rel='next'
             >
               Next
             </Link>
           ) : (
-            <span aria-disabled='true' className='rounded-lg border border-[#E6E6E6] px-4 py-2 text-sm text-[#AAAAAA]'>
+            <span aria-disabled='true' className='flex h-10 w-[96px] shrink-0 items-center justify-center rounded-lg border border-[#E6E6E6] text-sm text-[#AAAAAA]'>
               Next
             </span>
           )}

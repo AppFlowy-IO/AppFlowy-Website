@@ -27,6 +27,15 @@
   background: #9ca3af;
 }
 
+.mobile-comparison-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-comparison-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --font-family-sans: var(--font-inter), sans-serif;
   --font-size-h1: clamp(28px, 5.25vw, 56px);

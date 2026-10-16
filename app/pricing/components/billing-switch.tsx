@@ -9,9 +9,10 @@ interface BillingCycleSwitchProps {
   billingCycle: BillingCycle;
   onBillingChange: (cycle: BillingCycle) => void;
   show: boolean;
+  annualDiscountPercent: number;
 }
 
-export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: BillingCycleSwitchProps) {
+export function BillingCycleSwitch({ billingCycle, onBillingChange, show, annualDiscountPercent }: BillingCycleSwitchProps) {
   const toggleBilling = () => {
     onBillingChange(billingCycle === 'yearly' ? 'monthly' : 'yearly');
   };
@@ -22,7 +23,7 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
 
   return (
     <motion.div
-      className='mx-auto w-full max-w-screen-xl px-4 pt-10 sm:px-6 lg:px-8'
+      className='mx-auto w-full max-w-screen-xl px-4 pt-5 sm:px-6 md:pt-10 lg:px-8'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -30,11 +31,13 @@ export function BillingCycleSwitch({ billingCycle, onBillingChange, show }: Bill
     >
       <div className='flex items-center justify-center gap-5'>
         <div className='flex items-center gap-3'>
-          <div className='flex shrink-0 items-center justify-center rounded-[4px] bg-[rgba(141,66,203,0.1)] px-[6px] py-1'>
-            <span className='whitespace-nowrap font-inter text-[10px] font-semibold leading-3 text-[#8D42CB]'>
-              Save 20%
-            </span>
-          </div>
+          {annualDiscountPercent > 0 && (
+            <div className='flex shrink-0 items-center justify-center rounded-[4px] bg-[rgba(141,66,203,0.1)] px-[6px] py-1'>
+              <span className='whitespace-nowrap font-inter text-[10px] font-semibold leading-3 text-[#8D42CB]'>
+                Save {annualDiscountPercent}%
+              </span>
+            </div>
+          )}
           <button
             type='button'
             aria-pressed={billingCycle === 'yearly'}

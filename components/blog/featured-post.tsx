@@ -38,7 +38,7 @@ function FeaturedPost({ post }: { post: PostMetadata }) {
             <div className='flex flex-wrap gap-2'>
               {categories.slice(0, 2).map((category) => (
                 <span
-                  className='rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-base font-medium leading-6 text-[#854CFF]'
+                  className='inline-flex items-center rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-xs font-medium leading-[18px] text-[#854CFF]'
                   key={category}
                 >
                   {category}
@@ -58,7 +58,7 @@ function FeaturedPost({ post }: { post: PostMetadata }) {
             <div className='flex min-w-0 items-center gap-2'>
               <img
                 alt=''
-                className='h-6 w-6 shrink-0 rounded-full object-cover'
+                className='h-6 w-6 shrink-0 rounded-full border border-[#E6E6E6] object-cover'
                 height={24}
                 src={authorImage}
                 width={24}

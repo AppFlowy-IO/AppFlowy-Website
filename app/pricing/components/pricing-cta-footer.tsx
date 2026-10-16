@@ -69,6 +69,62 @@ const footerGroups = [
   },
 ];
 
+const mobileFooterGroups = [
+  {
+    title: 'Company',
+    links: [
+      ['Contacts', 'mailto:support@appflowy.io'],
+      ['About Us', '/about'],
+      ['Privacy', '/privacy'],
+      ['Terms', '/terms'],
+      ['Careers', '/join'],
+      ['Pricing', '/pricing'],
+    ],
+  },
+  {
+    title: 'Download',
+    links: [
+      ['iOS & Android', '/download#ios-and-android'],
+      ['macOS', '/download#macOS'],
+      ['Windows', '/download#Windows'],
+      ['Linux', '/download#Linux'],
+      ['Browser', webApplicationUrl],
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      ['Product guides', 'https://appflowy.com/guide/getting-started-with-appflowy'],
+      ['Developer docs', 'https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production'],
+      ['Templates', '/templates'],
+      ['Videos', 'https://www.youtube.com/@AppFlowy'],
+      ['What’s new', '/what-is-new'],
+      ['Partner program', 'https://appflowy.com/docs/appflowy-partner-program'],
+      ['Zapier integration', 'https://zapier.com/apps/appflowy/integrations'],
+      ['AppFlowy Blocks', '/appflowy-blocks'],
+      ['RSS', '/blog/feed.xml'],
+    ],
+  },
+  {
+    title: 'Compare',
+    links: [
+      ['vs Notion', '/compare/notion-vs-appflowy'],
+      ['vs Confluence', '/compare/appflowy-vs-confluence'],
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      ['General support', '/contact'],
+      ['Community server', 'https://discord.gg/9Q2xaN37tV'],
+      ['Report a bug', 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose'],
+      ['Request a feature', 'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose'],
+      ['Contact sales', '#contact-sales'],
+      ['Forums', 'https://forum.appflowy.com/'],
+    ],
+  },
+];
+
 const socialLinks = [
   { label: 'Discord', href: 'https://discord.gg/9Q2xaN37tV', icon: Discord },
   { label: 'Reddit', href: 'https://www.reddit.com/r/AppFlowy/', icon: Reddit },
@@ -98,39 +154,39 @@ export function PricingCtaFooter() {
   const { openContactDialog } = useContactDialog();
 
   return (
-    <section className='relative isolate w-full overflow-hidden bg-white px-4 pb-4 pt-20 sm:px-6 sm:pb-6'>
+    <section className='relative isolate w-full overflow-hidden bg-white px-4 pb-4 pt-[60px] sm:px-6 sm:pb-6 md:pt-20'>
       <div className='pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#F2F0FF] opacity-80 blur-[130px]' />
       <div className='relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center gap-10 text-center'>
         <div className='flex h-[84px] w-[84px] items-center justify-center rounded-[20px] border border-[#E6E6E6] bg-white p-4 shadow-[0_0_20px_rgba(73,87,240,0.08)]'>
           <Image src='/appflowy.svg' width={52} height={52} alt='AppFlowy' />
         </div>
         <div className='flex flex-col items-center gap-3'>
-          <h2 className='font-inter text-[36px] font-bold leading-[1.2] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
+          <h2 className='font-inter text-[28px] font-bold leading-9 tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px] lg:leading-[68px]'>
             Get started for free
           </h2>
           <p className='font-inter text-base leading-6 text-[#5A5A5A] sm:text-xl sm:leading-7'>
             The AI workspace where you achieve more without losing control of your data
           </p>
         </div>
-        <div className='flex flex-wrap items-center justify-center gap-2'>
+        <div className='flex w-full flex-col items-center justify-center gap-2 md:w-auto md:flex-row'>
           <button
             type='button'
             onClick={() => openContactDialog({ title: 'Contact sales', source: 'get-started-section' })}
-            className='h-10 rounded-lg bg-[#140F28] px-4 font-inter text-base font-medium leading-6 text-white transition-colors hover:bg-[#29213D]'
+            className='h-12 w-full rounded-lg bg-[#140F28] px-4 font-inter text-base font-medium leading-6 text-white transition-colors hover:bg-[#29213D] md:h-10 md:w-auto'
           >
             Contact sales
           </button>
           <Link
             href={webApplicationUrl}
-            className='flex h-10 items-center rounded-lg border border-[#E6E6E6] bg-white px-4 font-inter text-base font-medium leading-6 text-[#140F28] transition-colors hover:bg-[#F8F7FB]'
+            className='flex h-12 w-full items-center justify-center rounded-lg border border-[#E6E6E6] bg-white px-4 font-inter text-base font-medium leading-6 text-[#140F28] transition-colors hover:bg-[#F8F7FB] md:h-10 md:w-auto'
           >
             Get started free
           </Link>
         </div>
       </div>
 
-      <footer className='appflowy-footer mt-[120px] min-h-[433px] w-full rounded-[16px] bg-black p-10 pt-[60px] max-xl:px-[28px] max-lg:px-5 max-lg:pt-5 sm:rounded-[20px]'>
-        <div className='flex items-start justify-between gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[40px]'>
+      <footer className='appflowy-footer mt-10 min-h-[433px] w-full rounded-[16px] bg-black p-10 pt-[60px] max-xl:px-[28px] md:mt-[120px] max-lg:p-5 sm:rounded-[20px]'>
+        <div className='flex items-start justify-between gap-[72px] max-xl:gap-[48px] max-lg:flex-col max-lg:gap-[80px]'>
           <div className='logo'>
             <div className='image text-white'>
               <Logo />
@@ -153,7 +209,7 @@ export function PricingCtaFooter() {
 
           <nav
             aria-label='Footer'
-            className='grid min-w-0 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-xl:gap-x-[28px] max-md:w-full max-md:grid-cols-2 max-md:gap-x-[32px] max-md:gap-y-[36px] max-sm:grid-cols-2 max-sm:gap-x-[24px] max-sm:gap-y-[28px] lg:grid-cols-[repeat(6,minmax(0,max-content))]'
+            className='hidden min-w-0 grid-cols-6 gap-x-[56px] gap-y-[40px] text-white max-2xl:gap-x-[40px] max-xl:gap-x-[28px] lg:grid lg:grid-cols-[repeat(6,minmax(0,max-content))]'
           >
             {footerGroups.map((group) => (
               <div key={group.title} className='min-w-0'>
@@ -168,10 +224,36 @@ export function PricingCtaFooter() {
               </div>
             ))}
           </nav>
+          <nav
+            aria-label='Footer'
+            className='grid w-full grid-cols-2 gap-x-5 gap-y-12 text-white lg:hidden'
+          >
+            {mobileFooterGroups.map((group) => (
+              <div key={group.title} className={`min-w-0 ${group.title === 'Support' ? 'col-span-2' : ''}`}>
+                <h3 className='group-name text-style-h5 !mb-4 block text-xl font-semibold leading-7'>{group.title}</h3>
+                <ul className='flex flex-col gap-2'>
+                  {group.links.map(([label, href]) => (
+                    <li key={label} className='group-item text-style-body-standard max-lg:leading-6'>
+                      {label === 'Contact sales' ? (
+                        <button
+                          type='button'
+                          onClick={() => openContactDialog({ title: 'Contact sales', source: 'footer' })}
+                        >
+                          {label}
+                        </button>
+                      ) : (
+                        <FooterLink href={href}>{label}</FooterLink>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
         </div>
-        <div className='bottom mt-[48px] border-t pt-6 text-white/70'>
+        <div className='bottom mt-[48px] border-t pt-6 text-white/70 max-lg:mt-10 max-lg:pt-10'>
           <div className='col'>
-            <div className='text-style-body-standard'>Copyright © 2026, AppFlowy</div>
+            <div className='text-style-body-standard max-lg:leading-6'>Copyright © 2026, AppFlowy</div>
           </div>
         </div>
       </footer>

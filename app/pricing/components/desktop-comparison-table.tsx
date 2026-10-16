@@ -19,7 +19,7 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
   const { openContactDialog } = useContactDialog();
   const { deploymentMode } = usePricingState();
   const isCloud = deploymentMode === 'cloud';
-  const featureColumnWidth = isCloud ? 360 : 240;
+  const featureColumnWidth = isCloud ? 360 : 250;
   const headerHeight = isCloud ? 156 : 136;
   const ctaWidthClassName = 'mx-auto w-[calc(100%_-_8px)]';
 
@@ -145,25 +145,29 @@ export function DesktopComparisonTable({ plans, featureGroups }: DesktopComparis
                           <div className='flex h-full items-center justify-start self-stretch'>
                             <span className='text-left text-sm font-normal leading-5 text-[#21232A]'>
                               {feature.name}
+                              {feature.tooltip && (
+                                <Tooltip.Root>
+                                  <Tooltip.Trigger asChild>
+                                    <button
+                                      type='button'
+                                      aria-label={`More information about ${feature.name}`}
+                                      className='ml-2 inline-flex cursor-help align-middle'
+                                    >
+                                      <TooltipIcon />
+                                    </button>
+                                  </Tooltip.Trigger>
+                                  <Tooltip.Portal>
+                                    <Tooltip.Content
+                                      className='z-50 max-w-xs whitespace-pre-wrap break-words rounded-md bg-gray-900 px-3 py-2 text-sm text-white'
+                                      sideOffset={5}
+                                    >
+                                      {feature.tooltip}
+                                      <Tooltip.Arrow className='fill-gray-900' />
+                                    </Tooltip.Content>
+                                  </Tooltip.Portal>
+                                </Tooltip.Root>
+                              )}
                             </span>
-                            {feature.tooltip && (
-                              <Tooltip.Root>
-                                <Tooltip.Trigger asChild>
-                                  <div className='ml-2 flex-shrink-0 cursor-help'>
-                                    <TooltipIcon />
-                                  </div>
-                                </Tooltip.Trigger>
-                                <Tooltip.Portal>
-                                  <Tooltip.Content
-                                    className='z-50 max-w-xs whitespace-pre-wrap break-words rounded-md bg-gray-900 px-3 py-2 text-sm text-white'
-                                    sideOffset={5}
-                                  >
-                                    {feature.tooltip}
-                                    <Tooltip.Arrow className='fill-gray-900' />
-                                  </Tooltip.Content>
-                                </Tooltip.Portal>
-                              </Tooltip.Root>
-                            )}
                           </div>
                         </td>
 

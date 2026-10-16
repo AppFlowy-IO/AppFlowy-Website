@@ -1,11 +1,13 @@
 import CreatorAvatar from '@/components/template-center/creator-avatar';
-import { slugify } from '@/components/template-center/utils';
+import { canonicalTemplatePath, slugify } from '@/components/template-center/utils';
 import { TemplateSummary, TemplateCategory } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function TemplateItem({ template, category }: { template: TemplateSummary; category: TemplateCategory }) {
-  const templateHref = `/templates/${slugify(category.name)}/${template.view_id}`;
+  const templateHref =
+    canonicalTemplatePath(template.categories, template.view_id, template.primary_category_id) ??
+    `/templates/${slugify(category.name)}/${template.view_id}`;
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
     const origin = url.origin;
