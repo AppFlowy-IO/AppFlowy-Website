@@ -60,7 +60,7 @@ const vsOutlineFAQs = [
         id: 'vs-outline-7',
         question: 'Does Outline have desktop and mobile apps?',
         answer:
-            'No, Outline does not have native desktop or mobile applications.\n\nOutline is primarily a web-based application.\n\nAppFlowy provides native applications across major desktop and mobile platforms in addition to its web app.',
+            'Outline offers a desktop app for macOS, but it does not currently offer native mobile apps. On iPhone and Android, teams can use Outline in a browser or install it as a progressive web app (PWA) on their home screen.\n\nAppFlowy provides native applications across major desktop and mobile platforms in addition to its web app.',
     },
     {
         id: 'vs-outline-8',
@@ -300,7 +300,7 @@ const points = [
     {
         text: 'Native desktop & mobile apps',
         appflowy: true,
-        competitor: false,
+        competitor: 'Limited',
     },
     {
         text: 'Self-hosted',

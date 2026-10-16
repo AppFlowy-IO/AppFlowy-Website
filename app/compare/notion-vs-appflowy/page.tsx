@@ -237,7 +237,7 @@ const points = [
   {
     text: 'Offline workspace',
     appflowy: true,
-    competitor: false,
+    competitor: 'Limited',
   },
   {
     text: 'Native desktop & mobile apps',
