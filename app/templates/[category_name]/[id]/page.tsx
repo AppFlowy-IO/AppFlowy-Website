@@ -132,7 +132,7 @@ function generateTemplateSchema(template: Awaited<ReturnType<typeof getData>>, c
         inLanguage: 'en',
         isAccessibleForFree: true,
         ...(template.publish_info?.publish_timestamp ? { datePublished: template.publish_info.publish_timestamp } : {}),
-        image: `${site_url}${OpenGraphImage.src}`,
+        image: new URL(OpenGraphImage.src, site_url).href,
         creator: {
           '@type': template.creator.name === 'AppFlowy' ? 'Organization' : 'Person',
           name: template.creator.name,
