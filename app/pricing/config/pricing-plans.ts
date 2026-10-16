@@ -1,4 +1,5 @@
 import { BillingCycle } from '../components/billing-switch';
+import { CloudProPricing, formatPrice } from '../lib/cloud-pricing';
 
 export interface PricingPlan {
   id: 'free' | 'pro';
@@ -26,7 +27,7 @@ export interface PricingPlan {
   };
 }
 
-export const pricingPlans: PricingPlan[] = [
+export const getPricingPlans = (pricing: CloudProPricing): PricingPlan[] => [
   {
     id: 'free',
     name: 'Free',
@@ -65,13 +66,13 @@ export const pricingPlans: PricingPlan[] = [
     popular: true,
     pricing: {
       yearly: {
-        price: 'US$16',
+        price: `US${formatPrice(pricing.yearlyCents / 12)}`,
         period: 'per user per month',
         billingInfo: 'billed annually',
-        originalPrice: '$20'
+        originalPrice: formatPrice(pricing.monthlyCents)
       },
       monthly: {
-        price: 'US$20',
+        price: `US${formatPrice(pricing.monthlyCents)}`,
         period: 'per user per month',
         billingInfo: 'billed monthly'
       }

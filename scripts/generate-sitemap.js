@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
 const matter = require('gray-matter');
+const { slugify, canonicalTemplatePath } = require('../lib/template-canonical');
 
 const SITE_URL = 'https://appflowy.com';
 const BLOG_PAGE_SIZE = 12;
@@ -134,16 +135,6 @@ const getBlogRoutes = () => {
   return [...articleRoutes, ...paginationRoutes, ...collectionRoutes];
 };
 
-// Mirrors slugify() in components/template-center/utils.ts.
-const slugify = (text) =>
-  text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-');
-
 const fetchJson = async (url) => {
   const res = await fetch(url, { headers: { 'Content-Type': 'application/json' } });
 
@@ -156,7 +147,8 @@ const fetchJson = async (url) => {
  * Template categories and templates, fetched from the template center API.
  *
  * A template belongs to several categories and is reachable under each of them,
- * so we list each one exactly once, under its alphabetically first category.
+ * so we list each one exactly once, under its saved primary category.
+ * Legacy templates without an assignment retain the alphabetically first category.
  *
  * This must match canonicalTemplatePath() in components/template-center/utils.ts,
  * which is what the page declares as its canonical URL — the sitemap should only
@@ -192,12 +184,12 @@ const getTemplateRoutes = async () => {
   );
 
   templates.forEach((template) => {
-    const canonicalCategory = [...template.categories].sort((a, b) => a.name.localeCompare(b.name))[0];
+    const canonicalPath = canonicalTemplatePath(template.categories, template.view_id, template.primary_category_id);
 
-    if (!canonicalCategory) return;
+    if (!canonicalPath) return;
 
     routes.push({
-      path: `templates/${slugify(canonicalCategory.name)}/${template.view_id}`,
+      path: canonicalPath.slice(1),
       lastmod: template.publish_info && template.publish_info.publish_timestamp,
     });
   });
@@ -351,4 +343,6 @@ const generateSitemap = async () => {
   );
 };
 
-generateSitemap();
+if (require.main === module) generateSitemap();
+
+module.exports = { getTemplateRoutes };

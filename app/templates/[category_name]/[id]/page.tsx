@@ -3,7 +3,7 @@ import TemplateDetails from '@/components/template-center/template/template-deta
 import { getTemplateLabel } from '@/components/template-center/template/template-content';
 import { getUseTemplateUrl } from '@/components/template-center/template/template-links';
 import TemplateSection from '@/components/template-center/template/template-section';
-import { canonicalTemplatePath, slugify } from '@/components/template-center/utils';
+import { canonicalTemplateCategory, canonicalTemplatePath, slugify } from '@/components/template-center/utils';
 import { parseAbout } from '@/lib/template-about';
 import { getTemplateById } from '@/lib/templateAPI';
 import { generateBreadcrumbSchema } from '@/lib/schema';
@@ -38,7 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Canonicalize to a single category path so the copies of this template under
   // its other categories consolidate instead of competing.
   const canonicalPath =
-    canonicalTemplatePath(template.categories, params.id) ?? `/templates/${params.category_name}/${params.id}`;
+    canonicalTemplatePath(template.categories, params.id, template.primary_category_id) ??
+    `/templates/${params.category_name}/${params.id}`;
   const canonicalUrl = `${site_url}${canonicalPath}`;
 
   return {
@@ -91,7 +92,8 @@ async function Page({ params }: { params: { id: string; category_name: string } 
 
   const about = parseAbout(data.about);
   const canonicalPath =
-    canonicalTemplatePath(data.categories, params.id) ?? `/templates/${params.category_name}/${params.id}`;
+    canonicalTemplatePath(data.categories, params.id, data.primary_category_id) ??
+    `/templates/${params.category_name}/${params.id}`;
   const canonicalUrl = `${site_url}${canonicalPath}`;
 
   return (
@@ -115,7 +117,7 @@ async function getData(id: string) {
 }
 
 function generateTemplateSchema(template: Awaited<ReturnType<typeof getData>>, canonicalUrl: string) {
-  const canonicalCategory = [...template.categories].sort((a, b) => a.name.localeCompare(b.name))[0];
+  const canonicalCategory = canonicalTemplateCategory(template.categories, template.primary_category_id);
   const canonicalPath = new URL(canonicalUrl).pathname;
 
   return {

@@ -11,6 +11,10 @@ import { PricingStateProvider } from './components/pricing-state-context';
 import { TrustedBrandsSection } from './components/trusted-brands-section';
 import { PricingCtaFooter } from './components/pricing-cta-footer';
 import OpenGraphImage from '../../public/images/og-image.png';
+import { getCloudProPricing } from './lib/billing-pricing';
+import { CloudProPricing, getCloudProOffers } from './lib/cloud-pricing';
+
+export const revalidate = 300;
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL!;
 const title = 'AppFlowy Pricing - Cloud & Self-hosted Plans';
@@ -65,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Generate structured data for pricing page
-function generatePricingSchema(siteUrl: string) {
+function generatePricingSchema(siteUrl: string, pricing: CloudProPricing | null) {
   const webPageSchema = {
     '@type': 'WebPage',
     name: title,
@@ -98,40 +102,7 @@ function generatePricingSchema(siteUrl: string) {
             unitText: 'workspace owner',
           },
         },
-        {
-          '@type': 'Offer',
-          name: 'Pro Plan (Annual billing)',
-          description: 'For professional work and teams',
-          price: '16',
-          priceCurrency: 'USD',
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            price: '16',
-            priceCurrency: 'USD',
-            billingIncrement: 'month',
-          },
-          eligibleQuantity: {
-            '@type': 'QuantitativeValue',
-            unitText: 'member per month, billed annually',
-          },
-        },
-        {
-          '@type': 'Offer',
-          name: 'Pro Plan (Monthly billing)',
-          description: 'For professional work and teams',
-          price: '20',
-          priceCurrency: 'USD',
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            price: '20',
-            priceCurrency: 'USD',
-            billingIncrement: 'month',
-          },
-          eligibleQuantity: {
-            '@type': 'QuantitativeValue',
-            unitText: 'member per month, billed monthly',
-          },
-        },
+        ...getCloudProOffers(pricing),
         {
           '@type': 'Offer',
           name: 'Self-hosted Plans',
@@ -159,23 +130,24 @@ function generatePricingSchema(siteUrl: string) {
   };
 }
 
-function PricingPage() {
-  const pricingSchema = generatePricingSchema(site_url);
+async function PricingPage() {
+  const cloudProPricing = await getCloudProPricing();
+  const pricingSchema = generatePricingSchema(site_url, cloudProPricing);
 
   return (
     <>
       <SeoData id='pricing-ld-json' data={pricingSchema} />
-      <PricingStateProvider>
+      <PricingStateProvider cloudProPricing={cloudProPricing}>
         {/* Opaque so the global body gradient in globals.scss does not show through. */}
-        <div className='pricing-page bg-white pt-[68px] lg:pt-[72px]'>
+        <div className='pricing-page bg-white pt-[72px]'>
           <PricingHeroContainer>
-            <h1 className='pricing-hero-title mx-auto mb-0 flex h-[88px] flex-col items-center justify-center sm:h-[136px]'>
-              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
-                Your work solution
-              </div>
-              <div className='font-inter text-[36px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:text-[44px] lg:text-[56px]'>
-                Start free
-              </div>
+            <h1 className='pricing-hero-title mx-auto mb-0 flex h-[72px] flex-col items-center justify-center sm:h-[136px]'>
+              <span className='w-full font-inter text-[28px] font-bold leading-9 tracking-[-0.03em] text-[#140F28] sm:hidden'>
+                Your work solution Start free
+              </span>
+              <span className='hidden font-inter text-[44px] font-bold leading-[68px] tracking-[-0.03em] text-[#140F28] sm:block lg:text-[56px]'>
+                Your work solution<br />Start free
+              </span>
             </h1>
             <Image
               src='/images/pricing/hero-underline.svg'

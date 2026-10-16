@@ -81,6 +81,7 @@ export interface TemplateSummary {
   description: string;
   view_url: string;
   categories: TemplateCategory[];
+  primary_category_id?: string | null;
   creator: TemplateCreator;
   is_new_template: boolean;
   featured: boolean;
