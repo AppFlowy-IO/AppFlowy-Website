@@ -1,3 +1,4 @@
+import { RelatedComparisons } from '../components/related-comparisons';
 import GetStart from '@/components/product/get-start';
 import ConfluenceImage from '@/assets/images/vs-notion/confluence.svg';
 import { Metadata } from 'next';
@@ -452,6 +453,7 @@ function Page() {
           <QASection items={vsConfluenceFAQs} />
         </div>
 
+        <RelatedComparisons currentSlug='appflowy-vs-confluence' />
         <GetStart />
       </div>
     </>
