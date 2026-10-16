@@ -10,8 +10,16 @@
   }
 }
 
+// Tab transition, in order:
+//   1. 0–1000ms  the new blobs swap corners like water droplets: the one that
+//                rests top-left starts bottom-right and vice versa. They cross
+//                through the centre, overshoot their resting spot a touch and
+//                settle; the old gradient fades out underneath them.
+//   2. 900ms+    once the blobs have landed, the new illustration fades in.
+// TRANSITION_MS in showcase-section.tsx must cover the end of step 2.
+
 .gradient-layer--leaving {
-  animation: gradientFadeOut 850ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+  animation: gradientFadeOut 800ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
 @keyframes gradientFadeOut {
@@ -24,24 +32,101 @@
   }
 }
 
+.gradient-layer--entering {
+  .cloud--top-left,
+  .cloud--bottom-right {
+    will-change: transform, opacity;
+    animation: 1000ms linear both;
+  }
+
+  .cloud--top-left {
+    animation-name: dropletFromBottomRight;
+  }
+
+  .cloud--bottom-right {
+    animation-name: dropletFromTopLeft;
+  }
+
+  // The third blob isn't anchored to a corner; it just pools in behind.
+  .cloud--fill {
+    animation: cloudFill 700ms 200ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+}
+
+// Each droplet starts small in the opposite corner, slides across the card
+// (accelerating, then braking), overshoots its resting spot squashed along
+// the direction of travel, then springs back. Offsets are percentages of the
+// blob's own size, sized so it starts tucked into the far corner.
+// Used by the top-left blob, which travels up-left from the bottom-right.
+@keyframes dropletFromBottomRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(115%, 150%, 0) scale(0.5, 0.42);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  76% {
+    transform: translate3d(-4%, -5%, 0) scale(1.08, 0.94);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Used by the bottom-right blob, which travels down-right from the top-left.
+@keyframes dropletFromTopLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-115%, -95%, 0) scale(0.5, 0.42);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  76% {
+    transform: translate3d(4%, 4%, 0) scale(1.08, 0.94);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes cloudFill {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .feature-illustration--enter {
   z-index: 1;
-  animation: illustrationEnter 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: illustrationEnter 600ms 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .feature-illustration--leave {
   z-index: 2;
-  animation: illustrationLeave 850ms cubic-bezier(0.7, 0, 0.2, 1) both;
+  animation: illustrationLeave 420ms cubic-bezier(0.4, 0, 1, 1) both;
 }
 
 @keyframes illustrationEnter {
   0% {
-    opacity: 0.78;
-    transform: translate3d(-50%, 26%, 0) scale(0.985);
-  }
-
-  58% {
-    opacity: 1;
+    opacity: 0;
+    transform: translate3d(-50%, 5%, 0) scale(0.99);
   }
 
   100% {
@@ -58,7 +143,7 @@
 
   100% {
     opacity: 0;
-    transform: translate3d(-50%, 42%, 0) scale(0.975);
+    transform: translate3d(-50%, 12%, 0) scale(0.985);
   }
 }
 
