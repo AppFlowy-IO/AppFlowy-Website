@@ -241,44 +241,83 @@
 
   // Individual template detail page aligned to the official Figma layout.
   .template-hero {
-    @apply relative flex w-full justify-center overflow-hidden bg-white px-[200px] pb-0 pt-[184px] text-[#140F28];
-    @apply max-xl:px-[8vw] max-md:px-5 max-md:pt-[152px];
+    @apply relative flex w-full justify-center overflow-hidden bg-white px-[120px] pb-0 pt-[184px] text-[#140F28];
+    @apply max-lg:px-[8vw] max-md:px-4 max-md:pt-[152px];
 
     &__inner {
-      @apply relative z-[1] w-[1040px] min-w-0 max-w-full;
+      @apply relative z-[1] w-full min-w-0 max-w-[1920px];
     }
 
     &__glow {
-      @apply pointer-events-none absolute rounded-full;
-      filter: blur(120px);
+      @apply pointer-events-none absolute;
+
+      img {
+        @apply absolute max-w-none;
+      }
 
       &--left {
-        @apply bottom-[-300px] left-[-400px] h-[800px] w-[800px];
-        background: rgba(147, 39, 255, 0.12);
+        @apply bottom-0 left-[-280px] h-[800px] w-[800px];
+
+        img {
+          @apply left-[-600px] top-[-600px] h-[2000px] w-[2000px];
+        }
       }
 
       &--right {
-        @apply right-[-600px] top-[390px] h-[1200px] w-[1200px];
-        background: rgba(73, 140, 240, 0.12);
+        // Figma's 287px offset plus the existing 104px header clearance.
+        @apply left-1/2 top-[391px] h-[1200px] w-[1200px];
+        @apply max-md:top-[359px];
+
+        img {
+          @apply left-[-300px] top-[-300px] h-[1800px] w-[1800px];
+        }
       }
     }
 
-    &__content {
-      @apply flex items-end gap-[120px];
-      @apply max-lg:gap-14 max-md:flex-col max-md:items-start max-md:gap-8;
-    }
-
-    &__copy {
-      @apply flex min-w-0 flex-1 flex-col items-start gap-5;
+    &__header {
+      @apply mx-auto flex w-full max-w-[1040px] flex-col gap-10;
 
       h1 {
-        @apply max-w-[680px] text-[56px] font-bold leading-[68px] tracking-normal;
+        @apply w-full break-words text-[56px] font-bold leading-[68px] tracking-normal;
         @apply max-lg:text-[48px] max-lg:leading-[58px] max-md:text-[40px] max-md:leading-[48px];
       }
     }
 
+    &__back {
+      @apply inline-flex w-fit items-center gap-2 text-base font-normal leading-6 text-[#AAAAAA] transition-colors;
+
+      &:hover,
+      &:active {
+        @apply text-[#854CFF];
+      }
+
+      &:focus-visible {
+        @apply rounded outline outline-2 outline-offset-4 outline-[#854CFF];
+      }
+    }
+
+    &__back-icon {
+      @apply h-6 w-6 shrink-0 rotate-180 bg-current;
+      mask: url('/images/templates/icons/back-arrow.svg') center / contain no-repeat;
+      -webkit-mask: url('/images/templates/icons/back-arrow.svg') center / contain no-repeat;
+    }
+
+    &__content {
+      @apply flex items-start gap-[120px];
+      @apply max-lg:flex-col max-lg:gap-8;
+    }
+
+    &__heading {
+      @apply flex w-full flex-col gap-3;
+    }
+
+    &__copy {
+      @apply min-w-0 flex-1;
+      @apply max-lg:w-full;
+    }
+
     &__description {
-      @apply max-w-[680px] text-base leading-6 text-[#5A5A5A];
+      @apply w-full text-base leading-6 text-[#5A5A5A];
     }
 
     &__creator {
@@ -302,8 +341,13 @@
     }
 
     &__actions {
-      @apply flex w-[240px] shrink-0 flex-col gap-2;
-      @apply max-md:w-full max-md:max-w-[360px];
+      @apply flex shrink-0 items-center justify-end gap-3;
+      @apply max-lg:w-full max-lg:justify-start max-md:flex-col max-md:items-start;
+
+      > a {
+        @apply w-[240px] max-w-full;
+        @apply max-md:w-full max-md:max-w-none;
+      }
     }
 
     &__primary-action,
@@ -323,22 +367,38 @@
       @apply border border-[#E6E6E6] bg-white text-[#140F28];
 
       &:hover {
-        @apply border-[#B8B8C0] bg-[#FAFAFC];
+        @apply border-[#B8B8C0];
       }
     }
 
     &__preview {
-      @apply relative mt-[60px] h-[480px] w-full overflow-hidden rounded-t-xl bg-white;
+      @apply relative mt-[60px] h-[600px] w-full overflow-hidden rounded-t-xl bg-white;
       @apply max-md:mt-10 max-md:h-[460px];
 
       iframe {
-        @apply h-[720px] w-full bg-white;
-        pointer-events: none;
+        @apply block h-full w-full border-0 bg-white;
       }
 
-      > span {
-        @apply pointer-events-none absolute inset-x-0 bottom-0 h-[110px];
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 88%);
+      &:hover .template-hero__open-preview,
+      .template-hero__open-preview:focus-visible {
+        @apply pointer-events-auto opacity-100;
+      }
+    }
+
+    &__open-preview {
+      @apply pointer-events-none absolute bottom-5 right-5 z-10 flex items-center gap-1.5 rounded-md bg-black/60 py-1.5 pl-2.5 pr-4 text-base font-medium leading-6 text-white opacity-0 transition-opacity;
+      @apply max-md:hidden;
+
+      &:hover {
+        @apply bg-black;
+      }
+
+      img {
+        @apply h-6 w-6 shrink-0;
+      }
+
+      &:focus-visible {
+        @apply outline outline-2 outline-offset-2 outline-[#854CFF];
       }
     }
   }
@@ -689,10 +749,11 @@
         @apply flex flex-wrap gap-3;
 
         button {
-          @apply flex h-10 w-10 items-center justify-center rounded-full border border-[#E6E6E6] bg-white transition-colors;
+          @apply flex h-10 w-10 items-center justify-center rounded-full border border-[#E6E6E6] bg-white text-[#140F28] transition-colors;
 
-          &:hover {
-            @apply border-primary text-primary;
+          &:hover,
+          &:active {
+            @apply border-[#854CFF] text-[#140F28];
           }
 
           svg {
@@ -708,16 +769,16 @@
 
     &__categories {
       @apply flex flex-col items-start gap-2;
+      @apply max-md:flex-row max-md:flex-wrap;
 
       a {
-        @apply flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium leading-6 transition-transform;
+        @apply flex items-center rounded-lg px-2 py-1.5 text-sm font-normal leading-5;
+        background-color: var(--tag-background);
+        transition: background-color 150ms ease;
 
         &:hover {
-          @apply -translate-y-0.5 text-primary;
-        }
-
-        svg {
-          @apply h-6 w-6;
+          background-color: var(--tag-hover-background);
+          transform: none;
         }
       }
     }
@@ -726,10 +787,11 @@
       @apply flex flex-wrap gap-3;
 
       a {
-        @apply flex h-10 w-10 items-center justify-center rounded-full border border-[#E6E6E6] bg-white transition-colors;
+        @apply flex h-10 w-10 items-center justify-center rounded-full border border-[#E6E6E6] bg-white text-[#140F28] transition-colors;
 
-        &:hover {
-          @apply border-primary text-primary;
+        &:hover,
+        &:active {
+          @apply border-[#854CFF] text-[#140F28];
         }
 
         svg {

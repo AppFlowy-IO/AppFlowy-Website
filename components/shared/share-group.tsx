@@ -7,7 +7,7 @@ import { cn, copyToClipboard, shareToLinkedIn, shareToTwitter } from '@/lib/util
 import { Tooltip } from '@mui/material';
 import React, { useMemo } from 'react';
 
-function Share({ compact = false, content }: { compact?: boolean; content: string }) {
+function Share({ compact = false, content, copyLinkIcon }: { compact?: boolean; content: string; copyLinkIcon?: React.ReactNode }) {
   const link = useMemo(() => {
     if (typeof window === 'undefined') return '';
     return window.location.href;
@@ -35,7 +35,7 @@ function Share({ compact = false, content }: { compact?: boolean; content: strin
           }}
           type='button'
         >
-          {copiedLink ? <Check /> : <LinkIcon />}
+          {copiedLink ? <Check /> : copyLinkIcon ?? <LinkIcon />}
         </button>
       </Tooltip>
     </div>
