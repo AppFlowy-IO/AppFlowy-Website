@@ -753,28 +753,49 @@ next-image--dynamic-fill {
   }
 
   > ul {
-    border-left: 1px solid #e6e6e6;
+    position: relative;
+    border-left: 1px solid transparent;
+    padding-left: 12px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 0;
+      left: -1px;
+      width: 1px;
+      background: #e6e6e6;
+      pointer-events: none;
+    }
   }
 
   li {
-    @apply relative m-0 text-base font-medium leading-6 text-[#140F28];
+    @apply relative m-0 text-base font-normal leading-6 text-[#140F28];
 
     > a,
     > p {
-      @apply m-0 block px-4 py-3 no-underline transition-colors hover:text-primary;
+      @apply relative m-0 block cursor-pointer rounded-lg px-4 py-3 no-underline transition-colors hover:bg-[rgba(20,15,40,0.04)];
     }
 
     > ul {
-      @apply ml-4;
-
       a,
       p {
-        @apply py-2 text-sm leading-5 text-[#5A5A5A];
+        @apply py-2 text-base font-normal leading-6 text-[#140F28];
       }
     }
   }
 
-  > ul > li:first-child::before {
+  // Keep every row aligned; indent only its text at each heading depth.
+  $toc-level: '> ul';
+  @for $depth from 1 through 6 {
+    #{$toc-level} > li > a,
+    #{$toc-level} > li > p {
+      padding-left: 16px * $depth;
+    }
+    $toc-level: '#{$toc-level} > li > ul';
+  }
+
+  > ul::after {
     content: '';
     position: absolute;
     left: -2px;
@@ -783,6 +804,15 @@ next-image--dynamic-fill {
     height: 28px;
     border-radius: 999px;
     background: #854cff;
+    pointer-events: none;
+    transform: translateY(var(--toc-indicator-offset, 0px));
+    transition: transform 180ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    > ul::after {
+      transition: none;
+    }
   }
 }
 
@@ -820,6 +850,15 @@ next-image--dynamic-fill {
     svg {
       @apply h-[20px] w-[20px];
     }
+  }
+}
+
+.blog-article-share .share button {
+  @apply border-[#E6E6E6] text-[#140F28] transition-colors;
+
+  &:hover,
+  &:active {
+    @apply border-[#854CFF] text-[#140F28];
   }
 }
 
