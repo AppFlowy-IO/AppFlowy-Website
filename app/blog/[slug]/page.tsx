@@ -193,10 +193,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <>
       <main className='bg-white pt-[104px] text-[#140F28]'>
-        <header className='px-6'>
-          <div className='mx-auto w-full max-w-[1040px] pb-16 pt-10 sm:pb-20 sm:pt-12'>
+        <header className='px-4 sm:px-6'>
+          <div className='mx-auto w-full max-w-[1040px] pt-20 lg:pb-20'>
             <Breadcrumbs
-              className='mb-8'
+              className='hidden'
               items={[
                 { label: 'Home', href: '/' },
                 { label: 'Blog', href: '/blog' },
@@ -205,65 +205,78 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               ]}
             />
 
-            {post.categories?.length ? (
-              <div className='flex flex-wrap gap-2'>
-                {post.categories.map((category) => {
-                  const topic = postTopics.find((item) => item.categoryNames.includes(category));
-                  const categoryClassName =
-                    'inline-flex rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-base font-medium leading-6 text-[#854CFF] transition-colors';
+            <Link
+              href='/blog'
+              className='mb-10 inline-flex items-center gap-2 text-base font-normal leading-6 text-[#AAAAAA] transition-colors hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-4 active:text-[#854CFF]'
+            >
+              <span
+                aria-hidden='true'
+                className='h-6 w-6 shrink-0 rotate-180 bg-current [-webkit-mask:url(/images/blog/icons/all-posts-arrow.svg)_center/contain_no-repeat] [mask:url(/images/blog/icons/all-posts-arrow.svg)_center/contain_no-repeat]'
+              />
+              All posts
+            </Link>
+            <div className='flex flex-col gap-5'>
+              <h1 className='max-w-[1040px] break-words text-[28px] font-bold leading-9 text-[#140F28] sm:text-[44px] sm:leading-[52px] lg:text-[56px] lg:leading-[68px]'>
+                {post.title}
+              </h1>
 
-                  return topic ? (
-                    <Link
-                      aria-label={`Browse ${topic.name} guides`}
-                      className={`${categoryClassName} hover:bg-[rgba(133,76,255,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2`}
-                      href={`/blog/${topic.slug}`}
-                      key={category}
-                    >
-                      {category}
-                    </Link>
-                  ) : (
-                    <span className={categoryClassName} key={category}>
-                      {category}
-                    </span>
-                  );
-                })}
+              {post.categories?.length ? (
+                <div className='flex flex-wrap gap-2'>
+                  {post.categories.map((category) => {
+                    const topic = postTopics.find((item) => item.categoryNames.includes(category));
+                    const categoryClassName =
+                      'inline-flex items-center rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-xs font-medium leading-[18px] text-[#854CFF] transition-colors';
+
+                    return topic ? (
+                      <Link
+                        aria-label={`Browse ${topic.name} guides`}
+                        className={`${categoryClassName} hover:bg-[rgba(133,76,255,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2`}
+                        href={`/blog/${topic.slug}`}
+                        key={category}
+                      >
+                        {category}
+                      </Link>
+                    ) : (
+                      <span className={categoryClassName} key={category}>
+                        {category}
+                      </span>
+                    );
+                  })}
+                </div>
+              ) : null}
+
+              <div className='flex flex-col items-start gap-2 text-sm leading-5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-4 lg:gap-y-2 text-[#AAAAAA]'>
+                <Link
+                  className='flex min-w-0 items-center gap-2 text-base font-medium leading-6 text-[#140F28] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2'
+                  href={post.author_url || '/blog'}
+                >
+                  <Avatar className='h-6 w-6 border border-[#E6E6E6]'>
+                    <AvatarImage src={post.author_image_url} alt='' />
+                    <AvatarFallback className='text-[10px]'>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                  <span className='truncate'>{post.author}</span>
+                </Link>
+                <div className='flex items-center gap-3'>
+                  <time dateTime={post.date}>{publishedDate}</time>
+                  <span aria-hidden='true'>•</span>
+                  <span>{post.reading_time || 1} min read</span>
+                </div>
               </div>
-            ) : null}
-
-            <h1 className='mt-3 max-w-[1040px] break-words text-[36px] font-bold leading-[44px] tracking-[-0.02em] text-[#140F28] sm:text-[44px] sm:leading-[52px] lg:text-[56px] lg:leading-[68px]'>
-              {post.title}
-            </h1>
-
-            <div className='mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-5 text-[#AAAAAA]'>
-              <Link
-                className='flex min-w-0 items-center gap-2 font-medium text-[#140F28] hover:text-[#854CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-2'
-                href={post.author_url || '/blog'}
-              >
-                <Avatar className='h-6 w-6 border border-[#E6E6E6]'>
-                  <AvatarImage src={post.author_image_url} alt='' />
-                  <AvatarFallback className='text-[10px]'>{post.author.substring(0, 2).toUpperCase()}</AvatarFallback>
-                </Avatar>
-                <span className='truncate'>{post.author}</span>
-              </Link>
-              <span aria-hidden='true'>•</span>
-              <time dateTime={post.date}>{publishedDate}</time>
-              <span aria-hidden='true'>•</span>
-              <span>{post.reading_time || 1} min read</span>
             </div>
           </div>
         </header>
 
-        <section className='px-6 pb-20' aria-label='Article content'>
+        <section className='px-4 py-10 sm:px-6 lg:pb-20 lg:pt-0' aria-label='Article content'>
           <div className='mx-auto grid w-full max-w-[1040px] gap-12 lg:grid-cols-[minmax(0,680px)_320px] lg:gap-10'>
             <div className='min-w-0'>
               {post.cover_image ? (
-                <div className='relative mb-7 h-[220px] w-full overflow-hidden rounded-xl bg-[#F5F5FA] sm:h-[280px]'>
+                <div className='relative mb-7 h-[280px] w-full overflow-hidden rounded-xl bg-[#F5F5FA]'>
                   <Image
                     alt={post.title}
                     className='object-cover'
                     fill
                     priority
-                    sizes='(max-width: 1023px) calc(100vw - 48px), 680px'
+                    sizes='(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc(100vw - 48px), 680px'
                     src={post.cover_image}
                   />
                 </div>
@@ -276,7 +289,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           </div>
         </section>
 
-        <section className='border-t border-[#E6E6E6] px-6 py-10 sm:py-12' aria-label='Related resources'>
+        <section className='px-4 sm:px-6' aria-label='Related resources'>
           <ArticleKeepExploring post={post} relatedPosts={relatedPosts} />
         </section>
       </main>

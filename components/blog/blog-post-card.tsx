@@ -1,5 +1,5 @@
 import type { PostMetadata } from '@/lib/posts';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import Link from 'next/link';
 
 const FALLBACK_COVER = '/images/og-image.png';
@@ -11,16 +11,31 @@ function getValidDate(value: string) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function BlogPostCard({ post }: { post: PostMetadata }) {
+function BlogPostCard({
+  post,
+  headingLevel = 'h2',
+  showCategories = true,
+  variant = 'list',
+}: {
+  post: PostMetadata;
+  headingLevel?: 'h2' | 'h3';
+  showCategories?: boolean;
+  variant?: 'list' | 'related';
+}) {
+  const Heading = headingLevel;
+  const isRelated = variant === 'related';
   const cover = post.thumb_image || post.og_image || FALLBACK_COVER;
   const authorImage = post.author_image_url || FALLBACK_AVATAR;
   const categories = Array.isArray(post.categories) ? post.categories : [];
   const postDate = getValidDate(post.date);
 
   return (
-    <article className='min-w-0 [contain-intrinsic-size:432px] [content-visibility:auto]'>
+    <article className={cn('min-w-0', !isRelated && '[contain-intrinsic-size:432px] [content-visibility:auto]')}>
       <Link
-        className='group flex min-h-[432px] flex-col gap-8 rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-4'
+        className={cn(
+          'group flex flex-col rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#854CFF] focus-visible:ring-offset-4',
+          isRelated ? 'gap-4' : 'min-h-[432px] gap-8'
+        )}
         href={`/blog/${post.slug}`}
       >
         <div className='flex flex-col gap-4'>
@@ -33,45 +48,59 @@ function BlogPostCard({ post }: { post: PostMetadata }) {
             />
           </div>
 
-          <div className='min-h-8 flex flex-wrap items-start gap-2 overflow-hidden'>
-            {categories.slice(0, 2).map((category) => (
-              <span
-                className='inline-flex items-center rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-xs font-medium leading-[18px] text-[#854CFF]'
-                key={category}
-              >
-                {category}
-              </span>
-            ))}
-          </div>
+          {showCategories ? (
+            <div className='min-h-8 flex flex-wrap items-start gap-2 overflow-hidden'>
+              {categories.slice(0, 2).map((category) => (
+                <span
+                  className='inline-flex items-center rounded-lg bg-[rgba(133,76,255,0.1)] px-3 py-1 text-xs font-medium leading-[18px] text-[#854CFF]'
+                  key={category}
+                >
+                  {category}
+                </span>
+              ))}
+            </div>
+          ) : null}
 
           <div className='flex flex-col gap-2'>
-            <h2 className='h-14 overflow-hidden text-[20px] font-bold leading-7 text-[#140F28] transition-colors [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] group-hover:text-[#854CFF]'>
+            <Heading className='h-14 overflow-hidden text-[20px] font-bold leading-7 text-[#140F28] transition-colors [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] group-hover:text-[#854CFF]'>
               {post.title}
-            </h2>
+            </Heading>
             <p className='h-12 overflow-hidden text-base font-normal leading-6 text-[#5A5A5A] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box]'>
               {post.description}
             </p>
           </div>
         </div>
 
-        <div className='mt-auto flex min-w-0 items-end justify-between gap-3'>
-          <div className='flex min-w-0 items-center gap-2'>
-            <img
-              alt=''
-              className='h-6 w-6 shrink-0 rounded-full border border-[#E6E6E6] object-cover'
-              height={24}
-              loading='lazy'
-              src={authorImage}
-              width={24}
-            />
-            <span className='truncate text-base font-medium leading-6 text-[#140F28]'>{post.author}</span>
+        {isRelated ? (
+          <p className='text-sm font-normal leading-5 text-[#AAAAAA]'>
+            {postDate ? (
+              <>
+                <time dateTime={post.date}>{formatDate(postDate)}</time>
+                {' by '}
+              </>
+            ) : null}
+            {post.author}
+          </p>
+        ) : (
+          <div className='mt-auto flex min-w-0 items-end justify-between gap-3'>
+            <div className='flex min-w-0 items-center gap-2'>
+              <img
+                alt=''
+                className='h-6 w-6 shrink-0 rounded-full border border-[#E6E6E6] object-cover'
+                height={24}
+                loading='lazy'
+                src={authorImage}
+                width={24}
+              />
+              <span className='truncate text-base font-medium leading-6 text-[#140F28]'>{post.author}</span>
+            </div>
+            <div className='flex shrink-0 items-center gap-2 whitespace-nowrap text-sm leading-5 text-[#AAAAAA] max-xl:text-xs'>
+              {postDate ? <time dateTime={post.date}>{formatDate(postDate)}</time> : null}
+              <span aria-hidden='true'>•</span>
+              <span>{post.reading_time || 1} min read</span>
+            </div>
           </div>
-          <div className='flex shrink-0 items-center gap-2 whitespace-nowrap text-sm leading-5 text-[#AAAAAA] max-xl:text-xs'>
-            {postDate ? <time dateTime={post.date}>{formatDate(postDate)}</time> : null}
-            <span aria-hidden='true'>•</span>
-            <span>{post.reading_time || 1} min read</span>
-          </div>
-        </div>
+        )}
       </Link>
     </article>
   );
