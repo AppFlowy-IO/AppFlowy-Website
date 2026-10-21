@@ -1,16 +1,13 @@
-import CategoryTemplatesHeader from '@/components/template-center/category-templates-header';
-import CategoryGuides from '@/components/template-center/category-guides';
+import TemplateHome from '@/components/template-center/template-home';
 import SeoData from '@/components/layout/seo-data';
-import Sidebar from '@/components/template-center/sidebar';
-import TemplateList from '@/components/template-center/template-list';
 import { TemplatesProvider } from '@/components/template-center/templates-context';
 import { slugify } from '@/components/template-center/utils';
 import { getCategories, getCategoryTemplateList } from '@/lib/templateAPI';
 import { notFound } from 'next/navigation';
 import React from 'react';
-import Community from '@/components/template-center/community';
 
 import '@/styles/template.scss';
+import '@/styles/template-home.scss';
 import { Metadata } from 'next';
 import OpenGraphImage from '../../../public/images/og-image.png';
 import { generateBreadcrumbSchema } from '@/lib/schema';
@@ -84,7 +81,7 @@ async function Page({ params }: { params: { category_name: string } }) {
   }
 
   return (
-    <div className={'template-center'}>
+    <div className='template-center template-home'>
       <SeoData
         id={`template-category-${name}-ld-json`}
         data={{
@@ -103,21 +100,14 @@ async function Page({ params }: { params: { category_name: string } }) {
           ],
         }}
       />
-      <div className={'main'}>
-        <TemplatesProvider
-          selectedCategoryId={data.category.id}
-          categoryTemplates={data.data}
-          categories={data.categories}
-        >
-          <CategoryTemplatesHeader category={data.category} />
-          <div className={'content'}>
-            <Sidebar />
-            <TemplateList />
-          </div>
-          <CategoryGuides categorySlugs={[name]} />
-        </TemplatesProvider>
-      </div>
-      <Community />
+      <TemplatesProvider
+        key={data.category.id}
+        selectedCategoryId={data.category.id}
+        categoryTemplates={data.data}
+        categories={data.categories}
+      >
+        <TemplateHome />
+      </TemplatesProvider>
     </div>
   );
 }

@@ -1,12 +1,10 @@
-import GetStart from '@/components/product/get-start';
-import HomeListHeader from '@/components/template-center/home-list-header';
-import Sidebar from '@/components/template-center/sidebar';
-import TemplateList from '@/components/template-center/template-list';
+import TemplateHome from '@/components/template-center/template-home';
 import { TemplatesProvider } from '@/components/template-center/templates-context';
 import { getCategories, getTemplateHomeList } from '@/lib/templateAPI';
 import { Metadata } from 'next';
 import React from 'react';
 import '@/styles/template.scss';
+import '@/styles/template-home.scss';
 import { notFound } from 'next/navigation';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -39,22 +37,10 @@ async function Page() {
   const { homepageTemplates, categories } = data;
 
   return (
-    <div className={'template-center'}>
-      <div className={'main'}>
-        <TemplatesProvider
-          homepageTemplates={homepageTemplates}
-          categories={categories}
-        >
-          <HomeListHeader />
-          <div className={'content'}>
-            <Sidebar />
-            <TemplateList />
-          </div>
-        </TemplatesProvider>
-      </div>
-      <div className='template-get-started'>
-        <GetStart />
-      </div>
+    <div className='template-center template-home'>
+      <TemplatesProvider homepageTemplates={homepageTemplates} categories={categories}>
+        <TemplateHome />
+      </TemplatesProvider>
     </div>
   );
 }
