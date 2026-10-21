@@ -1,5 +1,6 @@
 .download-page {
-  @apply relative isolate flex w-full flex-col items-center overflow-hidden pt-[200px];
+  // Clip decorative overflow without creating a scroll container for anchor navigation.
+  @apply relative isolate flex w-full flex-col items-center overflow-clip pt-[200px];
   @apply max-sm:pt-[160px];
   background: white;
   transform: translate3d(0, 0, 0);
