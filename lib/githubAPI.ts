@@ -121,9 +121,8 @@ function shouldBeReleased(version: ReleaseVersion) {
   const rpm = `AppFlowy-${version.tag_name}-linux-x86_64.rpm`;
   const appImage = `AppFlowy-${version.tag_name}-linux-x86_64.AppImage`;
   const universal = `AppFlowy-${version.tag_name}-macos-universal.dmg`;
-  const intel = `AppFlowy-${version.tag_name}-macos-x86_64.dmg`;
 
-  return [windows, deb, rpm, gnu, universal, intel, appImage].every((name) =>
+  return [windows, deb, rpm, gnu, universal, appImage].every((name) =>
     version.assets.find((asset) => asset.name === name && asset.state === 'uploaded')
   );
 }
