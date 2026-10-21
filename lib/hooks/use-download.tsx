@@ -11,6 +11,7 @@ import { collectEvent, EventName } from '@/lib/collect';
 export interface DownloadLinks {
   windows: string;
   macos: {
+    /** @deprecated Use universal. */
     intel: string;
     universal: string;
   };
@@ -44,7 +45,13 @@ export function genLink({
 }
 
 export function storageDownloadLinks(version: string) {
-  const links = {
+  const macUniversalLink = genLink({
+    platform: 'macos',
+    version,
+    arch: 'universal',
+    fileExtension: 'dmg',
+  });
+  const links: DownloadLinks = {
     windows: genLink({
       platform: 'windows',
       version,
@@ -52,18 +59,9 @@ export function storageDownloadLinks(version: string) {
       fileExtension: 'exe',
     }),
     macos: {
-      intel: genLink({
-        platform: 'macos',
-        version,
-        arch: 'x86_64',
-        fileExtension: 'dmg',
-      }),
-      universal: genLink({
-        platform: 'macos',
-        version,
-        arch: 'universal',
-        fileExtension: 'dmg',
-      }),
+      // Older tabs still read macos.intel from the shared storage entry.
+      intel: macUniversalLink,
+      universal: macUniversalLink,
     },
     linux: {
       appImage: genLink({
@@ -97,13 +95,6 @@ export function storageDownloadLinks(version: string) {
 
   Storage.set('download-links', links);
 }
-
-export const downloadMacIntel = (transfer = true) => {
-  const links = getDownloadLinks();
-
-  if (!links) return;
-  download(links.macos.intel, transfer);
-};
 
 export const downloadMacUniversal = (transfer = true) => {
   const links = getDownloadLinks();
@@ -200,15 +191,8 @@ export function useDownload() {
         return links?.ios;
       case 'android':
         return links?.android;
-      case 'macos': {
-        const type = matchMacIntel();
-
-        if (type === 'apple-silicon') {
-          return links?.macos?.universal;
-        }
-
-        return links?.macos?.intel;
-      }
+      case 'macos':
+        return links?.macos?.universal;
 
       case 'windows':
         return links?.windows;
@@ -244,35 +228,4 @@ export function useDownload() {
     downloadIOS,
     downloadAndroid,
   };
-}
-
-function matchMacIntel() {
-  const canvas = document.createElement('canvas');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let gl: any, debugInfo, renderer;
-
-  try {
-    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  } catch (e) {
-    // do thing
-  }
-
-  if (!gl) {
-    const cpuCores = navigator.hardwareConcurrency;
-
-    if (cpuCores >= 8) {
-      return 'apple-silicon';
-    }
-  }
-
-  if (gl) {
-    debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-
-    if (renderer.includes('Apple M1')) {
-      return 'apple-silicon';
-    }
-  }
-
-  return 'intel';
 }

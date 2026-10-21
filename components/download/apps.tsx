@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { downloadMacIntel, downloadMacUniversal, downloadWindows, useDownload } from '@/lib/hooks/use-download';
+import { downloadMacUniversal, downloadWindows, useDownload } from '@/lib/hooks/use-download';
 import LinuxBtnGroup from '@/components/shared/linux-btn-group';
 import { Button } from '@/components/ui/button';
 import { collectEvent, EventName } from '@/lib/collect';
@@ -69,14 +69,9 @@ function DownloadApps() {
       title: 'macOS',
       icon: <AppleIcon />,
       btns: (
-        <>
-          <Button size={'xl'} className={filledBtnClassName} onClick={() => downloadMacUniversal(true)}>
-            Download for Universal
-          </Button>
-          <Button size={'xl'} variant={'outline'} className={'w-full justify-start'} onClick={() => downloadMacIntel(true)}>
-            Download for Intel
-          </Button>
-        </>
+        <Button size={'xl'} className={filledBtnClassName} onClick={() => downloadMacUniversal(true)}>
+          Download for Universal
+        </Button>
       ),
     },
     {
