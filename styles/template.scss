@@ -705,7 +705,7 @@
     @apply max-xl:px-[8vw] max-md:px-5 max-md:py-16;
 
     &__layout {
-      @apply grid grid-cols-[minmax(0,680px)_320px] items-start gap-10;
+      @apply grid grid-cols-[minmax(0,760px)_240px] items-start gap-10;
       @apply max-lg:grid-cols-[minmax(0,1fr)_260px] max-md:grid-cols-1 max-md:gap-14;
     }
 
