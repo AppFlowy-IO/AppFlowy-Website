@@ -1,46 +1,26 @@
 import SeoData from '@/components/layout/seo-data';
-import TemplateDetails from '@/components/template-center/template/template-details';
 import { getTemplateLabel } from '@/components/template-center/template/template-content';
 import { getUseTemplateUrl } from '@/components/template-center/template/template-links';
+import TemplateDetails from '@/components/template-center/template/template-details';
 import TemplateSection from '@/components/template-center/template/template-section';
+import { TemplateSlugProvider } from '@/components/template-center/template-slug-context';
 import { canonicalTemplateCategory, canonicalTemplatePath, slugify } from '@/components/template-center/utils';
-import { parseAbout } from '@/lib/template-about';
-import { getTemplateById } from '@/lib/templateAPI';
+import { Template } from '@/lib/interface';
 import { generateBreadcrumbSchema } from '@/lib/schema';
-import React from 'react';
-import '@/styles/template.scss';
-import { notFound } from 'next/navigation';
+import { parseAbout } from '@/lib/template-about';
 import { Metadata } from 'next';
+import React from 'react';
 import OpenGraphImage from '../../../../public/images/og-image.png';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_BASE_URL || 'https://appflowy.com';
 
-interface Props {
-  params: { id: string; category_name: string };
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let template;
-
-  try {
-    template = await getData(params.id);
-  } catch (error) {
-    // The page itself renders notFound() for this id; without per-page metadata
-    // it would inherit the root canonical, so return nothing rather than
-    // pointing a missing template at the homepage.
-    return {};
-  }
-
+export function templateMetadata(template: Template, slug: string): Metadata {
   const templateLabel = getTemplateLabel(template.name);
   const title = `Free ${templateLabel} | AppFlowy`;
   const description = `Use the free ${templateLabel} in AppFlowy. ${template.description}`.slice(0, 160);
-
-  // Canonicalize to a single category path so the copies of this template under
-  // its other categories consolidate instead of competing.
-  const canonicalPath =
-    canonicalTemplatePath(template.categories, params.id, template.primary_category_id) ??
-    `/templates/${params.category_name}/${params.id}`;
-  const canonicalUrl = `${site_url}${canonicalPath}`;
+  // One template, one URL: the canonical is the page's own slug, so there are no
+  // per-category copies left to consolidate.
+  const canonicalUrl = `${site_url}${canonicalTemplatePath(slug)}`;
 
   return {
     title,
@@ -74,51 +54,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-async function Page({ params }: { params: { id: string; category_name: string } }) {
-  const id = params.id;
-
-  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
-    return null;
-  }
-
-  let data = null;
-
-  try {
-    data = await getData(id);
-  } catch (error) {
-    console.error(error);
-    notFound();
-  }
-
-  const about = parseAbout(data.about);
-  const canonicalPath =
-    canonicalTemplatePath(data.categories, params.id, data.primary_category_id) ??
-    `/templates/${params.category_name}/${params.id}`;
-  const canonicalUrl = `${site_url}${canonicalPath}`;
+function TemplateView({
+  template,
+  slug,
+  templateSlugs,
+}: {
+  template: Template;
+  slug: string;
+  templateSlugs: Record<string, string>;
+}) {
+  const about = parseAbout(template.about);
 
   return (
     <div className={'template-center'}>
-      <SeoData id='template-ld-json' data={generateTemplateSchema(data, canonicalUrl)} />
-      <TemplateSection template={data} />
-      <TemplateDetails template={data} aboutContent={about.content} />
+      <SeoData id='template-ld-json' data={generateTemplateSchema(template, slug)} />
+      <TemplateSlugProvider slugs={templateSlugs}>
+        <TemplateSection template={template} />
+        <TemplateDetails template={template} aboutContent={about.content} />
+      </TemplateSlugProvider>
     </div>
   );
 }
 
-export const revalidate = 10;
+export default TemplateView;
 
-export default Page;
-
-async function getData(id: string) {
-  const data = await getTemplateById(id);
-
-  if (!data) throw new Error(`Template not found ${id}`);
-  return data;
-}
-
-function generateTemplateSchema(template: Awaited<ReturnType<typeof getData>>, canonicalUrl: string) {
-  const canonicalCategory = canonicalTemplateCategory(template.categories, template.primary_category_id);
-  const canonicalPath = new URL(canonicalUrl).pathname;
+function generateTemplateSchema(template: Template, slug: string) {
+  const canonicalPath = canonicalTemplatePath(slug);
+  const canonicalUrl = `${site_url}${canonicalPath}`;
+  // The URL is flat, but the breadcrumb still places the template under a category —
+  // a BreadcrumbList describes the site's hierarchy, not the URL's nesting.
+  const breadcrumbCategory = canonicalTemplateCategory(template.categories, template.primary_category_id);
 
   return {
     '@context': 'https://schema.org',
@@ -146,15 +111,15 @@ function generateTemplateSchema(template: Awaited<ReturnType<typeof getData>>, c
       },
       generateBreadcrumbSchema([
         { name: 'Templates', path: '/templates' },
-        ...(canonicalCategory
+        ...(breadcrumbCategory
           ? [
               {
-                name: `${canonicalCategory.name} templates`,
-                path: `/templates/${slugify(canonicalCategory.name)}`,
+                name: `${breadcrumbCategory.name} templates`,
+                path: `/templates/${slugify(breadcrumbCategory.name)}`,
               },
             ]
           : []),
-        { name: template.name, path: canonicalPath },
+        { name: template.name, path: canonicalPath as string },
       ]),
     ],
   };

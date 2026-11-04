@@ -185,6 +185,29 @@ contextualLinkSources.forEach((source) => {
   }
 });
 
+/**
+ * Templates and categories share the `/templates/[slug]` segment, so the sitemap is the
+ * place where a slug regression shows up: a UUID that survived the migration, a template
+ * that quietly took a category's URL, or a withdrawn template still being advertised.
+ */
+const templateUrls = urls.filter((url) => url.startsWith(`${SITE_URL}/templates/`));
+
+templateUrls.forEach((url) => {
+  const pathname = new URL(url).pathname;
+
+  if (/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(pathname)) {
+    errors.push(`template URL still carries a view id instead of a slug: ${url}`);
+  }
+
+  if (pathname.split('/').filter(Boolean).length !== 2) {
+    errors.push(`template URL is not a flat /templates/<slug>: ${url}`);
+  }
+});
+
+if (!templateUrls.length) {
+  errors.push('sitemap advertises no template URLs');
+}
+
 const robots = fs.readFileSync(robotsPath, 'utf8');
 
 if (!robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`)) {

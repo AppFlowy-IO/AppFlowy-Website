@@ -1,13 +1,15 @@
+'use client';
+
 import CreatorAvatar from '@/components/template-center/creator-avatar';
-import { canonicalTemplatePath, slugify } from '@/components/template-center/utils';
+import { useTemplateSlug } from '@/components/template-center/template-slug-context';
+import { canonicalTemplatePath } from '@/components/template-center/utils';
 import { TemplateSummary, TemplateCategory } from '@/lib/interface';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 function TemplateItem({ template, category }: { template: TemplateSummary; category: TemplateCategory }) {
-  const templateHref =
-    canonicalTemplatePath(template.categories, template.view_id, template.primary_category_id) ??
-    `/templates/${slugify(category.name)}/${template.view_id}`;
+  const slug = useTemplateSlug(template.view_id);
+  const templateHref = canonicalTemplatePath(slug);
   const iframeUrl = useMemo(() => {
     const url = new URL(template.view_url);
     const origin = url.origin;
@@ -29,6 +31,10 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
     newURL.searchParams.set('thumbnail', 'true');
     return newURL.toString();
   }, [template.publish_info, template.view_url]);
+
+  // Grids filter on hasTemplateSlug() already; this is the backstop so a card can never
+  // render a link to a template the router would not resolve.
+  if (!templateHref) return null;
 
   return (
     <>

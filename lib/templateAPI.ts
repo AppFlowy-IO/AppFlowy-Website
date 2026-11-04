@@ -52,6 +52,22 @@ export async function getCategoryTemplateList(categoryId: string): Promise<Templ
   return res.data.data.templates;
 }
 
+/**
+ * Every template in one request. The list endpoint returns the complete `categories`
+ * array per template when it is not filtered by category, which is what lets the slug
+ * map and the sitemap be built without a detail fetch per template.
+ */
+export async function getAllTemplates(): Promise<TemplateSummary[]> {
+  const res = await templateAPI.get<{
+    code: number;
+    data: {
+      templates: TemplateSummary[];
+    };
+  }>('/template');
+
+  return res.data.data.templates;
+}
+
 export async function getTemplateById(id: string): Promise<Template> {
   const res = await templateAPI.get<{
     code: number;

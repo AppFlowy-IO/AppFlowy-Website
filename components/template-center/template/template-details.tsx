@@ -16,22 +16,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
 
-const categoryTagStyles: Record<string, CSSProperties & { '--tag-background': string; '--tag-hover-background': string }> = {
+const categoryTagStyles: Record<
+  string,
+  CSSProperties & { '--tag-background': string; '--tag-hover-background': string }
+> = {
   'Project Management': { '--tag-background': '#EEFAFF', '--tag-hover-background': '#E9F5FA', color: '#285C86' },
-  'Management': { '--tag-background': '#EEFAFF', '--tag-hover-background': '#E9F5FA', color: '#285C86' },
+  Management: { '--tag-background': '#EEFAFF', '--tag-hover-background': '#E9F5FA', color: '#285C86' },
   'Human Resources': { '--tag-background': '#EEFAFF', '--tag-hover-background': '#E9F5FA', color: '#285C86' },
   'Team Meetings': { '--tag-background': '#EEFAFF', '--tag-hover-background': '#E9F5FA', color: '#285C86' },
-  'Engineering': { '--tag-background': '#F1EDFA', '--tag-hover-background': '#ECE8F5', color: '#63518C' },
+  Engineering: { '--tag-background': '#F1EDFA', '--tag-hover-background': '#ECE8F5', color: '#63518C' },
   'Product & Design': { '--tag-background': '#F1EDFA', '--tag-hover-background': '#ECE8F5', color: '#63518C' },
-  'Startups': { '--tag-background': '#F1F2F4', '--tag-hover-background': '#ECEDEF', color: '#555D68' },
+  Startups: { '--tag-background': '#F1F2F4', '--tag-hover-background': '#ECEDEF', color: '#555D68' },
   'AI-powered': { '--tag-background': '#F1F2F4', '--tag-hover-background': '#ECEDEF', color: '#555D68' },
-  'Education': { '--tag-background': '#FFFAE9', '--tag-hover-background': '#FAF5E4', color: '#7D641F' },
-  'Marketing': { '--tag-background': '#FFF1E6', '--tag-hover-background': '#FAECE1', color: '#8C572D' },
+  Education: { '--tag-background': '#FFFAE9', '--tag-hover-background': '#FAF5E4', color: '#7D641F' },
+  Marketing: { '--tag-background': '#FFF1E6', '--tag-hover-background': '#FAECE1', color: '#8C572D' },
   'Sales & CRM': { '--tag-background': '#FFF1E6', '--tag-hover-background': '#FAECE1', color: '#8C572D' },
-  'Docs': { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
-  'Wiki': { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
-  'Database': { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
-  'Kanban': { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
+  Docs: { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
+  Wiki: { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
+  Database: { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
+  Kanban: { '--tag-background': '#E8F6F4', '--tag-hover-background': '#E3F1EF', color: '#286C68' },
 };
 
 function TemplateDetails({ template, aboutContent }: { template: Template; aboutContent: string }) {
@@ -53,7 +56,14 @@ function TemplateDetails({ template, aboutContent }: { template: Template; about
                   <Link
                     href={`/templates/${slugify(category.name)}`}
                     key={category.id}
-                    style={categoryTagStyles[category.name] ?? { '--tag-background': category.bg_color, '--tag-hover-background': category.bg_color, color: '#140F28' } as CSSProperties}
+                    style={
+                      categoryTagStyles[category.name] ??
+                      ({
+                        '--tag-background': category.bg_color,
+                        '--tag-hover-background': category.bg_color,
+                        color: '#140F28',
+                      } as CSSProperties)
+                    }
                   >
                     {category.name}
                   </Link>
@@ -96,13 +106,7 @@ function TemplateDetails({ template, aboutContent }: { template: Template; about
         </div>
       </section>
 
-      {template.related_templates.length ? (
-        <section className='template-related'>
-          <div className='template-details__inner'>
-            <RelatedTemplates templates={template.related_templates} />
-          </div>
-        </section>
-      ) : null}
+      <RelatedTemplates templates={template.related_templates} />
 
       <div className='template-get-started'>
         <GetStart />
