@@ -3,6 +3,7 @@ const path = require('path');
 const prettier = require('prettier');
 const matter = require('gray-matter');
 const { slugify, canonicalTemplatePath, buildTemplateSlugMap } = require('../lib/template-canonical');
+const { REGISTRY_FILE, readRegistry, syncRegistry, writeRegistry } = require('./template-slug-registry');
 
 const SITE_URL = 'https://appflowy.com';
 const BLOG_PAGE_SIZE = 12;
@@ -155,8 +156,11 @@ const fetchJson = async (url) => {
  * app/templates/[slug] resolves against — the sitemap must only ever list the URL the
  * page itself declares as canonical. Unpublished templates are dropped by that function,
  * which is why they no longer reach the sitemap.
+ *
+ * This is also where the slug registry learns about new templates: it is the one step that
+ * sees the full live template list. The synced registry is returned for the caller to write.
  */
-const getTemplateRoutes = async () => {
+const getTemplateRoutes = async (registry = readRegistry()) => {
   const [{ data: categoryData }, { data: templateData }] = await Promise.all([
     fetchJson(`${TEMPLATE_API}/category`),
     fetchJson(`${TEMPLATE_API}/template`),
@@ -168,7 +172,8 @@ const getTemplateRoutes = async () => {
     path: `templates/${slugify(category.name)}`,
   }));
 
-  const { viewIdToSlug } = buildTemplateSlugMap(templates, categories);
+  const { registry: syncedRegistry, notes } = syncRegistry(registry, templates, categories);
+  const { viewIdToSlug } = buildTemplateSlugMap(templates, categories, syncedRegistry);
 
   // A view-id suffix means two live templates share a name. The URL is still stable, but
   // it is a content problem worth surfacing — renaming one upstream restores a clean slug.
@@ -191,7 +196,7 @@ const getTemplateRoutes = async () => {
     });
   });
 
-  return routes;
+  return { routes, registry: syncedRegistry, notes };
 };
 
 /**
@@ -291,7 +296,11 @@ const generateSitemap = async () => {
     }
   } else {
     try {
-      templateRoutes = await getTemplateRoutes();
+      const { routes, registry, notes } = await getTemplateRoutes();
+
+      templateRoutes = routes;
+      writeRegistry(registry);
+      notes.forEach((note) => console.log(`${REGISTRY_FILE}: ${note}`));
     } catch (error) {
       // Writing a sitemap that silently drops every template URL is worse than
       // not writing one, so fail loudly instead of quietly shrinking the file.

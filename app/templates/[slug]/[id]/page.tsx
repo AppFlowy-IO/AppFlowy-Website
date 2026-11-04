@@ -1,6 +1,6 @@
-import { templateSlugForViewId } from '@/lib/template-slugs';
+import { resolveLegacyTemplateUrl } from '@/lib/template-slugs';
 import { Metadata } from 'next';
-import { permanentRedirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 interface Props {
   params: { id: string; slug: string };
@@ -28,12 +28,14 @@ async function Page({ params }: Props) {
   // A failed lookup is allowed to throw. A 308 is cached indefinitely by browsers and read
   // as a move by search engines, so it must only ever reflect a successful lookup — falling
   // back to the category on a transient API error would permanently misroute a live template.
-  const slug = await templateSlugForViewId(params.id);
+  const destination = await resolveLegacyTemplateUrl(params.slug, params.id);
 
-  // An unresolvable id is a template that was unpublished or deleted. Blog posts still
-  // link to a few of those, so fall back to the category it used to live under rather
-  // than dead-ending the visitor on a 404.
-  permanentRedirect(slug ? `/templates/${slug}` : `/templates/${params.slug}`);
+  // Unregistered ids (templates withdrawn before the registry existed) fall back to the
+  // category in the URL, since blog posts still link to a few. With no such category
+  // there is nothing honest to redirect to.
+  if (!destination) notFound();
+
+  permanentRedirect(destination);
 }
 
 export const revalidate = 10;

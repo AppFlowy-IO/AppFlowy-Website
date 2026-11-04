@@ -2,7 +2,7 @@ import { TemplateSummary } from '@/lib/interface';
 import { getCategoryTemplateList, getTemplateById } from '@/lib/templateAPI';
 import { ResolvedTemplatesSlug, TemplateIndex, getTemplateIndex, resolveTemplatesSlug } from '@/lib/template-slugs';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import React from 'react';
 
 import '@/styles/template.scss';
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const resolved = await resolveTemplatesSlug(params.slug);
 
-    if (!resolved) return {};
+    if (!resolved || resolved.kind === 'redirect') return {};
 
     if (resolved.kind === 'category') return categoryMetadata(resolved.category);
 
@@ -61,6 +61,13 @@ async function Page({ params }: Props) {
   }
 
   if (!resolved || !index) notFound();
+
+  // An earlier slug of a renamed template moves permanently; a withdrawn template's slug
+  // points at its category only until the template is republished.
+  if (resolved.kind === 'redirect') {
+    if (resolved.permanent) permanentRedirect(resolved.destination);
+    redirect(resolved.destination);
+  }
 
   if (resolved.kind === 'category') {
     let templates: TemplateSummary[] | null = null;

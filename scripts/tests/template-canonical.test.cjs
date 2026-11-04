@@ -7,6 +7,7 @@ const {
   slugify,
 } = require('../../lib/template-canonical');
 const { getTemplateRoutes } = require('../generate-sitemap');
+const { readRegistry, syncRegistry, validateRegistry } = require('../template-slug-registry');
 
 const categories = [
   { id: 'docs', name: 'Docs' },
@@ -135,7 +136,8 @@ test('sitemap lists each template once, at the same flat URL the page declares',
   });
 
   try {
-    const routes = await getTemplateRoutes();
+    // An empty registry, so the test does not depend on the committed one.
+    const { routes } = await getTemplateRoutes({});
     const paths = routes.map(({ path }) => `/${path}`);
     const { viewIdToSlug } = buildTemplateSlugMap([live, withdrawn], categories);
 
@@ -157,4 +159,125 @@ test('sitemap lists each template once, at the same flat URL the page declares',
   } finally {
     global.fetch = originalFetch;
   }
+});
+
+// --- Slug registry: every URL the site has served keeps resolving -------------------
+
+const BUG_TRACKER_ID = '13a84186-588d-4eb9-b62c-c06222a72c4f';
+const EISENHOWER_LIVE = '223f4605-0cf2-4f8f-8e12-d1f3b93704b8';
+const EISENHOWER_OLD = 'd9085311-1d32-426f-95d4-1e2db3b64fbe';
+
+test('a renamed template keeps its registered URL', () => {
+  const renamed = template({ view_id: BUG_TRACKER_ID, name: 'Issue Tracker' });
+  const registry = { [BUG_TRACKER_ID]: { slug: 'bug-tracker', name: 'Bug Tracker', fallbackCategory: 'engineering' } };
+  const { viewIdToSlug, redirects } = buildTemplateSlugMap([renamed], categories, registry);
+
+  assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'bug-tracker');
+  assert.equal(redirects.size, 0);
+
+  const { registry: synced, notes } = syncRegistry(registry, [renamed], categories);
+
+  assert.equal(synced[BUG_TRACKER_ID].slug, 'bug-tracker');
+  assert.equal(synced[BUG_TRACKER_ID].name, 'Issue Tracker');
+  assert.ok(notes.some((note) => note.includes('renamed')));
+});
+
+test('republishing an older same-named template cannot take a registered slug', () => {
+  // Without the registry, the older Eisenhower Matrix would win the bare slug on created_at.
+  const live = template({ view_id: EISENHOWER_LIVE, name: 'Eisenhower Matrix', created_at: '2026-08-18T06:21:19Z' });
+  const republished = template({
+    view_id: EISENHOWER_OLD,
+    name: 'Eisenhower Matrix',
+    created_at: '2024-09-15T10:11:30Z',
+  });
+  const registry = { [EISENHOWER_LIVE]: { slug: 'eisenhower-matrix' } };
+  const { viewIdToSlug } = buildTemplateSlugMap([live, republished], categories, registry);
+
+  assert.equal(viewIdToSlug.get(EISENHOWER_LIVE), 'eisenhower-matrix');
+  assert.equal(viewIdToSlug.get(EISENHOWER_OLD), 'eisenhower-matrix-d9085311');
+});
+
+test('an alias moves permanently, and a withdrawn template falls back to its category temporarily', () => {
+  const live = template({ view_id: BUG_TRACKER_ID, name: 'Issue Tracker' });
+  const registry = {
+    [BUG_TRACKER_ID]: { slug: 'issue-tracker', aliases: ['bug-tracker'] },
+    [EISENHOWER_OLD]: { slug: 'eisenhower-matrix', fallbackCategory: 'project-management' },
+    'bbbbbbbb-0000-0000-0000-000000000000': { slug: 'orphan', fallbackCategory: 'removed-category' },
+  };
+  const { redirects } = buildTemplateSlugMap([live], categories, registry);
+
+  assert.deepEqual(redirects.get('bug-tracker'), { destination: '/templates/issue-tracker', permanent: true });
+  // Temporary, because a republished template should get its URL back.
+  assert.deepEqual(redirects.get('eisenhower-matrix'), {
+    destination: '/templates/project-management',
+    permanent: false,
+  });
+  assert.deepEqual(redirects.get('orphan'), { destination: '/templates', permanent: false });
+});
+
+test('a withdrawn template keeps its slug reserved', () => {
+  const newcomer = template({ view_id: BUG_TRACKER_ID, name: 'Eisenhower Matrix' });
+  const registry = { [EISENHOWER_OLD]: { slug: 'eisenhower-matrix' } };
+  const { viewIdToSlug } = buildTemplateSlugMap([newcomer], categories, registry);
+
+  assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'eisenhower-matrix-13a84186');
+});
+
+test('a new category claiming a registered slug moves the template and keeps the old slug as an alias', () => {
+  const live = template({ view_id: BUG_TRACKER_ID });
+  const registry = { [BUG_TRACKER_ID]: { slug: 'bug-tracker' } };
+  const withCategory = [...categories, { id: 'bugs', name: 'Bug Tracker' }];
+  const { viewIdToSlug, shadowed } = buildTemplateSlugMap([live], withCategory, registry);
+
+  assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'bug-tracker-template');
+  assert.deepEqual(shadowed, [{ viewId: BUG_TRACKER_ID, slug: 'bug-tracker' }]);
+
+  const { registry: synced } = syncRegistry(registry, [live], withCategory);
+
+  assert.deepEqual(synced[BUG_TRACKER_ID].aliases, ['bug-tracker']);
+  assert.deepEqual(validateRegistry(synced, registry), []);
+});
+
+test('sync registers new templates once and is idempotent', () => {
+  const live = template({ view_id: BUG_TRACKER_ID, primary_category_id: 'engineering' });
+  const withdrawn = template({
+    view_id: EISENHOWER_OLD,
+    publish_info: { publish_name: 'x', unpublished_timestamp: '2026-08-12T06:38:47Z' },
+  });
+  const first = syncRegistry({}, [live, withdrawn], categories);
+
+  assert.deepEqual(first.registry, {
+    [BUG_TRACKER_ID]: { slug: 'bug-tracker', name: 'Bug Tracker', fallbackCategory: 'engineering' },
+  });
+
+  const second = syncRegistry(first.registry, [live, withdrawn], categories);
+
+  assert.deepEqual(second.registry, first.registry);
+  assert.deepEqual(second.notes, []);
+});
+
+test('the registry check rejects anything that would kill a URL', () => {
+  const base = { [BUG_TRACKER_ID]: { slug: 'bug-tracker', aliases: ['old-bug-tracker'] } };
+
+  assert.match(validateRegistry({}, base).join('\n'), /was removed/);
+  assert.match(
+    validateRegistry({ [BUG_TRACKER_ID]: { slug: 'bug-tracker' } }, base).join('\n'),
+    /old-bug-tracker was dropped/
+  );
+  assert.match(
+    validateRegistry({ [BUG_TRACKER_ID]: { slug: 'bug-tracker' }, [EISENHOWER_OLD]: { slug: 'bug-tracker' } }).join(
+      '\n'
+    ),
+    /claimed by both/
+  );
+  assert.match(validateRegistry({ [BUG_TRACKER_ID]: { slug: 'Bug Tracker' } }).join('\n'), /malformed slug/);
+  // Renaming with the old slug kept as an alias is allowed.
+  assert.deepEqual(
+    validateRegistry({ [BUG_TRACKER_ID]: { slug: 'issue-tracker', aliases: ['bug-tracker', 'old-bug-tracker'] } }, base),
+    []
+  );
+});
+
+test('the committed registry is valid', () => {
+  assert.deepEqual(validateRegistry(readRegistry()), []);
 });

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const { REGISTRY_FILE, readRegistry, readRegistryAtRef, validateRegistry } = require('./template-slug-registry');
 
 const SITE_URL = 'https://appflowy.com';
 const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
@@ -207,6 +208,30 @@ templateUrls.forEach((url) => {
 if (!templateUrls.length) {
   errors.push('sitemap advertises no template URLs');
 }
+
+/**
+ * The slug registry is what keeps old template URLs alive, so it is checked here, before
+ * every build: well-formed, no slug claimed twice, and — against the base branch — no
+ * entry or slug removed. Removing one is exactly how a live URL would start to 404.
+ */
+const registry = readRegistry();
+const registryBaseRef = process.env.TEMPLATE_SLUG_REGISTRY_BASE || 'origin/main';
+const baseRegistry = readRegistryAtRef(registryBaseRef);
+
+errors.push(...validateRegistry(registry, baseRegistry));
+
+if (!baseRegistry) {
+  console.warn(`${REGISTRY_FILE}: no copy on ${registryBaseRef}; skipped the add-only check.`);
+}
+
+// An alias only exists to redirect, so advertising one would list a URL that is not canonical.
+Object.values(registry).forEach((entry) => {
+  (entry.aliases || []).forEach((alias) => {
+    const url = `${SITE_URL}/templates/${alias}`;
+
+    if (urlSet.has(url)) errors.push(`sitemap lists a redirecting template alias: ${url}`);
+  });
+});
 
 const robots = fs.readFileSync(robotsPath, 'utf8');
 
