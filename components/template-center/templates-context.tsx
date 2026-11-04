@@ -2,6 +2,7 @@
 
 import { GroupByCategoryTemplateList, TemplateCategory, TemplateSummary } from '@/lib/interface';
 import { getSearchResults } from '@/lib/templateAPI';
+import { hasTemplateSlug, useTemplateSlugs } from './template-slug-context';
 import debounce from 'lodash-es/debounce';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
@@ -34,6 +35,27 @@ export const TemplatesProvider = ({
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState<TemplateSummary[]>([]);
   const [loading, setLoading] = useState(false);
+  const slugs = useTemplateSlugs();
+
+  // Drop templates the router would not resolve (currently: unpublished ones, which the
+  // API still returns) here, once, so counts, empty states and grids all see the same list.
+  const visible = useMemo(() => {
+    const isLive = hasTemplateSlug(slugs);
+
+    return {
+      homepageTemplates: homepageTemplates && {
+        featured_templates: homepageTemplates.featured_templates.filter(isLive),
+        new_templates: homepageTemplates.new_templates.filter(isLive),
+        template_groups: homepageTemplates.template_groups.map((group) => ({
+          ...group,
+          templates: group.templates.filter(isLive),
+        })),
+      },
+      categoryTemplates: categoryTemplates?.filter(isLive),
+      searchResults: searchResults.filter(isLive),
+    };
+  }, [slugs, homepageTemplates, categoryTemplates, searchResults]);
+
   const handleSearch = useCallback(
     async (searchText: string) => {
       try {
@@ -72,9 +94,9 @@ export const TemplatesProvider = ({
         searchText,
         setSearchText,
         categories,
-        homepageTemplates,
-        searchResults,
-        categoryTemplates,
+        homepageTemplates: visible.homepageTemplates,
+        searchResults: visible.searchResults,
+        categoryTemplates: visible.categoryTemplates,
         selectedCategoryId,
       }}
     >

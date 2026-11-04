@@ -8,7 +8,6 @@ import { TemplateSummary, TemplateCategory, TemplateCategoryType } from '@/lib/i
 import { useTemplatesContext } from './templates-context';
 import TemplateItem from './template-item';
 import TemplateHomeSearch from './template-home-search';
-import { hasTemplateSlug, useTemplateSlugs } from './template-slug-context';
 import { slugify } from './utils';
 
 const iconNames = new Set(['project', 'engineering', 'startups', 'schools', 'marketing', 'management', 'human-resources', 'sales', 'team-meetings', 'docs', 'wiki', 'database', 'kanban']);
@@ -21,9 +20,7 @@ function Icon({ name, sidebar = false }: { name: string; sidebar?: boolean }) {
 }
 
 function Cards({ posts, category }: { posts: TemplateSummary[]; category?: TemplateCategory }) {
-  const slugs = useTemplateSlugs();
-
-  return <div className='template-home__grid'>{posts.filter(hasTemplateSlug(slugs)).map(post => (
+  return <div className='template-home__grid'>{posts.map(post => (
     <div className='template-item' key={post.view_id}>
       <TemplateItem template={post} category={category ?? post.categories[0]} />
     </div>

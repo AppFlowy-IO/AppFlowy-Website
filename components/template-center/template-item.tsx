@@ -32,7 +32,7 @@ function TemplateItem({ template, category }: { template: TemplateSummary; categ
     return newURL.toString();
   }, [template.publish_info, template.view_url]);
 
-  // Grids filter on hasTemplateSlug() already; this is the backstop so a card can never
+  // TemplatesProvider filters unresolvable templates already; this is the backstop so a card can never
   // render a link to a template the router would not resolve.
   if (!templateHref) return null;
 

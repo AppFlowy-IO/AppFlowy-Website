@@ -25,13 +25,10 @@ async function Page({ params }: Props) {
     return null;
   }
 
-  let slug: string | null = null;
-
-  try {
-    slug = await templateSlugForViewId(params.id);
-  } catch (error) {
-    console.error(error);
-  }
+  // A failed lookup is allowed to throw. A 308 is cached indefinitely by browsers and read
+  // as a move by search engines, so it must only ever reflect a successful lookup — falling
+  // back to the category on a transient API error would permanently misroute a live template.
+  const slug = await templateSlugForViewId(params.id);
 
   // An unresolvable id is a template that was unpublished or deleted. Blog posts still
   // link to a few of those, so fall back to the category it used to live under rather
