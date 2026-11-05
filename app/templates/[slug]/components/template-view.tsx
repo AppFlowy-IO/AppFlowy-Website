@@ -4,7 +4,7 @@ import { getUseTemplateUrl } from '@/components/template-center/template/templat
 import TemplateDetails from '@/components/template-center/template/template-details';
 import TemplateSection from '@/components/template-center/template/template-section';
 import { TemplateSlugProvider } from '@/components/template-center/template-slug-context';
-import { canonicalTemplateCategory, canonicalTemplatePath, slugify } from '@/components/template-center/utils';
+import { canonicalTemplateCategory, canonicalTemplatePath, categorySlug } from '@/components/template-center/utils';
 import { Template } from '@/lib/interface';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import { parseAbout } from '@/lib/template-about';
@@ -115,7 +115,7 @@ function generateTemplateSchema(template: Template, slug: string) {
           ? [
               {
                 name: `${breadcrumbCategory.name} templates`,
-                path: `/templates/${slugify(breadcrumbCategory.name)}`,
+                path: `/templates/${categorySlug(breadcrumbCategory.name)}`,
               },
             ]
           : []),

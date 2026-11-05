@@ -1,9 +1,9 @@
-import { TemplateSummary } from '@/lib/interface';
 import { getCategoryTemplateList, getTemplateById } from '@/lib/templateAPI';
-import { ResolvedTemplatesSlug, TemplateIndex, getTemplateIndex, resolveTemplatesSlug } from '@/lib/template-slugs';
+import { getTemplateIndex, resolveTemplatesSlug } from '@/lib/template-slugs';
+import { isAxiosError } from 'axios';
 import { Metadata } from 'next';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
-import React from 'react';
+import React, { cache } from 'react';
 
 import '@/styles/template.scss';
 // Both stylesheets belong to this route because categories and templates share the
@@ -17,50 +17,35 @@ interface Props {
   params: { slug: string };
 }
 
+const isBuildPhase = () => process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build';
+
+/** The detail endpoint answers 404 for a template that is gone; anything else is an outage. */
+async function getTemplateOrNull(viewId: string) {
+  try {
+    return await getTemplateById(viewId);
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 404) return null;
+    throw error;
+  }
+}
+
 /**
  * `/templates/<slug>` is either a category or a single template.
  *
  * They have to share one dynamic segment — Next.js allows only one segment name per
  * level — which is what makes the flat `/templates/bug-tracker` shape possible.
- * resolveTemplatesSlug() checks categories first, so a template can never shadow a
- * category page.
+ *
+ * generateMetadata and Page both call this, and cache() makes it one lookup per request,
+ * so the two can never describe different content. notFound() is reserved for content
+ * that is confirmed missing. An API failure is allowed to throw: that renders a 5xx, which
+ * crawlers retry, and ISR keeps serving the last good page — a 404 would tell them the
+ * page is gone.
  */
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  try {
-    const resolved = await resolveTemplatesSlug(params.slug);
+const loadTemplatesPage = cache(async (slug: string) => {
+  const index = await getTemplateIndex();
+  const resolved = resolveTemplatesSlug(index, slug);
 
-    if (!resolved || resolved.kind === 'redirect') return {};
-
-    if (resolved.kind === 'category') return categoryMetadata(resolved.category);
-
-    const template = await getTemplateById(resolved.viewId);
-
-    if (!template) return {};
-
-    return templateMetadata(template, params.slug);
-  } catch (error) {
-    // The page renders notFound() for this slug. Returning nothing keeps it from
-    // inheriting the root canonical and claiming to be the homepage.
-    return {};
-  }
-}
-
-async function Page({ params }: Props) {
-  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
-    return null;
-  }
-
-  let resolved: ResolvedTemplatesSlug | null = null;
-  let index: TemplateIndex | null = null;
-
-  try {
-    [resolved, index] = await Promise.all([resolveTemplatesSlug(params.slug), getTemplateIndex()]);
-  } catch (error) {
-    console.error(error);
-    notFound();
-  }
-
-  if (!resolved || !index) notFound();
+  if (!resolved) notFound();
 
   // An earlier slug of a renamed template moves permanently; a withdrawn template's slug
   // points at its category only until the template is republished.
@@ -70,39 +55,44 @@ async function Page({ params }: Props) {
   }
 
   if (resolved.kind === 'category') {
-    let templates: TemplateSummary[] | null = null;
+    const templates = await getCategoryTemplateList(resolved.category.id);
 
-    try {
-      templates = await getCategoryTemplateList(resolved.category.id);
-    } catch (error) {
-      console.error(error);
-      notFound();
-    }
+    return { ...resolved, templates, templateSlugs: index.viewIdToSlug };
+  }
 
-    if (!templates) notFound();
+  const template = await getTemplateOrNull(resolved.viewId);
 
+  // Registered a moment ago but withdrawn since: the index catches up within a minute.
+  if (!template) notFound();
+
+  return { kind: 'template' as const, template, templateSlugs: index.viewIdToSlug };
+});
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  if (isBuildPhase()) return {};
+
+  const page = await loadTemplatesPage(params.slug);
+
+  return page.kind === 'category' ? categoryMetadata(page.category) : templateMetadata(page.template, params.slug);
+}
+
+async function Page({ params }: Props) {
+  if (isBuildPhase()) return null;
+
+  const page = await loadTemplatesPage(params.slug);
+
+  if (page.kind === 'category') {
     return (
       <CategoryView
-        category={resolved.category}
-        categories={resolved.categories}
-        templates={templates}
-        templateSlugs={index.viewIdToSlug}
+        category={page.category}
+        categories={page.categories}
+        templates={page.templates}
+        templateSlugs={page.templateSlugs}
       />
     );
   }
 
-  let template: Awaited<ReturnType<typeof getTemplateById>> | null = null;
-
-  try {
-    template = await getTemplateById(resolved.viewId);
-  } catch (error) {
-    console.error(error);
-    notFound();
-  }
-
-  if (!template) notFound();
-
-  return <TemplateView template={template} slug={params.slug} templateSlugs={index.viewIdToSlug} />;
+  return <TemplateView template={page.template} slug={params.slug} templateSlugs={page.templateSlugs} />;
 }
 
 export const revalidate = 10;

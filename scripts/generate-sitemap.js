@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
 const matter = require('gray-matter');
-const { slugify, canonicalTemplatePath, buildTemplateSlugMap } = require('../lib/template-canonical');
+const { categorySlug, canonicalTemplatePath, buildTemplateSlugMap } = require('../lib/template-canonical');
 const { REGISTRY_FILE, readRegistry, syncRegistry, writeRegistry } = require('./template-slug-registry');
 
 const SITE_URL = 'https://appflowy.com';
@@ -168,11 +168,10 @@ const getTemplateRoutes = async (registry = readRegistry()) => {
   const categories = categoryData.categories;
   const templates = templateData.templates;
 
-  const routes = categories.map((category) => ({
-    path: `templates/${slugify(category.name)}`,
-  }));
-
   const { registry: syncedRegistry, notes } = syncRegistry(registry, templates, categories);
+  const routes = categories.map((category) => ({
+    path: `templates/${categorySlug(category.name, syncedRegistry)}`,
+  }));
   const { viewIdToSlug } = buildTemplateSlugMap(templates, categories, syncedRegistry);
 
   // A view-id suffix means two live templates share a name. The URL is still stable, but

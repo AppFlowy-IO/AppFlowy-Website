@@ -1,6 +1,8 @@
 import { Template, TemplateCategory, TemplateSummary } from './interface';
 
 export function slugify(text: string): string;
+/** A category's URL slug; a registered template URL outranks it. */
+export function categorySlug(name: string, registry?: TemplateSlugRegistry): string;
 export function canonicalTemplateCategory(
   categories: TemplateCategory[],
   primaryCategoryId?: string | null
@@ -29,7 +31,6 @@ export interface TemplateSlugMap {
   slugToViewId: Map<string, string>;
   viewIdToSlug: Map<string, string>;
   redirects: Map<string, TemplateSlugRedirect>;
-  shadowed: { viewId: string; slug: string }[];
 }
 export function buildTemplateSlugMap(
   templates: (TemplateSummary | Template)[],

@@ -1,5 +1,10 @@
 import { TemplateCategory } from '@/lib/interface';
-import { TemplateSlugRedirect, TemplateSlugRegistry, buildTemplateSlugMap, slugify } from '@/lib/template-canonical';
+import {
+  TemplateSlugRedirect,
+  TemplateSlugRegistry,
+  buildTemplateSlugMap,
+  categorySlug,
+} from '@/lib/template-canonical';
 import registryFile from '@/lib/template-slug-registry.json';
 import { getAllTemplates, getCategories } from '@/lib/templateAPI';
 import { unstable_cache } from 'next/cache';
@@ -59,13 +64,15 @@ export type ResolvedTemplatesSlug =
   | ({ kind: 'redirect' } & TemplateSlugRedirect);
 
 /**
- * Categories are matched first. That ordering is the guarantee that a newly added
- * template can never take over a category page — buildTemplateSlugMap() reserves the
- * category slugs, and this keeps the route honest even if the two ever disagree.
+ * What `/templates/<slug>` is, given an already loaded index.
+ *
+ * Categories are matched first. categorySlug() never returns a registered template URL,
+ * and buildTemplateSlugMap() never gives an unregistered template a category's slug, so the
+ * order only matters if the two ever disagree — and then the category page stays intact.
  */
-export async function resolveTemplatesSlug(slug: string): Promise<ResolvedTemplatesSlug | null> {
-  const { categories, slugToViewId, redirects } = await getTemplateIndex();
-  const category = categories.find((item) => slugify(item.name) === slug);
+export function resolveTemplatesSlug(index: TemplateIndex, slug: string): ResolvedTemplatesSlug | null {
+  const { categories, slugToViewId, redirects } = index;
+  const category = categories.find((item) => categorySlug(item.name) === slug);
 
   if (category) return { kind: 'category', category, categories };
 
@@ -87,11 +94,11 @@ export async function resolveTemplatesSlug(slug: string): Promise<ResolvedTempla
  * — that slug's own redirect then takes over. Only ids the site never registered fall
  * back to the category in the URL, and only when that category exists.
  */
-export async function resolveLegacyTemplateUrl(categorySlug: string, viewId: string): Promise<string | null> {
+export async function resolveLegacyTemplateUrl(segment: string, viewId: string): Promise<string | null> {
   const { categories, viewIdToSlug } = await getTemplateIndex();
   const slug = viewIdToSlug[viewId] ?? registry[viewId]?.slug;
 
   if (slug) return `/templates/${slug}`;
 
-  return categories.some((category) => slugify(category.name) === categorySlug) ? `/templates/${categorySlug}` : null;
+  return categories.some((category) => categorySlug(category.name) === segment) ? `/templates/${segment}` : null;
 }

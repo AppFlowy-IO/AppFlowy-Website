@@ -1,7 +1,9 @@
 // Keep page metadata, internal links, and the sitemap on the same slug rule.
-// Category slugs are reserved, so a template can never take over a category page.
+// Templates and categories share /templates/<slug>; categorySlug() is the only way to
+// build a category URL, so a registered template URL is never taken over by a category.
 export {
   slugify,
+  categorySlug,
   canonicalTemplateCategory,
   canonicalTemplatePath,
   buildTemplateSlugMap,

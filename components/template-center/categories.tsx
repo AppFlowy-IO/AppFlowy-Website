@@ -2,7 +2,7 @@
 
 import { CategoryIcon } from '@/components/template-center/icons';
 import { useTemplatesContext } from '@/components/template-center/templates-context';
-import { slugify } from '@/components/template-center/utils';
+import { categorySlug } from '@/components/template-center/utils';
 import { TemplateCategoryType } from '@/lib/interface';
 import { groupBy } from 'lodash-es';
 import Link from 'next/link';
@@ -27,7 +27,7 @@ function Categories() {
                 return (
                   <Link
                     className={`category ${selectedCategoryId === category.id ? 'selected' : ''}`}
-                    href={`/templates/${slugify(category.name)}`}
+                    href={`/templates/${categorySlug(category.name)}`}
                     key={category.id}
                   >
                     <div className={'icon'}>

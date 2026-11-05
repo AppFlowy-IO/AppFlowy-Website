@@ -10,7 +10,7 @@ import GetStart from '@/components/product/get-start';
 import Share from '@/components/shared/share-group';
 import { getTemplateLabel } from '@/components/template-center/template/template-content';
 import RelatedTemplates from '@/components/template-center/template/related-templates';
-import { slugify } from '@/components/template-center/utils';
+import { categorySlug } from '@/components/template-center/utils';
 import { Template } from '@/lib/interface';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -54,7 +54,7 @@ function TemplateDetails({ template, aboutContent }: { template: Template; about
               <div className='template-sidebar__categories'>
                 {template.categories.map((category) => (
                   <Link
-                    href={`/templates/${slugify(category.name)}`}
+                    href={`/templates/${categorySlug(category.name)}`}
                     key={category.id}
                     style={
                       categoryTagStyles[category.name] ??

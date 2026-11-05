@@ -1,7 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
-const { buildTemplateSlugMap, canonicalTemplateCategory, isUnpublished, slugify } = require('../lib/template-canonical');
+const {
+  buildTemplateSlugMap,
+  canonicalTemplateCategory,
+  categorySlug,
+  isUnpublished,
+  slugify,
+} = require('../lib/template-canonical');
 
 /**
  * lib/template-slug-registry.json pins every template URL the site has ever served.
@@ -40,11 +46,17 @@ const writeRegistry = (registry, file = REGISTRY_PATH) => {
  * Returns the new registry plus notes worth printing.
  */
 const syncRegistry = (registry, templates, categories) => {
-  const { viewIdToSlug, shadowed } = buildTemplateSlugMap(templates, categories, registry);
+  const { viewIdToSlug } = buildTemplateSlugMap(templates, categories, registry);
   const next = JSON.parse(JSON.stringify(registry));
-  const notes = shadowed.map(
-    ({ viewId, slug }) => `/templates/${slug} now belongs to a category; template ${viewId} no longer answers there.`
-  );
+  // A category whose name matches a registered template URL is served at a suffixed slug.
+  // Worth knowing, since renaming the category upstream would give it a clean one.
+  const notes = categories
+    .filter((category) => categorySlug(category.name, registry) !== slugify(category.name))
+    .map(
+      (category) =>
+        `category "${category.name}" is served at /templates/${categorySlug(category.name, registry)}, ` +
+        `because /templates/${slugify(category.name)} belongs to a template.`
+    );
 
   templates
     .filter((template) => !isUnpublished(template))
@@ -57,7 +69,7 @@ const syncRegistry = (registry, templates, categories) => {
         next[template.view_id] = {
           slug,
           name: template.name,
-          ...(category ? { fallbackCategory: slugify(category.name) } : {}),
+          ...(category ? { fallbackCategory: categorySlug(category.name, registry) } : {}),
         };
         notes.push(`registered "${template.name}" at /templates/${slug}`);
         return;
@@ -74,7 +86,7 @@ const syncRegistry = (registry, templates, categories) => {
       }
 
       entry.name = template.name;
-      if (category) entry.fallbackCategory = slugify(category.name);
+      if (category) entry.fallbackCategory = categorySlug(category.name, registry);
     });
 
   return { registry: next, notes };

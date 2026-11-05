@@ -4,6 +4,7 @@ const {
   buildTemplateSlugMap,
   canonicalTemplateCategory,
   canonicalTemplatePath,
+  categorySlug,
   slugify,
 } = require('../../lib/template-canonical');
 const { getTemplateRoutes } = require('../generate-sitemap');
@@ -223,19 +224,48 @@ test('a withdrawn template keeps its slug reserved', () => {
   assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'eisenhower-matrix-13a84186');
 });
 
-test('a new category claiming a registered slug moves the template and keeps the old slug as an alias', () => {
+test('a new category cannot take a registered template URL', () => {
+  // Backlinks and citations to /templates/bug-tracker must keep landing on the template.
   const live = template({ view_id: BUG_TRACKER_ID });
-  const registry = { [BUG_TRACKER_ID]: { slug: 'bug-tracker' } };
+  const registry = { [BUG_TRACKER_ID]: { slug: 'bug-tracker', name: 'Bug Tracker' } };
   const withCategory = [...categories, { id: 'bugs', name: 'Bug Tracker' }];
-  const { viewIdToSlug, shadowed } = buildTemplateSlugMap([live], withCategory, registry);
+  const { viewIdToSlug, slugToViewId } = buildTemplateSlugMap([live], withCategory, registry);
 
-  assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'bug-tracker-template');
-  assert.deepEqual(shadowed, [{ viewId: BUG_TRACKER_ID, slug: 'bug-tracker' }]);
+  assert.equal(categorySlug('Bug Tracker', registry), 'bug-tracker-templates');
+  assert.equal(viewIdToSlug.get(BUG_TRACKER_ID), 'bug-tracker');
+  assert.equal(slugToViewId.get('bug-tracker-templates'), undefined);
 
-  const { registry: synced } = syncRegistry(registry, [live], withCategory);
+  // Aliases count too: an old URL that redirects is still a URL someone links to.
+  assert.equal(
+    categorySlug('Old Bug Tracker', { [BUG_TRACKER_ID]: { slug: 'x', aliases: ['old-bug-tracker'] } }),
+    'old-bug-tracker-templates'
+  );
 
-  assert.deepEqual(synced[BUG_TRACKER_ID].aliases, ['bug-tracker']);
-  assert.deepEqual(validateRegistry(synced, registry), []);
+  const { registry: synced, notes } = syncRegistry(registry, [live], withCategory);
+
+  assert.deepEqual(synced[BUG_TRACKER_ID].slug, 'bug-tracker');
+  assert.ok(notes.some((note) => note.includes('/templates/bug-tracker-templates')));
+});
+
+test('every live category keeps its plain slug under the committed registry', () => {
+  // The registry was seeded around the existing category URLs, so none of them may move.
+  [
+    'Project Management',
+    'Engineering',
+    'Startups',
+    'Education',
+    'Marketing',
+    'Management',
+    'Human Resources',
+    'Sales & CRM',
+    'Team Meetings',
+    'AI-powered',
+    'Docs',
+    'Wiki',
+    'Database',
+    'Kanban',
+    'Product & Design',
+  ].forEach((name) => assert.equal(categorySlug(name), slugify(name)));
 });
 
 test('sync registers new templates once and is idempotent', () => {
