@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
 const matter = require('gray-matter');
-const { slugify, canonicalTemplatePath } = require('../lib/template-canonical');
+const { categorySlug, canonicalTemplatePath, buildTemplateSlugMap } = require('../lib/template-canonical');
+const { REGISTRY_FILE, readRegistry, syncRegistry, writeRegistry } = require('./template-slug-registry');
 
 const SITE_URL = 'https://appflowy.com';
 const BLOG_PAGE_SIZE = 12;
@@ -146,45 +147,45 @@ const fetchJson = async (url) => {
 /**
  * Template categories and templates, fetched from the template center API.
  *
- * A template belongs to several categories and is reachable under each of them,
- * so we list each one exactly once, under its saved primary category.
- * Legacy templates without an assignment retain the alphabetically first category.
+ * Each template has exactly one URL — `/templates/<slug>` — so it is listed once, with
+ * no category in the path. Unfiltered, the list endpoint returns every template with its
+ * complete `categories` array, so this needs two requests rather than one per category
+ * plus one per template.
  *
- * This must match canonicalTemplatePath() in components/template-center/utils.ts,
- * which is what the page declares as its canonical URL — the sitemap should only
- * ever list the URL the page itself points at.
+ * Slugs come from buildTemplateSlugMap() in lib/template-canonical.js, the same function
+ * app/templates/[slug] resolves against — the sitemap must only ever list the URL the
+ * page itself declares as canonical. Unpublished templates are dropped by that function,
+ * which is why they no longer reach the sitemap.
+ *
+ * This is also where the slug registry learns about new templates: it is the one step that
+ * sees the full live template list. The synced registry is returned for the caller to write.
  */
-const getTemplateRoutes = async () => {
-  const { data: categoryData } = await fetchJson(`${TEMPLATE_API}/category`);
+const getTemplateRoutes = async (registry = readRegistry()) => {
+  const [{ data: categoryData }, { data: templateData }] = await Promise.all([
+    fetchJson(`${TEMPLATE_API}/category`),
+    fetchJson(`${TEMPLATE_API}/template`),
+  ]);
   const categories = categoryData.categories;
+  const templates = templateData.templates;
 
+  const { registry: syncedRegistry, notes } = syncRegistry(registry, templates, categories);
   const routes = categories.map((category) => ({
-    path: `templates/${slugify(category.name)}`,
+    path: `templates/${categorySlug(category.name, syncedRegistry)}`,
   }));
+  const { viewIdToSlug } = buildTemplateSlugMap(templates, categories, syncedRegistry);
 
-  const templateLists = await Promise.all(
-    categories.map(async (category) => {
-      const { data } = await fetchJson(`${TEMPLATE_API}/template?category_id=${category.id}`);
+  // A view-id suffix means two live templates share a name. The URL is still stable, but
+  // it is a content problem worth surfacing — renaming one upstream restores a clean slug.
+  templates.forEach((template) => {
+    const slug = viewIdToSlug.get(template.view_id);
 
-      return data.templates;
-    })
-  );
-
-  const viewIds = [...new Set(templateLists.flat().map((template) => template.view_id))];
-
-  // The list endpoint only echoes back the category it was filtered by, so the
-  // full category set has to come from the detail endpoint — otherwise we'd pick
-  // a different canonical than the page does.
-  const templates = await Promise.all(
-    viewIds.map(async (viewId) => {
-      const { data } = await fetchJson(`${TEMPLATE_API}/template/${viewId}`);
-
-      return data;
-    })
-  );
+    if (slug && slug.endsWith(template.view_id.slice(0, 8))) {
+      console.warn(`Duplicate template name "${template.name}" resolved to ${slug}; consider renaming it.`);
+    }
+  });
 
   templates.forEach((template) => {
-    const canonicalPath = canonicalTemplatePath(template.categories, template.view_id, template.primary_category_id);
+    const canonicalPath = canonicalTemplatePath(viewIdToSlug.get(template.view_id));
 
     if (!canonicalPath) return;
 
@@ -194,7 +195,7 @@ const getTemplateRoutes = async () => {
     });
   });
 
-  return routes;
+  return { routes, registry: syncedRegistry, notes };
 };
 
 /**
@@ -221,7 +222,6 @@ const getExistingTemplateRoutes = () => {
     if (!location) return [];
 
     const url = new URL(location);
-    const pathSegments = url.pathname.split('/').filter(Boolean);
 
     // The /templates index is a static route and is regenerated separately.
     if (!url.pathname.startsWith('/templates/')) return [];
@@ -229,9 +229,10 @@ const getExistingTemplateRoutes = () => {
     return [
       {
         path: url.pathname.replace(/^\//, ''),
-        // Category pages do not have a trustworthy modification timestamp.
-        // Preserve publish timestamps only for individual template pages.
-        lastmod: pathSegments.length > 2 ? readElement(block, 'lastmod') : undefined,
+        // Categories and templates now share one path depth, so a lastmod is only
+        // trustworthy when the previous sitemap recorded one at all. Category pages
+        // never had one.
+        lastmod: readElement(block, 'lastmod'),
       },
     ];
   });
@@ -294,7 +295,11 @@ const generateSitemap = async () => {
     }
   } else {
     try {
-      templateRoutes = await getTemplateRoutes();
+      const { routes, registry, notes } = await getTemplateRoutes();
+
+      templateRoutes = routes;
+      writeRegistry(registry);
+      notes.forEach((note) => console.log(`${REGISTRY_FILE}: ${note}`));
     } catch (error) {
       // Writing a sitemap that silently drops every template URL is worse than
       // not writing one, so fail loudly instead of quietly shrinking the file.
