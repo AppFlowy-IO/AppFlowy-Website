@@ -1,0 +1,202 @@
+---
+title: 'Your Knowledge Base Is Leaking: How to Prevent Data Leaks in Wiki and Project Management Tools'
+seo_title: 'How to Prevent Data Leaks From Your Knowledge Base'
+description: "AI features can quietly send your team's notes to vendors you never chose. Learn how to prevent data leaks in your knowledge base and keep AI in-house."
+author: Mayur Mahajan
+author_image_url: /images/blog/authors/MayurSMahajan.png
+author_url: https://github.com/MayurSMahajan
+# [PLACEHOLDER] Add a 1200x630 hero image, then uncomment these lines. Until then the default AppFlowy OG image is used.
+# image: /images/blog/prevent-data-leaks-knowledge-base/hero.png
+# thumb: /images/blog/prevent-data-leaks-knowledge-base/hero.png
+tags:
+  - prevent data leaks knowledge base
+  - self-hosted LLM
+  - self-hosted knowledge base
+  - third-party AI vendor risk
+  - shadow AI
+  - enterprise data leak prevention
+categories:
+  - Private AI
+  - Self-hosting
+  - Enterprise
+topics:
+  - private-ai
+  - self-hosting
+date: '2026-11-16'
+toc_depth: 3
+related:
+  - 2025-03-30-Best-Practices-on-How-to-Protect-Business-Data-Securely
+  - 2024-12-07-self-hosted-appflowy
+  - 2025-04-03-appflowy_local_ai_ollama
+---
+
+In November 2026, a lot of teams got an email they never expected. An AI inference provider had disclosed its second security incident in a matter of weeks ([BleepingComputer](https://bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack)). Shortly after, a widely used workspace platform told customers in fewer than 1% of its workspaces that some of their AI chat transcripts were in the exposed data ([security notice](https://notion.com/help/security-incident-involving-a-third-party-ai-vendor)).
+
+Most of those customers had never heard of the inference provider. Their data reached it through an AI usage analytics feature and through model routing that happened behind the scenes. Nobody on those teams chose to send it there.
+
+One detail stands out. According to the platform's own notice, the provider had contractually committed to zero data retention, yet data was later found to have been retained from the endpoints in use. A contract is a promise. It is not a control.
+
+This is why every team should now ask a simple question: **where does our workspace data actually go?** Your wiki and project management tool hold roadmaps, meeting notes, customer names, contracts and, more often than anyone admits, pasted API keys. Once AI features are switched on, that content can travel to more systems than ever before.
+
+In this guide, we'll cover why knowledge base data leaks happen, what they cost, eight practical steps to prevent data leaks in your knowledge base, and how [self-hosted AppFlowy](https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production) is designed so your data and your AI stay on infrastructure you control.
+
+## Why knowledge base and project management tools leak data
+
+Most knowledge base data leaks are not one dramatic hack. They happen because data travels further than anyone mapped. Here are the six patterns behind most of them.
+
+### 1. The vendor's vendor problem
+
+Modern SaaS tools rarely run everything themselves. AI requests can pass through model routers, inference providers, analytics pipelines and cloud hosts that you never signed a contract with.
+
+Every hop is another attack surface. Verizon's 2026 Data Breach Investigations Report found that 48% of breaches involved a third party, up from 30% a year earlier ([eSecurity Planet](https://www.esecurityplanet.com/threats/2026-verizon-dbir-the-new-era-of-cyber-threats/)). In the November incident, the provider's second intrusion came through yet another company: a third-party cloud provider that hosted its R&D machines ([BleepingComputer](https://bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack)).
+
+### 2. Features you never asked for still move your data
+
+Usage analytics, "insights" dashboards, early-access programs and background classification jobs often run on copies of your content. Many are on by default. They widen your exposure without anyone on your team doing anything.
+
+Automatic model selection adds to this. When a setting picks the model for you, you usually can't tell which company processed a given request.
+
+### 3. Secrets pasted where they don't belong
+
+People paste passwords, API keys and customer details into docs and AI chats because it's fast. That turns a document leak into an infrastructure breach.
+
+It also works the other way. The first incident at the inference provider involved attackers reaching environment variables that held API keys and tokens ([BleepingComputer](https://bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack)).
+
+### 4. Shadow AI
+
+When the approved tools feel limited, employees copy workspace content into whatever AI assistant is handy. IBM found that 20% of organizations it studied had suffered a breach involving shadow AI, and 63% had no AI governance policy at all ([IBM](https://www.ibm.com/think/x-force/2025-cost-of-a-data-breach-navigating-ai)).
+
+### 5. Over-permissioned workspaces
+
+Public links nobody remembers, guests who never get removed, and "everyone can edit" defaults all add up. In IBM's 2026 research, 92% of organizations hit by an AI-related breach lacked proper AI access controls ([Kiteworks](https://www.kiteworks.com/cybersecurity-risk-management/ibm-2026-breach-report-ai-governance/)).
+
+### 6. Retention promises you can't verify
+
+Zero-retention clauses and data processing agreements are only as good as the engineering behind them. As the November incident showed, a customer has no practical way to check that a vendor's vendor is deleting what it promised to delete.
+
+## What a knowledge base data leak actually costs
+
+Breaches have never been more expensive. IBM's 2026 Cost of a Data Breach Report puts the global average at a record $4.99 million, up 12% year over year ([IBM](https://www.ibm.com/think/x-force/2026-cost-of-a-data-breach-ai-adversaries-enterprise-risk)).
+
+| Measure | 2026 figure |
+| --- | --- |
+| Global average cost of a breach | $4.99M ([IBM](https://www.ibm.com/think/x-force/2026-cost-of-a-data-breach-ai-adversaries-enterprise-risk)) |
+| US average cost of a breach | $11.5M ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/)) |
+| Average cost, AI-related breach vs. other breaches | $5.33M vs. $4.70M ([The Decoder](https://the-decoder.com/ibm-finds-92-of-companies-hit-by-ai-security-breaches-lacked-basic-access-controls/)) |
+| Average time to identify and contain | 247 days ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/)) |
+| Breaches involving a third party | 48% ([eSecurity Planet](https://www.esecurityplanet.com/threats/2026-verizon-dbir-the-new-era-of-cyber-threats/)) |
+
+The headline number only tells part of the story. For a knowledge base, the bigger cost is what the content reveals.
+
+### Credential fallout
+
+One API key in a chat transcript can open your production systems. That's why rotating any credentials pasted into AI chats was the first thing affected customers were told to do.
+
+### Regulatory and contractual exposure
+
+GDPR, HIPAA, SOC 2 commitments and customer NDAs can all require action when confidential data reaches an unauthorized party. That holds even when the leak happened at your vendor's vendor.
+
+### Intellectual property and strategy
+
+Roadmaps, pricing discussions, hiring plans and meeting notes are exactly what a knowledge base exists to hold. Stripping usernames and workspace labels from a transcript doesn't remove the names, customers and projects written inside it.
+
+### Trust
+
+After a leak, people stop putting real work into the tool, or start working around it. A knowledge base that nobody trusts stops being a knowledge base.
+
+## 8 ways to prevent data leaks in your knowledge base
+
+These steps apply whatever tool you use. Work through them with your IT and security leads.
+
+1. **Map where your workspace data goes.** List every sub-processor and AI provider your workspace tool relies on, including model routers and analytics services. Ask your vendor which provider handles AI requests, and whether automatic model selection can send data to providers you haven't approved.
+2. **Shorten the chain.** Every company you remove from the data path is one fewer breach you can inherit. Self-hosting your workspace and your AI model is the most direct way to do this.
+3. **Turn off features you don't need.** Review defaults for usage analytics, training or early-access programs, and background classification. Opt out at the admin level, not user by user.
+4. **Treat contracts as necessary, not sufficient.** Zero-retention clauses and DPAs matter. Also ask how they are enforced and audited, and favor controls you can verify yourself.
+5. **Keep secrets out of docs and AI chats.** Store credentials in a secrets manager, scan your workspace for pasted keys, and rotate on a schedule.
+6. **Publish an AI usage policy and give people a good approved option.** Name the AI tools staff may use and what data can go into them. Shadow AI shrinks when the sanctioned tool is genuinely useful.
+7. **Apply least-privilege permissions.** Use workspace roles and page-level permissions, expire guest access, review public links every quarter, and enforce SSO and MFA. \[INTERNAL LINK: /blog/workspace-permissions "workspace permissions best practices"\]
+8. **Plan for your vendor's breach, not just your own.** Decide who receives breach notices, who reviews exposed data, and who owns credential rotation and customer communication. Run a tabletop exercise built around "our AI provider was breached."
+
+### 5 questions to ask your workspace vendor this week
+
+- Which AI providers can see our content and chats?
+- Can we turn those providers, and any analytics on our content, off?
+- Where is our data retained, for how long, and how is that verified?
+- Can we self-host the workspace?
+- Can we bring our own AI model?
+
+## How AppFlowy keeps your data and your AI on your infrastructure
+
+The checklist above is a lot to manage when your data passes through a long chain of vendors. AppFlowy takes a different approach: it shortens the chain so it ends at servers you control.
+
+### Self-host your entire workspace
+
+With self-hosted AppFlowy, you deploy the backend on your own servers or private cloud using Docker Compose. Docs, wikis, databases and project boards sync through your infrastructure, not ours ([self-hosting guide](https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production)).
+
+Your sub-processor list becomes a list of systems you already run and monitor.
+
+### Bring your own AI model
+
+Self-hosted AppFlowy connects to the AI provider of your choice, as long as it offers an OpenAI-compatible API. That includes models you run yourself, inside your own network.
+
+You pick the model, you know where it runs, and there's no hidden routing to an inference company you never vetted. Your team gets a sanctioned AI assistant that's good enough to use, which is one of the best defenses against shadow AI.
+
+### Local AI on every device
+
+AppFlowy Local AI lets you run AI features with a model on your own machine, so prompts and documents don't go to an AI service provider ([AppFlowy](https://appflowy.com/blog/appflowy_local_ai_ollama)). It works across web, mobile and desktop, and covers AI chat plus writing tools such as summarize, improve writing, fix grammar and explain.
+
+### Least-privilege permissions by design
+
+AppFlowy gives you workspace roles (Owner, Member, Guest), private spaces, and page-level permissions that override workspace roles. Guests only see the pages explicitly shared with them. Learn more about [space-level permissions](https://appflowy.com/guide/space-level-permissions) and [page-level permissions](https://appflowy.com/guide/page-level-permissions) in AppFlowy.
+
+Every [self-hosted plan](/pricing) includes SSO with SAML 2.0, and the Team and Enterprise plans add SCIM provisioning, LDAP integration and a security audit log. Access runs through your identity provider, and activity is recorded on your own infrastructure. For the full list of features in each plan, see [Self-hosted Plans and Pricing](https://appflowy.com/docs/Self-hosted-Plans-and-Pricing).
+
+### No data pipelines you didn't build
+
+When you self-host AppFlowy, there are no analytics or classification jobs running on copies of your content at a third party. If data leaves your network, it's because you configured it to.
+
+AppFlowy's client apps are open source under AGPL-3.0, so your security team can inspect what the apps on your employees' devices do with data. The self-hosted server is available under a [commercial license](https://github.com/AppFlowy-IO/AppFlowy-SelfHost-Commercial/blob/main/SELF_HOST_LICENSE_AGREEMENT.md).
+
+### The architecture, side by side
+
+|  | Typical cloud workspace with built-in AI | Self-hosted AppFlowy with your own model |
+| --- | --- | --- |
+| Where documents live | The vendor's cloud | Your servers |
+| Who runs AI inference | The vendor, often via third-party providers | A model you choose, on infrastructure you choose |
+| Who can access AI chats | The vendor and its sub-processors | Only systems you operate |
+| Analytics on your content | Often on by default | None unless you add it |
+| Breach blast radius | Every company in the chain | Your own perimeter |
+
+Self-hosting does move some responsibility to your team: patching, backups and access reviews. For most enterprises handling sensitive knowledge, that is a trade worth making, because those are controls you can see and verify.
+
+## FAQ
+
+### What causes most data leaks from knowledge bases?
+
+The most common causes are third-party and fourth-party vendors in the data path, credentials pasted into docs or AI chats, shadow AI, and over-permissioned workspaces. Verizon found that 48% of breaches in its 2026 report involved a third party.
+
+### Are AI chats in workspace tools private?
+
+That depends on where the AI runs. In many cloud workspaces, prompts and responses are processed by external AI providers and sometimes used for analytics. With a self-hosted or local model, chats stay on infrastructure you control.
+
+### What is a self-hosted LLM?
+
+A self-hosted LLM is a large language model that runs on your own servers or devices instead of a vendor's cloud. Self-hosted AppFlowy can connect to any model that offers an OpenAI-compatible API, including ones you run yourself.
+
+### Does self-hosting prevent all data breaches?
+
+No. Self-hosting removes third parties from your data path and puts control in your hands, but you still need patching, backups, access reviews and good secret hygiene. It shrinks your exposure to what you can see and manage.
+
+### What should we do if our workspace vendor reports a breach?
+
+Download and review any affected data, rotate every credential that may appear in it, starting with admin and production keys, watch for phishing that references the incident, and check access logs for unusual activity. Then review your vendor's sub-processor list and consider whether to shorten it.
+
+## Keep your knowledge where it belongs
+
+No team can vet every vendor their vendor uses. What you can do is choose a setup where that chain is short and ends at your own servers.
+
+To prevent data leaks in your knowledge base, map where your data goes, cut out the hops you don't need, and keep AI running on models you choose. The safest workspace data is the data that never leaves your infrastructure.
+
+**Ready to take control?** [Self-host AppFlowy with your own AI model](https://appflowy.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production), or [try AppFlowy Local AI](https://appflowy.com/guide/appflowy-local-ai-ollama) in a few minutes. Running a larger team? <ContactSalesLink source="blog-prevent-data-leaks-knowledge-base">Talk to us about enterprise self-hosting</ContactSalesLink>.
+
+If this guide was useful, share the checklist with your security team. It's a good conversation to have before the next notice email, not after it.
