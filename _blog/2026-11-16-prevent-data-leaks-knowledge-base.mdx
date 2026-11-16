@@ -5,9 +5,8 @@ description: "AI features can quietly send your team's notes to vendors you neve
 author: Mayur Mahajan
 author_image_url: /images/blog/authors/MayurSMahajan.png
 author_url: https://github.com/MayurSMahajan
-# [PLACEHOLDER] Add a 1200x630 hero image, then uncomment these lines. Until then the default AppFlowy OG image is used.
-# image: /images/blog/prevent-data-leaks-knowledge-base/hero.png
-# thumb: /images/blog/prevent-data-leaks-knowledge-base/hero.png
+image: /images/blog/prevent-data-leaks-knowledge-base/hero.png
+thumb: /images/blog/prevent-data-leaks-knowledge-base/hero.png
 tags:
   - prevent data leaks knowledge base
   - self-hosted LLM
@@ -23,7 +22,7 @@ topics:
   - private-ai
   - self-hosting
 date: '2026-11-16'
-toc_depth: 3
+toc_depth: 2
 related:
   - 2025-03-30-Best-Practices-on-How-to-Protect-Business-Data-Securely
   - 2024-12-07-self-hosted-appflowy
@@ -47,6 +46,11 @@ Most knowledge base data leaks are not one dramatic hack. They happen because da
 ### 1. The vendor's vendor problem
 
 Modern SaaS tools rarely run everything themselves. AI requests can pass through model routers, inference providers, analytics pipelines and cloud hosts that you never signed a contract with.
+
+<Img
+  src='/images/blog/prevent-data-leaks-knowledge-base/02-cloud-data-path.png'
+  alt='Diagram of an AI request in a typical cloud workspace: your document goes to the workspace app, then an AI router, an inference provider and a cloud host. The last three are companies you have no contract with, and every hop is a possible exposure point.'
+/>
 
 Every hop is another attack surface. Verizon's 2026 Data Breach Investigations Report found that 48% of breaches involved a third party, up from 30% a year earlier ([eSecurity Planet](https://www.esecurityplanet.com/threats/2026-verizon-dbir-the-new-era-of-cyber-threats/)). In the November incident, the provider's second intrusion came through yet another company: a third-party cloud provider that hosted its R&D machines ([BleepingComputer](https://bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack)).
 
@@ -78,13 +82,13 @@ Zero-retention clauses and data processing agreements are only as good as the en
 
 Breaches have never been more expensive. IBM's 2026 Cost of a Data Breach Report puts the global average at a record $4.99 million, up 12% year over year ([IBM](https://www.ibm.com/think/x-force/2026-cost-of-a-data-breach-ai-adversaries-enterprise-risk)).
 
-| Measure | 2026 figure |
-| --- | --- |
-| Global average cost of a breach | $4.99M ([IBM](https://www.ibm.com/think/x-force/2026-cost-of-a-data-breach-ai-adversaries-enterprise-risk)) |
-| US average cost of a breach | $11.5M ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/)) |
+| Measure                                            | 2026 figure                                                                                                                                    |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Global average cost of a breach                    | $4.99M ([IBM](https://www.ibm.com/think/x-force/2026-cost-of-a-data-breach-ai-adversaries-enterprise-risk))                                    |
+| US average cost of a breach                        | $11.5M ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/))                 |
 | Average cost, AI-related breach vs. other breaches | $5.33M vs. $4.70M ([The Decoder](https://the-decoder.com/ibm-finds-92-of-companies-hit-by-ai-security-breaches-lacked-basic-access-controls/)) |
-| Average time to identify and contain | 247 days ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/)) |
-| Breaches involving a third party | 48% ([eSecurity Planet](https://www.esecurityplanet.com/threats/2026-verizon-dbir-the-new-era-of-cyber-threats/)) |
+| Average time to identify and contain               | 247 days ([eSecurity Planet](https://www.esecurityplanet.com/cybersecurity/ibm-2026-cost-of-a-data-breach-report-key-findings/))               |
+| Breaches involving a third party                   | 48% ([eSecurity Planet](https://www.esecurityplanet.com/threats/2026-verizon-dbir-the-new-era-of-cyber-threats/))                              |
 
 The headline number only tells part of the story. For a knowledge base, the bigger cost is what the content reveals.
 
@@ -125,6 +129,12 @@ These steps apply whatever tool you use. Work through them with your IT and secu
 - Can we self-host the workspace?
 - Can we bring our own AI model?
 
+<Img
+  src='/images/blog/prevent-data-leaks-knowledge-base/04-vendor-checklist-card.png'
+  alt='Checklist card listing 5 questions to ask your workspace vendor: which AI providers can see our content and chats, can we turn those providers and analytics off, where is our data retained and how is that verified, can we self-host the workspace, and can we bring our own AI model'
+  containerClassName='mx-auto max-w-xl'
+/>
+
 ## How AppFlowy keeps your data and your AI on your infrastructure
 
 The checklist above is a lot to manage when your data passes through a long chain of vendors. AppFlowy takes a different approach: it shortens the chain so it ends at servers you control.
@@ -140,6 +150,11 @@ Your sub-processor list becomes a list of systems you already run and monitor.
 Self-hosted AppFlowy connects to the AI provider of your choice, as long as it offers an OpenAI-compatible API. That includes models you run yourself, inside your own network.
 
 You pick the model, you know where it runs, and there's no hidden routing to an inference company you never vetted. Your team gets a sanctioned AI assistant that's good enough to use, which is one of the best defenses against shadow AI.
+
+<Img
+  src='/images/blog/prevent-data-leaks-knowledge-base/03-self-hosted-data-path.png'
+  alt='Diagram of the same AI request with self-hosted AppFlowy: your document goes to your AppFlowy server, then to your own model, and the whole path stays inside your infrastructure'
+/>
 
 ### Local AI on every device
 
@@ -159,13 +174,13 @@ AppFlowy's client apps are open source under AGPL-3.0, so your security team can
 
 ### The architecture, side by side
 
-|  | Typical cloud workspace with built-in AI | Self-hosted AppFlowy with your own model |
-| --- | --- | --- |
-| Where documents live | The vendor's cloud | Your servers |
-| Who runs AI inference | The vendor, often via third-party providers | A model you choose, on infrastructure you choose |
-| Who can access AI chats | The vendor and its sub-processors | Only systems you operate |
-| Analytics on your content | Often on by default | None unless you add it |
-| Breach blast radius | Every company in the chain | Your own perimeter |
+|                           | Typical cloud workspace with built-in AI    | Self-hosted AppFlowy with your own model         |
+| ------------------------- | ------------------------------------------- | ------------------------------------------------ |
+| Where documents live      | The vendor's cloud                          | Your servers                                     |
+| Who runs AI inference     | The vendor, often via third-party providers | A model you choose, on infrastructure you choose |
+| Who can access AI chats   | The vendor and its sub-processors           | Only systems you operate                         |
+| Analytics on your content | Often on by default                         | None unless you add it                           |
+| Breach blast radius       | Every company in the chain                  | Your own perimeter                               |
 
 Self-hosting does move some responsibility to your team: patching, backups and access reviews. For most enterprises handling sensitive knowledge, that is a trade worth making, because those are controls you can see and verify.
 
