@@ -86,28 +86,37 @@ const tabs: Tab[] = [
 
 const autoplayOptions = tabs.map((tab) => ({ value: tab.id }));
 const autoplayDuration = 5000;
-const TRANSITION_MS = 850;
+// Covers the whole sequence in showcase.scss: blobs land first, then the
+// illustration fades in (900ms delay + 600ms).
+const TRANSITION_MS = 1500;
 
 const cloudBaseClass = "absolute rounded-full blur-[95px] pointer-events-none [transform:translateZ(0)]";
 
-function GradientLayer({ tab, leaving = false }: { tab: Tab; leaving?: boolean }) {
+type GradientState = "idle" | "entering" | "leaving";
+
+function GradientLayer({ tab, state = "idle" }: { tab: Tab; state?: GradientState }) {
+    // The entering layer sits above the leaving one without its own white
+    // fill, so the outgoing colours stay visible while the new blobs drop in.
+    const stateClass =
+        state === "entering"
+            ? "gradient-layer--entering"
+            : state === "leaving"
+                ? "bg-white gradient-layer--leaving"
+                : "bg-white";
+
     return (
         <div
             aria-hidden="true"
-            className={
-                leaving
-                    ? "absolute inset-0 z-0 overflow-hidden bg-white pointer-events-none gradient-layer--leaving"
-                    : "absolute inset-0 z-0 overflow-hidden bg-white pointer-events-none"
-            }
+            className={`absolute inset-0 z-0 overflow-hidden pointer-events-none ${stateClass}`}
             style={{
                 "--cloud-one": tab.clouds[0],
                 "--cloud-two": tab.clouds[1],
                 "--cloud-three": tab.clouds[2],
             } as CSSProperties}
         >
-            <div className={`${cloudBaseClass} w-[740px] h-[560px] right-[-170px] bottom-[-190px] bg-[var(--cloud-one)]`} />
-            <div className={`${cloudBaseClass} w-[640px] h-[520px] left-[-190px] bottom-[-160px] bg-[var(--cloud-two)]`} />
-            <div className={`${cloudBaseClass} w-[720px] h-[460px] left-[-140px] top-[-230px] bg-[var(--cloud-three)]`} />
+            <div className={`${cloudBaseClass} cloud--bottom-right w-[740px] h-[560px] right-[-170px] bottom-[-190px] bg-[var(--cloud-one)]`} />
+            <div className={`${cloudBaseClass} cloud--fill w-[640px] h-[520px] left-[-190px] bottom-[-160px] bg-[var(--cloud-two)]`} />
+            <div className={`${cloudBaseClass} cloud--top-left w-[720px] h-[460px] left-[-140px] top-[-230px] bg-[var(--cloud-three)]`} />
         </div>
     );
 }
@@ -153,11 +162,15 @@ function TitleBlock({ tab, className = "", hidden = false }: { tab: Tab; classNa
 function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTab: Tab | null }) {
     return (
         <div className="relative h-[720px] overflow-hidden rounded-2xl bg-white flex flex-col items-center pt-[60px] px-20 isolate max-[1100px]:h-[680px] max-[1100px]:pt-12 max-[1100px]:px-7">
-            <GradientLayer tab={activeTab} />
-            {previousTab ? <GradientLayer tab={previousTab} leaving /> : null}
+            {/*
+                Keyed by tab so every switch mounts fresh elements and restarts the
+                animations, even when a new switch lands mid-transition.
+            */}
+            {previousTab ? <GradientLayer key={previousTab.id} tab={previousTab} state="leaving" /> : null}
+            <GradientLayer key={activeTab.id} tab={activeTab} state={previousTab ? "entering" : "idle"} />
             <div className="relative z-[1] w-full grid">
-                <TitleBlock tab={activeTab} className={previousTab ? "title--enter" : ""} />
-                {previousTab ? <TitleBlock tab={previousTab} className="title--leave" hidden /> : null}
+                <TitleBlock key={activeTab.id} tab={activeTab} className={previousTab ? "title--enter" : ""} />
+                {previousTab ? <TitleBlock key={previousTab.id} tab={previousTab} className="title--leave" hidden /> : null}
             </div>
             <div className="relative z-[1] flex-1 w-full min-h-0 flex items-end justify-center overflow-visible max-[760px]:mt-4">
                 {/*
@@ -168,6 +181,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                     the fold at every breakpoint, and hidden outright under 760px.
                 */}
                 <img
+                    key={activeTab.id}
                     className={`${illustrationBaseClass} ${illustrationSizeClass(activeTab.id)} ${previousTab ? "feature-illustration--enter" : ""}`}
                     src={activeTab.image.src}
                     width={activeTab.image.width}
@@ -179,6 +193,7 @@ function FeaturePreview({ activeTab, previousTab }: { activeTab: Tab; previousTa
                 />
                 {previousTab ? (
                     <img
+                        key={previousTab.id}
                         className={`${illustrationBaseClass} ${illustrationSizeClass(previousTab.id)} feature-illustration--leave`}
                         src={previousTab.image.src}
                         width={previousTab.image.width}
