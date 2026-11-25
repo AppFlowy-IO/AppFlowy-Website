@@ -16,7 +16,8 @@
     "test:templates": "node --test scripts/tests/template-canonical.test.cjs",
     "check-blog-taxonomy": "node scripts/validate-blog-taxonomy.js",
     "check-seo-publishing": "node scripts/validate-seo-publishing.js",
-    "check-seo:production": "node scripts/check-deployed-seo.js",
+    "check-seo:production": "node scripts/check-deployed-seo.js && node scripts/check-deployed-templates.js",
+    "check-templates:production": "node scripts/check-deployed-templates.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "generate-sitemap:cached": "node scripts/generate-sitemap.js --reuse-existing-templates",
     "generate-sprite": "node scripts/generate-sprite.js"

@@ -73,10 +73,14 @@ export interface PublishInfo {
   view_id: string;
   publisher_email: string;
   publish_timestamp: string;
+  /** Set when a template has been withdrawn. The API keeps serving it; we do not. */
+  unpublished_timestamp?: string | null;
 }
 
 export interface TemplateSummary {
   view_id: string;
+  /** Immutable, so slug assignment orders by it to keep slugs stable across deploys. */
+  created_at: string;
   name: string;
   description: string;
   view_url: string;

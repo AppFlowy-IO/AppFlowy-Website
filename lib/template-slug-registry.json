@@ -1,0 +1,260 @@
+{
+  "$comment": "Every slug a template has ever been served at, keyed by view id. Add-only: never delete an entry or a slug. New templates are added by `npm run generate-sitemap`. To give a renamed template a new URL, move its `slug` into `aliases` and set the new `slug`; the old URL then 308s to the new one. `fallbackCategory` is only where a withdrawn template's URL redirects; which categories list a template still comes from the API.",
+  "templates": {
+    "60b2f7ac-40e3-40e7-a9a2-54a92c599d31": {
+      "slug": "agile-board-template",
+      "name": "Agile Board Template",
+      "fallbackCategory": "engineering"
+    },
+    "68154112-2410-4e04-b9be-a23c6bd7c4de": {
+      "slug": "agile-sprint-board-template",
+      "name": "Agile Sprint Board Template",
+      "fallbackCategory": "engineering"
+    },
+    "1d6ec635-bf63-4f8b-b364-936458d42242": {
+      "slug": "api-documentation",
+      "name": "API Documentation",
+      "fallbackCategory": "docs"
+    },
+    "53dab483-f994-439c-9ad3-6a1557003469": {
+      "slug": "blog-editorial-calendar",
+      "name": "Blog Editorial Calendar",
+      "fallbackCategory": "ai-powered"
+    },
+    "13a84186-588d-4eb9-b62c-c06222a72c4f": {
+      "slug": "bug-tracker",
+      "name": "Bug Tracker",
+      "fallbackCategory": "engineering"
+    },
+    "59a940e2-71ac-435e-a42f-9114f8dea7a5": {
+      "slug": "business-overview-one-pager",
+      "name": "Business Overview One Pager",
+      "fallbackCategory": "marketing"
+    },
+    "9bee6e94-735c-406d-a40a-1ef9314ed87c": {
+      "slug": "business-proposal-template",
+      "name": "Business Proposal Template",
+      "fallbackCategory": "docs"
+    },
+    "6f3a0877-5372-4ecc-a68b-60457f2c8e9a": {
+      "slug": "class-notes",
+      "name": "Class Notes",
+      "fallbackCategory": "database"
+    },
+    "1e49f61d-d81c-4630-97c0-bd3799c82987": {
+      "slug": "copy-management",
+      "name": "Copy Management",
+      "fallbackCategory": "marketing"
+    },
+    "d2a89475-13cc-4d9d-bff6-eb5bf10b32fa": {
+      "slug": "creative-brief",
+      "name": "Creative Brief",
+      "fallbackCategory": "marketing"
+    },
+    "8e0faeca-dfd4-4e08-9b0e-c2fcca0b31b0": {
+      "slug": "crm-investors",
+      "name": "CRM investors",
+      "fallbackCategory": "startups"
+    },
+    "706323c0-f8bf-49be-b73b-059b10f7ac96": {
+      "slug": "daily-journal",
+      "name": "Daily Journal",
+      "fallbackCategory": "database"
+    },
+    "5277ef3b-c659-44c7-b998-68b0c452fed5": {
+      "slug": "deadline-tracker-with-formulas",
+      "name": "Deadline Tracker with Formulas",
+      "fallbackCategory": "database"
+    },
+    "bd8ddc29-3c0a-40bb-9b08-7ed60eafa1cd": {
+      "slug": "device-tracker",
+      "name": "Device Tracker",
+      "fallbackCategory": "database"
+    },
+    "56eb2dd5-cb2e-4f59-8b7e-87576cea83e8": {
+      "slug": "effective-1-1-meeting",
+      "name": "Effective 1:1 Meeting",
+      "fallbackCategory": "engineering"
+    },
+    "223f4605-0cf2-4f8f-8e12-d1f3b93704b8": {
+      "slug": "eisenhower-matrix",
+      "name": "Eisenhower Matrix",
+      "fallbackCategory": "kanban"
+    },
+    "ad37dc78-a311-401b-a8ab-a94c8847c853": {
+      "slug": "event-planning-sop",
+      "name": "Event Planning SOP",
+      "fallbackCategory": "docs"
+    },
+    "4c488d3f-0aa2-4da8-99a5-9198afdeb97c": {
+      "slug": "fundraising-tracker",
+      "name": "Fundraising tracker",
+      "fallbackCategory": "kanban"
+    },
+    "99cfce08-4e21-49f6-9d00-e5648f95bd23": {
+      "slug": "hiring-scorecard-evaluation",
+      "name": "Hiring Scorecard Evaluation",
+      "fallbackCategory": "docs"
+    },
+    "51b33027-6f64-4f85-8711-3b70b18c9c5c": {
+      "slug": "hr-team-project-tracker",
+      "name": "HR Team Project Tracker",
+      "fallbackCategory": "database"
+    },
+    "99db25ce-6aaf-4171-a262-23ff34ccbcb8": {
+      "slug": "internal-customer-onboarding-checklist",
+      "name": "Internal Customer Onboarding Checklist",
+      "fallbackCategory": "docs"
+    },
+    "bae3fd41-eab3-4961-b121-278db8951ff9": {
+      "slug": "investor-update",
+      "name": "Investor update",
+      "fallbackCategory": "management"
+    },
+    "20fc177e-e681-4d06-aaf3-12ac092ab729": {
+      "slug": "job-description-template",
+      "name": "Job Description Template",
+      "fallbackCategory": "human-resources"
+    },
+    "933a4486-7b84-4f77-8acb-ac08f322be9d": {
+      "slug": "learn-a-language",
+      "name": "Learn A Language",
+      "fallbackCategory": "education"
+    },
+    "dc7c1ac2-ae2f-4994-8fff-00b7fc25b45d": {
+      "slug": "performance-review-template",
+      "name": "Performance Review Template",
+      "fallbackCategory": "human-resources"
+    },
+    "9f22b604-f44d-4058-aa41-6e368292358d": {
+      "slug": "press-release-template",
+      "name": "Press Release Template",
+      "fallbackCategory": "docs"
+    },
+    "20e79978-46a2-433f-b580-c7255f712685": {
+      "slug": "product-development-tracker",
+      "name": "Product Development Tracker",
+      "fallbackCategory": "database"
+    },
+    "b95c284d-ecca-4769-9e8b-cdac32fe167d": {
+      "slug": "product-one-pager-template",
+      "name": "Product One Pager Template",
+      "fallbackCategory": "sales-crm"
+    },
+    "c2d21591-e8ee-4552-8d53-abdc68c26617": {
+      "slug": "product-spec-example",
+      "name": "Product Spec Example",
+      "fallbackCategory": "docs"
+    },
+    "b80742e5-53ed-4aad-830b-d305d94b56d0": {
+      "slug": "project-budget-with-formulas",
+      "name": "Project Budget with Formulas",
+      "fallbackCategory": "database"
+    },
+    "1be6c9a9-aa41-4b44-855c-69cf49222fe0": {
+      "slug": "project-completion-tracker",
+      "name": "Project Completion Tracker",
+      "fallbackCategory": "project-management"
+    },
+    "ff5510e1-9595-4198-84a4-094cd60e1358": {
+      "slug": "project-expense-tracker",
+      "name": "Project Expense Tracker",
+      "fallbackCategory": "project-management"
+    },
+    "9b7da771-d4b9-45dc-938a-830922085017": {
+      "slug": "project-kickoff",
+      "name": "Project kickoff",
+      "fallbackCategory": "docs"
+    },
+    "708b487d-da38-400b-be35-25f977b43406": {
+      "slug": "project-management-template",
+      "name": "Project Management",
+      "fallbackCategory": "database"
+    },
+    "1a9831c5-3b1e-49b5-a0b7-ee1549530855": {
+      "slug": "project-plan-one-pager",
+      "name": "Project Plan One Pager",
+      "fallbackCategory": "docs"
+    },
+    "0df80254-5a3d-42da-ba3d-f74541e2a5bd": {
+      "slug": "project-planning-doc",
+      "name": "Project planning doc",
+      "fallbackCategory": "docs"
+    },
+    "89d52779-0a6a-4fe9-a42d-611821eefea9": {
+      "slug": "project-progress-tracker",
+      "name": "Project Progress Tracker",
+      "fallbackCategory": "project-management"
+    },
+    "e5c05ab8-9401-43c2-beba-ad2d02758a3b": {
+      "slug": "remote-class-template",
+      "name": "Remote Class Template",
+      "fallbackCategory": "education"
+    },
+    "bb4839d1-5379-4947-8cf2-12fa3a7a69a6": {
+      "slug": "review-product-roadmap",
+      "name": "Review product roadmap",
+      "fallbackCategory": "product-design"
+    },
+    "17b35848-b34f-43a9-a945-0efecc384e7f": {
+      "slug": "sales-onboarding-one-pager-template",
+      "name": "Sales Onboarding One Pager Template",
+      "fallbackCategory": "human-resources"
+    },
+    "add69abe-01b4-45fa-9a0b-66d6282f24de": {
+      "slug": "scrum-board-template",
+      "name": "Scrum Board Template",
+      "fallbackCategory": "engineering"
+    },
+    "cf951ee9-2fa0-4810-aef2-722ec143116e": {
+      "slug": "simple-project-board",
+      "name": "Simple Project Board",
+      "fallbackCategory": "kanban"
+    },
+    "54f9981f-b467-42ed-91f7-f4baa829fe14": {
+      "slug": "simple-startup-company-home",
+      "name": "Simple Startup Company Home",
+      "fallbackCategory": "docs"
+    },
+    "894646b1-46b5-4a75-a357-c3fa190e1178": {
+      "slug": "simple-weekly-to-do-list",
+      "name": "Simple Weekly To-Do List",
+      "fallbackCategory": "docs"
+    },
+    "4f3a86ee-637f-4d77-b6ad-3c5692fdeb75": {
+      "slug": "social-media-calendar",
+      "name": "Social Media Calendar",
+      "fallbackCategory": "marketing"
+    },
+    "7baa7b71-1db2-49e3-8f29-725717e5451d": {
+      "slug": "software-development",
+      "name": "Software Development",
+      "fallbackCategory": "engineering"
+    },
+    "f8381000-0149-42a1-865d-c999320402a7": {
+      "slug": "sprint-progress-with-formulas",
+      "name": "Sprint Progress with Formulas",
+      "fallbackCategory": "database"
+    },
+    "04c8ff1b-21cc-4ce7-8cb6-62b2620180c8": {
+      "slug": "sprint-retrospective-template",
+      "name": "Sprint Retrospective Template",
+      "fallbackCategory": "docs"
+    },
+    "ca2db846-b99c-4799-9811-aeaeed39ec37": {
+      "slug": "teaching-weekly-planning",
+      "name": "Teaching: Weekly Planning",
+      "fallbackCategory": "education"
+    },
+    "9a2501d5-5107-4509-9a56-a8647c48e059": {
+      "slug": "user-interview",
+      "name": "User Interview",
+      "fallbackCategory": "docs"
+    },
+    "453654f3-6abe-43c6-a542-58e3d37982d8": {
+      "slug": "weekly-to-do-list",
+      "name": "Weekly To-Do List",
+      "fallbackCategory": "docs"
+    }
+  }
+}

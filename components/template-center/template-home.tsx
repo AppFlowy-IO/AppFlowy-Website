@@ -8,7 +8,7 @@ import { TemplateSummary, TemplateCategory, TemplateCategoryType } from '@/lib/i
 import { useTemplatesContext } from './templates-context';
 import TemplateItem from './template-item';
 import TemplateHomeSearch from './template-home-search';
-import { slugify } from './utils';
+import { categorySlug } from './utils';
 
 const iconNames = new Set(['project', 'engineering', 'startups', 'schools', 'marketing', 'management', 'human-resources', 'sales', 'team-meetings', 'docs', 'wiki', 'database', 'kanban']);
 
@@ -57,7 +57,7 @@ export default function TemplateHome() {
                 <nav aria-label='Mobile template navigation' onClick={() => setCategoryMenuOpen(false)}>
                   <Link className='template-home__menu' href='/templates' onClick={() => setSearchText('')}><Icon name='all' sidebar />All Templates</Link>
                   {categories.map(category => (
-                    <Link className='template-home__menu' aria-current={category.id === selectedCategoryId ? 'page' : undefined} key={category.id} href={`/templates/${slugify(category.name)}`}>
+                    <Link className='template-home__menu' aria-current={category.id === selectedCategoryId ? 'page' : undefined} key={category.id} href={`/templates/${categorySlug(category.name)}`}>
                       <Icon name={categoryIcon(category.name, category.icon)} sidebar />{category.name}
                     </Link>
                   ))}
@@ -70,7 +70,7 @@ export default function TemplateHome() {
             <nav key={type} aria-label={type === TemplateCategoryType.ByUseCase ? 'By Use Case' : 'By Feature'}>
               <h2>{type === TemplateCategoryType.ByUseCase ? 'By Use Case' : 'By Feature'}</h2>
               <div className='template-home__category-links'>{categories.filter(category => category.category_type === type).map(category => (
-                <Link className='template-home__menu' aria-current={category.id === selectedCategoryId ? 'page' : undefined} key={category.id} href={`/templates/${slugify(category.name)}`}>
+                <Link className='template-home__menu' aria-current={category.id === selectedCategoryId ? 'page' : undefined} key={category.id} href={`/templates/${categorySlug(category.name)}`}>
                   <Icon name={categoryIcon(category.name, category.icon)} sidebar />{category.name}
                 </Link>
               ))}</div>
@@ -104,7 +104,7 @@ export default function TemplateHome() {
               return <section key={category.id}>
                 <div className='template-home__section-heading'>
                   <h2><Icon name={categoryIcon(category.name, category.icon)} />{category.name}</h2>
-                  <Link href={`/templates/${slugify(category.name)}`}>View all<Icon name='arrow' /></Link>
+                  <Link href={`/templates/${categorySlug(category.name)}`}>View all<Icon name='arrow' /></Link>
                 </div>
                 {category.description && <p className='template-home__category-description'>{category.description}</p>}
                 <Cards posts={posts.slice(0, 2)} />

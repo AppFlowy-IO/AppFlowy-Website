@@ -1,11 +1,15 @@
+'use client';
+
 import TemplateItem from '@/components/template-center/template-item';
+import { hasTemplateSlug, useTemplateSlugs } from '@/components/template-center/template-slug-context';
 import { TemplateCategory, TemplateSummary } from '@/lib/interface';
 import { Grid } from '@mui/material';
 import React, { useMemo } from 'react';
 
 function Templates({ templateList, category }: { templateList: TemplateSummary[]; category?: TemplateCategory }) {
+  const slugs = useTemplateSlugs();
   const renderTemplates = useMemo(() => {
-    return templateList.map((template) => {
+    return templateList.filter(hasTemplateSlug(slugs)).map((template) => {
       const currentCategory = category ? category : template.categories[0];
 
       return (
@@ -16,7 +20,7 @@ function Templates({ templateList, category }: { templateList: TemplateSummary[]
         </Grid>
       );
     });
-  }, [category, templateList]);
+  }, [category, slugs, templateList]);
 
   return (
     <Grid
